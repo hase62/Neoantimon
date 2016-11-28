@@ -1,12 +1,10 @@
 .DS_Store
 
-.Python2/cache/*
-Python2/cache/*
-.miup_crawling/cache/*
-miup_crawling/cache/*
-.Python2/*.pyc
-Python2/*.pyc
-.Python2/.idea
-Python2/.idea
-miup_miri/nohup.out
-.miup_miri/nohup.out
+*.fa
+.*.fa
+
+refFlat.txt
+.refFlat.txt
+
+*.tar.gz
+.*.tar.gz

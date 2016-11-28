@@ -2,4 +2,12 @@
 
 *.fa
 .*.fa
-*.fa
+
+*.fa.fai
+.*.fa.fai
+
+refFlat.txt
+.refFlat.txt
+
+*.tar.gz
+.*.tar.gz
