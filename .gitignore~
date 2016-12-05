@@ -3,6 +3,9 @@
 *.fa
 .*.fa
 
+*.fa.fai
+.*.fa.fai
+
 refFlat.txt
 .refFlat.txt
 
