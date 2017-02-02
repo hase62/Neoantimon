@@ -1,0 +1,25 @@
+#Updated on 2, Feb. 2017. 
+------------------------------
+#Preparation
+------------------------------
+(1)Download netMHCpan3.0 and netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan, respectively. 
+
+(2)Execute the script “Main_Preparatin.sh”. 
+Then, “MainClass1.R” and “MainClass2.R” will be available. 
+
+(3)See following texts and “TestRun.R” to learn how to use this library. 
+
+------------------------------
+#MainClass1.R
+------------------------------
+
+
+------------------------------
+#MainClass2.R
+------------------------------
+
+
+------------------------------
+#MainMergeResults.R
+------------------------------
+
