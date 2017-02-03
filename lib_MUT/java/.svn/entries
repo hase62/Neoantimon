@@ -1,0 +1,70 @@
+9
+
+dir
+488
+https://intra.csml.org/svn/eem/trunk/java
+https://intra.csml.org/svn/eem
+
+
+
+2011-03-19T03:29:25.176515Z
+488
+niida
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d0d09811-fe65-40ca-b84a-526f67dbe2c4
+
+lib
+dir
+
+src
+dir
+
+bin
+dir
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+deleted
+
+data
+dir
+
+Processing
+dir
+
+libNative
+dir
+
+.settings
+dir
+

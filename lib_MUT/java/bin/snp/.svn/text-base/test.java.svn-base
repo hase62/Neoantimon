@@ -1,0 +1,77 @@
+package snp;
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+import org.apache.commons.cli.*;
+
+import utility.MyFunc;
+import utility.MyMat;
+
+import snp.old.SAIRIC;
+import sun.reflect.Reflection;
+
+
+public class test {
+	public static void main(String[] args) throws Exception {
+		Options options = new Options();
+		options.addOption("a", "ampcutoff", true, "cutoff for amplification call");
+		options.addOption("d", "delcutoff", true, "cutoff for deletion call");
+		options.addOption("A", "aicutoff", true, "cutoff for AI call");
+		options.addOption("n", "ndsize", true, "size of null distributions");
+		options.addOption("o", "outfile", true, "output file name");
+		options.addOption("l", "logp", false, "get minus log pvalues");
+		options.addOption("t", "thinpi", true, "thin down probe info");
+		options.addOption("i", "interval", true, "interval for psuedo probe info");
+		HelpFormatter formatter = new HelpFormatter();
+		CommandLineParser parser = new BasicParser();
+		CommandLine commandLine;
+		try{
+			commandLine = parser.parse(options, args);
+		}catch (Exception e) {
+			formatter.printHelp(Reflection.getCallerClass( 1 ).getName() + " [options] BAFSegFile LogRSegFile probeTsvFile", options);
+			return ;
+		}
+		List <String> argList = commandLine.getArgList();
+		if(!(argList.size() == 3 | argList.size() == 2)){
+			formatter.printHelp(Reflection.getCallerClass( 1 ).getName() + " [options] BAFSegFile LogRSegFile probeTsvFile", options);
+			return;
+		}
+		Map<String,SegmentContainer> BAF = SegmentContainer.getSegmentContainerMapFromSegFile(argList.get(0));
+		Map<String,SegmentContainer> LogR = SegmentContainer.getSegmentContainerMapFromSegFile(argList.get(1));
+		ProbeInfo PI;
+		List<String> sample = new ArrayList<String>(BAF.keySet());
+		if(argList.size() == 3 ){
+			if(commandLine.hasOption("t")){
+				PI = 	ProbeInfo.getThinDownedProbeInfoFromTsvFile(argList.get(2),Integer.valueOf(commandLine.getOptionValue("t")));
+			}else{
+				PI = ProbeInfo.getProbeInfoFromTsvFile(argList.get(2));
+			}
+			PI = PI.filter(BAF.get(sample.get(0)));
+		}else{
+			int interval = 10000000;
+			if(commandLine.hasOption("i")){
+				interval = Integer.valueOf(commandLine.getOptionValue("i"));
+			}
+			PI = BAF.get(sample.get(0)).generatePsuedoProbeInfo(interval);			
+		}
+		
+		SAIRIC SAIRIC = new SAIRIC(BAF,LogR,PI);
+		if(commandLine.hasOption("a")){
+			SAIRIC.ampCutoff = Double.valueOf(commandLine.getOptionValue("a"));
+		}
+		if(commandLine.hasOption("d")){
+			SAIRIC.delCutoff = Double.valueOf(commandLine.getOptionValue("d"));
+		}
+		if(commandLine.hasOption("A")){
+			SAIRIC.AICutoff = Double.valueOf(commandLine.getOptionValue("A"));
+		}
+		if(commandLine.hasOption("n")){
+			SAIRIC.nullDistSize = Integer.valueOf(commandLine.getOptionValue("n"));
+		}
+		SAIRIC.calculateNullScores();
+		System.out.println(SAIRIC.getNullScore());
+	}
+	
+}

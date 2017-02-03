@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Processing/libraries/controlP5/src"/>
+	<classpathentry kind="src" path="Processing/libraries/dxf/src"/>
+	<classpathentry kind="src" path="Processing/libraries/net/src"/>
+	<classpathentry kind="src" path="Processing/libraries/opengl/src"/>
+	<classpathentry kind="src" path="Processing/libraries/pdf/src"/>
+	<classpathentry kind="src" path="Processing/libraries/peasycam/src"/>
+	<classpathentry kind="src" path="Processing/libraries/serial/src"/>
+	<classpathentry kind="src" path="Processing/libraries/video/src"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/arpack_combo-0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-cli-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-math-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/core.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/itext-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jgrapht-jdk1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/junit-3.8.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/mtj-0.9.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netlib-java-0.9.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/weka.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/controlP5/library/controlP5.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/dxf/library/dxf.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/javascript/library/javascript.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/minim/library/jl1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/minim/library/jsminim.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/minim/library/minim-spi.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/minim/library/minim.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/minim/library/mp3spi1.9.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/minim/library/tritonus_aos.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/minim/library/tritonus_share.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/net/library/net.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/gluegen-rt-natives-linux-amd64.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/gluegen-rt-natives-linux-i586.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/gluegen-rt-natives-macosx-ppc.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/gluegen-rt.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/jogl-natives-linux-amd64.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/jogl-natives-linux-i586.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/jogl-natives-macosx-ppc.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/jogl-natives-macosx-universal.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/jogl-natives-windows-amd64.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/jogl-natives-windows-i586.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/jogl.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/opengl/library/opengl.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/pdf/library/itext.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/pdf/library/pdf.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/peasycam/library/PeasyCam.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/serial/library/RXTXcomm.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/serial/library/serial.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/libraries/video/library/video.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/mpi.jar"/>
+	<classpathentry kind="lib" path="lib/commons-math3-3.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

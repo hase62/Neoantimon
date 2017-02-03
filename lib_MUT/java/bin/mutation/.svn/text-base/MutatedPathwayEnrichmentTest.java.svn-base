@@ -1,0 +1,29 @@
+package mutation;
+
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+import java.util.zip.DataFormatException;
+import utility.*;
+
+public class MutatedPathwayEnrichmentTest{
+	Map <String, Double> MutCount;
+	Map <String, Double> Pvalue;	
+	Map <String, List<String>> GeneSet;
+	
+	public MutatedPathwayEnrichmentTest(){}
+	
+	static Map <String, Double> readCount(String infile) throws IOException{
+		List  <String>  tmp  = MyFunc.readStringList(infile);
+		 Map <String, Double>  tmp2 =  new HashMap<String, Double>();
+		 for(String s: tmp){
+			 List<String> tmp3 = MyFunc.split("\t", s);
+			 tmp2.put(tmp3.get(0), Double.valueOf(tmp3.get(1)));
+		 }
+		 return tmp2;
+	 
+	}
+	
+	
+
+}

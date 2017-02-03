@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/org/apache/commons/math/geometry
+END
+CardanEulerSingularityException.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/org/apache/commons/math/geometry/CardanEulerSingularityException.java
+END
+Rotation.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/org/apache/commons/math/geometry/Rotation.java
+END
+NotARotationMatrixException.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/org/apache/commons/math/geometry/NotARotationMatrixException.java
+END
+Vector3D.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/org/apache/commons/math/geometry/Vector3D.java
+END
+RotationOrder.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/org/apache/commons/math/geometry/RotationOrder.java
+END

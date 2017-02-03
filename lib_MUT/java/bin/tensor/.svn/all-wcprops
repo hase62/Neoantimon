@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/eem/!svn/ver/461/trunk/java/src/tensor
+END
+Order3TensorViewer.class
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/Order3TensorViewer.class
+END
+Order3TensorGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/eem/!svn/ver/441/trunk/java/src/tensor/Order3TensorGenerator.java
+END
+test.class
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/test.class
+END
+Order3Tensor3DHeatMap.class
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/Order3Tensor3DHeatMap.class
+END
+ClusteredOrder3Tensor.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/ClusteredOrder3Tensor.java
+END
+OmicsTensor.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/eem/!svn/ver/400/trunk/java/src/tensor/OmicsTensor.java
+END
+ClusteredOrder3TensorViewer2.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/ClusteredOrder3TensorViewer2.java
+END
+Order3TensorSliceHeatMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/Order3TensorSliceHeatMap.java
+END
+ClusteredOrder3TensorViewer.class
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/ClusteredOrder3TensorViewer.class
+END
+Order3TensorViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/Order3TensorViewer.java
+END
+Order3Tensor.class
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/Order3Tensor.class
+END
+test.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/eem/!svn/ver/400/trunk/java/src/tensor/test.java
+END
+ClusteredOrder3TensorWithAnnotation.class
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/ClusteredOrder3TensorWithAnnotation.class
+END
+Order3Tensor3DHeatMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/Order3Tensor3DHeatMap.java
+END
+CompressedClusteredOrder3TensorWithAnnotation.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eem/!svn/ver/461/trunk/java/src/tensor/CompressedClusteredOrder3TensorWithAnnotation.java
+END
+Order3TensorViewer2.class
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/Order3TensorViewer2.class
+END
+Order3TensorGenerator.class
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/Order3TensorGenerator.class
+END
+ClusteredOrder3TensorViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/ClusteredOrder3TensorViewer.java
+END
+ClusteredOrder3Tensor.class
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/ClusteredOrder3Tensor.class
+END
+Order3Tensor.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/Order3Tensor.java
+END
+OmicsTensor.class
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/OmicsTensor.class
+END
+ClusteredOrder3TensorWithAnnotation.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/eem/!svn/ver/563/trunk/java/src/tensor/ClusteredOrder3TensorWithAnnotation.java
+END
+ClusteredOrder3TensorViewer2.class
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/ClusteredOrder3TensorViewer2.class
+END
+Order3TensorViewer2.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/eem/!svn/ver/400/trunk/java/src/tensor/Order3TensorViewer2.java
+END
+Order3TensorSliceHeatMap.class
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/eem/!svn/ver/457/trunk/java/src/tensor/Order3TensorSliceHeatMap.class
+END

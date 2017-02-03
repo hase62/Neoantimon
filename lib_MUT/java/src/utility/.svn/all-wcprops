@@ -1,0 +1,587 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/eem/!svn/ver/488/trunk/java/src/utility
+END
+HierarchicalClustering$9.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$9.class
+END
+StopWatch.class
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/eem/!svn/ver/457/trunk/java/src/utility/StopWatch.class
+END
+MyFunc.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/eem/!svn/ver/563/trunk/java/src/utility/MyFunc.java
+END
+Integrator.class
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/457/trunk/java/src/utility/Integrator.class
+END
+MyException.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/390/trunk/java/src/utility/MyException.java
+END
+GeneSetOverlapTest.class
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/eem/!svn/ver/457/trunk/java/src/utility/GeneSetOverlapTest.class
+END
+HierarchicalClustering$DistFuncType.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$DistFuncType.class
+END
+MyColor.class
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MyColor.class
+END
+HierarchicalClustering$ClusterDistFuncType.class
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$ClusterDistFuncType.class
+END
+ROCanalysis.class
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ROCanalysis.class
+END
+DoubleMat.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/eem/!svn/ver/490/trunk/java/src/utility/DoubleMat.java
+END
+ClusteredMyMatWithAnnotation.class
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ClusteredMyMatWithAnnotation.class
+END
+SampleLableCorrelation$CorFuncForMultipleGroups.class
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/eem/!svn/ver/457/trunk/java/src/utility/SampleLableCorrelation$CorFuncForMultipleGroups.class
+END
+CoxRegression.class
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/eem/!svn/ver/457/trunk/java/src/utility/CoxRegression.class
+END
+Integrator.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/eem/!svn/ver/563/trunk/java/src/utility/Integrator.java
+END
+CalculateCovariance.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/eem/!svn/ver/390/trunk/java/src/utility/CalculateCovariance.java
+END
+SampleLableCorrelation$CorFuncForContinuousLabel.class
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/eem/!svn/ver/457/trunk/java/src/utility/SampleLableCorrelation$CorFuncForContinuousLabel.class
+END
+CoxRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/eem/!svn/ver/390/trunk/java/src/utility/CoxRegression.java
+END
+StringMat.class
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/eem/!svn/ver/457/trunk/java/src/utility/StringMat.class
+END
+KaplanMeierAnalysis.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/eem/!svn/ver/390/trunk/java/src/utility/KaplanMeierAnalysis.java
+END
+VariableDist.class
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/eem/!svn/ver/457/trunk/java/src/utility/VariableDist.class
+END
+MultipleSampleLabelCorrelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/eem/!svn/ver/390/trunk/java/src/utility/MultipleSampleLabelCorrelation.java
+END
+HierarchicalClustering.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering.class
+END
+HierarchicalClustering$DistFunc.class
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$DistFunc.class
+END
+HierarchicalClustering$ClusterDistFunc.class
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$ClusterDistFunc.class
+END
+LinearRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/eem/!svn/ver/390/trunk/java/src/utility/LinearRegression.java
+END
+TreeCutClustering.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/eem/!svn/ver/563/trunk/java/src/utility/TreeCutClustering.java
+END
+getInformationContentOfMatrix.class
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/eem/!svn/ver/457/trunk/java/src/utility/getInformationContentOfMatrix.class
+END
+HierarchicalClustering.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/eem/!svn/ver/563/trunk/java/src/utility/HierarchicalClustering.java
+END
+ExpRegression.class
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ExpRegression.class
+END
+MultipleSampleLabelCorrelation.class
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MultipleSampleLabelCorrelation.class
+END
+SampleLableCorrelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/eem/!svn/ver/563/trunk/java/src/utility/SampleLableCorrelation.java
+END
+GeneSetOverlap.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/eem/!svn/ver/390/trunk/java/src/utility/GeneSetOverlap.java
+END
+ClusteredMyMatViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/eem/!svn/ver/563/trunk/java/src/utility/ClusteredMyMatViewer.java
+END
+test2.class
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/eem/!svn/ver/457/trunk/java/src/utility/test2.class
+END
+SurvivalCurvePlotViewer.class
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/eem/!svn/ver/457/trunk/java/src/utility/SurvivalCurvePlotViewer.class
+END
+ClusteredMyMat.class
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ClusteredMyMat.class
+END
+MyMat.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/eem/!svn/ver/563/trunk/java/src/utility/MyMat.java
+END
+HierarchicalClustering$2.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$2.class
+END
+MyException.class
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MyException.class
+END
+ClusteredMyMatWithAnnotation.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/eem/!svn/ver/563/trunk/java/src/utility/ClusteredMyMatWithAnnotation.java
+END
+HierarchicalClustering$4.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$4.class
+END
+MatrixCorrelation.class
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MatrixCorrelation.class
+END
+getInformationContentOfMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/eem/!svn/ver/390/trunk/java/src/utility/getInformationContentOfMatrix.java
+END
+ClusteredMyMatViewer2.class
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ClusteredMyMatViewer2.class
+END
+HierarchicalClustering$6.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$6.class
+END
+MyMatViewer.class
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MyMatViewer.class
+END
+HierarchicalClustering$8.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$8.class
+END
+Expression.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/eem/!svn/ver/563/trunk/java/src/utility/Expression.java
+END
+LinearRegression.class
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/eem/!svn/ver/457/trunk/java/src/utility/LinearRegression.class
+END
+TreeCutClustering.class
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/eem/!svn/ver/457/trunk/java/src/utility/TreeCutClustering.class
+END
+ClusteredMyMat.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/eem/!svn/ver/563/trunk/java/src/utility/ClusteredMyMat.java
+END
+Dist.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/eem/!svn/ver/563/trunk/java/src/utility/Dist.java
+END
+HierarchicalClustering$MyComparator.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$MyComparator.class
+END
+XYPlotViewer.class
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/eem/!svn/ver/457/trunk/java/src/utility/XYPlotViewer.class
+END
+MatrixCorrelation.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/eem/!svn/ver/390/trunk/java/src/utility/MatrixCorrelation.java
+END
+ClusteredMyMatViewer2.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/eem/!svn/ver/459/trunk/java/src/utility/ClusteredMyMatViewer2.java
+END
+GeneSetOverlap.class
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/eem/!svn/ver/457/trunk/java/src/utility/GeneSetOverlap.class
+END
+SampleLableCorrelation.class
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/eem/!svn/ver/457/trunk/java/src/utility/SampleLableCorrelation.class
+END
+VariableDist.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/eem/!svn/ver/435/trunk/java/src/utility/VariableDist.java
+END
+CalculatePvalueForSetOverlap.class
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/eem/!svn/ver/457/trunk/java/src/utility/CalculatePvalueForSetOverlap.class
+END
+MyMat.class
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MyMat.class
+END
+CalculateCovariance.class
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/eem/!svn/ver/457/trunk/java/src/utility/CalculateCovariance.class
+END
+StopWatch.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/eem/!svn/ver/390/trunk/java/src/utility/StopWatch.java
+END
+ExtrapolatePvalueUsingExpRegression.class
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ExtrapolatePvalueUsingExpRegression.class
+END
+XYLinePlotViewer.class
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/eem/!svn/ver/457/trunk/java/src/utility/XYLinePlotViewer.class
+END
+Heatmap.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/eem/!svn/ver/563/trunk/java/src/utility/Heatmap.java
+END
+KaplanMeierAnalysis.class
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/eem/!svn/ver/457/trunk/java/src/utility/KaplanMeierAnalysis.class
+END
+Expression.class
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/457/trunk/java/src/utility/Expression.class
+END
+MyColor.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/eem/!svn/ver/390/trunk/java/src/utility/MyColor.java
+END
+MyFunc.class
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MyFunc.class
+END
+CalculatePvalueForSetOverlap.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/eem/!svn/ver/390/trunk/java/src/utility/CalculatePvalueForSetOverlap.java
+END
+Dist.class
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/eem/!svn/ver/457/trunk/java/src/utility/Dist.class
+END
+MyFunc$Density.class
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/eem/!svn/ver/457/trunk/java/src/utility/MyFunc$Density.class
+END
+ClusteredMyMatPrinter.class
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ClusteredMyMatPrinter.class
+END
+ExpRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/eem/!svn/ver/390/trunk/java/src/utility/ExpRegression.java
+END
+test2.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/eem/!svn/ver/390/trunk/java/src/utility/test2.java
+END
+SurvivalCurvePlotViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/eem/!svn/ver/390/trunk/java/src/utility/SurvivalCurvePlotViewer.java
+END
+ExpRegression$Func.class
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ExpRegression$Func.class
+END
+Heatmap.class
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/eem/!svn/ver/457/trunk/java/src/utility/Heatmap.class
+END
+ClusteredMyMatPrinter.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/eem/!svn/ver/563/trunk/java/src/utility/ClusteredMyMatPrinter.java
+END
+StringMat.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/eem/!svn/ver/563/trunk/java/src/utility/StringMat.java
+END
+ClusteredMyMatViewer.class
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/eem/!svn/ver/457/trunk/java/src/utility/ClusteredMyMatViewer.class
+END
+MyMatViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/563/trunk/java/src/utility/MyMatViewer.java
+END
+test.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/eem/!svn/ver/563/trunk/java/src/utility/test.java
+END
+XYPlotViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/eem/!svn/ver/390/trunk/java/src/utility/XYPlotViewer.java
+END
+InteractiveClusteredMyMatViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/eem/!svn/ver/563/trunk/java/src/utility/InteractiveClusteredMyMatViewer.java
+END
+GeneSetOverlapTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/eem/!svn/ver/563/trunk/java/src/utility/GeneSetOverlapTest.java
+END
+ROCanalysis.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/563/trunk/java/src/utility/ROCanalysis.java
+END
+HierarchicalClustering$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$1.class
+END
+XYLinePlotViewer.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/eem/!svn/ver/390/trunk/java/src/utility/XYLinePlotViewer.java
+END
+ExtrapolatePvalueUsingExpRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/eem/!svn/ver/390/trunk/java/src/utility/ExtrapolatePvalueUsingExpRegression.java
+END
+HierarchicalClustering$3.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$3.class
+END
+HierarchicalClustering$5.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$5.class
+END
+SampleLableCorrelation$CorFunc.class
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/eem/!svn/ver/457/trunk/java/src/utility/SampleLableCorrelation$CorFunc.class
+END
+SampleLableCorrelation$CorFuncForTwoGroups.class
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/eem/!svn/ver/457/trunk/java/src/utility/SampleLableCorrelation$CorFuncForTwoGroups.class
+END
+HierarchicalClustering$7.class
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/457/trunk/java/src/utility/HierarchicalClustering$7.class
+END

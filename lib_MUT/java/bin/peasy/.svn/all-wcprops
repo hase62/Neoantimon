@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy
+END
+InterpolationManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/InterpolationManager.java
+END
+PeasyCam.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/PeasyCam.java
+END
+PeasyWheelHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/PeasyWheelHandler.java
+END
+InterpolationUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/InterpolationUtil.java
+END
+DampedAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/DampedAction.java
+END
+CameraState.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/CameraState.java
+END
+PeasyDragHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/eem/!svn/ver/390/trunk/java/Processing/libraries/peasycam/src/peasy/PeasyDragHandler.java
+END

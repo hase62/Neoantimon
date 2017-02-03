@@ -1,0 +1,256 @@
+package snp;
+
+import java.util.*;
+
+import org.apache.commons.cli.*;
+
+import utility.MyFunc;
+import utility.MyMat;
+
+import sun.reflect.Reflection;
+
+
+// Recurrent Allelic Imbalance Region Identification in Cancer 
+
+public class RAIRIC {
+		
+	MyMat BAF; 
+	MyMat LogR;
+	
+	MyMat scores;
+	MyMat pvalues;
+	MyMat qvalues;
+	ArrayList<String> scoreTypes; // AI, ampAI, delAI, neutAI;
+	
+	MyMat nullScores;
+	
+	List <String> sample;
+	List <String> probe;
+	
+	double AICutoff =  0.55;
+	double ampCutoff = 0.1;
+	double delCutoff = 0.1;
+	
+	int numberOfPermutations = 100;
+	
+	
+	public RAIRIC(MyMat BAF, MyMat LogR){
+		this.BAF = BAF;
+		sample = BAF.getColNames();
+		probe = BAF.getRowNames();
+		this.LogR = LogR;
+		
+		scoreTypes = new ArrayList<String>(); 
+		scoreTypes.add("AI");
+		scoreTypes.add("ampAI");
+		scoreTypes.add("delAI");
+		scoreTypes.add("neutAI");
+	}
+	
+	
+	private void calculateScores(){
+		scores =  new MyMat(probe, scoreTypes);
+		for(String p: probe){
+			for(String s: sample){
+				double baf = BAF.get(p, s);
+				double logr = LogR.get(p, s);
+				//AI
+				if(baf>= AICutoff){
+					scores.set(p, scoreTypes.get(0), scores.get(p, scoreTypes.get(0))+1);
+				}
+				//ampAI
+				if(baf>= AICutoff & logr > ampCutoff){
+					scores.set(p, scoreTypes.get(1), scores.get(p, scoreTypes.get(1))+1);
+				}
+				//delAI
+				if(baf>= AICutoff & logr < delCutoff){
+					scores.set(p, scoreTypes.get(2), scores.get(p, scoreTypes.get(2))+1);
+				}
+				//neutAI
+				if(baf>= AICutoff & logr >= delCutoff & logr <= ampCutoff){
+					scores.set(p, scoreTypes.get(3), scores.get(p, scoreTypes.get(3))+1);
+				}
+			}
+		}
+	}
+	
+	private MyMat calculateScores(MyMat BAF, MyMat LogR){
+		MyMat scores =  new MyMat(probe, scoreTypes);
+		for(String p: probe){
+			for(String s: sample){
+				double baf = BAF.get(p, s);
+				double logr = LogR.get(p, s);
+				//AI
+				if(baf>= AICutoff){
+					scores.set(p, scoreTypes.get(0), scores.get(p, scoreTypes.get(0))+1);
+				}
+				//ampAI
+				if(baf>= AICutoff & logr > ampCutoff){
+					scores.set(p, scoreTypes.get(1), scores.get(p, scoreTypes.get(1))+1);
+				}
+				//delAI
+				if(baf>= AICutoff & logr < delCutoff){
+					scores.set(p, scoreTypes.get(2), scores.get(p, scoreTypes.get(2))+1);
+				}
+				//neutAI
+				if(baf>= AICutoff & logr >= delCutoff & logr <= ampCutoff){
+					scores.set(p, scoreTypes.get(3), scores.get(p, scoreTypes.get(3))+1);
+				}
+			}
+		}
+		return scores;
+	}
+	
+	private void calculateNullscores(){
+		System.err.println("permution 1");
+		MyMat tmp  = calculateNullscoresSub();
+		List<String> rownameTmp = new ArrayList<String>();
+		for(int i = 0; i<probe.size(); i++){
+			rownameTmp.add(tmp.getRowNames().get(i)+ "_" + i);
+		}
+		tmp.setRowNames(rownameTmp);
+		nullScores = tmp;
+		for(int j = 1; j < numberOfPermutations; j++){
+			System.err.println("permution "+ (j+1));
+			MyMat tmp2 = calculateNullscoresSub();
+			List<String> rownameTmp2 = new ArrayList<String>();
+			for(int i = 0; i<probe.size(); i++){
+				rownameTmp2.add(tmp2.getRowNames().get(i)+ "_" + (i+j*probe.size()));
+			}
+			tmp2.setRowNames(rownameTmp2);
+			nullScores = nullScores.bindRow(tmp2);
+		}
+	}
+	private MyMat calculateNullscoresSub(){
+			MyMat permutatedBAF = new MyMat(probe, sample);
+			MyMat permutatedLogR = new MyMat(probe, sample);
+			List<Integer> index = new ArrayList<Integer>();
+			for(int i=0; i<probe.size();i++){
+				index.add(i);
+			}
+			for(int i = 0; i<sample.size();i++){
+				List <Integer> shuffuledIndex = MyFunc.sample(index, probe.size());
+				for(int j = 0; j<probe.size();j++){
+					permutatedBAF.set(j, i, BAF.get(shuffuledIndex.get(j), i));
+					permutatedLogR.set(j, i, LogR.get(shuffuledIndex.get(j), i));
+				}
+			}
+			return calculateScores(permutatedBAF, permutatedLogR);
+	}
+		
+	
+	private void calculatePvalues(){
+		pvalues =  new MyMat(probe, scoreTypes);
+		for(String p: probe){
+			for(String s: scoreTypes){
+				double score = scores.get(p, s);
+				List <Double> nullScoresTmp = nullScores.getCol(s);
+				Collections.sort(nullScoresTmp);
+				Collections.reverse(nullScoresTmp);
+				int i;
+				for(i=0;i<nullScoresTmp.size() && nullScoresTmp.get((int)i) > score;i++){}
+				if(i==0){
+					i=1;
+				}
+				double P = i / nullScoresTmp.size();
+				pvalues.set(p, s, P);		
+			}
+		}
+	}
+	
+	private void calculateQvalues(){
+		qvalues =  new MyMat(probe, scoreTypes);
+		for(String s: scoreTypes){
+			Map <String, Double> pmap = pvalues.getColMap(s);
+			Map <String, Double> qmap = MyFunc.calculateQvalue(pmap);
+			for(String p: qmap.keySet()){
+				qvalues.set(p, s, qmap.get(p));
+			}
+		}
+	}
+	
+	public void perform(){
+		System.err.println("calculate scores....");
+		calculateScores();
+		System.err.println("calculate null scores....");
+		calculateNullscores();
+		System.err.println("calculate pvalues....");
+		calculatePvalues();
+		System.err.println("calculate qvalues....");
+		calculateQvalues();
+	}
+	
+	public MyMat getQvalues(){
+		return qvalues;
+	}
+	
+	public MyMat getMinusLogQvalues(){
+		MyMat minusLogQvalues = new MyMat(probe, scoreTypes);
+		for(String s: scoreTypes){
+			for(String p: probe){
+				double tmp = qvalues.get(p, s);
+				if(tmp==1){
+					tmp=0;
+				}else{
+					tmp = - Math.log10(tmp);
+				}
+				minusLogQvalues.set(p, s, tmp);
+			}
+		}
+		return minusLogQvalues;
+	}
+	
+	public static void main(String [] args) throws Exception{
+		Options options = new Options();
+		options.addOption("a", "ampcutoff", true, "cutoff for amplification call");
+		options.addOption("d", "delcutoff", true, "cutoff for deletion call");
+		options.addOption("A", "aicutoff", true, "cutoff for AI call");
+		options.addOption("p", "perm", true, "number of permutations");
+		options.addOption("o", "outfile", true, "output file name");
+		options.addOption("l", "logp", false, "get minus log pvalues ");
+		HelpFormatter formatter = new HelpFormatter();
+		CommandLineParser parser = new BasicParser();
+		CommandLine commandLine;
+		try{
+			commandLine = parser.parse(options, args);
+		}catch (Exception e) {
+			formatter.printHelp(Reflection.getCallerClass( 1 ).getName() + " [options] BAFfile LogRfile", options);
+			return ;
+		}
+		List <String> argList = commandLine.getArgList();
+		if(argList.size() != 2){
+			formatter.printHelp(Reflection.getCallerClass( 1 ).getName() + " [options] BAFfile LogRfile", options);
+			return;
+		}
+		MyMat BAF = new MyMat(argList.get(0));
+		MyMat LogR = new MyMat(argList.get(1));
+		RAIRIC rairic = new RAIRIC(BAF,LogR);
+		if(commandLine.hasOption("a")){
+			rairic.ampCutoff = Double.valueOf(commandLine.getOptionValue("a"));
+		}
+		if(commandLine.hasOption("d")){
+			rairic.delCutoff = Double.valueOf(commandLine.getOptionValue("d"));
+		}
+		if(commandLine.hasOption("A")){
+			rairic.AICutoff = Double.valueOf(commandLine.getOptionValue("A"));
+		}
+		if(commandLine.hasOption("p")){
+			rairic.numberOfPermutations = Integer.valueOf(commandLine.getOptionValue("p"));
+		}
+		
+		rairic.perform();
+		MyMat out;
+		if(commandLine.hasOption("l")){
+			out = rairic.getMinusLogQvalues();
+		}else{
+			out = rairic.getQvalues();
+		}
+		
+		if(commandLine.hasOption("o")){
+			out.print(commandLine.getOptionValue("o"));
+		}else{
+			out.print();
+		}
+	}
+	
+}

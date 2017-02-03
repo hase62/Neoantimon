@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/eem/!svn/ver/490/trunk/java/src/snp
+END
+SAIRIC5.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRIC5.java
+END
+AllelicImbalanceTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/eem/!svn/ver/505/trunk/java/src/snp/AllelicImbalanceTest.java
+END
+Segment.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/eem/!svn/ver/563/trunk/java/src/snp/Segment.java
+END
+SegmentContainerMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/eem/!svn/ver/563/trunk/java/src/snp/SegmentContainerMap.java
+END
+SegmentContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/eem/!svn/ver/563/trunk/java/src/snp/SegmentContainer.java
+END
+SAIRICcomparative.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRICcomparative.java
+END
+PACT2.java
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/eem/!svn/ver/564/trunk/java/src/snp/PACT2.java
+END
+SAIRICsimplePaired.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRICsimplePaired.java
+END
+RAIRIC.java
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/eem/!svn/ver/506/trunk/java/src/snp/RAIRIC.java
+END
+LOHfinder.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/eem/!svn/ver/564/trunk/java/src/snp/LOHfinder.java
+END
+SAIRIC.java
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRIC.java
+END
+SegHeatmap.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SegHeatmap.java
+END
+Worldhost.java~
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/eem/!svn/ver/512/trunk/java/src/snp/Worldhost.java~
+END
+SAIRICsimple.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRICsimple.java
+END
+Worldhost.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/eem/!svn/ver/512/trunk/java/src/snp/Worldhost.java
+END
+SimulationDataGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/eem/!svn/ver/564/trunk/java/src/snp/SimulationDataGenerator.java
+END
+PACT.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/eem/!svn/ver/564/trunk/java/src/snp/PACT.java
+END
+PARTmatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/eem/!svn/ver/564/trunk/java/src/snp/PARTmatrix.java
+END
+SAIRIC2.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRIC2.java
+END
+PARTpermutation.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/564/trunk/java/src/snp/PARTpermutation.java
+END
+SAIRIC4.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRIC4.java
+END
+PARTunpaired.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/eem/!svn/ver/564/trunk/java/src/snp/PARTunpaired.java
+END
+SAIRIC6.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRIC6.java
+END
+BipartiteGraph.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/eem/!svn/ver/564/trunk/java/src/snp/BipartiteGraph.java
+END
+PART.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/eem/!svn/ver/564/trunk/java/src/snp/PART.java
+END
+ChromHeatmap.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/eem/!svn/ver/564/trunk/java/src/snp/ChromHeatmap.java
+END
+SimulationDataGeneratorUnpaired.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/eem/!svn/ver/564/trunk/java/src/snp/SimulationDataGeneratorUnpaired.java
+END
+test.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/eem/!svn/ver/563/trunk/java/src/snp/test.java
+END
+PARTsimple.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/eem/!svn/ver/564/trunk/java/src/snp/PARTsimple.java
+END
+AllelicImbalanceTest2.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/eem/!svn/ver/490/trunk/java/src/snp/AllelicImbalanceTest2.java
+END
+ProbeInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/eem/!svn/ver/563/trunk/java/src/snp/ProbeInfo.java
+END
+SAIRICcomparative0.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRICcomparative0.java
+END
+SimulationDataGeneratorDecomposed.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/eem/!svn/ver/564/trunk/java/src/snp/SimulationDataGeneratorDecomposed.java
+END
+ChromHeatmap2.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/eem/!svn/ver/564/trunk/java/src/snp/ChromHeatmap2.java
+END
+GeneInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/eem/!svn/ver/563/trunk/java/src/snp/GeneInfo.java
+END
+SAIRIC3.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/eem/!svn/ver/512/trunk/java/src/snp/SAIRIC3.java
+END

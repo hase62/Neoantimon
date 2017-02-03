@@ -1,0 +1,17 @@
+package snp;
+import mpi.*;
+public class Worldhost
+{
+public static void main(String[] args)
+    throws Exception
+         {
+  MPI.Init(args);
+  int me = MPI.COMM_WORLD.Rank();
+  int size = MPI.COMM_WORLD.Size();
+  String host = java.net.InetAddress.getLocalHost().getHostName();
+  System.out.println
+     ("Hello World from " + host + " " + me + " of " + size + "\n");
+  MPI.Finalize();
+        }
+    }
+

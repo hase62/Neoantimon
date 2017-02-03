@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/eem/!svn/ver/565/trunk/java/src/mutation
+END
+MutualExclusivityTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/eem/!svn/ver/565/trunk/java/src/mutation/MutualExclusivityTest.java
+END
+MutHeatmap.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/eem/!svn/ver/565/trunk/java/src/mutation/MutHeatmap.java
+END
+MutatedPathwayEnrichmentTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/eem/!svn/ver/565/trunk/java/src/mutation/MutatedPathwayEnrichmentTest.java
+END
+NSmutationEnrichmentTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/eem/!svn/ver/565/trunk/java/src/mutation/NSmutationEnrichmentTest.java
+END
