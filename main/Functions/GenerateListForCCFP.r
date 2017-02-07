@@ -1,4 +1,4 @@
-GenerateListForCCFP<-function(output_peptide_txt_file, Ascat, Purity = NA){
+GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
   data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   colnames(data)<-NULL
   rownames(data)<-NULL
@@ -6,7 +6,7 @@ GenerateListForCCFP<-function(output_peptide_txt_file, Ascat, Purity = NA){
      data<-rbind(data,data)
   }
   
-  data1<-t(sapply(scan(Ascat, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
+  data1<-t(sapply(scan(CNV, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   if(is.na(as.numeric(data1[1,2]))){
    data1<-data1[-1,]
   }

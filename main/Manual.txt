@@ -92,6 +92,24 @@ Arguments:
  -Purity (Default=NA): Tumor purity or tumor contents ratio requierd to calculate CCFP. 
   
 ------------------------------
-#MainMergeResults.R
+MainMergeClass1.R
+MainMergeClass2.R
 ------------------------------
+Functions:
+ MainMergeClass1
+ MainMergeClass2
+
+Arguments:
+ (**Required)
+ -input_dir: Directory storing netMHCpan Results.
+ 
+ -input_file_prefix: File prefix of netMHCpan Results. 
+  If you have "sample_annovar.txt.NO_JOB_ID.HLACLASS1.1.peptide.txt", please set "sample_annovar", "sample_annovar.txt" and "sample_annovar.txt.NO_JOB_ID". 
+
+ (**Not Required)
+ (***Standard Profiles)
+ -hmdir (Default=getwd()): Home directory for the analysis. 
+
+ -Tumor_RNA_BASED_ON_DNA (Default=TRUE): In calculating tumor specific RNA expression, TRUE uses variant allele frequency on DNA. Otherwise, use VAF on RNA. 
+
 

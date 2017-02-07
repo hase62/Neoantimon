@@ -5,7 +5,9 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
                              refMrna_3 = paste(hmdir,"/../lib_int/refMrna.merge.cut3.fa",sep=""),
                              max_peptide_length = 13, Chr_Column = 1, Mutation_Start_Column = 2, 
                              Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5, 
-                             NM_ID_Column = 10, ambiguous_between_exon = 0, ambiguous_codon = 0){
+                             NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
+                             ambiguous_between_exon = 0, ambiguous_codon = 0,
+                             ){
 
   #READ Data
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
@@ -55,9 +57,11 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
    DP<-0
    alt<-NULL
    ref<-NULL
-   if(length(grep("DP=",f))>0){
+   if(!is.na(Depth_Normal_Column)){
+     DP<-as.numeric(f[Depth_Normal_Column])
+   } else if(length(grep("DP=",f))>0){
     DP<-strsplit(strsplit(f[grep("DP=",f)], "DP=")[[1]][2],";")[[1]][1]
-   }else if(length(grep("t_alt_count", f))>0){
+   } else if(length(grep("t_alt_count", f))>0){
     alt<-strsplit(strsplit(f[grep("t_alt_count", f)],"t_alt_count=")[[1]][2],";|,|_")[[1]][1]
     ref<-strsplit(strsplit(f[grep("t_ref_count", f)],"t_ref_count=")[[1]][2],";|,|_")[[1]][1]
     if(!is.null(alt)){
@@ -67,7 +71,9 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
 
    #TDP:Tumor Depth      
    TDP<-0
-   if(length(grep("\\|1:",f))>0){
+   if(!is.na(Depth_Normal_Column) & !is.na(Depth_Tumor_Column)){
+     TDP<-as.numeric(f[Depth_Normal_Column]) + as.numeric(f[Depth_Tumor_Column])
+   } else if(length(grep("\\|1:",f))>0){
     TDP<-sum(as.numeric(rev(strsplit(strsplit(f[grep("\\|1:",f)], "\\|1:")[[1]][2],":")[[1]])[-1]))
    }else if(!is.null(alt)){
     TDP<-as.numeric(alt)
