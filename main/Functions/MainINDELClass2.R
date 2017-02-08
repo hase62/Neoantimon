@@ -1,4 +1,4 @@
-MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
+MainINDELClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
                                        hmdir = getwd(), job_ID = "NO_JOB_ID", RNAseq_file = NA, RNA_bam = NA, 
                                        CNV=NA, Purity = NA,
                                        refDNA = "./../lib_int/GRCh37.fa",
@@ -9,10 +9,11 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
                                        Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5, 
                                        NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,  
                                        ambiguous_between_exon = 0, ambiguous_codon = 0,
-                                       peptide_length = c(8,9,10,11,12,13)){
+                                       peptide_length = c(15)){
   
   #Generate FASTA and Mutation Profile
-  GenerateMutatedSeq(input_file = input_file, hmdir = hmdir, job_ID = job_ID,
+  job_ID = paste(job_ID, "INDEL", sep = "_")
+  GenerateIndelSeq(input_file = input_file, hmdir = hmdir, job_ID = job_ID,
                      refFlat_file = refFlat_file, refMrna_1 = refMrna_1, refMrna_3 = refMrna_3,
                      max_peptide_length = max(peptide_length), Chr_Column = Chr_Column, 
                      Mutation_Start_Column = Mutation_Start_Column, 
@@ -29,7 +30,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   if(!file.exists(output_peptide_txt_file)){
     return(NULL)
   }
-    
+  
   #Attach RNAseq Data if Exist, Otherwise set NULL Column
   skip=FALSE
   if(file.exists(RNAseq_file)){
@@ -43,7 +44,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
                    ">", paste(output_peptide_txt_file, "list.vcf", sep="."))))
       if(error != 0) skip = TRUE
   }
-  GetRNAseq(output_peptide_txt_file = output_peptide_txt_file, 
+  GetRNAseq_indel(output_peptide_txt_file = output_peptide_txt_file, 
             RNAseq_file = RNAseq_file, 
             output_file_rna_vcf = paste(output_peptide_txt_file, "list.vcf", sep="."))
   
@@ -66,13 +67,41 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   for(pep in c("peptide", "normpeptide")){
     COUNT<-1
     for(hla_type in hla_types){
-      system(paste("./../lib_int/netMHCpan-3.0/netMHCpan",
-                   " -l ", paste(peptide_length, collapse = ","),
-                   " -f ", paste(input_file,job_ID, pep,"fasta",sep="."), 
-                   " -a HLA-", gsub("\\*","",hla_type), 
-                   " > ", input_file, ".", job_ID, ".HLACLASS1.", COUNT, ".", pep, ".txt", 
-                   sep=""))
-      COUNT <- COUNT + 1
+      if(length(grep("DRB1", hla_type))==1) {
+        system(paste("./../lib_int/netMHCIIpan-3.1/netMHCIIpan",
+              " -length ", paste(peptide_length, collapse = ","),
+              " -f ", paste(input_file,job_ID, pep,"fasta",sep="."),
+              " -a ", gsub("\\*","_", gsub("\\:","",hla_type)), 
+              " > ", input_file, ".", job_ID, ".HLACLASS2.", COUNT, ".", pep, ".txt", 
+              sep=""))
+        COUNT <- COUNT + 1
+      }
+      
+      if(length(grep("DPA1", hla_type))==1) {
+        for(hla2 in hla_types[grep("DPB1", hla_types)]){
+          system(paste("./../lib_int/netMHCIIpan-3.1/netMHCIIpan",
+                       " -length ", paste(peptide_length, collapse = ","),
+                       " -f ", paste(input_file,job_ID, pep,"fasta",sep="."),
+                       " -choose -cha ", gsub("\\*|\\:","", hla_type), 
+                       " -choose -chb ", gsub("\\*|\\:","", hla2), 
+                       " > ", input_file, ".", job_ID, ".HLACLASS2.", COUNT, ".", pep, ".txt", 
+                       sep=""))
+          COUNT <- COUNT + 1
+        }
+      }
+
+      if(length(grep("DQA1", hla_type))==1) {
+        for(hla2 in hla_types[grep("DQB1", hla_types)]){
+          system(paste("./../lib_int/netMHCIIpan-3.1/netMHCIIpan",
+                       " -length ", paste(peptide_length, collapse = ","),
+                       " -f ", paste(input_file,job_ID, pep,"fasta",sep="."),
+                       " -choose -cha ", gsub("\\*|\\:","", hla_type), 
+                       " -choose -chb ", gsub("\\*|\\:","", hla2), 
+                       " > ", input_file, ".", job_ID, ".HLACLASS2.", COUNT, ".", pep, ".txt", 
+                       sep=""))
+          COUNT <- COUNT + 1
+        }
+      }
     }
   }
 }

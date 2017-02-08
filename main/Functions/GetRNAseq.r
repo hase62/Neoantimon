@@ -1,10 +1,9 @@
 GetRNAseq<-function(output_peptide_txt_file, RNAseq_file = NA, output_file_rna_vcf = NA){
-  data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"),
-          function(x) strsplit(x, "\t")[[1]]))
+  data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   if(is.na(RNAseq_file) | !file.exists(RNAseq_file)){
      ratio_matrix<-matrix(nrow=nrow(data), ncol=3, NA)
      write.table(cbind(data, ratio_matrix), commandArgs(TRUE)[1],
-        row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+                 row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
      q("no")
   }
   
@@ -24,7 +23,8 @@ GetRNAseq<-function(output_peptide_txt_file, RNAseq_file = NA, output_file_rna_v
   #data[,chr], data[,m_position]
   for(x in which(is.na(hit))){
      hit_pos<-which(data[x,3]==rna_pos[,1])
-     abs_hit_pos<-hit[which(as.numeric(data[x,12]) > as.numeric(rna_pos[hit,2]) & as.numeric(data[x,12]) < as.numeric(rna_pos[hit,3]))]
+     abs_hit_pos<-hit[which(as.numeric(data[x,12]) > as.numeric(rna_pos[hit,2]) & 
+                              as.numeric(data[x,12]) < as.numeric(rna_pos[hit,3]))]
      if(length(abs_hit_pos)!=0){
         print(abs_hit_pos[1])
         hit[x]<-abs_hit_pos[1]

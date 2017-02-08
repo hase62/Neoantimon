@@ -1,4 +1,3 @@
-source("Functions/CodonTable.R")
 GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID, 
                              refFlat_file = paste(hmdir,"/../lib_int/refFlat.txt",sep=""), 
                              refMrna_1 = paste(hmdir,"/../lib_int/refMrna.merge.cut1.fa",sep=""), 
@@ -6,14 +5,14 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
                              max_peptide_length = 13, Chr_Column = 1, Mutation_Start_Column = 2, 
                              Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5, 
                              NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
-                             ambiguous_between_exon = 0, ambiguous_codon = 0,
-                             ){
+                             ambiguous_between_exon = 0, ambiguous_codon = 0){
 
   #READ Data
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
   data<-scan(input_file, "character", sep="\n", skip=1)
   data<-data[grep("\texonic\t", data)]
   data<-data[grep("\tnonsynonymous", data)]
+  data<-gsub("\"", "",data)
   if(length(data)<1) q("no")
 
   #READ refFlat

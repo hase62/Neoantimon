@@ -1,4 +1,4 @@
-MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
+MainINDELClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
                                        hmdir = getwd(), job_ID = "NO_JOB_ID", RNAseq_file = NA, RNA_bam = NA, 
                                        CNV=NA, Purity = NA,
                                        refDNA = "./../lib_int/GRCh37.fa",
@@ -12,7 +12,8 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
                                        peptide_length = c(8,9,10,11,12,13)){
   
   #Generate FASTA and Mutation Profile
-  GenerateMutatedSeq(input_file = input_file, hmdir = hmdir, job_ID = job_ID,
+  job_ID = paste(job_ID, "INDEL", sep = "_")
+  GenerateIndelSeq(input_file = input_file, hmdir = hmdir, job_ID = job_ID,
                      refFlat_file = refFlat_file, refMrna_1 = refMrna_1, refMrna_3 = refMrna_3,
                      max_peptide_length = max(peptide_length), Chr_Column = Chr_Column, 
                      Mutation_Start_Column = Mutation_Start_Column, 
@@ -33,7 +34,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   #Attach RNAseq Data if Exist, Otherwise set NULL Column
   skip=FALSE
   if(file.exists(RNAseq_file)){
-      GenerateListForGetRNASeq(output_peptide_txt_file)
+      GenerateListForGetRNASeq(output_peptide_txt_file, width = 120)
       output_file_rna_list<-paste(output_peptide_txt_file, ".list.txt", sep="")
       error<-tryCatch2(system(paste("samtools mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam, 
                    ">", paste(output_peptide_txt_file, "list.mp", sep="."))))
@@ -43,7 +44,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
                    ">", paste(output_peptide_txt_file, "list.vcf", sep="."))))
       if(error != 0) skip = TRUE
   }
-  GetRNAseq(output_peptide_txt_file = output_peptide_txt_file, 
+  GetRNAseq_indel(output_peptide_txt_file = output_peptide_txt_file, 
             RNAseq_file = RNAseq_file, 
             output_file_rna_vcf = paste(output_peptide_txt_file, "list.vcf", sep="."))
   

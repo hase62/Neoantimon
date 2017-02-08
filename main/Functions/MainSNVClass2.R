@@ -1,6 +1,6 @@
-MainNeoantigenidentificationClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
+MainSNVClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
                                        hmdir = getwd(), job_ID = "NO_JOB_ID", RNAseq_file = NA, RNA_bam = NA, 
-                                       Genomon = FALSE, CNV=NA, Purity = NA,
+                                       CNV=NA, Purity = NA,
                                        refDNA = "./../lib_int/GRCh37.fa",
                                        refFlat_file = paste(hmdir,"/../lib_int/refFlat.txt",sep=""), 
                                        refMrna_1 = paste(hmdir,"/../lib_int/refMrna.merge.cut1.fa",sep=""), 

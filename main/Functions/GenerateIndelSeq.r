@@ -1,394 +1,392 @@
-ls(all=T)
-character(0)
-rm(list=ls(all=TRUE))
-
-codon<-c("TTT","TTC","TTA","TTG","TCT","TCC","TCA","TCG","TAT","TAC","TAA",
-"TAG","TGT","TGC","TGA","TGG","CTT","CTC","CTA","CTG","CCT","CCC","CCA","CCG",
-"CAT","CAC","CAA","CAG","CGT","CGC","CGA","CGG","ATT","ATC","ATA","ATG","ACT",
-"ACC","ACA","ACG","AAT","AAC","AAA","AAG","AGT","AGC","AGA","AGG","GTT","GTC",
-"GTA","GTG","GCT","GCC","GCA","GCG","GAT","GAC","GAA","GAG","GGT","GGC","GGA","GGG")
-codon<-tolower(codon)
-
-amino<-c("F","F","L","L","S","S","S","S","Y","Y","X","X","C","C","X","W",
-"L","L","L","L","P","P","P","P","H","H","Q","Q","R","R","R","R","I","I","I","M",
-"T","T","T","T","N","N","K","K","S","S","R","R","V","V","V","V","A","A","A","A",
-"D","D","E","E","G","G","G","G")
-
-data<-scan(commandArgs(TRUE)[2], "character", sep="\n", nlines=1000)
-data1<-scan(commandArgs(TRUE)[2], "character", sep="\n", skip=rev(grep("\\#",data))[1])
-data1<-t(sapply(data1, function(x) strsplit(x, "\t")[[1]][c(1,2,7,4,5)]))
-data1<-data1[data1[,3]!="LOWSUPPORT",]
-if(is.null(nrow(data1))) data1<-t(data1)
-if(nrow(data1)==0){q("no")}
-data1<-cbind(apply(data1, 1, function(x) paste("\t",x[1],"\t",x[2],"\t",sep="")), data1[,4], data1[,5])
-
-data2<-scan(commandArgs(TRUE)[1], "character", sep="\n", skip=1)
-hit<-sapply(data1[,1], function(x) grep(x, data2)[1])
-data2<-data2[hit]
-unknown<-grep("unknown", data2)
-data1<-data1[-unknown,]
-data2<-data2[-unknown]
-if(is.vector(data1)) data1<-t(data1)
-if(nrow(data1)==0){q("no")}
-
-hmdir<-commandArgs(TRUE)[3]
-list_nm_cut<-scan(paste(hmdir,"/refFlat.cut.txt",sep=""), "character", sep="\n")
-list_nm    <-scan(paste(hmdir,"/refFlat.txt",    sep=""), "character", sep="\n")
-
-#Get RNA-Code Data
-list_fl_NMID<-scan(paste(hmdir,"/refMrna.merge.cut1.fa",sep=""), "character", sep="\n")
-list_fl_dna<- scan(paste(hmdir,"/refMrna.merge.cut3.fa",sep=""), "character", sep="\n")
-
-trans_from<-c("a", "t", "g", "c")
-trans_to<-c("t", "a", "c", "g")
-
-pep_len<-as.numeric(commandArgs(TRUE)[4])
-fasta<-NULL
-fasta_norm<-NULL
-refFasta<-NULL
-random<-0
-for(i in 1:length(data2)){
-   print(i)
-   #Extract i-th Data
-   #f is a row of mutation data
-   f1<-c(strsplit(data1[i,1], "\t")[[1]], data1[i,c(2,3)])
-   f2<-strsplit(data2[i], "\t")[[1]]
-   f2<-c(f2, f2[1],f2[2])[-c(1,2)]
-   #Fisher Test
-   #DP<-0
-   #TDP<-0
-   #tumor_indel = 0
-   #normal_indel = 0
-   #pin<-grep("GT",f1)
-   #label<-strsplit(f1[pin],":")[[1]]
-   #DP<-sum(as.numeric(strsplit(f1[pin+1],":")[[1]][grep("PR|NR",label)]))
-   #TDP<-sum(as.numeric(strsplit(f1[pin+2],":")[[1]][grep("PR|NR",label)]))
-   #NI<-sum(as.numeric(strsplit(f1[pin+1],":")[[1]][grep("PU|NU",label)]))
-   #NI<-ifelse(DP < NI, DP, NI)
-   #TI<-sum(as.numeric(strsplit(f1[pin+2],":")[[1]][grep("PU|NU",label)]))
-   #TI<-ifelse(TDP < TI, TDP, TI)
-   DP<-0
-   TDP<-0
-   if(length(grep("MP=",f2[4]))>0){
-    MP<-as.numeric(strsplit(strsplit(f2[4], "MP=")[[1]][2], ";")[[1]][1])
-   }else if(length(grep("VAF=",f2[4]))>0){
-    MP<-as.numeric(strsplit(strsplit(f2[4], "VAF=")[[1]][2], ";")[[1]][1])
-   }else{
+GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID, 
+                             refFlat_file = paste(hmdir,"/../lib_int/refFlat.txt",sep=""), 
+                             refMrna_1 = paste(hmdir,"/../lib_int/refMrna.merge.cut1.fa",sep=""), 
+                             refMrna_3 = paste(hmdir,"/../lib_int/refMrna.merge.cut3.fa",sep=""),
+                             max_peptide_length = 13, Chr_Column = 1, Mutation_Start_Column = 2, 
+                             Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5, 
+                             NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
+                             ambiguous_between_exon = 0, ambiguous_codon = 0){
+  
+  #READ Data
+  index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
+  data<-scan(input_file, "character", sep="\n", skip=1)
+  data<-data[grep("\texonic\t", data)]
+  data<-data[grep("insertion|deletion", data)]
+  data<-gsub("\"", "",data)
+  if(length(data)<1) q("no")
+  
+  #READ refFlat
+  list_nm<-scan(refFlat_file, "character", sep="\n")
+  list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
+  
+  #Get RNA-Code Data
+  list_fl_NMID<-scan(refMrna_1, "character", sep="\n")
+  list_fl_dna<- scan(refMrna_3, "character", sep="\n")
+  
+  trans_from<-c("a", "t", "g", "c")
+  trans_to<-c("t", "a", "c", "g")
+  
+  pep_len<-max_peptide_length
+  fasta<-NULL
+  fasta_norm<-NULL
+  refFasta<-NULL
+  random<-0
+  for(i in 1:length(data)){
+    print(paste("Start Analysis: Mutation", i))
+    
+    #Extract i-th Data
+    f<-strsplit(data[i], "\t")[[1]]
+    
+    #Chromosome
+    chr<-f[Chr_Column]
+    
+    #MP:Somatic Mutation Probability
     MP<-0
-   }
+    if(length(grep("MP=",f))>0){
+      MP<-as.numeric(strsplit(strsplit(f[grep("MP=",f)], "MP=")[[1]][2],";")[[1]][1])
+    }
+    
+    #GP:Genotype Probability
+    GP<-0
+    if(length(grep("GP=",f))>0){
+      GP<-strsplit(strsplit(f[grep("GP=",f)], "GP=")[[1]][2],";")[[1]][1]
+    }
+    
+    #DP:Total Depth
+    DP<-0
+    alt<-NULL
+    ref<-NULL
+    if(!is.na(Depth_Normal_Column)){
+      DP<-as.numeric(f[Depth_Normal_Column]) + as.numeric(f[Depth_Tumor_Column])
+    } else if(length(grep("DP=",f))>0){
+      DP<-strsplit(strsplit(f[grep("DP=",f)], "DP=")[[1]][2],";")[[1]][1]
+    } else if(length(grep("t_alt_count", f))>0){
+      alt<-strsplit(strsplit(f[grep("t_alt_count", f)],"t_alt_count=")[[1]][2],";|,|_")[[1]][1]
+      ref<-strsplit(strsplit(f[grep("t_ref_count", f)],"t_ref_count=")[[1]][2],";|,|_")[[1]][1]
+      if(!is.null(alt)){
+        DP<-as.numeric(ref) + as.numeric(alt)
+      }
+    }
+    
+    #TDP:Tumor Depth      
+    TDP<-0
+    if(!is.na(Depth_Normal_Column) & !is.na(Depth_Tumor_Column)){
+      TDP<-as.numeric(f[Depth_Tumor_Column])
+    } else if(length(grep("\\|1:",f))>0){
+      TDP<-sum(as.numeric(rev(strsplit(strsplit(f[grep("\\|1:",f)], "\\|1:")[[1]][2],":")[[1]])[-1]))
+    }else if(!is.null(alt)){
+      TDP<-as.numeric(alt)
+    }
+    
+    #Mutation Start/End Position
+    m_start<-as.numeric(f[Mutation_Start_Column])
+    m_end<-as.numeric(f[Mutation_End_Column])
+    
+    #Ref./Alt on Mutation Position
+    m_ref<-f[Mutation_Ref_Column]
+    m_alt<-f[Mutation_Alt_Column]
+    
+    #When Including MultipleIDs
+    #For example, f[NM_ID_Column]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
+    nm_ids<-strsplit(f[NM_ID_Column], ":|,|;")
+    hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_", x)))
+    
+    #Calculate All NM_IDs in Each Mutation
+    Pass<-FALSE
+    for(h in hit){
+      #For example, nm_ids[[1]]="SAMD11"    "NM_152486" "exon9"     "c.C880T"   "p.Q294X"...
+      g_name<-nm_ids[[1]][h - 1]
+      nm_id<-nm_ids[[1]][h]
 
-   if(length(grep("GP=",f2[4]))>0){
-    GP<-strsplit(strsplit(f[grep("GP=",f2[4])], "GP=")[[1]][2],";")[[1]][1]
-   }else{GP<-0}
-
-   #MP<-#fisher.test(matrix(c(TDP - TI, TI, DP - NI, NI),nrow=2,byrow=TRUE))$p
-   #GP<-#paste(c(TDP - TI, TI, DP - NI, NI), collapse="/")
-   #if(NI > (TDP + DP) * 0.01) next
-   #if(MP > 0.05) next
-   gc();gc();
-
-   chr<-f2[1]
-   #Mutation Start/End Position
-   m_start<-as.numeric(f2[2])
-   m_end<-as.numeric(f2[3])
-   #Ref./Alt on Mutation Position
-   m_ref<-f1[4]
-   m_alt<-f1[5]
-     
-   #When Including MultipleIDs
-   Pass<-FALSE
-   g_name<-f2[6]
-   nm_id<-strsplit(f2[5],"\\.")[[1]][1]
-
-   #Obtain refFLAT Data
-   s_variants<-match(nm_id, list_nm_cut)
-   if(is.na(s_variants)) {
-      print("No MUTCH!!")
-      next
-   }
-   #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
-   for(v in s_variants){
-      Last<-match(v, s_variants)/length(s_variants)==1
-      nm_sep<-strsplit(list_nm[v], "\t")[[1]]
-      #Skip Such As "ch5_hap"
-      if(nchar(nm_sep[3]) > 5) next
-      strand<-nm_sep[4]
-
-      trans_start<-as.numeric(nm_sep[7])
-      trans_end<-as.numeric(nm_sep[8])
-      if(trans_start==trans_end) next
-      if(trans_end < m_start) {print("Not Within Translational Region");next;}
-      if(trans_start > m_start) {print("Not Within Translational Region");next;}
-      exon_start<-as.numeric(strsplit(nm_sep[10], ",")[[1]])
-      exon_end<-as.numeric(strsplit(nm_sep[11], ",")[[1]])
-
-      #Check Whether Mutation is Among Exon Region
-      #0-base(exon_start), 1-based(exon_end, m_start)
-      if(length(which(exon_start + 2 < m_start & m_start <= exon_end))!=1){
-	 if(Last && !Pass){
-            print("Not Among Exon!!")
-	    print(nm_id)
-            print(m_start)
-	    print(exon_start)
-	    print(exon_end)
-	    print("Skip")
-	 }
-	 next
+      #Obtain refFLAT Data
+      s_variants<-match(nm_id, list_nm_cut)
+      if(is.na(s_variants)) {
+        print(paste("No Macth, Skip", nm_id))
+        next
       }
       
-      #Obtain DNA sequence of Transcriptome
-      #DNAseq is Unique
-      dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
-      if(nchar(dna) != sum(exon_end - exon_start)){
-         dif<-sum(exon_end - exon_start) - nchar(dna)
-         if(dif > 200 | dif < -400) {
-     	    if(Last && !Pass){
-               print("Splicing Variants!!")
-               print(nm_id)
-	       print(paste(nchar(dna), sum(exon_end - exon_start)))
-	       print("Skip")
-	    }
-	    next
-	 }
-      }
-
-      #Get Relative Mutation Position
-      #Mutation Position May Be 1-based Position
-      if(strand =="+"){
-         point<-(exon_end > m_start)
-	 plus<-0
-	 if(length(which(point))>0){
-	    if(m_start - exon_start[which(point)[1]] > 0) plus<-m_start - exon_start[which(point)[1]]
-	 }
-         m_point<-sum((exon_end - exon_start)[!point]) + plus
-      }else{
-         point<-(exon_start > m_start)
-  	 plus<-0
-	 if(length(which(!point))>0){
-	    if((exon_end[rev(which(!point))[1]] - m_start) + 1 > 0) plus<-(exon_end[rev(which(!point))[1]] - m_start) + 1
-	 }
-	 m_point<-sum((exon_end - exon_start)[point]) + plus
-      }
-
-      #Get Relative Translation-Start Position (Correct 0-start to 1-start)
-      if(strand== "+"){
-         point<-(exon_end > trans_start)
-         ts_point<-sum((exon_end - exon_start)[!point]) + 
-   	      (trans_start - exon_start[which(point)[1]]) + 1
-      }else{
-         point<-(exon_start > trans_end)
-         ts_point<-sum((exon_end - exon_start)[point]) + 
-          (exon_end[rev(which(!point))[1]] - trans_end) + 1
-      }
-      #Check Start Codon
-      d<-0
-      if(substr(dna, ts_point, ts_point + 2)!="atg"){
-         flag<-FALSE
-         for(d in -2:2){
-     	    if(substr(dna, ts_point + d, ts_point + 2 + d)=="atg"){
-	       flag<-TRUE
-	       break
-	    }
-	 }
-	 if(flag){
-	    if(d < 0){
-	       dna<-sub(" ", "", paste(paste(rep("x", -d),collapse=""), dna, collapse="")) 
-	    }else{	        	        
-	       dna<-substr(dna, d + 1, nchar(dna))
+      #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
+      for(v in s_variants){
+        #Whether Last or Not
+        Last<-match(v, s_variants)/length(s_variants)==1
+        nm_sep<-strsplit(list_nm[v], "\t")[[1]]
+        
+        #Skip Such As "ch5_hap"
+        if(nchar(nm_sep[3]) > 5) next
+        strand<-nm_sep[4]
+        #Get Translation Start/End, Exon Start/End
+        trans_start<-as.numeric(nm_sep[7])
+        trans_end<-as.numeric(nm_sep[8])
+        exon_start<-as.numeric(strsplit(nm_sep[10], ",")[[1]])
+        exon_end<-as.numeric(strsplit(nm_sep[11], ",")[[1]])
+        
+        #Check Whether Mutation is Among Exon Region
+        if(length(which(exon_start < m_start & m_start <= exon_end))!=1){
+          print(paste("The Mutation is not between Exon Region, Skip", nm_id))
+          next
+        }
+        
+        #Obtain DNA sequence of Transcriptome
+        #DNAseq is Unique
+        dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
+        if(nchar(dna) != sum(exon_end - exon_start)){
+          dif<-sum(exon_end - exon_start) - nchar(dna)
+          if(abs(dif) < ambiguous_between_exon) {
+            if(Last && !Pass){
+              print(paste("cDNA Length does not Match to Exon-Start/End Length, Skip", nm_id))
+              print(paste("Ambiguous Length", ambiguous_between_exon))
             }
-	 }else{
-	    if(Last && !Pass){
-               print("Non-Start!!")
-	       print(nm_id)
-	       print(substr(dna, ts_point-4, ts_point + 5))
-               print("Skip")
-	    }
-	    next
-	 }
-      }
+            next
+          }
+        }
+        
+        #Get Relative Mutation Position
+        if(strand=="+"){
+          point<-(exon_end > m_start)
+          plus<-0
+          if(length(which(point))>0){
+            if(m_start - exon_start[which(point)[1]] > 0) {
+              plus<-m_start - exon_start[which(point)[1]]
+            }
+          }
+          m_point<-sum((exon_end - exon_start)[!point]) + plus
+        }else{
+          point<-(exon_start > m_start)
+          plus<-0
+          if(length(which(!point))>0){
+            if((exon_end[rev(which(!point))[1]] - m_start) + 1 > 0){ 
+              plus<-(exon_end[rev(which(!point))[1]] - m_start) + 1
+            }
+          }
+          m_point<-sum((exon_end - exon_start)[point]) + plus
+        }
 
-      #Get Relative Translation-End Position
-      if(strand=="+"){
-	 point<-(exon_end >= trans_end)
-         te_point<-sum((exon_end - exon_start)[!point]) + 
+        #Get Relative Translation-Start Position (0-start to 1-start)
+        if(strand=="+"){
+          point<-(exon_end > trans_start)
+          ts_point<-sum((exon_end - exon_start)[!point]) + 
+            (trans_start - exon_start[which(point)[1]]) + 1
+        }else{
+          point<-(exon_start > trans_end)
+          ts_point<-sum((exon_end - exon_start)[point]) + 
+            (exon_end[rev(which(!point))[1]] - trans_end) + 1
+        }
+        
+        #Check Start Codon
+        d<-0
+        if(substr(dna, ts_point, ts_point + 2)!="atg"){
+          flag<-FALSE
+          for(d in  (-1 * ambiguous_codon):(ambiguous_codon)){
+            if(substr(dna, ts_point + d, ts_point + 2 + d)=="atg"){
+              flag<-TRUE
+              break
+            }
+          }
+          if(flag){
+            if(d < 0){
+              dna<-sub(" ", "", paste(paste(rep("x", -d),collapse=""), dna, collapse="")) 
+            }else{	        	        
+              dna<-substr(dna, d + 1, nchar(dna))
+            }
+          }else{
+            print(paste("Start Position is not ATG, Skip", nm_id))
+            next
+          }
+        }
+        
+        #Get Relative Translation-End Position
+        if(strand=="+"){
+          point<-(exon_end >= trans_end)
+          te_point<-sum((exon_end - exon_start)[!point]) + 
             (trans_end - exon_start[which(point)[1]])
-      }else{
-         point<-(exon_start > trans_start)
-         te_point<-sum((exon_end - exon_start)[point]) + 
+        }else{
+          point<-(exon_start > trans_start)
+          te_point<-sum((exon_end - exon_start)[point]) + 
             (exon_end[rev(which(!point))[1]] - trans_start)
-      }
-      #Check Stop Codon
-      e<-0
-      if(amino[match(substr(dna, te_point-2, te_point), codon)]!="X"){
-         dna_trans<-substr(dna, ts_point, te_point)
-	 flag_2<-FALSE
-	 dif<-nchar(dna_trans)%%3
- 	 for(e in (seq(from=-3,to=30,3)-dif)){
-	    if(nchar(dna) < te_point) break
+        }
+        
+        #Check Stop Codon
+        e<-0
+        if(amino[match(substr(dna, te_point-2, te_point), codon)]!="X"){
+          dna_trans<-substr(dna, ts_point, te_point)
+          flag<-FALSE
+          dif<-nchar(dna_trans)%%3
+          for(e in (seq(from=-1 * ambiguous_codon, to=ambiguous_codon, 3) - dif)){
+            if(nchar(dna) < te_point) break
             if(amino[match(substr(dna, te_point - 2 + e, te_point + e), codon)]=="X"){
-               te_point <- te_point + e
-	       flag_2<-TRUE
-               break
+              te_point <- te_point + e
+              flag<-TRUE
+              break
             }
-	 }
-         if(!flag_2){
-	    if(Last && !Pass){
-	       print("Non-Stop!!")
-	       print(nm_id)
-    	       print(substr(dna, te_point-4, te_point + 6))
-               print("Skip")
-	    }
-	    next
-	 }
-      }
-
-      #Check Peptide Length
-      stop_loop<-FALSE
-      for(k in unique(0, d, e)){
-         dna_trans<-substr(dna, ts_point, te_point)
-	 dna_trans_normal<-dna_trans
-         m_point_2<-m_point - (ts_point) + 1 - k
-	 if(m_point_2 < 0) {
-	    next
-	 }
-         if(nchar(dna_trans)%%3!=0) {
-	    if(Last && !Pass){
-	       print("Peptide_Length_Miss!!")
-               print("Skip")
-	    }
-	    next
-	 }
-	 
-	 #Make Normal Peptide
-         peptide_normal<-NULL
-         while(nchar(dna_trans)>=3){
+          }
+          if(!flag){
+            print(paste("End Position Amino Acid is not X, Skip", nm_id))
+            next
+          }
+        }
+        
+        #Check Peptide Length
+        stop_loop<-FALSE
+        for(k in unique(0, d, e)){
+          dna_trans<-substr(dna, ts_point, te_point)
+          m_point_2<-m_point - (ts_point) + 1 - k
+          
+          #Mutation Position is not between Translational Region
+          if(m_point_2 < 0) {
+            next
+          }
+          
+          #Translation Region is not VAlid
+          if(nchar(dna_trans)%%3!=0) {
+            next
+          }
+          
+          #Make Normal Peptide
+          peptide_normal<-NULL
+          dna_trans_normal<-dna_trans
+          while(nchar(dna_trans)>=3){
             peptide_normal<-c(peptide_normal,amino[match(substr(dna_trans, 1, 3),codon)])
             dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
-         }
-	 if(k==e & match("X", peptide_normal) < length(peptide_normal)){
-	    next
-	 }
-         target_amino_before<-peptide_normal[ceiling(m_point_2/3.0)]
-
-         #Make Mutated-DNA
-         dna_trans<-substr(dna, ts_point, nchar(dna))
-	 dna_trans_mut<-dna_trans
-         m_point_2<-m_point - (ts_point) + 1
-	 if(m_point_2 < 4) next
-         if(strand == "+"){
-	 　 if(substr(dna_trans,m_point_2, m_point_2+nchar(m_ref)-1)==
-		   paste(substring(tolower(m_ref),1:nchar(m_ref),1:nchar(m_ref)), collapse="")
-            ){
-	       dna_trans<-paste(substr(dna_trans, 1, m_point_2-1),
-	             paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
-		        function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
-	             substr(dna_trans, m_point_2, nchar(dna_trans)), sep="")	    
-	    } else {next}
-         } else {
-	 　 if(paste(substring(substr(dna_trans,m_point_2-nchar(m_ref)+1,m_point_2), 
-		   1:nchar(m_ref),1:nchar(m_ref)),collapse="")==
-		   paste(sapply(rev(substring(tolower(m_ref),1:nchar(m_ref),1:nchar(m_ref))), 
-		   function(x) trans_to[match(tolower(x),trans_from)]),collapse="")
-            ){
-	       dna_trans<-paste(substr(dna_trans, 1, m_point_2-nchar(m_ref)),
-	             paste(sapply(rev(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt))), 
-		        function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
-	             substr(dna_trans, m_point_2+1, nchar(dna_trans)), sep="")
-	    } else {next}
-         }
-	 #if(m_start == 39254335)aaa
-
-         #Make Mutated-Peptide
-         peptide<-NULL
-         while(nchar(dna_trans)>=3){
-	    a<-amino[match(substr(dna_trans, 1, 3), codon)]
+          }
+          if(k==e & match("X", peptide_normal) < length(peptide_normal)){
+            next
+          }
+          target_amino_before<-peptide_normal[ceiling(m_point_2/3.0)]
+          
+          #Make Mutated-DNA
+          dna_trans<-substr(dna, ts_point, nchar(dna))
+	        m_point_2<-m_point - (ts_point) + 1
+	        if(m_point_2 < 4) next
+          if(strand == "+"){
+  	 　     if(m_ref == "-"){#Insertion - Specific
+  	          dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
+  	                           paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
+  	                                              function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
+  	                           substr(dna_trans, m_point_2, nchar(dna_trans)), sep="")
+  	        } else {
+  	          if(substr(dna_trans, m_point_2, m_point_2 + nchar(m_ref) - 1) ==
+  		              paste(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")){
+  	           
+  	            dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
+  	                               gsub("NA","",paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
+  	                                                         function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
+  	                               substr(dna_trans, m_point_2 + nchar(m_ref), nchar(dna_trans)), sep="")
+  	          } else {
+  	            next
+  	          }
+  	        }
+  	       } else {
+	 　       if(m_ref == "-"){#Insertion / Genomon
+	             dna_trans<-paste(substr(dna_trans, 1, m_point_2),
+	                          paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
+	                                              function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
+	                        substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
+	          } else {
+	            if(paste(substring(substr(dna_trans, m_point_2 - nchar(m_ref) + 1, m_point_2), 
+        		            1:nchar(m_ref), 1:nchar(m_ref)), collapse="") ==
+        		                paste(sapply(rev(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref))), 
+        		                  function(x) trans_to[match(tolower(x),trans_from)]), collapse="")){
+	               
+	             dna_trans<-paste(substr(dna_trans, 1, m_point_2 - nchar(m_ref)),
+	                         gsub("NA","",paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
+		                          function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
+	                         substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
+	            } else {
+	              next
+	            }
+	          }
+  	      }
+	        dna_trans_mut<-dna_trans
+	        
+          #Make Mutated-Peptide
+          peptide<-NULL
+          while(nchar(dna_trans) >= 3){
+  	        a<-amino[match(substr(dna_trans, 1, 3), codon)]
             peptide<-c(peptide, a)
-	    if(a=="X") break
-	    dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
-         }
-	 min_len<-min(length(peptide),length(peptide_normal))
-
-         peptide_start<-which(peptide[1:min_len]!=peptide_normal[1:min_len])[1] - pep_len
-	 if(is.na(peptide_start))break
-	 if(peptide_start < 1) peptide_start<-1
-	 peptide_end<-which(peptide[1:min_len]!=peptide_normal[1:min_len])[1]
-	 peptide_length<-length(peptide)
-         peptide<-peptide[peptide_start:length(peptide)]
-
-	 #Save Peptide
-	 if(length(peptide)<5) break
-	 #if(length(peptide_normal[peptide_start:min(length(peptide_normal),peptide_end)])==1)aaa
-         refFasta<-rbind(refFasta,
-	    c(paste(random, g_name, sep="_"), chr, f2[1], length(peptide), m_ref, m_alt, round(as.numeric(MP),5), ifelse(is.character(GP), GP, round(GP,5)),
-	    	  exon_start[1], rev(exon_end)[1],m_start, DP + TDP, TDP,
-	          paste(peptide_normal[peptide_start:min(length(peptide_normal),peptide_end)], collapse=""),
-		  paste(peptide, collapse=""), dna_trans_normal, dna_trans_mut))
-
-	 #Remove X and Save Fasta
-         if(!is.na(match("X",peptide)))
+  	        if(a=="X") break
+  	        dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
+          }
+  	      min_len<-min(length(peptide), length(peptide_normal))
+  
+          peptide_start<-which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - pep_len + 1
+  	      if(is.na(peptide_start)) break
+  	      if(peptide_start < 1) peptide_start<-1
+          peptide_end <- min_len - which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1] + pep_len + 1
+          if(peptide_end > length(peptide)) peptide_end = length(peptide)
+          peptide <- peptide[peptide_start:peptide_end]
+          peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
+          
+      	  #Save Peptide
+      	  if(length(peptide) < pep_len) break
+      	  refFasta<-rbind(refFasta,
+      	                  c(paste(random, g_name, sep="_"), chr, nm_id, length(peptide), m_ref, m_alt, 
+      	                    round(as.numeric(MP),5), ifelse(is.character(GP), GP, round(GP,5)),
+      	    	              exon_start[1], rev(exon_end)[1], m_start, DP, TDP,
+      	                    paste(peptide_normal, collapse=""),
+      		                  paste(peptide, collapse=""), 
+      	    	              dna_trans_normal, 
+      	    	              dna_trans_mut))
+      
+      	  #Remove X and Save Fasta
+          if(!is.na(match("X", peptide))){
             peptide<-peptide[1:(match("X",peptide) - 1)]
-         fasta<-c(fasta, sub("_","",paste(">", random, g_name, sep="_")))
-         fasta<-c(fasta, paste(peptide, collapse=""))
-	 random<-random + 1
-
-	 print("OK")
-	 stop_loop=TRUE
-	 Pass=TRUE
-         break
+          }
+          fasta<-c(fasta, sub("_","",paste(">", random, g_name, sep="_")))
+          fasta<-c(fasta, paste(peptide, collapse=""))
+      	  random<-random + 1
+      
+      	  print("Peptide Successfully Generated!!")
+      	  stop_loop=TRUE
+      	  Pass=TRUE
+      	  break
+        }
+        if(stop_loop) break
       }
-      if(stop_loop) break
-   }
-}
+    }
+    #Notification 
+    if(!Pass){
+      print("refFlat and refMrna data do not Match to vcf Description")
+      print(f[1:7])
+      print("Skip This Mutation")
+    }
+  }
 
-#Integrate The Same Peptide
-if(is.null(refFasta))q("no")
-i<-1
-if(!is.null(nrow(refFasta))){
- while(i<=nrow(refFasta)){
-   #if gene symbol, mutation position, mutated peptide, normal peptide
-   hit<-which((refFasta[i, 11]==refFasta[,11]) &
-      	      (refFasta[i, 14]==refFasta[,14]) &
-	      (refFasta[i, 15]==refFasta[,15]))
-   if(length(hit)==1){
-      i<-i+1
-      next
+  #Integrate The Same Peptide
+  if(is.null(refFasta)) {
+    q("no")
+  }
+  i<-1
+  if(!is.null(nrow(refFasta))){
+   while(i<=nrow(refFasta)){
+     #If gene symbol, mutation position, mutated peptide, normal peptide are all the same, Integrate These Peptides
+     #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process. 
+     hit<-which((refFasta[i, 11]==refFasta[,11]) &
+        	      (refFasta[i, 14]==refFasta[,14]) &
+  	            (refFasta[i, 15]==refFasta[,15]))
+     if(length(hit)==1){
+        i<-i+1
+        next
+     }
+     #collapse NM_ID, Info, Exon-start, Exon-end
+     temp1<-paste(refFasta[hit,3],collapse=";")
+     temp2<-paste(refFasta[hit,4],collapse=";")
+     temp3<-paste(refFasta[hit,9],collapse=";")
+     temp4<-paste(refFasta[hit,10],collapse=";")
+     refFasta[i,3]<-temp1
+     refFasta[i,4]<-temp2
+     refFasta[i,9]<-temp3
+     refFasta[i,10]<-temp4
+     refFasta<-refFasta[-hit[-1],]
+     if(is.null(nrow(refFasta))){
+       refFasta<-t(refFasta)
+     }
+     fasta<-fasta[-(c(hit[-1] * 2 - 1, hit[-1] * 2))]
+     fasta_norm<-fasta_norm[-(c(hit[-1] * 2 - 1, hit[-1] * 2))]
+     i<-i+1
    }
-   #collapse NM_ID, Info, Exon-start, Exon-end
-   temp1<-paste(refFasta[hit,3],collapse=";")
-   temp2<-paste(refFasta[hit,4],collapse=";")
-   temp3<-paste(refFasta[hit,9],collapse=";")
-   temp4<-paste(refFasta[hit,10],collapse=";")
-   refFasta[i,3]<-temp1
-   refFasta[i,4]<-temp2
-   refFasta[i,9]<-temp3
-   refFasta[i,10]<-temp4
-   refFasta<-refFasta[-hit[-1],]
-   if(is.null(nrow(refFasta))){
-    refFasta<-t(refFasta)
-   }
-   fasta<-fasta[-(c(hit[-1] * 2 - 1, hit[-1] * 2))]
-   fasta_norm<-fasta_norm[-(c(hit[-1] * 2 - 1, hit[-1] * 2))]
-   i<-i+1
- }
-}
-
-write.table(fasta, paste(commandArgs(TRUE)[1],"peptide.indel","fasta",sep="."),
-		   row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-write.table(refFasta, paste(commandArgs(TRUE)[1],"peptide.indel","txt",sep="."),
-		   row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
-
-if(FALSE){
- rna<-scan("refMrna.fa","character",sep="\n")
- rna_one_row<-NULL
- for(i in 1:length(rna)){
-   if(length(grep(">", rna[i]))==1){
-     s<-paste(c(strsplit(rna[i]," ")[[1]],""), collapse="\t")
-     rna_one_row<-c(rna_one_row, sub(">","",s))
-   }else{
-     rna_one_row[length(rna_one_row)]<-
-	paste(rna_one_row[length(rna_one_row)], rna[i], sep="")
-   }
- }
- write.table(rna_one_row, "refMrna.merge.fa", row.names=FALSE, col.names=FALSE, 
- 	sep="\t", quote=FALSE)
+  }
+  write.table(fasta, paste(input_file,job_ID,"peptide","fasta",sep="."),
+              row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+  write.table(refFasta, paste(input_file, job_ID,"peptide","txt",sep="."),
+              row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

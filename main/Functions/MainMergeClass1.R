@@ -1,6 +1,11 @@
-MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_RNA_BASED_ON_DNA = TRUE){
+MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_RNA_BASED_ON_DNA = TRUE, INDEL = FALSE){
   dir<-paste(hmdir, input_dir, sep="/")
   files<-list.files(paste(dir, sep="/"))
+  if(INDEL){
+    files<-files[grep("INDEL", files)]
+  } else {
+    files<-files[grep("INDEL", files, invert = TRUE)]
+  }
   
   #Get Peptide Info
   files_part<-files[intersect(grep("HLACLASS1", files), grep(input_file_prefix, files))]
