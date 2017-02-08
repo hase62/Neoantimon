@@ -64,7 +64,7 @@ MainINDELClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_f
   #NetMHCpan
   hla<-t(sapply(scan(HLA_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   hla_types<-hla[match(file_name_in_HLA_table, hla[,1]),-1]
-  for(pep in c("peptide", "normpeptide")){
+  for(pep in c("peptide")){
     COUNT<-1
     for(hla_type in hla_types){
       if(length(grep("DRB1", hla_type))==1) {

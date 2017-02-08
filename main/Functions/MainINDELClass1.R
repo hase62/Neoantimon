@@ -64,12 +64,12 @@ MainINDELClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_f
   #NetMHCpan
   hla<-t(sapply(scan(HLA_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   hla_types<-hla[match(file_name_in_HLA_table, hla[,1]),-1]
-  for(pep in c("peptide", "normpeptide")){
+  for(pep in c("peptide")){
     COUNT<-1
     for(hla_type in hla_types){
       system(paste("./../lib_int/netMHCpan-3.0/netMHCpan",
                    " -l ", paste(peptide_length, collapse = ","),
-                   " -f ", paste(input_file,job_ID, pep,"fasta",sep="."), 
+                   " -f ", paste(input_file, job_ID, pep,"fasta",sep="."), 
                    " -a HLA-", gsub("\\*","",hla_type), 
                    " > ", input_file, ".", job_ID, ".HLACLASS1.", COUNT, ".", pep, ".txt", 
                    sep=""))
