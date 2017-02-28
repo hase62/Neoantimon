@@ -76,7 +76,7 @@ MainSNVClass1, MainINDELClass1, MainSNVClass2, MainINDELClass2
  
  **-refDNA (Default="./../lib_int/GRCh37.fa"):** refDNA information to be used to calculate RNA VAF. 
  
-###Arguments:** Not Required (CNV Profiles)
+###Arguments: Not Required (CNV Profiles)
   
  **-CNV (Default=NA):** A file including copy number variation to calculate cancer cell fraction probability (CCFP).  
  	The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.  
@@ -94,7 +94,7 @@ MainSNVClass1, MainINDELClass1, MainSNVClass2, MainINDELClass2
 ##Functions:  
 MainMergeClass1, MainMergeClass2
 
-###Arguments:** Required
+###Arguments: Required
 
  **-input_dir:** Directory storing netMHCpan Results.
  
