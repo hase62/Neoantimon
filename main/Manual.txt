@@ -11,10 +11,7 @@ Then, set {"netMHCpan-3.0a.Darwin.tar.gz" or "netMHCpan-3.0a.Linux.tar.gz"} and 
 
 ------------------------------
 #Functions:
- MainSNVClass1()
- MainINDELClass1()
- MainSNVClass2()
- MainINDELClass2()
+MainSNVClass1(), MainINDELClass1(), MainSNVClass2(), MainINDELClass2()
 ------------------------------
 
 Arguments:
@@ -92,8 +89,7 @@ Arguments:
   
 ------------------------------
 #Functions: Summarize The Results
- MainMergeClass1()
- MainMergeClass2()
+MainMergeClass1(), MainMergeClass2()
 ------------------------------
 
 Arguments:

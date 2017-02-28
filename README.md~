@@ -1,7 +1,4 @@
-# Neoantimon
-This is an automated pipeline that detects neoantigens from vcf files. 
-
-#Updated on 28, Feb. 2017. 
+#Updated on 2, Feb. 2017. 
 ------------------------------
 #Preparation
 ------------------------------
@@ -12,11 +9,13 @@ Then, set {"netMHCpan-3.0a.Darwin.tar.gz" or "netMHCpan-3.0a.Linux.tar.gz"} and 
 
 (3)See following texts and “SampleRun.R” to learn how to use this library. 
 
-Functions: To indeitify candidate neoantigen on SNVs/INDELs
+------------------------------
+#Functions:
  MainSNVClass1()
  MainINDELClass1()
  MainSNVClass2()
  MainINDELClass2()
+------------------------------
 
 Arguments:
  (**Required)
@@ -91,9 +90,11 @@ Arguments:
  
  -Purity (Default=NA): Tumor purity or tumor contents ratio requierd to calculate CCFP. 
   
-Functions: Summarize The Results
+------------------------------
+#Functions: Summarize The Results
  MainMergeClass1()
  MainMergeClass2()
+------------------------------
 
 Arguments:
  (**Required)
