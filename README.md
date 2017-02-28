@@ -27,7 +27,7 @@ MainSNVClass1, MainINDELClass1, MainSNVClass2, MainINDELClass2
 	 
 ###Arguments: Not Required (Standard Profiles)
  
- *-file_name_in_HLA_table (Default=input_file):* If the name (1st column) in HLA table is not input_file, indicate the corresponding name. 
+ **-file_name_in_HLA_table (Default=input_file):** If the name (1st column) in HLA table is not input_file, indicate the corresponding name. 
 
  -hmdir (Default=getwd()): Home directory for the analysis. 
 
