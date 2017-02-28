@@ -10,7 +10,8 @@ Then, set {"netMHCpan-3.0a.Darwin.tar.gz" or "netMHCpan-3.0a.Linux.tar.gz"} and 
 (3)See following texts and “SampleRun.R” to learn how to use this library. 
 
 ------------------------------
-##Functions: MainSNVClass1, MainINDELClass1, MainSNVClass2, MainINDELClass2()
+##Functions:  
+MainSNVClass1, MainINDELClass1, MainSNVClass2, MainINDELClass2
 
 ###Arguments: Required
  
@@ -91,7 +92,8 @@ Then, set {"netMHCpan-3.0a.Darwin.tar.gz" or "netMHCpan-3.0a.Linux.tar.gz"} and 
  -Purity (Default=NA): Tumor purity or tumor contents ratio requierd to calculate CCFP. 
   
 ------------------------------
-##Functions: MainMergeClass1, MainMergeClass2
+##Functions:  
+MainMergeClass1, MainMergeClass2
 
 ###Arguments: Required
 
