@@ -1,4 +1,4 @@
-#Updated on 2, Feb. 2017. 
+#Updated on 22th, Feb. 2017. 
 ==============================
 ##Preparation
 ------------------------------
@@ -18,7 +18,7 @@ MainINDELClass2()
 ------------------------------
 
 Arguments:
- *Required*
+###Required
  
  -input_file: An input file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares to be analyzed. 
 
@@ -52,7 +52,11 @@ Arguments:
  -Mutation_Alt_Column (Default=5): The column number describing Mutation Alt in input_file. 
  
  -NM_ID_Column (Default=10): The column number describing NM IDs in input_file. 
+  
+ -Depth_Normal_Column (Default = NA): 
  
+ -Depth_Tumor_Column (Default = NA): 
+
  -ambiguous_between_exon (Default=0): The maximum number to permit the differences between Exon-Lengths from refFlat and refMrna. 
  
  -ambiguous_codon (Default=0):The maximum number to permit the differences between inputfile- and refMrna-oriented translation START/END position. 
@@ -78,10 +82,6 @@ Arguments:
  
  -refDNA (Default="./../lib_int/GRCh37.fa"): refDNA information to be used to calculate RNA VAF. 
  
- -Depth_Normal_Column (Default = NA): 
- 
- -Depth_Tumor_Column (Default = NA): 
-
   *Not Required (CNV Profiles)* 
   
   -CNV (Default=NA): A file including copy number variation to calculate cancer cell fraction probability (CCFP).  

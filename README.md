@@ -1,4 +1,4 @@
-#Updated on 2, Feb. 2017. 
+#Updated on 22th, Feb. 2017. 
 ==============================
 ##Preparation
 ------------------------------
@@ -18,18 +18,18 @@ MainINDELClass2()
 ------------------------------
 
 Arguments:
- *Required*
+###Required
  
  -input_file: An input file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares to be analyzed. 
 
  -HLA_file: A tab separated file indicating HLA types.  
- 	    The 1st column is input_file name, and the following columns indicate HLA types.   
-	    Free to use any Header.   
- 	    (e.g.,   
-	     sample1 A*02:01	A*32:01	B*15:17	B*51:01	C*07:01	C*15:02  
-	      sample2		A*01:01	A*02:01	B*15:17	B*51:01	C*07:01	 C*15:02  
-	       ...)  
-	        
+ 	The 1st column is input_file name, and the following columns indicate HLA types.   
+	Free to use any Header.   
+ 	(e.g.,   
+	 sample1	A*02:01	A*32:01	B*15:17	B*51:01	C*07:01	C*15:02  
+	 sample2	A*01:01	A*02:01	B*15:17	B*51:01	C*07:01	C*15:02  
+	 ...)  
+	 
  *Not Required (Standard Profiles)* 
  
  -file_name_in_HLA_table (Default=input_file): If the name (1st column) in HLA table is not input_file, indicate the corresponding name. 
@@ -70,13 +70,13 @@ Arguments:
  *Not Required (RNA Profiles)* 
  
  -RNAseq_file (Default=NA): A file including RNA expressions. 
- 	      The 1st, 2nd and 3rd columns are "GeneSymbol    Chr:ExonStart-ExonEnd(locus)	Expression Amount", respectively.  
- 	      The 1st row should be any hedear.  
-	      (e.g.,  
-	       header  
-	        ABR    17:906757-1132315	15.0383  
-		 AAGAB 15:67493370-67547533	15.8485  
-		  ...)
+ 	The 1st, 2nd and 3rd columns are "GeneSymbol	Chr:ExonStart-ExonEnd(locus)	Expression Amount", respectively.  
+ 	The 1st row should be any hedear.  
+	(e.g.,  
+	 header  
+	 ABR	17:906757-1132315	15.0383  
+	 AAGAB	15:67493370-67547533	15.8485  
+	 ...)
 
  -RNA_bam (Default=NA): RNA bam file to calculate variant allele frequency of RNA at each mutation. 
  
@@ -85,14 +85,14 @@ Arguments:
   *Not Required (CNV Profiles)* 
   
   -CNV (Default=NA): A file including copy number variation to calculate cancer cell fraction probability (CCFP).  
-  The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.  
-  The columns are "Chromosome	   Position						  Log R	 segmented LogR	BAF	segmented BAF Copy number Minor allele Raw copy number"  
-  The 1st row should be the above hedear.  
-  (e.g.,  
-  Chromosome	Position	Log R	segmented LogR	BAF	segmented BAF	Copy number	Minor allele	Raw copy number  
-  SNP_A-8575125	1		564621	-1.93486733232252	-0.0986229841341464  1		NA    1		0   -0.497321162431626  
-  SNP_A-8709646	1		721290	0.0991588550891442	-0.0986229841341464  0		NA    1		0   1.96316993015397  
-  ...)  
+ 	The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.  
+ 	The columns are "Chromosome	Position	Log R	segmented LogR	BAF	segmented BAF	Copy number	Minor allele	Raw copy number"  
+ 	The 1st row should be the above hedear.  
+	(e.g.,  
+	Chromosome	Position	Log R	segmented LogR	BAF	segmented BAF	Copy number	Minor allele	Raw copy number  
+	SNP_A-8575125	1	564621	-1.93486733232252	-0.0986229841341464	1	NA	1	0	-0.497321162431626  
+	SNP_A-8709646	1	721290	0.0991588550891442	-0.0986229841341464	0	NA	1	0	1.96316993015397  
+	...)  
  
  -Purity (Default=NA): Tumor purity or tumor contents ratio requierd to calculate CCFP. 
   
@@ -113,4 +113,4 @@ Arguments:
  
  -hmdir (Default=getwd()): Home directory for the analysis. 
 
- -Tumor_RNA_BASED_ON_DNA (Default=TRUE): In calculating tumor specific RNA express
+ -Tumor_RNA_BASED_ON_DNA (Default=TRUE): In calculating tumor specific RNA expression, TRUE uses variant allele frequency on DNA. Otherwise, use VAF on RNA. 
