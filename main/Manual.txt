@@ -6,17 +6,14 @@
 Then, set {"netMHCpan-3.0a.Darwin.tar.gz" or "netMHCpan-3.0a.Linux.tar.gz"} and {netMHCIIpan-3.1a.Darwin.tar.gz or netMHCIIpan-3.1a.Linux.tar.gz} in "main". 
 
 (2)Execute the script “Main_Preparatin.sh”. 
-Then, “MainClass1.R” and “MainClass2.R” will be available. 
 
-(3)See following texts and “TestRun.R” to learn how to use this library. 
+(3)See following texts and “SampleRun.R” to learn how to use this library. 
 
-------------------------------
-#MainClass1.R
-#MainClass2.R
-------------------------------
-Functions:
- MainNeoantigenidentificationClass1
- MainNeoantigenidentificationClass2
+Functions: To indeitify candidate neoantigen on SNVs/INDELs
+ MainSNVClass1()
+ MainINDELClass1()
+ MainSNVClass2()
+ MainINDELClass2()
 
 Arguments:
  (**Required)
@@ -91,13 +88,9 @@ Arguments:
  
  -Purity (Default=NA): Tumor purity or tumor contents ratio requierd to calculate CCFP. 
   
-------------------------------
-MainMergeClass1.R
-MainMergeClass2.R
-------------------------------
-Functions:
- MainMergeClass1
- MainMergeClass2
+Functions: Summarize The Results
+ MainMergeClass1()
+ MainMergeClass2()
 
 Arguments:
  (**Required)
