@@ -9,3 +9,4 @@ lib_sample
 .lib_sample
 lib_sample/*
 .lib_sample/*
+.Rproj.user
