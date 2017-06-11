@@ -1,6 +1,6 @@
-#Updated on 22th, Feb. 2017. 
+#Updated on 11, June. 2017. 
 ==============================
-##Preparation
+##1. Preparation
 ------------------------------
 **Set netMHCpan:**
 At first, download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
@@ -107,7 +107,7 @@ samtools faidx GRCh38.fa.gz
 wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
 ```
 
-##Use on R
+##2. Use on R
 ------------------------------
 ```
 install.packages("devtools")
