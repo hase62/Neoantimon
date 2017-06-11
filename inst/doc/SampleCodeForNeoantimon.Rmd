@@ -1,0 +1,45 @@
+---
+title: "SampleCodeForNeoantimon"
+author: "T. Hasegawa"
+date: "2017/6/10"
+output: html_document
+---
+
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Sample Code to Use Neoantimon}
+-->
+
+## Data Preparation and Sample Codes for Analysis
+
+```{r hla1}
+library(Neoantimon)
+data("hla_table")
+print(hla_table, row.names = FALSE)
+```
+
+```{r hla2}
+data("hla_table2")
+print(hla_table2, row.names = FALSE)
+```
+
+```{r annovar2}
+data("sample_annovar")
+print(sample_annovar, row.names = FALSE)
+```
+
+```{r genomon}
+data("sample_genomon")
+print(sample_genomon, row.names = FALSE)
+```
+
+```{r RNAseq}
+data("RNAseq")
+print(RNAseq, row.names = FALSE)
+```
+
+```{r CopyNum}
+data("CopyNum")
+print(CopyNum, row.names = FALSE)
+```
+
