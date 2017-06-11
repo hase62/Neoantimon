@@ -48,6 +48,7 @@ sed -i -e "15s:^:setenv  TMPDIR \$\{NMHOME\}/tmp:" netMHCIIpan
 wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 #gunzip -c data.tar.gz | tar xvf -
 tar -xvf data.tar.gz```
+```
 
 **Install samtools:**
 ```
