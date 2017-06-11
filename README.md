@@ -2,7 +2,7 @@
 ==============================
 ##Preparation
 ------------------------------
-**Set netMHCpan**
+**Set netMHCpan:**
 At first, download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 ```
 #Set netMHCpan3.0 bash
@@ -26,7 +26,7 @@ wget http://www.cbs.dtu.dk/services/NetMHCpan-3.0/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Set netMHCIIpan**
+**Set netMHCIIpan:**
 Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 ```
 #Set netMHCpan3.0 bash
@@ -49,7 +49,7 @@ wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 #gunzip -c data.tar.gz | tar xvf -
 tar -xvf data.tar.gz```
 
-**Install samtools**
+**Install samtools:**
 ```
 wget http://sourceforge.net/projects/samtools/files/samtools/1.3/samtools-1.3.tar.bz2
 tar jxf samtools-1.3.tar.bz2
@@ -60,7 +60,7 @@ make install
 cd ..
 ```
 
-**Install bcftools**
+**Install bcftools:**
 ```
 wget https://github.com/samtools/bcftools/releases/download/1.3.1/bcftools-1.3.1.tar.bz2
 tar jxf bcftools-1.3.1.tar.bz2
@@ -70,7 +70,7 @@ sudo make install
 cd ..
 ```
 
-**Download refFiles**
+**Download refFiles:**
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
@@ -86,14 +86,14 @@ gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**Download human refSeq (hg38)**
+**Download human refSeq (hg38):**
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-**Download human refSeq (GRCh38)**
+**Download human refSeq (GRCh38):**
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
@@ -101,7 +101,7 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa.gz
 ```
 
-**Download CCFP.jar**
+**Download CCFP.jar:**
 ```
 wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
 ```
