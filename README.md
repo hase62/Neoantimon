@@ -2,10 +2,10 @@
 ==============================
 ##Preparation
 ------------------------------
+*Download netMHCpan*
+Download netMHCpan3.0 and netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan, respectively. Then, prepare to use netMHCpan/netMHCIIpan by extracting *tar.gz. 
 
-#(1)Download netMHCpan3.0 and netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan, respectively. Then, prepare to use netMHCpan/netMHCIIpan by extracting *tar.gz. 
-
-##netMHCpan
+netMHCpan
 
 
 
