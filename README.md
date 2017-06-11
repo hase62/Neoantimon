@@ -107,13 +107,13 @@ samtools faidx GRCh38.fa.gz
 wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
 ```
 
-
-
-(2) 
+##Use on R
+------------------------------
+```
 install.packages("devtools")
 library(devtools)
 install_github('hase62/Neoantimon')
 library(Neoantimon)
 vignette("SampleCodeForNeoantimon")
+```
 
-(3)See following texts and “SampleRun.R” to learn how to use this library. 
