@@ -142,9 +142,9 @@ MainINDELClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_f
       dir.create(paste(getwd(), "/", netMHCpan_par, "/tmp", sep=""))
     }
     netMHCpan_script[grep("setenv\tNMHOME", netMHCpan_script)]<-
-      paste("setenv\tNMHOME ", getwd(), netMHCpan_par, sep="")
+      paste("setenv\tNMHOME ", getwd(),  "/", netMHCpan_par, sep="")
     netMHCpan_script[grep("setenv\tNMHOME", netMHCpan_script) + 1]<-
-      paste("setenv\tTMPDIR ", getwd(), netMHCpan_par, "/tmp", sep="")
+      paste("setenv\tTMPDIR ", getwd(),  "/", netMHCpan_par, "/tmp", sep="")
     write.table(c(netMHCpan_script, "# Automatically Overwritten by Neoantimon"),
                 netMHCpan_dir, row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
   }

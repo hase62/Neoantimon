@@ -142,7 +142,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
     }
     netMHCpan_script<-gsub("#setnv", "setenv", netMHCpan_script)
     netMHCpan_script[grep("setenv\tNMHOME", netMHCpan_script)]<-
-      paste("setenv\tNMHOME ", getwd(), netMHCpan_par, sep="")
+      paste("setenv\tNMHOME ", getwd(), "/", netMHCpan_par, sep="")
     write.table(c(netMHCpan_script, "# Automatically Overwritten by Neoantimon"),
                 netMHCpan_dir, row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
   }
