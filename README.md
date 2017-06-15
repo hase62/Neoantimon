@@ -1,4 +1,4 @@
-#Updated on 11, June. 2017. 
+ #Updated on 11, June. 2017. 
 ==============================
 ##1. Preparation
 ------------------------------
@@ -128,6 +128,7 @@ vignette("SampleCodeForNeoantimon")
 ```
 
 ##3. Data Format
+------------------------------
 ```r
 library(Neoantimon)
 data("hla_table")
@@ -382,7 +383,12 @@ refMrna.merge.cut2.fa
 refMrna.merge.cut3.fa
 refMrna.merge.fa
 #
-#./data.txt/CopyNum.txthla_table.txthla_table2.txtRNAseq.txtsample_annovar.txtsample_genomon.txt
+#./data.txt/CopyNum.txt
+hla_table.txt
+hla_table2.txt
+RNAseq.txt
+sample_annovar.txt
+sample_genomon.txt
 ##
 
 Calculate A List of Neoantigens on SNVs for HLA Class I. 
