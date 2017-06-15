@@ -93,6 +93,13 @@ wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
+**Download human refSeq (GRCh38):**
+```
+wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
+mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
+gunzip GRCh37.fa.gz
+samtools faidx GRCh37.fa.gz
+```
 
 **Download human refSeq (GRCh38):**
 ```

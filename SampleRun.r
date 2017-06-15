@@ -20,7 +20,7 @@ MainSNVClass1(hmdir = getwd(),
               refDNA = "lib/GRCh37.fa")
 
 MainMergeClass1(hmdir = getwd(),
-                input_dir = "lib_sample",
+                input_dir = "data.txt",
                 input_file_prefix = "sample_annovar",
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 
