@@ -137,8 +137,8 @@ MainSNVClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   netMHCpan_script<-scan(netMHCpan_dir, "character", sep="\n", blank.lines.skip = FALSE)
   if(length(grep("# Automatically Overwritten by Neoantimon", netMHCpan_script))==0){
     netMHCpan_par<-gsub("\\./","/", paste(rev(rev(strsplit(netMHCpan_dir, "/")[[1]])[-1]), collapse = "/"))
-    if(!file.exists(paste(getwd(), "/" netMHCpan_par, "/tmp", sep=""))){
-      dir.create(paste(getwd(), "/" netMHCpan_par, "/tmp", sep=""))
+    if(!file.exists(paste(getwd(), "/", netMHCpan_par, "/tmp", sep=""))){
+      dir.create(paste(getwd(), "/", netMHCpan_par, "/tmp", sep=""))
     }
     netMHCpan_script[grep("setenv\tNMHOME", netMHCpan_script)]<-
       paste("setenv\tNMHOME ", getwd(), netMHCpan_par, sep="")
