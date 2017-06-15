@@ -13,7 +13,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
   data<-data[grep("\texonic\t", data)]
   data<-data[grep("insertion|deletion", data)]
   data<-gsub("\"", "",data)
-  if(length(data)<1) q("no")
+  if(length(data)<1) return(NULL)
   
   #READ refFlat
   list_nm<-scan(refFlat_file, "character", sep="\n")
@@ -353,7 +353,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
 
   #Integrate The Same Peptide
   if(is.null(refFasta)) {
-    q("no")
+    return(NULL)
   }
   i<-1
   if(!is.null(nrow(refFasta))){

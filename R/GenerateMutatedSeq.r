@@ -13,7 +13,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
   data<-data[grep("\texonic\t", data)]
   data<-data[grep("\tnonsynonymous", data)]
   data<-gsub("\"", "",data)
-  if(length(data)<1) q("no")
+  if(length(data)<1) reutn(NULL)
 
   #READ refFlat
   list_nm<-scan(refFlat_file, "character", sep="\n")
@@ -349,7 +349,6 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
 	       if(stop_loop) break
       }
    }
-   
    #Notification 
    if(!Pass){
      print("refFlat and refMrna data do not Match to vcf Description")
@@ -357,10 +356,10 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
      print("Skip This Mutation")
    }
   }
-  
+
   #Integrate The Same Peptide
   if(is.null(refFasta)) {
-    q("no")
+    return(NULL)
   }
   i<-1
   if(!is.null(nrow(refFasta))){

@@ -2,7 +2,7 @@
 #lib_sample includes all sample files.
 ##
 MainSNVClass1(hmdir = getwd(),
-              input_file = "lib_sample/sample_annovar.txt",
+              input_file = "data.txt/sample_annovar.txt",
               job_ID = "NO_JOB_ID",
               Chr_Column = 1,
               Mutation_Start_Column = 2,
@@ -11,14 +11,13 @@ MainSNVClass1(hmdir = getwd(),
               Mutation_Alt_Column = 5,
               NM_ID_Column = 10,
               file_name_in_HLA_table = "sample",
-              HLA_file = "lib_sample/hla_table.txt",
-              RNAseq_file = "lib_sample/RNAseq.txt",
-              RNA_bam="lib_sample/RNAbam.bam",
-              CNV="lib_sample/Copy.txt",
+              HLA_file = "data.txt/hla_table.txt",
+              RNAseq_file = "data.txt/RNAseq.txt",
+              CNV="data.txt/CopyNum.txt",
               Purity = 0.8,
-              ccfp_dir = "ccfp/ccfp.jar",
+              ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-              refDNA = "lib/GRCh37.fa")
+              refDNA = "lib/hg38.fa")
 
 MainMergeClass1(hmdir = getwd(),
                 input_dir = "lib_sample",
