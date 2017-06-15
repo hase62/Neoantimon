@@ -369,9 +369,24 @@ print(CopyNum, row.names = FALSE)
 ##4. Sample Codes
 ------------------------------
 ##
-#lib: {}
-#data.txt: {}
+#./lib/ccfp.jar
+GRCh37.fa
+GRCh37.fa.fai
+netMHCIIpan-3.1
+netMHCpan-3.0
+refFlat.cut.txt
+refFlat.txt
+refMrna.fa
+refMrna.merge.cut1.fa
+refMrna.merge.cut2.fa
+refMrna.merge.cut3.fa
+refMrna.merge.fa
+#
+#./data.txt/CopyNum.txthla_table.txthla_table2.txtRNAseq.txtsample_annovar.txtsample_genomon.txt
 ##
+
+Calculate A List of Neoantigens on SNVs for HLA Class I. 
+Here, Sample Code is for Annovar-type annotated data (sample_annovar.txt). 
 ```
 MainSNVClass1(hmdir = getwd(),
               input_file = "data.txt/sample_annovar.txt",
@@ -392,6 +407,7 @@ MainSNVClass1(hmdir = getwd(),
               refDNA = "lib/GRCh37.fa")
 ```
 
+Marge Results for HLA Class 1. 
 ```
 MainMergeClass1(hmdir = getwd(),
                 input_dir = "data.txt",
@@ -399,6 +415,8 @@ MainMergeClass1(hmdir = getwd(),
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
+Calculate A List of Neoantigens on SNVs for HLA Class I. 
+Here, Sample Code is for Genomon-generated data (sample_genomon.txt). 
 ```
 MainSNVClass1(hmdir = getwd(),
               input_file = "data.txt/sample_genomon.txt",
@@ -421,6 +439,7 @@ MainSNVClass1(hmdir = getwd(),
               refDNA = "lib/GRCh37.fa")
 ```
 
+Marge Results for HLA Class I. 
 ```
 MainMergeClass1(hmdir = getwd(),
                 input_dir = "data.txt",
@@ -428,6 +447,8 @@ MainMergeClass1(hmdir = getwd(),
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
+Calculate A List of Neoantigens on SNVs for HLA Class II. 
+Here, Sample Code is for Annovar-type annotated data (sample_annovar.txt). 
 ```
 MainSNVClass2(hmdir = getwd(),
               input_file = "data.txt/sample_annovar.txt",
@@ -448,6 +469,7 @@ MainSNVClass2(hmdir = getwd(),
               refDNA = "lib/GRCh37.fa")
 ```
 
+Marge Results for HLA Class II. 
 ```
 MainMergeClass2(hmdir = getwd(),
                 input_dir = "data.txt",
@@ -455,6 +477,8 @@ MainMergeClass2(hmdir = getwd(),
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
+Calculate A List of Neoantigens for HLA Class I. 
+Here, Sample Code is for Genomon-generated data (sample_genomon.txt). 
 ```
 MainSNVClass2(hmdir = getwd(),
               input_file = "data.txt/sample_genomon.txt",
@@ -477,6 +501,7 @@ MainSNVClass2(hmdir = getwd(),
               refDNA = "lib/GRCh37.fa")
 ```
 
+Marge Results for HLA Class II. 
 ```
 MainMergeClass2(hmdir = getwd(),
                 input_dir = "data.txt",
@@ -484,6 +509,7 @@ MainMergeClass2(hmdir = getwd(),
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
+Calculate A List of Neoantigens on Indels for HLA Class I. 
 ```
 MainINDELClass1(hmdir = getwd(),
                 input_file = "data.txt/sample_genomon.txt",
@@ -506,6 +532,7 @@ MainINDELClass1(hmdir = getwd(),
                 refDNA = "lib/GRCh37.fa")
 ```
 
+Calculate A List of Neoantigens on Indels for HLA Class II. 
 ```
 MainINDELClass2(hmdir = getwd(),
                 input_file = "data.txt/sample_genomon.txt",
