@@ -17,7 +17,7 @@ MainSNVClass1(hmdir = getwd(),
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-              refDNA = "lib/hg38.fa")
+              refDNA = "lib/GRCh37.fa")
 
 MainMergeClass1(hmdir = getwd(),
                 input_dir = "lib_sample",

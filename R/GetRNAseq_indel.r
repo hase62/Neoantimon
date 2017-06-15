@@ -37,7 +37,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file, RNAseq_file = NA, output_file
   tail_col<-ncol(data)
 
   ##Get Ratio
-  if(ifelse(is.na(output_file_rna_vcf), TRUE, !file.exists(output_file_rna_vcf))){
+  if(ifelse(is.na(output_file_rna_vcf), FALSE, file.exists(output_file_rna_vcf))){
     ratio<-t(sapply(scan(output_file_rna_vcf, "character", sep="\n"),
                     function(x) strsplit(x, "\t")[[1]]))
     ratio<-t(sapply(scan(output_file_rna_vcf, "character", sep="\n", skip=which(lapply(ratio, length)>2)[1]),
