@@ -102,9 +102,11 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa.gz
 ```
 
-**Download CCFP.jar:**
+**Download SampleFiles and CCFP.jar:**
 ```
 wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
+wget https://github.com/hase62/Neoantimon/raw/master/data.txt.sample/data.txt.zip
+unzip data.txt.zip
 ```
 
 ##2. Use on R
@@ -114,6 +116,7 @@ install.packages("devtools")
 library(devtools)
 install_github('hase62/Neoantimon')
 library(Neoantimon)
+
 vignette("SampleCodeForNeoantimon")
 ```
 
