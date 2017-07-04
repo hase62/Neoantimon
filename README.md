@@ -145,8 +145,6 @@ install.packages("devtools")
 library(devtools)
 install_github('hase62/Neoantimon')
 library(Neoantimon)
-
-vignette("SampleCodeForNeoantimon")
 ```
 
 ##3. Data Format
