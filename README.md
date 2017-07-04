@@ -71,7 +71,14 @@ sudo make install
 cd ..
 ```
 
-**Download refFiles:**
+**Download SampleFiles and CCFP.jar:**
+```
+wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
+wget https://github.com/hase62/Neoantimon/raw/master/data.txt.sample/data.txt.zip
+unzip data.txt.zip
+```
+
+**Download refFiles(GRCh38/hg38):**
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
@@ -81,24 +88,26 @@ grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut2.fa
 grep -v ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut3.fa
 paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
 
-#refFlat Files
+**Download refFiles(GRCh37/hg19):**
+```
+#refMrna Files
+wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
+gunzip refMrna.fa.gz
+grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.merge.cut1.fa
+grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut2.fa
+grep -v ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut3.fa
+paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
+
+#Download refFlat Files(GRCh38/hg38)
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**Download human refSeq (hg38):**
-```
-wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
-gunzip hg38.fa.gz
-samtools faidx hg38.fa
-```
-**Download human refSeq (GRCh37):**
-```
-wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
-mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
-gunzip GRCh37.fa.gz
-samtools faidx GRCh37.fa.gz
+#Download refFlat Files(GRCh37/hg19)
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
+gunzip refFlat.txt.gz
+cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
 **Download human refSeq (GRCh38):**
@@ -109,11 +118,19 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa.gz
 ```
 
-**Download SampleFiles and CCFP.jar:**
+**Download human refSeq (hg38):**
 ```
-wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
-wget https://github.com/hase62/Neoantimon/raw/master/data.txt.sample/data.txt.zip
-unzip data.txt.zip
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
+gunzip hg38.fa.gz
+samtools faidx hg38.fa
+```
+
+**Download human refSeq (GRCh37):**
+```
+wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
+mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
+gunzip GRCh37.fa.gz
+samtools faidx GRCh37.fa.gz
 ```
 
 ##2. Use on R
