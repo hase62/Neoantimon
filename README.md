@@ -78,6 +78,7 @@ wget https://github.com/hase62/Neoantimon/raw/master/data.txt.sample/data.txt.zi
 unzip data.txt.zip
 ```
 
+**Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data
 **Download refMrna Files(GRCh38/hg38):**
 ```
 #refMrna Files
