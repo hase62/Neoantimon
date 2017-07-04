@@ -74,7 +74,7 @@ cd ..
 **Download SampleFiles and CCFP.jar:**
 ```
 wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
-wget https://github.com/hase62/Neoantimon/raw/master/data.txt.sample/data.txt.zip
+wget https://github.com/hase62/Neoantimon/raw/master/lib/data.txt.zip
 unzip data.txt.zip
 ```
 
