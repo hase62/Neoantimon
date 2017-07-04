@@ -78,7 +78,7 @@ wget https://github.com/hase62/Neoantimon/raw/master/data.txt.sample/data.txt.zi
 unzip data.txt.zip
 ```
 
-**Download refFiles(GRCh38/hg38):**
+**Download refMrna Files(GRCh38/hg38):**
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
@@ -87,8 +87,9 @@ grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.merge.cut1.fa
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut2.fa
 grep -v ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut3.fa
 paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
+```
 
-**Download refFiles(GRCh37/hg19):**
+**Download refMrna Files(GRCh37/hg19):**
 ```
 #refMrna Files
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
@@ -97,14 +98,17 @@ grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.merge.cut1.fa
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut2.fa
 grep -v ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut3.fa
 paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
+```
 
 #Download refFlat Files(GRCh38/hg38)
+```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
 #Download refFlat Files(GRCh37/hg19)
+```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
