@@ -93,7 +93,7 @@ wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
-**Download human refSeq (GRCh38):**
+**Download human refSeq (GRCh37):**
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
@@ -158,57 +158,8 @@ print(hla_table2, row.names = FALSE)
 
 
 ```r
-data("sample_annovar")
-print(sample_annovar, row.names = FALSE)
-```
-
-```
-##  Chr     Start       End Ref Alt Func.refGene       Gene.refGene
-##    1 100009383 100009383   T   A   intergenic LOC101928270,PALMD
-##    1  10005307  10005307   C   A     intronic             NMNAT1
-##    1 100672162 100672162   T   C       exonic                DBT
-##    1 100920981 100920981   C   T       exonic             CDC14A
-##    1 103471644 103471644   G   A       exonic            COL11A1
-##    1 103491792 103491792   C   G       exonic            COL11A1
-##    1 106145303 106145303   G   A ncRNA_exonic       LOC101928476
-##    1 109007894 109007894   A   T       exonic              NBPF6
-##    1 109271469 109271469   G   T       exonic              FNDC7
-##      GeneDetail.refGene ExonicFunc.refGene
-##  dist=56023;dist=102048                  .
-##                       .                  .
-##                       .  nonsynonymous SNV
-##                       .     synonymous SNV
-##                       .  nonsynonymous SNV
-##                       .  nonsynonymous SNV
-##                       .                  .
-##                       .  nonsynonymous SNV
-##                       .           stopgain
-##                                                                                                                                                            AAChange.refGene
-##                                                                                                                                                                           .
-##                                                                                                                                                                           .
-##                                                                                                                                        DBT:NM_001918:exon9:c.A1048G:p.T350A
-##                                                        CDC14A:NM_003672:exon8:c.C540T:p.F180F,CDC14A:NM_033312:exon8:c.C540T:p.F180F,CDC14A:NM_033313:exon8:c.C540T:p.F180F
-##  COL11A1:NM_080630:exon15:c.C1423T:p.P475S,COL11A1:NM_001190709:exon16:c.C1654T:p.P552S,COL11A1:NM_001854:exon17:c.C1771T:p.P591S,COL11A1:NM_080629:exon17:c.C1807T:p.P603S
-##                                                                                             COL11A1:NM_001854:exon6:c.G877C:p.E293Q,COL11A1:NM_080630:exon6:c.G877C:p.E293Q
-##                                                                                                                                                                           .
-##                                                                                       NBPF6:NM_001143988:exon13:c.A1508T:p.Q503L,NBPF6:NM_001143987:exon14:c.A1595T:p.Q532L
-##                                                                                                                                   FNDC7:NM_001144937:exon8:c.G1585T:p.G529X
-##  cytoBand                                      VAF
-##    1p21.2 VAF=0.5441;t_alt_count=37;t_ref_count=31
-##   1p36.22    VAF=0.4;t_alt_count=22;t_ref_count=33
-##    1p21.2 VAF=0.3061;t_alt_count=15;t_ref_count=34
-##    1p21.2  VAF=0.2593;t_alt_count=7;t_ref_count=20
-##    1p21.1    VAF=0.4;t_alt_count=10;t_ref_count=15
-##    1p21.1  VAF=0.383;t_alt_count=18;t_ref_count=29
-##    1p21.1  VAF=0.1379;t_alt_count=8;t_ref_count=50
-##    1p13.3  VAF=0.1714;t_alt_count=6;t_ref_count=29
-##    1p13.3  VAF=0.7407;t_alt_count=20;t_ref_count=7
-```
-
-
-```r
-data("sample_genomon")
-print(sample_genomon, row.names = FALSE)
+data("sample")
+print(sample, row.names = FALSE)
 ```
 
 ```
@@ -370,7 +321,8 @@ print(CopyNum, row.names = FALSE)
 ##4. Sample Codes
 ------------------------------
 ##
-#./lib/ccfp.jar
+#./lib/
+ccfp.jar
 GRCh37.fa
 GRCh37.fa.fai
 netMHCIIpan-3.1
@@ -383,49 +335,18 @@ refMrna.merge.cut2.fa
 refMrna.merge.cut3.fa
 refMrna.merge.fa
 #
-#./data.txt/CopyNum.txt
+#./data.txt/
+CopyNum.txt
 hla_table.txt
 hla_table2.txt
 RNAseq.txt
-sample_annovar.txt
-sample_genomon.txt
+sample.txt
 ##
 
 Calculate A List of Neoantigens on SNVs for HLA Class I. 
-Here, Sample Code is for Annovar-type annotated data (sample_annovar.txt). 
 ```
 MainSNVClass1(hmdir = getwd(),
-              input_file = "data.txt/sample_annovar.txt",
-              job_ID = "NO_JOB_ID",
-              Chr_Column = 1,
-              Mutation_Start_Column = 2,
-              Mutation_End_Column = 3,
-              Mutation_Ref_Column = 4,
-              Mutation_Alt_Column = 5,
-              NM_ID_Column = 10,
-              file_name_in_HLA_table = "sample",
-              HLA_file = "data.txt/hla_table.txt",
-              RNAseq_file = "data.txt/RNAseq.txt",
-              CNV="data.txt/CopyNum.txt",
-              Purity = 0.8,
-              ccfp_dir = "lib/ccfp.jar",
-              netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-              refDNA = "lib/GRCh37.fa")
-```
-
-Marge Results for HLA Class 1. 
-```
-MainMergeClass1(hmdir = getwd(),
-                input_dir = "data.txt",
-                input_file_prefix = "sample_annovar",
-                Tumor_RNA_BASED_ON_DNA = TRUE)
-```
-
-Calculate A List of Neoantigens on SNVs for HLA Class I. 
-Here, Sample Code is for Genomon-generated data (sample_genomon.txt). 
-```
-MainSNVClass1(hmdir = getwd(),
-              input_file = "data.txt/sample_genomon.txt",
+              input_file = "data.txt/sample.txt",
               job_ID = "NO_JOB_ID",
               Chr_Column = 1,
               Mutation_Start_Column = 2,
@@ -438,7 +359,7 @@ MainSNVClass1(hmdir = getwd(),
               file_name_in_HLA_table = "sample",
               HLA_file = "data.txt/hla_table.txt",
               RNAseq_file = "data.txt/RNAseq.txt",
-              CNV="lib_sample/Copy.txt",
+              CNV="data.txt/Copy.txt",
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
@@ -449,45 +370,14 @@ Marge Results for HLA Class I.
 ```
 MainMergeClass1(hmdir = getwd(),
                 input_dir = "data.txt",
-                input_file_prefix = "sample_genomon",
-                Tumor_RNA_BASED_ON_DNA = TRUE)
-```
-
-Calculate A List of Neoantigens on SNVs for HLA Class II. 
-Here, Sample Code is for Annovar-type annotated data (sample_annovar.txt). 
-```
-MainSNVClass2(hmdir = getwd(),
-              input_file = "data.txt/sample_annovar.txt",
-              job_ID = "NO_JOB_ID",
-              Chr_Column = 1,
-              Mutation_Start_Column = 2,
-              Mutation_End_Column = 3,
-              Mutation_Ref_Column = 4,
-              Mutation_Alt_Column = 5,
-              NM_ID_Column = 10,
-              file_name_in_HLA_table = "sample",
-              HLA_file = "data.txt/hla_table2.txt",
-              RNAseq_file = "data.txt/RNAseq.txt",
-              CNV="data.txt/CopyNum.txt",
-              Purity = 0.8,
-              ccfp_dir = "lib/ccfp.jar",
-              netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-              refDNA = "lib/GRCh37.fa")
-```
-
-Marge Results for HLA Class II. 
-```
-MainMergeClass2(hmdir = getwd(),
-                input_dir = "data.txt",
-                input_file_prefix = "sample_annovar",
+                input_file_prefix = "sample",
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
 Calculate A List of Neoantigens for HLA Class I. 
-Here, Sample Code is for Genomon-generated data (sample_genomon.txt). 
 ```
 MainSNVClass2(hmdir = getwd(),
-              input_file = "data.txt/sample_genomon.txt",
+              input_file = "data.txt/sample.txt",
               job_ID = "NO_JOB_ID",
               Chr_Column = 1,
               Mutation_Start_Column = 2,
@@ -500,7 +390,7 @@ MainSNVClass2(hmdir = getwd(),
               file_name_in_HLA_table = "sample",
               HLA_file = "data.txt/hla_table2.txt",
               RNAseq_file = "data.txt/RNAseq.txt",
-              CNV="lib_sample/Copy.txt",
+              CNV="data.txt/Copy.txt",
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
@@ -518,7 +408,7 @@ MainMergeClass2(hmdir = getwd(),
 Calculate A List of Neoantigens on Indels for HLA Class I. 
 ```
 MainINDELClass1(hmdir = getwd(),
-                input_file = "data.txt/sample_genomon.txt",
+                input_file = "data.txt/sample.txt",
                 job_ID = "NO_JOB_ID",
                 Chr_Column = 1,
                 Mutation_Start_Column = 2,
@@ -531,7 +421,7 @@ MainINDELClass1(hmdir = getwd(),
                 file_name_in_HLA_table = "sample",
                 HLA_file = "data.txt/hla_table.txt",
                 RNAseq_file = "data.txt/RNAseq.txt",
-                CNV="lib_sample/Copy.txt",
+                CNV="data.txt/Copy.txt",
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
@@ -541,7 +431,7 @@ MainINDELClass1(hmdir = getwd(),
 Calculate A List of Neoantigens on Indels for HLA Class II. 
 ```
 MainINDELClass2(hmdir = getwd(),
-                input_file = "data.txt/sample_genomon.txt",
+                input_file = "data.txt/sample.txt",
                 job_ID = "NO_JOB_ID",
                 Chr_Column = 1,
                 Mutation_Start_Column = 2,
@@ -554,7 +444,7 @@ MainINDELClass2(hmdir = getwd(),
                 file_name_in_HLA_table = "sample",
                 HLA_file = "data.txt/hla_table2.txt",
                 RNAseq_file = "data.txt/RNAseq.txt",
-                CNV="lib_sample/Copy.txt",
+                CNV="data.txt/Copy.txt",
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",

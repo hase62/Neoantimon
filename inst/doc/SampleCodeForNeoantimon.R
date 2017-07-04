@@ -8,12 +8,8 @@ data("hla_table2")
 print(hla_table2, row.names = FALSE)
 
 ## ----annovar2------------------------------------------------------------
-data("sample_annovar")
-print(sample_annovar, row.names = FALSE)
-
-## ----genomon-------------------------------------------------------------
-data("sample_genomon")
-print(sample_genomon, row.names = FALSE)
+data("sample")
+print(sample, row.names = FALSE)
 
 ## ----RNAseq--------------------------------------------------------------
 data("RNAseq")

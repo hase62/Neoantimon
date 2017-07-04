@@ -230,54 +230,8 @@ print(hla_table2, row.names = FALSE)
 ##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
 </code></pre>
 
-<pre><code class="r">data(&quot;sample_annovar&quot;)
-print(sample_annovar, row.names = FALSE)
-</code></pre>
-
-<pre><code>##  Chr     Start       End Ref Alt Func.refGene       Gene.refGene
-##    1 100009383 100009383   T   A   intergenic LOC101928270,PALMD
-##    1  10005307  10005307   C   A     intronic             NMNAT1
-##    1 100672162 100672162   T   C       exonic                DBT
-##    1 100920981 100920981   C   T       exonic             CDC14A
-##    1 103471644 103471644   G   A       exonic            COL11A1
-##    1 103491792 103491792   C   G       exonic            COL11A1
-##    1 106145303 106145303   G   A ncRNA_exonic       LOC101928476
-##    1 109007894 109007894   A   T       exonic              NBPF6
-##    1 109271469 109271469   G   T       exonic              FNDC7
-##      GeneDetail.refGene ExonicFunc.refGene
-##  dist=56023;dist=102048                  .
-##                       .                  .
-##                       .  nonsynonymous SNV
-##                       .     synonymous SNV
-##                       .  nonsynonymous SNV
-##                       .  nonsynonymous SNV
-##                       .                  .
-##                       .  nonsynonymous SNV
-##                       .           stopgain
-##                                                                                                                                                            AAChange.refGene
-##                                                                                                                                                                           .
-##                                                                                                                                                                           .
-##                                                                                                                                        DBT:NM_001918:exon9:c.A1048G:p.T350A
-##                                                        CDC14A:NM_003672:exon8:c.C540T:p.F180F,CDC14A:NM_033312:exon8:c.C540T:p.F180F,CDC14A:NM_033313:exon8:c.C540T:p.F180F
-##  COL11A1:NM_080630:exon15:c.C1423T:p.P475S,COL11A1:NM_001190709:exon16:c.C1654T:p.P552S,COL11A1:NM_001854:exon17:c.C1771T:p.P591S,COL11A1:NM_080629:exon17:c.C1807T:p.P603S
-##                                                                                             COL11A1:NM_001854:exon6:c.G877C:p.E293Q,COL11A1:NM_080630:exon6:c.G877C:p.E293Q
-##                                                                                                                                                                           .
-##                                                                                       NBPF6:NM_001143988:exon13:c.A1508T:p.Q503L,NBPF6:NM_001143987:exon14:c.A1595T:p.Q532L
-##                                                                                                                                   FNDC7:NM_001144937:exon8:c.G1585T:p.G529X
-##  cytoBand                                      VAF
-##    1p21.2 VAF=0.5441;t_alt_count=37;t_ref_count=31
-##   1p36.22    VAF=0.4;t_alt_count=22;t_ref_count=33
-##    1p21.2 VAF=0.3061;t_alt_count=15;t_ref_count=34
-##    1p21.2  VAF=0.2593;t_alt_count=7;t_ref_count=20
-##    1p21.1    VAF=0.4;t_alt_count=10;t_ref_count=15
-##    1p21.1  VAF=0.383;t_alt_count=18;t_ref_count=29
-##    1p21.1  VAF=0.1379;t_alt_count=8;t_ref_count=50
-##    1p13.3  VAF=0.1714;t_alt_count=6;t_ref_count=29
-##    1p13.3  VAF=0.7407;t_alt_count=20;t_ref_count=7
-</code></pre>
-
-<pre><code class="r">data(&quot;sample_genomon&quot;)
-print(sample_genomon, row.names = FALSE)
+<pre><code class="r">data(&quot;sample&quot;)
+print(sample, row.names = FALSE)
 </code></pre>
 
 <pre><code>##  Chr     Start       End Ref Alt Func.refGene Gene.refGene
