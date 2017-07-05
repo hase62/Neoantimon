@@ -3,7 +3,7 @@
 ##1. Preparation
 ------------------------------
 **Set netMHCpan:**
-At first, download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
+Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 ```
 #Set netMHCpan3.0 bash
 
@@ -79,6 +79,7 @@ unzip data.txt.zip
 ```
 
 **Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data**
+
 **Download refMrna Files(GRCh38/hg38):**
 ```
 #refMrna Files
