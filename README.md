@@ -115,6 +115,7 @@ gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
+**If one uses RNA bam file to calculate variant allele frequency**
 **Download human refSeq (GRCh38):**
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
