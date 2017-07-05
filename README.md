@@ -389,10 +389,11 @@ MainSNVClass1(hmdir = getwd(),
               refMrna_1 = "data/refMrna.cut1.fa",
               refMrna_3 = "data/refMrna.cut3.fa",
               RNAseq_file = "data/RNAseq.txt",
-              CNV="data/CopyNum.txt",
+              CNV = NA,
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
-              netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan")
+              netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+              refDNA = NA)
 ```
 
 Marge Results for HLA Class I. 
@@ -422,11 +423,11 @@ MainSNVClass2(hmdir = getwd(),
               refMrna_1 = "data/refMrna.cut1.fa",
               refMrna_3 = "data/refMrna.cut3.fa",
               RNAseq_file = "data/RNAseq.txt",
-              CNV="data/CopyNum.txt",
+              CNV = NA,
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-              refDNA = "lib/GRCh37.fa")
+              refDNA = NA)
 ```
 
 Marge Results for HLA Class II. 
@@ -456,11 +457,11 @@ MainINDELClass1(hmdir = getwd(),
                refMrna_1 = "data/refMrna.cut1.fa",
                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
-                CNV="data/CopyNum.txt",
+                CNV = NA,
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-                refDNA = "lib/GRCh37.fa")
+                refDNA = NA)
 ```
 
 Calculate Neoantigens on Indels for HLA Class II. 
@@ -482,11 +483,11 @@ MainINDELClass2(hmdir = getwd(),
                refMrna_1 = "data/refMrna.cut1.fa",
                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
-                CNV="data/CopyNum.txt",
+                CNV = NA,
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                refDNA = "lib/GRCh37.fa")
+                refDNA = NA)
 ```
 
 
