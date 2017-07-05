@@ -56,11 +56,16 @@ GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
    }
   }
   #Write List For CCFP
-  write.table(cnv, paste(output_peptide_txt_file,".cnv.txt",sep=""), 
-     row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  
+  if(!is.null(nrow(cnv))){
+    write.table(cnv, paste(output_peptide_txt_file,".cnv.txt",sep=""), 
+       row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+  }
   #OverWrite peptide.txt
-  if(length(remove)>0){
+  if(is.null(nrow(cnv))){
+    write.table(cbind(data, matrix(nrow=nrow(data), ncol=5, NA)), 
+                output_peptide_txt_file, 
+                row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
+  }else if(length(remove)>0){
      write.table(cbind(data, cnv[1 + match(data[,1], sapply(cnv[-1,1], function(x) strsplit(x, ";")[[1]][2])),c(2,3)]), 
                  output_peptide_txt_file, 
         row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")

@@ -73,9 +73,9 @@ MainINDELClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_f
                           CNV=NA, ccfp_dir = "lib/ccfp.jar", Purity = NA,
                           netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                           refDNA = "lib/GRCh37.fa",
-                          refFlat_file = paste(hmdir,"/lib/refFlat.txt",sep=""),
-                          refMrna_1 = paste(hmdir,"/lib/refMrna.merge.cut1.fa",sep=""),
-                          refMrna_3 = paste(hmdir,"/lib/refMrna.merge.cut3.fa",sep=""),
+                          refFlat_file = paste(hmdir,"/data/refFlat.txt",sep=""),
+                          refMrna_1 = paste(hmdir,"/data/refMrna.cut1.fa",sep=""),
+                          refMrna_3 = paste(hmdir,"/data/refMrna.cut3.fa",sep=""),
                           Chr_Column = 1, Mutation_Start_Column = 2,
                           Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5,
                           NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
@@ -122,11 +122,13 @@ MainINDELClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_f
   #Mutation Rate
   if(ifelse(is.na(CNV), FALSE, file.exists(CNV))){
     GenerateListForCCFP(output_peptide_txt_file, CNV = CNV, Purity = Purity)
-    system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ",
-                 paste(output_peptide_txt_file,".cnv.txt",sep=""),
-           " > ", paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""), sep=""))
-    GetRatio(output_peptide_txt_file = output_peptide_txt_file,
-             output_peptide_txt_cnc_estimate_file = paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""))
+    if(file.exists(paste(output_peptide_txt_file,".cnv.txt",sep=""))){
+      system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ",
+                   paste(output_peptide_txt_file,".cnv.txt",sep=""),
+                   " > ", paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""), sep=""))
+      GetRatio(output_peptide_txt_file = output_peptide_txt_file,
+               output_peptide_txt_cnc_estimate_file = paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""))
+    }
   }else{
     GetRatio(output_peptide_txt_file = output_peptide_txt_file,
              output_peptide_txt_cnc_estimate_file = NA)
