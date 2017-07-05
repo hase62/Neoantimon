@@ -84,11 +84,12 @@ unzip data.txt.zip
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.merge.cut1.fa
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut2.fa
+grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.cut1.fa
+grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.cut2.fa
 perl -pe 's/\n//g' refMrna.fa > tmp
 perl -pe 's/[0-9, ,NM_]//g' tmp > tmp2
-perl -pe 's/>/\n/g' tmp2 > refMrna.merge.cut3.fa
+perl -pe 's/>/\n/g' tmp2 > refMrna.cut3.fa
+sed -i -e '/^$/d' refMrna.cut3.fa
 rm tmp*
 paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
 ```
@@ -98,11 +99,12 @@ paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrn
 #refMrna Files
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.merge.cut1.fa
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut2.fa
+grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.cut1.fa
+grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.cut2.fa
 perl -pe 's/\n//g' refMrna.fa > tmp
 perl -pe 's/[0-9, ,NM_]//g' tmp > tmp2
-perl -pe 's/>/\n/g' tmp2 > refMrna.merge.cut3.fa
+perl -pe 's/>/\n/g' tmp2 > refMrna.cut3.fa
+sed -i -e '/^$/d' refMrna.cut3.fa
 rm tmp*
 paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
 ```
