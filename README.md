@@ -47,7 +47,7 @@ sed -i -e "s:/usr/cbs/packages/netMHCIIpan/3.1/netMHCIIpan-3.1:${cdir}:g" netMHC
 sed -i -e "15s:^:setenv  TMPDIR \$\{NMHOME\}/tmp:" netMHCIIpan
 wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 #gunzip -c data.tar.gz | tar xvf -
-tar -xvf data.tar.gz```
+tar -xvf data.tar.gz
 ```
 
 **Install samtools:**
@@ -78,7 +78,7 @@ wget https://github.com/hase62/Neoantimon/raw/master/lib/data.txt.zip
 unzip data.txt.zip
 ```
 
-**Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data
+**Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data**
 **Download refMrna Files(GRCh38/hg38):**
 ```
 #refMrna Files
@@ -101,14 +101,14 @@ grep -v ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut3.fa
 paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
 ```
 
-**Download refFlat Files(GRCh38/hg38)
+**Download refFlat Files(GRCh38/hg38)**
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**Download refFlat Files(GRCh37/hg19)
+**Download refFlat Files(GRCh37/hg19)**
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
@@ -120,7 +120,7 @@ cut -f2 refFlat.txt > refFlat.cut.txt
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
 gunzip GRCh38.fa.gz
-samtools faidx GRCh38.fa.gz
+samtools faidx GRCh38.fa
 ```
 
 **Download human refSeq (hg38):**
@@ -135,7 +135,7 @@ samtools faidx hg38.fa
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
 gunzip GRCh37.fa.gz
-samtools faidx GRCh37.fa.gz
+samtools faidx GRCh37.fa
 ```
 
 ##2. Use on R
@@ -355,7 +355,7 @@ refMrna.merge.cut2.fa
 refMrna.merge.cut3.fa
 refMrna.merge.fa
 #
-#./data.txt/
+#./data/
 CopyNum.txt
 hla_table.txt
 hla_table2.txt
@@ -366,7 +366,7 @@ sample.txt
 Calculate A List of Neoantigens on SNVs for HLA Class I. 
 ```
 MainSNVClass1(hmdir = getwd(),
-              input_file = "data.txt/sample.txt",
+              input_file = "data/sample.txt",
               job_ID = "NO_JOB_ID",
               Chr_Column = 1,
               Mutation_Start_Column = 2,
@@ -377,9 +377,9 @@ MainSNVClass1(hmdir = getwd(),
               Depth_Tumor_Column = 12,
               Depth_Normal_Column = 14,
               file_name_in_HLA_table = "sample",
-              HLA_file = "data.txt/hla_table.txt",
-              RNAseq_file = "data.txt/RNAseq.txt",
-              CNV="data.txt/Copy.txt",
+              HLA_file = "data/hla_table.txt",
+              RNAseq_file = "data/RNAseq.txt",
+              CNV="data/Copy.txt",
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
@@ -389,7 +389,7 @@ MainSNVClass1(hmdir = getwd(),
 Marge Results for HLA Class I. 
 ```
 MainMergeClass1(hmdir = getwd(),
-                input_dir = "data.txt",
+                input_dir = "data",
                 input_file_prefix = "sample",
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
@@ -397,7 +397,7 @@ MainMergeClass1(hmdir = getwd(),
 Calculate A List of Neoantigens for HLA Class I. 
 ```
 MainSNVClass2(hmdir = getwd(),
-              input_file = "data.txt/sample.txt",
+              input_file = "data/sample.txt",
               job_ID = "NO_JOB_ID",
               Chr_Column = 1,
               Mutation_Start_Column = 2,
@@ -408,9 +408,9 @@ MainSNVClass2(hmdir = getwd(),
               Depth_Tumor_Column = 12,
               Depth_Normal_Column = 14,
               file_name_in_HLA_table = "sample",
-              HLA_file = "data.txt/hla_table2.txt",
-              RNAseq_file = "data.txt/RNAseq.txt",
-              CNV="data.txt/Copy.txt",
+              HLA_file = "data/hla_table2.txt",
+              RNAseq_file = "data/RNAseq.txt",
+              CNV="data/Copy.txt",
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
@@ -420,15 +420,15 @@ MainSNVClass2(hmdir = getwd(),
 Marge Results for HLA Class II. 
 ```
 MainMergeClass2(hmdir = getwd(),
-                input_dir = "data.txt",
-                input_file_prefix = "sample_genomon",
+                input_dir = "data",
+                input_file_prefix = "sample",
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
 Calculate A List of Neoantigens on Indels for HLA Class I. 
 ```
 MainINDELClass1(hmdir = getwd(),
-                input_file = "data.txt/sample.txt",
+                input_file = "data/sample.txt",
                 job_ID = "NO_JOB_ID",
                 Chr_Column = 1,
                 Mutation_Start_Column = 2,
@@ -439,9 +439,9 @@ MainINDELClass1(hmdir = getwd(),
                 Depth_Tumor_Column = 12,
                 Depth_Normal_Column = 14,
                 file_name_in_HLA_table = "sample",
-                HLA_file = "data.txt/hla_table.txt",
-                RNAseq_file = "data.txt/RNAseq.txt",
-                CNV="data.txt/Copy.txt",
+                HLA_file = "data/hla_table.txt",
+                RNAseq_file = "data/RNAseq.txt",
+                CNV="data/Copy.txt",
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
@@ -451,7 +451,7 @@ MainINDELClass1(hmdir = getwd(),
 Calculate A List of Neoantigens on Indels for HLA Class II. 
 ```
 MainINDELClass2(hmdir = getwd(),
-                input_file = "data.txt/sample.txt",
+                input_file = "data/sample.txt",
                 job_ID = "NO_JOB_ID",
                 Chr_Column = 1,
                 Mutation_Start_Column = 2,
@@ -462,9 +462,9 @@ MainINDELClass2(hmdir = getwd(),
                 Depth_Tumor_Column = 12,
                 Depth_Normal_Column = 14,
                 file_name_in_HLA_table = "sample",
-                HLA_file = "data.txt/hla_table2.txt",
-                RNAseq_file = "data.txt/RNAseq.txt",
-                CNV="data.txt/Copy.txt",
+                HLA_file = "data/hla_table2.txt",
+                RNAseq_file = "data/RNAseq.txt",
+                CNV="data/Copy.txt",
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
