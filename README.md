@@ -95,6 +95,9 @@ paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrn
 #refMrna Files
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
+perl -pe s/\n//g refMrna.fa > tmp
+perl -pe 's/>/\n>/g' tmp > refMrna.fa
+rm tmp
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.merge.cut1.fa
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut2.fa
 grep -v ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.merge.cut3.fa
@@ -344,17 +347,8 @@ print(CopyNum, row.names = FALSE)
 ##
 #./lib/
 ccfp.jar
-GRCh37.fa
-GRCh37.fa.fai
 netMHCIIpan-3.1
 netMHCpan-3.0
-refFlat.cut.txt
-refFlat.txt
-refMrna.fa
-refMrna.merge.cut1.fa
-refMrna.merge.cut2.fa
-refMrna.merge.cut3.fa
-refMrna.merge.fa
 #
 #./data/
 CopyNum.txt
@@ -362,6 +356,13 @@ hla_table.txt
 hla_table2.txt
 RNAseq.txt
 sample.txt
+refFlat.cut.txt
+refFlat.txt
+refMrna.fa
+refMrna.merge.cut1.fa
+refMrna.merge.cut2.fa
+refMrna.merge.cut3.fa
+refMrna.merge.fa
 ##
 
 Calculate A List of Neoantigens on SNVs for HLA Class I. 
@@ -383,8 +384,7 @@ MainSNVClass1(hmdir = getwd(),
               CNV="data/Copy.txt",
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
-              netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-              refDNA = "lib/GRCh37.fa")
+              netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan")
 ```
 
 Marge Results for HLA Class I. 
