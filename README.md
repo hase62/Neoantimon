@@ -121,7 +121,8 @@ gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**If one uses RNA bam file to calculate variant allele frequency**
+**(If one uses RNA bam file to calculate variant allele frequency)**
+
 **Download human refSeq (GRCh38):**
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
@@ -368,7 +369,7 @@ refMrna.merge.cut3.fa
 refMrna.merge.fa
 ##
 
-Calculate A List of Neoantigens on SNVs for HLA Class I. 
+Calculate Neoantigens on SNVs for HLA Class I. 
 ```
 MainSNVClass1(hmdir = getwd(),
               input_file = "data/sample.txt",
@@ -387,7 +388,7 @@ MainSNVClass1(hmdir = getwd(),
               refMrna_1 = "data/refMrna.cut1.fa",
               refMrna_3 = "data/refMrna.cut3.fa",
               RNAseq_file = "data/RNAseq.txt",
-              CNV="data/Copy.txt",
+              CNV="data/CopyNum.txt",
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan")
@@ -401,7 +402,7 @@ MainMergeClass1(hmdir = getwd(),
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
-Calculate A List of Neoantigens for HLA Class I. 
+Calculate Neoantigens for HLA Class II. 
 ```
 MainSNVClass2(hmdir = getwd(),
               input_file = "data/sample.txt",
@@ -420,7 +421,7 @@ MainSNVClass2(hmdir = getwd(),
               refMrna_1 = "data/refMrna.cut1.fa",
               refMrna_3 = "data/refMrna.cut3.fa",
               RNAseq_file = "data/RNAseq.txt",
-              CNV="data/Copy.txt",
+              CNV="data/CopyNum.txt",
               Purity = 0.8,
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
@@ -435,7 +436,7 @@ MainMergeClass2(hmdir = getwd(),
                 Tumor_RNA_BASED_ON_DNA = TRUE)
 ```
 
-Calculate A List of Neoantigens on Indels for HLA Class I. 
+Calculate Neoantigens on Indels for HLA Class I. 
 ```
 MainINDELClass1(hmdir = getwd(),
                 input_file = "data/sample.txt",
@@ -454,14 +455,14 @@ MainINDELClass1(hmdir = getwd(),
                refMrna_1 = "data/refMrna.cut1.fa",
                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
-                CNV="data/Copy.txt",
+                CNV="data/CopyNum.txt",
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
                 refDNA = "lib/GRCh37.fa")
 ```
 
-Calculate A List of Neoantigens on Indels for HLA Class II. 
+Calculate Neoantigens on Indels for HLA Class II. 
 ```
 MainINDELClass2(hmdir = getwd(),
                 input_file = "data/sample.txt",
@@ -480,7 +481,7 @@ MainINDELClass2(hmdir = getwd(),
                refMrna_1 = "data/refMrna.cut1.fa",
                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
-                CNV="data/Copy.txt",
+                CNV="data/CopyNum.txt",
                 Purity = 0.8,
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
