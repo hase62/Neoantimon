@@ -86,12 +86,11 @@ wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.cut1.fa
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.cut2.fa
-perl -pe 's/\n//g' refMrna.fa > tmp
-perl -pe 's/[0-9, ,NM_]//g' tmp > tmp2
+perl -pe 's/[0-9, ,NM_,\n]//g' refMrna.fa > tmp
 perl -pe 's/>/\n/g' tmp2 > refMrna.cut3.fa
 sed -i -e '/^$/d' refMrna.cut3.fa
-rm tmp*
-paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
+rm tmp
+paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
 **Download refMrna Files(GRCh37/hg19):**
@@ -101,12 +100,11 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.cut1.fa
 grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.cut2.fa
-perl -pe 's/\n//g' refMrna.fa > tmp
-perl -pe 's/[0-9, ,NM_]//g' tmp > tmp2
+perl -pe 's/[0-9, ,NM_,\n]//g' tmp > tmp2
 perl -pe 's/>/\n/g' tmp2 > refMrna.cut3.fa
 sed -i -e '/^$/d' refMrna.cut3.fa
 rm tmp*
-paste refMrna.merge.cut1.fa refMrna.merge.cut2.fa refMrna.merge.cut3.fa > refMrna.merge.fa
+paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
 **Download refFlat Files(GRCh38/hg38)**
@@ -385,6 +383,9 @@ MainSNVClass1(hmdir = getwd(),
               Depth_Normal_Column = 14,
               file_name_in_HLA_table = "sample",
               HLA_file = "data/hla_table.txt",
+              refFlat_file = "data/refFlat.txt",
+              refMrna_1 = "data/refMrna.cut1.fa",
+              refMrna_3 = "data/refMrna.cut3.fa",
               RNAseq_file = "data/RNAseq.txt",
               CNV="data/Copy.txt",
               Purity = 0.8,
