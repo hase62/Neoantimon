@@ -44,7 +44,8 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     info[,match("TumorRNA",colnames(info))]<-as.numeric(info[,match("TotalRNA",colnames(info))]) * as.numeric(info[,match("TumorDepth",colnames(info))]) /
        as.numeric(info[,match("Depth",colnames(info))])
   }
-
+  info[,12]<-paste(info[,3], info[,12], sep="_")
+  
   #Remove RNAseq Info
   rownames(info)<-NULL
   info<-info[,-match(c("DNA_Normal", "DNA_Mut"), colnames(info))]
@@ -126,107 +127,108 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
       }
     }
 
-   if(is.null(full_peptide)) return(NULL)
-   if(nrow(full_peptide)==0) return(NULL)
-   tag<-c("HLA", "Pos", "Gene", "MutatedPeptide", "Mut_IC50", "Mut_Rank",
-          "Norm_Peptide", "Norm_IC50", "Norm_Rank", colnames(info))
-
-   #Bind Full Peptide and info
-   if(nrow(full_peptide)==1){
-    full_peptide<-cbind(full_peptide, t(info[match(full_peptide[,3], info[,2]),]))
-   }else{
-    full_peptide<-cbind(full_peptide, info[match(full_peptide[,3], info[,2]),])
-   }
-   colnames(full_peptide)<-tag
-
-   #Get Unique Position
-   uq1<-unique(apply(info[,c(3,12)], 1, paste, collapse="_"))
-
-   #Do not use nrow(min_peptide_50) because peptide of which IC50 > 500 are removed
-   base_count<-nrow(min_peptide) / length(files_part[grep("normpeptide", files_part, invert = TRUE)])
-   unq_hla<-sapply(unique(min_peptide[,1]),
-             function(x) length(which(!is.na(match(min_peptide[,1],x))))) / base_count
-   unq_hla<-unlist(sapply(1:length(unique(min_peptide[,1])),
-             function(x) rep(unique(min_peptide[,1])[x], unq_hla[x])))
-
-   #Bind Min Peptide and Info
-   if(nrow(min_peptide) > 1){
-    min_peptide<-cbind(min_peptide, info[match(min_peptide[,3], info[,2]),])
+  if(is.null(full_peptide)) return(NULL)
+  if(nrow(full_peptide)==0) return(NULL)
+  tag<-c("HLA", "Pos", "Gene", "MutatedPeptide", "Mut_IC50", "Mut_Rank",
+         "Norm_Peptide", "Norm_IC50", "Norm_Rank", colnames(info))
+  
+  #Bind Full Peptide and info
+  if(nrow(full_peptide)==1){
+    full_peptide<-cbind(full_peptide, t(info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
+  }else{
+    full_peptide<-cbind(full_peptide, info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
+  }
+  colnames(full_peptide)<-tag
+  
+  #Get Unique Position
+  uq1<-unique(apply(info[,c(3,12)], 1, paste, collapse="_"))
+  
+  #Do not use nrow(min_peptide_50) because peptide of which IC50 > 500 are removed
+  base_count<-nrow(min_peptide) / length(files_part[grep("normpeptide", files_part, invert = TRUE)])
+  unq_hla<-sapply(unique(min_peptide[,1]),
+                  function(x) length(which(!is.na(match(min_peptide[,1],x))))) / base_count
+  unq_hla<-unlist(sapply(1:length(unique(min_peptide[,1])),
+                         function(x) rep(unique(min_peptide[,1])[x], unq_hla[x])))
+  
+  #Bind Min Peptide and Info
+  if(nrow(min_peptide) > 1){
+    min_peptide<-cbind(min_peptide, info[match(substr(min_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
     tmp<-NULL
     #HLA
     for(uqh in unq_hla){
-     index<-which(!is.na(match(min_peptide[,1], uqh)))
-     label_index<-apply2(min_peptide[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
-     if(length(index)==0 | length(uq1[!is.na(match(uq1, label_index))])==0)next
-     tmp<-rbind(tmp, min_peptide[index[sapply(uq1[!is.na(match(uq1, label_index))],
-           function(x) which(!is.na(match(label_index, x)))
-            [order(as.numeric(min_peptide[which(!is.na(match(label_index, x))),5]))[1]])],])
+      index<-which(!is.na(match(min_peptide[,1], uqh)))
+      label_index<-apply2(min_peptide[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
+      if(length(index)==0 | length(uq1[!is.na(match(uq1, label_index))])==0)next
+      tmp<-rbind(tmp, min_peptide[index[sapply(uq1[!is.na(match(uq1, label_index))],
+                                               function(x) which(!is.na(match(label_index, x)))
+                                               [order(as.numeric(min_peptide[which(!is.na(match(label_index, x))),5]))[1]])],])
     }
     min_peptide<-tmp
-   }else{
-    min_peptide<-cbind(min_peptide, t(info[match(min_peptide[,3], info[,2]),]))
-   }
-   colnames(min_peptide)<-tag
-
-   #Bind Min_Upper Peptide and Info
-   if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag) - ncol(info), 0)
-   if(nrow(min_peptide_50) > 1){
-    min_peptide_50<-cbind(min_peptide_50, info[match(min_peptide_50[,3], info[,2]),])
+  }else{
+    min_peptide<-cbind(min_peptide, t(info[match(substr(min_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
+  }
+  colnames(min_peptide)<-tag
+  
+  #Bind Min_Upper Peptide and Info
+  if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag) - ncol(info), 0)
+  if(nrow(min_peptide_50) > 1){
+    min_peptide_50<-cbind(min_peptide_50, info[match(substr(min_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),])
     tmp<-NULL
     for(uqh in unq_hla){
-     index<-which(!is.na(match(min_peptide_50[,1], uqh)))
-     label_index<-apply2(min_peptide_50[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
-     if(length(index)==0|length(uq1[!is.na(match(uq1, label_index))])==0)next
-     tmp<-rbind(tmp, min_peptide_50[index[sapply(uq1[!is.na(match(uq1, label_index))],
-           function(x) which(!is.na(match(label_index, x)))
-            [order(as.numeric(min_peptide_50[which(!is.na(match(label_index, x))),5]))[1]])],])
+      index<-which(!is.na(match(min_peptide_50[,1], uqh)))
+      label_index<-apply2(min_peptide_50[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
+      if(length(index)==0|length(uq1[!is.na(match(uq1, label_index))])==0)next
+      tmp<-rbind(tmp, min_peptide_50[index[sapply(uq1[!is.na(match(uq1, label_index))],
+                                                  function(x) which(!is.na(match(label_index, x)))
+                                                  [order(as.numeric(min_peptide_50[which(!is.na(match(label_index, x))),5]))[1]])],])
     }
     min_peptide_50<-tmp
-   }else{
-    if(nrow(min_peptide_50)==0){min_peptide_50<-cbind(min_peptide_50, info[match(min_peptide_50[,3], info[,2]),])
-    }else{min_peptide_50<-cbind(min_peptide_50, t(info[match(min_peptide_50[,3], info[,2]),]))}
-   }
-   if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
-   colnames(min_peptide_50)<-tag
-
-   #Bind Rank Peptide and Info
-   if(nrow(rank_peptide) > 1){
-    rank_peptide<-cbind(rank_peptide, info[match(rank_peptide[,3], info[,2]),])
+  }else{
+    if(nrow(min_peptide_50)==0){min_peptide_50<-cbind(min_peptide_50, info[match(substr(min_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),])
+    }else{min_peptide_50<-cbind(min_peptide_50, t(info[match(substr(min_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),]))}
+  }
+  if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
+  colnames(min_peptide_50)<-tag
+  
+  #Bind Rank Peptide and Info
+  if(nrow(rank_peptide) > 1){
+    rank_peptide<-cbind(rank_peptide, info[match(substr(rank_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
     tmp<-NULL
     for(uqh in unq_hla){
-     index<-which(!is.na(match(rank_peptide[,1], uqh)))
-     label_index<-apply2(rank_peptide[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
-     if(length(index)==0|length(uq1[!is.na(match(uq1, label_index))])==0)next
-     tmp<-rbind(tmp, rank_peptide[index[sapply(uq1[!is.na(match(uq1, label_index))],
-           function(x) which(!is.na(match(label_index, x)))
-            [order(as.numeric(rank_peptide[which(!is.na(match(label_index, x))),6]))[1]])],])
+      index<-which(!is.na(match(rank_peptide[,1], uqh)))
+      label_index<-apply2(rank_peptide[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
+      if(length(index)==0|length(uq1[!is.na(match(uq1, label_index))])==0)next
+      tmp<-rbind(tmp, rank_peptide[index[sapply(uq1[!is.na(match(uq1, label_index))],
+                                                function(x) which(!is.na(match(label_index, x)))
+                                                [order(as.numeric(rank_peptide[which(!is.na(match(label_index, x))),6]))[1]])],])
     }
     rank_peptide<-tmp
-   } else{
-    rank_peptide<-cbind(rank_peptide, t(info[match(rank_peptide[,3], info[,2]),]))
-   }
-   colnames(rank_peptide)<-tag
-
-   #Bind Rank_Upper Peptide and info
-   if(is.null(rank_peptide_50)) rank_peptide_50<-matrix(nrow=0, ncol=length(tag) - ncol(info), 0)
-   if(nrow(rank_peptide_50) > 1){
+  } else{
+    rank_peptide<-cbind(rank_peptide, t(info[match(substr(rank_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
+  }
+  colnames(rank_peptide)<-tag
+  
+  #Bind Rank_Upper Peptide and info
+  if(is.null(rank_peptide_50)) rank_peptide_50<-matrix(nrow=0, ncol=length(tag) - ncol(info), 0)
+  if(nrow(rank_peptide_50) > 1){
     rank_peptide_50<-cbind(rank_peptide_50, info[match(rank_peptide_50[,3], info[,2]),])
     tmp<-NULL
     for(uqh in unq_hla){
-     index<-which(!is.na(match(rank_peptide_50[,1], uqh)))
-     label_index<-apply2(rank_peptide_50[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
-     if(length(index)==0|length(uq1[!is.na(match(uq1, label_index))])==0)next
-     tmp<-rbind(tmp, rank_peptide_50[index[sapply(uq1[!is.na(match(uq1, label_index))],
-           function(x) which(!is.na(match(label_index, x)))
-            [order(as.numeric(rank_peptide_50[which(!is.na(match(label_index, x))),6]))[1]])],])
+      index<-which(!is.na(match(rank_peptide_50[,1], uqh)))
+      label_index<-apply2(rank_peptide_50[index,c(12,21)], 1, function(x){paste(x, collapse="_")})
+      if(length(index)==0|length(uq1[!is.na(match(uq1, label_index))])==0)next
+      tmp<-rbind(tmp, rank_peptide_50[index[sapply(uq1[!is.na(match(uq1, label_index))],
+                                                   function(x) which(!is.na(match(label_index, x)))
+                                                   [order(as.numeric(rank_peptide_50[which(!is.na(match(label_index, x))),6]))[1]])],])
     }
     rank_peptide_50<-tmp
-   } else {
-    if(nrow(rank_peptide_50)==0){rank_peptide_50<-cbind(rank_peptide_50, info[match(rank_peptide_50[,3], info[,2]),])
-    }else{rank_peptide_50<-cbind(rank_peptide_50, t(info[match(rank_peptide_50[,3], info[,2]),]))}
-   }
-   if(is.null(rank_peptide_50)) rank_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
-   colnames(rank_peptide_50)<-tag
+  } else {
+    if(nrow(rank_peptide_50)==0){rank_peptide_50<-cbind(rank_peptide_50, info[match(substr(rank_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),])
+    }else{rank_peptide_50<-cbind(rank_peptide_50, t(info[match(substr(rank_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),]))}
+  }
+  if(is.null(rank_peptide_50)) rank_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
+  colnames(rank_peptide_50)<-tag
+  
 
    write.table(full_peptide, paste(dir, "/", input_file_prefix, ".CLASS2.ALL.txt", sep=""), row.names=FALSE, col.names=TRUE, quote=FALSE, sep="\t")
    write.table(min_peptide, paste(dir, "/", input_file_prefix, ".CLASS2.IC50min.txt", sep=""), row.names=FALSE, col.names=TRUE, quote=FALSE, sep="\t")

@@ -44,6 +44,7 @@ MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     info[,match("TumorRNA",colnames(info))]<-as.numeric(info[,match("TotalRNA",colnames(info))]) * as.numeric(info[,match("TumorDepth",colnames(info))]) /
       as.numeric(info[,match("Depth",colnames(info))])
   }
+  info[,12]<-paste(info[,3], info[,12], sep="_")
 
   #Remove RNAseq Info
   rownames(info)<-NULL
@@ -129,9 +130,9 @@ MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
 
   #Bind Full Peptide and info
   if(nrow(full_peptide)==1){
-    full_peptide<-cbind(full_peptide, t(info[match(full_peptide[,3], info[,2]),]))
+    full_peptide<-cbind(full_peptide, t(info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
   }else{
-    full_peptide<-cbind(full_peptide, info[match(full_peptide[,3], info[,2]),])
+    full_peptide<-cbind(full_peptide, info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
   }
   colnames(full_peptide)<-tag
 
@@ -147,7 +148,7 @@ MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
 
   #Bind Min Peptide and Info
   if(nrow(min_peptide) > 1){
-    min_peptide<-cbind(min_peptide, info[match(min_peptide[,3], info[,2]),])
+    min_peptide<-cbind(min_peptide, info[match(substr(min_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
     tmp<-NULL
     #HLA
     for(uqh in unq_hla){
@@ -160,14 +161,14 @@ MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     }
     min_peptide<-tmp
   }else{
-    min_peptide<-cbind(min_peptide, t(info[match(min_peptide[,3], info[,2]),]))
+    min_peptide<-cbind(min_peptide, t(info[match(substr(min_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
   }
   colnames(min_peptide)<-tag
 
   #Bind Min_Upper Peptide and Info
   if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag) - ncol(info), 0)
   if(nrow(min_peptide_50) > 1){
-    min_peptide_50<-cbind(min_peptide_50, info[match(min_peptide_50[,3], info[,2]),])
+    min_peptide_50<-cbind(min_peptide_50, info[match(substr(min_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),])
     tmp<-NULL
     for(uqh in unq_hla){
       index<-which(!is.na(match(min_peptide_50[,1], uqh)))
@@ -179,15 +180,15 @@ MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     }
     min_peptide_50<-tmp
   }else{
-    if(nrow(min_peptide_50)==0){min_peptide_50<-cbind(min_peptide_50, info[match(min_peptide_50[,3], info[,2]),])
-    }else{min_peptide_50<-cbind(min_peptide_50, t(info[match(min_peptide_50[,3], info[,2]),]))}
+    if(nrow(min_peptide_50)==0){min_peptide_50<-cbind(min_peptide_50, info[match(substr(min_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),])
+    }else{min_peptide_50<-cbind(min_peptide_50, t(info[match(substr(min_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),]))}
   }
   if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
   colnames(min_peptide_50)<-tag
 
   #Bind Rank Peptide and Info
   if(nrow(rank_peptide) > 1){
-    rank_peptide<-cbind(rank_peptide, info[match(rank_peptide[,3], info[,2]),])
+    rank_peptide<-cbind(rank_peptide, info[match(substr(rank_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
     tmp<-NULL
     for(uqh in unq_hla){
       index<-which(!is.na(match(rank_peptide[,1], uqh)))
@@ -199,7 +200,7 @@ MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     }
     rank_peptide<-tmp
   } else{
-    rank_peptide<-cbind(rank_peptide, t(info[match(rank_peptide[,3], info[,2]),]))
+    rank_peptide<-cbind(rank_peptide, t(info[match(substr(rank_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
   }
   colnames(rank_peptide)<-tag
 
@@ -218,8 +219,8 @@ MainMergeClass1<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     }
     rank_peptide_50<-tmp
   } else {
-    if(nrow(rank_peptide_50)==0){rank_peptide_50<-cbind(rank_peptide_50, info[match(rank_peptide_50[,3], info[,2]),])
-    }else{rank_peptide_50<-cbind(rank_peptide_50, t(info[match(rank_peptide_50[,3], info[,2]),]))}
+    if(nrow(rank_peptide_50)==0){rank_peptide_50<-cbind(rank_peptide_50, info[match(substr(rank_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),])
+    }else{rank_peptide_50<-cbind(rank_peptide_50, t(info[match(substr(rank_peptide_50[,3], 1, 10), substr(info[,2], 1, 10)),]))}
   }
   if(is.null(rank_peptide_50)) rank_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
   colnames(rank_peptide_50)<-tag
