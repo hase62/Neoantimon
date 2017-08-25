@@ -255,12 +255,12 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
              next
            }
             
-            #Translation Region is not VAlid
-            if(nchar(dna_trans)%%3!=0) {
-             next
+           #Translation Region is not VAlid
+           if(nchar(dna_trans)%%3!=0) {
+            next
            }
 
-           #Make Normal Peptide
+            #Make Normal Peptide
             peptide_normal<-NULL
            dna_trans_normal<-dna_trans
             while(nchar(dna_trans)>=3){
@@ -276,9 +276,9 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
             dna_trans<-substr(dna, ts_point, te_point)
             m_point_2<-m_point - (ts_point) + 1
             if(strand=="+"){
-              substr(dna_trans, m_point_2, m_point_2)<-tolower(m_alt)
-            }else{substr(dna_trans, m_point_2, m_point_2)<-
-              trans_to[match(tolower(m_alt),trans_from)]
+             substr(dna_trans, m_point_2, m_point_2)<-tolower(m_alt)
+            }else{
+              substr(dna_trans, m_point_2, m_point_2)<-trans_to[match(tolower(m_alt),trans_from)]
             }
 
             #Make Mutated-Peptide
