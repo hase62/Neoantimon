@@ -185,7 +185,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
           if(flag){
             if(d < 0){
               dna<-sub(" ", "", paste(paste(rep("x", -d),collapse=""), dna, collapse="")) 
-            }else{	        	        
+            }else{                  
               dna<-substr(dna, d + 1, nchar(dna))
             }
           }else{
@@ -255,90 +255,90 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
           
           #Make Mutated-DNA
           dna_trans<-substr(dna, ts_point, nchar(dna))
-	        m_point_2<-m_point - (ts_point) + 1
-	        if(m_point_2 < 4) next
+         m_point_2<-m_point - (ts_point) + 1
+         if(m_point_2 < 4) next
           if(strand == "+"){
-  	 　     if(m_ref == "-"){#Insertion - Specific
-  	          dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
-  	                           paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
-  	                                              function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
-  	                           substr(dna_trans, m_point_2, nchar(dna_trans)), sep="")
-  	        } else {
-  	          if(substr(dna_trans, m_point_2, m_point_2 + nchar(m_ref) - 1) ==
-  		              paste(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")){
-  	           
-  	            dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
-  	                               gsub("NA","",paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
-  	                                                         function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
-  	                               substr(dna_trans, m_point_2 + nchar(m_ref), nchar(dna_trans)), sep="")
-  	          } else {
-  	            next
-  	          }
-  	        }
-  	       } else {
-	 　       if(m_ref == "-"){#Insertion / Genomon
-	             dna_trans<-paste(substr(dna_trans, 1, m_point_2),
-	                          paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
-	                                              function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
-	                        substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
-	          } else {
-	            if(paste(substring(substr(dna_trans, m_point_2 - nchar(m_ref) + 1, m_point_2), 
-        		            1:nchar(m_ref), 1:nchar(m_ref)), collapse="") ==
-        		                paste(sapply(rev(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref))), 
-        		                  function(x) trans_to[match(tolower(x),trans_from)]), collapse="")){
-	               
-	             dna_trans<-paste(substr(dna_trans, 1, m_point_2 - nchar(m_ref)),
-	                         gsub("NA","",paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
-		                          function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
-	                         substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
-	            } else {
-	              next
-	            }
-	          }
-  	      }
-	        dna_trans_mut<-dna_trans
-	        
+          if(m_ref == "-"){#Insertion - Specific
+             dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
+                              paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
+                                                 function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
+                              substr(dna_trans, m_point_2, nchar(dna_trans)), sep="")
+           } else {
+             if(substr(dna_trans, m_point_2, m_point_2 + nchar(m_ref) - 1) ==
+                  paste(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")){
+              
+               dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
+                                  gsub("NA","",paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
+                                                            function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
+                                  substr(dna_trans, m_point_2 + nchar(m_ref), nchar(dna_trans)), sep="")
+             } else {
+               next
+             }
+           }
+          } else {
+          if(m_ref == "-"){#Insertion / Genomon
+              dna_trans<-paste(substr(dna_trans, 1, m_point_2),
+                           paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
+                                               function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
+                         substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
+           } else {
+             if(paste(substring(substr(dna_trans, m_point_2 - nchar(m_ref) + 1, m_point_2), 
+                      1:nchar(m_ref), 1:nchar(m_ref)), collapse="") ==
+                          paste(sapply(rev(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref))), 
+                            function(x) trans_to[match(tolower(x),trans_from)]), collapse="")){
+                
+              dna_trans<-paste(substr(dna_trans, 1, m_point_2 - nchar(m_ref)),
+                          gsub("NA","",paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
+                            function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
+                          substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
+             } else {
+               next
+             }
+           }
+         }
+         dna_trans_mut<-dna_trans
+         
           #Make Mutated-Peptide
           peptide<-NULL
           while(nchar(dna_trans) >= 3){
-  	        a<-amino[match(substr(dna_trans, 1, 3), codon)]
+           a<-amino[match(substr(dna_trans, 1, 3), codon)]
             peptide<-c(peptide, a)
-  	        if(a=="X") break
-  	        dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
+           if(a=="X") break
+           dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
           }
-  	      min_len<-min(length(peptide), length(peptide_normal))
+         min_len<-min(length(peptide), length(peptide_normal))
   
           peptide_start<-which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - pep_len + 1
-  	      if(is.na(peptide_start)) break
-  	      if(peptide_start < 1) peptide_start<-1
+         if(is.na(peptide_start)) break
+         if(peptide_start < 1) peptide_start<-1
           peptide_end <- min_len - which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1] + pep_len + 1
           if(peptide_end > length(peptide)) peptide_end = length(peptide)
           peptide <- peptide[peptide_start:peptide_end]
           peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
           
-      	  #Save Peptide
-      	  if(length(peptide) < pep_len) break
-      	  refFasta<-rbind(refFasta,
-      	                  c(paste(random, g_name, sep="_"), chr, nm_id, length(peptide), m_ref, m_alt, 
-      	                    round(as.numeric(MP),5), ifelse(is.character(GP), GP, round(GP,5)),
-      	    	              exon_start[1], rev(exon_end)[1], m_start, DP, TDP,
-      	                    paste(peptide_normal, collapse=""),
-      		                  paste(peptide, collapse=""), 
-      	    	              dna_trans_normal, 
-      	    	              dna_trans_mut))
+         #Save Peptide
+         if(length(peptide) < pep_len) break
+         refFasta<-rbind(refFasta,
+                         c(paste(random, g_name, sep="_"), chr, nm_id, length(peptide), m_ref, m_alt, 
+                           round(as.numeric(MP),5), ifelse(is.character(GP), GP, round(GP,5)),
+                          exon_start[1], rev(exon_end)[1], m_start, DP, TDP,
+                           paste(peptide_normal, collapse=""),
+                          paste(peptide, collapse=""), 
+                          dna_trans_normal, 
+                          dna_trans_mut))
       
-      	  #Remove X and Save Fasta
+         #Remove X and Save Fasta
           if(!is.na(match("X", peptide))){
             peptide<-peptide[1:(match("X",peptide) - 1)]
           }
           fasta<-c(fasta, sub("_","",paste(">", random, g_name, sep="_")))
           fasta<-c(fasta, paste(peptide, collapse=""))
-      	  random<-random + 1
+         random<-random + 1
       
-      	  print("Peptide Successfully Generated!!")
-      	  stop_loop=TRUE
-      	  Pass=TRUE
-      	  break
+         print("Peptide Successfully Generated!!")
+         stop_loop=TRUE
+         Pass=TRUE
+         break
         }
         if(stop_loop) break
       }
@@ -361,8 +361,8 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
      #If gene symbol, mutation position, mutated peptide, normal peptide are all the same, Integrate These Peptides
      #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process. 
      hit<-which((refFasta[i, 11]==refFasta[,11]) &
-        	      (refFasta[i, 14]==refFasta[,14]) &
-  	            (refFasta[i, 15]==refFasta[,15]))
+               (refFasta[i, 14]==refFasta[,14]) &
+               (refFasta[i, 15]==refFasta[,15]))
      if(length(hit)==1){
         i<-i+1
         next

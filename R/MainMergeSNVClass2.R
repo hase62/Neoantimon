@@ -33,7 +33,7 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
   cinfo<-c("", "Gene ID", "Chr", "NM_ID", "Change", "ref", "alt", "Prob", "Mutation Prob.", "Exon Start",
            "Exon End", "Mutation Position", "Depth", "TumorDepth", "Peptide Normal", "Peptide Mutation",
            "DNA_Normal", "DNA_Mut", "TotalRNA", "TumorRNARatio", "TumorRNA", "nA", "nB", "Checker",
-		       "MutRatio", "MutRatio Min", "MutRatio Max")
+         "MutRatio", "MutRatio Min", "MutRatio Max")
   info<-info[,1:length(cinfo)]
 
   if(is.null(ncol(info))){info<-t(as.matrix(info))}
@@ -84,45 +84,45 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     if(length(grep("Could not find allele", test1))>0) next
     for(h1 in 1:length(num1)){
        #Skip if not match
-	     if(is.na(grep(num1[h1], info[,2])[1]))next
+      if(is.na(grep(num1[h1], info[,2])[1]))next
 
         d4<-NULL
         hit<-match(num1[h1], num2)
         d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]),   function(x) strsplit(x, "\t")[[1]][c(2,3,4,5,10,11)]))
-      	d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,5,10,11)]))
-	      l1<-sapply(d1[,3], nchar)
-	      l2<-sapply(d2[,3], nchar)
-	      for(r1 in unique(l1)){
-	        hit1<-which(l1==r1)
-	        hit2<-which(l2==r1)
-      	  if(length(hit1)==0) next
-      	  if(length(hit1)==1){
-      	    d3<-t(c(d1[hit1,c(2,1,4,3,5,6)], d2[hit2[match(d1[hit1,1], d2[hit2,1])],c(3,5,6)]))
-      	  }else{
-      	    d3<-cbind(d1[hit1,c(2,1,4,3,5,6)], d2[hit2[match(d1[hit1,1], d2[hit2,1])],c(3,5,6)])
-      	  }
-      	  d3<-d3[d3[,4]!=d3[,7],]
-      	  d4<-rbind(d4, d3)
-      	}
-      	if(nrow(d4)==0) {
-      	  print("Warning!! d4 is zero!!")
-      	  next
-      	}
-	      full_peptide<-rbind(full_peptide, d4)
-	      min_peptide<-rbind(min_peptide, d4[order(as.numeric(d4[,5]))[1],])
-	      rank_peptide<-rbind(rank_peptide, d4[order(as.numeric(d4[,6]))[1],])
+       d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,5,10,11)]))
+       l1<-sapply(d1[,3], nchar)
+       l2<-sapply(d2[,3], nchar)
+       for(r1 in unique(l1)){
+         hit1<-which(l1==r1)
+         hit2<-which(l2==r1)
+         if(length(hit1)==0) next
+         if(length(hit1)==1){
+           d3<-t(c(d1[hit1,c(2,1,4,3,5,6)], d2[hit2[match(d1[hit1,1], d2[hit2,1])],c(3,5,6)]))
+         }else{
+           d3<-cbind(d1[hit1,c(2,1,4,3,5,6)], d2[hit2[match(d1[hit1,1], d2[hit2,1])],c(3,5,6)])
+         }
+         d3<-d3[d3[,4]!=d3[,7],]
+         d4<-rbind(d4, d3)
+       }
+       if(nrow(d4)==0) {
+         print("Warning!! d4 is zero!!")
+         next
+       }
+       full_peptide<-rbind(full_peptide, d4)
+       min_peptide<-rbind(min_peptide, d4[order(as.numeric(d4[,5]))[1],])
+       rank_peptide<-rbind(rank_peptide, d4[order(as.numeric(d4[,6]))[1],])
 
-	      d5<-d4[as.numeric(d4[,8]) > 500,]
-	      if(is.vector(d5)){d5<-t(d5)}
-	      if(nrow(d5)>0){
-	        min_peptide_50<-rbind(min_peptide_50, d5[order(as.numeric(d5[,5]))[1],])
+       d5<-d4[as.numeric(d4[,8]) > 500,]
+       if(is.vector(d5)){d5<-t(d5)}
+       if(nrow(d5)>0){
+         min_peptide_50<-rbind(min_peptide_50, d5[order(as.numeric(d5[,5]))[1],])
         }
-	      d6<-d4[as.numeric(d4[,9]) > 2,]
-    	  if(is.vector(d6)){
-    	    d6<-t(d6)
-    	  }
-    	  if(nrow(d6)>0){
-    	    rank_peptide_50<-rbind(rank_peptide_50, d6[order(as.numeric(d6[,6]))[1],])
+       d6<-d4[as.numeric(d4[,9]) > 2,]
+       if(is.vector(d6)){
+         d6<-t(d6)
+       }
+       if(nrow(d6)>0){
+         rank_peptide_50<-rbind(rank_peptide_50, d6[order(as.numeric(d6[,6]))[1],])
         }
       }
     }
