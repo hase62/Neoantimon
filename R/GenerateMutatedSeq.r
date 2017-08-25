@@ -259,7 +259,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
             if(nchar(dna_trans)%%3!=0) {
 	            next
 	          }
-	    
+
 	          #Make Normal Peptide
             peptide_normal<-NULL
 	          dna_trans_normal<-dna_trans
