@@ -257,9 +257,8 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
           dna_trans<-substr(dna, ts_point, nchar(dna))
          m_point_2<-m_point - (ts_point) + 1
          if(m_point_2 < 4) next
-	  if(strand == "+"){
-	   if(m_ref == "-"){
-	     #Insertion - Specific
+          if(strand == "+"){
+          if(m_ref == "-"){#Insertion - Specific
              dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
                               paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
                                                  function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
@@ -277,9 +276,8 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
              }
            }
           } else {
-          if(m_ref == "-"){
-          #Insertion/Genomo
-          dna_trans<-paste(substr(dna_trans, 1, m_point_2),
+          if(m_ref == "-"){#Insertion / Genomon
+              dna_trans<-paste(substr(dna_trans, 1, m_point_2),
                            paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
                                                function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
                          substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
