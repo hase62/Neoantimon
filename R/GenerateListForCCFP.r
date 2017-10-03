@@ -52,7 +52,7 @@ GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
      cnv<-rbind(cnv, c(paste(data_near[1], data[i,1], data[i,3], data[i,12],sep=";"),
                        as.numeric(data_near[8]) - as.numeric(data_near[9]),
                        as.numeric(data_near[9]), 
-                       data[i,13], data[i,14],
+                       data[i,14], data[i,13],
                        Purity))
    }
   }
