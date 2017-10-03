@@ -93,8 +93,9 @@ unzip data.txt.zip
 
 **Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data**
 
-**Download refMrna Files(GRCh38/hg38):**
-*Download refMrna Files(GRCh38/hg38):*
+**Download refMrna Files (Required):**
+
+*Download refMrna Files(GRCh38/hg38)*
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
@@ -108,7 +109,7 @@ rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
-**Download refMrna Files(GRCh37/hg19):**
+*Download refMrna Files(GRCh37/hg19):*
 ```
 #refMrna Files
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
@@ -122,23 +123,25 @@ rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
-**Download refFlat Files(GRCh38/hg38)**
+**Download refFlat Files (Required)*:*
+
+*Download refFlat Files(GRCh38/hg38)*
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**Download refFlat Files(GRCh37/hg19)**
+*Download refFlat Files(GRCh37/hg19)*
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**(If one uses RNA bam file to calculate variant allele frequency)**
+**Download human refSeq (for the calculation of variant allele frequency (VAF)):**
 
-**Download human refSeq (GRCh38):**
+*Download human refSeq (GRCh38):*
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
@@ -146,14 +149,14 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa
 ```
 
-**Download human refSeq (hg38):**
+*Download human refSeq (hg38):*
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-**Download human refSeq (GRCh37):**
+*Download human refSeq (GRCh37):*
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
@@ -206,105 +209,15 @@ print(sample, row.names = FALSE)
 ```
 
 ```
-##  Chr     Start       End Ref Alt Func.refGene Gene.refGene
-##    1  47399872  47399872   A   G       exonic      CYP4A11
-##    1 116941338 116941338   T   C       exonic       ATP1A1
-##    4  24556416  24556416   T   C       exonic        DHX15
-##    4  70156404  70156404   -   T       exonic      UGT2B28
-##    6  75899298  75899298   T   -       exonic      COL12A1
-##    9  89561162  89561162   C   T       exonic         GAS1
-##   12  15132141  15132141   G   T       exonic        PDE6H
-##   12  20876048  20876048   -   G       exonic      SLCO1C1
-##  GeneDetail.refGene ExonicFunc.refGene
-##       nonsynonymous                SNV
-##          synonymous                SNV
-##       nonsynonymous                SNV
-##          frameshift          insertion
-##          frameshift           deletion
-##       nonsynonymous                SNV
-##       nonsynonymous                SNV
-##          frameshift          insertion
-##                                                                                                                                                                                           AAChange.refGene
-##                                                                                                                                                                   CYP4A11:NM_000778:exon8:c.T1064C:p.L355P
-##                                                                           ATP1A1:NM_000701:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160233:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D
-##                                                                                                                                                                     DHX15:NM_001358:exon5:c.A1012G:p.T338A
-##                                                                                                                                                                UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs
-##                                                                                                                                                                 COL12A1:NM_004370:exon6:c.628delA:p.I210fs
-##                                                                                                                                                                       GAS1:NM_002048:exon1:c.G533A:p.R178H
-##                                                                                                                                                                       PDE6H:NM_006205:exon3:c.G163T:p.G55W
-##  SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs
-##  cytoBand depth_tumor variantNum_tumor depth_normal variantNum_normal
-##      1p33          64               28           49                 0
-##    1p13.1         100               39          111                 0
-##    4p15.2         143               47          151                 0
-##    4q13.2          43               15           41                 0
-##      6q13         122               38           73                 0
-##   9q21.33          20                5           26                 0
-##   12p12.3          81               10           47                 0
-##   12p12.2          97               11           57                 0
-##  bases_tumor bases_normal A_C_G_T_tumor A_C_G_T_normal misRate_tumor
-##   46,20,18,8    28,0,21,0     36,0,28,0       49,0,0,0         0.438
-##  74,29,26,10    82,0,29,0     0,39,0,61      0,0,0,111         0.390
-##  112,39,31,8   129,0,22,0     0,47,0,96      0,0,0,151         0.329
-##   28,11,15,4    29,0,12,0           ---            ---         0.349
-##   98,31,24,7    63,0,10,0           ---            ---         0.311
-##     6,2,14,3    10,0,16,0      0,15,0,5       0,26,0,0         0.250
-##    63,8,18,2    35,0,12,0     0,0,71,10       0,0,47,0         0.123
-##   82,10,15,1     50,0,7,0           ---            ---         0.113
-##  strandRatio_tumor misRate_normal strandRatio_normal P.value.fisher.
-##              0.714              0                ---           8.321
-##              0.744              0                ---          14.755
-##              0.830              0                ---          16.734
-##              0.733              0                ---           4.838
-##              0.816              0                ---           8.696
-##              0.400              0                ---           1.947
-##              0.800              0                ---           1.877
-##              0.909              0                ---           2.139
-##  readPairNum_tumor variantPairNum_tumor otherPairNum_tumor
-##                 42                   29                  0
-##                 61                   39                  1
-##                 98                   50                  0
-##                 27                   22                  1
-##                 72                   32                  4
-##                 15                    5                  0
-##                 71                   10                  0
-##                 76                   11                  0
-##  readPairNum_normal variantPairNum_normal otherPairNum_normal
-##                  56                     0                   0
-##                 111                     0                   0
-##                 152                     0                   1
-##                  41                     0                   2
-##                  66                     0                   2
-##                  27                     0                   0
-##                  47                     0                   0
-##                  51                     0                   2
-##  P.value.fisher_realignment. indel_mismatch_rate indel_mismatch_rate.1
-##                        8.617                   0                     0
-##                       14.755                   0                     0
-##                       17.543                   0                     0
-##                        6.926                   0                     0
-##                        7.656                   0                     0
-##                        1.995                   0                     0
-##                        1.877                   0                     0
-##                        2.152                   0                     0
-##  bp_mismatch_count distance_from_breakpoint simple_repeat_pos
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  1                       16               ---
-##  simple_repeat_seq P.value.EBCall.
-##                ---          60.000
-##                ---          60.000
-##                ---          60.000
-##                ---          10.783
-##                ---          13.076
-##                ---           5.208
-##                ---           7.481
-##                ---           6.179
+##	Chr	Start	End	Ref	Alt	Func.refGene	Gene.refGene	GeneDetail.refGene	ExonicFunc.refGene	AAChange.refGene	cytoBand	depth_tumor	variantNum_tumor	depth_normal	variantNum_normal	bases_tumor	bases_normal	A_C_G_T_tumor	A_C_G_T_normal	misRate_tumor	strandRatio_tumor	misRate_normal	strandRatio_normal	P.value.fisher.	readPairNum_tumor	variantPairNum_tumor	otherPairNum_tumor	readPairNum_normal	variantPairNum_normal	otherPairNum_normal	P.value.fisher_realignment.	indel_mismatch_rate	indel_mismatch_rate.1	bp_mismatch_count	distance_from_breakpoint	simple_repeat_pos	simple_repeat_seq	P.value.EBCall.
+##	1	47399872	47399872	A	G	exonic	CYP4A11	nonsynonymous	SNV	CYP4A11:NM_000778:exon8:c.T1064C:p.L355P	1p33	64	28	49	0	46,20,18,8	28,0,21,0	36,0,28,0	49,0,0,0	0.438	0.714	0	---	8.321	42	29	0	56	0	0	8.617	0	0	0	0	---	---	60
+##	1	116941338	116941338	T	C	exonic	ATP1A1	synonymous	SNV	ATP1A1:NM_000701:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160233:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D	1p13.1	100	39	111	0	74,29,26,10	82,0,29,0	0,39,0,61	0,0,0,111	0.39	0.744	0	---	14.755	61	39	1	111	0	0	14.755	0	0	0	0	---	---	60
+##	4	24556416	24556416	T	C	exonic	DHX15	nonsynonymous	SNV	DHX15:NM_001358:exon5:c.A1012G:p.T338A	4p15.2	143	47	151	0	112,39,31,8	129,0,22,0	0,47,0,96	0,0,0,151	0.329	0.83	0	---	16.734	98	50	0	152	0	1	17.543	0	0	0	0	---	---	60
+##	4	70156404	70156404	-	T	exonic	UGT2B28	frameshift	insertion	UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs	4q13.2	43	15	41	0	28,11,15,4	29,0,12,0	---	---	0.349	0.733	0	---	4.838	27	22	1	41	0	2	6.926	0	0	0	0	---	---	10.783
+##	6	75899298	75899298	T	-	exonic	COL12A1	frameshift	deletion	COL12A1:NM_004370:exon6:c.628delA:p.I210fs	6q13	122	38	73	0	98,31,24,7	63,0,10,0	---	---	0.311	0.816	0	---	8.696	72	32	4	66	0	2	7.656	0	0	0	0	---	---	13.076
+##	9	89561162	89561162	C	T	exonic	GAS1	nonsynonymous	SNV	GAS1:NM_002048:exon1:c.G533A:p.R178H	9q21.33	20	5	26	0	6,2,14,3	10,0,16,0	0,15,0,5	0,26,0,0	0.25	0.4	0	---	1.947	15	5	0	27	0	0	1.995	0	0	0	0	---	---	5.208
+##	12	15132141	15132141	G	T	exonic	PDE6H	nonsynonymous	SNV	PDE6H:NM_006205:exon3:c.G163T:p.G55W	12p12.3	81	10	47	0	63,8,18,2	35,0,12,0	0,0,71,10	0,0,47,0	0.123	0.8	0	---	1.877	71	10	0	47	0	0	1.877	0	0	0	0	---	---	7.481
+##	12	20876048	20876048	-	G	exonic	SLCO1C1	frameshift	insertion	SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs	12p12.2	97	11	57	0	82,10,15,1	50,0,7,0	---	---	0.113	0.909	0	---	2.139	76	11	0	51	0	2	2.152	0	0	1	16	---	---	6.179
 ```
 
 
@@ -337,7 +250,6 @@ print(RNAseq, row.names = FALSE)
 ##          AADACL2               3:151451703-151479127 0.01359431
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
-
 
 ```r
 data("CopyNum")
