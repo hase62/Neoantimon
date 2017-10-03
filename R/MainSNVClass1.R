@@ -77,6 +77,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
                         refMrna_1 = paste(hmdir, "/data/refMrna.cut1.fa", sep=""),
                         refMrna_3 = paste(hmdir, "/data/refMrna.cut3.fa", sep=""),
                         samtools_dir = "samtools",
+                        bcftools_dir = "bcftools",
                         Chr_Column = 1, Mutation_Start_Column = 2,
                         Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5,
                         NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
@@ -112,7 +113,8 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
                    ">", paste(output_peptide_txt_file, "list.mp", sep="."))))
       if(error != 0) skip = TRUE
 
-      if(!skip) error<-tryCatch2(system(paste("bcftools view -c0", paste(output_peptide_txt_file, "list.mp", sep="."),
+      print(paste(bcftools_dir, "view -c0", paste(output_peptide_txt_file, "list.mp", sep="."), ">", paste(output_peptide_txt_file, "list.vcf", sep=".")))
+      if(!skip) error<-tryCatch2(system(paste(bcftools_dir, "view -c0", paste(output_peptide_txt_file, "list.mp", sep="."),
                    ">", paste(output_peptide_txt_file, "list.vcf", sep="."))))
       if(error != 0) skip = TRUE
   }
@@ -125,6 +127,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   if(ifelse(is.na(CNV), FALSE, file.exists(CNV))){
     GenerateListForCCFP(output_peptide_txt_file, CNV = CNV, Purity = Purity)
     if(file.exists(paste(output_peptide_txt_file,".cnv.txt",sep=""))){
+      print(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ", paste(output_peptide_txt_file,".cnv.txt",sep=""))
       system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ",
                    paste(output_peptide_txt_file,".cnv.txt",sep=""),
                    " > ", paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""), sep=""))
