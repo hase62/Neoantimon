@@ -78,7 +78,7 @@ cd ..
 
 In addition, if you want to calculate variant allele frequency (VAF), get the old one. 
 ```
-https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
+wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
 cd samtools-0.1.19
 make
@@ -420,7 +420,7 @@ MainINDELClass2(hmdir = getwd(),
 
 ## 5. Result
 
-Sample result files are available at https://github.com/hase62/Neoantimon/raw/master/data/Result. 
+Sample result f iles are available at https://github.com/hase62/Neoantimon/raw/master/data/Result. 
 
 sample.CLASS1.ALL.txt
 ```

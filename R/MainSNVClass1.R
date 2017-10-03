@@ -107,6 +107,7 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   if(ifelse(is.na(RNAseq_file), FALSE, file.exists(RNAseq_file))){
       GenerateListForGetRNASeq(output_peptide_txt_file)
       output_file_rna_list<-paste(output_peptide_txt_file, ".list.txt", sep="")
+      print(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam, ">", paste(output_peptide_txt_file, "list.mp", sep="."))
       error<-tryCatch2(system(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam,
                    ">", paste(output_peptide_txt_file, "list.mp", sep="."))))
       if(error != 0) skip = TRUE
