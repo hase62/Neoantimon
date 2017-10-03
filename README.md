@@ -1,12 +1,12 @@
- #Updated on 11, June. 2017. 
+ #Updated on 3, Oct. 2017. 
 ==============================
 ##1. Preparation
 ------------------------------
 **Set netMHCpan:**
 Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
+Make a script (setNetMHCpan.sh) described below or download it from hase62/Neoantimon/lib, 
+and then run the script as "./setNetMHCpan.sh". 
 ```
-#Set netMHCpan3.0 bash
-
 #!/bin/bash
 #$ -S /bin/bash
 #$ -cwd
@@ -26,18 +26,20 @@ wget http://www.cbs.dtu.dk/services/NetMHCpan-3.0/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
+
 **Set netMHCIIpan:**
 Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
+Make a script (setNetMHCIIpan.sh) described below or download it from hase62/Neoantimon/lib, 
+and then run the script as "./setNetMHCIIpan.sh". 
 ```
-#Set netMHCpan3.0 bash
-
 #!/bin/bash
 #$ -S /bin/bash
 #$ -cwd
 
 if [ -e netMHCIIpan-3.1a.Linux.tar.gz ]; then
  tar zxvf netMHCIIpan-3.1a.Linux.tar.gz
-elif [ -e netMHCIIpan-3.1a.Darwin.tar.gz ]
+fi
+if [ -e netMHCIIpan-3.1a.Darwin.tar.gz ]; then
  tar zxvf netMHCIIpan-3.1a.Darwin.tar.gz
 fi
 cd netMHCIIpan-3.1
@@ -50,24 +52,32 @@ wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Install samtools:**
+**Install samtools and bcftools:**
+Run the following codes or download files from https://github.com/hase62/Neoantimon/raw/master/lib/. 
 ```
-wget http://sourceforge.net/projects/samtools/files/samtools/1.3/samtools-1.3.tar.bz2
-tar jxf samtools-1.3.tar.bz2
-cd samtools-1.3
+wget http://sourceforge.net/projects/samtools/files/samtools/1.6/samtools-1.6.tar.bz2
+tar jxf samtools-1.6.tar.bz2
+cd samtools-1.6
 ./configure
 make
 make install
 cd ..
 ```
 
-**Install bcftools:**
 ```
-wget https://github.com/samtools/bcftools/releases/download/1.3.1/bcftools-1.3.1.tar.bz2
-tar jxf bcftools-1.3.1.tar.bz2
-cd bcftools-1.3.1
+wget https://github.com/samtools/bcftools/releases/download/1.6/bcftools-1.6.tar.bz2
+tar jxf bcftools-1.6.tar.bz2
+cd bcftools-1.6
 make
 sudo make install
+cd ..
+```
+
+```
+https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
+tar jxf samtools-0.1.19.tar.bz2
+cd samtools-0.1.19
+make
 cd ..
 ```
 
@@ -150,10 +160,10 @@ samtools faidx GRCh37.fa
 ##2. Use on R
 ------------------------------
 ```
-install.packages("devtools")
-library(devtools)
-install_github('hase62/Neoantimon')
-library(Neoantimon)
+install.packages("devtools");
+library(devtools);
+install_github('hase62/Neoantimon');
+library(Neoantimon);
 ```
 
 ##3. Data Format
@@ -391,6 +401,7 @@ MainSNVClass1(hmdir = getwd(),
               RNAseq_file = "data/RNAseq.txt",
               CNV = "CopyNum.txt",
               Purity = 0.8,
+			  samtools_dir = "samtools-0.1.19/samtools",
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
               refDNA = NA)
@@ -425,6 +436,7 @@ MainSNVClass2(hmdir = getwd(),
               RNAseq_file = "data/RNAseq.txt",
               CNV = "CopyNum.txt",
               Purity = 0.8,
+			  samtools_dir = "samtools-0.1.19/samtools",
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
               refDNA = NA)
@@ -453,12 +465,13 @@ MainINDELClass1(hmdir = getwd(),
                 Depth_Normal_Column = 14,
                 file_name_in_HLA_table = "sample",
                 HLA_file = "data/hla_table.txt",
-               refFlat_file = "data/refFlat.txt",
-               refMrna_1 = "data/refMrna.cut1.fa",
-               refMrna_3 = "data/refMrna.cut3.fa",
+                refFlat_file = "data/refFlat.txt",
+                refMrna_1 = "data/refMrna.cut1.fa",
+                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
                 CNV = NA,
                 Purity = 0.8,
+			    samtools_dir = "samtools-0.1.19/samtools",
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
                 refDNA = NA)
@@ -479,12 +492,13 @@ MainINDELClass2(hmdir = getwd(),
                 Depth_Normal_Column = 14,
                 file_name_in_HLA_table = "sample",
                 HLA_file = "data/hla_table2.txt",
-               refFlat_file = "data/refFlat.txt",
-               refMrna_1 = "data/refMrna.cut1.fa",
-               refMrna_3 = "data/refMrna.cut3.fa",
+                refFlat_file = "data/refFlat.txt",
+                refMrna_1 = "data/refMrna.cut1.fa",
+                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
                 CNV = NA,
                 Purity = 0.8,
+			    samtools_dir = "samtools-0.1.19/samtools",
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                 refDNA = NA)

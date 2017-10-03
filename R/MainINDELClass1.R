@@ -70,12 +70,13 @@
 #'@export
 MainINDELClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
                           hmdir = getwd(), job_ID = "NO_JOB_ID", RNAseq_file = NA, RNA_bam = NA,
-                          CNV=NA, ccfp_dir = "lib/ccfp.jar", Purity = NA,
-                          netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-                          refDNA = "lib/GRCh37.fa",
-                          refFlat_file = paste(hmdir,"/data/refFlat.txt",sep=""),
-                          refMrna_1 = paste(hmdir,"/data/refMrna.cut1.fa",sep=""),
-                          refMrna_3 = paste(hmdir,"/data/refMrna.cut3.fa",sep=""),
+                          CNV=NA, ccfp_dir = paste(hmdir, "lib/ccfp.jar", sep=""), Purity = NA,
+                          netMHCpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep=""),
+                          refDNA = paste(hmdir, "lib/GRCh37.fa", sep=""),
+                          refFlat_file = paste(hmdir, "/data/refFlat.txt", sep=""),
+                          refMrna_1 = paste(hmdir, "/data/refMrna.cut1.fa", sep=""),
+                          refMrna_3 = paste(hmdir, "/data/refMrna.cut3.fa", sep=""),
+                          samtools_dir = "samtools"
                           Chr_Column = 1, Mutation_Start_Column = 2,
                           Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5,
                           NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
@@ -107,7 +108,7 @@ MainINDELClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_f
   if(ifelse(is.na(RNAseq_file), FALSE, file.exists(RNAseq_file))){
       GenerateListForGetRNASeq(output_peptide_txt_file, width = 120)
       output_file_rna_list<-paste(output_peptide_txt_file, ".list.txt", sep="")
-      error<-tryCatch2(system(paste("samtools mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam,
+      error<-tryCatch2(system(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam,
                    ">", paste(output_peptide_txt_file, "list.mp", sep="."))))
       if(error != 0) skip = TRUE
 
