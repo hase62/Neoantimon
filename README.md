@@ -1,6 +1,6 @@
- #Updated on 3, Oct. 2017. 
+## Updated on 3, Oct. 2017. 
 ==============================
-##1. Preparation
+## 1. Preparation
 ------------------------------
 **Set netMHCpan:**
 
