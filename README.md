@@ -124,7 +124,7 @@ rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
-**Download refFlat Files ((Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19))*:*
+**Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
 
 *Download refFlat Files(GRCh38/hg38)*
 ```
