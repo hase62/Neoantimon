@@ -94,9 +94,7 @@ wget https://github.com/hase62/Neoantimon/raw/master/lib/data.txt.zip
 unzip data.txt.zip
 ```
 
-**Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data**
-
-**Download refMrna Files (Required):**
+**Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19):**
 
 *Download refMrna Files(GRCh38/hg38)*
 ```
@@ -126,7 +124,7 @@ rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
-**Download refFlat Files (Required)*:*
+**Download refFlat Files ((Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19))*:*
 
 *Download refFlat Files(GRCh38/hg38)*
 ```
