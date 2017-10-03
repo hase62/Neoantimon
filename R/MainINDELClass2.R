@@ -76,7 +76,7 @@ MainINDELClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_f
                           refFlat_file = paste(hmdir, "/data/refFlat.txt", sep=""),
                           refMrna_1 = paste(hmdir, "/data/refMrna.cut1.fa", sep=""),
                           refMrna_3 = paste(hmdir, "/data/refMrna.cut3.fa", sep=""),
-                          samtools_dir = "samtools"
+                          samtools_dir = "samtools",
                           Chr_Column = 1, Mutation_Start_Column = 2,
                           Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5,
                           NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
