@@ -78,6 +78,7 @@ sudo make install
 cd ..
 ```
 
+In addition, if you want to calculate variant allele frequency (VAF), get the old one. 
 ```
 https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
