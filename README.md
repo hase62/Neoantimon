@@ -5,7 +5,7 @@
 **Set netMHCpan:**
 
 Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
-Make a script (setNetMHCpan.sh) described below or download it from hase62/Neoantimon/lib, 
+Make a script (setNetMHCpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
 and then run the script as "./setNetMHCpan.sh". 
 ```
 #!/bin/bash
@@ -29,8 +29,9 @@ tar -xvf data.tar.gz
 
 
 **Set netMHCIIpan:**
+
 Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
-Make a script (setNetMHCIIpan.sh) described below or download it from hase62/Neoantimon/lib, 
+Make a script (setNetMHCIIpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
 and then run the script as "./setNetMHCIIpan.sh". 
 ```
 #!/bin/bash
@@ -54,6 +55,7 @@ tar -xvf data.tar.gz
 ```
 
 **Install samtools and bcftools:**
+
 Run the following codes or download files from https://github.com/hase62/Neoantimon/raw/master/lib/. 
 ```
 wget http://sourceforge.net/projects/samtools/files/samtools/1.6/samtools-1.6.tar.bz2
@@ -92,6 +94,7 @@ unzip data.txt.zip
 **Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data**
 
 **Download refMrna Files(GRCh38/hg38):**
+*Download refMrna Files(GRCh38/hg38):*
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
