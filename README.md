@@ -269,8 +269,7 @@ print(CopyNum, row.names = FALSE)
 ##4. Sample Codes
 ------------------------------
 ##
-#./lib/
-ccfp.jar
+#./lib/ccfp.jar  
 netMHCIIpan-3.1
 netMHCpan-3.0
 #
