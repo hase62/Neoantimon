@@ -269,23 +269,22 @@ print(CopyNum, row.names = FALSE)
 ##4. Sample Codes
 ------------------------------
 ##
-#./lib/ccfp.jar  
-netMHCIIpan-3.1
-netMHCpan-3.0
+lib/ccfp.jar  
+lib/netMHCIIpan-3.1  
+lib/netMHCpan-3.0  
 #
-#./data/
-CopyNum.txt
-hla_table.txt
-hla_table2.txt
-RNAseq.txt
-sample.txt
-refFlat.cut.txt
-refFlat.txt
-refMrna.fa
-refMrna.merge.cut1.fa
-refMrna.merge.cut2.fa
-refMrna.merge.cut3.fa
-refMrna.merge.fa
+data/CopyNum.txt
+data/hla_table.txt
+data/hla_table2.txt
+data/RNAseq.txt
+data/sample.txt
+data/refFlat.cut.txt
+data/refFlat.txt
+data/refMrna.fa
+data/refMrna.merge.cut1.fa
+data/refMrna.merge.cut2.fa
+data/refMrna.merge.cut3.fa
+data/refMrna.merge.fa
 ##
 
 Calculate Neoantigens on SNVs for HLA Class I. 
