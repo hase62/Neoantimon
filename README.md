@@ -419,7 +419,8 @@ MainINDELClass2(hmdir = getwd(),
 ```
 
 ## 5. Result
-Samples of result files are available at https://github.com/hase62/Neoantimon/raw/master/data/Result. 
+
+Sample result files are available at https://github.com/hase62/Neoantimon/raw/master/data/Result. 
 
 sample.CLASS1.ALL.txt
 ```
