@@ -163,8 +163,7 @@ gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
 ```
 
-##2. Use on R
-------------------------------
+## 2. Use on R
 ```
 install.packages("devtools");
 library(devtools);
@@ -172,7 +171,7 @@ install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
-##3. Data Format
+## 3. Data Format
 ------------------------------
 *A HLA table is required.*
 ```r
@@ -264,8 +263,7 @@ print(CopyNum, row.names = FALSE)
 ##	1	1462766	-0.2234090	-0.09862298	1	NA	2	1	1.0726687
 ```
 
-##4. Sample Codes
-------------------------------
+## 4. Sample Codes
 lib/ccfp.jar  
 lib/netMHCIIpan-3.1  
 lib/netMHCpan-3.0
@@ -408,8 +406,7 @@ MainINDELClass2(hmdir = getwd(),
                 refDNA = NA)
 ```
 
-##5. Result
-------------------------------
+## 5. Result
 Samples of result files are available at https://github.com/hase62/Neoantimon/raw/master/data/Result. 
 
 sample.CLASS1.ALL.txt
