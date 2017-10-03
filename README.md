@@ -1,7 +1,5 @@
 ## Updated on 3, Oct. 2017. 
-==============================
 ## 1. Preparation
-------------------------------
 **Set netMHCpan:**
 
 1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
