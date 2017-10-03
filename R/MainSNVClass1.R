@@ -115,9 +115,9 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
       if(error != 0) skip = TRUE
 
       if(!skip) {
-        print(paste(bcftools_dir, "view -c0", paste(output_peptide_txt_file, "list.mp", sep="."), 
+        print(paste(bcftools_dir, "view -c", paste(output_peptide_txt_file, "list.mp", sep="."), 
                    ">", paste(output_peptide_txt_file, "list.vcf", sep=".")))
-        error<-tryCatch2(system(paste(bcftools_dir, "view -c0", paste(output_peptide_txt_file, "list.mp", sep="."),
+        error<-tryCatch2(system(paste(bcftools_dir, "view -c", paste(output_peptide_txt_file, "list.mp", sep="."),
                    ">", paste(output_peptide_txt_file, "list.vcf", sep="."))))
       }
       if(error != 0) skip = TRUE
