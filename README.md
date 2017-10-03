@@ -94,7 +94,7 @@ unzip data.txt.zip
 
 **Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19):**
 
-*Download refMrna Files(GRCh38/hg38)*
+Download refMrna Files(GRCh38/hg38)
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
@@ -108,7 +108,7 @@ rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
-*Download refMrna Files(GRCh37/hg19):*
+Download refMrna Files(GRCh37/hg19):
 ```
 #refMrna Files
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
@@ -124,14 +124,14 @@ paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 
 **Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
 
-*Download refFlat Files(GRCh38/hg38)*
+Download refFlat Files(GRCh38/hg38)
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-*Download refFlat Files(GRCh37/hg19)*
+Download refFlat Files(GRCh37/hg19)
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
@@ -140,7 +140,7 @@ cut -f2 refFlat.txt > refFlat.cut.txt
 
 **Download human refSeq (Not required, if you want to calculate variant allele frequency (VAF)):**
 
-*Download human refSeq (GRCh38):*
+Download human refSeq (GRCh38):
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
@@ -148,14 +148,14 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa
 ```
 
-*Download human refSeq (hg38):*
+Download human refSeq (hg38):
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-*Download human refSeq (GRCh37):*
+Download human refSeq (GRCh37):
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
@@ -172,8 +172,7 @@ library(Neoantimon);
 ```
 
 ## 3. Data Format
-------------------------------
-*A HLA table is required.*
+A HLA table is required.
 ```r
 library(Neoantimon)
 data("hla_table")
@@ -186,7 +185,7 @@ print(hla_table, row.names = FALSE)
 ##  sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
 ```
 
-*A HLA table is required.*
+A HLA table is required.
 ```r
 data("hla_table2")
 print(hla_table2, row.names = FALSE)
@@ -198,7 +197,7 @@ print(hla_table2, row.names = FALSE)
 ##	sample2	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
 ```
 
-*An annotated VCF file is required. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID".*
+An annotated VCF file is required. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID".
 ```r
 data("sample")
 print(sample, row.names = FALSE)
@@ -216,7 +215,7 @@ print(sample, row.names = FALSE)
 ##	12	20876048	20876048	-	G	exonic	SLCO1C1	frameshift	insertion	SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs	12p12.2	97	11	57	0	82,10,15,1	50,0,7,0	---	---	0.113	0.909	0	---	2.139	76	11	0	51	0	2	2.152	0	0	1	16	---	---	6.179
 ```
 
-*Not required, but you can attach "RNAseq" information.*
+Not required, but you can attach "RNAseq" information.
 ```r
 data("RNAseq")
 print(RNAseq, row.names = FALSE)
@@ -247,7 +246,7 @@ print(RNAseq, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-*Not required, but you can attach "Copy Number" information.*
+Not required, but you can attach "Copy Number" information.
 ```r
 data("CopyNum")
 print(CopyNum, row.names = FALSE)
