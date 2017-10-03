@@ -271,7 +271,7 @@ print(CopyNum, row.names = FALSE)
 ##
 lib/ccfp.jar  
 lib/netMHCIIpan-3.1  
-lib/netMHCpan-3.0  
+lib/netMHCpan-3.0
 #
 data/CopyNum.txt  
 data/hla_table.txt  
@@ -284,7 +284,7 @@ data/refMrna.fa
 data/refMrna.merge.cut1.fa  
 data/refMrna.merge.cut2.fa  
 data/refMrna.merge.cut3.fa  
-data/refMrna.merge.fa  
+data/refMrna.merge.fa
 ##
 
 Calculate Neoantigens on SNVs for HLA Class I. 
