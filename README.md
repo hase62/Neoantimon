@@ -215,7 +215,7 @@ print(sample, row.names = FALSE)
 ##	12	20876048	20876048	-	G	exonic	SLCO1C1	frameshift	insertion	SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs	12p12.2	97	11	57	0	82,10,15,1	50,0,7,0	---	---	0.113	0.909	0	---	2.139	76	11	0	51	0	2	2.152	0	0	1	16	---	---	6.179
 ```
 
-Not required, but you can attach "RNAseq" information.
+An RNAseq file is not required, but you can attach "RNAseq" information.
 ```r
 data("RNAseq")
 print(RNAseq, row.names = FALSE)
@@ -246,7 +246,7 @@ print(RNAseq, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-Not required, but you can attach "Copy Number" information.
+A copynumber file is not required, but you can attach "Copy Number" information.
 ```r
 data("CopyNum")
 print(CopyNum, row.names = FALSE)
