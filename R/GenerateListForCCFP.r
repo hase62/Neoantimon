@@ -24,7 +24,7 @@ GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
     data_near<-data1[which(chr==cp[,1])[order(dis)[j]],]
     if(is.na(data_near[6])) next
   
-    cnv<-rbind(cnv, c(paste(strsplit(data_near[1],";")[[1]][1], data[i,1],data[i,3],data[i,12],sep=";"), data_near[-1]))
+    cnv<-rbind(cnv, c(paste(strsplit(data_near[1],";")[[1]][1], data[i,1], data[i,3], data[i,12],sep=";"), data_near[-1]))
    }
   }
   #read.table(ss, sep=" ")[1,2]
@@ -49,10 +49,11 @@ GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
         if(data_near[8]!="NA")break
      }
   
-     cnv<-rbind(cnv, c(paste(data_near[1],data[i,1],data[i,3],data[i,12],sep=";"),
-     as.numeric(data_near[8]) - as.numeric(data_near[9]),
-     as.numeric(data_near[9]),
-     data[i,14],data[i,13],1-Purity))
+     cnv<-rbind(cnv, c(paste(data_near[1], data[i,1], data[i,3], data[i,12],sep=";"),
+                       as.numeric(data_near[8]) - as.numeric(data_near[9]),
+                       as.numeric(data_near[9]), 
+                       data[i,13], data[i,14],
+                       Purity))
    }
   }
   #Write List For CCFP

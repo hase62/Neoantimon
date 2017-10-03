@@ -127,10 +127,12 @@ MainSNVClass1<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   if(ifelse(is.na(CNV), FALSE, file.exists(CNV))){
     GenerateListForCCFP(output_peptide_txt_file, CNV = CNV, Purity = Purity)
     if(file.exists(paste(output_peptide_txt_file,".cnv.txt",sep=""))){
-      print(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ", paste(output_peptide_txt_file,".cnv.txt",sep="")))
-      system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ",
-                   paste(output_peptide_txt_file,".cnv.txt",sep=""),
-                   " > ", paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""), sep=""))
+      print( paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ", 
+                   paste(output_peptide_txt_file, ".cnv.txt", sep=""), " > ", 
+                   paste(output_peptide_txt_file, ".cnv.estimate.txt", sep=""), sep=""))
+      system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ", 
+                   paste(output_peptide_txt_file, ".cnv.txt", sep=""), " > ", 
+                   paste(output_peptide_txt_file, ".cnv.estimate.txt", sep=""), sep=""))
       GetRatio(output_peptide_txt_file = output_peptide_txt_file,
                output_peptide_txt_cnc_estimate_file = paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""))
     }
