@@ -3,6 +3,7 @@
 ##1. Preparation
 ------------------------------
 **Set netMHCpan:**
+
 Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 Make a script (setNetMHCpan.sh) described below or download it from hase62/Neoantimon/lib, 
 and then run the script as "./setNetMHCpan.sh". 
