@@ -319,7 +319,7 @@ MainSNVClass1(hmdir = getwd(),
               bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-			  RNA_bam = NA,
+              RNA_bam = NA,
               refDNA = NA)
 ```
 
@@ -356,7 +356,7 @@ MainSNVClass2(hmdir = getwd(),
               bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-			  RNA_bam = NA,
+              RNA_bam = NA,
               refDNA = NA)
 ```
 
@@ -393,7 +393,7 @@ MainINDELClass1(hmdir = getwd(),
                 bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-				RNA_bam = NA,
+                RNA_bam = NA,
                 refDNA = NA)
 ```
 
@@ -422,7 +422,7 @@ MainINDELClass2(hmdir = getwd(),
                 bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-				RNA_bam = NA,
+                RNA_bam = NA,
                 refDNA = NA)
 ```
 
