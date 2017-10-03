@@ -263,10 +263,15 @@ print(CopyNum, row.names = FALSE)
 ```
 
 ## 4. Sample Codes
+
+They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib and https://github.com/hase62/Neoantimon/raw/master/data. 
+```
 lib/ccfp.jar  
 lib/netMHCIIpan-3.1  
 lib/netMHCpan-3.0
-#
+```
+
+```
 data/CopyNum.txt  
 data/hla_table.txt  
 data/hla_table2.txt  
@@ -279,7 +284,15 @@ data/refMrna.merge.cut1.fa
 data/refMrna.merge.cut2.fa  
 data/refMrna.merge.cut3.fa  
 data/refMrna.merge.fa
-##
+```
+
+Analize sample files ... 
+```
+install.packages("devtools");
+library(devtools);
+install_github('hase62/Neoantimon');
+library(Neoantimon);
+```
 
 Calculate Neoantigens on SNVs for HLA Class I. 
 ```
