@@ -4,8 +4,9 @@
 ------------------------------
 **Set netMHCpan:**
 
-Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
-Make a script (setNetMHCpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
+1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
+
+2. Make a script (setNetMHCpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
 and then run the script as "./setNetMHCpan.sh". 
 ```
 #!/bin/bash
@@ -30,8 +31,9 @@ tar -xvf data.tar.gz
 
 **Set netMHCIIpan:**
 
-Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
-Make a script (setNetMHCIIpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
+1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
+
+2. Make a script (setNetMHCIIpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
 and then run the script as "./setNetMHCIIpan.sh". 
 ```
 #!/bin/bash
