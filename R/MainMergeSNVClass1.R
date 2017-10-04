@@ -9,6 +9,8 @@
 #'
 #'@param Tumor_RNA_BASED_ON_DNA In calculating tumor specific RNA expression, TRUE uses variant allele frequency on DNA. Otherwise, use VAF on RNA (Default=TRUE).
 #'
+#'@param INDEL If the targeting results are generated from Indels, Please check TRUE.
+#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
 #'@export

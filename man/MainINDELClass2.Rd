@@ -31,7 +31,7 @@ See by data(hla_table2); hla_table2;}
 \item{job_ID}{Job-Id to be attached in output files (Default="NO_JOB_ID").}
 
 \item{RNAseq_file}{(Default=NA) A file including RNA expressions.
-The 1st, 2nd and 3rd columns are "GeneSymbol    Chr:ExonStart-ExonEnd(locus)    Expression Amount", respectively.
+The 1st, 2nd and 3rd columns are "GeneSymbol Chr:ExonStart-ExonEnd(locus) Expression Amount", respectively.
 The 1st row should be any header.
 See by data(RNAseq.txt); RNAseq;}
 
@@ -39,7 +39,7 @@ See by data(RNAseq.txt); RNAseq;}
 
 \item{CNV}{A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
 The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.
-The columns are "Chromosome    Position    Log R    segmented LogR    BAF    segmented BAF    Copy number    Minor allele    Raw copy number"
+The columns are "Chromosome Position Log R segmented LogR BAF segmented BAF Copy number Minor allele Raw copy number"
 The 1st row should be the above header.
 See data(CopyNum); head(CopyNum);}
 

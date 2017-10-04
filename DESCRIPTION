@@ -1,18 +1,16 @@
 Package: Neoantimon
 Type: Package
 Title: Neoantimon: An R package for automatic identification of tumor-specific neoantigens from sequencing data
-Version: 1.0
+Version: 1.1
 Date: 2017-06-09
 Author: Takanori Hasegawa
 Maintainer: Takanori Hasegawa <t-hasegw@ims.u-tokyo.ac.jp>
-Description: This Package is develped to calculate candidates neoantigens from Mutation Data (.vcf)
-  Requiring netMHCpan3.0, netMHCIIpan3.1, bcftools, human ref.(e.g., hg38.fa.gz, GRCh38), refMrna, and, refFlat
-  If you do not have some of these files, please at first execute "load_[bcftools/h_ref/refMrna/refFlat]
-  To get netMHCpan3.0 and/or netMHCIIpan3.1, please execute "load_[netMHCpan/netMHCIIpan]"
-License: Takanori Hasegawa
+Description: This Package is develped to calculate candidates neoantigens from Mutation Data (.vcf) requiring netMHCpan3.0, netMHCIIpan3.1, human refMrna, and, refFlat. If you do not have some of these files, see README.md.
+License: MIT + file LICENSE
 VignetteBuilder: knitr
 Suggests: 
-  knitr
+  knitr,
+  rmarkdown
 LazyData: TRUE
-Imports:
+Imports: utils
 RoxygenNote: 6.0.1

@@ -1,9 +1,9 @@
-GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID, 
-                             refFlat_file = paste(hmdir,"/../data/refFlat.txt",sep=""), 
-                             refMrna_1 = paste(hmdir,"/../data/refMrna.cut1.fa",sep=""), 
+GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
+                             refFlat_file = paste(hmdir,"/../data/refFlat.txt",sep=""),
+                             refMrna_1 = paste(hmdir,"/../data/refMrna.cut1.fa",sep=""),
                              refMrna_3 = paste(hmdir,"/../data/refMrna.cut3.fa",sep=""),
-                             max_peptide_length = 13, Chr_Column = 1, Mutation_Start_Column = 2, 
-                             Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5, 
+                             max_peptide_length = 13, Chr_Column = 1, Mutation_Start_Column = 2,
+                             Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5,
                              NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
                              ambiguous_between_exon = 0, ambiguous_codon = 0){
 
@@ -13,12 +13,12 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
   data<-data[grep("\texonic\t", data)]
   data<-data[grep("\tnonsynonymous", data)]
   data<-gsub("\"", "",data)
-  if(length(data)<1) reutn(NULL)
+  if(length(data)<1) return(NULL)
 
   #READ refFlat
   list_nm<-scan(refFlat_file, "character", sep="\n")
   list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
-  
+
   #Get RNA-Code Data
   list_fl_NMID<-scan(refMrna_1, "character", sep="\n")
   list_fl_dna<- scan(refMrna_3, "character", sep="\n")
@@ -33,10 +33,10 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
   random<-0
   for(i in 1:length(data)){
    print(paste("Start Analysis: Mutation", i))
-    
+
    #Extract i-th Data
    f<-strsplit(data[i], "\t")[[1]]
-   
+
    #Chromosome
    chr<-f[Chr_Column]
 
@@ -68,7 +68,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
     }
    }
 
-   #TDP:Tumor Depth      
+   #TDP:Tumor Depth
    TDP<-0
    if(!is.na(Depth_Normal_Column) & !is.na(Depth_Tumor_Column)){
      TDP<-as.numeric(f[Depth_Normal_Column]) + as.numeric(f[Depth_Tumor_Column])
@@ -81,16 +81,16 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
    #Mutation Start/End Position
    m_start<-as.numeric(f[Mutation_Start_Column])
    m_end<-as.numeric(f[Mutation_End_Column])
-   
+
    #Ref./Alt on Mutation Position
    m_ref<-f[Mutation_Ref_Column]
    m_alt<-f[Mutation_Alt_Column]
-   
+
    #When Including MultipleIDs
    #For example, f[NM_ID_Column]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
    nm_ids<-strsplit(f[NM_ID_Column], ":|,|;")
    hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_", x)))
-   
+
    #Calculate All NM_IDs in Each Mutation
    Pass<-FALSE
    for(h in hit){
@@ -110,41 +110,41 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
         print(paste("No Macth, Skip", nm_id))
          next
       }
-      
+
       #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
       for(v in s_variants){
          #Whether Last or Not
          Last<-match(v, s_variants)/length(s_variants)==1
          nm_sep<-strsplit(list_nm[v], "\t")[[1]]
-        
+
          #Skip Such As "ch5_hap"
         if(nchar(nm_sep[3]) > 5) next
          strand<-nm_sep[4]
 
         #Check Ref/Alt
-        if(strand=="+" & 
+        if(strand=="+" &
            m_ref==ans_acid_from){
          #print("Ref and NM_ID Attached Information Match")
-        }else if(strand=="-" & 
+        }else if(strand=="-" &
                  tolower(m_ref)==trans_to[match(tolower(ans_acid_from), trans_from)]){
          #print("Ref and NM_ID Attached Information Match")
         } else {
           print(paste("Ref and NM_ID Attached Information Do not Match, Skip", nm_id))
           next
         }
-         
+
          #Get Translation Start/End, Exon Start/End
          trans_start<-as.numeric(nm_sep[7])
          trans_end<-as.numeric(nm_sep[8])
          exon_start<-as.numeric(strsplit(nm_sep[10], ",")[[1]])
          exon_end<-as.numeric(strsplit(nm_sep[11], ",")[[1]])
-         
+
         #Check Whether Mutation is Among Exon Region
          if(length(which(exon_start < m_start & m_start <= exon_end))!=1){
            print(paste("The Mutation is not between Exon Region, Skip", nm_id))
           next
          }
-      
+
          #Obtain DNA sequence of Transcriptome
         #DNAseq is Unique
          dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
@@ -158,7 +158,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
               next
            }
          }
-  
+
          #Get Relative Mutation Position
          if(strand=="+"){
             point<-(exon_end > m_start)
@@ -173,7 +173,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
             point<-(exon_start > m_start)
            plus<-0
            if(length(which(!point))>0){
-             if((exon_end[rev(which(!point))[1]] - m_start) + 1 > 0){ 
+             if((exon_end[rev(which(!point))[1]] - m_start) + 1 > 0){
              plus<-(exon_end[rev(which(!point))[1]] - m_start) + 1
              }
            }
@@ -183,14 +183,14 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
          #Get Relative Translation-Start Position (0-start to 1-start)
          if(strand=="+"){
             point<-(exon_end > trans_start)
-            ts_point<-sum((exon_end - exon_start)[!point]) + 
+            ts_point<-sum((exon_end - exon_start)[!point]) +
              (trans_start - exon_start[which(point)[1]]) + 1
          }else{
             point<-(exon_start > trans_end)
-            ts_point<-sum((exon_end - exon_start)[point]) + 
+            ts_point<-sum((exon_end - exon_start)[point]) +
              (exon_end[rev(which(!point))[1]] - trans_end) + 1
          }
-         
+
          #Check Start Codon
          d<-0
          if(substr(dna, ts_point, ts_point + 2)!="atg"){
@@ -203,8 +203,8 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
            }
            if(flag){
              if(d < 0){
-               dna<-sub(" ", "", paste(paste(rep("x", -d),collapse=""), dna, collapse="")) 
-             }else{                  
+               dna<-sub(" ", "", paste(paste(rep("x", -d),collapse=""), dna, collapse=""))
+             }else{
                dna<-substr(dna, d + 1, nchar(dna))
               }
            }else{
@@ -216,14 +216,14 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
          #Get Relative Translation-End Position
          if(strand=="+"){
            point<-(exon_end >= trans_end)
-            te_point<-sum((exon_end - exon_start)[!point]) + 
+            te_point<-sum((exon_end - exon_start)[!point]) +
                (trans_end - exon_start[which(point)[1]])
          }else{
             point<-(exon_start > trans_start)
-            te_point<-sum((exon_end - exon_start)[point]) + 
+            te_point<-sum((exon_end - exon_start)[point]) +
               (exon_end[rev(which(!point))[1]] - trans_start)
          }
-         
+
          #Check Stop Codon
         e<-0
          if(amino[match(substr(dna, te_point-2, te_point), codon)]!="X"){
@@ -249,12 +249,12 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
          for(k in unique(0, d, e)){
             dna_trans<-substr(dna, ts_point, te_point)
             m_point_2<-m_point - (ts_point) + 1 - k
-            
+
             #Mutation Position is not between Translational Region
            if(m_point_2 < 0) {
              next
            }
-            
+
            #Translation Region is not VAlid
            if(nchar(dna_trans)%%3!=0) {
             next
@@ -289,17 +289,17 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
              dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
             }
             target_amino_after<-peptide[ceiling(m_point_2/3.0)]
-            
+
             #VCF Description of Normal Amino Acid is not What Generated
             if(target_amino_before==target_amino_after){
              next
             }
-            
+
             #VCF Description of Mutated Amino Acid is not What Generated
             if(target_amino_after!=ans_to | target_amino_before!=ans_from){
              next
             }
-            
+
             #Generate Mutated and Normal Peptide
             peptide_start<-ceiling(m_point_2/3.0) - pep_len
             if(peptide_start<1) peptide_start<-1
@@ -308,19 +308,19 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
             peptide<-peptide[peptide_start:peptide_end]
 
            #Save Peptide
-            refFasta<-rbind(refFasta, 
-                           c(paste(random, gsub("\"","", g_name), sep="_"), 
-                             chr, 
-                             nm_ids[[1]][h], 
-                             nm_ids[[1]][h+2], 
-                             m_ref, 
-                             m_alt, 
-                             MP, 
-                             GP, 
-                             exon_start[1], 
-                             rev(exon_end)[1], 
-                             m_start, 
-                             DP, 
+            refFasta<-rbind(refFasta,
+                           c(paste(random, gsub("\"","", g_name), sep="_"),
+                             chr,
+                             nm_ids[[1]][h],
+                             nm_ids[[1]][h+2],
+                             m_ref,
+                             m_alt,
+                             MP,
+                             GP,
+                             exon_start[1],
+                             rev(exon_end)[1],
+                             m_start,
+                             DP,
                              TDP,
                              paste(peptide_normal[peptide_start:peptide_end], collapse=""),
                             paste(peptide, collapse=""), dna_trans_normal, dna_trans_mut)
@@ -349,7 +349,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
         if(stop_loop) break
       }
    }
-   #Notification 
+   #Notification
    if(!Pass){
      print("refFlat and refMrna data do not Match to vcf Description")
      print(f[1:7])
@@ -365,8 +365,8 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
   if(!is.null(nrow(refFasta))){
    while(i<=nrow(refFasta)){
      #If gene symbol, mutation position, mutated peptide, normal peptide are all the same, Integrate These Peptides
-     #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process. 
-     hit<-which((refFasta[i, 11]==refFasta[,11]) & 
+     #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process.
+     hit<-which((refFasta[i, 11]==refFasta[,11]) &
                 (refFasta[i, 14]==refFasta[,14]) &
                (refFasta[i, 15]==refFasta[,15]))
      if(length(hit)==1){

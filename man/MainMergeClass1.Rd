@@ -16,6 +16,8 @@ MainMergeClass1(hmdir = getwd(), input_dir, input_file_prefix,
 If you have "sample_annovar.txt.NO_JOB_ID.HLACLASS1.1.peptide.txt", please set "sample_annovar", "sample_annovar.txt" or "sample_annovar.txt.NO_JOB_ID".}
 
 \item{Tumor_RNA_BASED_ON_DNA}{In calculating tumor specific RNA expression, TRUE uses variant allele frequency on DNA. Otherwise, use VAF on RNA (Default=TRUE).}
+
+\item{INDEL}{If the targeting results are generated from Indels, Please check TRUE.}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.)

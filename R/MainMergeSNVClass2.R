@@ -9,6 +9,8 @@
 #'
 #'@param Tumor_RNA_BASED_ON_DNA In calculating tumor specific RNA expression, TRUE uses variant allele frequency on DNA. Otherwise, use VAF on RNA (Default=TRUE).
 #'
+#'@param INDEL If the targeting results are generated from Indels, Please check TRUE.
+#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
 #'@export
@@ -45,7 +47,7 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
        as.numeric(info[,match("Depth",colnames(info))])
   }
   info[,12]<-paste(info[,3], info[,12], sep="_")
-  
+
   #Remove RNAseq Info
   rownames(info)<-NULL
   info<-info[,-match(c("DNA_Normal", "DNA_Mut"), colnames(info))]
@@ -131,7 +133,7 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
   if(nrow(full_peptide)==0) return(NULL)
   tag<-c("HLA", "Pos", "Gene", "MutatedPeptide", "Mut_IC50", "Mut_Rank",
          "Norm_Peptide", "Norm_IC50", "Norm_Rank", colnames(info))
-  
+
   #Bind Full Peptide and info
   if(nrow(full_peptide)==1){
     full_peptide<-cbind(full_peptide, t(info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
@@ -139,17 +141,17 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     full_peptide<-cbind(full_peptide, info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
   }
   colnames(full_peptide)<-tag
-  
+
   #Get Unique Position
   uq1<-unique(apply(info[,c(3,12)], 1, paste, collapse="_"))
-  
+
   #Do not use nrow(min_peptide_50) because peptide of which IC50 > 500 are removed
   base_count<-nrow(min_peptide) / length(files_part[grep("normpeptide", files_part, invert = TRUE)])
   unq_hla<-sapply(unique(min_peptide[,1]),
                   function(x) length(which(!is.na(match(min_peptide[,1],x))))) / base_count
   unq_hla<-unlist(sapply(1:length(unique(min_peptide[,1])),
                          function(x) rep(unique(min_peptide[,1])[x], unq_hla[x])))
-  
+
   #Bind Min Peptide and Info
   if(nrow(min_peptide) > 1){
     min_peptide<-cbind(min_peptide, info[match(substr(min_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
@@ -168,7 +170,7 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     min_peptide<-cbind(min_peptide, t(info[match(substr(min_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
   }
   colnames(min_peptide)<-tag
-  
+
   #Bind Min_Upper Peptide and Info
   if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag) - ncol(info), 0)
   if(nrow(min_peptide_50) > 1){
@@ -189,7 +191,7 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
   }
   if(is.null(min_peptide_50)) min_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
   colnames(min_peptide_50)<-tag
-  
+
   #Bind Rank Peptide and Info
   if(nrow(rank_peptide) > 1){
     rank_peptide<-cbind(rank_peptide, info[match(substr(rank_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
@@ -207,7 +209,7 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
     rank_peptide<-cbind(rank_peptide, t(info[match(substr(rank_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
   }
   colnames(rank_peptide)<-tag
-  
+
   #Bind Rank_Upper Peptide and info
   if(is.null(rank_peptide_50)) rank_peptide_50<-matrix(nrow=0, ncol=length(tag) - ncol(info), 0)
   if(nrow(rank_peptide_50) > 1){
@@ -228,7 +230,7 @@ MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_R
   }
   if(is.null(rank_peptide_50)) rank_peptide_50<-matrix(nrow=0, ncol=length(tag), 0)
   colnames(rank_peptide_50)<-tag
-  
+
 
    write.table(full_peptide, paste(dir, "/", input_file_prefix, ".CLASS2.ALL.txt", sep=""), row.names=FALSE, col.names=TRUE, quote=FALSE, sep="\t")
    write.table(min_peptide, paste(dir, "/", input_file_prefix, ".CLASS2.IC50min.txt", sep=""), row.names=FALSE, col.names=TRUE, quote=FALSE, sep="\t")
