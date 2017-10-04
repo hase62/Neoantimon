@@ -54,7 +54,7 @@ wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Install samtools and bcftools:**
+**Install samtools:**
 
 Run the following codes or download files from https://github.com/hase62/Neoantimon/raw/master/lib/. 
 ```
@@ -64,15 +64,6 @@ cd samtools-1.6
 ./configure
 make
 make install
-cd ..
-```
-
-```
-wget https://github.com/samtools/bcftools/releases/download/1.6/bcftools-1.6.tar.bz2
-tar jxf bcftools-1.6.tar.bz2
-cd bcftools-1.6
-make
-sudo make install
 cd ..
 ```
 
