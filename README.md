@@ -1,12 +1,12 @@
- #Updated on 11, June. 2017. 
-==============================
-##1. Preparation
-------------------------------
+## Updated on 3, Oct. 2017. 
+## 1. Preparation
 **Set netMHCpan:**
-Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
-```
-#Set netMHCpan3.0 bash
 
+1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
+
+2. Make a script (setNetMHCpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
+and then run the script as "./setNetMHCpan.sh". 
+```
 #!/bin/bash
 #$ -S /bin/bash
 #$ -cwd
@@ -26,18 +26,22 @@ wget http://www.cbs.dtu.dk/services/NetMHCpan-3.0/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Set netMHCIIpan:**
-Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
-```
-#Set netMHCpan3.0 bash
 
+**Set netMHCIIpan:**
+
+1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
+
+2. Make a script (setNetMHCIIpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
+and then run the script as "./setNetMHCIIpan.sh". 
+```
 #!/bin/bash
 #$ -S /bin/bash
 #$ -cwd
 
 if [ -e netMHCIIpan-3.1a.Linux.tar.gz ]; then
  tar zxvf netMHCIIpan-3.1a.Linux.tar.gz
-elif [ -e netMHCIIpan-3.1a.Darwin.tar.gz ]
+fi
+if [ -e netMHCIIpan-3.1a.Darwin.tar.gz ]; then
  tar zxvf netMHCIIpan-3.1a.Darwin.tar.gz
 fi
 cd netMHCIIpan-3.1
@@ -50,24 +54,34 @@ wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Install samtools:**
+**Install samtools and bcftools:**
+
+Run the following codes or download files from https://github.com/hase62/Neoantimon/raw/master/lib/. 
 ```
-wget http://sourceforge.net/projects/samtools/files/samtools/1.3/samtools-1.3.tar.bz2
-tar jxf samtools-1.3.tar.bz2
-cd samtools-1.3
+wget http://sourceforge.net/projects/samtools/files/samtools/1.6/samtools-1.6.tar.bz2
+tar jxf samtools-1.6.tar.bz2
+cd samtools-1.6
 ./configure
 make
 make install
 cd ..
 ```
 
-**Install bcftools:**
 ```
-wget https://github.com/samtools/bcftools/releases/download/1.3.1/bcftools-1.3.1.tar.bz2
-tar jxf bcftools-1.3.1.tar.bz2
-cd bcftools-1.3.1
+wget https://github.com/samtools/bcftools/releases/download/1.6/bcftools-1.6.tar.bz2
+tar jxf bcftools-1.6.tar.bz2
+cd bcftools-1.6
 make
 sudo make install
+cd ..
+```
+
+In addition, if you want to calculate variant allele frequency (VAF), get the old one. 
+```
+wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
+tar jxf samtools-0.1.19.tar.bz2
+cd samtools-0.1.19
+make
 cd ..
 ```
 
@@ -78,9 +92,9 @@ wget https://github.com/hase62/Neoantimon/raw/master/lib/data.txt.zip
 unzip data.txt.zip
 ```
 
-**Choose Either One of GRCh38, hg38, GRCh37 or hg19...for your sequencing data**
+**Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19):**
 
-**Download refMrna Files(GRCh38/hg38):**
+Download refMrna Files(GRCh38/hg38)
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
@@ -94,7 +108,7 @@ rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
-**Download refMrna Files(GRCh37/hg19):**
+Download refMrna Files(GRCh37/hg19):
 ```
 #refMrna Files
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
@@ -108,23 +122,25 @@ rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 ```
 
-**Download refFlat Files(GRCh38/hg38)**
+**Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
+
+Download refFlat Files(GRCh38/hg38)
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**Download refFlat Files(GRCh37/hg19)**
+Download refFlat Files(GRCh37/hg19)
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
-**(If one uses RNA bam file to calculate variant allele frequency)**
+**Download human refSeq (Not required, if you want to calculate variant allele frequency (VAF)):**
 
-**Download human refSeq (GRCh38):**
+Download human refSeq (GRCh38):
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
@@ -132,14 +148,14 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa
 ```
 
-**Download human refSeq (hg38):**
+Download human refSeq (hg38):
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-**Download human refSeq (GRCh37):**
+Download human refSeq (GRCh37):
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
@@ -147,17 +163,16 @@ gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
 ```
 
-##2. Use on R
-------------------------------
+## 2. Use on R
 ```
-install.packages("devtools")
-library(devtools)
-install_github('hase62/Neoantimon')
-library(Neoantimon)
+install.packages("devtools");
+library(devtools);
+install_github('hase62/Neoantimon');
+library(Neoantimon);
 ```
 
-##3. Data Format
-------------------------------
+## 3. Data Format
+A HLA table is required.
 ```r
 library(Neoantimon)
 data("hla_table")
@@ -170,130 +185,37 @@ print(hla_table, row.names = FALSE)
 ##  sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
 ```
 
-
+A HLA table is required.
 ```r
 data("hla_table2")
 print(hla_table2, row.names = FALSE)
 ```
 
 ```
-##     Name      DPA11      DPA12      DPB11      DPB12      DQA11      DQA12
-##   sample DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
-##  sample2 DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
-##       DQB11      DQB12      DRB11      DRB12
-##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
-##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
+##	Name	DPA11	DPA12	DPB11	DPB12	DQA11	DQA12	DQB11	DQB12	DRB11	DRB12
+##	sample	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
+##	sample2	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
 ```
 
-
+An annotated VCF file is required. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID".
 ```r
 data("sample")
 print(sample, row.names = FALSE)
 ```
 
 ```
-##  Chr     Start       End Ref Alt Func.refGene Gene.refGene
-##    1  47399872  47399872   A   G       exonic      CYP4A11
-##    1 116941338 116941338   T   C       exonic       ATP1A1
-##    4  24556416  24556416   T   C       exonic        DHX15
-##    4  70156404  70156404   -   T       exonic      UGT2B28
-##    6  75899298  75899298   T   -       exonic      COL12A1
-##    9  89561162  89561162   C   T       exonic         GAS1
-##   12  15132141  15132141   G   T       exonic        PDE6H
-##   12  20876048  20876048   -   G       exonic      SLCO1C1
-##  GeneDetail.refGene ExonicFunc.refGene
-##       nonsynonymous                SNV
-##          synonymous                SNV
-##       nonsynonymous                SNV
-##          frameshift          insertion
-##          frameshift           deletion
-##       nonsynonymous                SNV
-##       nonsynonymous                SNV
-##          frameshift          insertion
-##                                                                                                                                                                                           AAChange.refGene
-##                                                                                                                                                                   CYP4A11:NM_000778:exon8:c.T1064C:p.L355P
-##                                                                           ATP1A1:NM_000701:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160233:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D
-##                                                                                                                                                                     DHX15:NM_001358:exon5:c.A1012G:p.T338A
-##                                                                                                                                                                UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs
-##                                                                                                                                                                 COL12A1:NM_004370:exon6:c.628delA:p.I210fs
-##                                                                                                                                                                       GAS1:NM_002048:exon1:c.G533A:p.R178H
-##                                                                                                                                                                       PDE6H:NM_006205:exon3:c.G163T:p.G55W
-##  SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs
-##  cytoBand depth_tumor variantNum_tumor depth_normal variantNum_normal
-##      1p33          64               28           49                 0
-##    1p13.1         100               39          111                 0
-##    4p15.2         143               47          151                 0
-##    4q13.2          43               15           41                 0
-##      6q13         122               38           73                 0
-##   9q21.33          20                5           26                 0
-##   12p12.3          81               10           47                 0
-##   12p12.2          97               11           57                 0
-##  bases_tumor bases_normal A_C_G_T_tumor A_C_G_T_normal misRate_tumor
-##   46,20,18,8    28,0,21,0     36,0,28,0       49,0,0,0         0.438
-##  74,29,26,10    82,0,29,0     0,39,0,61      0,0,0,111         0.390
-##  112,39,31,8   129,0,22,0     0,47,0,96      0,0,0,151         0.329
-##   28,11,15,4    29,0,12,0           ---            ---         0.349
-##   98,31,24,7    63,0,10,0           ---            ---         0.311
-##     6,2,14,3    10,0,16,0      0,15,0,5       0,26,0,0         0.250
-##    63,8,18,2    35,0,12,0     0,0,71,10       0,0,47,0         0.123
-##   82,10,15,1     50,0,7,0           ---            ---         0.113
-##  strandRatio_tumor misRate_normal strandRatio_normal P.value.fisher.
-##              0.714              0                ---           8.321
-##              0.744              0                ---          14.755
-##              0.830              0                ---          16.734
-##              0.733              0                ---           4.838
-##              0.816              0                ---           8.696
-##              0.400              0                ---           1.947
-##              0.800              0                ---           1.877
-##              0.909              0                ---           2.139
-##  readPairNum_tumor variantPairNum_tumor otherPairNum_tumor
-##                 42                   29                  0
-##                 61                   39                  1
-##                 98                   50                  0
-##                 27                   22                  1
-##                 72                   32                  4
-##                 15                    5                  0
-##                 71                   10                  0
-##                 76                   11                  0
-##  readPairNum_normal variantPairNum_normal otherPairNum_normal
-##                  56                     0                   0
-##                 111                     0                   0
-##                 152                     0                   1
-##                  41                     0                   2
-##                  66                     0                   2
-##                  27                     0                   0
-##                  47                     0                   0
-##                  51                     0                   2
-##  P.value.fisher_realignment. indel_mismatch_rate indel_mismatch_rate.1
-##                        8.617                   0                     0
-##                       14.755                   0                     0
-##                       17.543                   0                     0
-##                        6.926                   0                     0
-##                        7.656                   0                     0
-##                        1.995                   0                     0
-##                        1.877                   0                     0
-##                        2.152                   0                     0
-##  bp_mismatch_count distance_from_breakpoint simple_repeat_pos
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  1                       16               ---
-##  simple_repeat_seq P.value.EBCall.
-##                ---          60.000
-##                ---          60.000
-##                ---          60.000
-##                ---          10.783
-##                ---          13.076
-##                ---           5.208
-##                ---           7.481
-##                ---           6.179
+##	Chr	Start	End	Ref	Alt	Func.refGene	Gene.refGene	GeneDetail.refGene	ExonicFunc.refGene	AAChange.refGene	cytoBand	depth_tumor	variantNum_tumor	depth_normal	variantNum_normal	bases_tumor	bases_normal	A_C_G_T_tumor	A_C_G_T_normal	misRate_tumor	strandRatio_tumor	misRate_normal	strandRatio_normal	P.value.fisher.	readPairNum_tumor	variantPairNum_tumor	otherPairNum_tumor	readPairNum_normal	variantPairNum_normal	otherPairNum_normal	P.value.fisher_realignment.	indel_mismatch_rate	indel_mismatch_rate.1	bp_mismatch_count	distance_from_breakpoint	simple_repeat_pos	simple_repeat_seq	P.value.EBCall.
+##	1	47399872	47399872	A	G	exonic	CYP4A11	nonsynonymous	SNV	CYP4A11:NM_000778:exon8:c.T1064C:p.L355P	1p33	64	28	49	0	46,20,18,8	28,0,21,0	36,0,28,0	49,0,0,0	0.438	0.714	0	---	8.321	42	29	0	56	0	0	8.617	0	0	0	0	---	---	60
+##	1	116941338	116941338	T	C	exonic	ATP1A1	synonymous	SNV	ATP1A1:NM_000701:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160233:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D	1p13.1	100	39	111	0	74,29,26,10	82,0,29,0	0,39,0,61	0,0,0,111	0.39	0.744	0	---	14.755	61	39	1	111	0	0	14.755	0	0	0	0	---	---	60
+##	4	24556416	24556416	T	C	exonic	DHX15	nonsynonymous	SNV	DHX15:NM_001358:exon5:c.A1012G:p.T338A	4p15.2	143	47	151	0	112,39,31,8	129,0,22,0	0,47,0,96	0,0,0,151	0.329	0.83	0	---	16.734	98	50	0	152	0	1	17.543	0	0	0	0	---	---	60
+##	4	70156404	70156404	-	T	exonic	UGT2B28	frameshift	insertion	UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs	4q13.2	43	15	41	0	28,11,15,4	29,0,12,0	---	---	0.349	0.733	0	---	4.838	27	22	1	41	0	2	6.926	0	0	0	0	---	---	10.783
+##	6	75899298	75899298	T	-	exonic	COL12A1	frameshift	deletion	COL12A1:NM_004370:exon6:c.628delA:p.I210fs	6q13	122	38	73	0	98,31,24,7	63,0,10,0	---	---	0.311	0.816	0	---	8.696	72	32	4	66	0	2	7.656	0	0	0	0	---	---	13.076
+##	9	89561162	89561162	C	T	exonic	GAS1	nonsynonymous	SNV	GAS1:NM_002048:exon1:c.G533A:p.R178H	9q21.33	20	5	26	0	6,2,14,3	10,0,16,0	0,15,0,5	0,26,0,0	0.25	0.4	0	---	1.947	15	5	0	27	0	0	1.995	0	0	0	0	---	---	5.208
+##	12	15132141	15132141	G	T	exonic	PDE6H	nonsynonymous	SNV	PDE6H:NM_006205:exon3:c.G163T:p.G55W	12p12.3	81	10	47	0	63,8,18,2	35,0,12,0	0,0,71,10	0,0,47,0	0.123	0.8	0	---	1.877	71	10	0	47	0	0	1.877	0	0	0	0	---	---	7.481
+##	12	20876048	20876048	-	G	exonic	SLCO1C1	frameshift	insertion	SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs	12p12.2	97	11	57	0	82,10,15,1	50,0,7,0	---	---	0.113	0.909	0	---	2.139	76	11	0	51	0	2	2.152	0	0	1	16	---	---	6.179
 ```
 
-
+An RNAseq file is not required, but you can attach "RNAseq" information.
 ```r
 data("RNAseq")
 print(RNAseq, row.names = FALSE)
@@ -324,51 +246,53 @@ print(RNAseq, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-
+A copynumber file is not required, but you can attach "Copy Number" information.
 ```r
 data("CopyNum")
 print(CopyNum, row.names = FALSE)
 ```
 
 ```
-##  Chromosome Position      Log.R segmented.LogR BAF segmented.BAF
-##           1   564621  0.6071447    -0.09862298   1            NA
-##           1   799463  0.1519967    -0.09862298   1            NA
-##           1  1017216  0.8146911    -0.09862298   0            NA
-##           1  1158277 -1.9594627    -0.09862298   0            NA
-##           1  1242215  0.2927962    -0.09862298   0            NA
-##           1  1462766 -0.2234090    -0.09862298   1            NA
-##  Copy.number Minor.allele Raw.copy.number
-##            2            1       4.3540752
-##            2            1       2.1467339
-##            3            1       5.8658499
-##            1            0      -0.5035897
-##            2            1       2.6999875
-##            2            1       1.0726687
+##	Chromosome	Position	Log.R	segmented.LogR	BAF	segmented.BAF	Copy.number	Minor.allele	Raw.copy.number
+##	1	564621	0.6071447	-0.09862298	1	NA	2	1	4.3540752
+##	1	799463	0.1519967	-0.09862298	1	NA	2	1	2.1467339
+##	1	1017216	0.8146911	-0.09862298	0	NA	3	1	5.8658499
+##	1	1158277	-1.9594627	-0.09862298	0	NA	1	0	-0.5035897
+##	1	1242215	0.2927962	-0.09862298	0	NA	2	1	2.6999875
+##	1	1462766	-0.2234090	-0.09862298	1	NA	2	1	1.0726687
 ```
 
-##4. Sample Codes
-------------------------------
-##
-#./lib/
-ccfp.jar
-netMHCIIpan-3.1
-netMHCpan-3.0
-#
-#./data/
-CopyNum.txt
-hla_table.txt
-hla_table2.txt
-RNAseq.txt
-sample.txt
-refFlat.cut.txt
-refFlat.txt
-refMrna.fa
-refMrna.merge.cut1.fa
-refMrna.merge.cut2.fa
-refMrna.merge.cut3.fa
-refMrna.merge.fa
-##
+## 4. Sample Codes
+
+They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib and https://github.com/hase62/Neoantimon/raw/master/data. 
+```
+lib/ccfp.jar  
+lib/netMHCIIpan-3.1  
+lib/netMHCpan-3.0
+```
+
+```
+data/CopyNum.txt  
+data/hla_table.txt  
+data/hla_table2.txt  
+data/RNAseq.txt  
+data/sample.txt  
+data/refFlat.cut.txt  
+data/refFlat.txt  
+data/refMrna.fa  
+data/refMrna.merge.cut1.fa  
+data/refMrna.merge.cut2.fa  
+data/refMrna.merge.cut3.fa  
+data/refMrna.merge.fa
+```
+
+Analize sample files ... 
+```
+install.packages("devtools");
+library(devtools);
+install_github('hase62/Neoantimon');
+library(Neoantimon);
+```
 
 Calculate Neoantigens on SNVs for HLA Class I. 
 ```
@@ -391,8 +315,11 @@ MainSNVClass1(hmdir = getwd(),
               RNAseq_file = "data/RNAseq.txt",
               CNV = "CopyNum.txt",
               Purity = 0.8,
+              samtools_dir = "samtools-0.1.19/samtools",
+              bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+              RNA_bam = NA,
               refDNA = NA)
 ```
 
@@ -425,8 +352,11 @@ MainSNVClass2(hmdir = getwd(),
               RNAseq_file = "data/RNAseq.txt",
               CNV = "CopyNum.txt",
               Purity = 0.8,
+              samtools_dir = "samtools-0.1.19/samtools",
+              bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
               ccfp_dir = "lib/ccfp.jar",
               netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+              RNA_bam = NA,
               refDNA = NA)
 ```
 
@@ -453,14 +383,17 @@ MainINDELClass1(hmdir = getwd(),
                 Depth_Normal_Column = 14,
                 file_name_in_HLA_table = "sample",
                 HLA_file = "data/hla_table.txt",
-               refFlat_file = "data/refFlat.txt",
-               refMrna_1 = "data/refMrna.cut1.fa",
-               refMrna_3 = "data/refMrna.cut3.fa",
+                refFlat_file = "data/refFlat.txt",
+                refMrna_1 = "data/refMrna.cut1.fa",
+                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
                 CNV = NA,
                 Purity = 0.8,
+                samtools_dir = "samtools-0.1.19/samtools",
+                bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                RNA_bam = NA,
                 refDNA = NA)
 ```
 
@@ -479,16 +412,42 @@ MainINDELClass2(hmdir = getwd(),
                 Depth_Normal_Column = 14,
                 file_name_in_HLA_table = "sample",
                 HLA_file = "data/hla_table2.txt",
-               refFlat_file = "data/refFlat.txt",
-               refMrna_1 = "data/refMrna.cut1.fa",
-               refMrna_3 = "data/refMrna.cut3.fa",
+                refFlat_file = "data/refFlat.txt",
+                refMrna_1 = "data/refMrna.cut1.fa",
+                refMrna_3 = "data/refMrna.cut3.fa",
                 RNAseq_file = "data/RNAseq.txt",
                 CNV = NA,
                 Purity = 0.8,
+                samtools_dir = "samtools-0.1.19/samtools",
+                bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
                 ccfp_dir = "lib/ccfp.jar",
                 netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                RNA_bam = NA,
                 refDNA = NA)
 ```
+
+## 5. Result
+
+Sample result f iles are available at https://github.com/hase62/Neoantimon/raw/master/data/Result. 
+
+sample.CLASS1.ALL.txt
+```
+##	HLA	Pos	Gene	MutatedPeptide	Mut_IC50	Mut_Rank	Norm_Peptide	Norm_IC50	Norm_Rank		Gene ID	Chr	NM_ID	Change	ref	alt	Prob	Mutation Prob.	Exon Start	Exon End	Mutation Position	Depth	TumorDepth	Peptide Normal	Peptide Mutation	TotalRNA	TumorRNARatio	TumorRNA	nA	nB	Checker	MutRatio	MutRatio Min	MutRatio Max
+##	HLA-A*02:01	2	0_CYP4A11	HQERCREEIHSLP	37362.9	55.00	HQERCREEIHSLL	27284.3	32.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
+##	HLA-A*02:01	3	0_CYP4A11	QERCREEIHSLPG	45831.8	90.00	QERCREEIHSLLG	44161.6	85.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
+##	HLA-A*02:01	4	0_CYP4A11	ERCREEIHSLPGD	45989.7	90.00	ERCREEIHSLLGD	44575.4	85.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
+##	HLA-A*02:01	5	0_CYP4A11	RCREEIHSLPGDG	46482.0	95.00	RCREEIHSLLGDG	44377.6	85.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
+##	HLA-A*02:01	6	0_CYP4A11	CREEIHSLPGDGA	42936.1	80.00	CREEIHSLLGDGA	41760.9	70.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
+```
+
+sample.CLASS1.IC50min.txt
+```
+##	HLA	Pos	Gene	MutatedPeptide	Mut_IC50	Mut_Rank	Norm_Peptide	Norm_IC50	Norm_Rank		Gene ID	Chr	NM_ID	Change	ref	alt	Prob	Mutation Prob.	Exon Start	Exon End	Mutation Position	Depth	TumorDepth	Peptide Normal	Peptide Mutation	TotalRNA	TumorRNARatio	TumorRNA	nA	nB	Checker	MutRatio	MutRatio Min	MutRatio Max
+##	HLA-A*02:01	12	0_CYP4A11	SLPGDGASI	1217.8	4.50	SLLGDGASI	123.5	1.20	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
+##	HLA-A*02:01	7	1_DHX15	YLEAAIRAV	36.1	0.50	YLEAAIRTV	41.7	0.60	2	1_DHX15	4	NM_001358	c.A1012G	T	C	0	0	24529087	24586184	4_24556416	151	294	PEPERDYLEAAIRTVIQIHMCEEEEGD	PEPERDYLEAAIRAVIQIHMCEEEEGD	NA	NA	NA	NA	NA	NA	NA	NA	NA
+##	HLA-A*02:01	14	2_GAS1	HCNLALSRYLTYC	14427.0	17.00	RCNLALSRYLTYC	12017.5	15.00	3	2_GAS1	9	NM_002048	c.G533A	C	T	0	0	89559276	89562104	9_89561162	26	46	GCTEARRRCDRDSRCNLALSRYLTYCG	GCTEARRRCDRDSHCNLALSRYLTYCG	NA	NA	NA	NA	NA	NA	NA	NA	NA
+```
+
 
 
 

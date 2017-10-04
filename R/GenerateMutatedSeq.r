@@ -56,8 +56,8 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
    DP<-0
    alt<-NULL
    ref<-NULL
-   if(!is.na(Depth_Normal_Column)){
-     DP<-as.numeric(f[Depth_Normal_Column])
+   if(!is.na(Depth_Normal_Column) & !is.na(Depth_Tumor_Column)){
+    DP<-as.numeric(f[Depth_Normal_Column]) + as.numeric(f[Depth_Tumor_Column])
    } else if(length(grep("DP=",f))>0){
     DP<-strsplit(strsplit(f[grep("DP=",f)], "DP=")[[1]][2],";")[[1]][1]
    } else if(length(grep("t_alt_count", f))>0){
@@ -70,8 +70,8 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
 
    #TDP:Tumor Depth
    TDP<-0
-   if(!is.na(Depth_Normal_Column) & !is.na(Depth_Tumor_Column)){
-     TDP<-as.numeric(f[Depth_Normal_Column]) + as.numeric(f[Depth_Tumor_Column])
+   if(!is.na(Depth_Tumor_Column)){
+    TDP<-as.numeric(f[Depth_Tumor_Column])
    } else if(length(grep("\\|1:",f))>0){
     TDP<-sum(as.numeric(rev(strsplit(strsplit(f[grep("\\|1:",f)], "\\|1:")[[1]][2],":")[[1]])[-1]))
    }else if(!is.null(alt)){

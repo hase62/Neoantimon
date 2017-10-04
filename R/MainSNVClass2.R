@@ -70,12 +70,14 @@
 #'@export
 MainSNVClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_file,
                         hmdir = getwd(), job_ID = "NO_JOB_ID", RNAseq_file = NA, RNA_bam = NA,
-                        CNV=NA, ccfp_dir = "lib/ccfp.jar", Purity = NA,
-                        netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                        refDNA = "lib/GRCh37.fa",
-                        refFlat_file = paste(hmdir,"/data/refFlat.txt",sep=""),
-                        refMrna_1 = paste(hmdir,"/data/refMrna.cut1.fa",sep=""),
-                        refMrna_3 = paste(hmdir,"/data/refMrna.cut3.fa",sep=""),
+                        CNV=NA, ccfp_dir = paste(hmdir, "lib/ccfp.jar", sep=""), Purity = NA,
+                        netMHCpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep=""),
+                        refDNA = paste(hmdir, "lib/GRCh37.fa", sep=""),
+                        refFlat_file = paste(hmdir, "/data/refFlat.txt", sep=""),
+                        refMrna_1 = paste(hmdir, "/data/refMrna.cut1.fa", sep=""),
+                        refMrna_3 = paste(hmdir, "/data/refMrna.cut3.fa", sep=""),
+                        samtools_dir = "samtools",
+                        bcftools_dir = "bcftools",
                         Chr_Column = 1, Mutation_Start_Column = 2,
                         Mutation_End_Column = 3, Mutation_Ref_Column = 4, Mutation_Alt_Column = 5,
                         NM_ID_Column = 10, Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
@@ -106,12 +108,18 @@ MainSNVClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   if(ifelse(is.na(RNAseq_file), FALSE, file.exists(RNAseq_file))){
       GenerateListForGetRNASeq(output_peptide_txt_file)
       output_file_rna_list<-paste(output_peptide_txt_file, ".list.txt", sep="")
-      error<-tryCatch2(system(paste("samtools mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam,
+      print(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam, 
+                   ">", paste(output_peptide_txt_file, "list.mp", sep=".")))
+      error<-tryCatch2(system(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refDNA, RNA_bam,
                    ">", paste(output_peptide_txt_file, "list.mp", sep="."))))
       if(error != 0) skip = TRUE
 
-      if(!skip) error<-tryCatch2(system(paste("bcftools view -c0", paste(output_peptide_txt_file, "list.mp", sep="."),
-                                              ">", paste(output_peptide_txt_file, "list.vcf", sep="."))))
+      if(!skip) {
+        print(paste(bcftools_dir, "view -c", paste(output_peptide_txt_file, "list.mp", sep="."), 
+                   ">", paste(output_peptide_txt_file, "list.vcf", sep=".")))
+        error<-tryCatch2(system(paste(bcftools_dir, "view -c", paste(output_peptide_txt_file, "list.mp", sep="."),
+                   ">", paste(output_peptide_txt_file, "list.vcf", sep="."))))
+      }
       if(error != 0) skip = TRUE
   }
   GetRNAseq(output_peptide_txt_file = output_peptide_txt_file,
@@ -123,9 +131,12 @@ MainSNVClass2<-function(input_file, HLA_file, file_name_in_HLA_table = input_fil
   if(ifelse(is.na(CNV), FALSE, file.exists(CNV))){
     GenerateListForCCFP(output_peptide_txt_file, CNV = CNV, Purity = Purity)
     if(file.exists(paste(output_peptide_txt_file,".cnv.txt",sep=""))){
-      system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ",
-                   paste(output_peptide_txt_file,".cnv.txt",sep=""),
-                   " > ", paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""), sep=""))
+      print( paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ", 
+                   paste(output_peptide_txt_file, ".cnv.txt", sep=""), " > ", 
+                   paste(output_peptide_txt_file, ".cnv.estimate.txt", sep=""), sep=""))
+      system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ", 
+                   paste(output_peptide_txt_file, ".cnv.txt", sep=""), " > ", 
+                   paste(output_peptide_txt_file, ".cnv.estimate.txt", sep=""), sep=""))
       GetRatio(output_peptide_txt_file = output_peptide_txt_file,
                output_peptide_txt_cnc_estimate_file = paste(output_peptide_txt_file,".cnv.estimate.txt",sep=""))
     }
