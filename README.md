@@ -166,8 +166,8 @@ library(Neoantimon);
 A HLA table is required.
 ```r
 library(Neoantimon)
-data("hla_table")
-print(hla_table, row.names = FALSE)
+data(“sample_hla_table_c1”)
+print(sample_hla_table_c1, row.names = FALSE)
 ```
 
 ```
@@ -178,8 +178,8 @@ print(hla_table, row.names = FALSE)
 
 A HLA table is required.
 ```r
-data("hla_table2")
-print(hla_table2, row.names = FALSE)
+data("sample_hla_table_c2”)
+print(sample_hla_table_c2, row.names = FALSE)
 ```
 
 ```
@@ -190,8 +190,8 @@ print(hla_table2, row.names = FALSE)
 
 An annotated VCF file is required. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID".
 ```r
-data("sample")
-print(sample, row.names = FALSE)
+data(“sample_vcf”)
+print(sample_vcf, row.names = FALSE)
 ```
 
 ```
@@ -208,8 +208,8 @@ print(sample, row.names = FALSE)
 
 An RNAseq file is not required, but you can attach "RNAseq" information.
 ```r
-data("RNAseq")
-print(RNAseq, row.names = FALSE)
+data(“sample_rna_exp”)
+print(sample_rna_exp, row.names = FALSE)
 ```
 
 ```
@@ -239,8 +239,8 @@ print(RNAseq, row.names = FALSE)
 
 A copynumber file is not required, but you can attach "Copy Number" information.
 ```r
-data("CopyNum")
-print(CopyNum, row.names = FALSE)
+data(“sample_copynum”)
+print(sample_copynum, row.names = FALSE)
 ```
 
 ```
