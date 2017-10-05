@@ -17,8 +17,8 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name hla_table
-#' @usage data(hla_table)
+#' @name sample_hla_table_c1
+#' @usage data(sample_hla_table_c1)
 #' @format A data frame with 53940 rows and 10 variables
 NULL
 
@@ -33,8 +33,8 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name hla_table2
-#' @usage data(hla_table2)
+#' @name sample_hla_table_c2
+#' @usage data(sample_hla_table_c2)
 #' @format A data frame with 53940 rows and 10 variables
 NULL
 
@@ -49,8 +49,8 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name CopyNum
-#' @usage data(CopyNum)
+#' @name sample_copynum
+#' @usage data(sample_copynum)
 #' @format A data frame with 53940 rows and 10 variables
 NULL
 
@@ -65,8 +65,8 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name RNAseq
-#' @usage data(RNAseq)
+#' @name sample_rna_exp
+#' @usage data(sample_rna_exp)
 #' @format A data frame with 53940 rows and 10 variables
 NULL
 
@@ -81,7 +81,7 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name sample
-#' @usage data(sample)
+#' @name sample_vcf
+#' @usage data(sample_vcf)
 #' @format A data frame with 53940 rows and 10 variables
 NULL
