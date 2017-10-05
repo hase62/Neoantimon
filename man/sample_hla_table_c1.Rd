@@ -3,18 +3,12 @@
 \docType{data}
 \name{sample_hla_table_c1}
 \alias{sample_hla_table_c1}
-\title{Prices of 50,000 round cut diamonds}
-\format{A data frame with 53940 rows and 10 variables}
+\title{A Format / Sample file for HLA CLASS1 Table}
+\format{A data frame with 3 rows and at most 7 variables}
 \usage{
 data(sample_hla_table_c1)
 }
 \description{
-A dataset containing the prices and other attributes of almost 54,000
- diamonds. The variables are as follows:
-}
-\details{
-\itemize{
-  \item price. price in US dollars (\$326--\$18,823)
-}
+A dataset containing the HLA types of patients in each row.
 }
 \keyword{datasets}

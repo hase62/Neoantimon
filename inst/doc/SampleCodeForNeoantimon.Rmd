@@ -1,7 +1,7 @@
 ---
 title: "SampleCodeForNeoantimon"
 author: "T. Hasegawa"
-date: "2017/6/10"
+date: "2017/10/05"
 output: html_document
 ---
 
@@ -11,30 +11,35 @@ output: html_document
 -->
 
 ## Data Preparation and Sample Codes for Analysis
+```{r Preparation}
+#install.packages("devtools");
+library(devtools);
+#install_github('hase62/Neoantimon');
+library(Neoantimon);
+```
 
-```{r hla1}
+```{r Sample VCF file}
+data("sample_vcf")
+print(sample_vcf, row.names = FALSE)
+```
+
+```{r HLA Table for Class 1}
 library(Neoantimon)
-data("hla_table")
-print(hla_table, row.names = FALSE)
+data("sample_hla_table_c1")
+print(sample_hla_table_c1, row.names = FALSE)
 ```
 
-```{r hla2}
-data("hla_table2")
-print(hla_table2, row.names = FALSE)
+```{r HLA Table for Class2}
+data("sample_hla_table_c2")
+print(sample_hla_table_c2, row.names = FALSE)
 ```
 
-```{r annovar2}
-data("sample")
-print(sample, row.names = FALSE)
+```{r RNA Expression}
+data("sample_rna_exp")
+print(sample_rna_exp, row.names = FALSE)
 ```
 
-```{r RNAseq}
-data("RNAseq")
-print(RNAseq, row.names = FALSE)
+```{r CopyNumber Information}
+data("sample_copynum")
+print(sample_copynum, row.names = FALSE)
 ```
-
-```{r CopyNum}
-data("CopyNum")
-print(CopyNum, row.names = FALSE)
-```
-

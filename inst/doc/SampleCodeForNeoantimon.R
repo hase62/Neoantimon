@@ -1,21 +1,27 @@
-## ----hla1----------------------------------------------------------------
+## ----Preparation---------------------------------------------------------
+#install.packages("devtools");
+library(devtools);
+#install_github('hase62/Neoantimon');
+library(Neoantimon);
+
+## ----Sample VCF file-----------------------------------------------------
+data("sample_vcf")
+print(sample_vcf, row.names = FALSE)
+
+## ----HLA Table for Class 1-----------------------------------------------
 library(Neoantimon)
-data("hla_table")
-print(hla_table, row.names = FALSE)
+data("sample_hla_table_c1")
+print(sample_hla_table_c1, row.names = FALSE)
 
-## ----hla2----------------------------------------------------------------
-data("hla_table2")
-print(hla_table2, row.names = FALSE)
+## ----HLA Table for Class2------------------------------------------------
+data("sample_hla_table_c2")
+print(sample_hla_table_c2, row.names = FALSE)
 
-## ----annovar2------------------------------------------------------------
-data("sample")
-print(sample, row.names = FALSE)
+## ----RNA Expression------------------------------------------------------
+data("sample_rna_exp")
+print(sample_rna_exp, row.names = FALSE)
 
-## ----RNAseq--------------------------------------------------------------
-data("RNAseq")
-print(RNAseq, row.names = FALSE)
-
-## ----CopyNum-------------------------------------------------------------
-data("CopyNum")
-print(CopyNum, row.names = FALSE)
+## ----CopyNumber Information----------------------------------------------
+data("sample_copynum")
+print(sample_copynum, row.names = FALSE)
 

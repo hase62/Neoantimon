@@ -208,30 +208,14 @@ hr {
 
 <h2>Data Preparation and Sample Codes for Analysis</h2>
 
-<pre><code class="r">library(Neoantimon)
-data(&quot;hla_table&quot;)
-print(hla_table, row.names = FALSE)
+<pre><code class="r">#install.packages(&quot;devtools&quot;);
+library(devtools);
+#install_github(&#39;hase62/Neoantimon&#39;);
+library(Neoantimon);
 </code></pre>
 
-<pre><code>##     Name      A1      A2      B1      B2      C1      C2
-##   sample A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
-##  sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
-</code></pre>
-
-<pre><code class="r">data(&quot;hla_table2&quot;)
-print(hla_table2, row.names = FALSE)
-</code></pre>
-
-<pre><code>##     Name      DPA11      DPA12      DPB11      DPB12      DQA11      DQA12
-##   sample DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
-##  sample2 DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
-##       DQB11      DQB12      DRB11      DRB12
-##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
-##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
-</code></pre>
-
-<pre><code class="r">data(&quot;sample&quot;)
-print(sample, row.names = FALSE)
+<pre><code class="r">data(&quot;sample_vcf&quot;)
+print(sample_vcf, row.names = FALSE)
 </code></pre>
 
 <pre><code>##  Chr     Start       End Ref Alt Func.refGene Gene.refGene
@@ -335,8 +319,30 @@ print(sample, row.names = FALSE)
 ##                ---           6.179
 </code></pre>
 
-<pre><code class="r">data(&quot;RNAseq&quot;)
-print(RNAseq, row.names = FALSE)
+<pre><code class="r">library(Neoantimon)
+data(&quot;sample_hla_table_c1&quot;)
+print(sample_hla_table_c1, row.names = FALSE)
+</code></pre>
+
+<pre><code>##     Name      A1      A2      B1      B2      C1      C2
+##   sample A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
+##  sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
+</code></pre>
+
+<pre><code class="r">data(&quot;sample_hla_table_c2&quot;)
+print(sample_hla_table_c2, row.names = FALSE)
+</code></pre>
+
+<pre><code>##     Name      DPA11      DPA12      DPB11      DPB12      DQA11      DQA12
+##   sample DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
+##  sample2 DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
+##       DQB11      DQB12      DRB11      DRB12
+##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
+##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
+</code></pre>
+
+<pre><code class="r">data(&quot;sample_rna_exp&quot;)
+print(sample_rna_exp, row.names = FALSE)
 </code></pre>
 
 <pre><code>##  gene_short_name                               locus expression
@@ -363,8 +369,8 @@ print(RNAseq, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 </code></pre>
 
-<pre><code class="r">data(&quot;CopyNum&quot;)
-print(CopyNum, row.names = FALSE)
+<pre><code class="r">data(&quot;sample_copynum&quot;)
+print(sample_copynum, row.names = FALSE)
 </code></pre>
 
 <pre><code>##  Chromosome Position      Log.R segmented.LogR BAF segmented.BAF

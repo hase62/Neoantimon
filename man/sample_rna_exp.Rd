@@ -3,18 +3,12 @@
 \docType{data}
 \name{sample_rna_exp}
 \alias{sample_rna_exp}
-\title{Prices of 50,000 round cut diamonds}
-\format{A data frame with 53940 rows and 10 variables}
+\title{A Format / Sample file for RNA Expression Information}
+\format{A data frame with 22 rows and 3 variables}
 \usage{
 data(sample_rna_exp)
 }
 \description{
-A dataset containing the prices and other attributes of almost 54,000
- diamonds. The variables are as follows:
-}
-\details{
-\itemize{
-  \item price. price in US dollars (\$326--\$18,823)
-}
+A dataset containing the RNA expression amount of patient for each gene.
 }
 \keyword{datasets}

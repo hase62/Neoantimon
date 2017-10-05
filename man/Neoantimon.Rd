@@ -6,5 +6,6 @@
 \alias{Neoantimon-package}
 \title{Neoantimon}
 \description{
-Calculate Lists of Candidate Neoantingens on SNVs and Indels to MHC Class1 and Class2
+Calculate Lists of Candidate Neoantingens on SNVs and Indels to MHC Class1 and Class2.
+First use MainSNVClass1, MainSNVClass2, MainINDELClass1, and MainINDELClass2.
 }

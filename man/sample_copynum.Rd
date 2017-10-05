@@ -3,18 +3,12 @@
 \docType{data}
 \name{sample_copynum}
 \alias{sample_copynum}
-\title{Prices of 50,000 round cut diamonds}
-\format{A data frame with 53940 rows and 10 variables}
+\title{A Format / Sample file for Copy Number Information}
+\format{A data frame with 7 rows and 9 variables}
 \usage{
 data(sample_copynum)
 }
 \description{
-A dataset containing the prices and other attributes of almost 54,000
- diamonds. The variables are as follows:
-}
-\details{
-\itemize{
-  \item price. price in US dollars (\$326--\$18,823)
-}
+A dataset containing the copy number information obtained by, e.g., ASCAT.
 }
 \keyword{datasets}
