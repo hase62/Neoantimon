@@ -20,75 +20,71 @@ If you have "sample_annovar.txt.NO_JOB_ID.HLACLASS1.1.peptide.txt", please set "
 \item{INDEL}{If the targeting results are generated from Indels, Please check TRUE.}
 }
 \value{
-void (Calculated Neoantigen Files will be generated as .tsv files.)
+void (Calculated Neoantigen Files will be generated as .tsv files.):
 
-void (Calculated Neoantigen Files will be generated as .tsv files.)
+Pos:  The position of the fraction of peptide used to be evaluated from the full-length peptide.
 
-HLA A genoype of patient's HLAs used to be evaluated.
+Gene:  Gene symbol used to be evaluated in NetMHCpan.
 
-Pos The position of the fraction of peptide used to be evaluated from the full-length peptide.
+MutatedPeptide:  The mutant peptide to be evaluated.
 
-Gene Gene symbol used to be evaluated in NetMHCpan.
+Mut_IC50: IC50 value for evaluated mutant peptide.
 
-MutatedPeptide The mutant peptide to be evaluated.
+Mut_Rank: Rank value for evaluated mutanat peptide.
 
-Mut_IC50 IC50 value for evaluated mutant peptide.
+Norm_Peptide: The wild-type peptide to be evaluated.
 
-Mut_Rank Rank value for evaluated mutanat peptide.
+Norm_IC50: IC50 value for evaluated wild-type peptide.
 
-Norm_Peptide The wild-type peptide to be evaluated.
+Norm_Rank: Rank value for evaluated wild-type peptide.
 
-Norm_IC50 IC50 value for evaluated wild-type peptide.
+Gene ID: Gene symbol for the peptide.
 
-Norm_Rank Rank value for evaluated wild-type peptide.
+Chr: Chromosome Number of the mutation.
 
-Gene ID Gene symbol for the peptide.
+NM_ID: NM_ID used to construct peptides from the mutation.
 
-Chr Chromosome Number of the mutation.
+Change: The annotation to be described in .vcf file.
 
-NM_ID NM_ID used to construct peptides from the mutation.
+ref: reference type nucleic acid base.
 
-Change The annotation to be described in .vcf file.
+alt: alternative type nucleic acid base.
 
-ref reference type nucleic acid base.
+Prob: A probability of reference nucleic acid base described in .vcf file.
 
-alt alternative type nucleic acid base.
+MutationProb: A probability of alternative nucleic acid base described in .vcf file.
 
-Prob A probability of reference nucleic acid base described in .vcf file.
+ExonStart: The exon start position of the corrsponding NM_ID.
 
-MutationProb A probability of alternative nucleic acid base described in .vcf file.
+ExonEnd: The exon end position of the corrsponding NM_ID.
 
-ExonStart The exon start position of the corrsponding NM_ID.
+MutationPosition: The mutation position of the corrsponding NM_ID.
 
-ExonEnd The exon end position of the corrsponding NM_ID.
+Depth: The depth of the reference nucleic acid base.
 
-MutationPosition The mutation position of the corrsponding NM_ID.
+TumorDepth: The depth of the alternative nucleic acid base.
 
-Depth The depth of the reference nucleic acid base.
+PeptideNormal: The full-length of the wild-type peptide.
 
-TumorDepth The depth of the alternative nucleic acid base.
+PeptideMutation: The full-length of the mutant peptide.
 
-PeptideNormal The full-length of the wild-type peptide.
+TotalRNA: The expression amount of the corresponding RNA.
 
-PeptideMutation The full-length of the mutant peptide.
+TumorRNARatio: The variant allele frequency of the corresponding RNA.
 
-TotalRNA The expression amount of the corresponding RNA.
+TumorRNA: The modified amount of the corresponding RNA level based on (RNA/DNA) VCF.
 
-TumorRNARatio The variant allele frequency of the corresponding RNA.
+nA: The total number of A allele copies.
 
-TumorRNA The modified amount of the corresponding RNA level based on (RNA/DNA) VCF.
+nB: The total number of B allele copies.
 
-nA The total number of A allele copies.
+Checker: CheckSum
 
-nB The total number of B allele copies.
+MutRatio: The mean value of the cancer cell fraction probability.
 
-Checker CheckSum
+MutRatioMin: The 1\% percentile of the cancer cell fraction probability.
 
-MutRatio The mean value of the cancer cell fraction probability.
-
-MutRatioMin The 1% percentile of the cancer cell fraction probability.
-
-MutRatioMax The 99% percentile of the cancer cell fraction probability.
+MutRatioMax: The 99\% percentile of the cancer cell fraction probability.
 }
 \description{
 Merge Results from MainSnvClass2.R

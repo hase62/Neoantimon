@@ -11,75 +11,71 @@
 #'
 #'@param INDEL If the targeting results are generated from Indels, Please check TRUE.
 #'
-#'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
+#'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
-#'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
+#'@return Pos:  The position of the fraction of peptide used to be evaluated from the full-length peptide.
 #'
-#'@return HLA A genoype of patient's HLAs used to be evaluated. 
+#'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'@return Pos The position of the fraction of peptide used to be evaluated from the full-length peptide. 
+#'@return MutatedPeptide:  The mutant peptide to be evaluated.
 #'
-#'@return Gene Gene symbol used to be evaluated in NetMHCpan. 
+#'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
-#'@return MutatedPeptide The mutant peptide to be evaluated. 
+#'@return Mut_Rank: Rank value for evaluated mutanat peptide.
 #'
-#'@return Mut_IC50 IC50 value for evaluated mutant peptide. 
+#'@return Norm_Peptide: The wild-type peptide to be evaluated.
 #'
-#'@return Mut_Rank Rank value for evaluated mutanat peptide. 
+#'@return Norm_IC50: IC50 value for evaluated wild-type peptide.
 #'
-#'@return Norm_Peptide The wild-type peptide to be evaluated. 
+#'@return Norm_Rank: Rank value for evaluated wild-type peptide.
 #'
-#'@return Norm_IC50 IC50 value for evaluated wild-type peptide. 
+#'@return Gene ID: Gene symbol for the peptide.
 #'
-#'@return Norm_Rank Rank value for evaluated wild-type peptide. 
+#'@return Chr: Chromosome Number of the mutation.
 #'
-#'@return Gene ID Gene symbol for the peptide. 
+#'@return NM_ID: NM_ID used to construct peptides from the mutation.
 #'
-#'@return Chr Chromosome Number of the mutation. 
+#'@return Change: The annotation to be described in .vcf file.
 #'
-#'@return NM_ID NM_ID used to construct peptides from the mutation. 
+#'@return ref: reference type nucleic acid base.
 #'
-#'@return Change The annotation to be described in .vcf file. 
+#'@return alt: alternative type nucleic acid base.
 #'
-#'@return ref reference type nucleic acid base. 
+#'@return Prob: A probability of reference nucleic acid base described in .vcf file.
 #'
-#'@return alt alternative type nucleic acid base. 
+#'@return MutationProb: A probability of alternative nucleic acid base described in .vcf file.
 #'
-#'@return Prob A probability of reference nucleic acid base described in .vcf file. 
+#'@return ExonStart: The exon start position of the corrsponding NM_ID.
 #'
-#'@return MutationProb A probability of alternative nucleic acid base described in .vcf file.
+#'@return ExonEnd: The exon end position of the corrsponding NM_ID.
 #'
-#'@return ExonStart The exon start position of the corrsponding NM_ID. 
+#'@return MutationPosition: The mutation position of the corrsponding NM_ID.
 #'
-#'@return ExonEnd The exon end position of the corrsponding NM_ID.
+#'@return Depth: The depth of the reference nucleic acid base.
 #'
-#'@return MutationPosition The mutation position of the corrsponding NM_ID.
+#'@return TumorDepth: The depth of the alternative nucleic acid base.
 #'
-#'@return Depth The depth of the reference nucleic acid base. 
+#'@return PeptideNormal: The full-length of the wild-type peptide.
 #'
-#'@return TumorDepth The depth of the alternative nucleic acid base. 
+#'@return PeptideMutation: The full-length of the mutant peptide.
 #'
-#'@return PeptideNormal The full-length of the wild-type peptide. 
+#'@return TotalRNA: The expression amount of the corresponding RNA.
 #'
-#'@return PeptideMutation The full-length of the mutant peptide. 
+#'@return TumorRNARatio: The variant allele frequency of the corresponding RNA.
 #'
-#'@return TotalRNA The expression amount of the corresponding RNA. 
+#'@return TumorRNA: The modified amount of the corresponding RNA level based on (RNA/DNA) VCF.
 #'
-#'@return TumorRNARatio The variant allele frequency of the corresponding RNA. 
+#'@return nA: The total number of A allele copies.
 #'
-#'@return TumorRNA The modified amount of the corresponding RNA level based on (RNA/DNA) VCF. 
+#'@return nB: The total number of B allele copies.
 #'
-#'@return nA The total number of A allele copies.
+#'@return Checker: CheckSum
 #'
-#'@return nB The total number of B allele copies.
+#'@return MutRatio: The mean value of the cancer cell fraction probability.
 #'
-#'@return Checker CheckSum
+#'@return MutRatioMin: The 1\% percentile of the cancer cell fraction probability.
 #'
-#'@return MutRatio The mean value of the cancer cell fraction probability. 
-#'
-#'@return MutRatioMin The 1% percentile of the cancer cell fraction probability. 
-#'
-#'@return MutRatioMax The 99% percentile of the cancer cell fraction probability. 
+#'@return MutRatioMax: The 99\% percentile of the cancer cell fraction probability.
 #'
 #'@export
 MainMergeClass2<-function(hmdir = getwd(), input_dir, input_file_prefix, Tumor_RNA_BASED_ON_DNA = TRUE, INDEL = FALSE){
