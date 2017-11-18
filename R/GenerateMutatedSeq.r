@@ -89,7 +89,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
    #When Including MultipleIDs
    #For example, f[NM_ID_Column]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
    nm_ids<-strsplit(f[NM_ID_Column], ":|,|;")
-   hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_", x)))
+   hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_|NR_", x)))
 
    #Calculate All NM_IDs in Each Mutation
    Pass<-FALSE
@@ -280,10 +280,10 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
             }else{
               substr(dna_trans, m_point_2, m_point_2)<-trans_to[match(tolower(m_alt),trans_from)]
             }
-
+            dna_trans_mut<-dna_trans
+            
             #Make Mutated-Peptide
             peptide<-NULL
-           dna_trans_mut<-dna_trans
             while(nchar(dna_trans)>=3){
               peptide<-c(peptide, amino[match(substr(dna_trans, 1, 3), codon)])
              dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
@@ -315,16 +315,17 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
                              nm_ids[[1]][h+2],
                              m_ref,
                              m_alt,
-                             MP,
-                             GP,
+                             round(as.numeric(MP),5), 
+                             ifelse(is.character(GP), GP, round(GP,5))
                              exon_start[1],
                              rev(exon_end)[1],
                              m_start,
                              DP,
                              TDP,
                              paste(peptide_normal[peptide_start:peptide_end], collapse=""),
-                            paste(peptide, collapse=""), dna_trans_normal, dna_trans_mut)
-                            )
+                             paste(peptide, collapse=""), 
+                             dna_trans_normal, 
+                             dna_trans_mut))
 
            #Remove X and Save Fasta in Mutated Peptide
             if(!is.na(match("X",peptide))){

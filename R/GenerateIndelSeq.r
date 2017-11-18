@@ -89,7 +89,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
     #When Including MultipleIDs
     #For example, f[NM_ID_Column]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
     nm_ids<-strsplit(f[NM_ID_Column], ":|,|;")
-    hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_", x)))
+    hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_|NR_", x)))
     
     #Calculate All NM_IDs in Each Mutation
     Pass<-FALSE
@@ -121,6 +121,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
         exon_end<-as.numeric(strsplit(nm_sep[11], ",")[[1]])
         
         #Check Whether Mutation is Among Exon Region
+        #0-base(exon_start), 1-based(exon_end, m_start)
         if(length(which(exon_start < m_start & m_start <= exon_end))!=1){
           print(paste("The Mutation is not between Exon Region, Skip", nm_id))
           next
@@ -257,9 +258,9 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
           dna_trans<-substr(dna, ts_point, nchar(dna))
          m_point_2<-m_point - (ts_point) + 1
          if(m_point_2 < 4) next
-	  if(strand == "+"){
-	   if(m_ref == "-"){
-	     #Insertion - Specific
+	       if(strand == "+"){
+	        if(m_ref == "-"){
+	           #Insertion - Specific
              dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
                               paste(sapply(substring(m_alt, 1:nchar(m_alt),1:nchar(m_alt)), 
                                                  function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
@@ -278,8 +279,8 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
            }
           } else {
           if(m_ref == "-"){
-          #Insertion/Genomo
-          dna_trans<-paste(substr(dna_trans, 1, m_point_2),
+           #Insertion/Genomo
+           dna_trans<-paste(substr(dna_trans, 1, m_point_2),
                            paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))), 
                                                function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
                          substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
@@ -300,41 +301,51 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
          }
          dna_trans_mut<-dna_trans
          
-          #Make Mutated-Peptide
-          peptide<-NULL
-          while(nchar(dna_trans) >= 3){
-           a<-amino[match(substr(dna_trans, 1, 3), codon)]
+         #Make Mutated-Peptide
+         peptide<-NULL
+         while(nchar(dna_trans) >= 3){
+            a<-amino[match(substr(dna_trans, 1, 3), codon)]
             peptide<-c(peptide, a)
-           if(a=="X") break
-           dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
-          }
+            if(a=="X") break
+            dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
+         }
          min_len<-min(length(peptide), length(peptide_normal))
   
-          peptide_start<-which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - pep_len + 1
+         peptide_start<-which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - pep_len + 1
          if(is.na(peptide_start)) break
          if(peptide_start < 1) peptide_start<-1
-          peptide_end <- min_len - which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1] + pep_len + 1
-          if(peptide_end > length(peptide)) peptide_end = length(peptide)
-          peptide <- peptide[peptide_start:peptide_end]
-          peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
+         peptide_end <- min_len - which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1] + pep_len + 1
+         if(peptide_end > length(peptide)) peptide_end = length(peptide)
+         peptide <- peptide[peptide_start:peptide_end]
+         peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
           
          #Save Peptide
-         if(length(peptide) < pep_len) break
+         if(length(peptide) < 8) break
          refFasta<-rbind(refFasta,
-                         c(paste(random, g_name, sep="_"), chr, nm_id, length(peptide), m_ref, m_alt, 
-                           round(as.numeric(MP),5), ifelse(is.character(GP), GP, round(GP,5)),
-                          exon_start[1], rev(exon_end)[1], m_start, DP, TDP,
+                         c(paste(random, gsub("\"","", g_name), sep="_"), 
+                           chr, 
+                           nm_ids[[1]][h],
+                           nm_ids[[1]][h+2],
+                           m_ref, 
+                           m_alt, 
+                           round(as.numeric(MP),5), 
+                           ifelse(is.character(GP), GP, round(GP,5)),
+                           exon_start[1], 
+                           rev(exon_end)[1], 
+                           m_start, 
+                           DP, 
+                           TDP,
                            paste(peptide_normal, collapse=""),
-                          paste(peptide, collapse=""), 
-                          dna_trans_normal, 
-                          dna_trans_mut))
+                           paste(peptide, collapse=""), 
+                           dna_trans_normal, 
+                           dna_trans_mut))
       
          #Remove X and Save Fasta
           if(!is.na(match("X", peptide))){
             peptide<-peptide[1:(match("X",peptide) - 1)]
           }
-          fasta<-c(fasta, sub("_","",paste(">", random, g_name, sep="_")))
-          fasta<-c(fasta, paste(peptide, collapse=""))
+         fasta<-c(fasta, sub("_","", paste(">", random, gsub("\"","", g_name), sep="_")))
+         fasta<-c(fasta, paste(peptide, collapse=""))
          random<-random + 1
       
          print("Peptide Successfully Generated!!")
