@@ -60,7 +60,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
       DP<-as.numeric(f[Depth_Normal_Column]) + as.numeric(f[Depth_Tumor_Column])
     } else if(length(grep("DP=",f))>0){
       DP<-strsplit(strsplit(f[grep("DP=",f)], "DP=")[[1]][2],";")[[1]][1]
-    } else if(length(grep("t_alt_count", f))>0){
+    } else if(length(grep("t_alt_count", f))>0 & length(grep("t_ref_count", f))>0){
       alt<-strsplit(strsplit(f[grep("t_alt_count", f)],"t_alt_count=")[[1]][2],";|,|_")[[1]][1]
       ref<-strsplit(strsplit(f[grep("t_ref_count", f)],"t_ref_count=")[[1]][2],";|,|_")[[1]][1]
       if(!is.null(alt)){
@@ -68,13 +68,13 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
       }
     }
     
-    #TDP:Tumor Depth      
+    #TDP:Tumor Depth
     TDP<-0
     if(!is.na(Depth_Tumor_Column)){
       TDP<-as.numeric(f[Depth_Tumor_Column])
     } else if(length(grep("\\|1:",f))>0){
       TDP<-sum(as.numeric(rev(strsplit(strsplit(f[grep("\\|1:",f)], "\\|1:")[[1]][2],":")[[1]])[-1]))
-    }else if(!is.null(alt)){
+    }else if(!is.null(alt) & !is.null(ref)){
       TDP<-as.numeric(alt)
     }
     
@@ -89,7 +89,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
     #When Including MultipleIDs
     #For example, f[NM_ID_Column]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
     nm_ids<-strsplit(f[NM_ID_Column], ":|,|;")
-    hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_|NR_", x)))
+    hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_", x)))
     
     #Calculate All NM_IDs in Each Mutation
     Pass<-FALSE
@@ -314,7 +314,9 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
          peptide_start<-which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - pep_len + 1
          if(is.na(peptide_start)) break
          if(peptide_start < 1) peptide_start<-1
-         peptide_end <- min_len - which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1] + pep_len + 1
+         peptide_end<-which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1]
+         if(is.na(peptide_end)) peptide_end <- min_len
+         peptide_end <- min_len - peptide_end + pep_len + 1
          if(peptide_end > length(peptide)) peptide_end = length(peptide)
          peptide <- peptide[peptide_start:peptide_end]
          peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]

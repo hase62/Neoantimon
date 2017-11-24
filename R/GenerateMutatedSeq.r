@@ -60,7 +60,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
     DP<-as.numeric(f[Depth_Normal_Column]) + as.numeric(f[Depth_Tumor_Column])
    } else if(length(grep("DP=",f))>0){
     DP<-strsplit(strsplit(f[grep("DP=",f)], "DP=")[[1]][2],";")[[1]][1]
-   } else if(length(grep("t_alt_count", f))>0){
+   } else if(length(grep("t_alt_count", f))>0 & length(grep("t_ref_count", f))>0){
     alt<-strsplit(strsplit(f[grep("t_alt_count", f)],"t_alt_count=")[[1]][2],";|,|_")[[1]][1]
     ref<-strsplit(strsplit(f[grep("t_ref_count", f)],"t_ref_count=")[[1]][2],";|,|_")[[1]][1]
     if(!is.null(alt)){
@@ -74,7 +74,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
     TDP<-as.numeric(f[Depth_Tumor_Column])
    } else if(length(grep("\\|1:",f))>0){
     TDP<-sum(as.numeric(rev(strsplit(strsplit(f[grep("\\|1:",f)], "\\|1:")[[1]][2],":")[[1]])[-1]))
-   }else if(!is.null(alt)){
+   }else if(!is.null(alt) & !is.null(ref)){
     TDP<-as.numeric(alt)
    }
 
@@ -89,7 +89,7 @@ GenerateMutatedSeq<-function(input_file, hmdir = getwd(), job_ID,
    #When Including MultipleIDs
    #For example, f[NM_ID_Column]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
    nm_ids<-strsplit(f[NM_ID_Column], ":|,|;")
-   hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_|NR_", x)))
+   hit<-as.numeric(sapply(nm_ids, function(x) grep("NM_", x)))
 
    #Calculate All NM_IDs in Each Mutation
    Pass<-FALSE
