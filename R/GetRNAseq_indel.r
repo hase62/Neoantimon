@@ -43,7 +43,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file, RNAseq_file = NA, output_file
     ratio<-t(sapply(scan(output_file_rna_vcf, "character", sep="\n", skip=which(lapply(ratio, length)>2)[1]),
                     function(x) strsplit(x, "\t")[[1]]))
     if(ncol(ratio)==0){
-      ratio_matrix<-matrix(nrow=nrow(data), ncol=3, NA)
+      ratio_matrix<-matrix(nrow=nrow(data), ncol=2, NA)
     } else {
       size<-sum(as.numeric(sapply(strsplit(ratio[1,3],"M|D|I")[[1]], function(x) rev(strsplit(x,"N|S|H|P")[[1]])[1])))
       ratio_matrix<-NULL

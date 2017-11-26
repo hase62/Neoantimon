@@ -322,7 +322,7 @@ GenerateIndelSeq<-function(input_file, hmdir = getwd(), job_ID,
          peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
           
          #Save Peptide
-         if(length(peptide) < 8) break
+         if(length(peptide[-grep("X", peptide)]) < 8) break
          refFasta<-rbind(refFasta,
                          c(paste(random, gsub("\"","", g_name), sep="_"), 
                            chr, 
