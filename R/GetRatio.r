@@ -15,7 +15,7 @@ GetRatio<-function(output_peptide_txt_file, output_peptide_txt_cnc_estimate_file
   colnames(data_2)<-NULL
   rownames(data_2)<-NULL
   if(length(data_2)==0){
-     ratio_matrix<-matrix(nrow=nrow(data), ncol=6, NA)
+     ratio_matrix<-matrix(nrow=nrow(data), ncol= 27 - ncol(data), NA)
      write.table(cbind(data, ratio_matrix), output_peptide_txt_file,
         row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
      q("no")
