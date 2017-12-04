@@ -53,10 +53,10 @@ wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Install samtools:**
+**Install Samtools:**
 
 You can install the latest version from http://sourceforge.net/projects/samtools/files/samtools/. 
-Otherwise, run the following codes or use "installSam()" after install Neoantimon. 
+Otherwise, run the following codes or use "InstallSam()" after install Neoantimon. 
 ```
 wget http://sourceforge.net/projects/samtools/files/samtools/1.6/samtools-1.6.tar.bz2
 tar jxf samtools-1.6.tar.bz2
@@ -68,7 +68,7 @@ cd ..
 ```
 
 In addition, if you want to calculate variant allele frequency (VAF), install the old one from http://sourceforge.net/projects/samtools/files/samtools/. 
-Otherwise, run the following codes or use "installSam()" after install Neoantimon. 
+Otherwise, run the following codes or use "InstallSam()" after installing Neoantimon. 
 ```
 wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
@@ -79,14 +79,14 @@ cd ..
 
 **Download CCFP.jar:**
 You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar. 
-Otherwise, run the following codes or use "installCCFP()" after install Neoantimon. 
+Otherwise, run the following codes or use "GetCCFP()" after installing Neoantimon. 
 ```
 wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
 ```
 
 **Download SampleFiles:**
 You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
-Otherwise, run the following codes or use "getSampleFiles()" after install Neoantimon. 
+Otherwise, run the following codes or use "GetSampleFiles()" after installing Neoantimon. 
 ```
 wget https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
 unzip data.zip
@@ -94,7 +94,9 @@ unzip data.zip
 
 **Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19):**
 
-Download refMrna Files(GRCh38/hg38)
+refMrna Files(GRCh38/hg38):
+Download and make it to have columns indicating "NM_ID", "Splicing Variants ID", and "Sequences" using the following codes. 
+Otherwise, you can create it using, e.g., "GetRefMrnaFile(url ="http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" or "GetRefMrnaFile(file = refMrna.fa.gz)" after installing Neoantimon. 
 ```
 #refMrna Files
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
@@ -109,7 +111,9 @@ paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
 rm refMrna.cut[1-3].fa
 ```
 
-Download refMrna Files(GRCh37/hg19):
+refMrna Files(GRCh37/hg19):
+Download and make it to have columns indicating "NM_ID", "Splicing Variants ID", and "Sequences" using the following codes. 
+Otherwise, you can create it using, e.g., "GetRefMrnaFile(url ="http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz")" or "GetRefMrnaFile(file = refMrna.fa.gz)" after installing Neoantimon. 
 ```
 #refMrna Files
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
@@ -127,17 +131,17 @@ rm refMrna.cut[1-3].fa
 **Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
 
 Download refFlat Files(GRCh38/hg38)
+Otherwise, you can download it using "GetRefFlat(url ="http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
-cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
 Download refFlat Files(GRCh37/hg19)
+Otherwise, you can download it using "GetRefFlat(url ="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
-cut -f2 refFlat.txt > refFlat.cut.txt
 ```
 
 **Download human refSeq (Not required, if you want to calculate variant allele frequency (VAF)):**
@@ -200,6 +204,7 @@ print(sample_hla_table_c2, row.names = FALSE)
 ```
 
 An annotated VCF file is required. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID".
+Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", "Depth_normal", and "NM_" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
 ```r
 data(“sample_vcf”)
 print(sample_vcf, row.names = FALSE)
@@ -217,14 +222,15 @@ print(sample_vcf, row.names = FALSE)
 ##	12	20876048	20876048	-	G	exonic	SLCO1C1	frameshift	insertion	SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs	12p12.2	97	11	57	0	82,10,15,1	50,0,7,0	---	---	0.113	0.909	0	---	2.139	76	11	0	51	0	2	2.152	0	0	1	16	---	---	6.179
 ```
 
-An RNAseq file is not required, but you can attach "RNAseq" information.
+An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
+If you also indicate "rnabam_file", variant allele frequencies are also attached. 
 ```r
 data(“sample_rna_exp”)
 print(sample_rna_exp, row.names = FALSE)
 ```
 
 ```
-##  gene_short_name                               locus expression
+##  gene_short_name	ChromosomeNum:Start-End	locus expression
 ##              7SK    HSCHR6_MHC_MCF:30910595-30910898 0.00000000
 ##              7SK    HSCHR6_MHC_QBL:30821624-30821927 0.00000000
 ##              7SK                 X:12632121-12632316 0.00000000
@@ -248,7 +254,8 @@ print(sample_rna_exp, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-A copynumber file is not required, but you can attach "Copy Number" information.
+A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
+Purity is set 1 as default value. 
 ```r
 data(“sample_copynum”)
 print(sample_copynum, row.names = FALSE)
@@ -266,26 +273,26 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib and https://github.com/hase62/Neoantimon/raw/master/data. 
+They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/sample.data.zip. 
+Otherwise, Please execute the following codes. 
+
+Prepare the followings using the above explanations. 
 ```
 lib/ccfp.jar  
 lib/netMHCIIpan-3.1  
 lib/netMHCpan-3.0
 ```
 
+sample.data.zip includes the followings. 
 ```
-data/CopyNum.txt  
-data/hla_table.txt  
-data/hla_table2.txt  
-data/RNAseq.txt  
-data/sample.txt  
-data/refFlat.cut.txt  
-data/refFlat.txt  
-data/refMrna.fa  
-data/refMrna.merge.cut1.fa  
-data/refMrna.merge.cut2.fa  
-data/refMrna.merge.cut3.fa  
-data/refMrna.merge.fa
+lib/data/CopyNum.txt  
+lib/data/hla_table.txt  
+lib/data/hla_table2.txt  
+lib/data/RNAseq.txt  
+lib/data/sample.txt  
+lib/refFlat.txt  
+lib/refMrna.fa
+lib/refMrna.merge.fa
 ```
 
 Analize sample files ... 
