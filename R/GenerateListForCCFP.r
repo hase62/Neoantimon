@@ -1,4 +1,6 @@
-GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
+GenerateListForCCFP<-function(output_peptide_txt_file, 
+                              cnv_file, 
+                              purity){
   data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   colnames(data)<-NULL
   rownames(data)<-NULL
@@ -6,12 +8,12 @@ GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
      data<-rbind(data,data)
   }
   
-  data1<-t(sapply(scan(CNV, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
+  data1<-t(sapply(scan(cnv_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   if(is.na(as.numeric(data1[1,2]))){
    data1<-data1[-1,]
   }
   flag<-FALSE
-  if(is.na(Purity)){
+  if(is.na(purity)){
    flag<-TRUE
    cnv<-c("","nA","nB","maf","depth","purity")
    remove<-NULL
@@ -53,7 +55,7 @@ GenerateListForCCFP<-function(output_peptide_txt_file, CNV, Purity = NA){
                        as.numeric(data_near[8]) - as.numeric(data_near[9]),
                        as.numeric(data_near[9]), 
                        data[i,14], data[i,13],
-                       Purity))
+                       purity))
    }
   }
   #Write List For CCFP

@@ -1,4 +1,5 @@
-GetRatio<-function(output_peptide_txt_file, output_peptide_txt_cnc_estimate_file = NA){
+GetRatio<-function(output_peptide_txt_file, 
+                   output_peptide_txt_cnc_estimate_file){
   data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   colnames(data)<-NULL
   rownames(data)<-NULL

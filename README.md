@@ -1,10 +1,10 @@
-## Updated on 3, Oct. 2017. 
+## Updated on 4, Dec. 2017. 
 ## 1. Preparation
 **Set netMHCpan:**
 
 1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
-2. Make a script (setNetMHCpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
+2. Make a script (setNetMHCpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan.sh, 
 and then run the script as "./setNetMHCpan.sh". 
 ```
 #!/bin/bash
@@ -26,12 +26,11 @@ wget http://www.cbs.dtu.dk/services/NetMHCpan-3.0/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-
 **Set netMHCIIpan:**
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
-2. Make a script (setNetMHCIIpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib, 
+2. Make a script (setNetMHCIIpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan.sh, 
 and then run the script as "./setNetMHCIIpan.sh". 
 ```
 #!/bin/bash
@@ -56,7 +55,8 @@ tar -xvf data.tar.gz
 
 **Install samtools:**
 
-Run the following codes or download files from https://github.com/hase62/Neoantimon/raw/master/lib/. 
+You can install the latest version from http://sourceforge.net/projects/samtools/files/samtools/. 
+Otherwise, run the following codes or use "installSam()" after install Neoantimon. 
 ```
 wget http://sourceforge.net/projects/samtools/files/samtools/1.6/samtools-1.6.tar.bz2
 tar jxf samtools-1.6.tar.bz2
@@ -67,7 +67,8 @@ make install
 cd ..
 ```
 
-In addition, if you want to calculate variant allele frequency (VAF), get the old one. 
+In addition, if you want to calculate variant allele frequency (VAF), install the old one from http://sourceforge.net/projects/samtools/files/samtools/. 
+Otherwise, run the following codes or use "installSam()" after install Neoantimon. 
 ```
 wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
@@ -76,11 +77,19 @@ make
 cd ..
 ```
 
-**Download SampleFiles and CCFP.jar:**
+**Download CCFP.jar:**
+You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar. 
+Otherwise, run the following codes or use "installCCFP()" after install Neoantimon. 
 ```
 wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
-wget https://github.com/hase62/Neoantimon/raw/master/lib/data.txt.zip
-unzip data.txt.zip
+```
+
+**Download SampleFiles:**
+You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
+Otherwise, run the following codes or use "getSampleFiles()" after install Neoantimon. 
+```
+wget https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
+unzip data.zip
 ```
 
 **Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19):**
@@ -97,6 +106,7 @@ perl -pe 's/>/\n/g' tmp > refMrna.cut3.fa
 sed -i -e '/^$/d' refMrna.cut3.fa
 rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
+rm refMrna.cut[1-3].fa
 ```
 
 Download refMrna Files(GRCh37/hg19):
@@ -111,6 +121,7 @@ perl -pe 's/>/\n/g' tmp > refMrna.cut3.fa
 sed -i -e '/^$/d' refMrna.cut3.fa
 rm tmp
 paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
+rm refMrna.cut[1-3].fa
 ```
 
 **Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**

@@ -1,6 +1,8 @@
-GetRNAseq_indel<-function(output_peptide_txt_file, RNAseq_file = NA, output_file_rna_vcf = NA){
+GetRNAseq_indel<-function(output_peptide_txt_file, 
+                          rnaexp_file, 
+                          output_file_rna_vcf){
   data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-  if(ifelse(is.na(RNAseq_file), TRUE, !file.exists(RNAseq_file))){
+  if(ifelse(is.na(rnaexp_file), TRUE, !file.exists(rnaexp_file))){
      ratio_matrix<-matrix(nrow=nrow(data), ncol=3, NA)
      write.table(cbind(data, ratio_matrix), output_peptide_txt_file,
                  row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
@@ -8,12 +10,12 @@ GetRNAseq_indel<-function(output_peptide_txt_file, RNAseq_file = NA, output_file
   }
 
   ##Get RNA Data
-  temp<-scan(RNAseq_file, "character", sep="\n")
+  temp<-scan(rnaexp_file, "character", sep="\n")
   if(length(temp) < 2){
     ratio_matrix<-matrix(nrow=nrow(data), ncol=3, NA)
     write.table(cbind(data, ratio_matrix), commandArgs(TRUE)[1],
                 row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-    q("no")
+    return()
   }
   rna<-t(sapply(temp, function(x) strsplit(x, "\t")[[1]]))
   rna<-rna[-1,]
@@ -37,6 +39,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file, RNAseq_file = NA, output_file
   tail_col<-ncol(data)
 
   ##Get Ratio
+  print(output_file_rna_vcf)
   if(ifelse(is.na(output_file_rna_vcf), FALSE, file.exists(output_file_rna_vcf))){
     ratio<-t(sapply(scan(output_file_rna_vcf, "character", sep="\n"),
                     function(x) strsplit(x, "\t")[[1]]))
@@ -45,7 +48,8 @@ GetRNAseq_indel<-function(output_peptide_txt_file, RNAseq_file = NA, output_file
     if(ncol(ratio)==0){
       ratio_matrix<-matrix(nrow=nrow(data), ncol=2, NA)
     } else {
-      size<-sum(as.numeric(sapply(strsplit(ratio[1,3],"M|D|I")[[1]], function(x) rev(strsplit(x,"N|S|H|P")[[1]])[1])))
+      size<-sum(as.numeric(sapply(strsplit(ratio[1,3],"M|D|I")[[1]], 
+                                  function(x) rev(strsplit(x,"N|S|H|P")[[1]])[1])))
       ratio_matrix<-NULL
       for(i in 1:nrow(data)){
          hit<-which(!is.na(match(ratio[,1], data[i,3])))
@@ -61,7 +65,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file, RNAseq_file = NA, output_file
          ratio_matrix<-rbind(ratio_matrix, c(r, mut/total * as.numeric(data[i,19])))
       }
     }
-  }else {
+  } else {
     ratio_matrix<-matrix(nrow=nrow(data), ncol=2, NA)
   }
   write.table(cbind(data, ratio_matrix), output_peptide_txt_file,
