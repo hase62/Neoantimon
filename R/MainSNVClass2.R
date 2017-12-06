@@ -60,7 +60,7 @@
 #'
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=NA).
 #'
-#'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").
+#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").
 #'
 #'@param samtools_dir The file directory to samtools (Default="samtools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
@@ -72,26 +72,64 @@
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
 #'@export
-MainSNVClass2<-function(input_file, hla_file, file_name_in_hla_table = input_file,
-                        hmdir = getwd(), job_id = "NO_job_id", rnaexp_file = NA, rnabam_file = NA,
-                        cnv_file=NA, ccfp_dir = paste(hmdir, "lib/ccfp.jar", sep=""), purity = NA,
-                        netMHCpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep=""),
-                        refdna_file = paste(hmdir, "lib/GRCh37.fa", sep=""),
-                        refflat_file = paste(hmdir, "/data/refFlat.txt", sep=""),
-                        refmrna_file = paste(hmdir, "/data/refMrna.cut1.fa", sep=""),
-                        refmrna_3 = paste(hmdir, "/data/refMrna.cut3.fa", sep=""),
-                        samtools_dir = "samtools",
-                        bcftools_dir = "bcftools",
-                        chr_column = 1, mutation_start_column = 2,
-                        mutation_end_column = 3, mutation_ref_column = 4, mutation_alt_column = 5,
-                        nm_id_column = 10, depth_normal_column = NA, depth_tumor_column = NA,
-                        ambiguous_between_exon = 0, ambiguous_codon = 0,
+MainSNVClass2<-function(input_file, 
+                        hla_file, 
+                        file_name_in_hla_table = input_file,
+                        refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
+                        refmrna_file = paste(hmdir, "lib/refMrna.merge.fa", sep="/"),
+                        hmdir = getwd(), 
+                        job_id = "NO_job_id", 
+                        export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
+                        rnaexp_file = NA, 
+                        rnabam_file = NA,
+                        cnv_file=NA, 
+                        ccfp_dir = paste(hmdir, "lib/ccfp.jar", sep="/"), 
+                        purity = 1,
+                        netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep="/"),
+                        refdna_file = NA,
+                        samtools_dir = NA,
+                        bcftools_dir = NA,
+                        chr_column = NA, 
+                        mutation_start_column = NA,
+                        mutation_end_column = NA, 
+                        mutation_ref_column = NA, 
+                        mutation_alt_column = NA,
+                        nm_id_column = NA, 
+                        depth_normal_column = NA, 
+                        depth_tumor_column = NA,
+                        ambiguous_between_exon = 0, 
+                        ambiguous_codon = 0,
                         peptide_length = c(15)){
 
+  #Check Required Files
+  if(CheckRequiredFiles(input_file, hla_file, refflat_file, refmrna_file)) return(NULL)
+  flg<-CheckRequiredColumns(chr_column, mutation_start_column, mutation_end_column,
+                            mutation_ref_column, mutation_alt_column, nm_id_column,
+                            depth_normal_column, depth_tumor_column)
+  
+  #Check and Set Required Columns
+  if(length(flag)<=1) {
+    return(NULL)
+  } else {
+    chr_column = flg[1]
+    mutation_start_column = flag[2]
+    mutation_end_column = flag[3]
+    mutation_ref_column = flag[4]
+    mutation_alt_column = flag[5]
+    nm_id_column = flag[6]
+    depth_normal_column = flag[7]
+    depth_tumor_column = flag[8]
+  }
+
   #Generate FASTA and mutation Profile
-  GenerateMutatedSeq(input_file = input_file, hmdir = hmdir, job_id = job_id,
-                     refflat_file = refflat_file, refmrna_file = refmrna_file, refmrna_3 = refmrna_3,
-                     max_peptide_length = max(peptide_length), chr_column = chr_column,
+  job_id = paste(job_id, "SNV", sep = "_")
+  GenerateMutatedSeq(input_file = input_file, 
+                     hmdir = hmdir, 
+                     job_id = job_id,
+                     refflat_file = refflat_file, 
+                     refmrna_file = refmrna_file, 
+                     max_peptide_length = max(peptide_length), 
+                     chr_column = chr_column,
                      mutation_start_column = mutation_start_column,
                      mutation_end_column = mutation_end_column,
                      mutation_ref_column = mutation_ref_column,
@@ -101,92 +139,64 @@ MainSNVClass2<-function(input_file, hla_file, file_name_in_hla_table = input_fil
                      depth_tumor_column = depth_tumor_column,
                      ambiguous_between_exon = ambiguous_between_exon,
                      ambiguous_codon = ambiguous_codon)
-
-  output_peptide_txt_file<-paste(input_file,".", job_id,".peptide.txt",sep="")
+  
+  output_peptide_txt_file<-paste(input_file, ".", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
+    print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
     return(NULL)
   }
+  
+  RNAExpression(rnaexp_file, 
+                output_peptide_txt_file, 
+                width = 2, 
+                samtools_dir, 
+                refdna_file, 
+                rnabam_file, 
+                bcftools_dir,
+                indel = FALSE)
+  
+  CCFP.Calc(ccfp_dir, 
+            cnv_file, 
+            output_peptide_txt_file, 
+            purity)
 
-  #Attach RNAseq Data if Exist, Otherwise set NULL column
-  skip=FALSE
-  if(ifelse(is.na(rnaexp_file), FALSE, file.exists(rnaexp_file))){
-      GenerateListForGetRNASeq(output_peptide_txt_file)
-      output_file_rna_list<-paste(output_peptide_txt_file, ".list.txt", sep="")
-      print(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refdna_file, rnabam_file,
-                   ">", paste(output_peptide_txt_file, "list.mp", sep=".")))
-      error<-tryCatch2(system(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refdna_file, rnabam_file,
-                   ">", paste(output_peptide_txt_file, "list.mp", sep="."))))
-      if(error != 0) skip = TRUE
-
-      if(!skip) {
-        print(paste(bcftools_dir, "view -c", paste(output_peptide_txt_file, "list.mp", sep="."),
-                   ">", paste(output_peptide_txt_file, "list.vcf", sep=".")))
-        error<-tryCatch2(system(paste(bcftools_dir, "view -c", paste(output_peptide_txt_file, "list.mp", sep="."),
-                   ">", paste(output_peptide_txt_file, "list.vcf", sep="."))))
-      }
-      if(error != 0) skip = TRUE
+  #NetMHCIIpan
+  if(is.na(netMHCIIpan_dir) | !file.exists(netMHCIIpan_dir)) {
+    print(paste("Did not find", netMHCIIpan_dir))
+    return(NULL)
   }
-  GetRNAseq(output_peptide_txt_file = output_peptide_txt_file,
-            rnaexp_file = rnaexp_file,
-            output_file_rna_vcf = paste(output_peptide_txt_file, "list.vcf", sep="."))
-
-  #mutation Rate
-  if(ifelse(is.na(ccfp_dir), TRUE, !file.exists(ccfp_dir))) cnv_file<-NA
-  if(ifelse(is.na(cnv_file), FALSE, file.exists(cnv_file))){
-    GenerateListForCCFP(output_peptide_txt_file, cnv_file = cnv_file, purity = purity)
-    if(file.exists(paste(output_peptide_txt_file,".cnv_file.txt",sep=""))){
-      print( paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ",
-                   paste(output_peptide_txt_file, ".cnv_file.txt", sep=""), " > ",
-                   paste(output_peptide_txt_file, ".cnv_file.estimate.txt", sep=""), sep=""))
-      system(paste("java -jar ", hmdir, "/", gsub("\\./", "/", ccfp_dir), " ",
-                   paste(output_peptide_txt_file, ".cnv_file.txt", sep=""), " > ",
-                   paste(output_peptide_txt_file, ".cnv_file.estimate.txt", sep=""), sep=""))
-      GetRatio(output_peptide_txt_file = output_peptide_txt_file,
-               output_peptide_txt_cnc_estimate_file = paste(output_peptide_txt_file,".cnv_file.estimate.txt",sep=""))
-    }
-  }else{
-    GetRatio(output_peptide_txt_file = output_peptide_txt_file,
-             output_peptide_txt_cnc_estimate_file = NA)
-  }
-
-  #NetMHCpan
-  print("netMHIICpan")
-  netMHCpan_script<-scan(netMHCpan_dir, "character", sep="\n", blank.lines.skip = FALSE)
-  if(length(grep("# Automatically Overwritten by Neoantimon", netMHCpan_script))==0){
-    netMHCpan_par<-gsub("\\./","/", paste(rev(rev(strsplit(netMHCpan_dir, "/")[[1]])[-1]), collapse = "/"))
-    if(!file.exists(paste(getwd(), "/", netMHCpan_par, "/tmp", sep=""))){
-      dir.create(paste(getwd(), "/", netMHCpan_par, "/tmp", sep=""))
-    }
-    netMHCpan_script[grep("setenv\tNMHOME", netMHCpan_script)]<-
-      paste("setenv\tNMHOME ", getwd(),  "/", netMHCpan_par, sep="")
-    netMHCpan_script[grep("setenv\tNMHOME", netMHCpan_script) + 1]<-
-      paste("setenv\tTMPDIR ", getwd(),  "/", netMHCpan_par, "/tmp", sep="")
-    write.table(c(netMHCpan_script, "# Automatically Overwritten by Neoantimon"),
-                netMHCpan_dir, row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  }
+  print(paste("Executing netMHCIIpan to", export_dir))
+  SettingNetMHCIIpan(netMHCIIpan_dir)
+  
+  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
   hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-  hla_types<-hla[match(file_name_in_hla_table, hla[,1]),-1]
+  hit<-match(file_name_in_hla_table, hla[,1])
+  if(is.na(hit)) {
+    print(file_name_in_hla_table, "is not included in", hla_file)
+    return (NULL)
+  }
+  hla_types<-hla[hit, -1]
   for(pep in c("peptide", "normpeptide")){
     COUNT<-1
     for(hla_type in hla_types){
       if(length(grep("DRB1", hla_type))==1) {
-        system(paste(netMHCpan_dir,
-              " -length ", paste(peptide_length, collapse = ","),
-              " -f ", paste(input_file,job_id, pep,"fasta",sep="."),
-              " -a ", gsub("\\*","_", gsub("\\:","",hla_type)),
-              " > ", input_file, ".", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
-              sep=""))
+        system(paste(netMHCIIpan_dir,
+                     " -length ", paste(peptide_length, collapse = ","),
+                     " -f ", paste(input_file,job_id, pep,"fasta",sep="."),
+                     " -a ", gsub("\\*","_", gsub("\\:","",hla_type)),
+                     " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
+                     sep=""))
         COUNT <- COUNT + 1
       }
 
       if(length(grep("DPA1", hla_type))==1) {
         for(hla2 in hla_types[grep("DPB1", hla_types)]){
-          system(paste(netMHCpan_dir,
+          system(paste(netMHCIIpan_dir,
                        " -length ", paste(peptide_length, collapse = ","),
                        " -f ", paste(input_file,job_id, pep,"fasta",sep="."),
                        " -choose -cha ", gsub("\\*|\\:","", hla_type),
                        " -choose -chb ", gsub("\\*|\\:","", hla2),
-                       " > ", input_file, ".", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
+                       " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
                        sep=""))
           COUNT <- COUNT + 1
         }
@@ -194,16 +204,16 @@ MainSNVClass2<-function(input_file, hla_file, file_name_in_hla_table = input_fil
 
       if(length(grep("DQA1", hla_type))==1) {
         for(hla2 in hla_types[grep("DQB1", hla_types)]){
-          system(paste(netMHCpan_dir,
+          system(paste(netMHCIIpan_dir,
                        " -length ", paste(peptide_length, collapse = ","),
                        " -f ", paste(input_file,job_id, pep,"fasta",sep="."),
                        " -choose -cha ", gsub("\\*|\\:","", hla_type),
                        " -choose -chb ", gsub("\\*|\\:","", hla2),
-                       " > ", input_file, ".", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
+                       " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
                        sep=""))
           COUNT <- COUNT + 1
         }
       }
     }
   }
-}s
+}
