@@ -356,7 +356,7 @@ GenerateIndelSeq<-function(input_file,
          if(peptide_start < 1) peptide_start<-1
          peptide_end<-which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1]
          if(is.na(peptide_end)) peptide_end <- min_len
-         peptide_end <- min_len - peptide_end + max_peptide_length + 1
+         peptide_end <- min_len - peptide_end + max_peptide_length + 10
          if(peptide_end > length(peptide)) peptide_end = length(peptide)
          peptide <- peptide[peptide_start:peptide_end]
          peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
