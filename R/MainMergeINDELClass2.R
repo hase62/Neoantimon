@@ -122,6 +122,7 @@ MainMergeINDELClass2<-function(hmdir = getwd(),
     ee1<-grep("of strong", test1) - 2
     num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][5])
     
+    if(length(grep("No peptides derived", test1))>0) next
     if(length(grep("cannot be found in hla_pseudo list", test1))>0) next
     if(length(grep("Could not find allele", test1))>0) next
     for(h1 in 1:length(num1)){
@@ -132,7 +133,7 @@ MainMergeINDELClass2<-function(hmdir = getwd(),
         d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(3,2,5,7,4,10,11)]))
         d1<-d1[sapply(d1[,5], function(x) length(grep(x, info[match(num1[h1], info[,2]), 15]))==0),]
       }
-      if(nrow(d1)==0) {
+      if(nrow(d1)==0 | ncol(d1)==0) {
         r_can<-match(num1[h1], info[,2])
         if(is.na(r_can)){r_can<-grep(num1[h1], info[,2])}
         remove<-c(remove, r_can)
