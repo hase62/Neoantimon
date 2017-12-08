@@ -132,6 +132,7 @@ MainMergeINDELClass2<-function(hmdir = getwd(),
       } else {
         d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(3,2,5,7,4,10,11)]))
         d1<-d1[sapply(d1[,5], function(x) length(grep(x, info[match(num1[h1], info[,2]), 15]))==0),]
+        if(is.null(nrow(d1))) d1<-t(d1)
       }
       if(nrow(d1)==0 | ncol(d1)==0) {
         r_can<-match(num1[h1], info[,2])
