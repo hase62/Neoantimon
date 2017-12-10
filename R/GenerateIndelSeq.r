@@ -359,8 +359,10 @@ GenerateIndelSeq<-function(input_file,
          peptide_end <- min_len - peptide_end + max_peptide_length + 10
          if(peptide_end > length(peptide)) peptide_end = length(peptide)
          peptide <- peptide[peptide_start:peptide_end]
+         peptide_end <- peptide_end + 10
+         if(peptide_end > length(peptide_normal)) peptide_end = length(peptide_normal)
          peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
-          
+
          #Save Peptide
          X<-grep("X", peptide)
          if(length(X) > 0){if(X < 8) next}
@@ -368,8 +370,8 @@ GenerateIndelSeq<-function(input_file,
          refFasta<-rbind(refFasta,
                          c(paste(random, gsub("\"","", g_name), sep="_"), 
                            chr, 
-                           paste(frame, nm_ids[[1]][h], sep="_", collapse="_"),
-                           nm_ids[[1]][h+2],
+                           nm_ids[[1]][h],
+                           paste(frame, nm_ids[[1]][h+2], sep="_", collapse="_"),
                            m_ref, 
                            m_alt, 
                            round(as.numeric(MP),5), 
