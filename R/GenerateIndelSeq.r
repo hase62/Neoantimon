@@ -366,6 +366,7 @@ GenerateIndelSeq<-function(input_file,
          #Save Peptide
          X<-grep("X", peptide)
          if(length(X) > 0){if(X < 8) next}
+         if(pep_len >= 15 & length(X) > 0){if(X < 15) next}
          frame <- ifelse(abs(nchar(gsub("-", "", m_alt)) - nchar(gsub("-", "", m_ref))) %% 3 == 0, "In", "Out")
          refFasta<-rbind(refFasta,
                          c(paste(random, gsub("\"","", g_name), sep="_"), 
