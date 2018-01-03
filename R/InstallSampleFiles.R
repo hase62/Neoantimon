@@ -7,7 +7,7 @@
 #'@export
 InstallSampleFiles<-function(export_dir = "lib"){
   twd<-getw()
-  if(!dir.exists(export_dir) dir.create(export_dir)
+  if(!dir.exists(export_dir)) dir.create(export_dir)
   setwd(export_dir)
 
   #sample files

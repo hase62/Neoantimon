@@ -28,9 +28,11 @@ GenerateIndelSeq<-function(input_file,
   list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
   
   #Get RNA-Code Data
-  list_mra<-scan(refmrna_file, "character", sep="\t")
-  list_fl_NMID<-list_mra[1:length(list_mra)%%3=="1"]
-  list_fl_dna <-list_mra[1:length(list_mra)%%3=="0"]
+  list_mra<-scan(refmrna_file, "character", sep=" ")
+  start_<-grep(">", list_mra)
+  end_<-c(start_[-1] - 1, length(list_mra))
+  list_fl_NMID<-gsub(">", "", list_mra[start_])
+  list_fl_dna <-sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 2):end_[x]], collapse = ""))
   
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")
@@ -366,7 +368,7 @@ GenerateIndelSeq<-function(input_file,
          #Save Peptide
          X<-grep("X", peptide)
          if(length(X) > 0){if(X < 8) next}
-         if(pep_len >= 15 & length(X) > 0){if(X < 15) next}
+         if(max_peptide_length >= 15 & length(X) > 0){if(X < 15) next}
          frame <- ifelse(abs(nchar(gsub("-", "", m_alt)) - nchar(gsub("-", "", m_ref))) %% 3 == 0, "In", "Out")
          refFasta<-rbind(refFasta,
                          c(paste(random, gsub("\"","", g_name), sep="_"), 

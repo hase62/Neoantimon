@@ -56,8 +56,6 @@
 #'The 1st row should be the above header.
 #'See data(sample_copynum); sample_copynum;
 #'
-#'@param ccfp_dir The file directory to CCFP.pl (Default="lib/ccfp.jar").
-#'
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=NA).
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-3.0/netMHCpan").
@@ -83,9 +81,8 @@ MainSNVClass1<-function(input_file,
                         rnaexp_file = NA, 
                         rnabam_file = NA,
                         cnv_file=NA, 
-                        ccfp_dir = paste(hmdir, "lib/ccfp.jar", sep="/"), 
                         purity = 1,
-                        netMHCpan_dir = paste(hmdir, "lib/netMHCpan-3.0/netMHCIIpan", sep="/"),
+                        netMHCpan_dir = paste(hmdir, "lib/netMHCpan-3.0/netMHCpan", sep="/"),
                         refdna_file = NA,
                         samtools_dir = NA,
                         bcftools_dir = NA,
@@ -108,17 +105,17 @@ MainSNVClass1<-function(input_file,
                             depth_normal_column, depth_tumor_column)
 
   #Check and Set Required Columns
-  if(length(flag)<=1) {
+  if(length(flg)<=1) {
     return(NULL)
   } else {
     chr_column = flg[1]
-    mutation_start_column = flag[2]
-    mutation_end_column = flag[3]
-    mutation_ref_column = flag[4]
-    mutation_alt_column = flag[5]
-    nm_id_column = flag[6]
-    depth_normal_column = flag[7]
-    depth_tumor_column = flag[8]
+    mutation_start_column = flg[2]
+    mutation_end_column = flg[3]
+    mutation_ref_column = flg[4]
+    mutation_alt_column = flg[5]
+    nm_id_column = flg[6]
+    depth_normal_column = flg[7]
+    depth_tumor_column = flg[8]
   }
 
   #Generate FASTA and mutation Profile
@@ -155,8 +152,7 @@ MainSNVClass1<-function(input_file,
                 bcftools_dir,
                 indel = FALSE)
 
-  CCFP.Calc(ccfp_dir, 
-            cnv_file, 
+  CCFP.Calc(cnv_file, 
             output_peptide_txt_file, 
             purity)
 

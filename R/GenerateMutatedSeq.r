@@ -28,9 +28,11 @@ GenerateMutatedSeq<-function(input_file,
   list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
 
   #Get RNA-Code Data
-  list_mra<-scan(refmrna_file, "character", sep="\t")
-  list_fl_NMID<-list_mra[1:length(list_mra)%%3=="1"]
-  list_fl_dna <-list_mra[1:length(list_mra)%%3=="0"]
+  list_mra<-scan(refmrna_file, "character", sep=" ")
+  start_<-grep(">", list_mra)
+  end_<-c(start_[-1] - 1, length(list_mra))
+  list_fl_NMID<-gsub(">", "", list_mra[start_])
+  list_fl_dna <-sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 2):end_[x]], collapse = ""))
   
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")

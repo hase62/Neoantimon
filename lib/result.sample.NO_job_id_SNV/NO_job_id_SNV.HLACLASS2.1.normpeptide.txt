@@ -1,0 +1,111 @@
+# NetMHCIIpan version 3.1
+
+# Input is in FASTA format
+
+# Peptide length 15
+
+# Threshold for Strong binding peptides (IC50)	50.000 nM
+# Threshold for Weak binding peptides (IC50)	500.000 nM
+
+# Threshold for Strong binding peptides (%Rank)	0.5%
+# Threshold for Weak binding peptides (%Rank)	2%
+
+# Allele: HLA-DPA10103-DPB10201
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DPA10103-DPB10201     HPKHQERCREEIHSL   0_CYP4A11    6    RCREEIHSL 0.275         0.131      12177.21  95.00   9.999       
+     1 HLA-DPA10103-DPB10201     PKHQERCREEIHSLL   0_CYP4A11    6    CREEIHSLL 0.335         0.273       2610.11  60.00   9.999       
+     2 HLA-DPA10103-DPB10201     KHQERCREEIHSLLG   0_CYP4A11    5    CREEIHSLL 0.320         0.293       2097.09  55.00   9.999       
+     3 HLA-DPA10103-DPB10201     HQERCREEIHSLLGD   0_CYP4A11    4    CREEIHSLL 0.260         0.298       1992.73  55.00   9.999       
+     4 HLA-DPA10103-DPB10201     QERCREEIHSLLGDG   0_CYP4A11    3    CREEIHSLL 0.245         0.291       2154.36  55.00   9.999       
+     5 HLA-DPA10103-DPB10201     ERCREEIHSLLGDGA   0_CYP4A11    5    EIHSLLGDG 0.230         0.289       2193.35  60.00   9.999       
+     6 HLA-DPA10103-DPB10201     RCREEIHSLLGDGAS   0_CYP4A11    4    EIHSLLGDG 0.235         0.282       2362.58  60.00   9.999       
+     7 HLA-DPA10103-DPB10201     CREEIHSLLGDGASI   0_CYP4A11    3    EIHSLLGDG 0.210         0.247       3462.47  70.00   9.999       
+     8 HLA-DPA10103-DPB10201     REEIHSLLGDGASIT   0_CYP4A11    3    IHSLLGDGA 0.265         0.202       5647.18  80.00   9.999       
+     9 HLA-DPA10103-DPB10201     EEIHSLLGDGASITW   0_CYP4A11    5    LLGDGASIT 0.305         0.203       5535.86  80.00   9.999       
+    10 HLA-DPA10103-DPB10201     EIHSLLGDGASITWN   0_CYP4A11    4    LLGDGASIT 0.340         0.199       5802.39  80.00   9.999       
+    11 HLA-DPA10103-DPB10201     IHSLLGDGASITWNH   0_CYP4A11    3    LLGDGASIT 0.355         0.195       6044.56  80.00   9.999       
+    12 HLA-DPA10103-DPB10201     HSLLGDGASITWNHL   0_CYP4A11    6    GASITWNHL 0.310         0.245       3526.64  70.00   9.999       
+    13 HLA-DPA10103-DPB10201     SLLGDGASITWNHLD   0_CYP4A11    5    GASITWNHL 0.315         0.264       2880.77  65.00   9.999       
+    14 HLA-DPA10103-DPB10201     LLGDGASITWNHLDQ   0_CYP4A11    4    GASITWNHL 0.295         0.276       2528.72  60.00   9.999       
+    15 HLA-DPA10103-DPB10201     LGDGASITWNHLDQM   0_CYP4A11    6    ITWNHLDQM 0.475         0.332       1382.32  46.00   9.999       
+    16 HLA-DPA10103-DPB10201     GDGASITWNHLDQMP   0_CYP4A11    5    ITWNHLDQM 0.450         0.323       1512.53  48.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DPA10103-DPB10201
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DPA10103-DPB10201     YTPEPERDYLEAAIR     1_DHX15    4    PERDYLEAA 0.215         0.216       4826.12  75.00   9.999       
+     1 HLA-DPA10103-DPB10201     TPEPERDYLEAAIRT     1_DHX15    5    RDYLEAAIR 0.195         0.242       3628.74  70.00   9.999       
+     2 HLA-DPA10103-DPB10201     PEPERDYLEAAIRTV     1_DHX15    6    YLEAAIRTV 0.505         0.329       1419.94  46.00   9.999       
+     3 HLA-DPA10103-DPB10201     EPERDYLEAAIRTVI     1_DHX15    5    YLEAAIRTV 0.505         0.368        933.38  38.00   9.999       
+     4 HLA-DPA10103-DPB10201     PERDYLEAAIRTVIQ     1_DHX15    4    YLEAAIRTV 0.520         0.371        900.49  38.00   9.999       
+     5 HLA-DPA10103-DPB10201     ERDYLEAAIRTVIQI     1_DHX15    3    YLEAAIRTV 0.440         0.390        736.19  34.00   9.999       
+     6 HLA-DPA10103-DPB10201     RDYLEAAIRTVIQIH     1_DHX15    2    YLEAAIRTV 0.335         0.373        884.08  37.00   9.999       
+     7 HLA-DPA10103-DPB10201     DYLEAAIRTVIQIHM     1_DHX15    6    IRTVIQIHM 0.190         0.362        993.27  40.00   9.999       
+     8 HLA-DPA10103-DPB10201     YLEAAIRTVIQIHMC     1_DHX15    6    RTVIQIHMC 0.225         0.365        968.50  39.00   9.999       
+     9 HLA-DPA10103-DPB10201     LEAAIRTVIQIHMCE     1_DHX15    5    RTVIQIHMC 0.255         0.350       1130.79  42.00   9.999       
+    10 HLA-DPA10103-DPB10201     EAAIRTVIQIHMCEE     1_DHX15    4    RTVIQIHMC 0.280         0.352       1105.41  42.00   9.999       
+    11 HLA-DPA10103-DPB10201     AAIRTVIQIHMCEEE     1_DHX15    3    RTVIQIHMC 0.250         0.358       1043.14  40.00   9.999       
+    12 HLA-DPA10103-DPB10201     AIRTVIQIHMCEEEE     1_DHX15    2    RTVIQIHMC 0.215         0.345       1195.41  43.00   9.999       
+    13 HLA-DPA10103-DPB10201     IRTVIQIHMCEEEEG     1_DHX15    4    IQIHMCEEE 0.255         0.312       1716.65  50.00   9.999       
+    14 HLA-DPA10103-DPB10201     RTVIQIHMCEEEEGD     1_DHX15    3    IQIHMCEEE 0.370         0.254       3197.61  65.00   9.999       
+    15 HLA-DPA10103-DPB10201     TVIQIHMCEEEEGDL     1_DHX15    2    IQIHMCEEE 0.290         0.222       4522.86  75.00   9.999       
+    16 HLA-DPA10103-DPB10201     VIQIHMCEEEEGDLL     1_DHX15    4    HMCEEEEGD 0.185         0.220       4616.45  75.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DPA10103-DPB10201
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DPA10103-DPB10201     VMGCTEARRRCDRDS      2_GAS1    3    CTEARRRCD 0.275         0.125      12939.52  95.00   9.999       
+     1 HLA-DPA10103-DPB10201     MGCTEARRRCDRDSR      2_GAS1    2    CTEARRRCD 0.250         0.086      19745.56  95.00   9.999       
+     2 HLA-DPA10103-DPB10201     GCTEARRRCDRDSRC      2_GAS1    6    RRCDRDSRC 0.185         0.070      23445.07  95.00   9.999       
+     3 HLA-DPA10103-DPB10201     CTEARRRCDRDSRCN      2_GAS1    5    RRCDRDSRC 0.235         0.069      23670.39  95.00   9.999       
+     4 HLA-DPA10103-DPB10201     TEARRRCDRDSRCNL      2_GAS1    6    CDRDSRCNL 0.195         0.097      17431.60  95.00   9.999       
+     5 HLA-DPA10103-DPB10201     EARRRCDRDSRCNLA      2_GAS1    6    DRDSRCNLA 0.285         0.116      14224.56  95.00   9.999       
+     6 HLA-DPA10103-DPB10201     ARRRCDRDSRCNLAL      2_GAS1    6    RDSRCNLAL 0.285         0.146      10254.93  90.00   9.999       
+     7 HLA-DPA10103-DPB10201     RRRCDRDSRCNLALS      2_GAS1    5    RDSRCNLAL 0.250         0.160       8823.59  90.00   9.999       
+     8 HLA-DPA10103-DPB10201     RRCDRDSRCNLALSR      2_GAS1    4    RDSRCNLAL 0.185         0.173       7682.09  85.00   9.999       
+     9 HLA-DPA10103-DPB10201     RCDRDSRCNLALSRY      2_GAS1    6    RCNLALSRY 0.225         0.206       5395.30  80.00   9.999       
+    10 HLA-DPA10103-DPB10201     CDRDSRCNLALSRYL      2_GAS1    6    CNLALSRYL 0.290         0.393        708.52  34.00   9.999       
+    11 HLA-DPA10103-DPB10201     DRDSRCNLALSRYLT      2_GAS1    5    CNLALSRYL 0.230         0.495        235.43  18.00   9.999   <=WB
+    12 HLA-DPA10103-DPB10201     RDSRCNLALSRYLTY      2_GAS1    6    LALSRYLTY 0.680         0.662         38.77   3.50   9.999   <=SB
+    13 HLA-DPA10103-DPB10201     DSRCNLALSRYLTYC      2_GAS1    5    LALSRYLTY 0.675         0.662         38.92   3.50   9.999   <=SB
+    14 HLA-DPA10103-DPB10201     SRCNLALSRYLTYCG      2_GAS1    4    LALSRYLTY 0.675         0.659         39.92   3.50   9.999   <=SB
+    15 HLA-DPA10103-DPB10201     RCNLALSRYLTYCGK      2_GAS1    3    LALSRYLTY 0.655         0.651         43.56   4.00   9.999   <=SB
+    16 HLA-DPA10103-DPB10201     CNLALSRYLTYCGKV      2_GAS1    2    LALSRYLTY 0.575         0.624         58.55   5.50   9.999   <=WB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 4 Number of weak binders: 2
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DPA10103-DPB10201
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DPA10103-DPB10201     KKGVKGFGDDIPGME     3_PDE6H    6    FGDDIPGME 0.290         0.133      11797.86  95.00   9.999       
+     1 HLA-DPA10103-DPB10201     KGVKGFGDDIPGMEG     3_PDE6H    5    FGDDIPGME 0.330         0.131      12091.34  95.00   9.999       
+     2 HLA-DPA10103-DPB10201     GVKGFGDDIPGMEGL     3_PDE6H    4    FGDDIPGME 0.345         0.146      10299.07  90.00   9.999       
+     3 HLA-DPA10103-DPB10201     VKGFGDDIPGMEGLG     3_PDE6H    3    FGDDIPGME 0.355         0.140      10975.36  90.00   9.999       
+     4 HLA-DPA10103-DPB10201     KGFGDDIPGMEGLGT     3_PDE6H    2    FGDDIPGME 0.315         0.130      12295.17  95.00   9.999       
+     5 HLA-DPA10103-DPB10201     GFGDDIPGMEGLGTD     3_PDE6H    1    FGDDIPGME 0.230         0.118      13887.11  95.00   9.999       
+     6 HLA-DPA10103-DPB10201     FGDDIPGMEGLGTDI     3_PDE6H    4    IPGMEGLGT 0.185         0.107      15762.76  95.00   9.999       
+     7 HLA-DPA10103-DPB10201     GDDIPGMEGLGTDIT     3_PDE6H    3    IPGMEGLGT 0.210         0.095      17811.00  95.00   9.999       
+     8 HLA-DPA10103-DPB10201     DDIPGMEGLGTDITV     3_PDE6H    5    MEGLGTDIT 0.225         0.110      15272.87  95.00   9.999       
+     9 HLA-DPA10103-DPB10201     DIPGMEGLGTDITVI     3_PDE6H    6    GLGTDITVI 0.405         0.135      11548.67  95.00   9.999       
+    10 HLA-DPA10103-DPB10201     IPGMEGLGTDITVIC     3_PDE6H    5    GLGTDITVI 0.300         0.156       9267.24  90.00   9.999       
+    11 HLA-DPA10103-DPB10201     PGMEGLGTDITVICP     3_PDE6H    4    GLGTDITVI 0.240         0.154       9486.47  90.00   9.999       
+    12 HLA-DPA10103-DPB10201     GMEGLGTDITVICPW     3_PDE6H    3    GLGTDITVI 0.200         0.171       7857.54  85.00   9.999       
+    13 HLA-DPA10103-DPB10201     MEGLGTDITVICPWE     3_PDE6H    2    GLGTDITVI 0.180         0.182       6970.20  85.00   9.999       
+    14 HLA-DPA10103-DPB10201     EGLGTDITVICPWEA     3_PDE6H    6    ITVICPWEA 0.205         0.205       5431.09  80.00   9.999       
+    15 HLA-DPA10103-DPB10201     GLGTDITVICPWEAF     3_PDE6H    6    TVICPWEAF 0.395         0.288       2205.08  60.00   9.999       
+    16 HLA-DPA10103-DPB10201     LGTDITVICPWEAFS     3_PDE6H    5    TVICPWEAF 0.335         0.331       1388.92  46.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------

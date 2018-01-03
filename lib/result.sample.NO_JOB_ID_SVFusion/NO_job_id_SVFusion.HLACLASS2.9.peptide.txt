@@ -1,0 +1,748 @@
+# NetMHCIIpan version 3.1
+
+# Input is in FASTA format
+
+# Peptide length 15
+
+# Threshold for Strong binding peptides (IC50)	50.000 nM
+# Threshold for Weak binding peptides (IC50)	500.000 nM
+
+# Threshold for Strong binding peptides (%Rank)	0.5%
+# Threshold for Weak binding peptides (%Rank)	2%
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     GIDYNSWEVGPKFRE      0_AAR2    3    YNSWEVGPK 0.370         0.342       1237.20  75.00   9.999       
+     1         DRB1_1104     IDYNSWEVGPKFREQ      0_AAR2    2    YNSWEVGPK 0.330         0.351       1121.08  75.00   9.999       
+     2         DRB1_1104     DYNSWEVGPKFREQL      0_AAR2    4    WEVGPKFRE 0.370         0.370        917.22  70.00   9.999       
+     3         DRB1_1104     YNSWEVGPKFREQLK      0_AAR2    3    WEVGPKFRE 0.395         0.380        821.55  70.00   9.999       
+     4         DRB1_1104     NSWEVGPKFREQLKL      0_AAR2    2    WEVGPKFRE 0.330         0.392        721.28  65.00   9.999       
+     5         DRB1_1104     SWEVGPKFREQLKLF      0_AAR2    6    KFREQLKLF 0.270         0.464        329.96  50.00   9.999   <=WB
+     6         DRB1_1104     WEVGPKFREQLKLFC      0_AAR2    6    FREQLKLFC 0.595         0.578         96.40  28.00   9.999   <=WB
+     7         DRB1_1104     EVGPKFREQLKLFCE      0_AAR2    5    FREQLKLFC 0.665         0.600         75.86  25.00   9.999   <=WB
+     8         DRB1_1104     VGPKFREQLKLFCET      0_AAR2    4    FREQLKLFC 0.665         0.613         65.63  23.00   9.999   <=WB
+     9         DRB1_1104     GPKFREQLKLFCETC      0_AAR2    3    FREQLKLFC 0.675         0.600         75.56  25.00   9.999   <=WB
+    10         DRB1_1104     PKFREQLKLFCETCD      0_AAR2    2    FREQLKLFC 0.720         0.580         94.37  28.00   9.999   <=WB
+    11         DRB1_1104     KFREQLKLFCETCDR      0_AAR2    1    FREQLKLFC 0.725         0.542        142.56  35.00   9.999   <=WB
+    12         DRB1_1104     FREQLKLFCETCDRL      0_AAR2    0    FREQLKLFC 0.480         0.454        367.16  55.00   9.999   <=WB
+    13         DRB1_1104     REQLKLFCETCDRLT      0_AAR2    5    LFCETCDRL 0.325         0.354       1082.33  75.00   9.999       
+    14         DRB1_1104     EQLKLFCETCDRLTC      0_AAR2    4    LFCETCDRL 0.345         0.365        963.38  70.00   9.999       
+    15         DRB1_1104     QLKLFCETCDRLTCR      0_AAR2    3    LFCETCDRL 0.345         0.391        723.86  65.00   9.999       
+    16         DRB1_1104     LKLFCETCDRLTCRD      0_AAR2    2    LFCETCDRL 0.380         0.370        912.75  70.00   9.999       
+    17         DRB1_1104     KLFCETCDRLTCRDC      0_AAR2    1    LFCETCDRL 0.335         0.339       1272.28  75.00   9.999       
+    18         DRB1_1104     LFCETCDRLTCRDCQ      0_AAR2    2    CETCDRLTC 0.360         0.289       2189.28  85.00   9.999       
+    19         DRB1_1104     FCETCDRLTCRDCQL      0_AAR2    1    CETCDRLTC 0.330         0.236       3899.00  90.00   9.999       
+    20         DRB1_1104     CETCDRLTCRDCQLL      0_AAR2    6    LTCRDCQLL 0.335         0.253       3230.05  90.00   9.999       
+    21         DRB1_1104     ETCDRLTCRDCQLLE      0_AAR2    5    LTCRDCQLL 0.400         0.262       2930.41  90.00   9.999       
+    22         DRB1_1104     TCDRLTCRDCQLLEH      0_AAR2    4    LTCRDCQLL 0.385         0.290       2180.22  85.00   9.999       
+    23         DRB1_1104     CDRLTCRDCQLLEHK      0_AAR2    3    LTCRDCQLL 0.320         0.314       1667.03  80.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 8
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     KRGDPHELRNIFLQL  1_SLC25A12    4    PHELRNIFL 0.335         0.441        422.56  55.00   9.999   <=WB
+     1         DRB1_1104     RGDPHELRNIFLQLS  1_SLC25A12    6    LRNIFLQLS 0.495         0.527        166.79  38.00   9.999   <=WB
+     2         DRB1_1104     GDPHELRNIFLQLSA  1_SLC25A12    5    LRNIFLQLS 0.490         0.589         85.48  27.00   9.999   <=WB
+     3         DRB1_1104     DPHELRNIFLQLSAV  1_SLC25A12    4    LRNIFLQLS 0.430         0.630         54.53  20.00   9.999   <=WB
+     4         DRB1_1104     PHELRNIFLQLSAVQ  1_SLC25A12    3    LRNIFLQLS 0.305         0.686         29.86  12.00   9.999   <=SB
+     5         DRB1_1104     HELRNIFLQLSAVQE  1_SLC25A12    5    IFLQLSAVQ 0.370         0.700         25.63  11.00   9.999   <=SB
+     6         DRB1_1104     ELRNIFLQLSAVQEA  1_SLC25A12    4    IFLQLSAVQ 0.410         0.707         23.73  10.00   9.999   <=SB
+     7         DRB1_1104     LRNIFLQLSAVQEAQ  1_SLC25A12    3    IFLQLSAVQ 0.450         0.699         25.85  11.00   9.999   <=SB
+     8         DRB1_1104     RNIFLQLSAVQEAQL  1_SLC25A12    2    IFLQLSAVQ 0.470         0.682         31.32  13.00   9.999   <=SB
+     9         DRB1_1104     NIFLQLSAVQEAQLK  1_SLC25A12    1    IFLQLSAVQ 0.500         0.628         55.89  20.00   9.999   <=WB
+    10         DRB1_1104     IFLQLSAVQEAQLKR  1_SLC25A12    1    FLQLSAVQE 0.335         0.580         94.47  28.00   9.999   <=WB
+    11         DRB1_1104     FLQLSAVQEAQLKRL  1_SLC25A12    6    VQEAQLKRL 0.285         0.542        142.12  35.00   9.999   <=WB
+    12         DRB1_1104     LQLSAVQEAQLKRLE  1_SLC25A12    5    VQEAQLKRL 0.400         0.536        150.85  36.00   9.999   <=WB
+    13         DRB1_1104     QLSAVQEAQLKRLEV  1_SLC25A12    4    VQEAQLKRL 0.460         0.564        112.45  31.00   9.999   <=WB
+    14         DRB1_1104     LSAVQEAQLKRLEVT  1_SLC25A12    3    VQEAQLKRL 0.445         0.568        107.47  30.00   9.999   <=WB
+    15         DRB1_1104     SAVQEAQLKRLEVTR  1_SLC25A12    2    VQEAQLKRL 0.335         0.582         91.70  28.00   9.999   <=WB
+    16         DRB1_1104     AVQEAQLKRLEVTRP  1_SLC25A12    6    LKRLEVTRP 0.300         0.591         83.82  26.00   9.999   <=WB
+    17         DRB1_1104     VQEAQLKRLEVTRPR  1_SLC25A12    5    LKRLEVTRP 0.595         0.625         58.13  21.00   9.999   <=WB
+    18         DRB1_1104     QEAQLKRLEVTRPRV  1_SLC25A12    4    LKRLEVTRP 0.570         0.677         33.09  14.00   9.999   <=SB
+    19         DRB1_1104     EAQLKRLEVTRPRVL  1_SLC25A12    3    LKRLEVTRP 0.420         0.728         18.93   7.50   9.999   <=SB
+    20         DRB1_1104     AQLKRLEVTRPRVLG  1_SLC25A12    2    LKRLEVTRP 0.385         0.740         16.64   6.50   9.999   <=SB
+    21         DRB1_1104     QLKRLEVTRPRVLGS  1_SLC25A12    4    LEVTRPRVL 0.330         0.734         17.85   7.00   9.999   <=SB
+    22         DRB1_1104     LKRLEVTRPRVLGSR  1_SLC25A12    3    LEVTRPRVL 0.470         0.712         22.48   9.50   9.999   <=SB
+    23         DRB1_1104     KRLEVTRPRVLGSRE  1_SLC25A12    2    LEVTRPRVL 0.505         0.669         35.95  15.00   9.999   <=SB
+    24         DRB1_1104     RLEVTRPRVLGSREQ  1_SLC25A12    1    LEVTRPRVL 0.535         0.597         78.25  25.00   9.999   <=WB
+    25         DRB1_1104     LEVTRPRVLGSREQG  1_SLC25A12    0    LEVTRPRVL 0.375         0.473        298.86  48.00   9.999   <=WB
+    26         DRB1_1104     EVTRPRVLGSREQGQ  1_SLC25A12    1    VTRPRVLGS 0.285         0.360       1022.05  70.00   9.999       
+    27         DRB1_1104     VTRPRVLGSREQGQV  1_SLC25A12    4    RVLGSREQG 0.235         0.342       1238.19  75.00   9.999       
+    28         DRB1_1104     TRPRVLGSREQGQVP  1_SLC25A12    3    RVLGSREQG 0.320         0.305       1851.94  80.00   9.999       
+    29         DRB1_1104     RPRVLGSREQGQVPR  1_SLC25A12    2    RVLGSREQG 0.345         0.283       2338.14  85.00   9.999       
+    30         DRB1_1104     PRVLGSREQGQVPRM  1_SLC25A12    2    VLGSREQGQ 0.340         0.249       3397.53  90.00   9.999       
+    31         DRB1_1104     RVLGSREQGQVPRMA  1_SLC25A12    1    VLGSREQGQ 0.280         0.235       3933.83  90.00   9.999       
+    32         DRB1_1104     VLGSREQGQVPRMAR  1_SLC25A12    6    QGQVPRMAR 0.390         0.282       2371.28  85.00   9.999       
+    33         DRB1_1104     LGSREQGQVPRMARQ  1_SLC25A12    5    QGQVPRMAR 0.470         0.314       1664.05  80.00   9.999       
+    34         DRB1_1104     GSREQGQVPRMARQP  1_SLC25A12    4    QGQVPRMAR 0.505         0.317       1621.91  80.00   9.999       
+    35         DRB1_1104     SREQGQVPRMARQPP  1_SLC25A12    3    QGQVPRMAR 0.435         0.330       1407.40  75.00   9.999       
+    36         DRB1_1104     REQGQVPRMARQPPP  1_SLC25A12    2    QGQVPRMAR 0.415         0.337       1306.42  75.00   9.999       
+    37         DRB1_1104     EQGQVPRMARQPPPP  1_SLC25A12    1    QGQVPRMAR 0.385         0.323       1514.59  80.00   9.999       
+    38         DRB1_1104     QGQVPRMARQPPPPW  1_SLC25A12    6    MARQPPPPW 0.300         0.351       1124.64  75.00   9.999       
+    39         DRB1_1104     GQVPRMARQPPPPWV  1_SLC25A12    5    MARQPPPPW 0.520         0.375        865.88  70.00   9.999       
+    40         DRB1_1104     QVPRMARQPPPPWVH  1_SLC25A12    4    MARQPPPPW 0.590         0.384        786.46  65.00   9.999       
+    41         DRB1_1104     VPRMARQPPPPWVHA  1_SLC25A12    3    MARQPPPPW 0.670         0.376        851.76  70.00   9.999       
+    42         DRB1_1104     PRMARQPPPPWVHAA  1_SLC25A12    2    MARQPPPPW 0.730         0.335       1331.94  75.00   9.999       
+    43         DRB1_1104     RMARQPPPPWVHAAF  1_SLC25A12    1    MARQPPPPW 0.705         0.313       1695.79  80.00   9.999       
+    44         DRB1_1104     MARQPPPPWVHAAFL  1_SLC25A12    0    MARQPPPPW 0.345         0.239       3747.61  90.00   9.999       
+    45         DRB1_1104     ARQPPPPWVHAAFLL  1_SLC25A12    6    PWVHAAFLL 0.425         0.291       2146.91  85.00   9.999       
+    46         DRB1_1104     RQPPPPWVHAAFLLC  1_SLC25A12    6    WVHAAFLLC 0.510         0.362        993.56  70.00   9.999       
+    47         DRB1_1104     QPPPPWVHAAFLLCL  1_SLC25A12    5    WVHAAFLLC 0.435         0.441        424.54  55.00   9.999   <=WB
+    48         DRB1_1104     PPPPWVHAAFLLCLL  1_SLC25A12    4    WVHAAFLLC 0.350         0.485        262.34  46.00   9.999   <=WB
+    49         DRB1_1104     PPPWVHAAFLLCLLS  1_SLC25A12    3    WVHAAFLLC 0.345         0.492        243.77  44.00   9.999   <=WB
+    50         DRB1_1104     PPWVHAAFLLCLLSL  1_SLC25A12    3    VHAAFLLCL 0.335         0.489        250.52  45.00   9.999   <=WB
+    51         DRB1_1104     PWVHAAFLLCLLSLG  1_SLC25A12    2    VHAAFLLCL 0.300         0.459        347.47  55.00   9.999   <=WB
+    52         DRB1_1104     WVHAAFLLCLLSLGG  1_SLC25A12    6    LLCLLSLGG 0.285         0.427        493.82  60.00   9.999   <=WB
+    53         DRB1_1104     VHAAFLLCLLSLGGA  1_SLC25A12    5    LLCLLSLGG 0.445         0.417        546.64  60.00   9.999       
+    54         DRB1_1104     HAAFLLCLLSLGGAI  1_SLC25A12    4    LLCLLSLGG 0.345         0.462        338.96  50.00   9.999   <=WB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 11 Number of weak binders: 22
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     RKTMAEKRQLFIEML      2_DTNB    3    MAEKRQLFI 0.385         0.573        101.28  29.00   9.999   <=WB
+     1         DRB1_1104     KTMAEKRQLFIEMLY      2_DTNB    2    MAEKRQLFI 0.375         0.535        152.31  36.00   9.999   <=WB
+     2         DRB1_1104     TMAEKRQLFIEMLYR      2_DTNB    6    QLFIEMLYR 0.395         0.573        101.12  29.00   9.999   <=WB
+     3         DRB1_1104     MAEKRQLFIEMLYRL      2_DTNB    5    QLFIEMLYR 0.435         0.621         60.38  21.00   9.999   <=WB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 4
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     GHTDWLSDCCFHPSE    3_SPAG16    4    WLSDCCFHP 0.410         0.201       5657.82  95.00   9.999       
+     1         DRB1_1104     HTDWLSDCCFHPSER    3_SPAG16    3    WLSDCCFHP 0.360         0.225       4404.83  95.00   9.999       
+     2         DRB1_1104     TDWLSDCCFHPSERC    3_SPAG16    6    CCFHPSERC 0.275         0.240       3713.18  90.00   9.999       
+     3         DRB1_1104     DWLSDCCFHPSERCR    3_SPAG16    5    CCFHPSERC 0.320         0.297       2014.64  85.00   9.999       
+     4         DRB1_1104     WLSDCCFHPSERCRC    3_SPAG16    6    FHPSERCRC 0.385         0.336       1324.67  75.00   9.999       
+     5         DRB1_1104     LSDCCFHPSERCRCT    3_SPAG16    5    FHPSERCRC 0.560         0.359       1032.41  70.00   9.999       
+     6         DRB1_1104     SDCCFHPSERCRCTL    3_SPAG16    4    FHPSERCRC 0.630         0.387        756.85  65.00   9.999       
+     7         DRB1_1104     DCCFHPSERCRCTLY    3_SPAG16    3    FHPSERCRC 0.650         0.395        695.39  65.00   9.999       
+     8         DRB1_1104     CCFHPSERCRCTLYG    3_SPAG16    2    FHPSERCRC 0.660         0.402        642.72  65.00   9.999       
+     9         DRB1_1104     CFHPSERCRCTLYGH    3_SPAG16    1    FHPSERCRC 0.495         0.390        737.37  65.00   9.999       
+    10         DRB1_1104     FHPSERCRCTLYGHT    3_SPAG16    6    CRCTLYGHT 0.330         0.391        726.15  65.00   9.999       
+    11         DRB1_1104     HPSERCRCTLYGHTD    3_SPAG16    5    CRCTLYGHT 0.465         0.383        796.36  65.00   9.999       
+    12         DRB1_1104     PSERCRCTLYGHTDS    3_SPAG16    4    CRCTLYGHT 0.455         0.402        643.80  65.00   9.999       
+    13         DRB1_1104     SERCRCTLYGHTDSV    3_SPAG16    3    CRCTLYGHT 0.440         0.423        515.60  60.00   9.999       
+    14         DRB1_1104     ERCRCTLYGHTDSVN    3_SPAG16    2    CRCTLYGHT 0.425         0.415        558.83  60.00   9.999       
+    15         DRB1_1104     RCRCTLYGHTDSVNS    3_SPAG16    1    CRCTLYGHT 0.385         0.405        624.41  65.00   9.999       
+    16         DRB1_1104     CRCTLYGHTDSVNSI    3_SPAG16    5    YGHTDSVNS 0.255         0.355       1070.82  75.00   9.999       
+    17         DRB1_1104     RCTLYGHTDSVNSIE    3_SPAG16    4    YGHTDSVNS 0.355         0.290       2168.20  85.00   9.999       
+    18         DRB1_1104     CTLYGHTDSVNSIEF    3_SPAG16    3    YGHTDSVNS 0.475         0.264       2879.46  90.00   9.999       
+    19         DRB1_1104     TLYGHTDSVNSIEFF    3_SPAG16    2    YGHTDSVNS 0.570         0.238       3789.69  90.00   9.999       
+    20         DRB1_1104     LYGHTDSVNSIEFFP    3_SPAG16    1    YGHTDSVNS 0.535         0.217       4802.10  95.00   9.999       
+    21         DRB1_1104     YGHTDSVNSIEFFPF    3_SPAG16    6    VNSIEFFPF 0.435         0.234       3967.86  90.00   9.999       
+    22         DRB1_1104     GHTDSVNSIEFFPFS    3_SPAG16    5    VNSIEFFPF 0.525         0.256       3139.37  90.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     AAACLPGEEGTAERS     4_TMCC1    1    AACLPGEEG 0.375         0.114      14580.78  95.00   9.999       
+     1         DRB1_1104     AACLPGEEGTAERSC     4_TMCC1    3    LPGEEGTAE 0.265         0.095      17967.20  95.00   9.999       
+     2         DRB1_1104     ACLPGEEGTAERSCK     4_TMCC1    6    EGTAERSCK 0.245         0.096      17704.94  95.00   9.999       
+     3         DRB1_1104     CLPGEEGTAERSCKR     4_TMCC1    6    GTAERSCKR 0.445         0.143      10661.79  95.00   9.999       
+     4         DRB1_1104     LPGEEGTAERSCKRN     4_TMCC1    5    GTAERSCKR 0.485         0.169       8028.21  95.00   9.999       
+     5         DRB1_1104     PGEEGTAERSCKRNL     4_TMCC1    6    AERSCKRNL 0.385         0.229       4212.83  90.00   9.999       
+     6         DRB1_1104     GEEGTAERSCKRNLS     4_TMCC1    6    ERSCKRNLS 0.355         0.303       1888.62  80.00   9.999       
+     7         DRB1_1104     EEGTAERSCKRNLST     4_TMCC1    5    ERSCKRNLS 0.425         0.348       1156.34  75.00   9.999       
+     8         DRB1_1104     EGTAERSCKRNLSTT     4_TMCC1    4    ERSCKRNLS 0.445         0.370        910.87  70.00   9.999       
+     9         DRB1_1104     GTAERSCKRNLSTTT     4_TMCC1    3    ERSCKRNLS 0.395         0.403        639.46  65.00   9.999       
+    10         DRB1_1104     TAERSCKRNLSTTTG     4_TMCC1    2    ERSCKRNLS 0.360         0.412        579.17  60.00   9.999       
+    11         DRB1_1104     AERSCKRNLSTTTGS     4_TMCC1    4    CKRNLSTTT 0.365         0.407        611.60  65.00   9.999       
+    12         DRB1_1104     ERSCKRNLSTTTGSS     4_TMCC1    3    CKRNLSTTT 0.425         0.389        746.15  65.00   9.999       
+    13         DRB1_1104     RSCKRNLSTTTGSSE     4_TMCC1    2    CKRNLSTTT 0.555         0.363        983.02  70.00   9.999       
+    14         DRB1_1104     SCKRNLSTTTGSSER     4_TMCC1    1    CKRNLSTTT 0.460         0.321       1544.26  80.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     LHGQLRGLIPSSPQK    5_PDLIM3    0    LHGQLRGLI 0.415         0.593         82.16  26.00   9.999   <=WB
+     1         DRB1_1104     HGQLRGLIPSSPQKT    5_PDLIM3    3    LRGLIPSSP 0.600         0.517        185.40  40.00   9.999   <=WB
+     2         DRB1_1104     GQLRGLIPSSPQKTL    5_PDLIM3    2    LRGLIPSSP 0.410         0.547        134.91  34.00   9.999   <=WB
+     3         DRB1_1104     QLRGLIPSSPQKTLE    5_PDLIM3    4    LIPSSPQKT 0.485         0.526        168.07  38.00   9.999   <=WB
+     4         DRB1_1104     LRGLIPSSPQKTLEC    5_PDLIM3    3    LIPSSPQKT 0.665         0.483        270.06  46.00   9.999   <=WB
+     5         DRB1_1104     RGLIPSSPQKTLECK    5_PDLIM3    2    LIPSSPQKT 0.730         0.433        459.53  60.00   9.999   <=WB
+     6         DRB1_1104     GLIPSSPQKTLECKQ    5_PDLIM3    1    LIPSSPQKT 0.640         0.371        903.97  70.00   9.999       
+     7         DRB1_1104     LIPSSPQKTLECKQQ    5_PDLIM3    0    LIPSSPQKT 0.475         0.295       2054.33  85.00   9.999       
+     8         DRB1_1104     IPSSPQKTLECKQQK    5_PDLIM3    6    KTLECKQQK 0.320         0.228       4242.75  95.00   9.999       
+     9         DRB1_1104     PSSPQKTLECKQQKI    5_PDLIM3    5    KTLECKQQK 0.390         0.279       2430.56  85.00   9.999       
+    10         DRB1_1104     SSPQKTLECKQQKII    5_PDLIM3    6    LECKQQKII 0.345         0.358       1036.76  70.00   9.999       
+    11         DRB1_1104     SPQKTLECKQQKIIL    5_PDLIM3    5    LECKQQKII 0.390         0.424        507.16  60.00   9.999       
+    12         DRB1_1104     PQKTLECKQQKIILL    5_PDLIM3    6    CKQQKIILL 0.300         0.506        210.42  42.00   9.999   <=WB
+    13         DRB1_1104     QKTLECKQQKIILLR    5_PDLIM3    5    CKQQKIILL 0.280         0.599         76.91  25.00   9.999   <=WB
+    14         DRB1_1104     KTLECKQQKIILLRR    5_PDLIM3    6    QQKIILLRR 0.410         0.670         35.62  14.00   9.999   <=SB
+    15         DRB1_1104     TLECKQQKIILLRRE    5_PDLIM3    5    QQKIILLRR 0.485         0.678         32.57  13.00   9.999   <=SB
+    16         DRB1_1104     LECKQQKIILLRREM    5_PDLIM3    4    QQKIILLRR 0.335         0.767         12.49   4.50   9.999   <=SB
+    17         DRB1_1104     ECKQQKIILLRREMK    5_PDLIM3    6    IILLRREMK 0.645         0.838          5.77   0.80   9.999   <=SB
+    18         DRB1_1104     CKQQKIILLRREMKE    5_PDLIM3    5    IILLRREMK 0.680         0.848          5.17   0.50   9.999   <=SB
+    19         DRB1_1104     KQQKIILLRREMKET    5_PDLIM3    4    IILLRREMK 0.685         0.852          4.95   0.50   9.999   <=SB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 6 Number of weak binders: 8
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     HNIRPKPFVIPGRSR    6_PDLIM3    6    PFVIPGRSR 0.290         0.481        274.50  46.00   9.999   <=WB
+     1         DRB1_1104     NIRPKPFVIPGRSRT    6_PDLIM3    6    FVIPGRSRT 0.395         0.547        134.55  34.00   9.999   <=WB
+     2         DRB1_1104     IRPKPFVIPGRSRTL    6_PDLIM3    5    FVIPGRSRT 0.480         0.637         50.98  19.00   9.999   <=WB
+     3         DRB1_1104     RPKPFVIPGRSRTLE    6_PDLIM3    4    FVIPGRSRT 0.425         0.648         45.10  17.00   9.999   <=SB
+     4         DRB1_1104     PKPFVIPGRSRTLEC    6_PDLIM3    3    FVIPGRSRT 0.415         0.644         47.16  18.00   9.999   <=SB
+     5         DRB1_1104     KPFVIPGRSRTLECK    6_PDLIM3    3    VIPGRSRTL 0.430         0.644         47.03  18.00   9.999   <=SB
+     6         DRB1_1104     PFVIPGRSRTLECKQ    6_PDLIM3    2    VIPGRSRTL 0.435         0.598         77.67  25.00   9.999   <=WB
+     7         DRB1_1104     FVIPGRSRTLECKQQ    6_PDLIM3    1    VIPGRSRTL 0.510         0.529        163.38  37.00   9.999   <=WB
+     8         DRB1_1104     VIPGRSRTLECKQQK    6_PDLIM3    0    VIPGRSRTL 0.375         0.370        910.93  70.00   9.999       
+     9         DRB1_1104     IPGRSRTLECKQQKI    6_PDLIM3    5    RTLECKQQK 0.285         0.318       1607.65  80.00   9.999       
+    10         DRB1_1104     PGRSRTLECKQQKII    6_PDLIM3    6    LECKQQKII 0.325         0.380        819.74  70.00   9.999       
+    11         DRB1_1104     GRSRTLECKQQKIIL    6_PDLIM3    5    LECKQQKII 0.355         0.441        425.11  55.00   9.999   <=WB
+    12         DRB1_1104     RSRTLECKQQKIILL    6_PDLIM3    6    CKQQKIILL 0.305         0.513        193.79  40.00   9.999   <=WB
+    13         DRB1_1104     SRTLECKQQKIILLR    6_PDLIM3    5    CKQQKIILL 0.285         0.600         76.12  25.00   9.999   <=WB
+    14         DRB1_1104     RTLECKQQKIILLRR    6_PDLIM3    6    QQKIILLRR 0.410         0.671         35.28  14.00   9.999   <=SB
+    15         DRB1_1104     TLECKQQKIILLRRE    6_PDLIM3    5    QQKIILLRR 0.485         0.678         32.57  13.00   9.999   <=SB
+    16         DRB1_1104     LECKQQKIILLRREM    6_PDLIM3    4    QQKIILLRR 0.335         0.767         12.49   4.50   9.999   <=SB
+    17         DRB1_1104     ECKQQKIILLRREMK    6_PDLIM3    6    IILLRREMK 0.645         0.838          5.77   0.80   9.999   <=SB
+    18         DRB1_1104     CKQQKIILLRREMKE    6_PDLIM3    5    IILLRREMK 0.680         0.848          5.17   0.50   9.999   <=SB
+    19         DRB1_1104     KQQKIILLRREMKET    6_PDLIM3    4    IILLRREMK 0.685         0.852          4.95   0.50   9.999   <=SB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 9 Number of weak binders: 8
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     LLPKVQSIQLSQMQE  7_KIAA0922    4    VQSIQLSQM 0.450         0.531        160.21  37.00   9.999   <=WB
+     1         DRB1_1104     LPKVQSIQLSQMQES  7_KIAA0922    3    VQSIQLSQM 0.515         0.513        195.26  40.00   9.999   <=WB
+     2         DRB1_1104     PKVQSIQLSQMQEST  7_KIAA0922    2    VQSIQLSQM 0.485         0.488        253.96  45.00   9.999   <=WB
+     3         DRB1_1104     KVQSIQLSQMQESTM  7_KIAA0922    1    VQSIQLSQM 0.345         0.471        306.60  48.00   9.999   <=WB
+     4         DRB1_1104     VQSIQLSQMQESTMA  7_KIAA0922    3    IQLSQMQES 0.385         0.427        491.84  60.00   9.999   <=WB
+     5         DRB1_1104     QSIQLSQMQESTMAQ  7_KIAA0922    2    IQLSQMQES 0.445         0.389        744.97  65.00   9.999       
+     6         DRB1_1104     SIQLSQMQESTMAQE  7_KIAA0922    1    IQLSQMQES 0.385         0.356       1061.20  70.00   9.999       
+     7         DRB1_1104     IQLSQMQESTMAQES  7_KIAA0922    2    LSQMQESTM 0.340         0.316       1642.48  80.00   9.999       
+     8         DRB1_1104     QLSQMQESTMAQESP  7_KIAA0922    1    LSQMQESTM 0.355         0.258       3075.82  90.00   9.999       
+     9         DRB1_1104     LSQMQESTMAQESPK  7_KIAA0922    3    MQESTMAQE 0.290         0.226       4339.08  95.00   9.999       
+    10         DRB1_1104     SQMQESTMAQESPKN  7_KIAA0922    2    MQESTMAQE 0.325         0.201       5677.01  95.00   9.999       
+    11         DRB1_1104     QMQESTMAQESPKNS  7_KIAA0922    6    MAQESPKNS 0.280         0.220       4630.86  95.00   9.999       
+    12         DRB1_1104     MQESTMAQESPKNSA  7_KIAA0922    5    MAQESPKNS 0.480         0.246       3497.19  90.00   9.999       
+    13         DRB1_1104     QESTMAQESPKNSAA  7_KIAA0922    4    MAQESPKNS 0.595         0.262       2951.76  90.00   9.999       
+    14         DRB1_1104     ESTMAQESPKNSAAE  7_KIAA0922    3    MAQESPKNS 0.595         0.254       3217.63  90.00   9.999       
+    15         DRB1_1104     STMAQESPKNSAAEI  7_KIAA0922    2    MAQESPKNS 0.615         0.252       3269.33  90.00   9.999       
+    16         DRB1_1104     TMAQESPKNSAAEIP  7_KIAA0922    1    MAQESPKNS 0.645         0.220       4640.19  95.00   9.999       
+    17         DRB1_1104     MAQESPKNSAAEIPV  7_KIAA0922    0    MAQESPKNS 0.395         0.163       8567.14  95.00   9.999       
+    18         DRB1_1104     AQESPKNSAAEIPVT  7_KIAA0922    5    KNSAAEIPV 0.425         0.125      12952.55  95.00   9.999       
+    19         DRB1_1104     QESPKNSAAEIPVTS  7_KIAA0922    4    KNSAAEIPV 0.390         0.133      11836.34  95.00   9.999       
+    20         DRB1_1104     ESPKNSAAEIPVTSN  7_KIAA0922    3    KNSAAEIPV 0.295         0.140      10985.46  95.00   9.999       
+    21         DRB1_1104     SPKNSAAEIPVTSNG  7_KIAA0922    2    KNSAAEIPV 0.290         0.142      10771.25  95.00   9.999       
+    22         DRB1_1104     PKNSAAEIPVTSNGE  7_KIAA0922    1    KNSAAEIPV 0.255         0.133      11862.88  95.00   9.999       
+    23         DRB1_1104     KNSAAEIPVTSNGEV  7_KIAA0922    2    SAAEIPVTS 0.230         0.142      10736.11  95.00   9.999       
+    24         DRB1_1104     NSAAEIPVTSNGEVD  7_KIAA0922    5    IPVTSNGEV 0.320         0.133      11856.47  95.00   9.999       
+    25         DRB1_1104     SAAEIPVTSNGEVDD  7_KIAA0922    4    IPVTSNGEV 0.380         0.128      12584.26  95.00   9.999       
+    26         DRB1_1104     AAEIPVTSNGEVDDS  7_KIAA0922    3    IPVTSNGEV 0.395         0.127      12602.52  95.00   9.999       
+    27         DRB1_1104     AEIPVTSNGEVDDSR  7_KIAA0922    2    IPVTSNGEV 0.370         0.127      12669.79  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 5
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     AILTPMPEGLSQQQD  8_ARHGEF10    2    LTPMPEGLS 0.630         0.291       2139.81  85.00   9.999       
+     1         DRB1_1104     ILTPMPEGLSQQQDM  8_ARHGEF10    1    LTPMPEGLS 0.670         0.240       3740.56  90.00   9.999       
+     2         DRB1_1104     LTPMPEGLSQQQDML  8_ARHGEF10    0    LTPMPEGLS 0.275         0.171       7825.13  95.00   9.999       
+     3         DRB1_1104     TPMPEGLSQQQDMLK  8_ARHGEF10    6    LSQQQDMLK 0.650         0.250       3329.05  90.00   9.999       
+     4         DRB1_1104     PMPEGLSQQQDMLKN  8_ARHGEF10    5    LSQQQDMLK 0.685         0.286       2254.10  85.00   9.999       
+     5         DRB1_1104     MPEGLSQQQDMLKNT  8_ARHGEF10    4    LSQQQDMLK 0.670         0.306       1825.38  80.00   9.999       
+     6         DRB1_1104     PEGLSQQQDMLKNTS  8_ARHGEF10    3    LSQQQDMLK 0.635         0.313       1698.54  80.00   9.999       
+     7         DRB1_1104     EGLSQQQDMLKNTSK  8_ARHGEF10    2    LSQQQDMLK 0.530         0.327       1460.47  80.00   9.999       
+     8         DRB1_1104     GLSQQQDMLKNTSKG  8_ARHGEF10    1    LSQQQDMLK 0.470         0.328       1440.00  75.00   9.999       
+     9         DRB1_1104     LSQQQDMLKNTSKGH  8_ARHGEF10    6    MLKNTSKGH 0.540         0.430        476.28  60.00   9.999   <=WB
+    10         DRB1_1104     SQQQDMLKNTSKGHP  8_ARHGEF10    5    MLKNTSKGH 0.620         0.482        273.11  46.00   9.999   <=WB
+    11         DRB1_1104     QQQDMLKNTSKGHPD  8_ARHGEF10    4    MLKNTSKGH 0.590         0.478        284.18  47.00   9.999   <=WB
+    12         DRB1_1104     QQDMLKNTSKGHPDR  8_ARHGEF10    3    MLKNTSKGH 0.580         0.507        208.11  41.00   9.999   <=WB
+    13         DRB1_1104     QDMLKNTSKGHPDRL  8_ARHGEF10    2    MLKNTSKGH 0.515         0.505        212.45  42.00   9.999   <=WB
+    14         DRB1_1104     DMLKNTSKGHPDRLP  8_ARHGEF10    1    MLKNTSKGH 0.480         0.477        286.10  47.00   9.999   <=WB
+    15         DRB1_1104     MLKNTSKGHPDRLPL  8_ARHGEF10    1    LKNTSKGHP 0.475         0.437        441.70  55.00   9.999   <=WB
+    16         DRB1_1104     LKNTSKGHPDRLPLQ  8_ARHGEF10    0    LKNTSKGHP 0.280         0.261       2979.61  90.00   9.999       
+    17         DRB1_1104     KNTSKGHPDRLPLQM  8_ARHGEF10    1    NTSKGHPDR 0.220         0.221       4553.16  95.00   9.999       
+    18         DRB1_1104     NTSKGHPDRLPLQMA  8_ARHGEF10    6    PDRLPLQMA 0.235         0.238       3800.12  90.00   9.999       
+    19         DRB1_1104     TSKGHPDRLPLQMAL  8_ARHGEF10    5    PDRLPLQMA 0.370         0.297       2003.97  85.00   9.999       
+    20         DRB1_1104     SKGHPDRLPLQMALT  8_ARHGEF10    6    RLPLQMALT 0.360         0.349       1145.57  75.00   9.999       
+    21         DRB1_1104     KGHPDRLPLQMALTE  8_ARHGEF10    5    RLPLQMALT 0.395         0.359       1033.46  70.00   9.999       
+    22         DRB1_1104     GHPDRLPLQMALTEL  8_ARHGEF10    4    RLPLQMALT 0.340         0.398        673.68  65.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 7
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     LKPGVQGKKVRKPSP    9_NOTCH1    4    VQGKKVRKP 0.515         0.429        483.46  60.00   9.999   <=WB
+     1         DRB1_1104     KPGVQGKKVRKPSPT    9_NOTCH1    3    VQGKKVRKP 0.540         0.420        533.62  60.00   9.999       
+     2         DRB1_1104     PGVQGKKVRKPSPTT    9_NOTCH1    2    VQGKKVRKP 0.495         0.400        660.38  65.00   9.999       
+     3         DRB1_1104     GVQGKKVRKPSPTTS    9_NOTCH1    1    VQGKKVRKP 0.455         0.391        729.12  65.00   9.999       
+     4         DRB1_1104     VQGKKVRKPSPTTSA    9_NOTCH1    4    KVRKPSPTT 0.305         0.370        916.36  70.00   9.999       
+     5         DRB1_1104     QGKKVRKPSPTTSAS    9_NOTCH1    3    KVRKPSPTT 0.420         0.337       1306.00  75.00   9.999       
+     6         DRB1_1104     GKKVRKPSPTTSASS    9_NOTCH1    2    KVRKPSPTT 0.480         0.315       1653.41  80.00   9.999       
+     7         DRB1_1104     KKVRKPSPTTSASSS    9_NOTCH1    1    KVRKPSPTT 0.470         0.294       2082.42  85.00   9.999       
+     8         DRB1_1104     KVRKPSPTTSASSSS    9_NOTCH1    1    VRKPSPTTS 0.440         0.221       4600.80  95.00   9.999       
+     9         DRB1_1104     VRKPSPTTSASSSSW    9_NOTCH1    1    RKPSPTTSA 0.290         0.145      10380.97  95.00   9.999       
+    10         DRB1_1104     RKPSPTTSASSSSWT    9_NOTCH1    5    TTSASSSSW 0.370         0.133      11806.54  95.00   9.999       
+    11         DRB1_1104     KPSPTTSASSSSWTS    9_NOTCH1    4    TTSASSSSW 0.415         0.142      10796.45  95.00   9.999       
+    12         DRB1_1104     PSPTTSASSSSWTSA    9_NOTCH1    3    TTSASSSSW 0.370         0.152       9661.64  95.00   9.999       
+    13         DRB1_1104     SPTTSASSSSWTSAG    9_NOTCH1    2    TTSASSSSW 0.340         0.152       9694.41  95.00   9.999       
+    14         DRB1_1104     PTTSASSSSWTSAGT    9_NOTCH1    1    TTSASSSSW 0.275         0.148      10085.80  95.00   9.999       
+    15         DRB1_1104     TTSASSSSWTSAGTS    9_NOTCH1    2    SASSSSWTS 0.255         0.142      10775.10  95.00   9.999       
+    16         DRB1_1104     TSASSSSWTSAGTSW    9_NOTCH1    4    SSSWTSAGT 0.285         0.135      11582.71  95.00   9.999       
+    17         DRB1_1104     SASSSSWTSAGTSWP    9_NOTCH1    6    WTSAGTSWP 0.295         0.144      10568.65  95.00   9.999       
+    18         DRB1_1104     ASSSSWTSAGTSWPA    9_NOTCH1    5    WTSAGTSWP 0.470         0.167       8183.97  95.00   9.999       
+    19         DRB1_1104     SSSSWTSAGTSWPAG    9_NOTCH1    4    WTSAGTSWP 0.475         0.171       7898.36  95.00   9.999       
+    20         DRB1_1104     SSSWTSAGTSWPAGR    9_NOTCH1    3    WTSAGTSWP 0.385         0.195       6074.52  95.00   9.999       
+    21         DRB1_1104     SSWTSAGTSWPAGRR    9_NOTCH1    2    WTSAGTSWP 0.255         0.231       4120.55  90.00   9.999       
+    22         DRB1_1104     SWTSAGTSWPAGRRT    9_NOTCH1    5    GTSWPAGRR 0.285         0.247       3471.81  90.00   9.999       
+    23         DRB1_1104     WTSAGTSWPAGRRTG    9_NOTCH1    4    GTSWPAGRR 0.315         0.242       3646.02  90.00   9.999       
+    24         DRB1_1104     TSAGTSWPAGRRTGT    9_NOTCH1    3    GTSWPAGRR 0.330         0.239       3780.60  90.00   9.999       
+    25         DRB1_1104     SAGTSWPAGRRTGTA    9_NOTCH1    2    GTSWPAGRR 0.310         0.235       3921.04  90.00   9.999       
+    26         DRB1_1104     AGTSWPAGRRTGTAT    9_NOTCH1    1    GTSWPAGRR 0.270         0.228       4231.97  95.00   9.999       
+    27         DRB1_1104     GTSWPAGRRTGTATS    9_NOTCH1    2    SWPAGRRTG 0.250         0.211       5088.72  95.00   9.999       
+    28         DRB1_1104     TSWPAGRRTGTATSG    9_NOTCH1    1    SWPAGRRTG 0.310         0.178       7308.87  95.00   9.999       
+    29         DRB1_1104     SWPAGRRTGTATSGT    9_NOTCH1    1    WPAGRRTGT 0.250         0.160       8898.37  95.00   9.999       
+    30         DRB1_1104     WPAGRRTGTATSGTA    9_NOTCH1    3    GRRTGTATS 0.310         0.149       9976.18  95.00   9.999       
+    31         DRB1_1104     PAGRRTGTATSGTAT    9_NOTCH1    2    GRRTGTATS 0.285         0.137      11302.18  95.00   9.999       
+    32         DRB1_1104     AGRRTGTATSGTATT    9_NOTCH1    2    RRTGTATSG 0.265         0.137      11395.14  95.00   9.999       
+    33         DRB1_1104     GRRTGTATSGTATTT    9_NOTCH1    3    TGTATSGTA 0.205         0.128      12528.56  95.00   9.999       
+    34         DRB1_1104     RRTGTATSGTATTTS    9_NOTCH1    3    GTATSGTAT 0.240         0.120      13666.36  95.00   9.999       
+    35         DRB1_1104     RTGTATSGTATTTSV    9_NOTCH1    3    TATSGTATT 0.320         0.112      14941.23  95.00   9.999       
+    36         DRB1_1104     TGTATSGTATTTSVW    9_NOTCH1    6    GTATTTSVW 0.205         0.110      15144.35  95.00   9.999       
+    37         DRB1_1104     GTATSGTATTTSVWP    9_NOTCH1    5    GTATTTSVW 0.240         0.114      14601.31  95.00   9.999       
+    38         DRB1_1104     TATSGTATTTSVWPG    9_NOTCH1    5    TATTTSVWP 0.235         0.122      13389.73  95.00   9.999       
+    39         DRB1_1104     ATSGTATTTSVWPGC    9_NOTCH1    5    ATTTSVWPG 0.260         0.131      12074.09  95.00   9.999       
+    40         DRB1_1104     TSGTATTTSVWPGCG    9_NOTCH1    4    ATTTSVWPG 0.290         0.134      11783.83  95.00   9.999       
+    41         DRB1_1104     SGTATTTSVWPGCGT    9_NOTCH1    3    ATTTSVWPG 0.255         0.138      11180.07  95.00   9.999       
+    42         DRB1_1104     GTATTTSVWPGCGTR    9_NOTCH1    2    ATTTSVWPG 0.215         0.154       9494.59  95.00   9.999       
+    43         DRB1_1104     TATTTSVWPGCGTRM    9_NOTCH1    6    VWPGCGTRM 0.390         0.195       6036.52  95.00   9.999       
+    44         DRB1_1104     ATTTSVWPGCGTRMW    9_NOTCH1    5    VWPGCGTRM 0.470         0.229       4196.73  90.00   9.999       
+    45         DRB1_1104     TTTSVWPGCGTRMWS    9_NOTCH1    4    VWPGCGTRM 0.460         0.250       3326.85  90.00   9.999       
+    46         DRB1_1104     TTSVWPGCGTRMWST    9_NOTCH1    3    VWPGCGTRM 0.460         0.261       2969.06  90.00   9.999       
+    47         DRB1_1104     TSVWPGCGTRMWSTQ    9_NOTCH1    2    VWPGCGTRM 0.385         0.272       2629.70  85.00   9.999       
+    48         DRB1_1104     SVWPGCGTRMWSTQW    9_NOTCH1    1    VWPGCGTRM 0.260         0.280       2429.43  85.00   9.999       
+    49         DRB1_1104     VWPGCGTRMWSTQWS    9_NOTCH1    6    TRMWSTQWS 0.290         0.322       1529.38  80.00   9.999       
+    50         DRB1_1104     WPGCGTRMWSTQWSS    9_NOTCH1    5    TRMWSTQWS 0.365         0.354       1085.10  75.00   9.999       
+    51         DRB1_1104     PGCGTRMWSTQWSSV    9_NOTCH1    4    TRMWSTQWS 0.305         0.406        615.28  65.00   9.999       
+    52         DRB1_1104     GCGTRMWSTQWSSVP    9_NOTCH1    5    MWSTQWSSV 0.305         0.413        570.40  60.00   9.999       
+    53         DRB1_1104     CGTRMWSTQWSSVPR    9_NOTCH1    4    MWSTQWSSV 0.305         0.444        411.52  55.00   9.999   <=WB
+    54         DRB1_1104     GTRMWSTQWSSVPRS    9_NOTCH1    3    MWSTQWSSV 0.330         0.446        401.68  55.00   9.999   <=WB
+    55         DRB1_1104     TRMWSTQWSSVPRSR    9_NOTCH1    2    MWSTQWSSV 0.280         0.462        338.45  50.00   9.999   <=WB
+    56         DRB1_1104     RMWSTQWSSVPRSRS    9_NOTCH1    6    WSSVPRSRS 0.415         0.514        192.29  40.00   9.999   <=WB
+    57         DRB1_1104     MWSTQWSSVPRSRSC    9_NOTCH1    5    WSSVPRSRS 0.640         0.525        170.39  38.00   9.999   <=WB
+    58         DRB1_1104     WSTQWSSVPRSRSCC    9_NOTCH1    4    WSSVPRSRS 0.695         0.521        178.62  39.00   9.999   <=WB
+    59         DRB1_1104     STQWSSVPRSRSCCS    9_NOTCH1    3    WSSVPRSRS 0.735         0.513        194.67  40.00   9.999   <=WB
+    60         DRB1_1104     TQWSSVPRSRSCCSR    9_NOTCH1    2    WSSVPRSRS 0.750         0.494        237.68  44.00   9.999   <=WB
+    61         DRB1_1104     QWSSVPRSRSCCSRP    9_NOTCH1    1    WSSVPRSRS 0.735         0.455        364.96  55.00   9.999   <=WB
+    62         DRB1_1104     WSSVPRSRSCCSRPA    9_NOTCH1    0    WSSVPRSRS 0.450         0.374        878.82  70.00   9.999       
+    63         DRB1_1104     SSVPRSRSCCSRPAT    9_NOTCH1    5    SRSCCSRPA 0.290         0.303       1890.44  80.00   9.999       
+    64         DRB1_1104     SVPRSRSCCSRPATT    9_NOTCH1    4    SRSCCSRPA 0.300         0.319       1586.29  80.00   9.999       
+    65         DRB1_1104     VPRSRSCCSRPATTP    9_NOTCH1    4    RSCCSRPAT 0.305         0.300       1951.78  80.00   9.999       
+    66         DRB1_1104     PRSRSCCSRPATTPP    9_NOTCH1    3    RSCCSRPAT 0.360         0.276       2522.51  85.00   9.999       
+    67         DRB1_1104     RSRSCCSRPATTPPS    9_NOTCH1    2    RSCCSRPAT 0.370         0.265       2839.58  90.00   9.999       
+    68         DRB1_1104     SRSCCSRPATTPPSK    9_NOTCH1    1    RSCCSRPAT 0.355         0.228       4235.36  95.00   9.999       
+    69         DRB1_1104     RSCCSRPATTPPSKP    9_NOTCH1    2    CCSRPATTP 0.280         0.195       6084.85  95.00   9.999       
+    70         DRB1_1104     SCCSRPATTPPSKPG    9_NOTCH1    3    SRPATTPPS 0.295         0.157       9103.07  95.00   9.999       
+    71         DRB1_1104     CCSRPATTPPSKPGA    9_NOTCH1    2    SRPATTPPS 0.325         0.143      10586.39  95.00   9.999       
+    72         DRB1_1104     CSRPATTPPSKPGAP    9_NOTCH1    1    SRPATTPPS 0.320         0.127      12714.28  95.00   9.999       
+    73         DRB1_1104     SRPATTPPSKPGAPH    9_NOTCH1    1    RPATTPPSK 0.285         0.113      14687.82  95.00   9.999       
+    74         DRB1_1104     RPATTPPSKPGAPHA    9_NOTCH1    0    RPATTPPSK 0.235         0.101      16685.33  95.00   9.999       
+    75         DRB1_1104     PATTPPSKPGAPHAP    9_NOTCH1    1    ATTPPSKPG 0.240         0.078      21407.97  95.00   9.999       
+    76         DRB1_1104     ATTPPSKPGAPHAPC    9_NOTCH1    6    KPGAPHAPC 0.190         0.075      22285.76  95.00   9.999       
+    77         DRB1_1104     TTPPSKPGAPHAPCA    9_NOTCH1    5    KPGAPHAPC 0.325         0.077      21684.45  95.00   9.999       
+    78         DRB1_1104     TPPSKPGAPHAPCAS    9_NOTCH1    4    KPGAPHAPC 0.355         0.080      21103.93  95.00   9.999       
+    79         DRB1_1104     PPSKPGAPHAPCASS    9_NOTCH1    3    KPGAPHAPC 0.350         0.082      20593.03  95.00   9.999       
+    80         DRB1_1104     PSKPGAPHAPCASSR    9_NOTCH1    6    PHAPCASSR 0.305         0.109      15395.48  95.00   9.999       
+    81         DRB1_1104     SKPGAPHAPCASSRH    9_NOTCH1    6    HAPCASSRH 0.330         0.147      10206.45  95.00   9.999       
+    82         DRB1_1104     KPGAPHAPCASSRHL    9_NOTCH1    5    HAPCASSRH 0.350         0.237       3850.49  90.00   9.999       
+    83         DRB1_1104     PGAPHAPCASSRHLA    9_NOTCH1    6    PCASSRHLA 0.495         0.331       1391.10  75.00   9.999       
+    84         DRB1_1104     GAPHAPCASSRHLAH    9_NOTCH1    6    CASSRHLAH 0.450         0.460        345.86  55.00   9.999   <=WB
+    85         DRB1_1104     APHAPCASSRHLAHG    9_NOTCH1    5    CASSRHLAH 0.535         0.498        228.90  43.00   9.999   <=WB
+    86         DRB1_1104     PHAPCASSRHLAHGL    9_NOTCH1    4    CASSRHLAH 0.575         0.542        141.87  35.00   9.999   <=WB
+    87         DRB1_1104     HAPCASSRHLAHGLA    9_NOTCH1    3    CASSRHLAH 0.510         0.568        106.91  30.00   9.999   <=WB
+    88         DRB1_1104     APCASSRHLAHGLAP    9_NOTCH1    2    CASSRHLAH 0.495         0.557        120.76  32.00   9.999   <=WB
+    89         DRB1_1104     PCASSRHLAHGLAPS    9_NOTCH1    1    CASSRHLAH 0.405         0.535        152.41  36.00   9.999   <=WB
+    90         DRB1_1104     CASSRHLAHGLAPSS    9_NOTCH1    0    CASSRHLAH 0.300         0.508        204.34  41.00   9.999   <=WB
+    91         DRB1_1104     ASSRHLAHGLAPSSP    9_NOTCH1    2    SRHLAHGLA 0.395         0.459        349.40  55.00   9.999   <=WB
+    92         DRB1_1104     SSRHLAHGLAPSSPG    9_NOTCH1    1    SRHLAHGLA 0.360         0.440        428.28  55.00   9.999   <=WB
+    93         DRB1_1104     SRHLAHGLAPSSPGL    9_NOTCH1    3    LAHGLAPSS 0.570         0.414        568.98  60.00   9.999       
+    94         DRB1_1104     RHLAHGLAPSSPGLP    9_NOTCH1    2    LAHGLAPSS 0.670         0.378        835.25  70.00   9.999       
+    95         DRB1_1104     HLAHGLAPSSPGLPA    9_NOTCH1    1    LAHGLAPSS 0.535         0.324       1501.08  80.00   9.999       
+    96         DRB1_1104     LAHGLAPSSPGLPAR    9_NOTCH1    4    LAPSSPGLP 0.545         0.274       2577.22  85.00   9.999       
+    97         DRB1_1104     AHGLAPSSPGLPARG    9_NOTCH1    3    LAPSSPGLP 0.675         0.231       4109.46  90.00   9.999       
+    98         DRB1_1104     HGLAPSSPGLPARGA    9_NOTCH1    2    LAPSSPGLP 0.630         0.220       4649.39  95.00   9.999       
+    99         DRB1_1104     GLAPSSPGLPARGAE    9_NOTCH1    1    LAPSSPGLP 0.570         0.191       6337.84  95.00   9.999       
+   100         DRB1_1104     LAPSSPGLPARGAEV    9_NOTCH1    0    LAPSSPGLP 0.225         0.155       9357.82  95.00   9.999       
+   101         DRB1_1104     APSSPGLPARGAEVC    9_NOTCH1    5    GLPARGAEV 0.275         0.141      10833.43  95.00   9.999       
+   102         DRB1_1104     PSSPGLPARGAEVCW    9_NOTCH1    4    GLPARGAEV 0.325         0.154       9426.62  95.00   9.999       
+   103         DRB1_1104     SSPGLPARGAEVCWV    9_NOTCH1    3    GLPARGAEV 0.290         0.175       7546.49  95.00   9.999       
+   104         DRB1_1104     SPGLPARGAEVCWVH    9_NOTCH1    3    LPARGAEVC 0.240         0.196       6007.59  95.00   9.999       
+   105         DRB1_1104     PGLPARGAEVCWVHW    9_NOTCH1    4    ARGAEVCWV 0.225         0.211       5122.09  95.00   9.999       
+   106         DRB1_1104     GLPARGAEVCWVHWS    9_NOTCH1    3    ARGAEVCWV 0.215         0.224       4432.17  95.00   9.999       
+   107         DRB1_1104     LPARGAEVCWVHWSH    9_NOTCH1    6    EVCWVHWSH 0.415         0.319       1588.56  80.00   9.999       
+   108         DRB1_1104     PARGAEVCWVHWSHR    9_NOTCH1    6    VCWVHWSHR 0.430         0.444        410.28  55.00   9.999   <=WB
+   109         DRB1_1104     ARGAEVCWVHWSHRD    9_NOTCH1    5    VCWVHWSHR 0.390         0.465        326.36  50.00   9.999   <=WB
+   110         DRB1_1104     RGAEVCWVHWSHRDP    9_NOTCH1    4    VCWVHWSHR 0.365         0.467        319.40  49.00   9.999   <=WB
+   111         DRB1_1104     GAEVCWVHWSHRDPL    9_NOTCH1    3    VCWVHWSHR 0.330         0.498        228.41  43.00   9.999   <=WB
+   112         DRB1_1104     AEVCWVHWSHRDPLR    9_NOTCH1    2    VCWVHWSHR 0.245         0.523        174.45  38.00   9.999   <=WB
+   113         DRB1_1104     EVCWVHWSHRDPLRT    9_NOTCH1    4    VHWSHRDPL 0.235         0.526        168.36  38.00   9.999   <=WB
+   114         DRB1_1104     VCWVHWSHRDPLRTS    9_NOTCH1    3    VHWSHRDPL 0.245         0.523        174.13  38.00   9.999   <=WB
+   115         DRB1_1104     CWVHWSHRDPLRTSP    9_NOTCH1    2    VHWSHRDPL 0.325         0.469        313.11  49.00   9.999   <=WB
+   116         DRB1_1104     WVHWSHRDPLRTSPG    9_NOTCH1    3    WSHRDPLRT 0.350         0.424        510.51  60.00   9.999       
+   117         DRB1_1104     VHWSHRDPLRTSPGS    9_NOTCH1    2    WSHRDPLRT 0.485         0.359       1026.80  70.00   9.999       
+   118         DRB1_1104     HWSHRDPLRTSPGSV    9_NOTCH1    1    WSHRDPLRT 0.495         0.302       1895.26  80.00   9.999       
+   119         DRB1_1104     WSHRDPLRTSPGSVA    9_NOTCH1    6    LRTSPGSVA 0.540         0.334       1351.66  75.00   9.999       
+   120         DRB1_1104     SHRDPLRTSPGSVAF    9_NOTCH1    5    LRTSPGSVA 0.810         0.407        609.80  65.00   9.999       
+   121         DRB1_1104     HRDPLRTSPGSVAFS    9_NOTCH1    4    LRTSPGSVA 0.855         0.438        438.32  55.00   9.999   <=WB
+   122         DRB1_1104     RDPLRTSPGSVAFSR    9_NOTCH1    3    LRTSPGSVA 0.850         0.459        348.10  55.00   9.999   <=WB
+   123         DRB1_1104     DPLRTSPGSVAFSRA    9_NOTCH1    2    LRTSPGSVA 0.790         0.422        522.81  60.00   9.999       
+   124         DRB1_1104     PLRTSPGSVAFSRAG    9_NOTCH1    1    LRTSPGSVA 0.760         0.407        612.39  65.00   9.999       
+   125         DRB1_1104     LRTSPGSVAFSRAGE    9_NOTCH1    0    LRTSPGSVA 0.360         0.333       1359.32  75.00   9.999       
+   126         DRB1_1104     RTSPGSVAFSRAGEV    9_NOTCH1    5    SVAFSRAGE 0.525         0.361       1008.29  70.00   9.999       
+   127         DRB1_1104     TSPGSVAFSRAGEVE    9_NOTCH1    4    SVAFSRAGE 0.460         0.379        824.95  70.00   9.999       
+   128         DRB1_1104     SPGSVAFSRAGEVEM    9_NOTCH1    4    VAFSRAGEV 0.425         0.412        582.09  60.00   9.999       
+   129         DRB1_1104     PGSVAFSRAGEVEML    9_NOTCH1    3    VAFSRAGEV 0.445         0.429        483.46  60.00   9.999   <=WB
+   130         DRB1_1104     GSVAFSRAGEVEMLI    9_NOTCH1    2    VAFSRAGEV 0.420         0.424        510.02  60.00   9.999       
+   131         DRB1_1104     SVAFSRAGEVEMLIA    9_NOTCH1    1    VAFSRAGEV 0.395         0.388        754.48  65.00   9.999       
+   132         DRB1_1104     VAFSRAGEVEMLIAV    9_NOTCH1    2    FSRAGEVEM 0.425         0.320       1574.46  80.00   9.999       
+   133         DRB1_1104     AFSRAGEVEMLIAVT    9_NOTCH1    1    FSRAGEVEM 0.380         0.266       2815.11  85.00   9.999       
+   134         DRB1_1104     FSRAGEVEMLIAVTP    9_NOTCH1    6    VEMLIAVTP 0.355         0.265       2847.27  90.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 30
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     ESSRGRGNNNRKGRE    10_UBAP2    2    SRGRGNNNR 0.230         0.160       8824.73  95.00   9.999       
+     1         DRB1_1104     SSRGRGNNNRKGREV    10_UBAP2    4    RGNNNRKGR 0.215         0.174       7613.58  95.00   9.999       
+     2         DRB1_1104     SRGRGNNNRKGREVT    10_UBAP2    6    NNRKGREVT 0.215         0.190       6425.04  95.00   9.999       
+     3         DRB1_1104     RGRGNNNRKGREVTP    10_UBAP2    5    NNRKGREVT 0.320         0.188       6518.74  95.00   9.999       
+     4         DRB1_1104     GRGNNNRKGREVTPL    10_UBAP2    4    NNRKGREVT 0.420         0.205       5443.86  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     WYIPSSQLAAKLLHM  11_RASGRP2    5    SQLAAKLLH 0.310         0.633         52.86  20.00   9.999   <=WB
+     1         DRB1_1104     YIPSSQLAAKLLHML  11_RASGRP2    4    SQLAAKLLH 0.390         0.682         31.10  13.00   9.999   <=SB
+     2         DRB1_1104     IPSSQLAAKLLHMLT  11_RASGRP2    5    LAAKLLHML 0.320         0.710         23.09   9.50   9.999   <=SB
+     3         DRB1_1104     PSSQLAAKLLHMLTM  11_RASGRP2    4    LAAKLLHML 0.360         0.721         20.45   8.50   9.999   <=SB
+     4         DRB1_1104     SSQLAAKLLHMLTMR  11_RASGRP2    3    LAAKLLHML 0.270         0.764         12.82   4.50   9.999   <=SB
+     5         DRB1_1104     SQLAAKLLHMLTMRM  11_RASGRP2    6    LLHMLTMRM 0.615         0.847          5.24   0.60   9.999   <=SB
+     6         DRB1_1104     QLAAKLLHMLTMRML  11_RASGRP2    5    LLHMLTMRM 0.525         0.876          3.82   0.12   9.999   <=SB
+     7         DRB1_1104     LAAKLLHMLTMRMLS  11_RASGRP2    4    LLHMLTMRM 0.490         0.887          3.41   0.05   9.999   <=SB
+     8         DRB1_1104     AAKLLHMLTMRMLSK  11_RASGRP2    3    LLHMLTMRM 0.440         0.896          3.08   0.02   9.999   <=SB
+     9         DRB1_1104     AKLLHMLTMRMLSKS  11_RASGRP2    3    LHMLTMRML 0.425         0.896          3.07   0.02   9.999   <=SB
+    10         DRB1_1104     KLLHMLTMRMLSKSA  11_RASGRP2    2    LHMLTMRML 0.405         0.890          3.29   0.04   9.999   <=SB
+    11         DRB1_1104     LLHMLTMRMLSKSAT  11_RASGRP2    1    LHMLTMRML 0.295         0.868          4.17   0.20   9.999   <=SB
+    12         DRB1_1104     LHMLTMRMLSKSATG  11_RASGRP2    5    MRMLSKSAT 0.415         0.849          5.11   0.50   9.999   <=SB
+    13         DRB1_1104     HMLTMRMLSKSATGR  11_RASGRP2    4    MRMLSKSAT 0.540         0.844          5.40   0.60   9.999   <=SB
+    14         DRB1_1104     MLTMRMLSKSATGRW  11_RASGRP2    3    MRMLSKSAT 0.690         0.836          5.87   0.80   9.999   <=SB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 14 Number of weak binders: 1
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     WLRKSPPEKKLRRYP     12_GAB2    1    LRKSPPEKK 0.775         0.561        115.20  31.00   9.999   <=WB
+     1         DRB1_1104     LRKSPPEKKLRRYPP     12_GAB2    0    LRKSPPEKK 0.545         0.454        367.63  55.00   9.999   <=WB
+     2         DRB1_1104     RKSPPEKKLRRYPPG     12_GAB2    5    EKKLRRYPP 0.390         0.339       1280.87  75.00   9.999       
+     3         DRB1_1104     KSPPEKKLRRYPPGQ     12_GAB2    4    EKKLRRYPP 0.350         0.370        908.65  70.00   9.999       
+     4         DRB1_1104     SPPEKKLRRYPPGQG     12_GAB2    6    LRRYPPGQG 0.385         0.403        636.52  65.00   9.999       
+     5         DRB1_1104     PPEKKLRRYPPGQGA     12_GAB2    5    LRRYPPGQG 0.540         0.447        394.94  55.00   9.999   <=WB
+     6         DRB1_1104     PEKKLRRYPPGQGAT     12_GAB2    4    LRRYPPGQG 0.645         0.458        352.78  55.00   9.999   <=WB
+     7         DRB1_1104     EKKLRRYPPGQGATI     12_GAB2    3    LRRYPPGQG 0.745         0.464        329.79  50.00   9.999   <=WB
+     8         DRB1_1104     KKLRRYPPGQGATIG     12_GAB2    2    LRRYPPGQG 0.805         0.450        385.73  55.00   9.999   <=WB
+     9         DRB1_1104     KLRRYPPGQGATIGV     12_GAB2    1    LRRYPPGQG 0.810         0.384        786.73  65.00   9.999       
+    10         DRB1_1104     LRRYPPGQGATIGVD     12_GAB2    0    LRRYPPGQG 0.595         0.251       3302.68  90.00   9.999       
+    11         DRB1_1104     RRYPPGQGATIGVDF     12_GAB2    2    YPPGQGATI 0.375         0.122      13331.61  95.00   9.999       
+    12         DRB1_1104     RYPPGQGATIGVDFM     12_GAB2    1    YPPGQGATI 0.270         0.122      13302.51  95.00   9.999       
+    13         DRB1_1104     YPPGQGATIGVDFMI     12_GAB2    5    GATIGVDFM 0.340         0.138      11241.81  95.00   9.999       
+    14         DRB1_1104     PPGQGATIGVDFMIK     12_GAB2    6    TIGVDFMIK 0.650         0.257       3105.28  90.00   9.999       
+    15         DRB1_1104     PGQGATIGVDFMIKT     12_GAB2    5    TIGVDFMIK 0.510         0.320       1573.63  80.00   9.999       
+    16         DRB1_1104     GQGATIGVDFMIKTV     12_GAB2    5    IGVDFMIKT 0.400         0.388        747.75  65.00   9.999       
+    17         DRB1_1104     QGATIGVDFMIKTVE     12_GAB2    4    IGVDFMIKT 0.350         0.404        633.48  65.00   9.999       
+    18         DRB1_1104     GATIGVDFMIKTVEI     12_GAB2    5    VDFMIKTVE 0.335         0.442        420.79  55.00   9.999   <=WB
+    19         DRB1_1104     ATIGVDFMIKTVEIN     12_GAB2    6    FMIKTVEIN 0.285         0.474        294.71  48.00   9.999   <=WB
+    20         DRB1_1104     TIGVDFMIKTVEING     12_GAB2    5    FMIKTVEIN 0.400         0.483        269.78  46.00   9.999   <=WB
+    21         DRB1_1104     IGVDFMIKTVEINGE     12_GAB2    4    FMIKTVEIN 0.425         0.474        296.92  48.00   9.999   <=WB
+    22         DRB1_1104     GVDFMIKTVEINGEK     12_GAB2    3    FMIKTVEIN 0.450         0.477        287.87  47.00   9.999   <=WB
+    23         DRB1_1104     VDFMIKTVEINGEKV     12_GAB2    2    FMIKTVEIN 0.430         0.471        306.65  48.00   9.999   <=WB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 12
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     GTMSVIVLPQPDEVL    13_MTRF1    4    VIVLPQPDE 0.405         0.419        536.22  60.00   9.999       
+     1         DRB1_1104     TMSVIVLPQPDEVLN    13_MTRF1    3    VIVLPQPDE 0.475         0.409        601.56  60.00   9.999       
+     2         DRB1_1104     MSVIVLPQPDEVLNL    13_MTRF1    2    VIVLPQPDE 0.550         0.380        817.86  70.00   9.999       
+     3         DRB1_1104     SVIVLPQPDEVLNLV    13_MTRF1    1    VIVLPQPDE 0.495         0.333       1364.07  75.00   9.999       
+     4         DRB1_1104     VIVLPQPDEVLNLVQ    13_MTRF1    2    VLPQPDEVL 0.380         0.279       2441.53  85.00   9.999       
+     5         DRB1_1104     IVLPQPDEVLNLVQS    13_MTRF1    1    VLPQPDEVL 0.345         0.238       3819.29  90.00   9.999       
+     6         DRB1_1104     VLPQPDEVLNLVQSY    13_MTRF1    6    EVLNLVQSY 0.275         0.264       2873.21  90.00   9.999       
+     7         DRB1_1104     LPQPDEVLNLVQSYV    13_MTRF1    6    VLNLVQSYV 0.660         0.447        396.66  55.00   9.999   <=WB
+     8         DRB1_1104     PQPDEVLNLVQSYVT    13_MTRF1    5    VLNLVQSYV 0.475         0.541        143.01  35.00   9.999   <=WB
+     9         DRB1_1104     QPDEVLNLVQSYVTL    13_MTRF1    5    LNLVQSYVT 0.540         0.604         72.88  24.00   9.999   <=WB
+    10         DRB1_1104     PDEVLNLVQSYVTLR    13_MTRF1    4    LNLVQSYVT 0.355         0.673         34.22  14.00   9.999   <=SB
+    11         DRB1_1104     DEVLNLVQSYVTLRV    13_MTRF1    6    VQSYVTLRV 0.335         0.749         15.19   6.00   9.999   <=SB
+    12         DRB1_1104     EVLNLVQSYVTLRVP    13_MTRF1    5    VQSYVTLRV 0.425         0.761         13.20   5.00   9.999   <=SB
+    13         DRB1_1104     VLNLVQSYVTLRVPL    13_MTRF1    4    VQSYVTLRV 0.445         0.784         10.34   3.50   9.999   <=SB
+    14         DRB1_1104     LNLVQSYVTLRVPLY    13_MTRF1    3    VQSYVTLRV 0.460         0.795          9.18   2.50   9.999   <=SB
+    15         DRB1_1104     NLVQSYVTLRVPLYV    13_MTRF1    2    VQSYVTLRV 0.365         0.799          8.78   2.50   9.999   <=SB
+    16         DRB1_1104     LVQSYVTLRVPLYVS    13_MTRF1    4    YVTLRVPLY 0.405         0.795          9.23   2.50   9.999   <=SB
+    17         DRB1_1104     VQSYVTLRVPLYVSY    13_MTRF1    3    YVTLRVPLY 0.475         0.778         11.09   3.50   9.999   <=SB
+    18         DRB1_1104     QSYVTLRVPLYVSYV    13_MTRF1    2    YVTLRVPLY 0.505         0.762         13.16   5.00   9.999   <=SB
+    19         DRB1_1104     SYVTLRVPLYVSYVF    13_MTRF1    1    YVTLRVPLY 0.465         0.740         16.73   6.50   9.999   <=SB
+    20         DRB1_1104     YVTLRVPLYVSYVFH    13_MTRF1    1    VTLRVPLYV 0.455         0.678         32.43  13.00   9.999   <=SB
+    21         DRB1_1104     VTLRVPLYVSYVFHS    13_MTRF1    6    LYVSYVFHS 0.255         0.618         62.27  22.00   9.999   <=WB
+    22         DRB1_1104     TLRVPLYVSYVFHSP    13_MTRF1    5    LYVSYVFHS 0.450         0.597         78.40  25.00   9.999   <=WB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 11 Number of weak binders: 5
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     IVLWKCLRKPVLNDR    14_EVI2B    2    LWKCLRKPV 0.390         0.782         10.60   3.50   9.999   <=SB
+     1         DRB1_1104     VLWKCLRKPVLNDRN    14_EVI2B    2    WKCLRKPVL 0.445         0.732         18.20   7.50   9.999   <=SB
+     2         DRB1_1104     LWKCLRKPVLNDRNL    14_EVI2B    1    WKCLRKPVL 0.545         0.678         32.45  13.00   9.999   <=SB
+     3         DRB1_1104     WKCLRKPVLNDRNLQ    14_EVI2B    0    WKCLRKPVL 0.360         0.542        142.00  35.00   9.999   <=WB
+     4         DRB1_1104     KCLRKPVLNDRNLQL    14_EVI2B    6    VLNDRNLQL 0.250         0.461        340.34  50.00   9.999   <=WB
+     5         DRB1_1104     CLRKPVLNDRNLQLH    14_EVI2B    5    VLNDRNLQL 0.510         0.477        288.17  47.00   9.999   <=WB
+     6         DRB1_1104     LRKPVLNDRNLQLHT    14_EVI2B    4    VLNDRNLQL 0.560         0.493        242.11  44.00   9.999   <=WB
+     7         DRB1_1104     RKPVLNDRNLQLHTD    14_EVI2B    3    VLNDRNLQL 0.570         0.462        338.73  50.00   9.999   <=WB
+     8         DRB1_1104     KPVLNDRNLQLHTDK    14_EVI2B    2    VLNDRNLQL 0.555         0.433        463.98  60.00   9.999   <=WB
+     9         DRB1_1104     PVLNDRNLQLHTDKG    14_EVI2B    1    VLNDRNLQL 0.415         0.386        767.05  65.00   9.999       
+    10         DRB1_1104     VLNDRNLQLHTDKGS    14_EVI2B    0    VLNDRNLQL 0.215         0.351       1116.88  75.00   9.999       
+    11         DRB1_1104     LNDRNLQLHTDKGSF    14_EVI2B    3    RNLQLHTDK 0.355         0.350       1136.34  75.00   9.999       
+    12         DRB1_1104     NDRNLQLHTDKGSFL    14_EVI2B    6    LHTDKGSFL 0.280         0.387        763.28  65.00   9.999       
+    13         DRB1_1104     DRNLQLHTDKGSFLK    14_EVI2B    5    LHTDKGSFL 0.405         0.425        504.53  60.00   9.999       
+    14         DRB1_1104     RNLQLHTDKGSFLKE    14_EVI2B    4    LHTDKGSFL 0.385         0.429        479.67  60.00   9.999   <=WB
+    15         DRB1_1104     NLQLHTDKGSFLKEK    14_EVI2B    3    LHTDKGSFL 0.535         0.409        596.14  60.00   9.999       
+    16         DRB1_1104     LQLHTDKGSFLKEKN    14_EVI2B    2    LHTDKGSFL 0.560         0.389        746.48  65.00   9.999       
+    17         DRB1_1104     QLHTDKGSFLKEKNK    14_EVI2B    1    LHTDKGSFL 0.475         0.348       1162.13  75.00   9.999       
+    18         DRB1_1104     LHTDKGSFLKEKNKK    14_EVI2B    4    KGSFLKEKN 0.235         0.354       1081.30  75.00   9.999       
+    19         DRB1_1104     HTDKGSFLKEKNKKL    14_EVI2B    6    FLKEKNKKL 0.745         0.625         57.79  21.00   9.999   <=WB
+    20         DRB1_1104     TDKGSFLKEKNKKLK    14_EVI2B    5    FLKEKNKKL 0.710         0.687         29.57  12.00   9.999   <=SB
+    21         DRB1_1104     DKGSFLKEKNKKLKK    14_EVI2B    4    FLKEKNKKL 0.700         0.708         23.45  10.00   9.999   <=SB
+    22         DRB1_1104     KGSFLKEKNKKLKKK    14_EVI2B    3    FLKEKNKKL 0.705         0.721         20.43   8.50   9.999   <=SB
+    23         DRB1_1104     GSFLKEKNKKLKKKN    14_EVI2B    2    FLKEKNKKL 0.680         0.703         24.91  11.00   9.999   <=SB
+    24         DRB1_1104     SFLKEKNKKLKKKNK    14_EVI2B    1    FLKEKNKKL 0.645         0.682         31.22  13.00   9.999   <=SB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 8 Number of weak binders: 8
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     RCRTFLQSTDPGDTG    15_IKZF3    1    CRTFLQSTD 0.295         0.302       1912.95  80.00   9.999       
+     1         DRB1_1104     CRTFLQSTDPGDTGG    15_IKZF3    3    FLQSTDPGD 0.325         0.261       2959.02  90.00   9.999       
+     2         DRB1_1104     RTFLQSTDPGDTGGV    15_IKZF3    2    FLQSTDPGD 0.400         0.230       4148.15  90.00   9.999       
+     3         DRB1_1104     TFLQSTDPGDTGGVF    15_IKZF3    2    LQSTDPGDT 0.425         0.187       6616.01  95.00   9.999       
+     4         DRB1_1104     FLQSTDPGDTGGVFE    15_IKZF3    1    LQSTDPGDT 0.565         0.133      11921.43  95.00   9.999       
+     5         DRB1_1104     LQSTDPGDTGGVFEG    15_IKZF3    0    LQSTDPGDT 0.415         0.088      19250.45  95.00   9.999       
+     6         DRB1_1104     QSTDPGDTGGVFEGS    15_IKZF3    3    DPGDTGGVF 0.225         0.065      24713.84  95.00   9.999       
+     7         DRB1_1104     STDPGDTGGVFEGST    15_IKZF3    2    DPGDTGGVF 0.255         0.064      24928.68  95.00   9.999       
+     8         DRB1_1104     TDPGDTGGVFEGSTL    15_IKZF3    6    GGVFEGSTL 0.370         0.080      21024.17  95.00   9.999       
+     9         DRB1_1104     DPGDTGGVFEGSTLC    15_IKZF3    6    GVFEGSTLC 0.325         0.103      16329.55  95.00   9.999       
+    10         DRB1_1104     PGDTGGVFEGSTLCP    15_IKZF3    5    GVFEGSTLC 0.295         0.130      12280.28  95.00   9.999       
+    11         DRB1_1104     GDTGGVFEGSTLCPS    15_IKZF3    6    FEGSTLCPS 0.505         0.190       6385.20  95.00   9.999       
+    12         DRB1_1104     DTGGVFEGSTLCPSD    15_IKZF3    5    FEGSTLCPS 0.580         0.205       5413.67  95.00   9.999       
+    13         DRB1_1104     TGGVFEGSTLCPSDP    15_IKZF3    4    FEGSTLCPS 0.565         0.205       5417.18  95.00   9.999       
+    14         DRB1_1104     GGVFEGSTLCPSDPA    15_IKZF3    3    FEGSTLCPS 0.590         0.211       5072.94  95.00   9.999       
+    15         DRB1_1104     GVFEGSTLCPSDPAF    15_IKZF3    2    FEGSTLCPS 0.490         0.215       4905.40  95.00   9.999       
+    16         DRB1_1104     VFEGSTLCPSDPAFS    15_IKZF3    6    LCPSDPAFS 0.460         0.255       3171.25  90.00   9.999       
+    17         DRB1_1104     FEGSTLCPSDPAFSR    15_IKZF3    5    LCPSDPAFS 0.655         0.310       1746.19  80.00   9.999       
+    18         DRB1_1104     EGSTLCPSDPAFSRT    15_IKZF3    4    LCPSDPAFS 0.685         0.334       1348.52  75.00   9.999       
+    19         DRB1_1104     GSTLCPSDPAFSRTD    15_IKZF3    3    LCPSDPAFS 0.685         0.319       1579.29  80.00   9.999       
+    20         DRB1_1104     STLCPSDPAFSRTDD    15_IKZF3    2    LCPSDPAFS 0.725         0.304       1864.04  80.00   9.999       
+    21         DRB1_1104     TLCPSDPAFSRTDDP    15_IKZF3    1    LCPSDPAFS 0.700         0.268       2738.32  85.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     RRDALTGHLRTHSGG    16_IKZF3    4    LTGHLRTHS 0.630         0.601         75.24  25.00   9.999   <=WB
+     1         DRB1_1104     RDALTGHLRTHSGGV    16_IKZF3    3    LTGHLRTHS 0.715         0.606         70.95  24.00   9.999   <=WB
+     2         DRB1_1104     DALTGHLRTHSGGVF    16_IKZF3    2    LTGHLRTHS 0.695         0.572        102.59  29.00   9.999   <=WB
+     3         DRB1_1104     ALTGHLRTHSGGVFE    16_IKZF3    1    LTGHLRTHS 0.665         0.572        102.63  29.00   9.999   <=WB
+     4         DRB1_1104     LTGHLRTHSGGVFEG    16_IKZF3    0    LTGHLRTHS 0.475         0.485        262.87  46.00   9.999   <=WB
+     5         DRB1_1104     TGHLRTHSGGVFEGS    16_IKZF3    3    LRTHSGGVF 0.650         0.346       1183.95  75.00   9.999       
+     6         DRB1_1104     GHLRTHSGGVFEGST    16_IKZF3    2    LRTHSGGVF 0.680         0.321       1554.56  80.00   9.999       
+     7         DRB1_1104     HLRTHSGGVFEGSTL    16_IKZF3    1    LRTHSGGVF 0.675         0.285       2277.86  85.00   9.999       
+     8         DRB1_1104     LRTHSGGVFEGSTLC    16_IKZF3    0    LRTHSGGVF 0.440         0.206       5356.39  95.00   9.999       
+     9         DRB1_1104     RTHSGGVFEGSTLCP    16_IKZF3    5    GVFEGSTLC 0.260         0.145      10461.70  95.00   9.999       
+    10         DRB1_1104     THSGGVFEGSTLCPS    16_IKZF3    6    FEGSTLCPS 0.490         0.195       6065.85  95.00   9.999       
+    11         DRB1_1104     HSGGVFEGSTLCPSD    16_IKZF3    5    FEGSTLCPS 0.560         0.208       5241.56  95.00   9.999       
+    12         DRB1_1104     SGGVFEGSTLCPSDP    16_IKZF3    4    FEGSTLCPS 0.570         0.205       5452.11  95.00   9.999       
+    13         DRB1_1104     GGVFEGSTLCPSDPA    16_IKZF3    3    FEGSTLCPS 0.590         0.211       5072.94  95.00   9.999       
+    14         DRB1_1104     GVFEGSTLCPSDPAF    16_IKZF3    2    FEGSTLCPS 0.490         0.215       4905.40  95.00   9.999       
+    15         DRB1_1104     VFEGSTLCPSDPAFS    16_IKZF3    6    LCPSDPAFS 0.460         0.255       3171.25  90.00   9.999       
+    16         DRB1_1104     FEGSTLCPSDPAFSR    16_IKZF3    5    LCPSDPAFS 0.655         0.310       1746.19  80.00   9.999       
+    17         DRB1_1104     EGSTLCPSDPAFSRT    16_IKZF3    4    LCPSDPAFS 0.685         0.334       1348.52  75.00   9.999       
+    18         DRB1_1104     GSTLCPSDPAFSRTD    16_IKZF3    3    LCPSDPAFS 0.685         0.319       1579.29  80.00   9.999       
+    19         DRB1_1104     STLCPSDPAFSRTDD    16_IKZF3    2    LCPSDPAFS 0.725         0.304       1864.04  80.00   9.999       
+    20         DRB1_1104     TLCPSDPAFSRTDDP    16_IKZF3    1    LCPSDPAFS 0.700         0.268       2738.32  85.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 5
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     SGEGPANEDEDIGGG    17_IKZF3    5    ANEDEDIGG 0.415         0.062      25573.43  95.00   9.999       
+     1         DRB1_1104     GEGPANEDEDIGGGV    17_IKZF3    4    ANEDEDIGG 0.380         0.071      23179.72  95.00   9.999       
+     2         DRB1_1104     EGPANEDEDIGGGVF    17_IKZF3    3    ANEDEDIGG 0.300         0.081      20884.28  95.00   9.999       
+     3         DRB1_1104     GPANEDEDIGGGVFE    17_IKZF3    2    ANEDEDIGG 0.230         0.084      20250.11  95.00   9.999       
+     4         DRB1_1104     PANEDEDIGGGVFEG    17_IKZF3    1    ANEDEDIGG 0.240         0.083      20381.34  95.00   9.999       
+     5         DRB1_1104     ANEDEDIGGGVFEGS    17_IKZF3    6    IGGGVFEGS 0.190         0.087      19557.18  95.00   9.999       
+     6         DRB1_1104     NEDEDIGGGVFEGST    17_IKZF3    5    IGGGVFEGS 0.280         0.087      19496.96  95.00   9.999       
+     7         DRB1_1104     EDEDIGGGVFEGSTL    17_IKZF3    4    IGGGVFEGS 0.325         0.097      17475.60  95.00   9.999       
+     8         DRB1_1104     DEDIGGGVFEGSTLC    17_IKZF3    6    GVFEGSTLC 0.340         0.117      14085.04  95.00   9.999       
+     9         DRB1_1104     EDIGGGVFEGSTLCP    17_IKZF3    5    GVFEGSTLC 0.315         0.139      11140.10  95.00   9.999       
+    10         DRB1_1104     DIGGGVFEGSTLCPS    17_IKZF3    6    FEGSTLCPS 0.470         0.195       6091.76  95.00   9.999       
+    11         DRB1_1104     IGGGVFEGSTLCPSD    17_IKZF3    5    FEGSTLCPS 0.540         0.209       5232.94  95.00   9.999       
+    12         DRB1_1104     GGGVFEGSTLCPSDP    17_IKZF3    4    FEGSTLCPS 0.585         0.203       5548.10  95.00   9.999       
+    13         DRB1_1104     GGVFEGSTLCPSDPA    17_IKZF3    3    FEGSTLCPS 0.590         0.211       5072.94  95.00   9.999       
+    14         DRB1_1104     GVFEGSTLCPSDPAF    17_IKZF3    2    FEGSTLCPS 0.490         0.215       4905.40  95.00   9.999       
+    15         DRB1_1104     VFEGSTLCPSDPAFS    17_IKZF3    6    LCPSDPAFS 0.460         0.255       3171.25  90.00   9.999       
+    16         DRB1_1104     FEGSTLCPSDPAFSR    17_IKZF3    5    LCPSDPAFS 0.655         0.310       1746.19  80.00   9.999       
+    17         DRB1_1104     EGSTLCPSDPAFSRT    17_IKZF3    4    LCPSDPAFS 0.685         0.334       1348.52  75.00   9.999       
+    18         DRB1_1104     GSTLCPSDPAFSRTD    17_IKZF3    3    LCPSDPAFS 0.685         0.319       1579.29  80.00   9.999       
+    19         DRB1_1104     STLCPSDPAFSRTDD    17_IKZF3    2    LCPSDPAFS 0.725         0.304       1864.04  80.00   9.999       
+    20         DRB1_1104     TLCPSDPAFSRTDDP    17_IKZF3    1    LCPSDPAFS 0.700         0.268       2738.32  85.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     QRRDALTGHLRTHSG    18_IKZF3    5    LTGHLRTHS 0.600         0.599         76.89  25.00   9.999   <=WB
+     1         DRB1_1104     RRDALTGHLRTHSGG    18_IKZF3    4    LTGHLRTHS 0.630         0.601         75.24  25.00   9.999   <=WB
+     2         DRB1_1104     RDALTGHLRTHSGGV    18_IKZF3    3    LTGHLRTHS 0.715         0.606         70.95  24.00   9.999   <=WB
+     3         DRB1_1104     DALTGHLRTHSGGVF    18_IKZF3    2    LTGHLRTHS 0.695         0.572        102.59  29.00   9.999   <=WB
+     4         DRB1_1104     ALTGHLRTHSGGVFE    18_IKZF3    1    LTGHLRTHS 0.665         0.572        102.63  29.00   9.999   <=WB
+     5         DRB1_1104     LTGHLRTHSGGVFEG    18_IKZF3    0    LTGHLRTHS 0.475         0.485        262.87  46.00   9.999   <=WB
+     6         DRB1_1104     TGHLRTHSGGVFEGS    18_IKZF3    3    LRTHSGGVF 0.650         0.346       1183.95  75.00   9.999       
+     7         DRB1_1104     GHLRTHSGGVFEGST    18_IKZF3    2    LRTHSGGVF 0.680         0.321       1554.56  80.00   9.999       
+     8         DRB1_1104     HLRTHSGGVFEGSTL    18_IKZF3    1    LRTHSGGVF 0.675         0.285       2277.86  85.00   9.999       
+     9         DRB1_1104     LRTHSGGVFEGSTLC    18_IKZF3    0    LRTHSGGVF 0.440         0.206       5356.39  95.00   9.999       
+    10         DRB1_1104     RTHSGGVFEGSTLCP    18_IKZF3    5    GVFEGSTLC 0.260         0.145      10461.70  95.00   9.999       
+    11         DRB1_1104     THSGGVFEGSTLCPS    18_IKZF3    6    FEGSTLCPS 0.490         0.195       6065.85  95.00   9.999       
+    12         DRB1_1104     HSGGVFEGSTLCPSD    18_IKZF3    5    FEGSTLCPS 0.560         0.208       5241.56  95.00   9.999       
+    13         DRB1_1104     SGGVFEGSTLCPSDP    18_IKZF3    4    FEGSTLCPS 0.570         0.205       5452.11  95.00   9.999       
+    14         DRB1_1104     GGVFEGSTLCPSDPA    18_IKZF3    3    FEGSTLCPS 0.590         0.211       5072.94  95.00   9.999       
+    15         DRB1_1104     GVFEGSTLCPSDPAF    18_IKZF3    2    FEGSTLCPS 0.490         0.215       4905.40  95.00   9.999       
+    16         DRB1_1104     VFEGSTLCPSDPAFS    18_IKZF3    6    LCPSDPAFS 0.460         0.255       3171.25  90.00   9.999       
+    17         DRB1_1104     FEGSTLCPSDPAFSR    18_IKZF3    5    LCPSDPAFS 0.655         0.310       1746.19  80.00   9.999       
+    18         DRB1_1104     EGSTLCPSDPAFSRT    18_IKZF3    4    LCPSDPAFS 0.685         0.334       1348.52  75.00   9.999       
+    19         DRB1_1104     GSTLCPSDPAFSRTD    18_IKZF3    3    LCPSDPAFS 0.685         0.319       1579.29  80.00   9.999       
+    20         DRB1_1104     STLCPSDPAFSRTDD    18_IKZF3    2    LCPSDPAFS 0.725         0.304       1864.04  80.00   9.999       
+    21         DRB1_1104     TLCPSDPAFSRTDDP    18_IKZF3    1    LCPSDPAFS 0.700         0.268       2738.32  85.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 6
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     ISFNVLMVHKRSHTG    19_IKZF3    2    FNVLMVHKR 0.320         0.842          5.53   0.70   9.999   <=SB
+     1         DRB1_1104     SFNVLMVHKRSHTGG    19_IKZF3    3    VLMVHKRSH 0.300         0.833          6.07   0.90   9.999   <=SB
+     2         DRB1_1104     FNVLMVHKRSHTGGV    19_IKZF3    2    VLMVHKRSH 0.325         0.822          6.84   1.30   9.999   <=SB
+     3         DRB1_1104     NVLMVHKRSHTGGVF    19_IKZF3    2    LMVHKRSHT 0.370         0.783         10.49   3.50   9.999   <=SB
+     4         DRB1_1104     VLMVHKRSHTGGVFE    19_IKZF3    1    LMVHKRSHT 0.475         0.744         15.96   6.50   9.999   <=SB
+     5         DRB1_1104     LMVHKRSHTGGVFEG    19_IKZF3    0    LMVHKRSHT 0.460         0.628         56.04  20.00   9.999   <=WB
+     6         DRB1_1104     MVHKRSHTGGVFEGS    19_IKZF3    0    MVHKRSHTG 0.440         0.369        918.89  70.00   9.999       
+     7         DRB1_1104     VHKRSHTGGVFEGST    19_IKZF3    2    KRSHTGGVF 0.340         0.205       5411.91  95.00   9.999       
+     8         DRB1_1104     HKRSHTGGVFEGSTL    19_IKZF3    1    KRSHTGGVF 0.375         0.167       8230.85  95.00   9.999       
+     9         DRB1_1104     KRSHTGGVFEGSTLC    19_IKZF3    0    KRSHTGGVF 0.200         0.153       9518.24  95.00   9.999       
+    10         DRB1_1104     RSHTGGVFEGSTLCP    19_IKZF3    5    GVFEGSTLC 0.290         0.146      10312.46  95.00   9.999       
+    11         DRB1_1104     SHTGGVFEGSTLCPS    19_IKZF3    6    FEGSTLCPS 0.480         0.196       5993.18  95.00   9.999       
+    12         DRB1_1104     HTGGVFEGSTLCPSD    19_IKZF3    5    FEGSTLCPS 0.560         0.209       5201.45  95.00   9.999       
+    13         DRB1_1104     TGGVFEGSTLCPSDP    19_IKZF3    4    FEGSTLCPS 0.565         0.205       5417.18  95.00   9.999       
+    14         DRB1_1104     GGVFEGSTLCPSDPA    19_IKZF3    3    FEGSTLCPS 0.590         0.211       5072.94  95.00   9.999       
+    15         DRB1_1104     GVFEGSTLCPSDPAF    19_IKZF3    2    FEGSTLCPS 0.490         0.215       4905.40  95.00   9.999       
+    16         DRB1_1104     VFEGSTLCPSDPAFS    19_IKZF3    6    LCPSDPAFS 0.460         0.255       3171.25  90.00   9.999       
+    17         DRB1_1104     FEGSTLCPSDPAFSR    19_IKZF3    5    LCPSDPAFS 0.655         0.310       1746.19  80.00   9.999       
+    18         DRB1_1104     EGSTLCPSDPAFSRT    19_IKZF3    4    LCPSDPAFS 0.685         0.334       1348.52  75.00   9.999       
+    19         DRB1_1104     GSTLCPSDPAFSRTD    19_IKZF3    3    LCPSDPAFS 0.685         0.319       1579.29  80.00   9.999       
+    20         DRB1_1104     STLCPSDPAFSRTDD    19_IKZF3    2    LCPSDPAFS 0.725         0.304       1864.04  80.00   9.999       
+    21         DRB1_1104     TLCPSDPAFSRTDDP    19_IKZF3    1    LCPSDPAFS 0.700         0.268       2738.32  85.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 5 Number of weak binders: 1
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     DSGEGPANEDEDIGG    20_IKZF3    6    ANEDEDIGG 0.390         0.059      26393.14  95.00   9.999       
+     1         DRB1_1104     SGEGPANEDEDIGGG    20_IKZF3    5    ANEDEDIGG 0.415         0.062      25573.43  95.00   9.999       
+     2         DRB1_1104     GEGPANEDEDIGGGV    20_IKZF3    4    ANEDEDIGG 0.380         0.071      23179.72  95.00   9.999       
+     3         DRB1_1104     EGPANEDEDIGGGVF    20_IKZF3    3    ANEDEDIGG 0.300         0.081      20884.28  95.00   9.999       
+     4         DRB1_1104     GPANEDEDIGGGVFE    20_IKZF3    2    ANEDEDIGG 0.230         0.084      20250.11  95.00   9.999       
+     5         DRB1_1104     PANEDEDIGGGVFEG    20_IKZF3    1    ANEDEDIGG 0.240         0.083      20381.34  95.00   9.999       
+     6         DRB1_1104     ANEDEDIGGGVFEGS    20_IKZF3    6    IGGGVFEGS 0.190         0.087      19557.18  95.00   9.999       
+     7         DRB1_1104     NEDEDIGGGVFEGST    20_IKZF3    5    IGGGVFEGS 0.280         0.087      19496.96  95.00   9.999       
+     8         DRB1_1104     EDEDIGGGVFEGSTL    20_IKZF3    4    IGGGVFEGS 0.325         0.097      17475.60  95.00   9.999       
+     9         DRB1_1104     DEDIGGGVFEGSTLC    20_IKZF3    6    GVFEGSTLC 0.340         0.117      14085.04  95.00   9.999       
+    10         DRB1_1104     EDIGGGVFEGSTLCP    20_IKZF3    5    GVFEGSTLC 0.315         0.139      11140.10  95.00   9.999       
+    11         DRB1_1104     DIGGGVFEGSTLCPS    20_IKZF3    6    FEGSTLCPS 0.470         0.195       6091.76  95.00   9.999       
+    12         DRB1_1104     IGGGVFEGSTLCPSD    20_IKZF3    5    FEGSTLCPS 0.540         0.209       5232.94  95.00   9.999       
+    13         DRB1_1104     GGGVFEGSTLCPSDP    20_IKZF3    4    FEGSTLCPS 0.585         0.203       5548.10  95.00   9.999       
+    14         DRB1_1104     GGVFEGSTLCPSDPA    20_IKZF3    3    FEGSTLCPS 0.590         0.211       5072.94  95.00   9.999       
+    15         DRB1_1104     GVFEGSTLCPSDPAF    20_IKZF3    2    FEGSTLCPS 0.490         0.215       4905.40  95.00   9.999       
+    16         DRB1_1104     VFEGSTLCPSDPAFS    20_IKZF3    6    LCPSDPAFS 0.460         0.255       3171.25  90.00   9.999       
+    17         DRB1_1104     FEGSTLCPSDPAFSR    20_IKZF3    5    LCPSDPAFS 0.655         0.310       1746.19  80.00   9.999       
+    18         DRB1_1104     EGSTLCPSDPAFSRT    20_IKZF3    4    LCPSDPAFS 0.685         0.334       1348.52  75.00   9.999       
+    19         DRB1_1104     GSTLCPSDPAFSRTD    20_IKZF3    3    LCPSDPAFS 0.685         0.319       1579.29  80.00   9.999       
+    20         DRB1_1104     STLCPSDPAFSRTDD    20_IKZF3    2    LCPSDPAFS 0.725         0.304       1864.04  80.00   9.999       
+    21         DRB1_1104     TLCPSDPAFSRTDDP    20_IKZF3    1    LCPSDPAFS 0.700         0.268       2738.32  85.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------

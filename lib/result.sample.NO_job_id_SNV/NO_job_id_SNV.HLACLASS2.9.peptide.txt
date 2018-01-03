@@ -1,0 +1,111 @@
+# NetMHCIIpan version 3.1
+
+# Input is in FASTA format
+
+# Peptide length 15
+
+# Threshold for Strong binding peptides (IC50)	50.000 nM
+# Threshold for Weak binding peptides (IC50)	500.000 nM
+
+# Threshold for Strong binding peptides (%Rank)	0.5%
+# Threshold for Weak binding peptides (%Rank)	2%
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     HPKHQERCREEIHSL   0_CYP4A11    1    PKHQERCRE 0.230         0.212       5071.13  95.00   9.999       
+     1         DRB1_1104     PKHQERCREEIHSLP   0_CYP4A11    6    CREEIHSLP 0.280         0.217       4755.67  95.00   9.999       
+     2         DRB1_1104     KHQERCREEIHSLPG   0_CYP4A11    5    CREEIHSLP 0.420         0.221       4580.88  95.00   9.999       
+     3         DRB1_1104     HQERCREEIHSLPGD   0_CYP4A11    4    CREEIHSLP 0.430         0.208       5274.27  95.00   9.999       
+     4         DRB1_1104     QERCREEIHSLPGDG   0_CYP4A11    3    CREEIHSLP 0.440         0.204       5527.72  95.00   9.999       
+     5         DRB1_1104     ERCREEIHSLPGDGA   0_CYP4A11    6    IHSLPGDGA 0.610         0.285       2283.86  85.00   9.999       
+     6         DRB1_1104     RCREEIHSLPGDGAS   0_CYP4A11    5    IHSLPGDGA 0.790         0.337       1304.18  75.00   9.999       
+     7         DRB1_1104     CREEIHSLPGDGASI   0_CYP4A11    4    IHSLPGDGA 0.875         0.372        897.57  70.00   9.999       
+     8         DRB1_1104     REEIHSLPGDGASIT   0_CYP4A11    3    IHSLPGDGA 0.880         0.376        856.71  70.00   9.999       
+     9         DRB1_1104     EEIHSLPGDGASITW   0_CYP4A11    2    IHSLPGDGA 0.850         0.345       1201.45  75.00   9.999       
+    10         DRB1_1104     EIHSLPGDGASITWN   0_CYP4A11    1    IHSLPGDGA 0.835         0.322       1533.74  80.00   9.999       
+    11         DRB1_1104     IHSLPGDGASITWNH   0_CYP4A11    0    IHSLPGDGA 0.560         0.242       3646.57  90.00   9.999       
+    12         DRB1_1104     HSLPGDGASITWNHL   0_CYP4A11    6    GASITWNHL 0.460         0.192       6294.65  95.00   9.999       
+    13         DRB1_1104     SLPGDGASITWNHLD   0_CYP4A11    5    GASITWNHL 0.465         0.203       5589.91  95.00   9.999       
+    14         DRB1_1104     LPGDGASITWNHLDQ   0_CYP4A11    4    GASITWNHL 0.410         0.239       3759.96  90.00   9.999       
+    15         DRB1_1104     PGDGASITWNHLDQM   0_CYP4A11    3    GASITWNHL 0.280         0.294       2068.16  85.00   9.999       
+    16         DRB1_1104     GDGASITWNHLDQMP   0_CYP4A11    5    ITWNHLDQM 0.325         0.305       1838.80  80.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     YTPEPERDYLEAAIR     1_DHX15    6    RDYLEAAIR 0.440         0.212       5056.94  95.00   9.999       
+     1         DRB1_1104     TPEPERDYLEAAIRA     1_DHX15    6    DYLEAAIRA 0.455         0.309       1764.60  80.00   9.999       
+     2         DRB1_1104     PEPERDYLEAAIRAV     1_DHX15    6    YLEAAIRAV 0.380         0.442        418.96  55.00   9.999   <=WB
+     3         DRB1_1104     EPERDYLEAAIRAVI     1_DHX15    6    LEAAIRAVI 0.480         0.555        123.79  32.00   9.999   <=WB
+     4         DRB1_1104     PERDYLEAAIRAVIQ     1_DHX15    5    LEAAIRAVI 0.615         0.605         72.08  24.00   9.999   <=WB
+     5         DRB1_1104     ERDYLEAAIRAVIQI     1_DHX15    4    LEAAIRAVI 0.685         0.634         52.53  19.00   9.999   <=WB
+     6         DRB1_1104     RDYLEAAIRAVIQIH     1_DHX15    3    LEAAIRAVI 0.605         0.651         43.63  17.00   9.999   <=SB
+     7         DRB1_1104     DYLEAAIRAVIQIHM     1_DHX15    6    IRAVIQIHM 0.570         0.701         25.50  11.00   9.999   <=SB
+     8         DRB1_1104     YLEAAIRAVIQIHMC     1_DHX15    5    IRAVIQIHM 0.675         0.725         19.61   8.00   9.999   <=SB
+     9         DRB1_1104     LEAAIRAVIQIHMCE     1_DHX15    4    IRAVIQIHM 0.760         0.712         22.63   9.50   9.999   <=SB
+    10         DRB1_1104     EAAIRAVIQIHMCEE     1_DHX15    3    IRAVIQIHM 0.805         0.697         26.49  11.00   9.999   <=SB
+    11         DRB1_1104     AAIRAVIQIHMCEEE     1_DHX15    2    IRAVIQIHM 0.810         0.694         27.44  12.00   9.999   <=SB
+    12         DRB1_1104     AIRAVIQIHMCEEEE     1_DHX15    1    IRAVIQIHM 0.780         0.659         40.10  16.00   9.999   <=SB
+    13         DRB1_1104     IRAVIQIHMCEEEEG     1_DHX15    0    IRAVIQIHM 0.565         0.551        128.46  33.00   9.999   <=WB
+    14         DRB1_1104     RAVIQIHMCEEEEGD     1_DHX15    2    VIQIHMCEE 0.360         0.315       1662.51  80.00   9.999       
+    15         DRB1_1104     AVIQIHMCEEEEGDL     1_DHX15    1    VIQIHMCEE 0.420         0.240       3737.08  90.00   9.999       
+    16         DRB1_1104     VIQIHMCEEEEGDLL     1_DHX15    0    VIQIHMCEE 0.260         0.186       6672.52  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 7 Number of weak binders: 5
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     VMGCTEARRRCDRDS      2_GAS1    1    MGCTEARRR 0.345         0.413        571.72  60.00   9.999       
+     1         DRB1_1104     MGCTEARRRCDRDSH      2_GAS1    0    MGCTEARRR 0.265         0.323       1523.96  80.00   9.999       
+     2         DRB1_1104     GCTEARRRCDRDSHC      2_GAS1    5    RRRCDRDSH 0.255         0.254       3187.35  90.00   9.999       
+     3         DRB1_1104     CTEARRRCDRDSHCN      2_GAS1    4    RRRCDRDSH 0.335         0.233       4011.71  90.00   9.999       
+     4         DRB1_1104     TEARRRCDRDSHCNL      2_GAS1    3    RRRCDRDSH 0.375         0.240       3731.67  90.00   9.999       
+     5         DRB1_1104     EARRRCDRDSHCNLA      2_GAS1    2    RRRCDRDSH 0.365         0.238       3821.07  90.00   9.999       
+     6         DRB1_1104     ARRRCDRDSHCNLAL      2_GAS1    4    CDRDSHCNL 0.350         0.258       3069.34  90.00   9.999       
+     7         DRB1_1104     RRRCDRDSHCNLALS      2_GAS1    3    CDRDSHCNL 0.380         0.252       3269.36  90.00   9.999       
+     8         DRB1_1104     RRCDRDSHCNLALSR      2_GAS1    6    SHCNLALSR 0.265         0.292       2123.35  85.00   9.999       
+     9         DRB1_1104     RCDRDSHCNLALSRY      2_GAS1    5    SHCNLALSR 0.320         0.369        927.23  70.00   9.999       
+    10         DRB1_1104     CDRDSHCNLALSRYL      2_GAS1    6    CNLALSRYL 0.610         0.597         78.36  25.00   9.999   <=WB
+    11         DRB1_1104     DRDSHCNLALSRYLT      2_GAS1    5    CNLALSRYL 0.465         0.685         30.08  13.00   9.999   <=SB
+    12         DRB1_1104     RDSHCNLALSRYLTY      2_GAS1    4    CNLALSRYL 0.415         0.730         18.53   7.50   9.999   <=SB
+    13         DRB1_1104     DSHCNLALSRYLTYC      2_GAS1    3    CNLALSRYL 0.390         0.725         19.60   8.00   9.999   <=SB
+    14         DRB1_1104     SHCNLALSRYLTYCG      2_GAS1    2    CNLALSRYL 0.405         0.733         18.02   7.00   9.999   <=SB
+    15         DRB1_1104     HCNLALSRYLTYCGK      2_GAS1    2    NLALSRYLT 0.380         0.719         20.86   8.50   9.999   <=SB
+    16         DRB1_1104     CNLALSRYLTYCGKV      2_GAS1    1    NLALSRYLT 0.355         0.687         29.54  12.00   9.999   <=SB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 6 Number of weak binders: 1
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0         DRB1_1104     KKGVKGFGDDIPGME     3_PDE6H    3    VKGFGDDIP 0.340         0.149      10026.18  95.00   9.999       
+     1         DRB1_1104     KGVKGFGDDIPGMEW     3_PDE6H    5    FGDDIPGME 0.330         0.147      10222.14  95.00   9.999       
+     2         DRB1_1104     GVKGFGDDIPGMEWL     3_PDE6H    4    FGDDIPGME 0.380         0.155       9330.62  95.00   9.999       
+     3         DRB1_1104     VKGFGDDIPGMEWLG     3_PDE6H    3    FGDDIPGME 0.380         0.152       9627.31  95.00   9.999       
+     4         DRB1_1104     KGFGDDIPGMEWLGT     3_PDE6H    2    FGDDIPGME 0.320         0.160       8842.22  95.00   9.999       
+     5         DRB1_1104     GFGDDIPGMEWLGTD     3_PDE6H    5    IPGMEWLGT 0.270         0.153       9558.08  95.00   9.999       
+     6         DRB1_1104     FGDDIPGMEWLGTDI     3_PDE6H    4    IPGMEWLGT 0.350         0.157       9098.63  95.00   9.999       
+     7         DRB1_1104     GDDIPGMEWLGTDIT     3_PDE6H    6    MEWLGTDIT 0.430         0.194       6127.26  95.00   9.999       
+     8         DRB1_1104     DDIPGMEWLGTDITV     3_PDE6H    5    MEWLGTDIT 0.540         0.233       4021.27  90.00   9.999       
+     9         DRB1_1104     DIPGMEWLGTDITVI     3_PDE6H    4    MEWLGTDIT 0.510         0.270       2699.96  85.00   9.999       
+    10         DRB1_1104     IPGMEWLGTDITVIC     3_PDE6H    3    MEWLGTDIT 0.505         0.280       2420.14  85.00   9.999       
+    11         DRB1_1104     PGMEWLGTDITVICP     3_PDE6H    2    MEWLGTDIT 0.490         0.263       2908.80  90.00   9.999       
+    12         DRB1_1104     GMEWLGTDITVICPW     3_PDE6H    1    MEWLGTDIT 0.380         0.256       3146.03  90.00   9.999       
+    13         DRB1_1104     MEWLGTDITVICPWE     3_PDE6H    3    LGTDITVIC 0.280         0.241       3672.87  90.00   9.999       
+    14         DRB1_1104     EWLGTDITVICPWEA     3_PDE6H    6    ITVICPWEA 0.565         0.310       1752.68  80.00   9.999       
+    15         DRB1_1104     WLGTDITVICPWEAF     3_PDE6H    5    ITVICPWEA 0.725         0.385        777.91  65.00   9.999       
+    16         DRB1_1104     LGTDITVICPWEAFS     3_PDE6H    4    ITVICPWEA 0.710         0.416        551.89  60.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------

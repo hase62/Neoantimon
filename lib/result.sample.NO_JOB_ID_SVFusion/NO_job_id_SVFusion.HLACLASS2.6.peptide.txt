@@ -1,0 +1,748 @@
+# NetMHCIIpan version 3.1
+
+# Input is in FASTA format
+
+# Peptide length 15
+
+# Threshold for Strong binding peptides (IC50)	50.000 nM
+# Threshold for Weak binding peptides (IC50)	500.000 nM
+
+# Threshold for Strong binding peptides (%Rank)	0.5%
+# Threshold for Weak binding peptides (%Rank)	2%
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     GIDYNSWEVGPKFRE      0_AAR2    1    IDYNSWEVG 0.265         0.251       3306.04  85.00   9.999       
+     1 HLA-DQA10102-DQB10604     IDYNSWEVGPKFREQ      0_AAR2    0    IDYNSWEVG 0.235         0.241       3677.64  85.00   9.999       
+     2 HLA-DQA10102-DQB10604     DYNSWEVGPKFREQL      0_AAR2    4    WEVGPKFRE 0.255         0.222       4530.21  90.00   9.999       
+     3 HLA-DQA10102-DQB10604     YNSWEVGPKFREQLK      0_AAR2    3    WEVGPKFRE 0.270         0.214       4931.16  90.00   9.999       
+     4 HLA-DQA10102-DQB10604     NSWEVGPKFREQLKL      0_AAR2    2    WEVGPKFRE 0.230         0.197       5957.23  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     SWEVGPKFREQLKLF      0_AAR2    6    KFREQLKLF 0.275         0.208       5255.07  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     WEVGPKFREQLKLFC      0_AAR2    5    KFREQLKLF 0.260         0.221       4598.01  90.00   9.999       
+     7 HLA-DQA10102-DQB10604     EVGPKFREQLKLFCE      0_AAR2    6    REQLKLFCE 0.380         0.260       3012.19  80.00   9.999       
+     8 HLA-DQA10102-DQB10604     VGPKFREQLKLFCET      0_AAR2    5    REQLKLFCE 0.335         0.296       2028.64  70.00   9.999       
+     9 HLA-DQA10102-DQB10604     GPKFREQLKLFCETC      0_AAR2    4    REQLKLFCE 0.335         0.313       1686.97  65.00   9.999       
+    10 HLA-DQA10102-DQB10604     PKFREQLKLFCETCD      0_AAR2    3    REQLKLFCE 0.220         0.332       1374.58  60.00   9.999       
+    11 HLA-DQA10102-DQB10604     KFREQLKLFCETCDR      0_AAR2    5    LKLFCETCD 0.255         0.333       1363.26  60.00   9.999       
+    12 HLA-DQA10102-DQB10604     FREQLKLFCETCDRL      0_AAR2    4    LKLFCETCD 0.260         0.341       1245.93  55.00   9.999       
+    13 HLA-DQA10102-DQB10604     REQLKLFCETCDRLT      0_AAR2    3    LKLFCETCD 0.285         0.337       1311.27  55.00   9.999       
+    14 HLA-DQA10102-DQB10604     EQLKLFCETCDRLTC      0_AAR2    2    LKLFCETCD 0.295         0.323       1520.26  60.00   9.999       
+    15 HLA-DQA10102-DQB10604     QLKLFCETCDRLTCR      0_AAR2    1    LKLFCETCD 0.285         0.309       1771.06  65.00   9.999       
+    16 HLA-DQA10102-DQB10604     LKLFCETCDRLTCRD      0_AAR2    2    LFCETCDRL 0.265         0.281       2393.27  75.00   9.999       
+    17 HLA-DQA10102-DQB10604     KLFCETCDRLTCRDC      0_AAR2    2    FCETCDRLT 0.320         0.241       3667.82  85.00   9.999       
+    18 HLA-DQA10102-DQB10604     LFCETCDRLTCRDCQ      0_AAR2    1    FCETCDRLT 0.330         0.226       4345.00  90.00   9.999       
+    19 HLA-DQA10102-DQB10604     FCETCDRLTCRDCQL      0_AAR2    0    FCETCDRLT 0.250         0.206       5390.93  95.00   9.999       
+    20 HLA-DQA10102-DQB10604     CETCDRLTCRDCQLL      0_AAR2    6    LTCRDCQLL 0.250         0.217       4754.03  90.00   9.999       
+    21 HLA-DQA10102-DQB10604     ETCDRLTCRDCQLLE      0_AAR2    5    LTCRDCQLL 0.285         0.223       4485.87  90.00   9.999       
+    22 HLA-DQA10102-DQB10604     TCDRLTCRDCQLLEH      0_AAR2    4    LTCRDCQLL 0.235         0.244       3578.95  85.00   9.999       
+    23 HLA-DQA10102-DQB10604     CDRLTCRDCQLLEHK      0_AAR2    3    LTCRDCQLL 0.215         0.250       3347.72  85.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     KRGDPHELRNIFLQL  1_SLC25A12    5    HELRNIFLQ 0.450         0.347       1164.96  50.00   9.999       
+     1 HLA-DQA10102-DQB10604     RGDPHELRNIFLQLS  1_SLC25A12    6    LRNIFLQLS 0.530         0.441        424.29  17.00   9.999   <=WB
+     2 HLA-DQA10102-DQB10604     GDPHELRNIFLQLSA  1_SLC25A12    5    LRNIFLQLS 0.450         0.486        260.80   6.50   9.999   <=WB
+     3 HLA-DQA10102-DQB10604     DPHELRNIFLQLSAV  1_SLC25A12    4    LRNIFLQLS 0.370         0.528        165.53   2.00   9.999   <=WB
+     4 HLA-DQA10102-DQB10604     PHELRNIFLQLSAVQ  1_SLC25A12    3    LRNIFLQLS 0.300         0.552        128.00   0.90   9.999   <=WB
+     5 HLA-DQA10102-DQB10604     HELRNIFLQLSAVQE  1_SLC25A12    2    LRNIFLQLS 0.240         0.572        102.73   0.40   9.999   <=SB
+     6 HLA-DQA10102-DQB10604     ELRNIFLQLSAVQEA  1_SLC25A12    6    LQLSAVQEA 0.295         0.606         70.83   0.07   9.999   <=SB
+     7 HLA-DQA10102-DQB10604     LRNIFLQLSAVQEAQ  1_SLC25A12    5    LQLSAVQEA 0.340         0.609         68.87   0.06   9.999   <=SB
+     8 HLA-DQA10102-DQB10604     RNIFLQLSAVQEAQL  1_SLC25A12    4    LQLSAVQEA 0.420         0.611         67.53   0.05   9.999   <=SB
+     9 HLA-DQA10102-DQB10604     NIFLQLSAVQEAQLK  1_SLC25A12    3    LQLSAVQEA 0.435         0.596         79.09   0.12   9.999   <=SB
+    10 HLA-DQA10102-DQB10604     IFLQLSAVQEAQLKR  1_SLC25A12    2    LQLSAVQEA 0.445         0.579         95.52   0.25   9.999   <=SB
+    11 HLA-DQA10102-DQB10604     FLQLSAVQEAQLKRL  1_SLC25A12    1    LQLSAVQEA 0.445         0.551        129.24   0.90   9.999   <=WB
+    12 HLA-DQA10102-DQB10604     LQLSAVQEAQLKRLE  1_SLC25A12    0    LQLSAVQEA 0.420         0.496        233.04   5.00   9.999   <=WB
+    13 HLA-DQA10102-DQB10604     QLSAVQEAQLKRLEV  1_SLC25A12    1    LSAVQEAQL 0.385         0.407        613.35  27.00   9.999       
+    14 HLA-DQA10102-DQB10604     LSAVQEAQLKRLEVT  1_SLC25A12    0    LSAVQEAQL 0.380         0.373        883.53  40.00   9.999       
+    15 HLA-DQA10102-DQB10604     SAVQEAQLKRLEVTR  1_SLC25A12    2    VQEAQLKRL 0.285         0.311       1733.32  65.00   9.999       
+    16 HLA-DQA10102-DQB10604     AVQEAQLKRLEVTRP  1_SLC25A12    4    AQLKRLEVT 0.275         0.307       1811.57  65.00   9.999       
+    17 HLA-DQA10102-DQB10604     VQEAQLKRLEVTRPR  1_SLC25A12    3    AQLKRLEVT 0.290         0.299       1977.95  70.00   9.999       
+    18 HLA-DQA10102-DQB10604     QEAQLKRLEVTRPRV  1_SLC25A12    2    AQLKRLEVT 0.335         0.280       2405.89  75.00   9.999       
+    19 HLA-DQA10102-DQB10604     EAQLKRLEVTRPRVL  1_SLC25A12    6    LEVTRPRVL 0.365         0.302       1909.19  70.00   9.999       
+    20 HLA-DQA10102-DQB10604     AQLKRLEVTRPRVLG  1_SLC25A12    5    LEVTRPRVL 0.425         0.296       2026.60  70.00   9.999       
+    21 HLA-DQA10102-DQB10604     QLKRLEVTRPRVLGS  1_SLC25A12    4    LEVTRPRVL 0.485         0.294       2081.61  70.00   9.999       
+    22 HLA-DQA10102-DQB10604     LKRLEVTRPRVLGSR  1_SLC25A12    3    LEVTRPRVL 0.460         0.291       2147.47  75.00   9.999       
+    23 HLA-DQA10102-DQB10604     KRLEVTRPRVLGSRE  1_SLC25A12    2    LEVTRPRVL 0.515         0.269       2735.57  80.00   9.999       
+    24 HLA-DQA10102-DQB10604     RLEVTRPRVLGSREQ  1_SLC25A12    1    LEVTRPRVL 0.460         0.260       2991.34  80.00   9.999       
+    25 HLA-DQA10102-DQB10604     LEVTRPRVLGSREQG  1_SLC25A12    0    LEVTRPRVL 0.375         0.228       4264.10  90.00   9.999       
+    26 HLA-DQA10102-DQB10604     EVTRPRVLGSREQGQ  1_SLC25A12    6    VLGSREQGQ 0.375         0.217       4773.77  90.00   9.999       
+    27 HLA-DQA10102-DQB10604     VTRPRVLGSREQGQV  1_SLC25A12    5    VLGSREQGQ 0.460         0.235       3913.32  90.00   9.999       
+    28 HLA-DQA10102-DQB10604     TRPRVLGSREQGQVP  1_SLC25A12    4    VLGSREQGQ 0.515         0.230       4155.02  90.00   9.999       
+    29 HLA-DQA10102-DQB10604     RPRVLGSREQGQVPR  1_SLC25A12    3    VLGSREQGQ 0.480         0.233       4009.76  90.00   9.999       
+    30 HLA-DQA10102-DQB10604     PRVLGSREQGQVPRM  1_SLC25A12    2    VLGSREQGQ 0.460         0.239       3771.86  85.00   9.999       
+    31 HLA-DQA10102-DQB10604     RVLGSREQGQVPRMA  1_SLC25A12    1    VLGSREQGQ 0.350         0.261       2973.43  80.00   9.999       
+    32 HLA-DQA10102-DQB10604     VLGSREQGQVPRMAR  1_SLC25A12    5    EQGQVPRMA 0.330         0.254       3214.89  85.00   9.999       
+    33 HLA-DQA10102-DQB10604     LGSREQGQVPRMARQ  1_SLC25A12    4    EQGQVPRMA 0.420         0.243       3610.46  85.00   9.999       
+    34 HLA-DQA10102-DQB10604     GSREQGQVPRMARQP  1_SLC25A12    3    EQGQVPRMA 0.420         0.231       4116.01  90.00   9.999       
+    35 HLA-DQA10102-DQB10604     SREQGQVPRMARQPP  1_SLC25A12    2    EQGQVPRMA 0.435         0.229       4178.06  90.00   9.999       
+    36 HLA-DQA10102-DQB10604     REQGQVPRMARQPPP  1_SLC25A12    1    EQGQVPRMA 0.410         0.215       4890.56  90.00   9.999       
+    37 HLA-DQA10102-DQB10604     EQGQVPRMARQPPPP  1_SLC25A12    0    EQGQVPRMA 0.395         0.177       7345.10  95.00   9.999       
+    38 HLA-DQA10102-DQB10604     QGQVPRMARQPPPPW  1_SLC25A12    1    GQVPRMARQ 0.220         0.152       9626.37  95.00   9.999       
+    39 HLA-DQA10102-DQB10604     GQVPRMARQPPPPWV  1_SLC25A12    5    MARQPPPPW 0.365         0.151       9735.72  95.00   9.999       
+    40 HLA-DQA10102-DQB10604     QVPRMARQPPPPWVH  1_SLC25A12    4    MARQPPPPW 0.395         0.149       9925.58  95.00   9.999       
+    41 HLA-DQA10102-DQB10604     VPRMARQPPPPWVHA  1_SLC25A12    3    MARQPPPPW 0.440         0.151       9711.32  95.00   9.999       
+    42 HLA-DQA10102-DQB10604     PRMARQPPPPWVHAA  1_SLC25A12    2    MARQPPPPW 0.430         0.147      10183.83  95.00   9.999       
+    43 HLA-DQA10102-DQB10604     RMARQPPPPWVHAAF  1_SLC25A12    1    MARQPPPPW 0.400         0.157       9180.41  95.00   9.999       
+    44 HLA-DQA10102-DQB10604     MARQPPPPWVHAAFL  1_SLC25A12    6    PPWVHAAFL 0.375         0.204       5475.34  95.00   9.999       
+    45 HLA-DQA10102-DQB10604     ARQPPPPWVHAAFLL  1_SLC25A12    6    PWVHAAFLL 0.560         0.306       1816.79  65.00   9.999       
+    46 HLA-DQA10102-DQB10604     RQPPPPWVHAAFLLC  1_SLC25A12    5    PWVHAAFLL 0.465         0.351       1127.08  49.00   9.999       
+    47 HLA-DQA10102-DQB10604     QPPPPWVHAAFLLCL  1_SLC25A12    6    VHAAFLLCL 0.510         0.463        333.78  11.00   9.999   <=WB
+    48 HLA-DQA10102-DQB10604     PPPPWVHAAFLLCLL  1_SLC25A12    5    VHAAFLLCL 0.465         0.503        216.44   4.50   9.999   <=WB
+    49 HLA-DQA10102-DQB10604     PPPWVHAAFLLCLLS  1_SLC25A12    4    VHAAFLLCL 0.450         0.509        202.55   3.50   9.999   <=WB
+    50 HLA-DQA10102-DQB10604     PPWVHAAFLLCLLSL  1_SLC25A12    3    VHAAFLLCL 0.440         0.505        212.58   4.00   9.999   <=WB
+    51 HLA-DQA10102-DQB10604     PWVHAAFLLCLLSLG  1_SLC25A12    2    VHAAFLLCL 0.445         0.489        250.73   6.00   9.999   <=WB
+    52 HLA-DQA10102-DQB10604     WVHAAFLLCLLSLGG  1_SLC25A12    1    VHAAFLLCL 0.475         0.460        345.77  12.00   9.999   <=WB
+    53 HLA-DQA10102-DQB10604     VHAAFLLCLLSLGGA  1_SLC25A12    0    VHAAFLLCL 0.395         0.432        468.24  19.00   9.999   <=WB
+    54 HLA-DQA10102-DQB10604     HAAFLLCLLSLGGAI  1_SLC25A12    6    CLLSLGGAI 0.230         0.373        882.43  40.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 6 Number of weak binders: 13
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     RKTMAEKRQLFIEML      2_DTNB    6    KRQLFIEML 0.425         0.373        888.15  40.00   9.999       
+     1 HLA-DQA10102-DQB10604     KTMAEKRQLFIEMLY      2_DTNB    5    KRQLFIEML 0.450         0.394        703.75  32.00   9.999       
+     2 HLA-DQA10102-DQB10604     TMAEKRQLFIEMLYR      2_DTNB    4    KRQLFIEML 0.400         0.402        645.78  29.00   9.999       
+     3 HLA-DQA10102-DQB10604     MAEKRQLFIEMLYRL      2_DTNB    3    KRQLFIEML 0.360         0.415        559.58  25.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     GHTDWLSDCCFHPSE    3_SPAG16    2    TDWLSDCCF 0.265         0.278       2476.54  75.00   9.999       
+     1 HLA-DQA10102-DQB10604     HTDWLSDCCFHPSER    3_SPAG16    1    TDWLSDCCF 0.250         0.276       2532.69  75.00   9.999       
+     2 HLA-DQA10102-DQB10604     TDWLSDCCFHPSERC    3_SPAG16    4    SDCCFHPSE 0.175         0.251       3301.07  85.00   9.999       
+     3 HLA-DQA10102-DQB10604     DWLSDCCFHPSERCR    3_SPAG16    3    SDCCFHPSE 0.215         0.232       4081.37  90.00   9.999       
+     4 HLA-DQA10102-DQB10604     WLSDCCFHPSERCRC    3_SPAG16    4    CCFHPSERC 0.245         0.216       4808.76  90.00   9.999       
+     5 HLA-DQA10102-DQB10604     LSDCCFHPSERCRCT    3_SPAG16    3    CCFHPSERC 0.325         0.194       6098.23  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     SDCCFHPSERCRCTL    3_SPAG16    2    CCFHPSERC 0.355         0.169       8010.42  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     DCCFHPSERCRCTLY    3_SPAG16    1    CCFHPSERC 0.295         0.159       8932.42  95.00   9.999       
+     8 HLA-DQA10102-DQB10604     CCFHPSERCRCTLYG    3_SPAG16    0    CCFHPSERC 0.255         0.162       8705.62  95.00   9.999       
+     9 HLA-DQA10102-DQB10604     CFHPSERCRCTLYGH    3_SPAG16    4    SERCRCTLY 0.255         0.162       8635.54  95.00   9.999       
+    10 HLA-DQA10102-DQB10604     FHPSERCRCTLYGHT    3_SPAG16    6    CRCTLYGHT 0.315         0.194       6147.78  95.00   9.999       
+    11 HLA-DQA10102-DQB10604     HPSERCRCTLYGHTD    3_SPAG16    5    CRCTLYGHT 0.335         0.207       5310.52  95.00   9.999       
+    12 HLA-DQA10102-DQB10604     PSERCRCTLYGHTDS    3_SPAG16    6    CTLYGHTDS 0.305         0.234       3981.92  90.00   9.999       
+    13 HLA-DQA10102-DQB10604     SERCRCTLYGHTDSV    3_SPAG16    5    CTLYGHTDS 0.285         0.254       3186.94  85.00   9.999       
+    14 HLA-DQA10102-DQB10604     ERCRCTLYGHTDSVN    3_SPAG16    4    CTLYGHTDS 0.245         0.273       2605.43  80.00   9.999       
+    15 HLA-DQA10102-DQB10604     RCRCTLYGHTDSVNS    3_SPAG16    5    LYGHTDSVN 0.265         0.291       2141.90  75.00   9.999       
+    16 HLA-DQA10102-DQB10604     CRCTLYGHTDSVNSI    3_SPAG16    4    LYGHTDSVN 0.325         0.307       1809.29  65.00   9.999       
+    17 HLA-DQA10102-DQB10604     RCTLYGHTDSVNSIE    3_SPAG16    3    LYGHTDSVN 0.330         0.305       1842.54  70.00   9.999       
+    18 HLA-DQA10102-DQB10604     CTLYGHTDSVNSIEF    3_SPAG16    2    LYGHTDSVN 0.285         0.321       1557.82  60.00   9.999       
+    19 HLA-DQA10102-DQB10604     TLYGHTDSVNSIEFF    3_SPAG16    1    LYGHTDSVN 0.215         0.331       1396.65  60.00   9.999       
+    20 HLA-DQA10102-DQB10604     LYGHTDSVNSIEFFP    3_SPAG16    4    TDSVNSIEF 0.205         0.325       1483.47  60.00   9.999       
+    21 HLA-DQA10102-DQB10604     YGHTDSVNSIEFFPF    3_SPAG16    6    VNSIEFFPF 0.250         0.343       1217.10  55.00   9.999       
+    22 HLA-DQA10102-DQB10604     GHTDSVNSIEFFPFS    3_SPAG16    5    VNSIEFFPF 0.280         0.355       1069.71  47.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     AAACLPGEEGTAERS     4_TMCC1    1    AACLPGEEG 0.320         0.203       5567.16  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     AACLPGEEGTAERSC     4_TMCC1    0    AACLPGEEG 0.255         0.165       8406.00  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     ACLPGEEGTAERSCK     4_TMCC1    5    EEGTAERSC 0.240         0.141      10849.50  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     CLPGEEGTAERSCKR     4_TMCC1    4    EEGTAERSC 0.275         0.129      12388.78  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     LPGEEGTAERSCKRN     4_TMCC1    3    EEGTAERSC 0.285         0.116      14287.96  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     PGEEGTAERSCKRNL     4_TMCC1    2    EEGTAERSC 0.245         0.116      14195.66  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     GEEGTAERSCKRNLS     4_TMCC1    1    EEGTAERSC 0.200         0.124      13123.81  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     EEGTAERSCKRNLST     4_TMCC1    5    ERSCKRNLS 0.275         0.123      13174.46  95.00   9.999       
+     8 HLA-DQA10102-DQB10604     EGTAERSCKRNLSTT     4_TMCC1    4    ERSCKRNLS 0.245         0.122      13320.80  95.00   9.999       
+     9 HLA-DQA10102-DQB10604     GTAERSCKRNLSTTT     4_TMCC1    6    CKRNLSTTT 0.295         0.146      10322.61  95.00   9.999       
+    10 HLA-DQA10102-DQB10604     TAERSCKRNLSTTTG     4_TMCC1    5    CKRNLSTTT 0.290         0.157       9129.20  95.00   9.999       
+    11 HLA-DQA10102-DQB10604     AERSCKRNLSTTTGS     4_TMCC1    6    RNLSTTTGS 0.265         0.176       7471.58  95.00   9.999       
+    12 HLA-DQA10102-DQB10604     ERSCKRNLSTTTGSS     4_TMCC1    6    NLSTTTGSS 0.285         0.200       5754.63  95.00   9.999       
+    13 HLA-DQA10102-DQB10604     RSCKRNLSTTTGSSE     4_TMCC1    6    LSTTTGSSE 0.275         0.224       4420.54  90.00   9.999       
+    14 HLA-DQA10102-DQB10604     SCKRNLSTTTGSSER     4_TMCC1    5    LSTTTGSSE 0.370         0.231       4084.86  90.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     LHGQLRGLIPSSPQK    5_PDLIM3    3    QLRGLIPSS 0.305         0.338       1295.68  55.00   9.999       
+     1 HLA-DQA10102-DQB10604     HGQLRGLIPSSPQKT    5_PDLIM3    2    QLRGLIPSS 0.315         0.315       1647.30  65.00   9.999       
+     2 HLA-DQA10102-DQB10604     GQLRGLIPSSPQKTL    5_PDLIM3    2    LRGLIPSSP 0.285         0.309       1766.72  65.00   9.999       
+     3 HLA-DQA10102-DQB10604     QLRGLIPSSPQKTLE    5_PDLIM3    1    LRGLIPSSP 0.320         0.293       2092.78  70.00   9.999       
+     4 HLA-DQA10102-DQB10604     LRGLIPSSPQKTLEC    5_PDLIM3    0    LRGLIPSSP 0.305         0.245       3544.15  85.00   9.999       
+     5 HLA-DQA10102-DQB10604     RGLIPSSPQKTLECK    5_PDLIM3    2    LIPSSPQKT 0.360         0.189       6459.97  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     GLIPSSPQKTLECKQ    5_PDLIM3    1    LIPSSPQKT 0.380         0.166       8283.30  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     LIPSSPQKTLECKQQ    5_PDLIM3    0    LIPSSPQKT 0.270         0.165       8428.31  95.00   9.999       
+     8 HLA-DQA10102-DQB10604     IPSSPQKTLECKQQK    5_PDLIM3    5    QKTLECKQQ 0.280         0.143      10671.37  95.00   9.999       
+     9 HLA-DQA10102-DQB10604     PSSPQKTLECKQQKI    5_PDLIM3    6    TLECKQQKI 0.315         0.172       7816.75  95.00   9.999       
+    10 HLA-DQA10102-DQB10604     SSPQKTLECKQQKII    5_PDLIM3    5    TLECKQQKI 0.300         0.197       5912.60  95.00   9.999       
+    11 HLA-DQA10102-DQB10604     SPQKTLECKQQKIIL    5_PDLIM3    4    TLECKQQKI 0.310         0.212       5030.75  95.00   9.999       
+    12 HLA-DQA10102-DQB10604     PQKTLECKQQKIILL    5_PDLIM3    6    CKQQKIILL 0.410         0.256       3146.27  85.00   9.999       
+    13 HLA-DQA10102-DQB10604     QKTLECKQQKIILLR    5_PDLIM3    5    CKQQKIILL 0.395         0.271       2668.88  80.00   9.999       
+    14 HLA-DQA10102-DQB10604     KTLECKQQKIILLRR    5_PDLIM3    4    CKQQKIILL 0.355         0.285       2287.84  75.00   9.999       
+    15 HLA-DQA10102-DQB10604     TLECKQQKIILLRRE    5_PDLIM3    6    QKIILLRRE 0.330         0.315       1657.35  65.00   9.999       
+    16 HLA-DQA10102-DQB10604     LECKQQKIILLRREM    5_PDLIM3    5    QKIILLRRE 0.360         0.309       1766.49  65.00   9.999       
+    17 HLA-DQA10102-DQB10604     ECKQQKIILLRREMK    5_PDLIM3    4    QKIILLRRE 0.335         0.314       1670.44  65.00   9.999       
+    18 HLA-DQA10102-DQB10604     CKQQKIILLRREMKE    5_PDLIM3    3    QKIILLRRE 0.315         0.310       1752.51  65.00   9.999       
+    19 HLA-DQA10102-DQB10604     KQQKIILLRREMKET    5_PDLIM3    2    QKIILLRRE 0.360         0.295       2044.55  70.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     HNIRPKPFVIPGRSR    6_PDLIM3    4    PKPFVIPGR 0.240         0.187       6600.42  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     NIRPKPFVIPGRSRT    6_PDLIM3    3    PKPFVIPGR 0.255         0.183       6931.69  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     IRPKPFVIPGRSRTL    6_PDLIM3    6    VIPGRSRTL 0.235         0.194       6127.20  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     RPKPFVIPGRSRTLE    6_PDLIM3    5    VIPGRSRTL 0.325         0.188       6520.29  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     PKPFVIPGRSRTLEC    6_PDLIM3    4    VIPGRSRTL 0.345         0.189       6495.01  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     KPFVIPGRSRTLECK    6_PDLIM3    3    VIPGRSRTL 0.345         0.184       6808.60  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     PFVIPGRSRTLECKQ    6_PDLIM3    2    VIPGRSRTL 0.285         0.191       6356.52  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     FVIPGRSRTLECKQQ    6_PDLIM3    1    VIPGRSRTL 0.285         0.198       5862.60  95.00   9.999       
+     8 HLA-DQA10102-DQB10604     VIPGRSRTLECKQQK    6_PDLIM3    0    VIPGRSRTL 0.220         0.189       6487.78  95.00   9.999       
+     9 HLA-DQA10102-DQB10604     IPGRSRTLECKQQKI    6_PDLIM3    6    TLECKQQKI 0.285         0.208       5249.05  95.00   9.999       
+    10 HLA-DQA10102-DQB10604     PGRSRTLECKQQKII    6_PDLIM3    5    TLECKQQKI 0.300         0.223       4500.75  90.00   9.999       
+    11 HLA-DQA10102-DQB10604     GRSRTLECKQQKIIL    6_PDLIM3    4    TLECKQQKI 0.295         0.234       3982.39  90.00   9.999       
+    12 HLA-DQA10102-DQB10604     RSRTLECKQQKIILL    6_PDLIM3    6    CKQQKIILL 0.355         0.269       2735.78  80.00   9.999       
+    13 HLA-DQA10102-DQB10604     SRTLECKQQKIILLR    6_PDLIM3    5    CKQQKIILL 0.370         0.272       2643.30  80.00   9.999       
+    14 HLA-DQA10102-DQB10604     RTLECKQQKIILLRR    6_PDLIM3    4    CKQQKIILL 0.355         0.286       2270.43  75.00   9.999       
+    15 HLA-DQA10102-DQB10604     TLECKQQKIILLRRE    6_PDLIM3    6    QKIILLRRE 0.330         0.315       1657.35  65.00   9.999       
+    16 HLA-DQA10102-DQB10604     LECKQQKIILLRREM    6_PDLIM3    5    QKIILLRRE 0.360         0.309       1766.49  65.00   9.999       
+    17 HLA-DQA10102-DQB10604     ECKQQKIILLRREMK    6_PDLIM3    4    QKIILLRRE 0.335         0.314       1670.44  65.00   9.999       
+    18 HLA-DQA10102-DQB10604     CKQQKIILLRREMKE    6_PDLIM3    3    QKIILLRRE 0.315         0.310       1752.51  65.00   9.999       
+    19 HLA-DQA10102-DQB10604     KQQKIILLRREMKET    6_PDLIM3    2    QKIILLRRE 0.360         0.295       2044.55  70.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     LLPKVQSIQLSQMQE  7_KIAA0922    5    QSIQLSQMQ 0.300         0.443        412.95  16.00   9.999   <=WB
+     1 HLA-DQA10102-DQB10604     LPKVQSIQLSQMQES  7_KIAA0922    6    IQLSQMQES 0.325         0.472        301.10   9.00   9.999   <=WB
+     2 HLA-DQA10102-DQB10604     PKVQSIQLSQMQEST  7_KIAA0922    5    IQLSQMQES 0.390         0.479        281.25   7.50   9.999   <=WB
+     3 HLA-DQA10102-DQB10604     KVQSIQLSQMQESTM  7_KIAA0922    4    IQLSQMQES 0.425         0.486        259.16   6.50   9.999   <=WB
+     4 HLA-DQA10102-DQB10604     VQSIQLSQMQESTMA  7_KIAA0922    3    IQLSQMQES 0.425         0.482        272.32   7.50   9.999   <=WB
+     5 HLA-DQA10102-DQB10604     QSIQLSQMQESTMAQ  7_KIAA0922    2    IQLSQMQES 0.440         0.462        337.81  11.00   9.999   <=WB
+     6 HLA-DQA10102-DQB10604     SIQLSQMQESTMAQE  7_KIAA0922    1    IQLSQMQES 0.390         0.444        407.66  16.00   9.999   <=WB
+     7 HLA-DQA10102-DQB10604     IQLSQMQESTMAQES  7_KIAA0922    0    IQLSQMQES 0.235         0.432        468.04  19.00   9.999   <=WB
+     8 HLA-DQA10102-DQB10604     QLSQMQESTMAQESP  7_KIAA0922    4    MQESTMAQE 0.330         0.401        655.66  30.00   9.999       
+     9 HLA-DQA10102-DQB10604     LSQMQESTMAQESPK  7_KIAA0922    3    MQESTMAQE 0.325         0.392        716.03  33.00   9.999       
+    10 HLA-DQA10102-DQB10604     SQMQESTMAQESPKN  7_KIAA0922    2    MQESTMAQE 0.355         0.364        977.49  44.00   9.999       
+    11 HLA-DQA10102-DQB10604     QMQESTMAQESPKNS  7_KIAA0922    1    MQESTMAQE 0.380         0.341       1255.35  55.00   9.999       
+    12 HLA-DQA10102-DQB10604     MQESTMAQESPKNSA  7_KIAA0922    0    MQESTMAQE 0.330         0.297       2020.87  70.00   9.999       
+    13 HLA-DQA10102-DQB10604     QESTMAQESPKNSAA  7_KIAA0922    0    QESTMAQES 0.290         0.229       4218.53  90.00   9.999       
+    14 HLA-DQA10102-DQB10604     ESTMAQESPKNSAAE  7_KIAA0922    3    MAQESPKNS 0.290         0.195       6060.86  95.00   9.999       
+    15 HLA-DQA10102-DQB10604     STMAQESPKNSAAEI  7_KIAA0922    2    MAQESPKNS 0.235         0.196       6015.39  95.00   9.999       
+    16 HLA-DQA10102-DQB10604     TMAQESPKNSAAEIP  7_KIAA0922    1    MAQESPKNS 0.235         0.190       6370.57  95.00   9.999       
+    17 HLA-DQA10102-DQB10604     MAQESPKNSAAEIPV  7_KIAA0922    6    KNSAAEIPV 0.375         0.226       4355.26  90.00   9.999       
+    18 HLA-DQA10102-DQB10604     AQESPKNSAAEIPVT  7_KIAA0922    6    NSAAEIPVT 0.500         0.298       1981.95  70.00   9.999       
+    19 HLA-DQA10102-DQB10604     QESPKNSAAEIPVTS  7_KIAA0922    5    NSAAEIPVT 0.495         0.343       1222.41  55.00   9.999       
+    20 HLA-DQA10102-DQB10604     ESPKNSAAEIPVTSN  7_KIAA0922    4    NSAAEIPVT 0.445         0.355       1075.58  47.00   9.999       
+    21 HLA-DQA10102-DQB10604     SPKNSAAEIPVTSNG  7_KIAA0922    3    NSAAEIPVT 0.415         0.348       1152.89  50.00   9.999       
+    22 HLA-DQA10102-DQB10604     PKNSAAEIPVTSNGE  7_KIAA0922    2    NSAAEIPVT 0.435         0.338       1293.53  55.00   9.999       
+    23 HLA-DQA10102-DQB10604     KNSAAEIPVTSNGEV  7_KIAA0922    1    NSAAEIPVT 0.405         0.336       1325.26  55.00   9.999       
+    24 HLA-DQA10102-DQB10604     NSAAEIPVTSNGEVD  7_KIAA0922    0    NSAAEIPVT 0.310         0.290       2167.66  75.00   9.999       
+    25 HLA-DQA10102-DQB10604     SAAEIPVTSNGEVDD  7_KIAA0922    1    AAEIPVTSN 0.355         0.233       4004.47  90.00   9.999       
+    26 HLA-DQA10102-DQB10604     AAEIPVTSNGEVDDS  7_KIAA0922    0    AAEIPVTSN 0.265         0.197       5962.20  95.00   9.999       
+    27 HLA-DQA10102-DQB10604     AEIPVTSNGEVDDSR  7_KIAA0922    4    VTSNGEVDD 0.250         0.181       7029.35  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 8
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     AILTPMPEGLSQQQD  8_ARHGEF10    1    ILTPMPEGL 0.210         0.274       2591.37  80.00   9.999       
+     1 HLA-DQA10102-DQB10604     ILTPMPEGLSQQQDM  8_ARHGEF10    1    LTPMPEGLS 0.200         0.266       2824.14  80.00   9.999       
+     2 HLA-DQA10102-DQB10604     LTPMPEGLSQQQDML  8_ARHGEF10    3    MPEGLSQQQ 0.220         0.274       2584.03  80.00   9.999       
+     3 HLA-DQA10102-DQB10604     TPMPEGLSQQQDMLK  8_ARHGEF10    3    PEGLSQQQD 0.220         0.278       2461.74  75.00   9.999       
+     4 HLA-DQA10102-DQB10604     PMPEGLSQQQDMLKN  8_ARHGEF10    5    LSQQQDMLK 0.215         0.277       2509.66  75.00   9.999       
+     5 HLA-DQA10102-DQB10604     MPEGLSQQQDMLKNT  8_ARHGEF10    4    LSQQQDMLK 0.245         0.274       2592.24  80.00   9.999       
+     6 HLA-DQA10102-DQB10604     PEGLSQQQDMLKNTS  8_ARHGEF10    3    LSQQQDMLK 0.255         0.254       3196.05  85.00   9.999       
+     7 HLA-DQA10102-DQB10604     EGLSQQQDMLKNTSK  8_ARHGEF10    2    LSQQQDMLK 0.280         0.240       3744.77  85.00   9.999       
+     8 HLA-DQA10102-DQB10604     GLSQQQDMLKNTSKG  8_ARHGEF10    1    LSQQQDMLK 0.320         0.213       4978.44  90.00   9.999       
+     9 HLA-DQA10102-DQB10604     LSQQQDMLKNTSKGH  8_ARHGEF10    0    LSQQQDMLK 0.280         0.180       7121.44  95.00   9.999       
+    10 HLA-DQA10102-DQB10604     SQQQDMLKNTSKGHP  8_ARHGEF10    5    MLKNTSKGH 0.220         0.144      10523.80  95.00   9.999       
+    11 HLA-DQA10102-DQB10604     QQQDMLKNTSKGHPD  8_ARHGEF10    4    MLKNTSKGH 0.250         0.132      11936.14  95.00   9.999       
+    12 HLA-DQA10102-DQB10604     QQDMLKNTSKGHPDR  8_ARHGEF10    3    MLKNTSKGH 0.295         0.128      12471.49  95.00   9.999       
+    13 HLA-DQA10102-DQB10604     QDMLKNTSKGHPDRL  8_ARHGEF10    2    MLKNTSKGH 0.290         0.130      12229.49  95.00   9.999       
+    14 HLA-DQA10102-DQB10604     DMLKNTSKGHPDRLP  8_ARHGEF10    1    MLKNTSKGH 0.280         0.130      12226.58  95.00   9.999       
+    15 HLA-DQA10102-DQB10604     MLKNTSKGHPDRLPL  8_ARHGEF10    4    TSKGHPDRL 0.210         0.138      11174.87  95.00   9.999       
+    16 HLA-DQA10102-DQB10604     LKNTSKGHPDRLPLQ  8_ARHGEF10    6    GHPDRLPLQ 0.255         0.141      10876.53  95.00   9.999       
+    17 HLA-DQA10102-DQB10604     KNTSKGHPDRLPLQM  8_ARHGEF10    5    GHPDRLPLQ 0.310         0.156       9269.95  95.00   9.999       
+    18 HLA-DQA10102-DQB10604     NTSKGHPDRLPLQMA  8_ARHGEF10    6    PDRLPLQMA 0.515         0.239       3785.23  85.00   9.999       
+    19 HLA-DQA10102-DQB10604     TSKGHPDRLPLQMAL  8_ARHGEF10    5    PDRLPLQMA 0.435         0.315       1651.61  65.00   9.999       
+    20 HLA-DQA10102-DQB10604     SKGHPDRLPLQMALT  8_ARHGEF10    4    PDRLPLQMA 0.395         0.342       1238.97  55.00   9.999       
+    21 HLA-DQA10102-DQB10604     KGHPDRLPLQMALTE  8_ARHGEF10    3    PDRLPLQMA 0.290         0.370        909.51  41.00   9.999       
+    22 HLA-DQA10102-DQB10604     GHPDRLPLQMALTEL  8_ARHGEF10    2    PDRLPLQMA 0.235         0.396        692.59  31.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     LKPGVQGKKVRKPSP    9_NOTCH1    4    VQGKKVRKP 0.465         0.112      14862.07  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     KPGVQGKKVRKPSPT    9_NOTCH1    3    VQGKKVRKP 0.490         0.108      15615.24  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     PGVQGKKVRKPSPTT    9_NOTCH1    2    VQGKKVRKP 0.470         0.102      16598.54  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     GVQGKKVRKPSPTTS    9_NOTCH1    1    VQGKKVRKP 0.400         0.103      16436.62  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     VQGKKVRKPSPTTSA    9_NOTCH1    0    VQGKKVRKP 0.265         0.100      16870.67  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     QGKKVRKPSPTTSAS    9_NOTCH1    5    RKPSPTTSA 0.320         0.090      18837.13  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     GKKVRKPSPTTSASS    9_NOTCH1    4    RKPSPTTSA 0.260         0.105      16006.12  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     KKVRKPSPTTSASSS    9_NOTCH1    5    PSPTTSASS 0.240         0.122      13308.27  95.00   9.999       
+     8 HLA-DQA10102-DQB10604     KVRKPSPTTSASSSS    9_NOTCH1    5    SPTTSASSS 0.285         0.130      12264.34  95.00   9.999       
+     9 HLA-DQA10102-DQB10604     VRKPSPTTSASSSSW    9_NOTCH1    6    TTSASSSSW 0.475         0.175       7501.64  95.00   9.999       
+    10 HLA-DQA10102-DQB10604     RKPSPTTSASSSSWT    9_NOTCH1    5    TTSASSSSW 0.450         0.204       5505.28  95.00   9.999       
+    11 HLA-DQA10102-DQB10604     KPSPTTSASSSSWTS    9_NOTCH1    6    SASSSSWTS 0.330         0.243       3611.35  85.00   9.999       
+    12 HLA-DQA10102-DQB10604     PSPTTSASSSSWTSA    9_NOTCH1    5    SASSSSWTS 0.310         0.283       2334.57  75.00   9.999       
+    13 HLA-DQA10102-DQB10604     SPTTSASSSSWTSAG    9_NOTCH1    4    SASSSSWTS 0.260         0.296       2038.15  70.00   9.999       
+    14 HLA-DQA10102-DQB10604     PTTSASSSSWTSAGT    9_NOTCH1    3    SASSSSWTS 0.240         0.312       1706.87  65.00   9.999       
+    15 HLA-DQA10102-DQB10604     TTSASSSSWTSAGTS    9_NOTCH1    2    SASSSSWTS 0.220         0.324       1505.61  60.00   9.999       
+    16 HLA-DQA10102-DQB10604     TSASSSSWTSAGTSW    9_NOTCH1    4    SSSWTSAGT 0.200         0.320       1559.64  60.00   9.999       
+    17 HLA-DQA10102-DQB10604     SASSSSWTSAGTSWP    9_NOTCH1    3    SSSWTSAGT 0.190         0.308       1777.80  65.00   9.999       
+    18 HLA-DQA10102-DQB10604     ASSSSWTSAGTSWPA    9_NOTCH1    2    SSSWTSAGT 0.175         0.311       1734.20  65.00   9.999       
+    19 HLA-DQA10102-DQB10604     SSSSWTSAGTSWPAG    9_NOTCH1    5    TSAGTSWPA 0.210         0.307       1795.95  65.00   9.999       
+    20 HLA-DQA10102-DQB10604     SSSWTSAGTSWPAGR    9_NOTCH1    4    TSAGTSWPA 0.280         0.304       1856.11  70.00   9.999       
+    21 HLA-DQA10102-DQB10604     SSWTSAGTSWPAGRR    9_NOTCH1    3    TSAGTSWPA 0.330         0.295       2059.63  70.00   9.999       
+    22 HLA-DQA10102-DQB10604     SWTSAGTSWPAGRRT    9_NOTCH1    2    TSAGTSWPA 0.360         0.278       2458.44  75.00   9.999       
+    23 HLA-DQA10102-DQB10604     WTSAGTSWPAGRRTG    9_NOTCH1    1    TSAGTSWPA 0.390         0.250       3349.64  85.00   9.999       
+    24 HLA-DQA10102-DQB10604     TSAGTSWPAGRRTGT    9_NOTCH1    0    TSAGTSWPA 0.310         0.209       5189.30  95.00   9.999       
+    25 HLA-DQA10102-DQB10604     SAGTSWPAGRRTGTA    9_NOTCH1    1    AGTSWPAGR 0.330         0.164       8473.39  95.00   9.999       
+    26 HLA-DQA10102-DQB10604     AGTSWPAGRRTGTAT    9_NOTCH1    0    AGTSWPAGR 0.235         0.127      12600.07  95.00   9.999       
+    27 HLA-DQA10102-DQB10604     GTSWPAGRRTGTATS    9_NOTCH1    6    GRRTGTATS 0.280         0.130      12216.93  95.00   9.999       
+    28 HLA-DQA10102-DQB10604     TSWPAGRRTGTATSG    9_NOTCH1    5    GRRTGTATS 0.355         0.139      11137.09  95.00   9.999       
+    29 HLA-DQA10102-DQB10604     SWPAGRRTGTATSGT    9_NOTCH1    4    GRRTGTATS 0.290         0.151       9711.74  95.00   9.999       
+    30 HLA-DQA10102-DQB10604     WPAGRRTGTATSGTA    9_NOTCH1    6    TGTATSGTA 0.265         0.182       6971.03  95.00   9.999       
+    31 HLA-DQA10102-DQB10604     PAGRRTGTATSGTAT    9_NOTCH1    5    TGTATSGTA 0.325         0.195       6072.81  95.00   9.999       
+    32 HLA-DQA10102-DQB10604     AGRRTGTATSGTATT    9_NOTCH1    4    TGTATSGTA 0.275         0.212       5023.19  95.00   9.999       
+    33 HLA-DQA10102-DQB10604     GRRTGTATSGTATTT    9_NOTCH1    5    TATSGTATT 0.280         0.225       4369.61  90.00   9.999       
+    34 HLA-DQA10102-DQB10604     RRTGTATSGTATTTS    9_NOTCH1    4    TATSGTATT 0.285         0.230       4146.58  90.00   9.999       
+    35 HLA-DQA10102-DQB10604     RTGTATSGTATTTSV    9_NOTCH1    3    TATSGTATT 0.280         0.241       3683.85  85.00   9.999       
+    36 HLA-DQA10102-DQB10604     TGTATSGTATTTSVW    9_NOTCH1    2    TATSGTATT 0.195         0.255       3175.89  85.00   9.999       
+    37 HLA-DQA10102-DQB10604     GTATSGTATTTSVWP    9_NOTCH1    6    TATTTSVWP 0.245         0.268       2759.47  80.00   9.999       
+    38 HLA-DQA10102-DQB10604     TATSGTATTTSVWPG    9_NOTCH1    5    TATTTSVWP 0.260         0.283       2339.76  75.00   9.999       
+    39 HLA-DQA10102-DQB10604     ATSGTATTTSVWPGC    9_NOTCH1    5    ATTTSVWPG 0.250         0.298       1980.77  70.00   9.999       
+    40 HLA-DQA10102-DQB10604     TSGTATTTSVWPGCG    9_NOTCH1    4    ATTTSVWPG 0.250         0.287       2232.84  75.00   9.999       
+    41 HLA-DQA10102-DQB10604     SGTATTTSVWPGCGT    9_NOTCH1    3    ATTTSVWPG 0.275         0.285       2293.84  75.00   9.999       
+    42 HLA-DQA10102-DQB10604     GTATTTSVWPGCGTR    9_NOTCH1    2    ATTTSVWPG 0.320         0.270       2696.60  80.00   9.999       
+    43 HLA-DQA10102-DQB10604     TATTTSVWPGCGTRM    9_NOTCH1    1    ATTTSVWPG 0.335         0.262       2950.52  80.00   9.999       
+    44 HLA-DQA10102-DQB10604     ATTTSVWPGCGTRMW    9_NOTCH1    2    TTSVWPGCG 0.225         0.244       3567.55  85.00   9.999       
+    45 HLA-DQA10102-DQB10604     TTTSVWPGCGTRMWS    9_NOTCH1    1    TTSVWPGCG 0.250         0.224       4417.76  90.00   9.999       
+    46 HLA-DQA10102-DQB10604     TTSVWPGCGTRMWST    9_NOTCH1    6    GCGTRMWST 0.240         0.224       4451.93  90.00   9.999       
+    47 HLA-DQA10102-DQB10604     TSVWPGCGTRMWSTQ    9_NOTCH1    5    GCGTRMWST 0.250         0.252       3260.92  85.00   9.999       
+    48 HLA-DQA10102-DQB10604     SVWPGCGTRMWSTQW    9_NOTCH1    4    GCGTRMWST 0.285         0.274       2585.63  80.00   9.999       
+    49 HLA-DQA10102-DQB10604     VWPGCGTRMWSTQWS    9_NOTCH1    6    TRMWSTQWS 0.360         0.324       1507.01  60.00   9.999       
+    50 HLA-DQA10102-DQB10604     WPGCGTRMWSTQWSS    9_NOTCH1    5    TRMWSTQWS 0.395         0.331       1386.57  60.00   9.999       
+    51 HLA-DQA10102-DQB10604     PGCGTRMWSTQWSSV    9_NOTCH1    4    TRMWSTQWS 0.330         0.375        867.49  39.00   9.999       
+    52 HLA-DQA10102-DQB10604     GCGTRMWSTQWSSVP    9_NOTCH1    3    TRMWSTQWS 0.285         0.385        776.71  36.00   9.999       
+    53 HLA-DQA10102-DQB10604     CGTRMWSTQWSSVPR    9_NOTCH1    2    TRMWSTQWS 0.285         0.386        769.92  35.00   9.999       
+    54 HLA-DQA10102-DQB10604     GTRMWSTQWSSVPRS    9_NOTCH1    3    MWSTQWSSV 0.255         0.383        794.50  36.00   9.999       
+    55 HLA-DQA10102-DQB10604     TRMWSTQWSSVPRSR    9_NOTCH1    2    MWSTQWSSV 0.270         0.378        837.52  38.00   9.999       
+    56 HLA-DQA10102-DQB10604     RMWSTQWSSVPRSRS    9_NOTCH1    1    MWSTQWSSV 0.300         0.342       1230.15  55.00   9.999       
+    57 HLA-DQA10102-DQB10604     MWSTQWSSVPRSRSC    9_NOTCH1    0    MWSTQWSSV 0.260         0.317       1616.07  65.00   9.999       
+    58 HLA-DQA10102-DQB10604     WSTQWSSVPRSRSCC    9_NOTCH1    2    TQWSSVPRS 0.380         0.260       2993.74  80.00   9.999       
+    59 HLA-DQA10102-DQB10604     STQWSSVPRSRSCCS    9_NOTCH1    1    TQWSSVPRS 0.415         0.216       4843.01  90.00   9.999       
+    60 HLA-DQA10102-DQB10604     TQWSSVPRSRSCCSR    9_NOTCH1    0    TQWSSVPRS 0.340         0.187       6626.18  95.00   9.999       
+    61 HLA-DQA10102-DQB10604     QWSSVPRSRSCCSRP    9_NOTCH1    1    WSSVPRSRS 0.395         0.140      10948.32  95.00   9.999       
+    62 HLA-DQA10102-DQB10604     WSSVPRSRSCCSRPA    9_NOTCH1    6    SRSCCSRPA 0.380         0.153       9576.40  95.00   9.999       
+    63 HLA-DQA10102-DQB10604     SSVPRSRSCCSRPAT    9_NOTCH1    5    SRSCCSRPA 0.505         0.165       8372.95  95.00   9.999       
+    64 HLA-DQA10102-DQB10604     SVPRSRSCCSRPATT    9_NOTCH1    4    SRSCCSRPA 0.405         0.189       6491.08  95.00   9.999       
+    65 HLA-DQA10102-DQB10604     VPRSRSCCSRPATTP    9_NOTCH1    3    SRSCCSRPA 0.350         0.194       6161.50  95.00   9.999       
+    66 HLA-DQA10102-DQB10604     PRSRSCCSRPATTPP    9_NOTCH1    2    SRSCCSRPA 0.320         0.186       6670.06  95.00   9.999       
+    67 HLA-DQA10102-DQB10604     RSRSCCSRPATTPPS    9_NOTCH1    1    SRSCCSRPA 0.295         0.189       6483.21  95.00   9.999       
+    68 HLA-DQA10102-DQB10604     SRSCCSRPATTPPSK    9_NOTCH1    2    SCCSRPATT 0.300         0.176       7437.71  95.00   9.999       
+    69 HLA-DQA10102-DQB10604     RSCCSRPATTPPSKP    9_NOTCH1    1    SCCSRPATT 0.350         0.152       9676.39  95.00   9.999       
+    70 HLA-DQA10102-DQB10604     SCCSRPATTPPSKPG    9_NOTCH1    3    SRPATTPPS 0.290         0.124      13030.99  95.00   9.999       
+    71 HLA-DQA10102-DQB10604     CCSRPATTPPSKPGA    9_NOTCH1    2    SRPATTPPS 0.420         0.098      17340.18  95.00   9.999       
+    72 HLA-DQA10102-DQB10604     CSRPATTPPSKPGAP    9_NOTCH1    1    SRPATTPPS 0.475         0.081      20810.07  95.00   9.999       
+    73 HLA-DQA10102-DQB10604     SRPATTPPSKPGAPH    9_NOTCH1    0    SRPATTPPS 0.365         0.066      24567.21  95.00   9.999       
+    74 HLA-DQA10102-DQB10604     RPATTPPSKPGAPHA    9_NOTCH1    1    PATTPPSKP 0.240         0.053      28104.03  95.00   9.999       
+    75 HLA-DQA10102-DQB10604     PATTPPSKPGAPHAP    9_NOTCH1    6    SKPGAPHAP 0.230         0.049      29405.86  95.00   9.999       
+    76 HLA-DQA10102-DQB10604     ATTPPSKPGAPHAPC    9_NOTCH1    6    KPGAPHAPC 0.270         0.058      26837.47  95.00   9.999       
+    77 HLA-DQA10102-DQB10604     TTPPSKPGAPHAPCA    9_NOTCH1    5    KPGAPHAPC 0.295         0.074      22528.20  95.00   9.999       
+    78 HLA-DQA10102-DQB10604     TPPSKPGAPHAPCAS    9_NOTCH1    6    GAPHAPCAS 0.285         0.095      17937.09  95.00   9.999       
+    79 HLA-DQA10102-DQB10604     PPSKPGAPHAPCASS    9_NOTCH1    5    GAPHAPCAS 0.295         0.114      14559.03  95.00   9.999       
+    80 HLA-DQA10102-DQB10604     PSKPGAPHAPCASSR    9_NOTCH1    4    GAPHAPCAS 0.295         0.123      13196.71  95.00   9.999       
+    81 HLA-DQA10102-DQB10604     SKPGAPHAPCASSRH    9_NOTCH1    3    GAPHAPCAS 0.250         0.129      12432.82  95.00   9.999       
+    82 HLA-DQA10102-DQB10604     KPGAPHAPCASSRHL    9_NOTCH1    3    APHAPCASS 0.200         0.144      10563.84  95.00   9.999       
+    83 HLA-DQA10102-DQB10604     PGAPHAPCASSRHLA    9_NOTCH1    6    PCASSRHLA 0.250         0.164       8487.52  95.00   9.999       
+    84 HLA-DQA10102-DQB10604     GAPHAPCASSRHLAH    9_NOTCH1    6    CASSRHLAH 0.490         0.210       5168.68  95.00   9.999       
+    85 HLA-DQA10102-DQB10604     APHAPCASSRHLAHG    9_NOTCH1    5    CASSRHLAH 0.475         0.211       5120.42  95.00   9.999       
+    86 HLA-DQA10102-DQB10604     PHAPCASSRHLAHGL    9_NOTCH1    4    CASSRHLAH 0.335         0.256       3142.39  85.00   9.999       
+    87 HLA-DQA10102-DQB10604     HAPCASSRHLAHGLA    9_NOTCH1    5    SSRHLAHGL 0.325         0.291       2140.28  75.00   9.999       
+    88 HLA-DQA10102-DQB10604     APCASSRHLAHGLAP    9_NOTCH1    4    SSRHLAHGL 0.285         0.299       1974.14  70.00   9.999       
+    89 HLA-DQA10102-DQB10604     PCASSRHLAHGLAPS    9_NOTCH1    6    HLAHGLAPS 0.375         0.351       1123.25  49.00   9.999       
+    90 HLA-DQA10102-DQB10604     CASSRHLAHGLAPSS    9_NOTCH1    5    HLAHGLAPS 0.355         0.383        794.10  36.00   9.999       
+    91 HLA-DQA10102-DQB10604     ASSRHLAHGLAPSSP    9_NOTCH1    4    HLAHGLAPS 0.355         0.382        804.34  37.00   9.999       
+    92 HLA-DQA10102-DQB10604     SSRHLAHGLAPSSPG    9_NOTCH1    3    HLAHGLAPS 0.345         0.369        923.41  42.00   9.999       
+    93 HLA-DQA10102-DQB10604     SRHLAHGLAPSSPGL    9_NOTCH1    2    HLAHGLAPS 0.330         0.368        932.80  42.00   9.999       
+    94 HLA-DQA10102-DQB10604     RHLAHGLAPSSPGLP    9_NOTCH1    2    LAHGLAPSS 0.355         0.349       1149.53  49.00   9.999       
+    95 HLA-DQA10102-DQB10604     HLAHGLAPSSPGLPA    9_NOTCH1    1    LAHGLAPSS 0.330         0.323       1517.05  60.00   9.999       
+    96 HLA-DQA10102-DQB10604     LAHGLAPSSPGLPAR    9_NOTCH1    0    LAHGLAPSS 0.300         0.261       2968.87  80.00   9.999       
+    97 HLA-DQA10102-DQB10604     AHGLAPSSPGLPARG    9_NOTCH1    3    LAPSSPGLP 0.275         0.200       5743.18  95.00   9.999       
+    98 HLA-DQA10102-DQB10604     HGLAPSSPGLPARGA    9_NOTCH1    2    LAPSSPGLP 0.295         0.195       6065.39  95.00   9.999       
+    99 HLA-DQA10102-DQB10604     GLAPSSPGLPARGAE    9_NOTCH1    1    LAPSSPGLP 0.280         0.187       6581.03  95.00   9.999       
+   100 HLA-DQA10102-DQB10604     LAPSSPGLPARGAEV    9_NOTCH1    4    SPGLPARGA 0.215         0.198       5840.56  95.00   9.999       
+   101 HLA-DQA10102-DQB10604     APSSPGLPARGAEVC    9_NOTCH1    5    GLPARGAEV 0.295         0.205       5459.43  95.00   9.999       
+   102 HLA-DQA10102-DQB10604     PSSPGLPARGAEVCW    9_NOTCH1    4    GLPARGAEV 0.295         0.224       4436.83  90.00   9.999       
+   103 HLA-DQA10102-DQB10604     SSPGLPARGAEVCWV    9_NOTCH1    6    ARGAEVCWV 0.425         0.316       1632.52  65.00   9.999       
+   104 HLA-DQA10102-DQB10604     SPGLPARGAEVCWVH    9_NOTCH1    5    ARGAEVCWV 0.470         0.354       1083.94  48.00   9.999       
+   105 HLA-DQA10102-DQB10604     PGLPARGAEVCWVHW    9_NOTCH1    4    ARGAEVCWV 0.520         0.368        931.76  42.00   9.999       
+   106 HLA-DQA10102-DQB10604     GLPARGAEVCWVHWS    9_NOTCH1    3    ARGAEVCWV 0.375         0.395        695.10  32.00   9.999       
+   107 HLA-DQA10102-DQB10604     LPARGAEVCWVHWSH    9_NOTCH1    2    ARGAEVCWV 0.370         0.408        605.13  27.00   9.999       
+   108 HLA-DQA10102-DQB10604     PARGAEVCWVHWSHR    9_NOTCH1    1    ARGAEVCWV 0.305         0.397        678.44  31.00   9.999       
+   109 HLA-DQA10102-DQB10604     ARGAEVCWVHWSHRD    9_NOTCH1    3    AEVCWVHWS 0.280         0.386        765.53  35.00   9.999       
+   110 HLA-DQA10102-DQB10604     RGAEVCWVHWSHRDP    9_NOTCH1    2    AEVCWVHWS 0.390         0.346       1177.64  55.00   9.999       
+   111 HLA-DQA10102-DQB10604     GAEVCWVHWSHRDPL    9_NOTCH1    1    AEVCWVHWS 0.300         0.330       1406.90  60.00   9.999       
+   112 HLA-DQA10102-DQB10604     AEVCWVHWSHRDPLR    9_NOTCH1    3    CWVHWSHRD 0.280         0.318       1604.09  65.00   9.999       
+   113 HLA-DQA10102-DQB10604     EVCWVHWSHRDPLRT    9_NOTCH1    2    CWVHWSHRD 0.350         0.277       2501.58  75.00   9.999       
+   114 HLA-DQA10102-DQB10604     VCWVHWSHRDPLRTS    9_NOTCH1    1    CWVHWSHRD 0.350         0.263       2904.90  80.00   9.999       
+   115 HLA-DQA10102-DQB10604     CWVHWSHRDPLRTSP    9_NOTCH1    0    CWVHWSHRD 0.295         0.237       3837.02  90.00   9.999       
+   116 HLA-DQA10102-DQB10604     WVHWSHRDPLRTSPG    9_NOTCH1    1    VHWSHRDPL 0.255         0.191       6359.27  95.00   9.999       
+   117 HLA-DQA10102-DQB10604     VHWSHRDPLRTSPGS    9_NOTCH1    1    HWSHRDPLR 0.235         0.176       7456.48  95.00   9.999       
+   118 HLA-DQA10102-DQB10604     HWSHRDPLRTSPGSV    9_NOTCH1    1    WSHRDPLRT 0.205         0.155       9335.37  95.00   9.999       
+   119 HLA-DQA10102-DQB10604     WSHRDPLRTSPGSVA    9_NOTCH1    6    LRTSPGSVA 0.490         0.201       5684.45  95.00   9.999       
+   120 HLA-DQA10102-DQB10604     SHRDPLRTSPGSVAF    9_NOTCH1    5    LRTSPGSVA 0.585         0.242       3649.85  85.00   9.999       
+   121 HLA-DQA10102-DQB10604     HRDPLRTSPGSVAFS    9_NOTCH1    4    LRTSPGSVA 0.465         0.273       2620.35  80.00   9.999       
+   122 HLA-DQA10102-DQB10604     RDPLRTSPGSVAFSR    9_NOTCH1    3    LRTSPGSVA 0.390         0.292       2121.58  70.00   9.999       
+   123 HLA-DQA10102-DQB10604     DPLRTSPGSVAFSRA    9_NOTCH1    2    LRTSPGSVA 0.285         0.309       1764.69  65.00   9.999       
+   124 HLA-DQA10102-DQB10604     PLRTSPGSVAFSRAG    9_NOTCH1    1    LRTSPGSVA 0.245         0.310       1738.84  65.00   9.999       
+   125 HLA-DQA10102-DQB10604     LRTSPGSVAFSRAGE    9_NOTCH1    2    TSPGSVAFS 0.195         0.315       1663.19  65.00   9.999       
+   126 HLA-DQA10102-DQB10604     RTSPGSVAFSRAGEV    9_NOTCH1    6    VAFSRAGEV 0.285         0.325       1483.08  60.00   9.999       
+   127 HLA-DQA10102-DQB10604     TSPGSVAFSRAGEVE    9_NOTCH1    5    VAFSRAGEV 0.320         0.344       1207.87  55.00   9.999       
+   128 HLA-DQA10102-DQB10604     SPGSVAFSRAGEVEM    9_NOTCH1    4    VAFSRAGEV 0.325         0.374        876.52  40.00   9.999       
+   129 HLA-DQA10102-DQB10604     PGSVAFSRAGEVEML    9_NOTCH1    3    VAFSRAGEV 0.280         0.417        548.10  24.00   9.999       
+   130 HLA-DQA10102-DQB10604     GSVAFSRAGEVEMLI    9_NOTCH1    5    SRAGEVEML 0.265         0.450        386.14  14.00   9.999   <=WB
+   131 HLA-DQA10102-DQB10604     SVAFSRAGEVEMLIA    9_NOTCH1    4    SRAGEVEML 0.230         0.478        283.32   8.00   9.999   <=WB
+   132 HLA-DQA10102-DQB10604     VAFSRAGEVEMLIAV    9_NOTCH1    3    SRAGEVEML 0.260         0.491        245.15   6.00   9.999   <=WB
+   133 HLA-DQA10102-DQB10604     AFSRAGEVEMLIAVT    9_NOTCH1    4    AGEVEMLIA 0.235         0.487        258.65   6.50   9.999   <=WB
+   134 HLA-DQA10102-DQB10604     FSRAGEVEMLIAVTP    9_NOTCH1    3    AGEVEMLIA 0.225         0.479        279.71   7.50   9.999   <=WB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 5
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     ESSRGRGNNNRKGRE    10_UBAP2    2    SRGRGNNNR 0.205         0.049      29367.07  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     SSRGRGNNNRKGREV    10_UBAP2    6    NNNRKGREV 0.310         0.061      25857.50  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     SRGRGNNNRKGREVT    10_UBAP2    6    NNRKGREVT 0.310         0.078      21479.66  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     RGRGNNNRKGREVTP    10_UBAP2    5    NNRKGREVT 0.325         0.088      19207.59  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     GRGNNNRKGREVTPL    10_UBAP2    6    RKGREVTPL 0.490         0.143      10665.72  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     WYIPSSQLAAKLLHM  11_RASGRP2    3    PSSQLAAKL 0.205         0.424        508.42  22.00   9.999       
+     1 HLA-DQA10102-DQB10604     YIPSSQLAAKLLHML  11_RASGRP2    6    LAAKLLHML 0.250         0.440        427.09  17.00   9.999   <=WB
+     2 HLA-DQA10102-DQB10604     IPSSQLAAKLLHMLT  11_RASGRP2    5    LAAKLLHML 0.265         0.445        407.14  16.00   9.999   <=WB
+     3 HLA-DQA10102-DQB10604     PSSQLAAKLLHMLTM  11_RASGRP2    4    LAAKLLHML 0.275         0.450        382.36  14.00   9.999   <=WB
+     4 HLA-DQA10102-DQB10604     SSQLAAKLLHMLTMR  11_RASGRP2    3    LAAKLLHML 0.285         0.450        385.56  14.00   9.999   <=WB
+     5 HLA-DQA10102-DQB10604     SQLAAKLLHMLTMRM  11_RASGRP2    2    LAAKLLHML 0.260         0.454        367.69  13.00   9.999   <=WB
+     6 HLA-DQA10102-DQB10604     QLAAKLLHMLTMRML  11_RASGRP2    6    LHMLTMRML 0.240         0.469        311.63   9.50   9.999   <=WB
+     7 HLA-DQA10102-DQB10604     LAAKLLHMLTMRMLS  11_RASGRP2    5    LHMLTMRML 0.305         0.458        352.72  12.00   9.999   <=WB
+     8 HLA-DQA10102-DQB10604     AAKLLHMLTMRMLSK  11_RASGRP2    4    LHMLTMRML 0.325         0.439        431.75  17.00   9.999   <=WB
+     9 HLA-DQA10102-DQB10604     AKLLHMLTMRMLSKS  11_RASGRP2    3    LHMLTMRML 0.350         0.431        472.99  20.00   9.999   <=WB
+    10 HLA-DQA10102-DQB10604     KLLHMLTMRMLSKSA  11_RASGRP2    2    LHMLTMRML 0.400         0.421        526.43  23.00   9.999       
+    11 HLA-DQA10102-DQB10604     LLHMLTMRMLSKSAT  11_RASGRP2    1    LHMLTMRML 0.360         0.409        600.99  27.00   9.999       
+    12 HLA-DQA10102-DQB10604     LHMLTMRMLSKSATG  11_RASGRP2    0    LHMLTMRML 0.340         0.374        870.43  40.00   9.999       
+    13 HLA-DQA10102-DQB10604     HMLTMRMLSKSATGR  11_RASGRP2    1    MLTMRMLSK 0.185         0.314       1669.32  65.00   9.999       
+    14 HLA-DQA10102-DQB10604     MLTMRMLSKSATGRW  11_RASGRP2    3    MRMLSKSAT 0.230         0.291       2146.91  75.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 9
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     WLRKSPPEKKLRRYP     12_GAB2    1    LRKSPPEKK 0.425         0.104      16280.16  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     LRKSPPEKKLRRYPP     12_GAB2    0    LRKSPPEKK 0.350         0.077      21681.40  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     RKSPPEKKLRRYPPG     12_GAB2    6    KKLRRYPPG 0.300         0.074      22407.62  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     KSPPEKKLRRYPPGQ     12_GAB2    6    KLRRYPPGQ 0.365         0.093      18326.50  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     SPPEKKLRRYPPGQG     12_GAB2    6    LRRYPPGQG 0.390         0.116      14292.44  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     PPEKKLRRYPPGQGA     12_GAB2    5    LRRYPPGQG 0.395         0.134      11682.01  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     PEKKLRRYPPGQGAT     12_GAB2    4    LRRYPPGQG 0.395         0.141      10825.69  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     EKKLRRYPPGQGATI     12_GAB2    3    LRRYPPGQG 0.310         0.164       8477.88  95.00   9.999       
+     8 HLA-DQA10102-DQB10604     KKLRRYPPGQGATIG     12_GAB2    2    LRRYPPGQG 0.305         0.165       8424.11  95.00   9.999       
+     9 HLA-DQA10102-DQB10604     KLRRYPPGQGATIGV     12_GAB2    1    LRRYPPGQG 0.275         0.173       7711.16  95.00   9.999       
+    10 HLA-DQA10102-DQB10604     LRRYPPGQGATIGVD     12_GAB2    6    GQGATIGVD 0.385         0.195       6039.39  95.00   9.999       
+    11 HLA-DQA10102-DQB10604     RRYPPGQGATIGVDF     12_GAB2    5    GQGATIGVD 0.475         0.251       3291.37  85.00   9.999       
+    12 HLA-DQA10102-DQB10604     RYPPGQGATIGVDFM     12_GAB2    4    GQGATIGVD 0.335         0.310       1754.11  65.00   9.999       
+    13 HLA-DQA10102-DQB10604     YPPGQGATIGVDFMI     12_GAB2    3    GQGATIGVD 0.280         0.358       1043.88  46.00   9.999       
+    14 HLA-DQA10102-DQB10604     PPGQGATIGVDFMIK     12_GAB2    5    ATIGVDFMI 0.280         0.368        930.06  42.00   9.999       
+    15 HLA-DQA10102-DQB10604     PGQGATIGVDFMIKT     12_GAB2    4    ATIGVDFMI 0.255         0.383        790.06  36.00   9.999       
+    16 HLA-DQA10102-DQB10604     GQGATIGVDFMIKTV     12_GAB2    3    ATIGVDFMI 0.260         0.386        766.84  35.00   9.999       
+    17 HLA-DQA10102-DQB10604     QGATIGVDFMIKTVE     12_GAB2    2    ATIGVDFMI 0.265         0.381        811.41  37.00   9.999       
+    18 HLA-DQA10102-DQB10604     GATIGVDFMIKTVEI     12_GAB2    6    DFMIKTVEI 0.205         0.399        664.73  30.00   9.999       
+    19 HLA-DQA10102-DQB10604     ATIGVDFMIKTVEIN     12_GAB2    5    DFMIKTVEI 0.220         0.403        635.39  29.00   9.999       
+    20 HLA-DQA10102-DQB10604     TIGVDFMIKTVEING     12_GAB2    5    FMIKTVEIN 0.300         0.385        774.65  36.00   9.999       
+    21 HLA-DQA10102-DQB10604     IGVDFMIKTVEINGE     12_GAB2    4    FMIKTVEIN 0.285         0.389        745.53  34.00   9.999       
+    22 HLA-DQA10102-DQB10604     GVDFMIKTVEINGEK     12_GAB2    3    FMIKTVEIN 0.310         0.381        811.45  37.00   9.999       
+    23 HLA-DQA10102-DQB10604     VDFMIKTVEINGEKV     12_GAB2    2    FMIKTVEIN 0.315         0.383        792.12  36.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     GTMSVIVLPQPDEVL    13_MTRF1    1    TMSVIVLPQ 0.325         0.449        390.23  15.00   9.999   <=WB
+     1 HLA-DQA10102-DQB10604     TMSVIVLPQPDEVLN    13_MTRF1    0    TMSVIVLPQ 0.285         0.430        476.14  20.00   9.999   <=WB
+     2 HLA-DQA10102-DQB10604     MSVIVLPQPDEVLNL    13_MTRF1    1    SVIVLPQPD 0.335         0.380        817.76  37.00   9.999       
+     3 HLA-DQA10102-DQB10604     SVIVLPQPDEVLNLV    13_MTRF1    0    SVIVLPQPD 0.300         0.327       1449.19  60.00   9.999       
+     4 HLA-DQA10102-DQB10604     VIVLPQPDEVLNLVQ    13_MTRF1    2    VLPQPDEVL 0.355         0.299       1974.72  70.00   9.999       
+     5 HLA-DQA10102-DQB10604     IVLPQPDEVLNLVQS    13_MTRF1    6    DEVLNLVQS 0.335         0.340       1268.43  55.00   9.999       
+     6 HLA-DQA10102-DQB10604     VLPQPDEVLNLVQSY    13_MTRF1    6    EVLNLVQSY 0.360         0.381        809.03  37.00   9.999       
+     7 HLA-DQA10102-DQB10604     LPQPDEVLNLVQSYV    13_MTRF1    5    EVLNLVQSY 0.380         0.413        575.04  25.00   9.999       
+     8 HLA-DQA10102-DQB10604     PQPDEVLNLVQSYVT    13_MTRF1    4    EVLNLVQSY 0.310         0.437        443.85  18.00   9.999   <=WB
+     9 HLA-DQA10102-DQB10604     QPDEVLNLVQSYVTL    13_MTRF1    3    EVLNLVQSY 0.295         0.452        375.26  14.00   9.999   <=WB
+    10 HLA-DQA10102-DQB10604     PDEVLNLVQSYVTLR    13_MTRF1    2    EVLNLVQSY 0.285         0.457        357.25  13.00   9.999   <=WB
+    11 HLA-DQA10102-DQB10604     DEVLNLVQSYVTLRV    13_MTRF1    1    EVLNLVQSY 0.235         0.474        296.88   8.50   9.999   <=WB
+    12 HLA-DQA10102-DQB10604     EVLNLVQSYVTLRVP    13_MTRF1    2    LNLVQSYVT 0.210         0.456        360.42  13.00   9.999   <=WB
+    13 HLA-DQA10102-DQB10604     VLNLVQSYVTLRVPL    13_MTRF1    4    VQSYVTLRV 0.255         0.438        435.83  18.00   9.999   <=WB
+    14 HLA-DQA10102-DQB10604     LNLVQSYVTLRVPLY    13_MTRF1    3    VQSYVTLRV 0.295         0.436        447.33  18.00   9.999   <=WB
+    15 HLA-DQA10102-DQB10604     NLVQSYVTLRVPLYV    13_MTRF1    2    VQSYVTLRV 0.305         0.422        518.75  22.00   9.999       
+    16 HLA-DQA10102-DQB10604     LVQSYVTLRVPLYVS    13_MTRF1    1    VQSYVTLRV 0.255         0.426        497.54  21.00   9.999   <=WB
+    17 HLA-DQA10102-DQB10604     VQSYVTLRVPLYVSY    13_MTRF1    3    YVTLRVPLY 0.225         0.422        517.71  22.00   9.999       
+    18 HLA-DQA10102-DQB10604     QSYVTLRVPLYVSYV    13_MTRF1    4    TLRVPLYVS 0.280         0.412        582.56  26.00   9.999       
+    19 HLA-DQA10102-DQB10604     SYVTLRVPLYVSYVF    13_MTRF1    3    TLRVPLYVS 0.315         0.409        599.30  27.00   9.999       
+    20 HLA-DQA10102-DQB10604     YVTLRVPLYVSYVFH    13_MTRF1    2    TLRVPLYVS 0.330         0.397        681.34  31.00   9.999       
+    21 HLA-DQA10102-DQB10604     VTLRVPLYVSYVFHS    13_MTRF1    6    LYVSYVFHS 0.265         0.397        685.22  31.00   9.999       
+    22 HLA-DQA10102-DQB10604     TLRVPLYVSYVFHSP    13_MTRF1    5    LYVSYVFHS 0.285         0.394        706.08  32.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 10
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     IVLWKCLRKPVLNDR    14_EVI2B    5    CLRKPVLND 0.270         0.248       3407.91  85.00   9.999       
+     1 HLA-DQA10102-DQB10604     VLWKCLRKPVLNDRN    14_EVI2B    4    CLRKPVLND 0.295         0.233       3999.84  90.00   9.999       
+     2 HLA-DQA10102-DQB10604     LWKCLRKPVLNDRNL    14_EVI2B    3    CLRKPVLND 0.365         0.230       4146.85  90.00   9.999       
+     3 HLA-DQA10102-DQB10604     WKCLRKPVLNDRNLQ    14_EVI2B    2    CLRKPVLND 0.355         0.223       4466.69  90.00   9.999       
+     4 HLA-DQA10102-DQB10604     KCLRKPVLNDRNLQL    14_EVI2B    6    VLNDRNLQL 0.355         0.247       3457.87  85.00   9.999       
+     5 HLA-DQA10102-DQB10604     CLRKPVLNDRNLQLH    14_EVI2B    5    VLNDRNLQL 0.400         0.265       2846.10  80.00   9.999       
+     6 HLA-DQA10102-DQB10604     LRKPVLNDRNLQLHT    14_EVI2B    4    VLNDRNLQL 0.445         0.270       2685.42  80.00   9.999       
+     7 HLA-DQA10102-DQB10604     RKPVLNDRNLQLHTD    14_EVI2B    3    VLNDRNLQL 0.340         0.295       2058.71  70.00   9.999       
+     8 HLA-DQA10102-DQB10604     KPVLNDRNLQLHTDK    14_EVI2B    5    DRNLQLHTD 0.305         0.299       1966.72  70.00   9.999       
+     9 HLA-DQA10102-DQB10604     PVLNDRNLQLHTDKG    14_EVI2B    4    DRNLQLHTD 0.310         0.288       2219.06  75.00   9.999       
+    10 HLA-DQA10102-DQB10604     VLNDRNLQLHTDKGS    14_EVI2B    3    DRNLQLHTD 0.285         0.281       2391.61  75.00   9.999       
+    11 HLA-DQA10102-DQB10604     LNDRNLQLHTDKGSF    14_EVI2B    2    DRNLQLHTD 0.295         0.261       2970.05  80.00   9.999       
+    12 HLA-DQA10102-DQB10604     NDRNLQLHTDKGSFL    14_EVI2B    4    LQLHTDKGS 0.285         0.271       2671.05  80.00   9.999       
+    13 HLA-DQA10102-DQB10604     DRNLQLHTDKGSFLK    14_EVI2B    3    LQLHTDKGS 0.305         0.266       2797.65  80.00   9.999       
+    14 HLA-DQA10102-DQB10604     RNLQLHTDKGSFLKE    14_EVI2B    2    LQLHTDKGS 0.350         0.251       3292.79  85.00   9.999       
+    15 HLA-DQA10102-DQB10604     NLQLHTDKGSFLKEK    14_EVI2B    1    LQLHTDKGS 0.245         0.251       3301.50  85.00   9.999       
+    16 HLA-DQA10102-DQB10604     LQLHTDKGSFLKEKN    14_EVI2B    2    LHTDKGSFL 0.255         0.243       3601.29  85.00   9.999       
+    17 HLA-DQA10102-DQB10604     QLHTDKGSFLKEKNK    14_EVI2B    1    LHTDKGSFL 0.285         0.216       4850.93  90.00   9.999       
+    18 HLA-DQA10102-DQB10604     LHTDKGSFLKEKNKK    14_EVI2B    2    TDKGSFLKE 0.275         0.194       6157.57  95.00   9.999       
+    19 HLA-DQA10102-DQB10604     HTDKGSFLKEKNKKL    14_EVI2B    6    FLKEKNKKL 0.255         0.179       7186.07  95.00   9.999       
+    20 HLA-DQA10102-DQB10604     TDKGSFLKEKNKKLK    14_EVI2B    5    FLKEKNKKL 0.310         0.170       7914.45  95.00   9.999       
+    21 HLA-DQA10102-DQB10604     DKGSFLKEKNKKLKK    14_EVI2B    4    FLKEKNKKL 0.395         0.150       9887.42  95.00   9.999       
+    22 HLA-DQA10102-DQB10604     KGSFLKEKNKKLKKK    14_EVI2B    3    FLKEKNKKL 0.475         0.132      11938.47  95.00   9.999       
+    23 HLA-DQA10102-DQB10604     GSFLKEKNKKLKKKN    14_EVI2B    2    FLKEKNKKL 0.550         0.112      14940.10  95.00   9.999       
+    24 HLA-DQA10102-DQB10604     SFLKEKNKKLKKKNK    14_EVI2B    1    FLKEKNKKL 0.640         0.100      16883.27  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     RCRTFLQSTDPGDTG    15_IKZF3    4    FLQSTDPGD 0.265         0.304       1858.96  70.00   9.999       
+     1 HLA-DQA10102-DQB10604     CRTFLQSTDPGDTGG    15_IKZF3    3    FLQSTDPGD 0.345         0.258       3058.33  80.00   9.999       
+     2 HLA-DQA10102-DQB10604     RTFLQSTDPGDTGGV    15_IKZF3    2    FLQSTDPGD 0.500         0.210       5136.24  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     TFLQSTDPGDTGGVF    15_IKZF3    1    FLQSTDPGD 0.535         0.185       6746.56  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     FLQSTDPGDTGGVFE    15_IKZF3    0    FLQSTDPGD 0.525         0.147      10176.12  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     LQSTDPGDTGGVFEG    15_IKZF3    6    GDTGGVFEG 0.260         0.106      15872.98  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     QSTDPGDTGGVFEGS    15_IKZF3    6    DTGGVFEGS 0.340         0.124      13052.72  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     STDPGDTGGVFEGST    15_IKZF3    5    DTGGVFEGS 0.350         0.159       8947.41  95.00   9.999       
+     8 HLA-DQA10102-DQB10604     TDPGDTGGVFEGSTL    15_IKZF3    6    GGVFEGSTL 0.300         0.213       5011.95  90.00   9.999       
+     9 HLA-DQA10102-DQB10604     DPGDTGGVFEGSTLC    15_IKZF3    5    GGVFEGSTL 0.315         0.234       3959.45  90.00   9.999       
+    10 HLA-DQA10102-DQB10604     PGDTGGVFEGSTLCP    15_IKZF3    6    VFEGSTLCP 0.270         0.262       2922.90  80.00   9.999       
+    11 HLA-DQA10102-DQB10604     GDTGGVFEGSTLCPS    15_IKZF3    6    FEGSTLCPS 0.400         0.334       1351.22  55.00   9.999       
+    12 HLA-DQA10102-DQB10604     DTGGVFEGSTLCPSD    15_IKZF3    5    FEGSTLCPS 0.425         0.341       1246.47  55.00   9.999       
+    13 HLA-DQA10102-DQB10604     TGGVFEGSTLCPSDP    15_IKZF3    4    FEGSTLCPS 0.450         0.330       1404.98  60.00   9.999       
+    14 HLA-DQA10102-DQB10604     GGVFEGSTLCPSDPA    15_IKZF3    3    FEGSTLCPS 0.510         0.327       1453.88  60.00   9.999       
+    15 HLA-DQA10102-DQB10604     GVFEGSTLCPSDPAF    15_IKZF3    2    FEGSTLCPS 0.500         0.331       1387.91  60.00   9.999       
+    16 HLA-DQA10102-DQB10604     VFEGSTLCPSDPAFS    15_IKZF3    1    FEGSTLCPS 0.470         0.328       1434.01  60.00   9.999       
+    17 HLA-DQA10102-DQB10604     FEGSTLCPSDPAFSR    15_IKZF3    0    FEGSTLCPS 0.380         0.295       2048.29  70.00   9.999       
+    18 HLA-DQA10102-DQB10604     EGSTLCPSDPAFSRT    15_IKZF3    4    LCPSDPAFS 0.285         0.238       3813.88  85.00   9.999       
+    19 HLA-DQA10102-DQB10604     GSTLCPSDPAFSRTD    15_IKZF3    3    LCPSDPAFS 0.275         0.227       4291.04  90.00   9.999       
+    20 HLA-DQA10102-DQB10604     STLCPSDPAFSRTDD    15_IKZF3    2    LCPSDPAFS 0.315         0.216       4852.51  90.00   9.999       
+    21 HLA-DQA10102-DQB10604     TLCPSDPAFSRTDDP    15_IKZF3    1    LCPSDPAFS 0.355         0.186       6660.33  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     RRDALTGHLRTHSGG    16_IKZF3    2    DALTGHLRT 0.295         0.207       5332.91  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     RDALTGHLRTHSGGV    16_IKZF3    1    DALTGHLRT 0.260         0.197       5903.72  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     DALTGHLRTHSGGVF    16_IKZF3    6    LRTHSGGVF 0.315         0.213       5002.47  90.00   9.999       
+     3 HLA-DQA10102-DQB10604     ALTGHLRTHSGGVFE    16_IKZF3    5    LRTHSGGVF 0.350         0.214       4923.16  90.00   9.999       
+     4 HLA-DQA10102-DQB10604     LTGHLRTHSGGVFEG    16_IKZF3    6    THSGGVFEG 0.330         0.245       3542.51  85.00   9.999       
+     5 HLA-DQA10102-DQB10604     TGHLRTHSGGVFEGS    16_IKZF3    5    THSGGVFEG 0.350         0.276       2525.33  75.00   9.999       
+     6 HLA-DQA10102-DQB10604     GHLRTHSGGVFEGST    16_IKZF3    4    THSGGVFEG 0.340         0.293       2099.13  70.00   9.999       
+     7 HLA-DQA10102-DQB10604     HLRTHSGGVFEGSTL    16_IKZF3    3    THSGGVFEG 0.335         0.330       1413.78  60.00   9.999       
+     8 HLA-DQA10102-DQB10604     LRTHSGGVFEGSTLC    16_IKZF3    2    THSGGVFEG 0.310         0.330       1407.81  60.00   9.999       
+     9 HLA-DQA10102-DQB10604     RTHSGGVFEGSTLCP    16_IKZF3    1    THSGGVFEG 0.245         0.325       1493.08  60.00   9.999       
+    10 HLA-DQA10102-DQB10604     THSGGVFEGSTLCPS    16_IKZF3    6    FEGSTLCPS 0.335         0.356       1065.49  47.00   9.999       
+    11 HLA-DQA10102-DQB10604     HSGGVFEGSTLCPSD    16_IKZF3    5    FEGSTLCPS 0.420         0.343       1219.43  55.00   9.999       
+    12 HLA-DQA10102-DQB10604     SGGVFEGSTLCPSDP    16_IKZF3    4    FEGSTLCPS 0.455         0.328       1433.82  60.00   9.999       
+    13 HLA-DQA10102-DQB10604     GGVFEGSTLCPSDPA    16_IKZF3    3    FEGSTLCPS 0.510         0.327       1453.88  60.00   9.999       
+    14 HLA-DQA10102-DQB10604     GVFEGSTLCPSDPAF    16_IKZF3    2    FEGSTLCPS 0.500         0.331       1387.91  60.00   9.999       
+    15 HLA-DQA10102-DQB10604     VFEGSTLCPSDPAFS    16_IKZF3    1    FEGSTLCPS 0.470         0.328       1434.01  60.00   9.999       
+    16 HLA-DQA10102-DQB10604     FEGSTLCPSDPAFSR    16_IKZF3    0    FEGSTLCPS 0.380         0.295       2048.29  70.00   9.999       
+    17 HLA-DQA10102-DQB10604     EGSTLCPSDPAFSRT    16_IKZF3    4    LCPSDPAFS 0.285         0.238       3813.88  85.00   9.999       
+    18 HLA-DQA10102-DQB10604     GSTLCPSDPAFSRTD    16_IKZF3    3    LCPSDPAFS 0.275         0.227       4291.04  90.00   9.999       
+    19 HLA-DQA10102-DQB10604     STLCPSDPAFSRTDD    16_IKZF3    2    LCPSDPAFS 0.315         0.216       4852.51  90.00   9.999       
+    20 HLA-DQA10102-DQB10604     TLCPSDPAFSRTDDP    16_IKZF3    1    LCPSDPAFS 0.355         0.186       6660.33  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     SGEGPANEDEDIGGG    17_IKZF3    0    SGEGPANED 0.165         0.094      18005.54  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     GEGPANEDEDIGGGV    17_IKZF3    4    ANEDEDIGG 0.185         0.094      18133.99  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     EGPANEDEDIGGGVF    17_IKZF3    6    DEDIGGGVF 0.295         0.117      14068.90  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     GPANEDEDIGGGVFE    17_IKZF3    5    DEDIGGGVF 0.285         0.141      10894.32  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     PANEDEDIGGGVFEG    17_IKZF3    6    DIGGGVFEG 0.315         0.166       8306.72  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     ANEDEDIGGGVFEGS    17_IKZF3    6    IGGGVFEGS 0.325         0.204       5482.22  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     NEDEDIGGGVFEGST    17_IKZF3    5    IGGGVFEGS 0.350         0.224       4414.99  90.00   9.999       
+     7 HLA-DQA10102-DQB10604     EDEDIGGGVFEGSTL    17_IKZF3    4    IGGGVFEGS 0.325         0.261       2984.13  80.00   9.999       
+     8 HLA-DQA10102-DQB10604     DEDIGGGVFEGSTLC    17_IKZF3    5    GGVFEGSTL 0.270         0.270       2705.51  80.00   9.999       
+     9 HLA-DQA10102-DQB10604     EDIGGGVFEGSTLCP    17_IKZF3    6    VFEGSTLCP 0.240         0.280       2417.53  75.00   9.999       
+    10 HLA-DQA10102-DQB10604     DIGGGVFEGSTLCPS    17_IKZF3    6    FEGSTLCPS 0.380         0.335       1337.50  55.00   9.999       
+    11 HLA-DQA10102-DQB10604     IGGGVFEGSTLCPSD    17_IKZF3    5    FEGSTLCPS 0.430         0.340       1268.03  55.00   9.999       
+    12 HLA-DQA10102-DQB10604     GGGVFEGSTLCPSDP    17_IKZF3    4    FEGSTLCPS 0.485         0.325       1489.48  60.00   9.999       
+    13 HLA-DQA10102-DQB10604     GGVFEGSTLCPSDPA    17_IKZF3    3    FEGSTLCPS 0.510         0.327       1453.88  60.00   9.999       
+    14 HLA-DQA10102-DQB10604     GVFEGSTLCPSDPAF    17_IKZF3    2    FEGSTLCPS 0.500         0.331       1387.91  60.00   9.999       
+    15 HLA-DQA10102-DQB10604     VFEGSTLCPSDPAFS    17_IKZF3    1    FEGSTLCPS 0.470         0.328       1434.01  60.00   9.999       
+    16 HLA-DQA10102-DQB10604     FEGSTLCPSDPAFSR    17_IKZF3    0    FEGSTLCPS 0.380         0.295       2048.29  70.00   9.999       
+    17 HLA-DQA10102-DQB10604     EGSTLCPSDPAFSRT    17_IKZF3    4    LCPSDPAFS 0.285         0.238       3813.88  85.00   9.999       
+    18 HLA-DQA10102-DQB10604     GSTLCPSDPAFSRTD    17_IKZF3    3    LCPSDPAFS 0.275         0.227       4291.04  90.00   9.999       
+    19 HLA-DQA10102-DQB10604     STLCPSDPAFSRTDD    17_IKZF3    2    LCPSDPAFS 0.315         0.216       4852.51  90.00   9.999       
+    20 HLA-DQA10102-DQB10604     TLCPSDPAFSRTDDP    17_IKZF3    1    LCPSDPAFS 0.355         0.186       6660.33  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     QRRDALTGHLRTHSG    18_IKZF3    3    DALTGHLRT 0.280         0.218       4720.15  90.00   9.999       
+     1 HLA-DQA10102-DQB10604     RRDALTGHLRTHSGG    18_IKZF3    2    DALTGHLRT 0.295         0.207       5332.91  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     RDALTGHLRTHSGGV    18_IKZF3    1    DALTGHLRT 0.260         0.197       5903.72  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     DALTGHLRTHSGGVF    18_IKZF3    6    LRTHSGGVF 0.315         0.213       5002.47  90.00   9.999       
+     4 HLA-DQA10102-DQB10604     ALTGHLRTHSGGVFE    18_IKZF3    5    LRTHSGGVF 0.350         0.214       4923.16  90.00   9.999       
+     5 HLA-DQA10102-DQB10604     LTGHLRTHSGGVFEG    18_IKZF3    6    THSGGVFEG 0.330         0.245       3542.51  85.00   9.999       
+     6 HLA-DQA10102-DQB10604     TGHLRTHSGGVFEGS    18_IKZF3    5    THSGGVFEG 0.350         0.276       2525.33  75.00   9.999       
+     7 HLA-DQA10102-DQB10604     GHLRTHSGGVFEGST    18_IKZF3    4    THSGGVFEG 0.340         0.293       2099.13  70.00   9.999       
+     8 HLA-DQA10102-DQB10604     HLRTHSGGVFEGSTL    18_IKZF3    3    THSGGVFEG 0.335         0.330       1413.78  60.00   9.999       
+     9 HLA-DQA10102-DQB10604     LRTHSGGVFEGSTLC    18_IKZF3    2    THSGGVFEG 0.310         0.330       1407.81  60.00   9.999       
+    10 HLA-DQA10102-DQB10604     RTHSGGVFEGSTLCP    18_IKZF3    1    THSGGVFEG 0.245         0.325       1493.08  60.00   9.999       
+    11 HLA-DQA10102-DQB10604     THSGGVFEGSTLCPS    18_IKZF3    6    FEGSTLCPS 0.335         0.356       1065.49  47.00   9.999       
+    12 HLA-DQA10102-DQB10604     HSGGVFEGSTLCPSD    18_IKZF3    5    FEGSTLCPS 0.420         0.343       1219.43  55.00   9.999       
+    13 HLA-DQA10102-DQB10604     SGGVFEGSTLCPSDP    18_IKZF3    4    FEGSTLCPS 0.455         0.328       1433.82  60.00   9.999       
+    14 HLA-DQA10102-DQB10604     GGVFEGSTLCPSDPA    18_IKZF3    3    FEGSTLCPS 0.510         0.327       1453.88  60.00   9.999       
+    15 HLA-DQA10102-DQB10604     GVFEGSTLCPSDPAF    18_IKZF3    2    FEGSTLCPS 0.500         0.331       1387.91  60.00   9.999       
+    16 HLA-DQA10102-DQB10604     VFEGSTLCPSDPAFS    18_IKZF3    1    FEGSTLCPS 0.470         0.328       1434.01  60.00   9.999       
+    17 HLA-DQA10102-DQB10604     FEGSTLCPSDPAFSR    18_IKZF3    0    FEGSTLCPS 0.380         0.295       2048.29  70.00   9.999       
+    18 HLA-DQA10102-DQB10604     EGSTLCPSDPAFSRT    18_IKZF3    4    LCPSDPAFS 0.285         0.238       3813.88  85.00   9.999       
+    19 HLA-DQA10102-DQB10604     GSTLCPSDPAFSRTD    18_IKZF3    3    LCPSDPAFS 0.275         0.227       4291.04  90.00   9.999       
+    20 HLA-DQA10102-DQB10604     STLCPSDPAFSRTDD    18_IKZF3    2    LCPSDPAFS 0.315         0.216       4852.51  90.00   9.999       
+    21 HLA-DQA10102-DQB10604     TLCPSDPAFSRTDDP    18_IKZF3    1    LCPSDPAFS 0.355         0.186       6660.33  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     ISFNVLMVHKRSHTG    19_IKZF3    0    ISFNVLMVH 0.385         0.325       1492.60  60.00   9.999       
+     1 HLA-DQA10102-DQB10604     SFNVLMVHKRSHTGG    19_IKZF3    1    FNVLMVHKR 0.460         0.247       3441.07  85.00   9.999       
+     2 HLA-DQA10102-DQB10604     FNVLMVHKRSHTGGV    19_IKZF3    0    FNVLMVHKR 0.445         0.210       5153.72  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     NVLMVHKRSHTGGVF    19_IKZF3    0    NVLMVHKRS 0.215         0.161       8738.84  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     VLMVHKRSHTGGVFE    19_IKZF3    5    KRSHTGGVF 0.255         0.168       8135.15  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     LMVHKRSHTGGVFEG    19_IKZF3    6    SHTGGVFEG 0.310         0.200       5731.63  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     MVHKRSHTGGVFEGS    19_IKZF3    5    SHTGGVFEG 0.320         0.235       3920.49  90.00   9.999       
+     7 HLA-DQA10102-DQB10604     VHKRSHTGGVFEGST    19_IKZF3    4    SHTGGVFEG 0.290         0.265       2834.98  80.00   9.999       
+     8 HLA-DQA10102-DQB10604     HKRSHTGGVFEGSTL    19_IKZF3    3    SHTGGVFEG 0.295         0.304       1866.28  70.00   9.999       
+     9 HLA-DQA10102-DQB10604     KRSHTGGVFEGSTLC    19_IKZF3    2    SHTGGVFEG 0.255         0.310       1744.13  65.00   9.999       
+    10 HLA-DQA10102-DQB10604     RSHTGGVFEGSTLCP    19_IKZF3    1    SHTGGVFEG 0.205         0.313       1698.03  65.00   9.999       
+    11 HLA-DQA10102-DQB10604     SHTGGVFEGSTLCPS    19_IKZF3    6    FEGSTLCPS 0.345         0.351       1115.91  49.00   9.999       
+    12 HLA-DQA10102-DQB10604     HTGGVFEGSTLCPSD    19_IKZF3    5    FEGSTLCPS 0.395         0.346       1189.23  55.00   9.999       
+    13 HLA-DQA10102-DQB10604     TGGVFEGSTLCPSDP    19_IKZF3    4    FEGSTLCPS 0.450         0.330       1404.98  60.00   9.999       
+    14 HLA-DQA10102-DQB10604     GGVFEGSTLCPSDPA    19_IKZF3    3    FEGSTLCPS 0.510         0.327       1453.88  60.00   9.999       
+    15 HLA-DQA10102-DQB10604     GVFEGSTLCPSDPAF    19_IKZF3    2    FEGSTLCPS 0.500         0.331       1387.91  60.00   9.999       
+    16 HLA-DQA10102-DQB10604     VFEGSTLCPSDPAFS    19_IKZF3    1    FEGSTLCPS 0.470         0.328       1434.01  60.00   9.999       
+    17 HLA-DQA10102-DQB10604     FEGSTLCPSDPAFSR    19_IKZF3    0    FEGSTLCPS 0.380         0.295       2048.29  70.00   9.999       
+    18 HLA-DQA10102-DQB10604     EGSTLCPSDPAFSRT    19_IKZF3    4    LCPSDPAFS 0.285         0.238       3813.88  85.00   9.999       
+    19 HLA-DQA10102-DQB10604     GSTLCPSDPAFSRTD    19_IKZF3    3    LCPSDPAFS 0.275         0.227       4291.04  90.00   9.999       
+    20 HLA-DQA10102-DQB10604     STLCPSDPAFSRTDD    19_IKZF3    2    LCPSDPAFS 0.315         0.216       4852.51  90.00   9.999       
+    21 HLA-DQA10102-DQB10604     TLCPSDPAFSRTDDP    19_IKZF3    1    LCPSDPAFS 0.355         0.186       6660.33  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10102-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+   Seq          Allele              Peptide    Identity  Pos      Core  Core_Rel 1-log50k(aff)  Affinity(nM)  %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+     0 HLA-DQA10102-DQB10604     DSGEGPANEDEDIGG    20_IKZF3    1    SGEGPANED 0.205         0.100      16874.50  95.00   9.999       
+     1 HLA-DQA10102-DQB10604     SGEGPANEDEDIGGG    20_IKZF3    0    SGEGPANED 0.165         0.094      18005.54  95.00   9.999       
+     2 HLA-DQA10102-DQB10604     GEGPANEDEDIGGGV    20_IKZF3    4    ANEDEDIGG 0.185         0.094      18133.99  95.00   9.999       
+     3 HLA-DQA10102-DQB10604     EGPANEDEDIGGGVF    20_IKZF3    6    DEDIGGGVF 0.295         0.117      14068.90  95.00   9.999       
+     4 HLA-DQA10102-DQB10604     GPANEDEDIGGGVFE    20_IKZF3    5    DEDIGGGVF 0.285         0.141      10894.32  95.00   9.999       
+     5 HLA-DQA10102-DQB10604     PANEDEDIGGGVFEG    20_IKZF3    6    DIGGGVFEG 0.315         0.166       8306.72  95.00   9.999       
+     6 HLA-DQA10102-DQB10604     ANEDEDIGGGVFEGS    20_IKZF3    6    IGGGVFEGS 0.325         0.204       5482.22  95.00   9.999       
+     7 HLA-DQA10102-DQB10604     NEDEDIGGGVFEGST    20_IKZF3    5    IGGGVFEGS 0.350         0.224       4414.99  90.00   9.999       
+     8 HLA-DQA10102-DQB10604     EDEDIGGGVFEGSTL    20_IKZF3    4    IGGGVFEGS 0.325         0.261       2984.13  80.00   9.999       
+     9 HLA-DQA10102-DQB10604     DEDIGGGVFEGSTLC    20_IKZF3    5    GGVFEGSTL 0.270         0.270       2705.51  80.00   9.999       
+    10 HLA-DQA10102-DQB10604     EDIGGGVFEGSTLCP    20_IKZF3    6    VFEGSTLCP 0.240         0.280       2417.53  75.00   9.999       
+    11 HLA-DQA10102-DQB10604     DIGGGVFEGSTLCPS    20_IKZF3    6    FEGSTLCPS 0.380         0.335       1337.50  55.00   9.999       
+    12 HLA-DQA10102-DQB10604     IGGGVFEGSTLCPSD    20_IKZF3    5    FEGSTLCPS 0.430         0.340       1268.03  55.00   9.999       
+    13 HLA-DQA10102-DQB10604     GGGVFEGSTLCPSDP    20_IKZF3    4    FEGSTLCPS 0.485         0.325       1489.48  60.00   9.999       
+    14 HLA-DQA10102-DQB10604     GGVFEGSTLCPSDPA    20_IKZF3    3    FEGSTLCPS 0.510         0.327       1453.88  60.00   9.999       
+    15 HLA-DQA10102-DQB10604     GVFEGSTLCPSDPAF    20_IKZF3    2    FEGSTLCPS 0.500         0.331       1387.91  60.00   9.999       
+    16 HLA-DQA10102-DQB10604     VFEGSTLCPSDPAFS    20_IKZF3    1    FEGSTLCPS 0.470         0.328       1434.01  60.00   9.999       
+    17 HLA-DQA10102-DQB10604     FEGSTLCPSDPAFSR    20_IKZF3    0    FEGSTLCPS 0.380         0.295       2048.29  70.00   9.999       
+    18 HLA-DQA10102-DQB10604     EGSTLCPSDPAFSRT    20_IKZF3    4    LCPSDPAFS 0.285         0.238       3813.88  85.00   9.999       
+    19 HLA-DQA10102-DQB10604     GSTLCPSDPAFSRTD    20_IKZF3    3    LCPSDPAFS 0.275         0.227       4291.04  90.00   9.999       
+    20 HLA-DQA10102-DQB10604     STLCPSDPAFSRTDD    20_IKZF3    2    LCPSDPAFS 0.315         0.216       4852.51  90.00   9.999       
+    21 HLA-DQA10102-DQB10604     TLCPSDPAFSRTDDP    20_IKZF3    1    LCPSDPAFS 0.355         0.186       6660.33  95.00   9.999       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
