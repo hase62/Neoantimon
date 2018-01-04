@@ -72,11 +72,11 @@ TestAnalysis<-function(){
 
   MainMergeINDELSVClass1(input_dir = "result.sample.NO_job_id_INDEL",
                          file_prefix = "NO_job_id_INDEL",
-                         annotation_file = "lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt")
+                         annotation_file = "lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt")
 
   MainMergeINDELSVClass2(input_dir = "result.sample.NO_job_id_INDEL",
                          file_prefix = "NO_job_id_INDEL",
-                         annotation_file = "lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt")
+                         annotation_file = "lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt")
 
   MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
                      file_name_in_hla_table = "sample",
@@ -106,9 +106,9 @@ TestAnalysis<-function(){
 
   MainMergeINDELSVClass1(input_dir = "result.sample.NO_job_id_SVFusion",
                          file_prefix = "NO_job_id_SVFusion",
-                         annotation_file = "lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt")
+                         annotation_file = "lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt")
 
   MainMergeINDELSVClass2(input_dir = "result.sample.NO_job_id_SVFusion",
                          file_prefix = "NO_job_id_SVFusion",
-                         annotation_file = "lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt")
+                         annotation_file = "lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt")
 }

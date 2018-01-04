@@ -72,3 +72,35 @@ NULL
 #' @usage data(sample_sv_bnd)
 #' @format A data frame with 9 rows and variables including "Chr"	"Start"	"End"	"Ref"	"Alt (BND format)"	"Func.refGene (exonic, intron, intergenic, ...)"	"ExonicFunc.refGene (exonic nonsynonymous, synonymous, insertion, ...)"	"mateID (e.g., SVMERGE1_1)"
 NULL
+
+#' Analyzed Result for SNV CLASS1
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_SNV_CLASS1_ALL
+#' @usage data(sample_result_SNV_CLASS1_ALL)
+NULL
+
+#' Analyzed Result for SNV CLASS2
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_SNV_CLASS2_ALL
+#' @usage data(sample_result_SNV_CLASS2_ALL)
+NULL
+
+#' Analyzed Result for INDEL CLASS1
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_INDEL_CLASS1_ALL
+#' @usage data(sample_result_INDEL_CLASS1_ALL)
+NULL
+
+#' Analyzed Result for INDEL CLASS2
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_INDEL_CLASS2_ALL
+#' @usage data(sample_result_INDEL_CLASS2_ALL)
+NULL
