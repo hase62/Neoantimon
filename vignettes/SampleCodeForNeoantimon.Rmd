@@ -12,9 +12,9 @@ output: html_document
 
 ## Data Preparation and Sample Codes for Analysis
 ```{r Preparation}
-print("install.packages('devtools')");
+#install.packages('devtools');
 library(devtools);
-print("install_github('hase62/Neoantimon')");
+#install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
@@ -49,15 +49,8 @@ data("sample_copynum")
 print(sample_copynum, row.names = FALSE)
 ```
 
-```{r Get Sample}
-InstallSampleFiles()
-InstallRefFlat()
-InstallREfMrnaFile()
+```{r Get Sample and Test Analysis}
+TestAnalysis
 ```
-
-#```{r Sample Analysis}
-
-#```
-
 
 
