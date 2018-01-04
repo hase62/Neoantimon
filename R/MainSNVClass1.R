@@ -109,11 +109,19 @@ MainSNVClass1<-function(input_file,
                         peptide_length = c(8, 9, 10, 11, 12, 13)){
 
   #Check Required Files
-  if(CheckRequiredFiles(input_file, hla_file, refflat_file, refmrna_file)) return(NULL)
-  flg<-CheckRequiredColumns(chr_column, mutation_start_column, mutation_end_column,
-                            mutation_ref_column, mutation_alt_column, nm_id_column,
-                            depth_normal_column, depth_tumor_column)
-
+  if(CheckRequiredFiles(input_file = input_file, 
+                        hla_file = hla_file, 
+                        refflat_file = refflat_file, 
+                        refmrna_file = refmrna_file)) return(NULL)
+  flg<-CheckRequiredColumns(chr_column = chr_column, 
+                            mutation_start_column = mutation_start_column, 
+                            mutation_end_column = mutation_end_column,
+                            mutation_ref_column = mutation_ref_column,
+                            mutation_alt_column = mutation_alt_column,
+                            nm_id_column = nm_id_column,
+                            depth_normal_column = depth_normal_column, 
+                            depth_tumor_column = depth_tumor_column)
+  
   #Check and Set Required Columns
   if(length(flg)<=1) {
     return(NULL)

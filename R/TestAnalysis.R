@@ -5,10 +5,14 @@
 #'@export
 TestAnalysis<-function(){
   print("Install NetMHCpan and NetMHCIIpan.")
-  InstallSampleFiles()
-  InstallSamtools()
-  InstallRefFlat()
-  InstallRefMrnaFile()
+  InstallSampleFiles(url = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip",
+                     export_dir = "lib")
+  InstallSamtools(url = "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2",
+                  export_dir = "lib")
+  InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz",
+                 export_dir = "lib")
+  InstallRefMrnaFile(url = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz",
+                     export_dir = "lib")
 
   MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
                 file_name_in_hla_table = "sample",

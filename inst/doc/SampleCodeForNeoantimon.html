@@ -222,7 +222,7 @@ install_github(&#39;hase62/Neoantimon&#39;);
 
 <pre><code>## &#39;/Library/Frameworks/R.framework/Resources/bin/R&#39; --no-site-file  \
 ##   --no-environ --no-save --no-restore --quiet CMD INSTALL  \
-##   &#39;/private/var/folders/pc/qs2hrd_j1gv0h5x110_0sn_00000gn/T/RtmpwDfnhS/devtools1f6e1925f29d/hase62-Neoantimon-23f29f1&#39;  \
+##   &#39;/private/var/folders/pc/qs2hrd_j1gv0h5x110_0sn_00000gn/T/Rtmp1Zb2iS/devtools208d2cc23d8/hase62-Neoantimon-52af2b2&#39;  \
 ##   --library=&#39;/Library/Frameworks/R.framework/Versions/3.4/Resources/library&#39;  \
 ##   --install-tests
 </code></pre>
@@ -230,7 +230,7 @@ install_github(&#39;hase62/Neoantimon&#39;);
 <pre><code>## 
 </code></pre>
 
-<pre><code>## Installation failed: Command failed (1)
+<pre><code>## Reloading installed Neoantimon
 </code></pre>
 
 <pre><code class="r">library(Neoantimon);
@@ -443,102 +443,55 @@ print(sample_copynum, row.names = FALSE)
 <pre><code class="r">TestAnalysis
 </code></pre>
 
-<pre><code>## function(){
-##   print(&quot;Install NetMHCpan and NetMHCIIpan.&quot;)
-##   InstallSampleFiles()
-##   InstallSamtools()
-##   InstallRefFlat()
-##   InstallRefMrnaFile()
-## 
-##   MainSNVClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;,
-##                 file_name_in_hla_table = &quot;sample&quot;,
-##                 hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;,
-##                 refflat_file  = &quot;lib/refFlat.txt&quot;,
-##                 refmrna_file = &quot;lib/refMrna.fa&quot;,
-##                 rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
-##                 netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;,
-##                 nm_id_column = 9
-##   )
-## 
-##   MainSNVClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;,
-##                 file_name_in_hla_table = &quot;sample&quot;,
-##                 hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;,
-##                 refflat_file  = &quot;lib/refFlat.txt&quot;,
-##                 refmrna_file = &quot;lib/refMrna.fa&quot;,
-##                 rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
-##                 netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;,
-##                 nm_id_column = 9
-##   )
-## 
-##   MainINDELClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;,
-##                   file_name_in_hla_table = &quot;sample&quot;,
-##                   hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;,
-##                   refflat_file  = &quot;lib/refFlat.txt&quot;,
-##                   refmrna_file = &quot;lib/refMrna.fa&quot;,
-##                   rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
-##                   netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;,
-##                   nm_id_column = 9
-##   )
-## 
-##   MainINDELClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;,
-##                   file_name_in_hla_table = &quot;sample&quot;,
-##                   hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;,
-##                   refflat_file  = &quot;lib/refFlat.txt&quot;,
-##                   refmrna_file = &quot;lib/refMrna.fa&quot;,
-##                   rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
-##                   netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;,
-##                   nm_id_column = 9
-##   )
-## 
-##   MainMergeSNVClass1(input_dir = &quot;result.sample.NO_job_id_SNV&quot;,
-##                      file_prefix = &quot;NO_job_id_SNV&quot;,
-##                      annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
-## 
-##   MainMergeSNVClass2(input_dir = &quot;result.sample.NO_job_id_SNV&quot;,
-##                      file_prefix = &quot;NO_job_id_SNV&quot;,
-##                      annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
-## 
-##   MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;,
-##                          file_prefix = &quot;NO_job_id_INDEL&quot;,
-##                          annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
-## 
-##   MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;,
-##                          file_prefix = &quot;NO_job_id_INDEL&quot;,
-##                          annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
-## 
-##   MainSVFUSIONClass1(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;,
-##                      file_name_in_hla_table = &quot;sample&quot;,
-##                      hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;,
-##                      refflat_file  = &quot;lib/refFlat.txt&quot;,
-##                      refmrna_file = &quot;lib/refMrna.fa&quot;,
-##                      rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
-##                      netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;,
-##                      refdna_file = &quot;lib/GRCh37.fa&quot;,
-##                      mutation_alt_bnd_column = 5,
-##                      gene_symbol_column = 7,
-##                      mate_id_column = 8
-##   )
-## 
-##   MainSVFUSIONClass2(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;,
-##                      file_name_in_hla_table = &quot;sample&quot;,
-##                      hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;,
-##                      refflat_file  = &quot;lib/refFlat.txt&quot;,
-##                      refmrna_file = &quot;lib/refMrna.fa&quot;,
-##                      rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
-##                      netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;,
-##                      refdna_file = &quot;lib/GRCh37.fa&quot;,
-##                      mutation_alt_bnd_column = 5,
-##                      gene_symbol_column = 7,
-##                      mate_id_column = 8
-##   )
-## 
-##   MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;,
-##                          file_prefix = &quot;NO_job_id_SVFusion&quot;,
-##                          annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
-## 
-##   MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;,
-##                          file_prefix = &quot;NO_job_id_SVFusion&quot;,
-##                          annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
+<pre><code>## function () 
+## {
+##     print(&quot;Install NetMHCpan and NetMHCIIpan.&quot;)
+##     InstallSampleFiles()
+##     InstallSamtools()
+##     InstallRefFlat()
+##     InstallRefMrnaFile()
+##     MainSNVClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
+##         hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
+##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
+##         netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, nm_id_column = 9)
+##     MainSNVClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
+##         hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
+##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
+##         netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;, 
+##         nm_id_column = 9)
+##     MainINDELClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
+##         hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
+##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
+##         netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, nm_id_column = 9)
+##     MainINDELClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
+##         hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
+##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
+##         netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;, 
+##         nm_id_column = 9)
+##     MainMergeSNVClass1(input_dir = &quot;result.sample.NO_job_id_SNV&quot;, 
+##         file_prefix = &quot;NO_job_id_SNV&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
+##     MainMergeSNVClass2(input_dir = &quot;result.sample.NO_job_id_SNV&quot;, 
+##         file_prefix = &quot;NO_job_id_SNV&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
+##     MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;, 
+##         file_prefix = &quot;NO_job_id_INDEL&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
+##     MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;, 
+##         file_prefix = &quot;NO_job_id_INDEL&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
+##     MainSVFUSIONClass1(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;, 
+##         file_name_in_hla_table = &quot;sample&quot;, hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;, 
+##         refflat_file = &quot;lib/refFlat.txt&quot;, refmrna_file = &quot;lib/refMrna.fa&quot;, 
+##         rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, 
+##         refdna_file = &quot;lib/GRCh37.fa&quot;, mutation_alt_bnd_column = 5, 
+##         gene_symbol_column = 7, mate_id_column = 8)
+##     MainSVFUSIONClass2(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;, 
+##         file_name_in_hla_table = &quot;sample&quot;, hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;, 
+##         refflat_file = &quot;lib/refFlat.txt&quot;, refmrna_file = &quot;lib/refMrna.fa&quot;, 
+##         rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;, 
+##         refdna_file = &quot;lib/GRCh37.fa&quot;, mutation_alt_bnd_column = 5, 
+##         gene_symbol_column = 7, mate_id_column = 8)
+##     MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;, 
+##         file_prefix = &quot;NO_job_id_SVFusion&quot;, annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
+##     MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;, 
+##         file_prefix = &quot;NO_job_id_SVFusion&quot;, annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
 ## }
 ## &lt;environment: namespace:Neoantimon&gt;
 </code></pre>

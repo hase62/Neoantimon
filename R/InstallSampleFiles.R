@@ -1,6 +1,6 @@
 #'Get Sample Files for Neoantimon
 #'
-#'@param url Url for getting samtools (Default = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip"). 
+#'@param url Url for getting samtools (Default = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip").
 #'
 #'@param export_dir Export directory (Default = "lib").
 #'
@@ -11,7 +11,7 @@ InstallSampleFiles<-function(url = "https://github.com/hase62/Neoantimon/raw/mas
                              export_dir = "lib"){
   file<-rev(strsplit(url, "/")[[1]])[1]
   if(dir.exists(paste(export_dir, strsplit(file, ".zip")[[1]][1], sep="/"))){
-    print(paste(export_dir, "/", strsplit(file, ".zip")[[1]][1], " exists.", sep=""), )
+    print(paste(export_dir, "/", strsplit(file, ".zip")[[1]][1], " exists.", sep=""))
     return()
   }
   twd<-getwd()
@@ -21,7 +21,7 @@ InstallSampleFiles<-function(url = "https://github.com/hase62/Neoantimon/raw/mas
   download.file(url, destfile = file)
   system(paste("unzip", file))
   file.remove(file)
-  
-  
+
+
   setwd(twd)
 }
