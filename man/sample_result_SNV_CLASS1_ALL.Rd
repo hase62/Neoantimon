@@ -4,11 +4,10 @@
 \name{sample_result_SNV_CLASS1_ALL}
 \alias{sample_result_SNV_CLASS1_ALL}
 \title{Analyzed Result for SNV CLASS1}
-\format{A data frame with 9 rows and variables including "Chr"	"Start"	"End"	"Ref"	"Alt (BND format)"	"Func.refGene (exonic, intron, intergenic, ...)"	"ExonicFunc.refGene (exonic nonsynonymous, synonymous, insertion, ...)"	"mateID (e.g., SVMERGE1_1)"}
 \usage{
 data(sample_result_SNV_CLASS1_ALL)
 }
 \description{
 Analyzed Result for SNV CLASS1
 }
-\keyword{datasets}
+\keyword{result}

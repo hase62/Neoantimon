@@ -1,7 +1,7 @@
 .DS_Store
 
-R/lib
-.R/lib
-R/lib/*
-.R/lib/*
+libfull
+.libfull
+libfull/*
+.libfull*
 .Rproj.user

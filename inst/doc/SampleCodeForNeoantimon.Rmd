@@ -20,37 +20,56 @@ library(Neoantimon);
 
 ```{r Sample VCF file}
 data("sample_vcf")
-print(sample_vcf, row.names = FALSE)
+head(sample_vcf, row.names = FALSE)
 ```
 
 ```{r Sample VCF (SV Fusion BND) file}
 data("sample_sv_bnd")
-print(sample_sv_bnd, row.names = FALSE)
+head(sample_sv_bnd, row.names = FALSE)
 ```
 
 ```{r HLA Table for Class 1}
 library(Neoantimon)
 data("sample_hla_table_c1")
-print(sample_hla_table_c1, row.names = FALSE)
+head(sample_hla_table_c1, row.names = FALSE)
 ```
 
 ```{r HLA Table for Class2}
 data("sample_hla_table_c2")
-print(sample_hla_table_c2, row.names = FALSE)
+head(sample_hla_table_c2, row.names = FALSE)
 ```
 
 ```{r RNA Expression}
 data("sample_rna_exp")
-print(sample_rna_exp, row.names = FALSE)
+head(sample_rna_exp, row.names = FALSE)
 ```
 
 ```{r CopyNumber Information}
 data("sample_copynum")
-print(sample_copynum, row.names = FALSE)
+head(sample_copynum, row.names = FALSE)
+```
+
+```{r Sample.Result.SNV.HLACLASS1}
+data("sample_result_SNV_CLASS1_ALL")
+head(sample_result_SNV_CLASS1_ALL, row.names = FALSE)
+```
+
+```{r Sample.Result.SNV.HLACLASS2}
+data("sample_result_SNV_CLASS2_ALL")
+head(sample_result_SNV_CLASS2_ALL, row.names = FALSE)
+```
+
+```{r Sample.Result.INDEL.HLACLASS1}
+data("sample_result_INDEL_CLASS1_ALL")
+head(sample_result_INDEL_CLASS1_ALL, row.names = FALSE)
+```
+
+```{r Sample.Result.INDEL.HLACLASS2}
+data("sample_result_INDEL_CLASS2_ALL")
+head(sample_result_INDEL_CLASS2_ALL, row.names = FALSE)
 ```
 
 ```{r Get Sample and Test Analysis}
-
 TestAnalysis
 ```
 

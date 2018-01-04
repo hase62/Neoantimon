@@ -210,7 +210,12 @@ hr {
 
 <pre><code class="r">#install.packages(&#39;devtools&#39;);
 library(devtools);
-install_github(&#39;hase62/Neoantimon&#39;);
+</code></pre>
+
+<pre><code>## Warning: package &#39;devtools&#39; was built under R version 3.4.2
+</code></pre>
+
+<pre><code class="r">install_github(&#39;hase62/Neoantimon&#39;);
 </code></pre>
 
 <pre><code>## Downloading GitHub repo hase62/Neoantimon@master
@@ -222,7 +227,7 @@ install_github(&#39;hase62/Neoantimon&#39;);
 
 <pre><code>## &#39;/Library/Frameworks/R.framework/Resources/bin/R&#39; --no-site-file  \
 ##   --no-environ --no-save --no-restore --quiet CMD INSTALL  \
-##   &#39;/private/var/folders/pc/qs2hrd_j1gv0h5x110_0sn_00000gn/T/Rtmp1Zb2iS/devtools208d2cc23d8/hase62-Neoantimon-52af2b2&#39;  \
+##   &#39;/private/var/folders/pc/qs2hrd_j1gv0h5x110_0sn_00000gn/T/RtmpUI6kWu/devtools3d3d4bd3225d/hase62-Neoantimon-816d106&#39;  \
 ##   --library=&#39;/Library/Frameworks/R.framework/Versions/3.4/Resources/library&#39;  \
 ##   --install-tests
 </code></pre>
@@ -237,207 +242,304 @@ install_github(&#39;hase62/Neoantimon&#39;);
 </code></pre>
 
 <pre><code class="r">data(&quot;sample_vcf&quot;)
-print(sample_vcf, row.names = FALSE)
+head(sample_vcf, row.names = FALSE)
 </code></pre>
 
-<pre><code>##  Chr     Start       End Ref Alt Func.refGene Gene.refGene
-##    1  47399872  47399872   A   G       exonic      CYP4A11
-##    1 116941338 116941338   T   C       exonic       ATP1A1
-##    4  24556416  24556416   T   C       exonic        DHX15
-##    4  70156404  70156404   -   T       exonic      UGT2B28
-##    6  75899298  75899298   T   -       exonic      COL12A1
-##    9  89561162  89561162   C   T       exonic         GAS1
-##   12  15132141  15132141   G   T       exonic        PDE6H
-##   12  20876048  20876048   -   G       exonic      SLCO1C1
-##  GeneDetail.refGene ExonicFunc.refGene
-##       nonsynonymous                SNV
-##          synonymous                SNV
-##       nonsynonymous                SNV
-##          frameshift          insertion
-##          frameshift           deletion
-##       nonsynonymous                SNV
-##       nonsynonymous                SNV
-##          frameshift          insertion
-##                                                                                                                                                                                           AAChange.refGene
-##                                                                                                                                                                   CYP4A11:NM_000778:exon8:c.T1064C:p.L355P
-##                                                                           ATP1A1:NM_000701:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160233:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D
-##                                                                                                                                                                     DHX15:NM_001358:exon5:c.A1012G:p.T338A
-##                                                                                                                                                                UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs
-##                                                                                                                                                                 COL12A1:NM_004370:exon6:c.628delA:p.I210fs
-##                                                                                                                                                                       GAS1:NM_002048:exon1:c.G533A:p.R178H
-##                                                                                                                                                                       PDE6H:NM_006205:exon3:c.G163T:p.G55W
-##  SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs
-##  cytoBand depth_tumor variantNum_tumor depth_normal
-##      1p33          64               28           49
-##    1p13.1         100               39          111
-##    4p15.2         143               47          151
-##    4q13.2          43               15           41
-##      6q13         122               38           73
-##   9q21.33          20                5           26
-##   12p12.3          81               10           47
-##   12p12.2          97               11           57
+<pre><code>##   Chr     Start       End Ref Alt Func.refGene Gene.refGene
+## 1   1  47399872  47399872   A   G       exonic      CYP4A11
+## 2   1 116941338 116941338   T   C       exonic       ATP1A1
+## 3   4  24556416  24556416   T   C       exonic        DHX15
+## 4   4  70156404  70156404   -   T       exonic      UGT2B28
+## 5   6  75899298  75899298   T   -       exonic      COL12A1
+## 6   9  89561162  89561162   C   T       exonic         GAS1
+##   GeneDetail.refGene ExonicFunc.refGene
+## 1      nonsynonymous                SNV
+## 2         synonymous                SNV
+## 3      nonsynonymous                SNV
+## 4         frameshift          insertion
+## 5         frameshift           deletion
+## 6      nonsynonymous                SNV
+##                                                                                                                   AAChange.refGene
+## 1                                                                                         CYP4A11:NM_000778:exon8:c.T1064C:p.L355P
+## 2 ATP1A1:NM_000701:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160233:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D
+## 3                                                                                           DHX15:NM_001358:exon5:c.A1012G:p.T338A
+## 4                                                                                      UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs
+## 5                                                                                       COL12A1:NM_004370:exon6:c.628delA:p.I210fs
+## 6                                                                                             GAS1:NM_002048:exon1:c.G533A:p.R178H
+##   cytoBand depth_tumor variantNum_tumor depth_normal
+## 1     1p33          64               28           49
+## 2   1p13.1         100               39          111
+## 3   4p15.2         143               47          151
+## 4   4q13.2          43               15           41
+## 5     6q13         122               38           73
+## 6  9q21.33          20                5           26
 </code></pre>
 
 <pre><code class="r">data(&quot;sample_sv_bnd&quot;)
-print(sample_sv_bnd, row.names = FALSE)
+head(sample_sv_bnd, row.names = FALSE)
 </code></pre>
 
-<pre><code>##  Chr     Start       End Ref            Alt Func.refGene Gene.refGene
-##    1 115005805 115005805   C C]20:34827929]       exonic       TRIM33
-##    1 204908711 204908711   A [2:172743385[A     intronic        NFASC
-##    2  25870534  25870534   T  ]2:25965720]G     intronic         DTNB
-##    2  25965720  25965720   T  T[2:25870536[       exonic        ASXL2
-##    2 214794791 214794791   C C[2:214798169[       exonic       SPAG16
-##    2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16
-##    2 172743385 172743385   A [1:204908711[A     intronic     SLC25A12
-##    3 129389804 129389804   G G[3:129501802[       exonic        TMCC1
-##    3 129501802 129501802   C ]3:129389801]C     intronic        TMCC1
-##    4 186112192 186112192   C T[4:186430388[       exonic       CFAP97
-##    4 186430388 186430388   C ]4:186112191]C     intronic       PDLIM3
-##    4 153735391 153735391   C ]4:154493729]C     intronic       ARFIP1
-##    4 154493729 154493729   T T[4:153735393[     intronic     KIAA0922
-##    5  37488382  37488382   A  A[5:37727038[     intronic        WDR70
-##    5  37727038  37727038   A  ]5:37488379]A       exonic        WDR70
-##    7  55142654  55142654   A  A[7:55257581[     intronic         EGFR
-##    7  55257581  55257581   C  ]7:55142654]C     intronic         EGFR
-##    8   1839016   1839016   T   A[8:1849183[     intronic     ARHGEF10
-##    8   1849183   1849183   C   ]8:1839014]C     intronic     ARHGEF10
-##    9 139391707 139391707   T ]9:139835760]G       exonic       NOTCH1
-##    9 139835760 139835760   G G[9:139391708[       exonic        FBXW5
-##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
-##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
-##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
-##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
-##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
-##   11  64508925  64508925   C ]11:70402272]C       exonic      RASGRP2
-##   11  70402272  70402272   C C[11:64508925[     intronic       SHANK2
-##   11  78036848  78036848   T ]11:82705156]A     intronic         GAB2
-##   11  82705156  82705156   G G[11:78036849[       exonic        RAB30
-##   13  39444957  39444957   T [13:41813984[T     intronic        FREM2
-##   13  41813984  41813984   C [13:39444957[C     intronic        MTRF1
-##   17  29162474  29162474   G [17:29631922[G       exonic        ATAD5
-##   17  29631922  29631922   G [17:29162474[G       exonic        EVI2B
-##   17  37682334  37682334   A [17:37940213[T       exonic        CDK12
-##   17  37940212  37940212   A [17:37682591[A     intronic        IKZF3
-##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
-##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
-##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
-##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
-##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
-##   20  34827929  34827929   G G]1:115005805]       exonic         AAR2
-##        mateID
-##  SVMERGE137_1
-##   SVMERGE15_1
-##  SVMERGE116_1
-##  SVMERGE116_2
-##    SVMERGE3_1
-##    SVMERGE3_2
-##   SVMERGE15_2
-##   SVMERGE38_1
-##   SVMERGE38_2
-##  SVMERGE195_1
-##  SVMERGE195_2
-##   SVMERGE10_1
-##   SVMERGE10_2
-##  SVMERGE272_1
-##  SVMERGE272_2
-##  SVMERGE101_1
-##  SVMERGE101_2
-##   SVMERGE40_1
-##   SVMERGE40_2
-##  SVMERGE460_1
-##  SVMERGE460_2
-##  SVMERGE133_2
-##   SVMERGE31_2
-##  SVMERGE157_2
-##   SVMERGE72_2
-##  SVMERGE177_2
-##   SVMERGE37_1
-##   SVMERGE37_2
-##  SVMERGE206_1
-##  SVMERGE206_2
-##   SVMERGE58_1
-##   SVMERGE58_2
-##  SVMERGE210_1
-##  SVMERGE210_2
-##  SVMERGE205_1
-##  SVMERGE205_2
-##  SVMERGE133_1
-##   SVMERGE31_1
-##  SVMERGE157_1
-##   SVMERGE72_1
-##  SVMERGE177_1
-##  SVMERGE137_2
+<pre><code>##   Chr     Start       End Ref            Alt Func.refGene Gene.refGene
+## 1   1 115005805 115005805   C C]20:34827929]       exonic       TRIM33
+## 2   1 204908711 204908711   A [2:172743385[A     intronic        NFASC
+## 3   2  25870534  25870534   T  ]2:25965720]G     intronic         DTNB
+## 4   2  25965720  25965720   T  T[2:25870536[       exonic        ASXL2
+## 5   2 214794791 214794791   C C[2:214798169[       exonic       SPAG16
+## 6   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16
+##         mateID
+## 1 SVMERGE137_1
+## 2  SVMERGE15_1
+## 3 SVMERGE116_1
+## 4 SVMERGE116_2
+## 5   SVMERGE3_1
+## 6   SVMERGE3_2
 </code></pre>
 
 <pre><code class="r">library(Neoantimon)
 data(&quot;sample_hla_table_c1&quot;)
-print(sample_hla_table_c1, row.names = FALSE)
+head(sample_hla_table_c1, row.names = FALSE)
 </code></pre>
 
-<pre><code>##     Name      A1      A2      B1      B2      C1      C2
-##   sample A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
-##  sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
+<pre><code>##      Name      A1      A2      B1      B2      C1      C2
+## 1  sample A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
+## 2 sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
 </code></pre>
 
 <pre><code class="r">data(&quot;sample_hla_table_c2&quot;)
-print(sample_hla_table_c2, row.names = FALSE)
+head(sample_hla_table_c2, row.names = FALSE)
 </code></pre>
 
-<pre><code>##     Name      DPA11      DPA12      DPB11      DPB12      DQA11      DQA12
-##   sample DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
-##  sample2 DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02 DQA1*05:05
-##       DQB11      DQB12      DRB11      DRB12
-##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
-##  DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
+<pre><code>##      Name      DPA11      DPA12      DPB11      DPB12      DQA11
+## 1  sample DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02
+## 2 sample2 DPA1*01:03 DPA1*02:01 DPB1*02:01 DPB1*09:01 DQA1*01:02
+##        DQA12      DQB11      DQB12      DRB11      DRB12
+## 1 DQA1*05:05 DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
+## 2 DQA1*05:05 DQB1*03:01 DQB1*06:04 DRB1*11:04 DRB1*13:02
 </code></pre>
 
 <pre><code class="r">data(&quot;sample_rna_exp&quot;)
-print(sample_rna_exp, row.names = FALSE)
+head(sample_rna_exp, row.names = FALSE)
 </code></pre>
 
-<pre><code>##  gene_short_name                               locus expression
-##              7SK    HSCHR6_MHC_MCF:30910595-30910898 0.00000000
-##              7SK    HSCHR6_MHC_QBL:30821624-30821927 0.00000000
-##              7SK                 X:12632121-12632316 0.00000000
-##             A1BG                19:58856543-58864865 0.19541613
-##         A1BG-AS1                19:58859116-58866549 5.30484229
-##             A1CF                10:52559168-52645435 4.78487242
-##              A2M                  12:9220259-9268825 0.75619084
-##          A2M-AS1                  12:9217772-9220651 4.15985770
-##            A2ML1                  12:8975067-9039597 7.50201326
-##        A2ML1-AS1                  12:8928814-8983543 0.00000000
-##        A2ML1-AS2                  12:8972411-8973309 7.02685468
-##            A2MP1                  12:9381128-9428413 4.36764217
-##          A3GALT2                 1:33772366-33786699 0.00000000
-##           A4GALT                22:43088126-43117304 2.27225123
-##            A4GNT               3:137842559-137851229 0.00000000
-##             AAAS                12:53701239-53718648 1.45197987
-##             AACS              12:125549924-125627873 7.34085879
-##           AACSP1               5:178191861-178245436 4.07342571
-##            AADAC               3:151531824-151546276 0.61589770
-##          AADACL2               3:151451703-151479127 0.01359431
-##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
+<pre><code>##   gene_short_name                            locus expression
+## 1             7SK HSCHR6_MHC_MCF:30910595-30910898  0.0000000
+## 2             7SK HSCHR6_MHC_QBL:30821624-30821927  0.0000000
+## 3             7SK              X:12632121-12632316  0.0000000
+## 4            A1BG             19:58856543-58864865  0.1954161
+## 5        A1BG-AS1             19:58859116-58866549  5.3048423
+## 6            A1CF             10:52559168-52645435  4.7848724
 </code></pre>
 
 <pre><code class="r">data(&quot;sample_copynum&quot;)
-print(sample_copynum, row.names = FALSE)
+head(sample_copynum, row.names = FALSE)
 </code></pre>
 
-<pre><code>##  Chromosome Position      Log.R segmented.LogR BAF segmented.BAF
-##           1   564621  0.6071447    -0.09862298   1            NA
-##           1   799463  0.1519967    -0.09862298   1            NA
-##           1  1017216  0.8146911    -0.09862298   0            NA
-##           1  1158277 -1.9594627    -0.09862298   0            NA
-##           1  1242215  0.2927962    -0.09862298   0            NA
-##           1  1462766 -0.2234090    -0.09862298   1            NA
-##  Copy.number Minor.allele Raw.copy.number
-##            2            1       4.3540752
-##            2            1       2.1467339
-##            3            1       5.8658499
-##            1            0      -0.5035897
-##            2            1       2.6999875
-##            2            1       1.0726687
+<pre><code>##               Chromosome Position      Log.R segmented.LogR BAF
+## SNP_A-8575125          1   564621  0.6071447    -0.09862298   1
+## SNP_A-2205441          1   799463  0.1519967    -0.09862298   1
+## SNP_A-8325638          1  1017216  0.8146911    -0.09862298   0
+## SNP_A-8450345          1  1158277 -1.9594627    -0.09862298   0
+## SNP_A-8507155          1  1242215  0.2927962    -0.09862298   0
+## SNP_A-8596426          1  1462766 -0.2234090    -0.09862298   1
+##               segmented.BAF Copy.number Minor.allele Raw.copy.number
+## SNP_A-8575125            NA           2            1       4.3540752
+## SNP_A-2205441            NA           2            1       2.1467339
+## SNP_A-8325638            NA           3            1       5.8658499
+## SNP_A-8450345            NA           1            0      -0.5035897
+## SNP_A-8507155            NA           2            1       2.6999875
+## SNP_A-8596426            NA           2            1       1.0726687
+</code></pre>
+
+<pre><code class="r">data(&quot;sample_result_SNV_CLASS1_ALL&quot;)
+head(sample_result_SNV_CLASS1_ALL, row.names = FALSE)
+</code></pre>
+
+<pre><code>##           HLA Pos      Gene Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank
+## 1 HLA-A*02:01   2 0_CYP4A11            HQERCREEIHSLP  37362.9       55
+## 2 HLA-A*02:01   3 0_CYP4A11            QERCREEIHSLPG  45831.8       90
+## 3 HLA-A*02:01   4 0_CYP4A11            ERCREEIHSLPGD  45989.7       90
+## 4 HLA-A*02:01   5 0_CYP4A11            RCREEIHSLPGDG  46482.0       95
+## 5 HLA-A*02:01   6 0_CYP4A11            CREEIHSLPGDGA  42936.1       80
+## 6 HLA-A*02:01   7 0_CYP4A11            REEIHSLPGDGAS  44359.4       85
+##   Evaluated_Wt_Peptide Wt_IC50 Wt_Rank Chr     NM_ID   Change Ref Alt Prob
+## 1        HQERCREEIHSLL 27284.3      32   1 NM_000778 c.T1064C   A   G    0
+## 2        QERCREEIHSLLG 44161.6      85   1 NM_000778 c.T1064C   A   G    0
+## 3        ERCREEIHSLLGD 44575.4      85   1 NM_000778 c.T1064C   A   G    0
+## 4        RCREEIHSLLGDG 44377.6      85   1 NM_000778 c.T1064C   A   G    0
+## 5        CREEIHSLLGDGA 41760.9      70   1 NM_000778 c.T1064C   A   G    0
+## 6        REEIHSLLGDGAS 43379.7      80   1 NM_000778 c.T1064C   A   G    0
+##   Mutation_Prob. Exon_Start Exon_End Mutation_Position Total_Depth
+## 1              0   47394845 47407156        1_47399872         113
+## 2              0   47394845 47407156        1_47399872         113
+## 3              0   47394845 47407156        1_47399872         113
+## 4              0   47394845 47407156        1_47399872         113
+## 5              0   47394845 47407156        1_47399872         113
+## 6              0   47394845 47407156        1_47399872         113
+##   Tumor_Depth                      Wt_Peptide
+## 1          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 2          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 3          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 4          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 5          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 6          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+##                    Mutant_Peptide Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## 1 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 2 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 3 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 4 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 5 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 6 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+##   Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## 1                     NA       NA           NA           NA
+## 2                     NA       NA           NA           NA
+## 3                     NA       NA           NA           NA
+## 4                     NA       NA           NA           NA
+## 5                     NA       NA           NA           NA
+## 6                     NA       NA           NA           NA
+</code></pre>
+
+<pre><code class="r">data(&quot;sample_result_SNV_CLASS2_ALL&quot;)
+head(sample_result_SNV_CLASS2_ALL, row.names = FALSE)
+</code></pre>
+
+<pre><code>##                     HLA Pos      Gene Evaluated_Mutant_Peptide Mut_IC50
+## 1 HLA-DPA10103-DPB10201   1 0_CYP4A11          PKHQERCREEIHSLP  9714.36
+## 2 HLA-DPA10103-DPB10201   2 0_CYP4A11          KHQERCREEIHSLPG  9186.08
+## 3 HLA-DPA10103-DPB10201   3 0_CYP4A11          HQERCREEIHSLPGD  9621.48
+## 4 HLA-DPA10103-DPB10201   4 0_CYP4A11          QERCREEIHSLPGDG 10479.94
+## 5 HLA-DPA10103-DPB10201   5 0_CYP4A11          ERCREEIHSLPGDGA 10729.49
+## 6 HLA-DPA10103-DPB10201   6 0_CYP4A11          RCREEIHSLPGDGAS 11385.65
+##   Mut_Rank Evaluated_Wt_Peptide Wt_IC50 Wt_Rank Chr     NM_ID   Change Ref
+## 1       90      PKHQERCREEIHSLL 2610.11      60   1 NM_000778 c.T1064C   A
+## 2       90      KHQERCREEIHSLLG 2097.09      55   1 NM_000778 c.T1064C   A
+## 3       90      HQERCREEIHSLLGD 1992.73      55   1 NM_000778 c.T1064C   A
+## 4       90      QERCREEIHSLLGDG 2154.36      55   1 NM_000778 c.T1064C   A
+## 5       90      ERCREEIHSLLGDGA 2193.35      60   1 NM_000778 c.T1064C   A
+## 6       95      RCREEIHSLLGDGAS 2362.58      60   1 NM_000778 c.T1064C   A
+##   Alt Prob Mutation_Prob. Exon_Start Exon_End Mutation_Position
+## 1   G    0              0   47394845 47407156        1_47399872
+## 2   G    0              0   47394845 47407156        1_47399872
+## 3   G    0              0   47394845 47407156        1_47399872
+## 4   G    0              0   47394845 47407156        1_47399872
+## 5   G    0              0   47394845 47407156        1_47399872
+## 6   G    0              0   47394845 47407156        1_47399872
+##   Total_Depth Tumor_Depth                      Wt_Peptide
+## 1         113          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 2         113          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 3         113          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 4         113          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 5         113          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+## 6         113          64 HPKHQERCREEIHSLLGDGASITWNHLDQMP
+##                    Mutant_Peptide Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## 1 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 2 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 3 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 4 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 5 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+## 6 HPKHQERCREEIHSLPGDGASITWNHLDQMP        NA              NA        NA
+##   Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## 1                     NA       NA           NA           NA
+## 2                     NA       NA           NA           NA
+## 3                     NA       NA           NA           NA
+## 4                     NA       NA           NA           NA
+## 5                     NA       NA           NA           NA
+## 6                     NA       NA           NA           NA
+</code></pre>
+
+<pre><code class="r">data(&quot;sample_result_INDEL_CLASS1_ALL&quot;)
+head(sample_result_INDEL_CLASS1_ALL, row.names = FALSE)
+</code></pre>
+
+<pre><code>##           HLA Pos      Gene Evaluated_Mutant_Peptide_Core
+## 1 HLA-A*02:01   1 0_UGT2B28                    GIPMVGIPLV
+## 2 HLA-A*02:01   2 0_UGT2B28                 YHGIPMVGIPLVL
+## 3 HLA-A*02:01   3 0_UGT2B28                  HGIPMVGIPLVL
+## 4 HLA-A*02:01   4 0_UGT2B28                    GIPMVGIPLV
+## 5 HLA-A*02:01   5 0_UGT2B28                    IPMVGIPLVL
+## 6 HLA-A*02:01   2 0_UGT2B28                    GIPMVGIPLV
+##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank Chr     NM_ID         Change
+## 1            IYHGIPMVGIPLV   4359.5      8.0   4 NM_053039 Out_c.1186dupT
+## 2            YHGIPMVGIPLVL    482.1      3.0   4 NM_053039 Out_c.1186dupT
+## 3            HGIPMVGIPLVLG  10645.4     14.0   4 NM_053039 Out_c.1186dupT
+## 4            GIPMVGIPLVLGS  10291.2     14.0   4 NM_053039 Out_c.1186dupT
+## 5            IPMVGIPLVLGST  13857.7     17.0   4 NM_053039 Out_c.1186dupT
+## 6             YHGIPMVGIPLV   3641.2      7.5   4 NM_053039 Out_c.1186dupT
+##   Ref Alt Prob Mutation_Prob. Exon_Start Exon_End Mutation_Position
+## 1   -   T    0              0   70146216 70160768        4_70156404
+## 2   -   T    0              0   70146216 70160768        4_70156404
+## 3   -   T    0              0   70146216 70160768        4_70156404
+## 4   -   T    0              0   70146216 70160768        4_70156404
+## 5   -   T    0              0   70146216 70160768        4_70156404
+## 6   -   T    0              0   70146216 70160768        4_70156404
+##   Total_Depth Tumor_Depth                     Wt_Peptide
+## 1          84          43 EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 2          84          43 EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 3          84          43 EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 4          84          43 EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 5          84          43 EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 6          84          43 EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+##         Mutant_Peptide Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## 1 EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 2 EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 3 EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 4 EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 5 EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 6 EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+##   Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## 1                     NA       NA           NA           NA
+## 2                     NA       NA           NA           NA
+## 3                     NA       NA           NA           NA
+## 4                     NA       NA           NA           NA
+## 5                     NA       NA           NA           NA
+## 6                     NA       NA           NA           NA
+</code></pre>
+
+<pre><code class="r">data(&quot;sample_result_INDEL_CLASS2_ALL&quot;)
+head(sample_result_INDEL_CLASS2_ALL, row.names = FALSE)
+</code></pre>
+
+<pre><code>##                     HLA Pos      Gene Evaluated_Mutant_Peptide_Core
+## 1 HLA-DPA10103-DPB10201   0 0_UGT2B28                     YHGIPMVGI
+## 2 HLA-DPA10103-DPB10201   1 0_UGT2B28                     YHGIPMVGI
+## 3 HLA-DPA10103-DPB10201   2 0_UGT2B28                     MVGIPLVLG
+## 4 HLA-DPA10103-DPB10201   3 0_UGT2B28                     MVGIPLVLG
+## 5 HLA-DPA10103-DPB10201   4 0_UGT2B28                     MVGIPLVLG
+## 6 HLA-DPA10103-DPB10201   0 1_COL12A1                     YQRDELLAA
+##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank Chr     NM_ID         Change
+## 1          EAIYHGIPMVGIPLV  1028.70     40.0   4 NM_053039 Out_c.1186dupT
+## 2          AIYHGIPMVGIPLVL  1018.07     40.0   4 NM_053039 Out_c.1186dupT
+## 3          IYHGIPMVGIPLVLG  1368.82     46.0   4 NM_053039 Out_c.1186dupT
+## 4          YHGIPMVGIPLVLGS  1613.59     49.0   4 NM_053039 Out_c.1186dupT
+## 5          HGIPMVGIPLVLGST  2001.80     55.0   4 NM_053039 Out_c.1186dupT
+## 6          QYYQRDELLAAIKKF    93.99      8.5   6 NM_004370  Out_c.628delA
+##   Ref Alt Prob Mutation_Prob. Exon_Start Exon_End Mutation_Position
+## 1   -   T    0              0   70146216 70160768        4_70156404
+## 2   -   T    0              0   70146216 70160768        4_70156404
+## 3   -   T    0              0   70146216 70160768        4_70156404
+## 4   -   T    0              0   70146216 70160768        4_70156404
+## 5   -   T    0              0   70146216 70160768        4_70156404
+## 6   T   -    0              0   75794041 75915623        6_75899298
+##   Total_Depth Tumor_Depth                        Wt_Peptide
+## 1          84          43    EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 2          84          43    EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 3          84          43    EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 4          84          43    EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 5          84          43    EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA
+## 6         195         122 QYYQRDELLAAIKKIPYKGGNTMTGDAIDYLVK
+##            Mutant_Peptide Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## 1    EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 2    EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 3    EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 4    EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 5    EAIYHGIPMVGIPLVLGSTX        NA              NA        NA
+## 6 QYYQRDELLAAIKKFHIKVATQX        NA              NA        NA
+##   Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## 1                     NA       NA           NA           NA
+## 2                     NA       NA           NA           NA
+## 3                     NA       NA           NA           NA
+## 4                     NA       NA           NA           NA
+## 5                     NA       NA           NA           NA
+## 6                     NA       NA           NA           NA
 </code></pre>
 
 <pre><code class="r">TestAnalysis
@@ -446,52 +548,58 @@ print(sample_copynum, row.names = FALSE)
 <pre><code>## function () 
 ## {
 ##     print(&quot;Install NetMHCpan and NetMHCIIpan.&quot;)
-##     InstallSampleFiles()
-##     InstallSamtools()
-##     InstallRefFlat()
-##     InstallRefMrnaFile()
+##     InstallSampleFiles(url = &quot;https://github.com/hase62/Neoantimon/raw/master/lib/data.zip&quot;, 
+##         export_dir = &quot;lib&quot;)
+##     InstallSamtools(url = &quot;https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2&quot;, 
+##         export_dir = &quot;lib&quot;)
+##     InstallRefFlat(url = &quot;http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz&quot;, 
+##         export_dir = &quot;lib&quot;)
+##     InstallRefMrnaFile(url = &quot;http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz&quot;, 
+##         export_dir = &quot;lib&quot;)
 ##     MainSNVClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
 ##         hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
 ##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
-##         netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, nm_id_column = 9)
+##         netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, nm_id_column = 10, 
+##         depth_tumor_column = 12, depth_normal_column = 14)
 ##     MainSNVClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
 ##         hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
 ##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
 ##         netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;, 
-##         nm_id_column = 9)
+##         nm_id_column = 10, depth_tumor_column = 12, depth_normal_column = 14)
 ##     MainINDELClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
 ##         hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
 ##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
-##         netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, nm_id_column = 9)
+##         netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, nm_id_column = 10, 
+##         depth_tumor_column = 12, depth_normal_column = 14)
 ##     MainINDELClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;, file_name_in_hla_table = &quot;sample&quot;, 
 ##         hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;, refflat_file = &quot;lib/refFlat.txt&quot;, 
 ##         refmrna_file = &quot;lib/refMrna.fa&quot;, rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, 
 ##         netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;, 
-##         nm_id_column = 9)
+##         nm_id_column = 10, depth_tumor_column = 12, depth_normal_column = 14)
 ##     MainMergeSNVClass1(input_dir = &quot;result.sample.NO_job_id_SNV&quot;, 
 ##         file_prefix = &quot;NO_job_id_SNV&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
 ##     MainMergeSNVClass2(input_dir = &quot;result.sample.NO_job_id_SNV&quot;, 
 ##         file_prefix = &quot;NO_job_id_SNV&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
 ##     MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;, 
-##         file_prefix = &quot;NO_job_id_INDEL&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
+##         file_prefix = &quot;NO_job_id_INDEL&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt&quot;)
 ##     MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;, 
-##         file_prefix = &quot;NO_job_id_INDEL&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
-##     MainSVFUSIONClass1(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;, 
+##         file_prefix = &quot;NO_job_id_INDEL&quot;, annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt&quot;)
+##     MainSVFUSIONClass1(input_file = &quot;lib/data/sample_sv_bnd.txt&quot;, 
 ##         file_name_in_hla_table = &quot;sample&quot;, hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;, 
 ##         refflat_file = &quot;lib/refFlat.txt&quot;, refmrna_file = &quot;lib/refMrna.fa&quot;, 
 ##         rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;, 
 ##         refdna_file = &quot;lib/GRCh37.fa&quot;, mutation_alt_bnd_column = 5, 
 ##         gene_symbol_column = 7, mate_id_column = 8)
-##     MainSVFUSIONClass2(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;, 
+##     MainSVFUSIONClass2(input_file = &quot;lib/data/sample_sv_bnd.txt&quot;, 
 ##         file_name_in_hla_table = &quot;sample&quot;, hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;, 
 ##         refflat_file = &quot;lib/refFlat.txt&quot;, refmrna_file = &quot;lib/refMrna.fa&quot;, 
 ##         rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;, netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;, 
 ##         refdna_file = &quot;lib/GRCh37.fa&quot;, mutation_alt_bnd_column = 5, 
 ##         gene_symbol_column = 7, mate_id_column = 8)
 ##     MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;, 
-##         file_prefix = &quot;NO_job_id_SVFusion&quot;, annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
+##         file_prefix = &quot;NO_job_id_SVFusion&quot;, annotation_file = &quot;lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt&quot;)
 ##     MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;, 
-##         file_prefix = &quot;NO_job_id_SVFusion&quot;, annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
+##         file_prefix = &quot;NO_job_id_SVFusion&quot;, annotation_file = &quot;lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt&quot;)
 ## }
 ## &lt;environment: namespace:Neoantimon&gt;
 </code></pre>
