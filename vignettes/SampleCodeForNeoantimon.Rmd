@@ -14,7 +14,7 @@ output: html_document
 ```{r Preparation}
 #install.packages('devtools');
 library(devtools);
-#install_github('hase62/Neoantimon');
+install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
@@ -50,6 +50,7 @@ print(sample_copynum, row.names = FALSE)
 ```
 
 ```{r Get Sample and Test Analysis}
+
 TestAnalysis
 ```
 

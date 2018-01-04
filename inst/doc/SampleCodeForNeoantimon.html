@@ -208,17 +208,29 @@ hr {
 
 <h2>Data Preparation and Sample Codes for Analysis</h2>
 
-<pre><code class="r">print(&quot;install.packages(&#39;devtools&#39;)&quot;);
+<pre><code class="r">#install.packages(&#39;devtools&#39;);
+library(devtools);
+install_github(&#39;hase62/Neoantimon&#39;);
 </code></pre>
 
-<pre><code>## [1] &quot;install.packages(&#39;devtools&#39;)&quot;
+<pre><code>## Downloading GitHub repo hase62/Neoantimon@master
+## from URL https://api.github.com/repos/hase62/Neoantimon/zipball/master
 </code></pre>
 
-<pre><code class="r">library(devtools);
-print(&quot;install_github(&#39;hase62/Neoantimon&#39;)&quot;);
+<pre><code>## Installing Neoantimon
 </code></pre>
 
-<pre><code>## [1] &quot;install_github(&#39;hase62/Neoantimon&#39;)&quot;
+<pre><code>## &#39;/Library/Frameworks/R.framework/Resources/bin/R&#39; --no-site-file  \
+##   --no-environ --no-save --no-restore --quiet CMD INSTALL  \
+##   &#39;/private/var/folders/pc/qs2hrd_j1gv0h5x110_0sn_00000gn/T/RtmpwDfnhS/devtools1f6e1925f29d/hase62-Neoantimon-23f29f1&#39;  \
+##   --library=&#39;/Library/Frameworks/R.framework/Versions/3.4/Resources/library&#39;  \
+##   --install-tests
+</code></pre>
+
+<pre><code>## 
+</code></pre>
+
+<pre><code>## Installation failed: Command failed (1)
 </code></pre>
 
 <pre><code class="r">library(Neoantimon);
@@ -255,78 +267,15 @@ print(sample_vcf, row.names = FALSE)
 ##                                                                                                                                                                       GAS1:NM_002048:exon1:c.G533A:p.R178H
 ##                                                                                                                                                                       PDE6H:NM_006205:exon3:c.G163T:p.G55W
 ##  SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs
-##  cytoBand depth_tumor variantNum_tumor depth_normal variantNum_normal
-##      1p33          64               28           49                 0
-##    1p13.1         100               39          111                 0
-##    4p15.2         143               47          151                 0
-##    4q13.2          43               15           41                 0
-##      6q13         122               38           73                 0
-##   9q21.33          20                5           26                 0
-##   12p12.3          81               10           47                 0
-##   12p12.2          97               11           57                 0
-##  bases_tumor bases_normal A_C_G_T_tumor A_C_G_T_normal misRate_tumor
-##   46,20,18,8    28,0,21,0     36,0,28,0       49,0,0,0         0.438
-##  74,29,26,10    82,0,29,0     0,39,0,61      0,0,0,111         0.390
-##  112,39,31,8   129,0,22,0     0,47,0,96      0,0,0,151         0.329
-##   28,11,15,4    29,0,12,0           ---            ---         0.349
-##   98,31,24,7    63,0,10,0           ---            ---         0.311
-##     6,2,14,3    10,0,16,0      0,15,0,5       0,26,0,0         0.250
-##    63,8,18,2    35,0,12,0     0,0,71,10       0,0,47,0         0.123
-##   82,10,15,1     50,0,7,0           ---            ---         0.113
-##  strandRatio_tumor misRate_normal strandRatio_normal P.value.fisher.
-##              0.714              0                ---           8.321
-##              0.744              0                ---          14.755
-##              0.830              0                ---          16.734
-##              0.733              0                ---           4.838
-##              0.816              0                ---           8.696
-##              0.400              0                ---           1.947
-##              0.800              0                ---           1.877
-##              0.909              0                ---           2.139
-##  readPairNum_tumor variantPairNum_tumor otherPairNum_tumor
-##                 42                   29                  0
-##                 61                   39                  1
-##                 98                   50                  0
-##                 27                   22                  1
-##                 72                   32                  4
-##                 15                    5                  0
-##                 71                   10                  0
-##                 76                   11                  0
-##  readPairNum_normal variantPairNum_normal otherPairNum_normal
-##                  56                     0                   0
-##                 111                     0                   0
-##                 152                     0                   1
-##                  41                     0                   2
-##                  66                     0                   2
-##                  27                     0                   0
-##                  47                     0                   0
-##                  51                     0                   2
-##  P.value.fisher_realignment. indel_mismatch_rate indel_mismatch_rate.1
-##                        8.617                   0                     0
-##                       14.755                   0                     0
-##                       17.543                   0                     0
-##                        6.926                   0                     0
-##                        7.656                   0                     0
-##                        1.995                   0                     0
-##                        1.877                   0                     0
-##                        2.152                   0                     0
-##  bp_mismatch_count distance_from_breakpoint simple_repeat_pos
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  0                        0               ---
-##                  1                       16               ---
-##  simple_repeat_seq P.value.EBCall.
-##                ---          60.000
-##                ---          60.000
-##                ---          60.000
-##                ---          10.783
-##                ---          13.076
-##                ---           5.208
-##                ---           7.481
-##                ---           6.179
+##  cytoBand depth_tumor variantNum_tumor depth_normal
+##      1p33          64               28           49
+##    1p13.1         100               39          111
+##    4p15.2         143               47          151
+##    4q13.2          43               15           41
+##      6q13         122               38           73
+##   9q21.33          20                5           26
+##   12p12.3          81               10           47
+##   12p12.2          97               11           57
 </code></pre>
 
 <pre><code class="r">data(&quot;sample_sv_bnd&quot;)
@@ -376,49 +325,49 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
 ##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
 ##   20  34827929  34827929   G G]1:115005805]       exonic         AAR2
-##  GeneDetail.refGene ExonicFunc.refGene AAChange.refGene       mateID
-##                   .                  .                . SVMERGE137_1
-##                   .                  .                .  SVMERGE15_1
-##                   .                  .                . SVMERGE116_1
-##                   .                  .                . SVMERGE116_2
-##                   .                  .                .   SVMERGE3_1
-##                   .                  .                .   SVMERGE3_2
-##                   .                  .                .  SVMERGE15_2
-##                   .                  .                .  SVMERGE38_1
-##                   .                  .                .  SVMERGE38_2
-##                   .                  .                . SVMERGE195_1
-##                   .                  .                . SVMERGE195_2
-##                   .                  .                .  SVMERGE10_1
-##                   .                  .                .  SVMERGE10_2
-##                   .                  .                . SVMERGE272_1
-##                   .                  .                . SVMERGE272_2
-##                   .                  .                . SVMERGE101_1
-##                   .                  .                . SVMERGE101_2
-##                   .                  .                .  SVMERGE40_1
-##                   .                  .                .  SVMERGE40_2
-##                   .                  .                . SVMERGE460_1
-##                   .                  .                . SVMERGE460_2
-##                   .                  .                . SVMERGE133_2
-##                   .                  .                .  SVMERGE31_2
-##                   .                  .                . SVMERGE157_2
-##                   .                  .                .  SVMERGE72_2
-##                   .                  .                . SVMERGE177_2
-##                   .                  .                .  SVMERGE37_1
-##                   .                  .                .  SVMERGE37_2
-##                   .                  .                . SVMERGE206_1
-##                   .                  .                . SVMERGE206_2
-##                   .                  .                .  SVMERGE58_1
-##                   .                  .                .  SVMERGE58_2
-##                   .                  .                . SVMERGE210_1
-##                   .                  .                . SVMERGE210_2
-##                   .                  .                . SVMERGE205_1
-##                   .                  .                . SVMERGE205_2
-##                   .                  .                . SVMERGE133_1
-##                   .                  .                .  SVMERGE31_1
-##                   .                  .                . SVMERGE157_1
-##                   .                  .                .  SVMERGE72_1
-##                   .                  .                . SVMERGE177_1
-##                   .                  .                . SVMERGE137_2
+##        mateID
+##  SVMERGE137_1
+##   SVMERGE15_1
+##  SVMERGE116_1
+##  SVMERGE116_2
+##    SVMERGE3_1
+##    SVMERGE3_2
+##   SVMERGE15_2
+##   SVMERGE38_1
+##   SVMERGE38_2
+##  SVMERGE195_1
+##  SVMERGE195_2
+##   SVMERGE10_1
+##   SVMERGE10_2
+##  SVMERGE272_1
+##  SVMERGE272_2
+##  SVMERGE101_1
+##  SVMERGE101_2
+##   SVMERGE40_1
+##   SVMERGE40_2
+##  SVMERGE460_1
+##  SVMERGE460_2
+##  SVMERGE133_2
+##   SVMERGE31_2
+##  SVMERGE157_2
+##   SVMERGE72_2
+##  SVMERGE177_2
+##   SVMERGE37_1
+##   SVMERGE37_2
+##  SVMERGE206_1
+##  SVMERGE206_2
+##   SVMERGE58_1
+##   SVMERGE58_2
+##  SVMERGE210_1
+##  SVMERGE210_2
+##  SVMERGE205_1
+##  SVMERGE205_2
+##  SVMERGE133_1
+##   SVMERGE31_1
+##  SVMERGE157_1
+##   SVMERGE72_1
+##  SVMERGE177_1
+##  SVMERGE137_2
 </code></pre>
 
 <pre><code class="r">library(Neoantimon)
@@ -491,13 +440,108 @@ print(sample_copynum, row.names = FALSE)
 ##            2            1       1.0726687
 </code></pre>
 
-<p>#<code>{r Get Sample}
-#InstallSampleFiles()
-#</code></p>
+<pre><code class="r">TestAnalysis
+</code></pre>
 
-<p>#&ldquo;{r Sample Analysis}</p>
-
-<p>#&rdquo;</p>
+<pre><code>## function(){
+##   print(&quot;Install NetMHCpan and NetMHCIIpan.&quot;)
+##   InstallSampleFiles()
+##   InstallSamtools()
+##   InstallRefFlat()
+##   InstallRefMrnaFile()
+## 
+##   MainSNVClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;,
+##                 file_name_in_hla_table = &quot;sample&quot;,
+##                 hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;,
+##                 refflat_file  = &quot;lib/refFlat.txt&quot;,
+##                 refmrna_file = &quot;lib/refMrna.fa&quot;,
+##                 rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
+##                 netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;,
+##                 nm_id_column = 9
+##   )
+## 
+##   MainSNVClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;,
+##                 file_name_in_hla_table = &quot;sample&quot;,
+##                 hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;,
+##                 refflat_file  = &quot;lib/refFlat.txt&quot;,
+##                 refmrna_file = &quot;lib/refMrna.fa&quot;,
+##                 rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
+##                 netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;,
+##                 nm_id_column = 9
+##   )
+## 
+##   MainINDELClass1(input_file = &quot;lib/data/sample_vcf.txt&quot;,
+##                   file_name_in_hla_table = &quot;sample&quot;,
+##                   hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;,
+##                   refflat_file  = &quot;lib/refFlat.txt&quot;,
+##                   refmrna_file = &quot;lib/refMrna.fa&quot;,
+##                   rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
+##                   netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;,
+##                   nm_id_column = 9
+##   )
+## 
+##   MainINDELClass2(input_file = &quot;lib/data/sample_vcf.txt&quot;,
+##                   file_name_in_hla_table = &quot;sample&quot;,
+##                   hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;,
+##                   refflat_file  = &quot;lib/refFlat.txt&quot;,
+##                   refmrna_file = &quot;lib/refMrna.fa&quot;,
+##                   rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
+##                   netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;,
+##                   nm_id_column = 9
+##   )
+## 
+##   MainMergeSNVClass1(input_dir = &quot;result.sample.NO_job_id_SNV&quot;,
+##                      file_prefix = &quot;NO_job_id_SNV&quot;,
+##                      annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
+## 
+##   MainMergeSNVClass2(input_dir = &quot;result.sample.NO_job_id_SNV&quot;,
+##                      file_prefix = &quot;NO_job_id_SNV&quot;,
+##                      annotation_file = &quot;lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt&quot;)
+## 
+##   MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;,
+##                          file_prefix = &quot;NO_job_id_INDEL&quot;,
+##                          annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
+## 
+##   MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_INDEL&quot;,
+##                          file_prefix = &quot;NO_job_id_INDEL&quot;,
+##                          annotation_file = &quot;lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt&quot;)
+## 
+##   MainSVFUSIONClass1(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;,
+##                      file_name_in_hla_table = &quot;sample&quot;,
+##                      hla_file = &quot;lib/data/sample_hla_table_c1.txt&quot;,
+##                      refflat_file  = &quot;lib/refFlat.txt&quot;,
+##                      refmrna_file = &quot;lib/refMrna.fa&quot;,
+##                      rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
+##                      netMHCpan_dir = &quot;lib/netMHCpan-3.0/netMHCpan&quot;,
+##                      refdna_file = &quot;lib/GRCh37.fa&quot;,
+##                      mutation_alt_bnd_column = 5,
+##                      gene_symbol_column = 7,
+##                      mate_id_column = 8
+##   )
+## 
+##   MainSVFUSIONClass2(input_file = &quot;lib/data/sample_sv_bnd.tsv&quot;,
+##                      file_name_in_hla_table = &quot;sample&quot;,
+##                      hla_file = &quot;lib/data/sample_hla_table_c2.txt&quot;,
+##                      refflat_file  = &quot;lib/refFlat.txt&quot;,
+##                      refmrna_file = &quot;lib/refMrna.fa&quot;,
+##                      rnaexp_file = &quot;lib/data/sample_rna_exp.txt&quot;,
+##                      netMHCIIpan_dir = &quot;lib/netMHCIIpan-3.1/netMHCIIpan&quot;,
+##                      refdna_file = &quot;lib/GRCh37.fa&quot;,
+##                      mutation_alt_bnd_column = 5,
+##                      gene_symbol_column = 7,
+##                      mate_id_column = 8
+##   )
+## 
+##   MainMergeINDELSVClass1(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;,
+##                          file_prefix = &quot;NO_job_id_SVFusion&quot;,
+##                          annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
+## 
+##   MainMergeINDELSVClass2(input_dir = &quot;result.sample.NO_job_id_SVFusion&quot;,
+##                          file_prefix = &quot;NO_job_id_SVFusion&quot;,
+##                          annotation_file = &quot;lib/data/sample_sv_bnd.tsv.NO_job_id_SVFusion.peptide.txt&quot;)
+## }
+## &lt;environment: namespace:Neoantimon&gt;
+</code></pre>
 
 </body>
 

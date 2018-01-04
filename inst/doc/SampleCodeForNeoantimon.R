@@ -1,7 +1,7 @@
 ## ----Preparation---------------------------------------------------------
-print("install.packages('devtools')");
+#install.packages('devtools');
 library(devtools);
-print("install_github('hase62/Neoantimon')");
+install_github('hase62/Neoantimon');
 library(Neoantimon);
 
 ## ----Sample VCF file-----------------------------------------------------
@@ -28,4 +28,8 @@ print(sample_rna_exp, row.names = FALSE)
 ## ----CopyNumber Information----------------------------------------------
 data("sample_copynum")
 print(sample_copynum, row.names = FALSE)
+
+## ----Get Sample and Test Analysis----------------------------------------
+
+TestAnalysis
 

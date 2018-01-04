@@ -4,10 +4,14 @@
 \alias{InstallSampleFiles}
 \title{Get Sample Files for Neoantimon}
 \usage{
-InstallSampleFiles(export_dir = "lib")
+
+  InstallSampleFiles(url = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip",
+  export_dir = "lib")
 }
 \arguments{
-\item{export_dir}{Export directory for using Sample Files (Default="lib").}
+\item{url}{Url for getting samtools (Default = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip").}
+
+\item{export_dir}{Export directory (Default = "lib").}
 }
 \value{
 void
