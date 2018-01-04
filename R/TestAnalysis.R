@@ -21,7 +21,9 @@ TestAnalysis<-function(){
                 refmrna_file = "lib/refMrna.fa",
                 rnaexp_file = "lib/data/sample_rna_exp.txt",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-                nm_id_column = 9
+                nm_id_column = 10,
+                depth_tumor_column = 12,
+                depth_normal_column = 14
   )
 
   MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
@@ -31,9 +33,11 @@ TestAnalysis<-function(){
                 refmrna_file = "lib/refMrna.fa",
                 rnaexp_file = "lib/data/sample_rna_exp.txt",
                 netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                nm_id_column = 9
+                nm_id_column = 10,
+                depth_tumor_column = 12,
+                depth_normal_column = 14
   )
-
+ 
   MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
                   file_name_in_hla_table = "sample",
                   hla_file = "lib/data/sample_hla_table_c1.txt",
@@ -41,7 +45,9 @@ TestAnalysis<-function(){
                   refmrna_file = "lib/refMrna.fa",
                   rnaexp_file = "lib/data/sample_rna_exp.txt",
                   netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-                  nm_id_column = 9
+                  nm_id_column = 10,
+                  depth_tumor_column = 12,
+                  depth_normal_column = 14
   )
 
   MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
@@ -51,7 +57,9 @@ TestAnalysis<-function(){
                   refmrna_file = "lib/refMrna.fa",
                   rnaexp_file = "lib/data/sample_rna_exp.txt",
                   netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                  nm_id_column = 9
+                  nm_id_column = 10,
+                  depth_tumor_column = 12,
+                  depth_normal_column = 14
   )
 
   MainMergeSNVClass1(input_dir = "result.sample.NO_job_id_SNV",
@@ -70,7 +78,7 @@ TestAnalysis<-function(){
                          file_prefix = "NO_job_id_INDEL",
                          annotation_file = "lib/data/sample_vcf.txt.NO_JOB_ID_INDEL.peptide.txt")
 
-  MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.tsv",
+  MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
                      file_name_in_hla_table = "sample",
                      hla_file = "lib/data/sample_hla_table_c1.txt",
                      refflat_file  = "lib/refFlat.txt",
@@ -83,7 +91,7 @@ TestAnalysis<-function(){
                      mate_id_column = 8
   )
 
-  MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.tsv",
+  MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.txt",
                      file_name_in_hla_table = "sample",
                      hla_file = "lib/data/sample_hla_table_c2.txt",
                      refflat_file  = "lib/refFlat.txt",
