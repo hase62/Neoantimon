@@ -121,7 +121,7 @@ MainSVFUSIONClass1<-function(input_file,
                             mutation_end_column = mutation_end_column,
                             mutation_ref_column = mutation_ref_column,
                             mutation_alt_column = mutation_alt_bnd_column,
-                            nm_id_column = nm_id_column,
+                            nm_id_column = ifelse(is.na(nm_id_column), 0, nm_id_column),
                             depth_normal_column = depth_normal_column, 
                             depth_tumor_column = depth_tumor_column)
   
