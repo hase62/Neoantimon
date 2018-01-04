@@ -208,10 +208,20 @@ hr {
 
 <h2>Data Preparation and Sample Codes for Analysis</h2>
 
-<pre><code class="r">#install.packages(&quot;devtools&quot;);
-library(devtools);
-#install_github(&#39;hase62/Neoantimon&#39;);
-library(Neoantimon);
+<pre><code class="r">print(&quot;install.packages(&#39;devtools&#39;)&quot;);
+</code></pre>
+
+<pre><code>## [1] &quot;install.packages(&#39;devtools&#39;)&quot;
+</code></pre>
+
+<pre><code class="r">library(devtools);
+print(&quot;install_github(&#39;hase62/Neoantimon&#39;)&quot;);
+</code></pre>
+
+<pre><code>## [1] &quot;install_github(&#39;hase62/Neoantimon&#39;)&quot;
+</code></pre>
+
+<pre><code class="r">library(Neoantimon);
 </code></pre>
 
 <pre><code class="r">data(&quot;sample_vcf&quot;)
@@ -319,6 +329,98 @@ print(sample_vcf, row.names = FALSE)
 ##                ---           6.179
 </code></pre>
 
+<pre><code class="r">data(&quot;sample_sv_bnd&quot;)
+print(sample_sv_bnd, row.names = FALSE)
+</code></pre>
+
+<pre><code>##  Chr     Start       End Ref            Alt Func.refGene Gene.refGene
+##    1 115005805 115005805   C C]20:34827929]       exonic       TRIM33
+##    1 204908711 204908711   A [2:172743385[A     intronic        NFASC
+##    2  25870534  25870534   T  ]2:25965720]G     intronic         DTNB
+##    2  25965720  25965720   T  T[2:25870536[       exonic        ASXL2
+##    2 214794791 214794791   C C[2:214798169[       exonic       SPAG16
+##    2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16
+##    2 172743385 172743385   A [1:204908711[A     intronic     SLC25A12
+##    3 129389804 129389804   G G[3:129501802[       exonic        TMCC1
+##    3 129501802 129501802   C ]3:129389801]C     intronic        TMCC1
+##    4 186112192 186112192   C T[4:186430388[       exonic       CFAP97
+##    4 186430388 186430388   C ]4:186112191]C     intronic       PDLIM3
+##    4 153735391 153735391   C ]4:154493729]C     intronic       ARFIP1
+##    4 154493729 154493729   T T[4:153735393[     intronic     KIAA0922
+##    5  37488382  37488382   A  A[5:37727038[     intronic        WDR70
+##    5  37727038  37727038   A  ]5:37488379]A       exonic        WDR70
+##    7  55142654  55142654   A  A[7:55257581[     intronic         EGFR
+##    7  55257581  55257581   C  ]7:55142654]C     intronic         EGFR
+##    8   1839016   1839016   T   A[8:1849183[     intronic     ARHGEF10
+##    8   1849183   1849183   C   ]8:1839014]C     intronic     ARHGEF10
+##    9 139391707 139391707   T ]9:139835760]G       exonic       NOTCH1
+##    9 139835760 139835760   G G[9:139391708[       exonic        FBXW5
+##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
+##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
+##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
+##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
+##    9  33988992  33988992   C [19:35843351[C       exonic        UBAP2
+##   11  64508925  64508925   C ]11:70402272]C       exonic      RASGRP2
+##   11  70402272  70402272   C C[11:64508925[     intronic       SHANK2
+##   11  78036848  78036848   T ]11:82705156]A     intronic         GAB2
+##   11  82705156  82705156   G G[11:78036849[       exonic        RAB30
+##   13  39444957  39444957   T [13:41813984[T     intronic        FREM2
+##   13  41813984  41813984   C [13:39444957[C     intronic        MTRF1
+##   17  29162474  29162474   G [17:29631922[G       exonic        ATAD5
+##   17  29631922  29631922   G [17:29162474[G       exonic        EVI2B
+##   17  37682334  37682334   A [17:37940213[T       exonic        CDK12
+##   17  37940212  37940212   A [17:37682591[A     intronic        IKZF3
+##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
+##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
+##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
+##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
+##   19  35843351  35843351   G  [9:33988992[G       exonic        FFAR1
+##   20  34827929  34827929   G G]1:115005805]       exonic         AAR2
+##  GeneDetail.refGene ExonicFunc.refGene AAChange.refGene       mateID
+##                   .                  .                . SVMERGE137_1
+##                   .                  .                .  SVMERGE15_1
+##                   .                  .                . SVMERGE116_1
+##                   .                  .                . SVMERGE116_2
+##                   .                  .                .   SVMERGE3_1
+##                   .                  .                .   SVMERGE3_2
+##                   .                  .                .  SVMERGE15_2
+##                   .                  .                .  SVMERGE38_1
+##                   .                  .                .  SVMERGE38_2
+##                   .                  .                . SVMERGE195_1
+##                   .                  .                . SVMERGE195_2
+##                   .                  .                .  SVMERGE10_1
+##                   .                  .                .  SVMERGE10_2
+##                   .                  .                . SVMERGE272_1
+##                   .                  .                . SVMERGE272_2
+##                   .                  .                . SVMERGE101_1
+##                   .                  .                . SVMERGE101_2
+##                   .                  .                .  SVMERGE40_1
+##                   .                  .                .  SVMERGE40_2
+##                   .                  .                . SVMERGE460_1
+##                   .                  .                . SVMERGE460_2
+##                   .                  .                . SVMERGE133_2
+##                   .                  .                .  SVMERGE31_2
+##                   .                  .                . SVMERGE157_2
+##                   .                  .                .  SVMERGE72_2
+##                   .                  .                . SVMERGE177_2
+##                   .                  .                .  SVMERGE37_1
+##                   .                  .                .  SVMERGE37_2
+##                   .                  .                . SVMERGE206_1
+##                   .                  .                . SVMERGE206_2
+##                   .                  .                .  SVMERGE58_1
+##                   .                  .                .  SVMERGE58_2
+##                   .                  .                . SVMERGE210_1
+##                   .                  .                . SVMERGE210_2
+##                   .                  .                . SVMERGE205_1
+##                   .                  .                . SVMERGE205_2
+##                   .                  .                . SVMERGE133_1
+##                   .                  .                .  SVMERGE31_1
+##                   .                  .                . SVMERGE157_1
+##                   .                  .                .  SVMERGE72_1
+##                   .                  .                . SVMERGE177_1
+##                   .                  .                . SVMERGE137_2
+</code></pre>
+
 <pre><code class="r">library(Neoantimon)
 data(&quot;sample_hla_table_c1&quot;)
 print(sample_hla_table_c1, row.names = FALSE)
@@ -388,6 +490,14 @@ print(sample_copynum, row.names = FALSE)
 ##            2            1       2.6999875
 ##            2            1       1.0726687
 </code></pre>
+
+<p>#<code>{r Get Sample}
+#InstallSampleFiles()
+#</code></p>
+
+<p>#&ldquo;{r Sample Analysis}</p>
+
+<p>#&rdquo;</p>
 
 </body>
 

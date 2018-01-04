@@ -4,18 +4,17 @@
 \alias{MainINDELClass1}
 \title{Calculate Neoantigen Candidates on Indels for MHC Class1}
 \usage{
-MainINDELClass1(input_file, HLA_file, file_name_in_HLA_table = input_file,
-  hmdir = getwd(), job_ID = "NO_JOB_ID", RNAseq_file = NA, RNA_bam = NA,
-  CNV = NA, ccfp_dir = paste(hmdir, "lib/ccfp.jar", sep = ""),
-  Purity = NA, netMHCpan_dir = paste(hmdir,
-  "lib/netMHCIIpan-3.1/netMHCIIpan", sep = ""), refDNA = paste(hmdir,
-  "lib/GRCh37.fa", sep = ""), refFlat_file = paste(hmdir, "/data/refFlat.txt",
-  sep = ""), refMrna_1 = paste(hmdir, "/data/refMrna.cut1.fa", sep = ""),
-  refMrna_3 = paste(hmdir, "/data/refMrna.cut3.fa", sep = ""),
-  samtools_dir = "samtools", bcftools_dir = "bcftools", Chr_Column = 1,
-  Mutation_Start_Column = 2, Mutation_End_Column = 3,
-  Mutation_Ref_Column = 4, Mutation_Alt_Column = 5, NM_ID_Column = 10,
-  Depth_Normal_Column = NA, Depth_Tumor_Column = NA,
+MainINDELClass1(input_file, hla_file, file_name_in_hla_table = input_file,
+  refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
+  refmrna_file = paste(hmdir, "lib/refMrna.merge.fa", sep = "/"),
+  hmdir = getwd(), job_id = "NO_job_id", export_dir = paste("result",
+  file_name_in_hla_table, job_id, sep = "."), rnaexp_file = NA,
+  rnabam_file = NA, cnv_file = NA, purity = 1,
+  netMHCpan_dir = paste(hmdir, "lib/netMHCpan-3.0/netMHCpan", sep = "/"),
+  refdna_file = NA, samtools_dir = NA, bcftools_dir = NA,
+  chr_column = NA, mutation_start_column = NA, mutation_end_column = NA,
+  mutation_ref_column = NA, mutation_alt_column = NA, nm_id_column = NA,
+  depth_normal_column = NA, depth_tumor_column = NA,
   ambiguous_between_exon = 0, ambiguous_codon = 0, peptide_length = c(8,
   9, 10, 11, 12, 13))
 }
@@ -23,73 +22,72 @@ MainINDELClass1(input_file, HLA_file, file_name_in_HLA_table = input_file,
 \item{input_file}{(Required) An input vcf file annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
 See by data(sample_vcf); sample_vcf;}
 
-\item{HLA_file}{(Required) A tab separated file indicating HLA types .
+\item{hla_file}{(Required) A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
-See by data(sample_hla_table_c2); sample_hla_table_c2;}
+See by data(sample_hla_table_c1); sample_hla_table_c1;}
 
-\item{file_name_in_HLA_table}{If the name (1st column) in HLA table is not input_file, indicate the corresponding name (Default=input_file).}
+\item{file_name_in_hla_table}{If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).}
 
-\item{hmdir}{Home directory for the analysis (Default=getwd()).}
+\item{refflat_file}{refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
+See "https://github.com/hase62/Neoantimon"}
 
-\item{job_ID}{Job-Id to be attached in output files (Default="NO_JOB_ID").}
+\item{refmrna_file}{refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.fa", sep="").
+See "https://github.com/hase62/Neoantimon"}
 
-\item{RNAseq_file}{(Default=NA) A file including RNA expressions.
-The 1st, 2nd and 3rd columns are "GeneSymbol Chr:ExonStart-ExonEnd(locus) Expression Amount", respectively.
+\item{hmdir}{Home directory for the analysis (Default = getwd()).}
+
+\item{job_id}{Job-Id to be attached in output files (Default = "NO_job_id").}
+
+\item{export_dir}{The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")}
+
+\item{rnaexp_file}{A file including RNA expressions (Default=NA).
+The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend(locus) ExpressionAmount", respectively.
 The 1st row should be any header.
 See by data(sample_rna_exp); sample_rna_exp;}
 
-\item{RNA_bam}{RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).}
+\item{rnabam_file}{RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).}
 
-\item{CNV}{A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
+\item{cnv_file}{A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
 The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.
-The columns are "Chromosome Position Log R segmented LogR BAF segmented BAF Copy number Minor allele Raw copy number"
+The columns are "SNPName Chromosome Position LogR segmentedLogR BAF segmentedBAF CopyNumber MinorAllele RawCopyNumber"
 The 1st row should be the above header.
 See data(sample_copynum); sample_copynum;}
 
-\item{ccfp_dir}{The file directory to CCFP.pl (Default="lib/ccfp.jar").}
-
-\item{Purity}{Tumor purity or tumor contents ratio required to calculate CCFP (Default=NA).}
+\item{purity}{Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).}
 
 \item{netMHCpan_dir}{The file directory to netMHCpan (Default="lib/netMHCpan-3.0/netMHCpan").}
 
-\item{refDNA}{refDNA information to be used to calculate RNA VAF (Default="ib/GRCh37.fa").}
+\item{refdna_file}{refdna_file information to be used to calculate RNA VAF (Default=NA).
+See "https://github.com/hase62/Neoantimon"}
 
-\item{refFlat_file}{refFlat file to be used in constructing peptide. (Default=paste(hmdir,"lib/refFlat.txt",sep="")}
-
-\item{refMrna_1}{refMrna file to be used in constructing peptide (Default=paste(hmdir,"lib/refMrna.merge.cut1.fa",sep="").
-This file is automaticalluy generated through the command in README, but includes NM_IDs.}
-
-\item{refMrna_3}{refMrna file to be used in constructing peptide (Default=paste(hmdir,"lib/refMrna.merge.cut3.fa",sep="").
-This file is automaticalluy generated through the command in README, but includes the amino acid sequence.}
-
-\item{samtools_dir}{The file directory to samtools (Default="samtools").
+\item{samtools_dir}{The file directory to samtools_0_x_x (Default="samtools").
 It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .}
 
 \item{bcftools_dir}{The file directory to netMHCpan (Default="bcftools").
 It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
 samtools 0_x_x includes bcftools in the directory.}
 
-\item{Chr_Column}{The column number describing Chromosome number in input_file (Default=1).}
+\item{chr_column}{The column number describing chromosome number in input_file (Default=NA, but will automatically search "Chr" in header).}
 
-\item{Mutation_Start_Column}{The column number describing Mutation Start Position in input_file (Default=2) .}
+\item{mutation_start_column}{The column number describing mutation start Position in input_file (Default=NA, but will automatically search "Start" in header) .}
 
-\item{Mutation_End_Column}{The column number describing Mutation End Position in input_file (Default=3).}
+\item{mutation_end_column}{The column number describing mutation end Position in input_file (Default=NA, but will automatically search "End" in header).}
 
-\item{Mutation_Ref_Column}{The column number describing Mutation Ref in input_file (Default=4).}
+\item{mutation_ref_column}{The column number describing mutation Ref in input_file (Default=NA, but will automatically search "Ref" in header).}
 
-\item{Mutation_Alt_Column}{The column number describing Mutation Alt in input_file (Default=5).}
+\item{mutation_alt_column}{The column number describing mutation Alt in input_file (Default=NA, but will automatically search "Alt" in header).}
 
-\item{NM_ID_Column}{The column number describing NM IDs in input_file (Default=10).}
+\item{nm_id_column}{(Required) The column number describing NM IDs in input_file such as "SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).}
 
-\item{Depth_Normal_Column}{The column number describing the read count from normal cells (Default = NA)}
+\item{depth_normal_column}{The column number describing the read count from normal cells (Default = NA).}
 
-\item{Depth_Tumor_Column}{The column number describing the read count from tumor cells (Default = NA)}
+\item{depth_tumor_column}{The column number describing the read count from tumor cells (Default = NA).}
 
 \item{ambiguous_between_exon}{The maximum number to permit the differences between Exon-Lengths from refFlat and refMrna (Default=0).}
 
-\item{ambiguous_codon}{The maximum number to permit the differences between inputfile- and refMrna-oriented translation START/END position (Default=0).}
+\item{ambiguous_codon}{The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).}
 
-\item{peptide_length}{Peptide Length to be generated (Default={8,9,10,11,12,13}).}
+\item{peptide_length}{Peptide Length to be generated (Default = {8,9,10,11,12,13}).}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.)

@@ -1,7 +1,7 @@
 ---
 title: "SampleCodeForNeoantimon"
 author: "T. Hasegawa"
-date: "2017/10/05"
+date: "2018/01/04"
 output: html_document
 ---
 
@@ -12,15 +12,20 @@ output: html_document
 
 ## Data Preparation and Sample Codes for Analysis
 ```{r Preparation}
-#install.packages("devtools");
+print("install.packages('devtools')");
 library(devtools);
-#install_github('hase62/Neoantimon');
+print("install_github('hase62/Neoantimon')");
 library(Neoantimon);
 ```
 
 ```{r Sample VCF file}
 data("sample_vcf")
 print(sample_vcf, row.names = FALSE)
+```
+
+```{r Sample VCF (SV Fusion BND) file}
+data("sample_sv_bnd")
+print(sample_sv_bnd, row.names = FALSE)
 ```
 
 ```{r HLA Table for Class 1}
@@ -43,3 +48,14 @@ print(sample_rna_exp, row.names = FALSE)
 data("sample_copynum")
 print(sample_copynum, row.names = FALSE)
 ```
+
+#```{r Get Sample}
+#InstallSampleFiles()
+#```
+
+#```{r Sample Analysis}
+
+#```
+
+
+

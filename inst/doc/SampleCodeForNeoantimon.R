@@ -1,12 +1,16 @@
 ## ----Preparation---------------------------------------------------------
-#install.packages("devtools");
+print("install.packages('devtools')");
 library(devtools);
-#install_github('hase62/Neoantimon');
+print("install_github('hase62/Neoantimon')");
 library(Neoantimon);
 
 ## ----Sample VCF file-----------------------------------------------------
 data("sample_vcf")
 print(sample_vcf, row.names = FALSE)
+
+## ----Sample VCF (SV Fusion BND) file-------------------------------------
+data("sample_sv_bnd")
+print(sample_sv_bnd, row.names = FALSE)
 
 ## ----HLA Table for Class 1-----------------------------------------------
 library(Neoantimon)

@@ -1,8 +1,8 @@
-#' Merge Results from MainSnvClass1.R
+#' Merge Results from MainSNVClass1.R
 #'
-#'@param input_dir Directory storing netMHCpan Results (Required).
+#'@param input_dir (Required) Directory storing netMHCpan Results.
 #'
-#'@param file_prefix File prefix of netMHCpan Results (Required).
+#'@param file_prefix (Required) File prefix of netMHCpan Results.
 #'If you have "sample_annovar.txt.NO_JOB_ID.HLACLASS1.1.peptide.txt", please set "sample_annovar.txt.NO_JOB_ID".
 #'
 #'@param hmdir Home directory for the analysis (Default=getwd()).
