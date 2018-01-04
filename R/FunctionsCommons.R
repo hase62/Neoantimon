@@ -21,7 +21,8 @@ CheckRequiredFiles<-function(input_file,
   return(FALSE)
 }
 
-CheckRequiredColumns<-function(chr_column, 
+CheckRequiredColumns<-function(input_file,
+                               chr_column, 
                                mutation_start_column,
                                mutation_end_column,
                                mutation_ref_column,

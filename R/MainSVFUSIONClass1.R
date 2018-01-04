@@ -115,12 +115,13 @@ MainSVFUSIONClass1<-function(input_file,
                         hla_file = hla_file, 
                         refflat_file = refflat_file, 
                         refmrna_file = refmrna_file)) return(NULL)
-  flg<-CheckRequiredColumns(chr_column = chr_column, 
+  flg<-CheckRequiredColumns(input_file = input_file,
+                            chr_column = chr_column, 
                             mutation_start_column = mutation_start_column, 
                             mutation_end_column = mutation_end_column,
                             mutation_ref_column = mutation_ref_column,
-                            mutation_alt_column = mutation_alt_bnd_column,
-                            nm_id_column = ifelse(is.na(nm_id_column), 0, nm_id_column),
+                            mutation_alt_column = mutation_alt_column,
+                            nm_id_column = nm_id_column,
                             depth_normal_column = depth_normal_column, 
                             depth_tumor_column = depth_tumor_column)
   
