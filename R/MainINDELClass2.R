@@ -1,6 +1,6 @@
 #'Calculate Neoantigen Candidates on Indels for MHC Class2
 #'
-#'@param input_file (Required) An input vcf file annotated by, e.g., ANNOVAR or other softwares.
+#'@param input_file (Required) An input vcf file annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
 #'See by data(sample_vcf); sample_vcf;
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
@@ -10,7 +10,7 @@
 #'
 #'
 #'
-#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs (Default=NA).
+#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as SLCO1C1:NM_001145944 (Default=NA).
 #'
 #'
 #'
@@ -80,49 +80,49 @@
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
 #'@export
-MainINDELClass2<-function(input_file, 
-                          hla_file, 
+MainINDELClass2<-function(input_file,
+                          hla_file,
                           file_name_in_hla_table = input_file,
                           refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                           refmrna_file = paste(hmdir, "lib/refMrna.merge.fa", sep="/"),
-                          hmdir = getwd(), 
-                          job_id = "NO_job_id", 
+                          hmdir = getwd(),
+                          job_id = "NO_job_id",
                           export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
-                          rnaexp_file = NA, 
+                          rnaexp_file = NA,
                           rnabam_file = NA,
-                          cnv_file=NA, 
+                          cnv_file=NA,
                           purity = 1,
                           netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep="/"),
                           refdna_file = NA,
                           samtools_dir = NA,
                           bcftools_dir = NA,
-                          chr_column = NA, 
+                          chr_column = NA,
                           mutation_start_column = NA,
-                          mutation_end_column = NA, 
-                          mutation_ref_column = NA, 
+                          mutation_end_column = NA,
+                          mutation_ref_column = NA,
                           mutation_alt_column = NA,
-                          nm_id_column = NA, 
-                          depth_normal_column = NA, 
+                          nm_id_column = NA,
+                          depth_normal_column = NA,
                           depth_tumor_column = NA,
-                          ambiguous_between_exon = 0, 
+                          ambiguous_between_exon = 0,
                           ambiguous_codon = 0,
                           peptide_length = c(15)){
 
   #Check Required Files
-  if(CheckRequiredFiles(input_file = input_file, 
-                        hla_file = hla_file, 
-                        refflat_file = refflat_file, 
+  if(CheckRequiredFiles(input_file = input_file,
+                        hla_file = hla_file,
+                        refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
   flg<-CheckRequiredColumns(input_file = input_file,
-                            chr_column = chr_column, 
-                            mutation_start_column = mutation_start_column, 
+                            chr_column = chr_column,
+                            mutation_start_column = mutation_start_column,
                             mutation_end_column = mutation_end_column,
                             mutation_ref_column = mutation_ref_column,
                             mutation_alt_column = mutation_alt_column,
                             nm_id_column = nm_id_column,
-                            depth_normal_column = depth_normal_column, 
+                            depth_normal_column = depth_normal_column,
                             depth_tumor_column = depth_tumor_column)
-  
+
   #Check and Set Required Columns
   if(length(flg)<=1) {
     return(NULL)
@@ -136,15 +136,15 @@ MainINDELClass2<-function(input_file,
     depth_normal_column = flg[7]
     depth_tumor_column = flg[8]
   }
-  
+
   #Generate FASTA and mutation Profile
   job_id = paste(job_id, "INDEL", sep = "_")
-  GenerateIndelSeq(input_file = input_file, 
-                   hmdir = hmdir, 
+  GenerateIndelSeq(input_file = input_file,
+                   hmdir = hmdir,
                    job_id = job_id,
-                   refflat_file = refflat_file, 
-                   refmrna_file = refmrna_file, 
-                   max_peptide_length = max(peptide_length), 
+                   refflat_file = refflat_file,
+                   refmrna_file = refmrna_file,
+                   max_peptide_length = max(peptide_length),
                    chr_column = chr_column,
                    mutation_start_column = mutation_start_column,
                    mutation_end_column = mutation_end_column,
@@ -152,29 +152,29 @@ MainINDELClass2<-function(input_file,
                    mutation_alt_column = mutation_alt_column,
                    nm_id_column = nm_id_column,
                    depth_normal_column = depth_normal_column,
-                   depth_tumor_column = depth_tumor_column, 
+                   depth_tumor_column = depth_tumor_column,
                    ambiguous_between_exon = ambiguous_between_exon,
                    ambiguous_codon = ambiguous_codon)
-  
+
   output_peptide_txt_file<-paste(input_file, ".", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
     return(NULL)
   }
-  
-  RNAExpression(rnaexp_file, 
-                output_peptide_txt_file, 
-                width = 2, 
-                samtools_dir, 
-                refdna_file, 
-                rnabam_file, 
+
+  RNAExpression(rnaexp_file,
+                output_peptide_txt_file,
+                width = 2,
+                samtools_dir,
+                refdna_file,
+                rnabam_file,
                 bcftools_dir,
                 indel = TRUE)
-  
-  CCFP.Calc(cnv_file, 
-            output_peptide_txt_file, 
+
+  CCFP.Calc(cnv_file,
+            output_peptide_txt_file,
             purity)
-  
+
   #NetMHCIIpan
   if(is.na(netMHCIIpan_dir) | !file.exists(netMHCIIpan_dir)) {
     print(paste("Did not find", netMHCIIpan_dir))
@@ -182,7 +182,7 @@ MainINDELClass2<-function(input_file,
   }
   print(paste("Executing netMHCIIpan to", export_dir))
   SettingNetMHCIIpan(netMHCIIpan_dir)
-  
+
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
   hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   hit<-match(file_name_in_hla_table, hla[,1])
@@ -203,7 +203,7 @@ MainINDELClass2<-function(input_file,
                      sep=""))
         COUNT <- COUNT + 1
       }
-      
+
       if(length(grep("DPA1", hla_type))==1) {
         for(hla2 in hla_types[grep("DPB1", hla_types)]){
           system(paste(netMHCIIpan_dir,
@@ -216,7 +216,7 @@ MainINDELClass2<-function(input_file,
           COUNT <- COUNT + 1
         }
       }
-      
+
       if(length(grep("DQA1", hla_type))==1) {
         for(hla2 in hla_types[grep("DQB1", hla_types)]){
           system(paste(netMHCIIpan_dir,
