@@ -9,8 +9,8 @@
   export_dir = "lib")
 }
 \arguments{
-\item{url}{Url for getting the corresponding refFlat.txt.gz 
-(Default = http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz).}
+\item{url}{Url for getting the corresponding refFlat.txt.gz
+(Default = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz").}
 
 \item{export_dir}{Export directory (Default = "lib").}
 }

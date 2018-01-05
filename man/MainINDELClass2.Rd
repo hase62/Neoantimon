@@ -18,7 +18,7 @@ MainINDELClass2(input_file, hla_file, file_name_in_hla_table = input_file,
   ambiguous_between_exon = 0, ambiguous_codon = 0, peptide_length = c(15))
 }
 \arguments{
-\item{input_file}{(Required) An input vcf file annotated by, e.g., ANNOVAR or other softwares.
+\item{input_file}{(Required) An input vcf file annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
 See by data(sample_vcf); sample_vcf;}
 
 \item{hla_file}{(Required) A tab separated file indicating HLA types.
@@ -76,7 +76,7 @@ samtools 0_x_x includes bcftools in the directory.}
 
 \item{mutation_alt_column}{The column number describing mutation Alt in input_file (Default=NA, but will automatically search "Alt" in header).}
 
-\item{nm_id_column}{(Required) The column number describing NM IDs in input_file such as SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs (Default=NA).}
+\item{nm_id_column}{(Required) The column number describing NM IDs in input_file such as SLCO1C1:NM_001145944 (Default=NA).}
 
 \item{depth_normal_column}{The column number describing the read count from normal cells (Default = NA).}
 

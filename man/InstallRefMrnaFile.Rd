@@ -9,8 +9,9 @@
   export_dir = "lib")
 }
 \arguments{
-\item{url}{Url for getting the corresponding refMrna.fa.gz 
-(Default = http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz).}
+\item{url}{Url for getting the corresponding refMrna.fa.gz
+
+(Default = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz").}
 
 \item{export_dir}{Export directory (Default = "lib").}
 }

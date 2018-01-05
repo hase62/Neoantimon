@@ -9,8 +9,8 @@
   export_dir = "lib")
 }
 \arguments{
-\item{url}{Url for getting samtools 
-(Default = https://github.com/hase62/Neoantimon/raw/master/lib/data.zip).}
+\item{url}{Url for getting samtools
+(Default = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip").}
 
 \item{export_dir}{Export directory (Default = "lib").}
 }
