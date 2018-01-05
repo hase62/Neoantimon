@@ -1,6 +1,6 @@
-## Updated on 4, Dec. 2017. 
+## Updated on 5, Jan. 2018. 
 ## 1. Preparation
-**Set netMHCpan:**
+**Set netMHCpan (Required)**
 
 1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
@@ -26,7 +26,7 @@ wget http://www.cbs.dtu.dk/services/NetMHCpan-3.0/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Set netMHCIIpan:**
+**Set netMHCIIpan (Required)**
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
@@ -53,22 +53,42 @@ wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
 tar -xvf data.tar.gz
 ```
 
-**Install Samtools:**
+**Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
 
-You can install the latest version from http://sourceforge.net/projects/samtools/files/samtools/. 
-Otherwise, run the following codes or use "InstallSam()" after install Neoantimon. 
+Download refMrna Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
+Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
 ```
-wget http://sourceforge.net/projects/samtools/files/samtools/1.6/samtools-1.6.tar.bz2
-tar jxf samtools-1.6.tar.bz2
-cd samtools-1.6
-./configure
-make
-make install
-cd ..
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
+gunzip refMrna.fa.gz
 ```
 
-In addition, if you want to calculate variant allele frequency (VAF), install the old one from http://sourceforge.net/projects/samtools/files/samtools/. 
-Otherwise, run the following codes or use "InstallSam()" after installing Neoantimon. 
+Download refMrna Files (GRCh37/hg19) from "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz". 
+Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
+```
+wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
+gunzip refMrna.fa.gz
+```
+
+**Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
+
+Download refFlat Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz". 
+Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz")" after installing Neoantimon. 
+```
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
+gunzip refFlat.txt.gz
+```
+
+Download refFlat Files(GRCh37/hg19) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz". 
+Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz")" after installing Neoantimon. 
+```
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
+gunzip refFlat.txt.gz
+```
+
+**Install Samtools 0_x_x (Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.)**
+
+You can install samtools_0_x_x version from https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2. 
+Otherwise, run the following codes or use "InstallSamtools()" after installing Neoantimon. 
 ```
 wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
@@ -77,74 +97,7 @@ make
 cd ..
 ```
 
-**Download CCFP.jar:**
-You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar. 
-Otherwise, run the following codes or use "GetCCFP()" after installing Neoantimon. 
-```
-wget https://github.com/hase62/Neoantimon/raw/master/lib/ccfp.jar
-```
-
-**Download SampleFiles:**
-You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
-Otherwise, run the following codes or use "GetSampleFiles()" after installing Neoantimon. 
-```
-wget https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
-unzip data.zip
-```
-
-**Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19):**
-
-refMrna Files(GRCh38/hg38):
-Download and make it to have columns indicating "NM_ID", "Splicing Variants ID", and "Sequences" using the following codes. 
-Otherwise, you can create it using, e.g., "GetRefMrnaFile(url ="http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" or "GetRefMrnaFile(file = refMrna.fa.gz)" after installing Neoantimon. 
-```
-#refMrna Files
-wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
-gunzip refMrna.fa.gz
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.cut1.fa
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.cut2.fa
-perl -pe 's/[0-9, ,NM_,NR_,\n]//g' refMrna.fa > tmp
-perl -pe 's/>/\n/g' tmp > refMrna.cut3.fa
-sed -i -e '/^$/d' refMrna.cut3.fa
-rm tmp
-paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
-rm refMrna.cut[1-3].fa
-```
-
-refMrna Files(GRCh37/hg19):
-Download and make it to have columns indicating "NM_ID", "Splicing Variants ID", and "Sequences" using the following codes. 
-Otherwise, you can create it using, e.g., "GetRefMrnaFile(url ="http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz")" or "GetRefMrnaFile(file = refMrna.fa.gz)" after installing Neoantimon. 
-```
-#refMrna Files
-wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
-gunzip refMrna.fa.gz
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f1 > refMrna.cut1.fa
-grep ">" refMrna.fa | sed -e "s/>//g" | cut -d' ' -f2 > refMrna.cut2.fa
-perl -pe 's/[0-9, ,NM_,NR,\n]//g' refMrna.fa > tmp
-perl -pe 's/>/\n/g' tmp > refMrna.cut3.fa
-sed -i -e '/^$/d' refMrna.cut3.fa
-rm tmp
-paste refMrna.cut1.fa refMrna.cut2.fa refMrna.cut3.fa > refMrna.merge.fa
-rm refMrna.cut[1-3].fa
-```
-
-**Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
-
-Download refFlat Files(GRCh38/hg38)
-Otherwise, you can download it using "GetRefFlat(url ="http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz")" after installing Neoantimon. 
-```
-wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
-gunzip refFlat.txt.gz
-```
-
-Download refFlat Files(GRCh37/hg19)
-Otherwise, you can download it using "GetRefFlat(url ="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz")" after installing Neoantimon. 
-```
-wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
-gunzip refFlat.txt.gz
-```
-
-**Download human refSeq (Not required, if you want to calculate variant allele frequency (VAF)):**
+**Download human refSeq (Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.)**
 
 Download human refSeq (GRCh38):
 ```
@@ -167,6 +120,14 @@ wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.G
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
 gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
+```
+
+**Download SampleFiles (Not Required)**
+You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
+Otherwise, run the following codes or use "InstallSampleFiles()" after installing Neoantimon. 
+```
+wget https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
+unzip data.zip
 ```
 
 ## 2. Use on R
@@ -203,23 +164,38 @@ print(sample_hla_table_c2, row.names = FALSE)
 ##	sample2	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
 ```
 
-An annotated VCF file is required. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID".
-Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", "Depth_normal", and "NM_" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
+An annotated VCF file is required for Snv/Indel. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
+Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
 ```r
 data(“sample_vcf”)
 print(sample_vcf, row.names = FALSE)
 ```
 
 ```
-##	Chr	Start	End	Ref	Alt	Func.refGene	Gene.refGene	GeneDetail.refGene	ExonicFunc.refGene	AAChange.refGene	cytoBand	depth_tumor	variantNum_tumor	depth_normal	variantNum_normal	bases_tumor	bases_normal	A_C_G_T_tumor	A_C_G_T_normal	misRate_tumor	strandRatio_tumor	misRate_normal	strandRatio_normal	P.value.fisher.	readPairNum_tumor	variantPairNum_tumor	otherPairNum_tumor	readPairNum_normal	variantPairNum_normal	otherPairNum_normal	P.value.fisher_realignment.	indel_mismatch_rate	indel_mismatch_rate.1	bp_mismatch_count	distance_from_breakpoint	simple_repeat_pos	simple_repeat_seq	P.value.EBCall.
-##	1	47399872	47399872	A	G	exonic	CYP4A11	nonsynonymous	SNV	CYP4A11:NM_000778:exon8:c.T1064C:p.L355P	1p33	64	28	49	0	46,20,18,8	28,0,21,0	36,0,28,0	49,0,0,0	0.438	0.714	0	---	8.321	42	29	0	56	0	0	8.617	0	0	0	0	---	---	60
-##	1	116941338	116941338	T	C	exonic	ATP1A1	synonymous	SNV	ATP1A1:NM_000701:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160233:exon16:c.T2220C:p.D740D,ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D	1p13.1	100	39	111	0	74,29,26,10	82,0,29,0	0,39,0,61	0,0,0,111	0.39	0.744	0	---	14.755	61	39	1	111	0	0	14.755	0	0	0	0	---	---	60
-##	4	24556416	24556416	T	C	exonic	DHX15	nonsynonymous	SNV	DHX15:NM_001358:exon5:c.A1012G:p.T338A	4p15.2	143	47	151	0	112,39,31,8	129,0,22,0	0,47,0,96	0,0,0,151	0.329	0.83	0	---	16.734	98	50	0	152	0	1	17.543	0	0	0	0	---	---	60
-##	4	70156404	70156404	-	T	exonic	UGT2B28	frameshift	insertion	UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs	4q13.2	43	15	41	0	28,11,15,4	29,0,12,0	---	---	0.349	0.733	0	---	4.838	27	22	1	41	0	2	6.926	0	0	0	0	---	---	10.783
-##	6	75899298	75899298	T	-	exonic	COL12A1	frameshift	deletion	COL12A1:NM_004370:exon6:c.628delA:p.I210fs	6q13	122	38	73	0	98,31,24,7	63,0,10,0	---	---	0.311	0.816	0	---	8.696	72	32	4	66	0	2	7.656	0	0	0	0	---	---	13.076
-##	9	89561162	89561162	C	T	exonic	GAS1	nonsynonymous	SNV	GAS1:NM_002048:exon1:c.G533A:p.R178H	9q21.33	20	5	26	0	6,2,14,3	10,0,16,0	0,15,0,5	0,26,0,0	0.25	0.4	0	---	1.947	15	5	0	27	0	0	1.995	0	0	0	0	---	---	5.208
-##	12	15132141	15132141	G	T	exonic	PDE6H	nonsynonymous	SNV	PDE6H:NM_006205:exon3:c.G163T:p.G55W	12p12.3	81	10	47	0	63,8,18,2	35,0,12,0	0,0,71,10	0,0,47,0	0.123	0.8	0	---	1.877	71	10	0	47	0	0	1.877	0	0	0	0	---	---	7.481
-##	12	20876048	20876048	-	G	exonic	SLCO1C1	frameshift	insertion	SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs,SLCO1C1:NM_001145945:exon9:c.899_900insG:p.L300fs,SLCO1C1:NM_017435:exon9:c.1046_1047insG:p.L349fs,SLCO1C1:NM_001145946:exon10:c.1046_1047insG:p.L349fs	12p12.2	97	11	57	0	82,10,15,1	50,0,7,0	---	---	0.113	0.909	0	---	2.139	76	11	0	51	0	2	2.152	0	0	1	16	---	---	6.179
+## Chr     Start       End Ref Alt Func.refGene Gene.refGene   GeneDetail.refGene ExonicFunc.refGene                              AAChange.refGene   cytoBand depth_tumor variantNum_tumor depth_normal
+##   1  47399872  47399872   A   G       exonic      CYP4A11        nonsynonymous                SNV      CYP4A11:NM_000778:exon8:c.T1064C:p.L355P       1p33          64               28           49
+##   1 116941338 116941338   T   C       exonic       ATP1A1           synonymous                SNV   ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D     1p13.1         100               39          111
+##   4  24556416  24556416   T   C       exonic        DHX15        nonsynonymous                SNV        DHX15:NM_001358:exon5:c.A1012G:p.T338A     4p15.2         143               47          151
+##   4  70156404  70156404   -   T       exonic      UGT2B28           frameshift          insertion   UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs     4q13.2          43               15           41
+##   6  75899298  75899298   T   -       exonic      COL12A1           frameshift           deletion    COL12A1:NM_004370:exon6:c.628delA:p.I210fs       6q13         122               38           73
+##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
+```
+
+An annotated BND format VCF file is required for SV fusion. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)" or "Gene Symbol (Gene.refGene)".
+Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
+```r
+data(“sample_sv_bnd”)
+print(sample_sv_bnd, row.names = FALSE)
+```
+
+```
+## Chr     Start       End Ref            Alt Func.refGene Gene.refGene           mateID
+##   1 115005805 115005805   C C]20:34827929]       exonic       TRIM33     SVMERGE137_1
+##   1 204908711 204908711   A [2:172743385[A     intronic        NFASC      SVMERGE15_1
+##   2  25870534  25870534   T  ]2:25965720]G     intronic         DTNB     SVMERGE116_1
+##   2  25965720  25965720   T  T[2:25870536[       exonic        ASXL2     SVMERGE116_2
+##   2 214794791 214794791   C C[2:214798169[       exonic       SPAG16       SVMERGE3_1
+##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
 ```
 
 An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
@@ -230,7 +206,7 @@ print(sample_rna_exp, row.names = FALSE)
 ```
 
 ```
-##  gene_short_name	ChromosomeNum:Start-End	locus expression
+##  gene_short_name		   ChromosomeNum:Start-Endlocus expression
 ##              7SK    HSCHR6_MHC_MCF:30910595-30910898 0.00000000
 ##              7SK    HSCHR6_MHC_QBL:30821624-30821927 0.00000000
 ##              7SK                 X:12632121-12632316 0.00000000
@@ -262,37 +238,34 @@ print(sample_copynum, row.names = FALSE)
 ```
 
 ```
-##	Chromosome	Position	Log.R	segmented.LogR	BAF	segmented.BAF	Copy.number	Minor.allele	Raw.copy.number
-##	1	564621	0.6071447	-0.09862298	1	NA	2	1	4.3540752
-##	1	799463	0.1519967	-0.09862298	1	NA	2	1	2.1467339
-##	1	1017216	0.8146911	-0.09862298	0	NA	3	1	5.8658499
-##	1	1158277	-1.9594627	-0.09862298	0	NA	1	0	-0.5035897
-##	1	1242215	0.2927962	-0.09862298	0	NA	2	1	2.6999875
-##	1	1462766	-0.2234090	-0.09862298	1	NA	2	1	1.0726687
+##	Chromosome	Position	     Log.R	segmented.LogR	BAF	segmented.BAF	Copy.number	Minor.allele	Raw.copy.number
+##			 1	  564621	 0.6071447	 -0.09862298	  1			   NA			  2			   1		  4.3540752
+##			 1	  799463	 0.1519967	 -0.09862298	  1			   NA			  2			   1		  2.1467339
+##			 1	  1017216	 0.8146911	 -0.09862298	  0			   NA			  3			   1		  5.8658499
+##			 1	  1158277	-1.9594627	 -0.09862298	  0			   NA			  1			   0		 -0.5035897
+##			 1	  1242215	 0.2927962	 -0.09862298	  0			   NA			  2			   1		  2.6999875
+##			 1	  1462766	-0.2234090	 -0.09862298	  1			   NA			  2			   1		  1.0726687
 ```
 
 ## 4. Sample Codes
 
-They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/sample.data.zip. 
+They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 Otherwise, Please execute the following codes. 
 
-Prepare the followings using the above explanations. 
+Prepare the following files using the above explanations. 
 ```
-lib/ccfp.jar  
 lib/netMHCIIpan-3.1  
 lib/netMHCpan-3.0
-```
-
-sample.data.zip includes the followings. 
-```
-lib/data/CopyNum.txt  
-lib/data/hla_table.txt  
-lib/data/hla_table2.txt  
-lib/data/RNAseq.txt  
-lib/data/sample.txt  
-lib/refFlat.txt  
+lib/samtools-0.1.19
+lib/data/sample_copynum.txt
+lib/data/sample_hla_table_c1.txt
+lib/data/sample_hla_table_c2.txt
+lib/data/sample_rna_exp.txt
+lib/data/sample_vcf.txt
+lib/data/sample_sv_bnd.txt
+lib/refFlat.txt 
 lib/refMrna.fa
-lib/refMrna.merge.fa
+(Used for SV) lib/GRCh37.fa
 ```
 
 Analize sample files ... 
@@ -303,143 +276,125 @@ install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
-Calculate Neoantigens on SNVs for HLA Class I. 
+Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
 ```
-MainSNVClass1(hmdir = getwd(),
-              input_file = "data/sample.txt",
-              job_ID = "NO_JOB_ID",
-              Chr_Column = 1,
-              Mutation_Start_Column = 2,
-              Mutation_End_Column = 3,
-              Mutation_Ref_Column = 4,
-              Mutation_Alt_Column = 5,
-              NM_ID_Column = 10,
-              Depth_Tumor_Column = 12,
-              Depth_Normal_Column = 14,
-              file_name_in_HLA_table = "sample",
-              HLA_file = "data/hla_table.txt",
-              refFlat_file = "data/refFlat.txt",
-              refMrna_1 = "data/refMrna.cut1.fa",
-              refMrna_3 = "data/refMrna.cut3.fa",
-              RNAseq_file = "data/RNAseq.txt",
-              CNV = "CopyNum.txt",
-              Purity = 0.8,
-              samtools_dir = "samtools-0.1.19/samtools",
-              bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
-              ccfp_dir = "lib/ccfp.jar",
-              netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-              RNA_bam = NA,
-              refDNA = NA)
-```
-
-Marge Results for HLA Class I. 
-```
-MainMergeClass1(hmdir = getwd(),
-                input_dir = "data",
-                input_file_prefix = "sample",
-                Tumor_RNA_BASED_ON_DNA = TRUE)
-```
-
-Calculate Neoantigens for HLA Class II. 
-```
-MainSNVClass2(hmdir = getwd(),
-              input_file = "data/sample.txt",
-              job_ID = "NO_JOB_ID",
-              Chr_Column = 1,
-              Mutation_Start_Column = 2,
-              Mutation_End_Column = 3,
-              Mutation_Ref_Column = 4,
-              Mutation_Alt_Column = 5,
-              NM_ID_Column = 10,
-              Depth_Tumor_Column = 12,
-              Depth_Normal_Column = 14,
-              file_name_in_HLA_table = "sample",
-              HLA_file = "data/hla_table2.txt",
-              refFlat_file = "data/refFlat.txt",
-              refMrna_1 = "data/refMrna.cut1.fa",
-              refMrna_3 = "data/refMrna.cut3.fa",
-              RNAseq_file = "data/RNAseq.txt",
-              CNV = "CopyNum.txt",
-              Purity = 0.8,
-              samtools_dir = "samtools-0.1.19/samtools",
-              bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
-              ccfp_dir = "lib/ccfp.jar",
-              netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-              RNA_bam = NA,
-              refDNA = NA)
-```
-
-Marge Results for HLA Class II. 
-```
-MainMergeClass2(hmdir = getwd(),
-                input_dir = "data",
-                input_file_prefix = "sample",
-                Tumor_RNA_BASED_ON_DNA = TRUE)
-```
-
-Calculate Neoantigens on Indels for HLA Class I. 
-```
-MainINDELClass1(hmdir = getwd(),
-                input_file = "data/sample.txt",
-                job_ID = "NO_JOB_ID",
-                Chr_Column = 1,
-                Mutation_Start_Column = 2,
-                Mutation_End_Column = 3,
-                Mutation_Ref_Column = 4,
-                Mutation_Alt_Column = 5,
-                NM_ID_Column = 10,
-                Depth_Tumor_Column = 12,
-                Depth_Normal_Column = 14,
-                file_name_in_HLA_table = "sample",
-                HLA_file = "data/hla_table.txt",
-                refFlat_file = "data/refFlat.txt",
-                refMrna_1 = "data/refMrna.cut1.fa",
-                refMrna_3 = "data/refMrna.cut3.fa",
-                RNAseq_file = "data/RNAseq.txt",
-                CNV = NA,
-                Purity = 0.8,
-                samtools_dir = "samtools-0.1.19/samtools",
-                bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
-                ccfp_dir = "lib/ccfp.jar",
+  MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
+                file_name_in_hla_table = "sample",
+                hla_file = "lib/data/sample_hla_table_c1.txt",
+                refflat_file  = "lib/refFlat.txt",
+                refmrna_file = "lib/refMrna.fa",
+                rnaexp_file = "lib/data/sample_rna_exp.txt",
                 netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
-                RNA_bam = NA,
-                refDNA = NA)
+                nm_id_column = 10,
+                depth_tumor_column = 12,
+                depth_normal_column = 14
+  )
+
+  MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
+                file_name_in_hla_table = "sample",
+                hla_file = "lib/data/sample_hla_table_c2.txt",
+                refflat_file  = "lib/refFlat.txt",
+                refmrna_file = "lib/refMrna.fa",
+                rnaexp_file = "lib/data/sample_rna_exp.txt",
+                netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                nm_id_column = 10,
+                depth_tumor_column = 12,
+                depth_normal_column = 14
+  )
+ 
+  MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
+                  file_name_in_hla_table = "sample",
+                  hla_file = "lib/data/sample_hla_table_c1.txt",
+                  refflat_file  = "lib/refFlat.txt",
+                  refmrna_file = "lib/refMrna.fa",
+                  rnaexp_file = "lib/data/sample_rna_exp.txt",
+                  netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                  nm_id_column = 10,
+                  depth_tumor_column = 12,
+                  depth_normal_column = 14
+  )
+
+  MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
+                  file_name_in_hla_table = "sample",
+                  hla_file = "lib/data/sample_hla_table_c2.txt",
+                  refflat_file  = "lib/refFlat.txt",
+                  refmrna_file = "lib/refMrna.fa",
+                  rnaexp_file = "lib/data/sample_rna_exp.txt",
+                  netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                  nm_id_column = 10,
+                  depth_tumor_column = 12,
+                  depth_normal_column = 14
+  )
 ```
 
-Calculate Neoantigens on Indels for HLA Class II. 
+Merge Neoantigens on SNVs/INDELs for HLA Class I and II. 
 ```
-MainINDELClass2(hmdir = getwd(),
-                input_file = "data/sample.txt",
-                job_ID = "NO_JOB_ID",
-                Chr_Column = 1,
-                Mutation_Start_Column = 2,
-                Mutation_End_Column = 3,
-                Mutation_Ref_Column = 4,
-                Mutation_Alt_Column = 5,
-                NM_ID_Column = 10,
-                Depth_Tumor_Column = 12,
-                Depth_Normal_Column = 14,
-                file_name_in_HLA_table = "sample",
-                HLA_file = "data/hla_table2.txt",
-                refFlat_file = "data/refFlat.txt",
-                refMrna_1 = "data/refMrna.cut1.fa",
-                refMrna_3 = "data/refMrna.cut3.fa",
-                RNAseq_file = "data/RNAseq.txt",
-                CNV = NA,
-                Purity = 0.8,
-                samtools_dir = "samtools-0.1.19/samtools",
-                bcftools_dir = "samtools-0.1.19/bcftools/bcftools",
-                ccfp_dir = "lib/ccfp.jar",
-                netMHCpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                RNA_bam = NA,
-                refDNA = NA)
+  MainMergeSNVClass1(input_dir = "result.sample.NO_job_id_SNV",
+                     file_prefix = "NO_job_id_SNV",
+                     annotation_file = "lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt"
+  )
+
+  MainMergeSNVClass2(input_dir = "result.sample.NO_job_id_SNV",
+                     file_prefix = "NO_job_id_SNV",
+                     annotation_file = "lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt"
+  )
+
+  MainMergeINDELSVClass1(input_dir = "result.sample.NO_job_id_INDEL",
+                         file_prefix = "NO_job_id_INDEL",
+                         annotation_file = "lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt"
+  )
+
+  MainMergeINDELSVClass2(input_dir = "result.sample.NO_job_id_INDEL",
+                         file_prefix = "NO_job_id_INDEL",
+                         annotation_file = "lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt"
+  )
+```
+
+Calculate Neoantigens on SV fusions for HLA Class I and II. 
+```
+  MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
+                     file_name_in_hla_table = "sample",
+                     hla_file = "lib/data/sample_hla_table_c1.txt",
+                     refflat_file  = "lib/refFlat.txt",
+                     refmrna_file = "lib/refMrna.fa",
+                     rnaexp_file = "lib/data/sample_rna_exp.txt",
+                     netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                     refdna_file = "lib/GRCh37.fa",
+                     mutation_alt_bnd_column = 5,
+                     gene_symbol_column = 7,
+                     mate_id_column = 8
+  )
+
+  MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.txt",
+                     file_name_in_hla_table = "sample",
+                     hla_file = "lib/data/sample_hla_table_c2.txt",
+                     refflat_file  = "lib/refFlat.txt",
+                     refmrna_file = "lib/refMrna.fa",
+                     rnaexp_file = "lib/data/sample_rna_exp.txt",
+                     netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                     refdna_file = "lib/GRCh37.fa",
+                     mutation_alt_bnd_column = 5,
+                     gene_symbol_column = 7,
+                     mate_id_column = 8
+  )
+```
+
+Merge Neoantigens on SV fusions for HLA Class I and II. 
+```
+  MainMergeINDELSVClass1(input_dir = "result.sample.NO_job_id_SVFusion",
+                         file_prefix = "NO_job_id_SVFusion",
+                         annotation_file = "lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt"
+  )
+
+  MainMergeINDELSVClass2(input_dir = "result.sample.NO_job_id_SVFusion",
+                         file_prefix = "NO_job_id_SVFusion",
+                         annotation_file = "lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt"
+  )
 ```
 
 ## 5. Result
 
-Sample result f iles are available at https://github.com/hase62/Neoantimon/raw/master/data/Result. 
-
-sample.CLASS1.ALL.txt
+sample_result_SNV_CLASS1_ALL
 ```
 ##	HLA	Pos	Gene	MutatedPeptide	Mut_IC50	Mut_Rank	Norm_Peptide	Norm_IC50	Norm_Rank		Gene ID	Chr	NM_ID	Change	ref	alt	Prob	Mutation Prob.	Exon Start	Exon End	Mutation Position	Depth	TumorDepth	Peptide Normal	Peptide Mutation	TotalRNA	TumorRNARatio	TumorRNA	nA	nB	Checker	MutRatio	MutRatio Min	MutRatio Max
 ##	HLA-A*02:01	2	0_CYP4A11	HQERCREEIHSLP	37362.9	55.00	HQERCREEIHSLL	27284.3	32.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
@@ -448,16 +403,3 @@ sample.CLASS1.ALL.txt
 ##	HLA-A*02:01	5	0_CYP4A11	RCREEIHSLPGDG	46482.0	95.00	RCREEIHSLLGDG	44377.6	85.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
 ##	HLA-A*02:01	6	0_CYP4A11	CREEIHSLPGDGA	42936.1	80.00	CREEIHSLLGDGA	41760.9	70.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
 ```
-
-sample.CLASS1.IC50min.txt
-```
-##	HLA	Pos	Gene	MutatedPeptide	Mut_IC50	Mut_Rank	Norm_Peptide	Norm_IC50	Norm_Rank		Gene ID	Chr	NM_ID	Change	ref	alt	Prob	Mutation Prob.	Exon Start	Exon End	Mutation Position	Depth	TumorDepth	Peptide Normal	Peptide Mutation	TotalRNA	TumorRNARatio	TumorRNA	nA	nB	Checker	MutRatio	MutRatio Min	MutRatio Max
-##	HLA-A*02:01	12	0_CYP4A11	SLPGDGASI	1217.8	4.50	SLLGDGASI	123.5	1.20	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
-##	HLA-A*02:01	7	1_DHX15	YLEAAIRAV	36.1	0.50	YLEAAIRTV	41.7	0.60	2	1_DHX15	4	NM_001358	c.A1012G	T	C	0	0	24529087	24586184	4_24556416	151	294	PEPERDYLEAAIRTVIQIHMCEEEEGD	PEPERDYLEAAIRAVIQIHMCEEEEGD	NA	NA	NA	NA	NA	NA	NA	NA	NA
-##	HLA-A*02:01	14	2_GAS1	HCNLALSRYLTYC	14427.0	17.00	RCNLALSRYLTYC	12017.5	15.00	3	2_GAS1	9	NM_002048	c.G533A	C	T	0	0	89559276	89562104	9_89561162	26	46	GCTEARRRCDRDSRCNLALSRYLTYCG	GCTEARRRCDRDSHCNLALSRYLTYCG	NA	NA	NA	NA	NA	NA	NA	NA	NA
-```
-
-
-
-
-

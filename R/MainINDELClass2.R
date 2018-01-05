@@ -1,6 +1,6 @@
 #'Calculate Neoantigen Candidates on Indels for MHC Class2
 #'
-#'@param input_file (Required) An input vcf file annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'@param input_file (Required) An input vcf file annotated by, e.g., ANNOVAR or other softwares.
 #'See by data(sample_vcf); sample_vcf;
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
@@ -10,7 +10,7 @@
 #'
 #'
 #'
-#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as "SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
+#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs (Default=NA).
 #'
 #'
 #'

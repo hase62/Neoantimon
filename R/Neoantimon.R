@@ -1,12 +1,3 @@
-#' Neoantimon
-#'
-#' Calculate Lists of Candidate Neoantingens from SNVs, Indels, and SV fusions to MHC Class1 and Class2.
-#' First use MainSNVClass1, MainSNVClass2, MainINDELClass1, MainINDELClass2, MainSVFUSIONClass1, and MainSVFUSIONClass2.
-#'
-#' @name Neoantimon
-#' @docType package
-NULL
-
 #' A Format / Sample file for HLA CLASS1 Table
 #'
 #' A dataset containing the HLA types of patients in each row.

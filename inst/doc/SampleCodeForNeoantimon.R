@@ -43,7 +43,7 @@ head(sample_result_INDEL_CLASS1_ALL, row.names = FALSE)
 
 ## ----Sample.Result.INDEL.HLACLASS2---------------------------------------
 data("sample_result_INDEL_CLASS2_ALL")
-head(sample_result_INDEL_CLASS2_ALL, row.names = FALSE)
+head(sample_result_INDEL_CLASS2_ALL)
 
 ## ----Get Sample and Test Analysis----------------------------------------
 TestAnalysis

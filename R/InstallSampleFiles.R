@@ -1,6 +1,7 @@
 #'Get Sample Files for Neoantimon
 #'
-#'@param url Url for getting samtools (Default = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip").
+#'@param url Url for getting samtools 
+#' (Default = https://github.com/hase62/Neoantimon/raw/master/lib/data.zip).
 #'
 #'@param export_dir Export directory (Default = "lib").
 #'
