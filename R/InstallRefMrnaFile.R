@@ -2,7 +2,7 @@
 #'
 #'@param url Url for getting the corresponding refMrna.fa.gz
 #'
-#' (Default = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz").
+#' (Default a= "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz").
 #'
 #'@param export_dir Export directory (Default = "lib").
 #'

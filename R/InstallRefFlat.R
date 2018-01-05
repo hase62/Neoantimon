@@ -1,7 +1,7 @@
 #'Get refFlat file
 #'
 #'@param url Url for getting the corresponding refFlat.txt.gz
-#' (Default = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz").
+#' (Default a= "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz").
 #'
 #'@param export_dir Export directory (Default = "lib").
 #'
