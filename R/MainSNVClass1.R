@@ -1,16 +1,23 @@
 #'Calculate Neoantigen Candidates on SNVs for MHC Class1
 #'
-#'@param input_file (Required) An input vcf file annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'@param input_file (Required) An input vcf file annotated by,
+#'
+#'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'
 #'See by data(sample_vcf); sample_vcf;
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
+#'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
 #'
 #'
 #'
 #'
-#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as "SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
+#'
+#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as
+#'
+#'"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
 #'
 #'
 #'
@@ -45,25 +52,30 @@
 #'@param ambiguous_codon The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).
 #'
 #'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param refmrna_file refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.fa", sep="").
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param rnaexp_file A file including RNA expressions (Default=NA).
-#'The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend(locus) ExpressionAmount", respectively.
+#'The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend (locus) ExpressionAmount", respectively.
 #'The 1st row should be any header.
+#'
 #'See by data(sample_rna_exp); sample_rna_exp;
 #'
 #'@param rnabam_file RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).
 #'
 #'@param refdna_file refdna_file information to be used to calculate RNA VAF (Default=NA).
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param cnv_file A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
-#'The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.
+#'The format is according to ASCAT output files.
 #'The columns are "SNPName Chromosome Position LogR segmentedLogR BAF segmentedBAF CopyNumber MinorAllele RawCopyNumber"
 #'The 1st row should be the above header.
+#'
 #'See data(sample_copynum); sample_copynum;
 #'
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).
@@ -80,49 +92,49 @@
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
 #'@export
-MainSNVClass1<-function(input_file, 
-                        hla_file, 
+MainSNVClass1<-function(input_file,
+                        hla_file,
                         file_name_in_hla_table = input_file,
                         refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                         refmrna_file = paste(hmdir, "lib/refMrna.merge.fa", sep="/"),
-                        hmdir = getwd(), 
-                        job_id = "NO_job_id", 
+                        hmdir = getwd(),
+                        job_id = "NO_job_id",
                         export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
-                        rnaexp_file = NA, 
+                        rnaexp_file = NA,
                         rnabam_file = NA,
-                        cnv_file=NA, 
+                        cnv_file=NA,
                         purity = 1,
                         netMHCpan_dir = paste(hmdir, "lib/netMHCpan-3.0/netMHCpan", sep="/"),
                         refdna_file = NA,
                         samtools_dir = NA,
                         bcftools_dir = NA,
-                        chr_column = NA, 
+                        chr_column = NA,
                         mutation_start_column = NA,
-                        mutation_end_column = NA, 
-                        mutation_ref_column = NA, 
+                        mutation_end_column = NA,
+                        mutation_ref_column = NA,
                         mutation_alt_column = NA,
-                        nm_id_column = NA, 
-                        depth_normal_column = NA, 
+                        nm_id_column = NA,
+                        depth_normal_column = NA,
                         depth_tumor_column = NA,
-                        ambiguous_between_exon = 0, 
+                        ambiguous_between_exon = 0,
                         ambiguous_codon = 0,
                         peptide_length = c(8, 9, 10, 11, 12, 13)){
 
   #Check Required Files
-  if(CheckRequiredFiles(input_file = input_file, 
-                        hla_file = hla_file, 
-                        refflat_file = refflat_file, 
+  if(CheckRequiredFiles(input_file = input_file,
+                        hla_file = hla_file,
+                        refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
   flg<-CheckRequiredColumns(input_file = input_file,
-                            chr_column = chr_column, 
-                            mutation_start_column = mutation_start_column, 
+                            chr_column = chr_column,
+                            mutation_start_column = mutation_start_column,
                             mutation_end_column = mutation_end_column,
                             mutation_ref_column = mutation_ref_column,
                             mutation_alt_column = mutation_alt_column,
                             nm_id_column = nm_id_column,
-                            depth_normal_column = depth_normal_column, 
+                            depth_normal_column = depth_normal_column,
                             depth_tumor_column = depth_tumor_column)
-  
+
   #Check and Set Required Columns
   if(length(flg)<=1) {
     return(NULL)
@@ -139,12 +151,12 @@ MainSNVClass1<-function(input_file,
 
   #Generate FASTA and mutation Profile
   job_id = paste(job_id, "SNV", sep = "_")
-  GenerateMutatedSeq(input_file = input_file, 
-                     hmdir = hmdir, 
+  GenerateMutatedSeq(input_file = input_file,
+                     hmdir = hmdir,
                      job_id = job_id,
-                     refflat_file = refflat_file, 
-                     refmrna_file = refmrna_file, 
-                     max_peptide_length = max(peptide_length), 
+                     refflat_file = refflat_file,
+                     refmrna_file = refmrna_file,
+                     max_peptide_length = max(peptide_length),
                      chr_column = chr_column,
                      mutation_start_column = mutation_start_column,
                      mutation_end_column = mutation_end_column,
@@ -152,7 +164,7 @@ MainSNVClass1<-function(input_file,
                      mutation_alt_column = mutation_alt_column,
                      nm_id_column = nm_id_column,
                      depth_normal_column = depth_normal_column,
-                     depth_tumor_column = depth_tumor_column, 
+                     depth_tumor_column = depth_tumor_column,
                      ambiguous_between_exon = ambiguous_between_exon,
                      ambiguous_codon = ambiguous_codon)
 
@@ -162,17 +174,17 @@ MainSNVClass1<-function(input_file,
     return(NULL)
   }
 
-  RNAExpression(rnaexp_file, 
-                output_peptide_txt_file, 
-                width = 2, 
-                samtools_dir, 
-                refdna_file, 
-                rnabam_file, 
+  RNAExpression(rnaexp_file,
+                output_peptide_txt_file,
+                width = 2,
+                samtools_dir,
+                refdna_file,
+                rnabam_file,
                 bcftools_dir,
                 indel = FALSE)
 
-  CCFP.Calc(cnv_file, 
-            output_peptide_txt_file, 
+  CCFP.Calc(cnv_file,
+            output_peptide_txt_file,
             purity)
 
   #NetMHCpan
@@ -182,7 +194,7 @@ MainSNVClass1<-function(input_file,
   }
   print(paste("Executing netMHCpan to", export_dir))
   SettingNetMHCpan(netMHCpan_dir)
-  
+
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
   hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   hit<-match(file_name_in_hla_table, hla[,1])

@@ -19,19 +19,25 @@ MainSVFUSIONClass2(input_file, hla_file, file_name_in_hla_table = input_file,
   gene_symbol_column = NA, mate_id_column = NA)
 }
 \arguments{
-\item{input_file}{(Required) An input vcf file (BND format) annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+\item{input_file}{(Required) An input vcf file (BND format) annotated by,
+
+e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+
 See by data(sample_sv_bnd); sample_sv_bnd;}
 
 \item{hla_file}{(Required) A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
+
 See by data(sample_hla_table_c1); sample_hla_table_c1;}
 
 \item{file_name_in_hla_table}{If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).}
 
 \item{refflat_file}{refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt",sep="").
+
 See "https://github.com/hase62/Neoantimon"}
 
-\item{refmrna_file}{refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.merge.fa",sep="").
+\item{refmrna_file}{refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.fa", sep="").
+
 See "https://github.com/hase62/Neoantimon"}
 
 \item{hmdir}{Home directory for the analysis (Default = getwd()).}
@@ -41,16 +47,18 @@ See "https://github.com/hase62/Neoantimon"}
 \item{export_dir}{The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")}
 
 \item{rnaexp_file}{A file including RNA expressions (Default=NA).
-The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend(locus) ExpressionAmount", respectively.
+The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend (locus) ExpressionAmount", respectively.
 The 1st row should be any header.
+
 See by data(sample_rna_exp); sample_rna_exp;}
 
 \item{rnabam_file}{RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).}
 
 \item{cnv_file}{A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
-The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.
+The format is according to ASCAT output files.
 The columns are "SNPName Chromosome Position LogR segmentedLogR BAF segmentedBAF CopyNumber MinorAllele RawCopyNumber"
 The 1st row should be the above header.
+
 See data(sample_copynum); sample_copynum;}
 
 \item{purity}{Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).}
@@ -58,6 +66,7 @@ See data(sample_copynum); sample_copynum;}
 \item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").}
 
 \item{refdna_file}{(Required) refdna_file information to be used to create SVs Region (Default=NA).
+
 See "https://github.com/hase62/Neoantimon"}
 
 \item{samtools_dir}{The file directory to samtools_0_x_x (Default="samtools").
@@ -81,7 +90,9 @@ samtools 0_x_x includes bcftools in the directory.}
 
 \item{depth_tumor_column}{The column number describing the read count from tumor cells (Default = NA).}
 
-\item{nm_id_column}{(Required if gene_symbol_column = NA) The column number describing NM IDs in input_file such as "SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).}
+\item{nm_id_column}{(Required if gene_symbol_column = NA) The column number describing NM IDs in input_file such as
+
+"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).}
 
 \item{ambiguous_between_exon}{The maximum number to permit the differences between Exon-Lengths from refFlat and refMrna (Default=0).}
 

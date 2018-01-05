@@ -4,13 +4,11 @@
 \alias{InstallRefFlat}
 \title{Get refFlat file}
 \usage{
-
-  InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz",
-  export_dir = "lib")
+InstallRefFlat(url = NA, export_dir = "lib")
 }
 \arguments{
 \item{url}{Url for getting the corresponding refFlat.txt.gz
-aaa
+
 (Default = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz").}
 
 \item{export_dir}{Export directory (Default = "lib").}

@@ -4,12 +4,11 @@
 \alias{InstallSamtools}
 \title{Install Samtools}
 \usage{
-
-  InstallSamtools(url = "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2",
-  export_dir = "lib")
+InstallSamtools(url = NA, export_dir = "lib")
 }
 \arguments{
 \item{url}{Url for getting samtools
+
 (Default = "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2").}
 
 \item{export_dir}{Export directory (Default = "lib").}

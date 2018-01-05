@@ -1,6 +1,7 @@
 #'Install Samtools
 #'
 #'@param url Url for getting samtools
+#'
 #' (Default = "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2").
 #'
 #'@param export_dir Export directory (Default = "lib").
@@ -8,8 +9,8 @@
 #'@return void
 #'
 #'@export
-InstallSamtools<-function(url = "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2",
-                          export_dir = "lib"){
+InstallSamtools<-function(url = NA, export_dir = "lib"){
+  if(is.na(url)) url <- "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2"
   file<-rev(strsplit(url, "/")[[1]])[1]
   if(dir.exists(paste(export_dir, strsplit(file, ".tar")[[1]][1], sep="/"))){
     print(paste(export_dir, "/", strsplit(file, ".tar")[[1]][1], " exists.", sep=""))

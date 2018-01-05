@@ -2,15 +2,15 @@
 #'
 #'@param url Url for getting the corresponding refMrna.fa.gz
 #'
-#' (Default a= "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz").
+#' (Default = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz").
 #'
 #'@param export_dir Export directory (Default = "lib").
 #'
 #'@return void
 #'
 #'@export
-InstallRefMrnaFile<-function(url = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz",
-                             export_dir = "lib"){
+InstallRefMrnaFile<-function(url = NA, export_dir = "lib"){
+  if(is.na(url)) url <- "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz"
   file<-rev(strsplit(url, "/")[[1]])[1]
   if(file.exists(paste(export_dir, strsplit(file, ".gz")[[1]][1], sep="/"))){
     print(paste(export_dir, "/", strsplit(file, ".gz")[[1]][1], " exists.", sep=""))

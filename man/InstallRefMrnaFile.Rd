@@ -4,9 +4,7 @@
 \alias{InstallRefMrnaFile}
 \title{Get refMrna file}
 \usage{
-
-  InstallRefMrnaFile(url = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz",
-  export_dir = "lib")
+InstallRefMrnaFile(url = NA, export_dir = "lib")
 }
 \arguments{
 \item{url}{Url for getting the corresponding refMrna.fa.gz

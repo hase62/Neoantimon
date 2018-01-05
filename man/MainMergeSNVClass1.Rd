@@ -15,6 +15,7 @@ For example, sample_vcf.txt.NO_job_id.peptide.txt.}
 \item{input_dir}{(Required) Directory storing netMHCpan Results.}
 
 \item{file_prefix}{(Required) File prefix of netMHCpan Results.
+
 If you have "sample_annovar.txt.NO_JOB_ID.HLACLASS1.1.peptide.txt", please set "sample_annovar.txt.NO_JOB_ID".}
 }
 \value{

@@ -1,16 +1,23 @@
 #'Calculate Neoantigen Candidates on Indels for MHC Class2
 #'
-#'@param input_file (Required) An input vcf file annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'@param input_file (Required) An input vcf file annotated by,
+#'
+#'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'
 #'See by data(sample_vcf); sample_vcf;
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
+#'
 #'See by data(sample_hla_table_c2); sample_hla_table_c2;
 #'
 #'
 #'
 #'
-#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as SLCO1C1:NM_001145944 (Default=NA).
+#'
+#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as
+#'
+#'"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
 #'
 #'
 #'
@@ -45,25 +52,30 @@
 #'@param ambiguous_codon The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).
 #'
 #'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param refmrna_file refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.fa", sep="").
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param rnaexp_file A file including RNA expressions (Default=NA).
-#'The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend(locus) ExpressionAmount", respectively.
+#'The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend (locus) ExpressionAmount", respectively.
 #'The 1st row should be any header.
+#'
 #'See by data(sample_rna_exp); sample_rna_exp;
 #'
 #'@param rnabam_file RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).
 #'
 #'@param refdna_file refdna_file information to be used to calculate RNA VAF (Default=NA).
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param cnv_file A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
-#'The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.
+#'The format is according to ASCAT output files.
 #'The columns are "SNPName Chromosome Position LogR segmentedLogR BAF segmentedBAF CopyNumber MinorAllele RawCopyNumber"
 #'The 1st row should be the above header.
+#'
 #'See data(sample_copynum); sample_copynum;
 #'
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).
@@ -71,10 +83,10 @@
 #'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").
 #'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
-#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
+#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'
 #'@param bcftools_dir The file directory to netMHCpan (Default="bcftools").
-#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
+#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'samtools 0_x_x includes bcftools in the directory.
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)

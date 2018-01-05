@@ -1,15 +1,16 @@
 #'Get refFlat file
 #'
 #'@param url Url for getting the corresponding refFlat.txt.gz
-#' (Default a= "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz").
+#'
+#' (Default = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz").
 #'
 #'@param export_dir Export directory (Default = "lib").
 #'
 #'@return void
 #'
 #'@export
-InstallRefFlat<-function(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz",
-                         export_dir = "lib"){
+InstallRefFlat<-function(url = NA, export_dir = "lib"){
+  if(is.na(url)) url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz"
   file<-rev(strsplit(url, "/")[[1]])[1]
   if(file.exists(paste(export_dir, strsplit(file, ".gz")[[1]][1], sep="/"))){
     print(paste(export_dir, "/", strsplit(file, ".gz")[[1]][1], " exists.", sep=""))

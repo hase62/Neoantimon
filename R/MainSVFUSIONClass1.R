@@ -1,16 +1,23 @@
 #'Calculate Neoantigen Candidates on SV fusions for MHC Class1
 #'
-#'@param input_file (Required) An input vcf file (BND format) annotated by, e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'@param input_file (Required) An input vcf file (BND format) annotated by,
+#'
+#'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'
 #'See by data(sample_sv_bnd); sample_sv_bnd;
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
+#'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
 #'
 #'@param refdna_file (Required) refdna_file information to be used to create SVs Region (Default=NA).
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
-#'@param nm_id_column (Required if gene_symbol_column = NA) The column number describing NM IDs in input_file such as "SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
+#'@param nm_id_column (Required if gene_symbol_column = NA) The column number describing NM IDs in input_file such as
+#'
+#'"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
 #'
 #'@param gene_symbol_column (Required if nm_id_column = NA) The column number describing gene symbol in input_file (Default=NA).
 #'
@@ -45,14 +52,17 @@
 #'@param ambiguous_codon The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).
 #'
 #'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt",sep="").
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
-#'@param refmrna_file refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.merge.fa",sep="").
+#'@param refmrna_file refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.fa", sep="").
+#'
 #'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param rnaexp_file A file including RNA expressions (Default=NA).
-#'The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend(locus) ExpressionAmount", respectively.
+#'The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend (locus) ExpressionAmount", respectively.
 #'The 1st row should be any header.
+#'
 #'See by data(sample_rna_exp); sample_rna_exp;
 #'
 #'@param rnabam_file RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).
@@ -60,10 +70,12 @@
 #'
 #'
 #'
+#'
 #'@param cnv_file A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
-#'The format is according to ASCAT (https://www.crick.ac.uk/peter-van-loo/software/ASCAT) output files.
+#'The format is according to ASCAT output files.
 #'The columns are "SNPName Chromosome Position LogR segmentedLogR BAF segmentedBAF CopyNumber MinorAllele RawCopyNumber"
 #'The 1st row should be the above header.
+#'
 #'See data(sample_copynum); sample_copynum;
 #'
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).
@@ -80,63 +92,63 @@
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
 #'@export
-MainSVFUSIONClass1<-function(input_file, 
-                             hla_file, 
+MainSVFUSIONClass1<-function(input_file,
+                             hla_file,
                              file_name_in_hla_table = input_file,
                              refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                              refmrna_file = paste(hmdir, "lib/refMrna.merge.fa", sep="/"),
-                             hmdir = getwd(), 
-                             job_id = "NO_job_id", 
+                             hmdir = getwd(),
+                             job_id = "NO_job_id",
                              export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
-                             rnaexp_file = NA, 
+                             rnaexp_file = NA,
                              rnabam_file = NA,
-                             cnv_file=NA, 
+                             cnv_file=NA,
                              purity = 1,
                              netMHCpan_dir = paste(hmdir, "lib/netMHCpan-3.0/netMHCIIpan", sep="/"),
                              refdna_file = NA,
                              samtools_dir = NA,
                              bcftools_dir = NA,
-                             chr_column = NA, 
-                             mutation_start_column = NA, 
-                             mutation_end_column = NA, 
-                             mutation_ref_column = NA, 
+                             chr_column = NA,
+                             mutation_start_column = NA,
+                             mutation_end_column = NA,
+                             mutation_ref_column = NA,
                              mutation_alt_bnd_column = NA,
-                             depth_normal_column = NA, 
+                             depth_normal_column = NA,
                              depth_tumor_column = NA,
-                             nm_id_column = NA, 
-                             ambiguous_between_exon = 0, 
+                             nm_id_column = NA,
+                             ambiguous_between_exon = 0,
                              ambiguous_codon = 0,
                              peptide_length = c(8, 9, 10, 11, 12, 13),
-                             gene_symbol_column = NA, 
+                             gene_symbol_column = NA,
                              mate_id_column = NA){
 
   #Check Required Files
-  if(CheckRequiredFiles(input_file = input_file, 
-                        hla_file = hla_file, 
-                        refflat_file = refflat_file, 
+  if(CheckRequiredFiles(input_file = input_file,
+                        hla_file = hla_file,
+                        refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
   flg<-CheckRequiredColumns(input_file = input_file,
-                            chr_column = chr_column, 
-                            mutation_start_column = mutation_start_column, 
+                            chr_column = chr_column,
+                            mutation_start_column = mutation_start_column,
                             mutation_end_column = mutation_end_column,
                             mutation_ref_column = mutation_ref_column,
                             mutation_alt_column = mutation_alt_bnd_column,
                             nm_id_column = ifelse(is.na(nm_id_column), 0, nm_id_column),
-                            depth_normal_column = depth_normal_column, 
+                            depth_normal_column = depth_normal_column,
                             depth_tumor_column = depth_tumor_column)
-  
+
   #Check nm_id and gene_symbol
   if(is.na(nm_id_column) & is.na(gene_symbol_column)) {
     print("Please Specify nm_id_column or genesymbol column")
     return(NULL)
   }
-  
+
   #Check nm_id and gene_symbol
   if(is.na(mate_id_column)) {
     print("Please Specify mate_id_column")
     return(NULL)
   }
-  
+
   #Check and Set Required Columns
   if(length(flg)<=1 | (is.na(nm_id_column) & is.na(gene_symbol_column))) {
     return(NULL)
@@ -153,12 +165,12 @@ MainSVFUSIONClass1<-function(input_file,
 
   #Generate FASTA and mutation Profile
   job_id = paste(job_id, "SVFusion", sep = "_")
-  GenerateSVFusionSeq(input_file = input_file, 
-                      hmdir = hmdir, 
+  GenerateSVFusionSeq(input_file = input_file,
+                      hmdir = hmdir,
                       job_id = job_id,
-                      refflat_file = refflat_file, 
-                      refmrna_file = refmrna_file, 
-                      max_peptide_length = max(peptide_length), 
+                      refflat_file = refflat_file,
+                      refmrna_file = refmrna_file,
+                      max_peptide_length = max(peptide_length),
                       chr_column = chr_column,
                       mutation_start_column = mutation_start_column,
                       mutation_end_column = mutation_end_column,
@@ -167,7 +179,7 @@ MainSVFUSIONClass1<-function(input_file,
                       nm_id_column = nm_id_column,
                       gene_symbol_column = gene_symbol_column,
                       depth_normal_column = depth_normal_column,
-                      depth_tumor_column = depth_tumor_column, 
+                      depth_tumor_column = depth_tumor_column,
                       mate_id_column = mate_id_column,
                       ambiguous_between_exon = ambiguous_between_exon,
                       ambiguous_codon = ambiguous_codon)
@@ -178,19 +190,19 @@ MainSVFUSIONClass1<-function(input_file,
     return(NULL)
   }
 
-  RNAExpression(rnaexp_file, 
-                output_peptide_txt_file, 
-                width = 2, 
-                samtools_dir, 
-                refdna_file, 
-                rnabam_file, 
+  RNAExpression(rnaexp_file,
+                output_peptide_txt_file,
+                width = 2,
+                samtools_dir,
+                refdna_file,
+                rnabam_file,
                 bcftools_dir,
                 indel = TRUE)
-  
-  CCFP.Calc(cnv_file, 
-            output_peptide_txt_file, 
+
+  CCFP.Calc(cnv_file,
+            output_peptide_txt_file,
             purity)
-  
+
   #NetMHCpan
   if(is.na(netMHCpan_dir) | !file.exists(netMHCpan_dir)) {
     print(paste("Did not find", netMHCpan_dir))
@@ -198,7 +210,7 @@ MainSVFUSIONClass1<-function(input_file,
   }
   print(paste("Executing netMHCpan to", export_dir))
   SettingNetMHCpan(netMHCpan_dir)
-  
+
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
   hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   hit<-match(file_name_in_hla_table, hla[,1])
