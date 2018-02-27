@@ -69,8 +69,8 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
   #data[,chr], data[,m_position]
   for(x in which(is.na(hit))){
     hit_pos<-which(data[x,3]==rna_pos[,1])
-    abs_hit_pos<-hit[which(as.numeric(data[x,12]) > as.numeric(rna_pos[hit,2]) &
-                             as.numeric(data[x,12]) < as.numeric(rna_pos[hit,3]))]
+    abs_hit_pos<-hit_pos[which(as.numeric(data[x, 12]) > as.numeric(rna_pos[hit_pos, 2]) &
+                               as.numeric(data[x, 12]) < as.numeric(rna_pos[hit_pos, 3]))]
     if(length(abs_hit_pos)!=0){
       print(abs_hit_pos[1])
       hit[x]<-abs_hit_pos[1]
@@ -143,8 +143,8 @@ GetRNAseq<-function(output_peptide_txt_file,
   #data[,chr], data[,m_position]
   for(x in which(is.na(hit))){
     hit_pos<-which(data[x,3]==rna_pos[,1])
-    abs_hit_pos<-hit[which(as.numeric(data[x,12]) > as.numeric(rna_pos[hit,2]) &
-                             as.numeric(data[x,12]) < as.numeric(rna_pos[hit,3]))]
+    abs_hit_pos<-hit_pos[which(as.numeric(data[x,12]) > as.numeric(rna_pos[hit_pos,2]) &
+                               as.numeric(data[x,12]) < as.numeric(rna_pos[hit_pos,3]))]
     if(length(abs_hit_pos)!=0){
       print(abs_hit_pos[1])
       hit[x]<-abs_hit_pos[1]

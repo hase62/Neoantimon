@@ -97,9 +97,9 @@ MainMergeINDELSVClass1<-function(hmdir = getwd(),
 
   info[,12]<-paste(info[,3], info[,12], sep="_")
   info[, match("Tumor_RNA_based_on_DNA",colnames(info))]<-
-    as.numeric(info[,match("TotalRNA",colnames(info))]) * 
-     as.numeric(info[,match("TumorDepth",colnames(info))]) /
-      as.numeric(info[,match("Depth",colnames(info))])
+    as.numeric(info[,match("Total_RNA",colnames(info))]) * 
+     as.numeric(info[,match("Tumor_Depth",colnames(info))]) /
+      as.numeric(info[,match("Total_Depth",colnames(info))])
 
   #Remove RNAseq Info
   rownames(info)<-NULL
