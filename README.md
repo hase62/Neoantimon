@@ -357,16 +357,16 @@ Calculate Neoantigens on SV fusions for HLA Class I and II.
 Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 ```
   Result_HLA1_Seq <- MainSeqFragmentClass1_ComparingWt(
-  						input_file = "ATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
-                    	file_name_in_hla_table = "sample",
-                    	hla_file = "lib/data/sample_hla_table_c1.txt",
-                    	refflat_file  = "lib/refFlat.txt",
-                    	refmrna_file = "lib/refMrna.fa",
+						input_file = "ATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
+						file_name_in_hla_table = "sample",
+						hla_file = "lib/data/sample_hla_table_c1.txt",
+						refflat_file  = "lib/refFlat.txt",
+						refmrna_file = "lib/refMrna.fa",
                     	netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                     	refdna_file = "lib/GRCh37.fa",
 						nm_id = "NM_003998",
 						reading_frame = 1
-					 )
+  )
   
   Result_HLA2_Seq <- MainSeqFragmentClass1_ComparingWt(
   						input_file = "AATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
@@ -378,7 +378,6 @@ Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by 
                     	refdna_file = "lib/GRCh37.fa",
 						gene_symbol = "NFKB1",
 						reading_frame = 2
-					 )
   )
 ```
 
