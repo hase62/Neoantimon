@@ -352,46 +352,29 @@ Calculate Neoantigens on SV fusions for HLA Class I and II.
   )
 ```
 
-Calculate Neoantigens from DNA/RNA sequence for HLA Class I and II. 
+Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 ```
-  Result_HLA1_Seq <- MainSeqFragmentClass1_ComparingWt(input_file = "atgcgcatgcatcgatcgatcgtagtag",
+  Result_HLA1_Seq <- MainSeqFragmentClass1_ComparingWt(input_file = "ATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
                      file_name_in_hla_table = "sample",
                      hla_file = "lib/data/sample_hla_table_c1.txt",
                      refflat_file  = "lib/refFlat.txt",
                      refmrna_file = "lib/refMrna.fa",
-                     rnaexp_file = "lib/data/sample_rna_exp.txt",
                      netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                      refdna_file = "lib/GRCh37.fa",
-                     mutation_alt_bnd_column = 5,
-                     gene_symbol_column = 7,
-                     mate_id_column = 8
-  )
+					 nm_id = "NM_003998",
+					 exon_start = 1
+					 )
   
-  Result_HLA1_Seq <- MainSeqClass1_ComparingWt(input_file = "atgcgcatgcatcgatcgatcgtagtag",
-                     file_name_in_hla_table = "sample",
-                     hla_file = "lib/data/sample_hla_table_c1.txt",
-                     refflat_file  = "lib/refFlat.txt",
-                     refmrna_file = "lib/refMrna.fa",
-                     rnaexp_file = "lib/data/sample_rna_exp.txt",
-                     netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                     refdna_file = "lib/GRCh37.fa",
-                     mutation_alt_bnd_column = 5,
-                     gene_symbol_column = 7,
-                     mate_id_column = 8
-  )
-
-
-  Result_HLA2_Seq <- MainSeqClass2(input_file = "lib/data/sample_sv_bnd.txt",
+  Result_HLA2_Seq <- MainSeqFragmentClass1_ComparingWt(input_file = "ATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
                      file_name_in_hla_table = "sample",
                      hla_file = "lib/data/sample_hla_table_c2.txt",
                      refflat_file  = "lib/refFlat.txt",
                      refmrna_file = "lib/refMrna.fa",
-                     rnaexp_file = "lib/data/sample_rna_exp.txt",
                      netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                      refdna_file = "lib/GRCh37.fa",
-                     mutation_alt_bnd_column = 5,
-                     gene_symbol_column = 7,
-                     mate_id_column = 8
+					 gene_symbol = "NFKB1",
+					 exon_start = 1
+					 )
   )
 ```
 
