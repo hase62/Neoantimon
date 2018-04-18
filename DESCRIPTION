@@ -1,8 +1,8 @@
 Package: Neoantimon
 Type: Package
 Title: Neoantimon: An R package for automatic identification of tumor-specific neoantigens from sequencing data
-Version: 1.2
-Date: 2018-01-04
+Version: 1.03
+Date: 2018-04-18
 Author: Takanori Hasegawa
 Maintainer: Takanori Hasegawa <t-hasegw@ims.u-tokyo.ac.jp>
 Description: This Package is develped to calculate candidates neoantigens from Mutation Data (.vcf) requiring netMHCpan3.0, netMHCIIpan3.1, human refMrna, and refFlat. If you do not have some of these files, see README.md.
