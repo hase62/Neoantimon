@@ -397,7 +397,7 @@ sample_vcf.txt.All.tsv
 
 sample_vcf.txt.Summary.tsv
 ```
-##  sample_name	Pep_50	Pep_200	Pep_500	Peptides	Alt_50	Alt_200	Alt_500	Alterations
-##  sample1	37	97	169	3682	23	47	61	96
+##  sample_name	Pep_50	Pep_200	Pep_500	Pep_50_wt500	Pep_200_wt500	Pep_500_wt500	Peptides	Alt_50	Alt_200	Alt_500	Alt_50_wt500	Alt_200_wt500	Alt_500_wt500	Alterations
+##  sample1	37	97	169	17	57	69	3682	23	47	61	3	17	21	96
 ```
 
