@@ -1,0 +1,135 @@
+.de Id
+.ds Rv \\$3
+.ds Dt \\$4
+..
+.Id $Header: example.1,v 1.2 94/02/15 13:28:25 rapacki Exp $
+.TH NetMHCpan 1 \" -*- nroff -*-
+.SH NAME
+NetMHCpan 4.0 \- Prediction of binding of peptides to any known MHC molecule.
+.SH SYNOPSIS
+.B NetMHCpan
+[\fB\-BA\fP]
+[\fB\-a\fP \fIval\fP]
+[\fB\-allname\fP \fIfile\fP]
+[\fB\-dirty\fP]
+[\fB\-expfix\fP]
+[\fB\-f\fP \fIfile\fP]
+[\fB\-h\fP]
+[\fB\-hlapseudo\fP \fIfile\fP]
+[\fB\-hlaseq\fP \fIval\fP]
+[\fB\-inptype\fP \fIval\fP]
+[\fB\-l\fP \fIval\fP]
+[\fB\-listMHC\fP]
+[\fB\-p\fP]
+[\fB\-rdir\fP \fIdir\fP]
+[\fB\-rlt\fP \fIval\fP]
+[\fB\-rth\fP \fIval\fP]
+[\fB\-s\fP]
+[\fB\-syn\fP \fIfile\fP]
+[\fB\-t\fP \fIval\fP]
+[\fB\-tdir\fP \fIdir\fP]
+[\fB\-thrfmt\fP \fIfilefmt\fP]
+[\fB\-v\fP]
+[\fB\-xls\fP]
+[\fB\-xlsfile\fP \fIfile\fP]
+
+.SH DESCRIPTION
+.B NetMHCpan 4.0
+The NetMHCpan 4.0 software predicts  binding of peptides  to any known MHC
+molecule using artificial neural networks (ANNs). The method is trained on
+a combinatino of more than 180,000 quantitative binding data and MS
+derived MHC eluted ligands. The binding affinity data covers 172 MHC
+molecules from human (HLA-A, B, C, E), mouse (H-2), cattle (BoLA), primates
+(Patr, Mamu, Gogo) and swine (SLA). The MS eluted ligand data covers 55 HLA
+and mouse allelee. Furthermore, the user can obtain redictions to the any
+custom MHC class I molecule by uploading a full length MHC protein sequence.
+
+The input is taken from \fIfile\fP(s). Use \fB--\fP for
+\fIstdin\fP. The output is plain text; it will go to \fIstdout\fP.
+The required input format is \fBFASTA\fP or \fBPEPTIDE\fP.
+
+.SH OPTIONS
+.TP
+.B "\-BA"
+Make Binding affinity prediction
+.TP
+.B "\-a value"
+MHC allele name (use comman separate names without spaces for multiple allele).
+.TP
+.B "\-dirty"
+Dirty mode. Keeps all temporary files.
+.TP
+.B "\-expfix"
+Exclude prefix from synlist files.
+.TP
+.BI "\-f file"
+Take the input from \fIfile\fP. The default is \fIfile\fP (without any
+option flag).
+.TP
+.B "-h"
+Help
+.TP
+.BI "\-hlapseudo file"
+File with MHC pseudo sequences.
+.TP
+.BI "\-hlaseq file"
+File with full length MHC protien sequence.
+.TP
+.BI "\-inptype"
+Input type [0] FASTA [1] Peptide (redundant with the -p option)
+.TP
+.BI "\-l value"
+Peptide length [8-11] (multiple length with ,) Default is 8,9,10,11.
+.TP
+.BI "\-listMHC"
+Print list of alleles includecin netMHCpan.
+.TP
+.BI "\-p"
+Use \fBPEPTIDE\fP input. 
+.TP
+.BI "-rdir dir"
+netMHCpan directory
+.TP
+.BI "\-rlt value"
+Threshold for low binding peptides. Default is 2.0 percentile rank
+.TP
+.BI "\-rth value"
+Threshold for high binding peptides. Default is 0.5 percentile rank
+.TP
+.B "\-s"
+Sort output in descending affinity. Default is no sorting.
+.TP
+.B "\-syn"
+Synaps file
+.TP
+.B "\-t value"
+Threshold for output. Default is -99.9 and all prediction are printed.
+.TP
+.BI "\-tdir dir"
+Temporary directory
+.TP
+.BI "\-thrfmt filefmt"
+Format for threshold filenames.
+.TP
+.B "\-v"
+Use verbose mode.
+.TP
+.BI "\-version file"
+File with version information.
+.TP
+.B "\-xls"
+Save output to xls file.
+.TP
+.B "\-xlsfile file"
+Filename of xls dump. Default is NETMHCpan_out.xls
+
+.SH AUTHOR
+
+Morten Nielsen, mniel@cbs.dtu.dk, July 2013.
+.br
+.SH FILES
+\fB/usr/cbs/bio/bin/netMHCpan\fP           executable
+.br
+\fB/usr/cbs/bio/src/netMHCpan-4.0\fP       software home
+.SH SEE ALSO
+fasta (1),

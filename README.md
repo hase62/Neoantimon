@@ -1,60 +1,23 @@
-## Updated on 5, Jan. 2018. 
-##
-## This version has some erorrs, it will be updated soon!!
+## Updated on 18, Apr. 2018. 
 ##
 ## 1. Preparation
-**Set netMHCpan (Required)**
+**Set netMHCpan4.0 (Required)**
 
-1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
+1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
-2. Make a script (setNetMHCpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan.sh, 
-and then run the script as "./setNetMHCpan.sh". 
-```
-#!/bin/bash
-#$ -S /bin/bash
-#$ -cwd
+2. Download a scriopt from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and run it as "./setNetMHCpan4.0.sh". 
 
-if [ -e netMHCpan-3.0a.Linux.tar.gz ]; then
- tar zxvf netMHCpan-3.0a.Linux.tar.gz
-fi
-if [ -e netMHCpan-3.0a.Darwin.tar.gz ]; then
- tar zxvf netMHCpan-3.0a.Darwin.tar.gz
-fi
-cd netMHCpan-3.0
-mkdir tmp
-cdir=`pwd`
-sed -i -e "s:/usr/cbs/packages/netMHCpan/3.0/netMHCpan-3.0:${cdir}:g" netMHCpan
-sed -i -e "s:#setenv:setenv:g" netMHCpan
-wget http://www.cbs.dtu.dk/services/NetMHCpan-3.0/data.tar.gz
-tar -xvf data.tar.gz
-```
+**Set netMHCpan3.0 (If you require the old version)**
+
+1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/sw_request?netMHCpan+3.0. 
+
+2. Download a scriopt from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCpan3.0.sh". 
 
 **Set netMHCIIpan (Required)**
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
-2. Make a script (setNetMHCIIpan.sh) described below or download it from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan.sh, 
-and then run the script as "./setNetMHCIIpan.sh". 
-```
-#!/bin/bash
-#$ -S /bin/bash
-#$ -cwd
-
-if [ -e netMHCIIpan-3.1a.Linux.tar.gz ]; then
- tar zxvf netMHCIIpan-3.1a.Linux.tar.gz
-fi
-if [ -e netMHCIIpan-3.1a.Darwin.tar.gz ]; then
- tar zxvf netMHCIIpan-3.1a.Darwin.tar.gz
-fi
-cd netMHCIIpan-3.1
-mkdir tmp
-cdir=`pwd`
-sed -i -e "s:/usr/cbs/packages/netMHCIIpan/3.1/netMHCIIpan-3.1:${cdir}:g" netMHCIIpan
-sed -i -e "15s:^:setenv  TMPDIR \$\{NMHOME\}/tmp:" netMHCIIpan
-wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.1/data.tar.gz
-#gunzip -c data.tar.gz | tar xvf -
-tar -xvf data.tar.gz
-```
+2. Download a scriopt from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCIIpan3.1.sh". 
 
 **Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
 
