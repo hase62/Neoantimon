@@ -36,7 +36,7 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 ```
 
-**-Download refFlat Files (Required)**
+### -Download refFlat Files (Required)
 
 **You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
@@ -54,7 +54,7 @@ wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 ```
 
-**-Install Samtools 0_x_x**
+### -Install Samtools 0_x_x
 
 **Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression based on RNA bam.**
 
@@ -68,7 +68,7 @@ make
 cd ..
 ```
 
-**-Download human refSeq**
+### -Download human refSeq
 
 **Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.**
 
@@ -97,7 +97,7 @@ gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
 ```
 
-**-Download SampleFiles (Not Required)**
+### -Download SampleFiles (Not Required)
 
 You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 Otherwise, run the following codes or use "InstallSampleFiles()" after installing Neoantimon. 
@@ -115,7 +115,7 @@ library(Neoantimon);
 ```
 
 ## 3. Data Format
-**-HLA Table**
+### -HLA Table
 
 **1. A HLA Class I table file must be according to the following format.**
 
@@ -146,7 +146,7 @@ print(sample_hla_table_c2, row.names = FALSE)
 ##  ...
 ```
 
-**-Annotated VCF file**
+### -Annotated VCF file
 
 **An annotated VCF file is required for Snv/Indel.**
 
@@ -167,7 +167,7 @@ print(sample_vcf, row.names = FALSE)
 ##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
 ```
 
-**-Annotated BND format VCF file**
+### -Annotated BND format VCF file
 
 *An annotated BND format VCF file is required for SV fusion.*
 
@@ -188,7 +188,7 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
 ```
 
-**-RNAseq file (Not Required)**
+### -RNAseq file (Not Required)
 
 **An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
 If you also indicate "rnabam_file", variant allele frequencies are also attached. **
@@ -223,7 +223,7 @@ print(sample_rna_exp, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-**-CNV file (Not Required)**
+### -CNV file (Not Required)
 
 **A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
 Purity is set 1 as default value. **
@@ -245,7 +245,7 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-Sample files can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
+##### Sample files can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 ```
 lib/data/sample_copynum.txt
 lib/data/sample_hla_table_c1.txt
@@ -255,7 +255,7 @@ lib/data/sample_vcf.txt
 lib/data/sample_sv_bnd.txt
 ```
 
-Prepare the following files using the above explanations. 
+##### Prepare the following files using the above explanations. 
 ```
 lib/netMHCpan-4.0
 lib/netMHCIIpan-3.1  
@@ -265,7 +265,7 @@ lib/refMrna.fa
 lib/GRCh37.fa
 ```
 
-Analize sample files ... 
+##### Preparation
 ```
 install.packages("devtools");
 library(devtools);
@@ -273,7 +273,7 @@ install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
-Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
+##### Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
 ```
   Result_HLA1_SNV <- MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
                 file_name_in_hla_table = "sample",
@@ -324,7 +324,7 @@ Calculate Neoantigens on SNVs/INDELs for HLA Class I and II.
   )
 ```
 
-Calculate Neoantigens on SV fusions for HLA Class I and II. 
+##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
 ```
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
                      file_name_in_hla_table = "sample",
@@ -353,7 +353,7 @@ Calculate Neoantigens on SV fusions for HLA Class I and II.
   )
 ```
 
-Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
+##### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 ```
   Result_HLA1_Seq <- MainSeqFragmentClass1_ComparingWt(
 						input_file = "ATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
