@@ -23,14 +23,14 @@
 
 **You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
-'''GRCh38/hg38''': Download refMrna Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
+**GRCh38/hg38**: Download refMrna Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 ```
 
-GRCh37/hg19: Download refMrna Files from "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz". 
+**GRCh37/hg19**: Download refMrna Files from "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
@@ -41,14 +41,14 @@ gunzip refMrna.fa.gz
 
 **You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
-GRCh38/hg38: Download refFlat Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz". 
+**GRCh38/hg38**: Download refFlat Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz". 
 Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 ```
 
-GRCh37/hg19: Download refFlat Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz". 
+**GRCh37/hg19**: Download refFlat Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz". 
 Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
@@ -75,7 +75,7 @@ cd ..
 
 **You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
-GRCh38: Download human refSeq by
+**GRCh38**: Download human refSeq by
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
@@ -83,14 +83,14 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa
 ```
 
-hg38: Download human refSeq by:
+**hg38**: Download human refSeq by:
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-GRCh37: Download human refSeq:
+**GRCh37**: Download human refSeq:
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
