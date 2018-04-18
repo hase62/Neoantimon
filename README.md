@@ -23,14 +23,14 @@
 
 **You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
-Download refMrna Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
+GRCh38/hg38: Download refMrna Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 ```
 
-Download refMrna Files (GRCh37/hg19) from "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz". 
+GRCh37/hg19: Download refMrna Files from "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
@@ -41,14 +41,14 @@ gunzip refMrna.fa.gz
 
 **You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
-Download refFlat Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz". 
+GRCh38/hg38: Download refFlat Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz". 
 Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 ```
 
-Download refFlat Files (GRCh37/hg19) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz". 
+GRCh37/hg19: Download refFlat Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz". 
 Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
@@ -73,7 +73,9 @@ cd ..
 
 **Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.**
 
-Download human refSeq (GRCh38):
+**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
+
+GRCh38: Download human refSeq by
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
@@ -81,14 +83,14 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa
 ```
 
-Download human refSeq (hg38):
+hg38: Download human refSeq by:
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-Download human refSeq (GRCh37):
+GRCh37: Download human refSeq:
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
@@ -96,7 +98,7 @@ gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
 ```
 
-**Download SampleFiles (Not Required)**
+**-Download SampleFiles (Not Required)**
 
 You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 Otherwise, run the following codes or use "InstallSampleFiles()" after installing Neoantimon. 
@@ -141,7 +143,11 @@ print(sample_hla_table_c2, row.names = FALSE)
 ##  ...
 ```
 
-An annotated VCF file is required for Snv/Indel. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
+**Annotated VCF file**
+
+*An annotated VCF file is required for Snv/Indel.*
+
+It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
 ```r
 data(“sample_vcf”)
@@ -158,7 +164,11 @@ print(sample_vcf, row.names = FALSE)
 ##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
 ```
 
-An annotated BND format VCF file is required for SV fusion. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)" or "Gene Symbol (Gene.refGene)".
+**Annotated BND format VCF file**
+
+*An annotated BND format VCF file is required for SV fusion*
+
+It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)" or "Gene Symbol (Gene.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
 ```r
 data(“sample_sv_bnd”)
@@ -175,8 +185,11 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
 ```
 
-An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
-If you also indicate "rnabam_file", variant allele frequencies are also attached. 
+**RNAseq file (not required)**
+
+*An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
+If you also indicate "rnabam_file", variant allele frequencies are also attached. *
+
 ```r
 data(“sample_rna_exp”)
 print(sample_rna_exp, row.names = FALSE)
@@ -207,8 +220,11 @@ print(sample_rna_exp, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
-Purity is set 1 as default value. 
+**CNV file (not required)**
+
+*A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
+Purity is set 1 as default value. *
+
 ```r
 data(“sample_copynum”)
 print(sample_copynum, row.names = FALSE)
