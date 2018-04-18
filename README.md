@@ -119,6 +119,7 @@ library(Neoantimon);
 **-HLA Table**
 
 **1. A HLA Class I table file must be according to the following format. **
+
 ```r
 library(Neoantimon)
 data(“sample_hla_table_c1”)
@@ -133,6 +134,7 @@ print(sample_hla_table_c1, row.names = FALSE)
 ```
 
 **2. A HLA Class II table file must be according to the following format. **
+
 ```r
 data("sample_hla_table_c2”)
 print(sample_hla_table_c2, row.names = FALSE)
