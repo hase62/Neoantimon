@@ -117,6 +117,7 @@ library(Neoantimon);
 
 ## 3. Data Format
 **-HLA Table**
+
 **1. A HLA Class I table file must be according to the following format. **
 ```r
 library(Neoantimon)
@@ -186,7 +187,7 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
 ```
 
-**-RNAseq file (not required)**
+**-RNAseq file (Not Required)**
 
 **An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
 If you also indicate "rnabam_file", variant allele frequencies are also attached. **
@@ -221,7 +222,7 @@ print(sample_rna_exp, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-**-CNV file (not required)**
+**-CNV file (Not Required)**
 
 **A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
 Purity is set 1 as default value. **
@@ -243,23 +244,24 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-*They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
-Otherwise, Please execute the following codes. *
-
-Prepare the following files using the above explanations. 
+Sample files can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 ```
-lib/netMHCIIpan-3.1  
-lib/netMHCpan-3.0
-lib/samtools-0.1.19
 lib/data/sample_copynum.txt
 lib/data/sample_hla_table_c1.txt
 lib/data/sample_hla_table_c2.txt
 lib/data/sample_rna_exp.txt
 lib/data/sample_vcf.txt
 lib/data/sample_sv_bnd.txt
+```
+
+Prepare the following files using the above explanations. 
+```
+lib/netMHCpan-4.0
+lib/netMHCIIpan-3.1  
+lib/samtools-0.1.19
 lib/refFlat.txt 
 lib/refMrna.fa
-(Used for SV) lib/GRCh37.fa
+lib/GRCh37.fa
 ```
 
 Analize sample files ... 
