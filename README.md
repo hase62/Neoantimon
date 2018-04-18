@@ -23,7 +23,7 @@
 
 **You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
-GRCh38/hg38: Download refMrna Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
+'''GRCh38/hg38''': Download refMrna Files from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
