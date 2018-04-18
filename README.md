@@ -114,7 +114,7 @@ library(Neoantimon);
 ```
 
 ## 3. Data Format
-A HLA table is required.
+**A HLA Class I table file must be according to the following format**
 ```r
 library(Neoantimon)
 data(“sample_hla_table_c1”)
@@ -125,9 +125,10 @@ print(sample_hla_table_c1, row.names = FALSE)
 ##     Name      A1      A2      B1      B2      C1      C2
 ##   sample A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
 ##  sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
+##  ...
 ```
 
-A HLA table is required.
+**A HLA Class II table file must be according to the following format**
 ```r
 data("sample_hla_table_c2”)
 print(sample_hla_table_c2, row.names = FALSE)
@@ -137,10 +138,11 @@ print(sample_hla_table_c2, row.names = FALSE)
 ##	Name	DPA11	DPA12	DPB11	DPB12	DQA11	DQA12	DQB11	DQB12	DRB11	DRB12
 ##	sample	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
 ##	sample2	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
+##  ...
 ```
 
 An annotated VCF file is required for Snv/Indel. It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
-Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
+Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
 ```r
 data(“sample_vcf”)
 print(sample_vcf, row.names = FALSE)
