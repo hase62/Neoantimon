@@ -1,5 +1,4 @@
 ## Updated on 18, Apr. 2018. 
-##
 ## 1. Preparation
 **-Download and Set netMHCpan4.0 (Required)**
 
