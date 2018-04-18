@@ -20,6 +20,7 @@
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCIIpan3.1.sh". 
 
 **Download refMrna Files (Required)**
+
 *You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)*
 
 Download refMrna Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
