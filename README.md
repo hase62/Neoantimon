@@ -17,11 +17,11 @@
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCIIpan3.1.sh". 
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.1.sh and run it as "./setNetMHCIIpan3.1.sh". 
 
 **Download refMrna Files (Required)**
 
-*You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)*
+**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19**
 
 Download refMrna Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
@@ -37,7 +37,8 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 ```
 
-**Download refFlat Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
+**Download refFlat Files (Required)**
+**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19**
 
 Download refFlat Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz". 
 Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz")" after installing Neoantimon. 
