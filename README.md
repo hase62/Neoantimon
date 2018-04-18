@@ -1,25 +1,26 @@
 ## Updated on 18, Apr. 2018. 
 ##
 ## 1. Preparation
-**Set netMHCpan4.0 (Required)**
+**Download and Set netMHCpan4.0 (Required)**
 
 1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
-2. Download a scriopt from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and run it as "./setNetMHCpan4.0.sh". 
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and run it as "./setNetMHCpan4.0.sh". 
 
-**Set netMHCpan3.0 (If you require the old version)**
+**Download and Set netMHCpan3.0 (If you require the old version)**
 
 1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/sw_request?netMHCpan+3.0. 
 
-2. Download a scriopt from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCpan3.0.sh". 
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCpan3.0.sh". 
 
-**Set netMHCIIpan (Required)**
+**Download and Set netMHCIIpan (Required)**
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
-2. Download a scriopt from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCIIpan3.1.sh". 
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCIIpan3.1.sh". 
 
-**Download refMrna Files (Required, you have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)**
+**Download refMrna Files (Required)**
+*You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19)*
 
 Download refMrna Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
