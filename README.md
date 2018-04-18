@@ -323,29 +323,6 @@ Calculate Neoantigens on SNVs/INDELs for HLA Class I and II.
   )
 ```
 
-Merge Neoantigens on SNVs/INDELs for HLA Class I and II. 
-```
-  MainMergeSNVClass1(input_dir = "result.sample.NO_job_id_SNV",
-                     file_prefix = "NO_job_id_SNV",
-                     annotation_file = "lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt"
-  )
-
-  MainMergeSNVClass2(input_dir = "result.sample.NO_job_id_SNV",
-                     file_prefix = "NO_job_id_SNV",
-                     annotation_file = "lib/data/sample_vcf.txt.NO_job_id_SNV.peptide.txt"
-  )
-
-  MainMergeINDELSVClass1(input_dir = "result.sample.NO_job_id_INDEL",
-                         file_prefix = "NO_job_id_INDEL",
-                         annotation_file = "lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt"
-  )
-
-  MainMergeINDELSVClass2(input_dir = "result.sample.NO_job_id_INDEL",
-                         file_prefix = "NO_job_id_INDEL",
-                         annotation_file = "lib/data/sample_vcf.txt.NO_job_id_INDEL.peptide.txt"
-  )
-```
-
 Calculate Neoantigens on SV fusions for HLA Class I and II. 
 ```
   MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
@@ -372,19 +349,6 @@ Calculate Neoantigens on SV fusions for HLA Class I and II.
                      mutation_alt_bnd_column = 5,
                      gene_symbol_column = 7,
                      mate_id_column = 8
-  )
-```
-
-Merge Neoantigens on SV fusions for HLA Class I and II. 
-```
-  MainMergeINDELSVClass1(input_dir = "result.sample.NO_job_id_SVFusion",
-                         file_prefix = "NO_job_id_SVFusion",
-                         annotation_file = "lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt"
-  )
-
-  MainMergeINDELSVClass2(input_dir = "result.sample.NO_job_id_SVFusion",
-                         file_prefix = "NO_job_id_SVFusion",
-                         annotation_file = "lib/data/sample_sv_bnd.txt.NO_job_id_SVFusion.peptide.txt"
   )
 ```
 
