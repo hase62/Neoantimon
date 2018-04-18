@@ -1,27 +1,27 @@
 ## Updated on 18, Apr. 2018. 
 ##
 ## 1. Preparation
-**Download and Set netMHCpan4.0 (Required)**
+**-Download and Set netMHCpan4.0 (Required)**
 
 1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and run it as "./setNetMHCpan4.0.sh". 
 
-**Download and Set netMHCpan3.0 (If you require the old version)**
+**-Download and Set netMHCpan3.0 (If you require the old version)**
 
 1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/sw_request?netMHCpan+3.0. 
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCpan3.0.sh". 
 
-**Download and Set netMHCIIpan (Required)**
+**-Download and Set netMHCIIpan (Required)**
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.1.sh and run it as "./setNetMHCIIpan3.1.sh". 
 
-**Download refMrna Files (Required)**
+**-Download refMrna Files (Required)**
 
-**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19**
+**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
 Download refMrna Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz". 
 Otherwise, run the following codes or use "InstallRefMrnaFile(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz")" after installing Neoantimon. 
@@ -37,8 +37,9 @@ wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 ```
 
-**Download refFlat Files (Required)**
-**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19**
+**-Download refFlat Files (Required)**
+
+**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
 Download refFlat Files (GRCh38/hg38) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz". 
 Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz")" after installing Neoantimon. 
@@ -47,14 +48,16 @@ wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 ```
 
-Download refFlat Files(GRCh37/hg19) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz". 
+Download refFlat Files (GRCh37/hg19) from "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz". 
 Otherwise, run the following codes or use "InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz")" after installing Neoantimon. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 ```
 
-**Install Samtools 0_x_x (Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.)**
+**-Install Samtools 0_x_x**
+
+**Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression based on RNA bam.**
 
 You can install samtools_0_x_x version from https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2. 
 Otherwise, run the following codes or use "InstallSamtools()" after installing Neoantimon. 
@@ -66,7 +69,9 @@ make
 cd ..
 ```
 
-**Download human refSeq (Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.)**
+**-Download human refSeq**
+
+**Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.**
 
 Download human refSeq (GRCh38):
 ```
@@ -92,6 +97,7 @@ samtools faidx GRCh37.fa
 ```
 
 **Download SampleFiles (Not Required)**
+
 You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 Otherwise, run the following codes or use "InstallSampleFiles()" after installing Neoantimon. 
 ```
