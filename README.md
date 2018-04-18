@@ -119,6 +119,7 @@ library(Neoantimon);
 **-HLA Table**
 
 **1. A HLA Class I table file must be according to the following format.**
+
 ```r
 library(Neoantimon)
 data(“sample_hla_table_c1”)
@@ -169,7 +170,7 @@ print(sample_vcf, row.names = FALSE)
 
 **-Annotated BND format VCF file**
 
-*An annotated BND format VCF file is required for SV fusion. *
+*An annotated BND format VCF file is required for SV fusion.*
 
 It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)" or "Gene Symbol (Gene.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
