@@ -274,19 +274,19 @@ library(Neoantimon);
 
 Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
 ```
-  MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA1_SNV <- MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
                 file_name_in_hla_table = "sample",
                 hla_file = "lib/data/sample_hla_table_c1.txt",
                 refflat_file  = "lib/refFlat.txt",
                 refmrna_file = "lib/refMrna.fa",
                 rnaexp_file = "lib/data/sample_rna_exp.txt",
-                netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                 nm_id_column = 10,
                 depth_tumor_column = 12,
                 depth_normal_column = 14
   )
 
-  MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA2_SNV <- MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
                 file_name_in_hla_table = "sample",
                 hla_file = "lib/data/sample_hla_table_c2.txt",
                 refflat_file  = "lib/refFlat.txt",
@@ -298,19 +298,19 @@ Calculate Neoantigens on SNVs/INDELs for HLA Class I and II.
                 depth_normal_column = 14
   )
  
-  MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA1_INDEL <- MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
                   file_name_in_hla_table = "sample",
                   hla_file = "lib/data/sample_hla_table_c1.txt",
                   refflat_file  = "lib/refFlat.txt",
                   refmrna_file = "lib/refMrna.fa",
                   rnaexp_file = "lib/data/sample_rna_exp.txt",
-                  netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                  netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                   nm_id_column = 10,
                   depth_tumor_column = 12,
                   depth_normal_column = 14
   )
 
-  MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA2_INDEL <- MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
                   file_name_in_hla_table = "sample",
                   hla_file = "lib/data/sample_hla_table_c2.txt",
                   refflat_file  = "lib/refFlat.txt",
@@ -325,20 +325,20 @@ Calculate Neoantigens on SNVs/INDELs for HLA Class I and II.
 
 Calculate Neoantigens on SV fusions for HLA Class I and II. 
 ```
-  MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
+  Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
                      file_name_in_hla_table = "sample",
                      hla_file = "lib/data/sample_hla_table_c1.txt",
                      refflat_file  = "lib/refFlat.txt",
                      refmrna_file = "lib/refMrna.fa",
                      rnaexp_file = "lib/data/sample_rna_exp.txt",
-                     netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                     netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                      refdna_file = "lib/GRCh37.fa",
                      mutation_alt_bnd_column = 5,
                      gene_symbol_column = 7,
                      mate_id_column = 8
   )
 
-  MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.txt",
+  Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.txt",
                      file_name_in_hla_table = "sample",
                      hla_file = "lib/data/sample_hla_table_c2.txt",
                      refflat_file  = "lib/refFlat.txt",
@@ -352,9 +352,55 @@ Calculate Neoantigens on SV fusions for HLA Class I and II.
   )
 ```
 
+Calculate Neoantigens from DNA/RNA sequence for HLA Class I and II. 
+```
+  Result_HLA1_Seq <- MainSeqFragmentClass1_ComparingWt(input_file = "atgcgcatgcatcgatcgatcgtagtag",
+                     file_name_in_hla_table = "sample",
+                     hla_file = "lib/data/sample_hla_table_c1.txt",
+                     refflat_file  = "lib/refFlat.txt",
+                     refmrna_file = "lib/refMrna.fa",
+                     rnaexp_file = "lib/data/sample_rna_exp.txt",
+                     netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                     refdna_file = "lib/GRCh37.fa",
+                     mutation_alt_bnd_column = 5,
+                     gene_symbol_column = 7,
+                     mate_id_column = 8
+  )
+  
+  Result_HLA1_Seq <- MainSeqClass1_ComparingWt(input_file = "atgcgcatgcatcgatcgatcgtagtag",
+                     file_name_in_hla_table = "sample",
+                     hla_file = "lib/data/sample_hla_table_c1.txt",
+                     refflat_file  = "lib/refFlat.txt",
+                     refmrna_file = "lib/refMrna.fa",
+                     rnaexp_file = "lib/data/sample_rna_exp.txt",
+                     netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                     refdna_file = "lib/GRCh37.fa",
+                     mutation_alt_bnd_column = 5,
+                     gene_symbol_column = 7,
+                     mate_id_column = 8
+  )
+
+
+  Result_HLA2_Seq <- MainSeqClass2(input_file = "lib/data/sample_sv_bnd.txt",
+                     file_name_in_hla_table = "sample",
+                     hla_file = "lib/data/sample_hla_table_c2.txt",
+                     refflat_file  = "lib/refFlat.txt",
+                     refmrna_file = "lib/refMrna.fa",
+                     rnaexp_file = "lib/data/sample_rna_exp.txt",
+                     netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                     refdna_file = "lib/GRCh37.fa",
+                     mutation_alt_bnd_column = 5,
+                     gene_symbol_column = 7,
+                     mate_id_column = 8
+  )
+```
+
+
 ## 5. Result
 
-sample_result_SNV_CLASS1_ALL
+**They're also included in Result_HLA1_SNV**
+
+sample_vcf.txt.All.tsv
 ```
 ##	HLA	Pos	Gene	MutatedPeptide	Mut_IC50	Mut_Rank	Norm_Peptide	Norm_IC50	Norm_Rank		Gene ID	Chr	NM_ID	Change	ref	alt	Prob	Mutation Prob.	Exon Start	Exon End	Mutation Position	Depth	TumorDepth	Peptide Normal	Peptide Mutation	TotalRNA	TumorRNARatio	TumorRNA	nA	nB	Checker	MutRatio	MutRatio Min	MutRatio Max
 ##	HLA-A*02:01	2	0_CYP4A11	HQERCREEIHSLP	37362.9	55.00	HQERCREEIHSLL	27284.3	32.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
@@ -365,7 +411,7 @@ sample_result_SNV_CLASS1_ALL
 ##  ...
 ```
 
-sample_summary_SNV_CLASS1_ALL
+sample_vcf.txt.Summary.tsv
 ```
 ##  sample_name	Pep_50	Pep_200	Pep_500	Peptides	Alt_50	Alt_200	Alt_500	Alterations
 ##  sample1	37	97	169	3682	23	47	61	96
