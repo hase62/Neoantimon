@@ -116,7 +116,8 @@ library(Neoantimon);
 ```
 
 ## 3. Data Format
-**A HLA Class I table file must be according to the following format**
+**-HLA Table**
+**1. A HLA Class I table file must be according to the following format. **
 ```r
 library(Neoantimon)
 data(“sample_hla_table_c1”)
@@ -130,7 +131,7 @@ print(sample_hla_table_c1, row.names = FALSE)
 ##  ...
 ```
 
-**A HLA Class II table file must be according to the following format**
+**2. A HLA Class II table file must be according to the following format. **
 ```r
 data("sample_hla_table_c2”)
 print(sample_hla_table_c2, row.names = FALSE)
@@ -143,9 +144,9 @@ print(sample_hla_table_c2, row.names = FALSE)
 ##  ...
 ```
 
-**Annotated VCF file**
+**-Annotated VCF file**
 
-*An annotated VCF file is required for Snv/Indel.*
+**An annotated VCF file is required for Snv/Indel.**
 
 It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
@@ -164,9 +165,9 @@ print(sample_vcf, row.names = FALSE)
 ##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
 ```
 
-**Annotated BND format VCF file**
+**-Annotated BND format VCF file**
 
-*An annotated BND format VCF file is required for SV fusion*
+*An annotated BND format VCF file is required for SV fusion. *
 
 It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)" or "Gene Symbol (Gene.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
@@ -185,10 +186,10 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
 ```
 
-**RNAseq file (not required)**
+**-RNAseq file (not required)**
 
-*An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
-If you also indicate "rnabam_file", variant allele frequencies are also attached. *
+**An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
+If you also indicate "rnabam_file", variant allele frequencies are also attached. **
 
 ```r
 data(“sample_rna_exp”)
@@ -220,10 +221,10 @@ print(sample_rna_exp, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-**CNV file (not required)**
+**-CNV file (not required)**
 
-*A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
-Purity is set 1 as default value. *
+**A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
+Purity is set 1 as default value. **
 
 ```r
 data(“sample_copynum”)
@@ -242,8 +243,8 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
-Otherwise, Please execute the following codes. 
+*They can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
+Otherwise, Please execute the following codes. *
 
 Prepare the following files using the above explanations. 
 ```
