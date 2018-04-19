@@ -207,12 +207,8 @@ MainSNVClass1<-function(input_file,
     COUNT<-1
     for(hla_type in hla_types){
       paste("Calculating", pep, hla_type)
-      print(paste(netMHCpan_dir,
-                  " -l ", paste(peptide_length, collapse = ","),
-                  " -f ", paste(input_file, job_id, pep,"fasta",sep="."),
-                  " -a HLA-", gsub("\\*","",hla_type),
-                  " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
       system(paste(netMHCpan_dir,
+                   " -BA ",
                    " -l ", paste(peptide_length, collapse = ","),
                    " -f ", paste(input_file, job_id, pep,"fasta",sep="."),
                    " -a HLA-", gsub("\\*","",hla_type),
@@ -220,5 +216,11 @@ MainSNVClass1<-function(input_file,
       COUNT <- COUNT + 1
     }
   }
+  print("Merging Results...")
+  result <- MainMergeSNVClass1(input_dir = export_dir,
+                               file_prefix = job_id,
+                               annotation_file = output_peptide_txt_file)
+  
   print("Successfully Finished.")
+  return(result)
 }

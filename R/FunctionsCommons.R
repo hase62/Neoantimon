@@ -94,13 +94,16 @@ CheckRequiredColumns<-function(input_file,
   }
   print(paste("Set depth_tumor_column as", depth_tumor_column))
 
-  index<-scan(input_file, "character", nlines = 1, skip = 1)
   if(is.na(nm_id_column)) {
-    nm_id_column<-grep("nm_|nr_", tolower(index))[1]; 
+    nm_id_column<-grep("AAChange.refGene", tolower(index))[1]; 
     if(is.na(nm_id_column)) {
-      print("Please Manually Indicate nm_id_column")
-      return(0)
-    } 
+      index<-scan(input_file, "character", nlines = 1, skip = 1)
+      nm_id_column<-grep("nm_|nr_", tolower(index))[1]; 
+      if(is.na(nm_id_column)) {
+        print("Please Manually Indicate nm_id_column")
+        return(0)
+      }
+    }
   }
   print(paste("Set nm_id_column as", nm_id_column))
   

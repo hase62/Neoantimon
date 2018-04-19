@@ -224,6 +224,7 @@ MainSVFUSIONClass1<-function(input_file,
     for(hla_type in hla_types){
       paste("Calculating", pep, hla_type)
       system(paste(netMHCpan_dir,
+                   " -BA ",
                    " -l ", paste(peptide_length, collapse = ","),
                    " -f ", paste(input_file, job_id, pep,"fasta",sep="."),
                    " -a HLA-", gsub("\\*","",hla_type),
@@ -231,5 +232,11 @@ MainSVFUSIONClass1<-function(input_file,
       COUNT <- COUNT + 1
     }
   }
+  print("Merging Results...")
+  result <- MainMergeINDELSVClass1(input_dir = export_dir,
+                                   file_prefix = job_id,
+                                   annotation_file = output_peptide_txt_file)
+  
   print("Successfully Finished.")
+  return(result)
 }

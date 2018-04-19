@@ -259,5 +259,10 @@ MainSVFUSIONClass2<-function(input_file,
       }
     }
   }
+  result <- MainMergeINDELSVClass2(input_dir = export_dir,
+                                   file_prefix = job_id,
+                                   annotation_file = output_peptide_txt_file)
+  
   print("Successfully Finished.")
+  return(result)
 }
