@@ -4,9 +4,8 @@
 #'
 #'@export
 TestAnalysis<-function(){
-  print("Install NetMHCpan and NetMHCIIpan.")
-  InstallSampleFiles(url = "https://github.com/hase62/Neoantimon/raw/master/lib/data.zip",
-                     export_dir = "lib")
+  print("Please Install NetMHCpan and NetMHCIIpan if you did not do it.")
+  InstallSampleFiles(export_dir = "lib")
   InstallSamtools(url = "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2",
                   export_dir = "lib")
   InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz",
@@ -20,7 +19,7 @@ TestAnalysis<-function(){
                 refflat_file  = "lib/refFlat.txt",
                 refmrna_file = "lib/refMrna.fa",
                 rnaexp_file = "lib/data/sample_rna_exp.txt",
-                netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                 nm_id_column = 10,
                 depth_tumor_column = 12,
                 depth_normal_column = 14
@@ -44,7 +43,7 @@ TestAnalysis<-function(){
                   refflat_file  = "lib/refFlat.txt",
                   refmrna_file = "lib/refMrna.fa",
                   rnaexp_file = "lib/data/sample_rna_exp.txt",
-                  netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                  netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                   nm_id_column = 10,
                   depth_tumor_column = 12,
                   depth_normal_column = 14

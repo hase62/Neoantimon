@@ -384,7 +384,7 @@ library(Neoantimon);
 
 **They're also included in Result_HLA1_SNV**
 
-sample_vcf.txt.All.tsv
+sample_result_INDEL_CLASS1_ALL.txt
 ```
 ##	HLA	Pos	Gene	MutatedPeptide	Mut_IC50	Mut_Rank	Norm_Peptide	Norm_IC50	Norm_Rank		Gene ID	Chr	NM_ID	Change	ref	alt	Prob	Mutation Prob.	Exon Start	Exon End	Mutation Position	Depth	TumorDepth	Peptide Normal	Peptide Mutation	TotalRNA	TumorRNARatio	TumorRNA	nA	nB	Checker	MutRatio	MutRatio Min	MutRatio Max
 ##	HLA-A*02:01	2	0_CYP4A11	HQERCREEIHSLP	37362.9	55.00	HQERCREEIHSLL	27284.3	32.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA

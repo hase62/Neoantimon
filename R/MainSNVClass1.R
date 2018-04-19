@@ -207,6 +207,11 @@ MainSNVClass1<-function(input_file,
     COUNT<-1
     for(hla_type in hla_types){
       paste("Calculating", pep, hla_type)
+      print(paste(netMHCpan_dir,
+                  " -l ", paste(peptide_length, collapse = ","),
+                  " -f ", paste(input_file, job_id, pep,"fasta",sep="."),
+                  " -a HLA-", gsub("\\*","",hla_type),
+                  " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
       system(paste(netMHCpan_dir,
                    " -l ", paste(peptide_length, collapse = ","),
                    " -f ", paste(input_file, job_id, pep,"fasta",sep="."),
