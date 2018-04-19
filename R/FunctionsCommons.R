@@ -21,6 +21,48 @@ CheckRequiredFiles<-function(input_file,
   return(FALSE)
 }
 
+CheckRequiredFiles2 <- function(input_sequence, 
+                                hla_file, 
+                                refflat_file, 
+                                refmrna_file,
+                                nm_id = NA,
+                                gene_symbol = NA,
+                                reading_frame = 1){
+  if(is.na(input_sequence)) {
+    print("Sequence is NaN")
+    return(TRUE)
+  } else {
+    print(paste("Sequence:", input_sequence))
+  }
+  if(!file.exists(hla_file)) {
+    print(paste("Did not find HLA Table:", hla_file))
+    return(TRUE)
+  } else {
+    print(paste("HLA file:", hla_file))
+  }
+  if(!file.exists(refflat_file)) {
+    print(paste("Did not find refFlat File:", refflat_file))
+    return(TRUE)
+  } else {
+    print(paste("refFLAT:", refflat_file))
+  }
+  if(!file.exists(refmrna_file)) {
+    print(paste("Did not find refMrna File:", refmrna_file))
+    return(TRUE)
+  } else {
+    print(paste("refMrna:", refmrna_file))
+  }
+  if(is.na(nm_id) & is.na(gene_symbol)) {
+    print("Please Specify Either One of: nm_id or gene_symbol.")
+    return(TRUE)
+  } else {
+    print(paste("NM_ID: ", nm_id))
+    print(paste("Gene Symbol:", gene_symbol))
+  }
+  print(paste("Start Position of Reading Frame is:", reading_frame))
+  return(FALSE)
+}
+
 CheckRequiredColumns<-function(input_file,
                                chr_column, 
                                mutation_start_column,

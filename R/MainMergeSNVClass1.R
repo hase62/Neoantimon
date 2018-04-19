@@ -186,4 +186,5 @@ MainMergeSNVClass1<-function(hmdir = getwd(),
   full_peptide<-full_peptide[,match(tag, colnames(full_peptide))]
   write.table(full_peptide, paste(dir, "/", file_prefix, ".CLASS1.ALL.txt", sep=""), 
               row.names=FALSE, col.names=TRUE, quote=FALSE, sep="\t")
+  return(full_peptide)
 }

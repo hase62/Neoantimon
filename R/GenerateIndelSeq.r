@@ -160,7 +160,7 @@ GenerateIndelSeq<-function(input_file,
         dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
         if(nchar(dna) != sum(exon_end - exon_start)){
           dif<-sum(exon_end - exon_start) - nchar(dna)
-          if(abs(dif) < ambiguous_between_exon) {
+          if(abs(dif) <= ambiguous_between_exon) {
             if(Last && !Pass){
               print(paste("cDNA Length does not Match to Exon-Start/End Length, Skip", nm_id))
             } else {

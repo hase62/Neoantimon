@@ -355,7 +355,7 @@ library(Neoantimon);
 
 ##### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 ```
-  Result_HLA1_Seq <- MainSeqFragmentClass1_ComparingWt(
+  Result_HLA1_Seq <- MainSeqFragmentClass1(
 						input_file = "ATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
 						file_name_in_hla_table = "sample",
 						hla_file = "lib/data/sample_hla_table_c1.txt",
@@ -367,7 +367,7 @@ library(Neoantimon);
 						reading_frame = 1
   )
   
-  Result_HLA2_Seq <- MainSeqFragmentClass1_ComparingWt(
+  Result_HLA2_Seq <- MainSeqFragmentClass2(
   						input_file = "AATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
                     	file_name_in_hla_table = "sample",
                     	hla_file = "lib/data/sample_hla_table_c2.txt",
