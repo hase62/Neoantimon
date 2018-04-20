@@ -5,13 +5,15 @@ GenerateMutatedFragments<-function(input_sequence,
                                    refmrna_file, 
                                    max_peptide_length,
                                    min_peptide_length,
-                                   reading_frame){
+                                   reading_frame,
+                                   export_dir){
 
   #READ refFlat
-  list_nm<-scan(refflat_file, "character", sep="\n")
-  list_nm_gene<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][1])
-  list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
-  
+  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)
+  tmp <- sapply(list_nm, function(x) strsplit(x, "\t")[[1]])
+  list_nm_gene <- tmp[,1]
+  list_nm_cut <- tmp[,2]
+    
   #Get RNA-Code Data
   list_mra<-scan(refmrna_file, "character", sep=" ")
   start_<-grep(">", list_mra)
@@ -210,8 +212,10 @@ GenerateMutatedFragments<-function(input_sequence,
       i<-i+1
     }
   }
-  write.table(fasta, paste(job_id, "peptide", "fasta", sep="."),
+  write.table(fasta, 
+              paste(export_dir, "/", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  write.table(cbind(refFasta, matrix(nrow = nrow(refFasta), ncol = 27 - ncol(refFasta), NA)), paste(job_id, "peptide", "txt", sep="."),
+  write.table(cbind(refFasta, matrix(nrow = nrow(refFasta), ncol = 27 - ncol(refFasta), NA)), 
+              paste(export_dir, "/", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

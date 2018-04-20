@@ -99,7 +99,7 @@ MainSVFUSIONClass2<-function(input_file,
                              refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
                              hmdir = getwd(),
                              job_id = "NO_job_id",
-                             export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
+                             export_dir = paste("result", file_name_in_hla_table, job_id, "SV", sep="."),
                              rnaexp_file = NA,
                              rnabam_file = NA,
                              cnv_file=NA,
@@ -163,6 +163,9 @@ MainSVFUSIONClass2<-function(input_file,
     depth_tumor_column = flg[8]
   }
 
+  #Make Directory
+  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
+  
   #Generate FASTA and mutation Profile
   job_id = paste(job_id, "SVFusion", sep = "_")
   GenerateSVFusionSeq(input_file = input_file,

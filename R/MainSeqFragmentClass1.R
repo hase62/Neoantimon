@@ -99,7 +99,7 @@ MainSeqFragmentClass1<-function(input_sequence,
                                 refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
                                 hmdir = getwd(),
                                 job_id = "NO_job_id",
-                                export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
+                                export_dir = paste("result", file_name_in_hla_table, job_id, "SeqFragment", sep="."),
                                 netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
                                 peptide_length = c(8, 9, 10, 11, 12, 13),
                                 nm_id,
@@ -115,7 +115,10 @@ MainSeqFragmentClass1<-function(input_sequence,
                          gene_symbol,
                          reading_frame)) return(NULL)
 
-  #Generate FASTA and mutation Profile
+  #Make Directory
+  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
+  
+  #Generate FASTA and Mutation Profile
   job_id = paste(job_id, "SeqFragment", sep = "_")
   GenerateMutatedFragments(input_sequence = input_sequence,
                            hmdir = hmdir,
@@ -124,9 +127,11 @@ MainSeqFragmentClass1<-function(input_sequence,
                            refmrna_file = refmrna_file,
                            max_peptide_length = max(peptide_length),
                            min_peptide_length = min(peptide_length),
-                           reading_frame = reading_frame)
-
-  output_peptide_txt_file<-paste(job_id, ".peptide.txt", sep="")
+                           reading_frame = reading_frame,
+                           export_dir = export_dir)
+  
+  #Check Output
+  output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
     return(NULL)
@@ -140,14 +145,16 @@ MainSeqFragmentClass1<-function(input_sequence,
   print(paste("Executing netMHCpan to", export_dir))
   SettingNetMHCpan(netMHCpan_dir)
 
-  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-  hit<-match(file_name_in_hla_table, hla[,1])
+  #Get HLA-Type
+  hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
+  hit <- match(file_name_in_hla_table, hla[,1])
   if(is.na(hit)) {
     print(file_name_in_hla_table, "is not included in", hla_file)
     return (NULL)
   }
-  hla_types<-hla[hit, -1]
+
+  #Execute NetMHCpan
+  hla_types <- hla[hit, -1]
   for(pep in c("peptide")){
     COUNT<-1
     for(hla_type in hla_types){
@@ -155,8 +162,8 @@ MainSeqFragmentClass1<-function(input_sequence,
       system(paste(netMHCpan_dir,
                    " -BA ",
                    " -l ", paste(peptide_length, collapse = ","),
-                   " -f ", paste(job_id, pep,"fasta",sep="."),
-                   " -a HLA-", gsub("\\*","",hla_type),
+                   " -f ", paste(export_dir, "/", job_id, ".", pep, ".", "fasta", sep=""),
+                   " -a HLA-", gsub("\\*", "", hla_type),
                    " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
       COUNT <- COUNT + 1
     }

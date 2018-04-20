@@ -92,7 +92,6 @@ TestAnalysis<-function(){
                                            hla_file = "lib/data/sample_hla_table_c1.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
-                                           export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
@@ -100,16 +99,14 @@ TestAnalysis<-function(){
                                            reading_frame = 1
   )
   
-  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
+  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "aaatggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "lib/data/sample_hla_table_c2.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
-                                           export_dir = paste("result", file_name_in_hla_table, job_id, sep="."),
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                                           refdna_file = "lib/GRCh37.fa",
                                            gene_symbol = "NFKB1",
                                            reading_frame = 2
   )

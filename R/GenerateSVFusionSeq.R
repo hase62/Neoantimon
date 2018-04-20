@@ -15,7 +15,8 @@ GenerateSVFusionSeq<-function(input_file,
                              depth_tumor_column,
                              mate_id_column,
                              ambiguous_between_exon, 
-                             ambiguous_codon){
+                             ambiguous_codon,
+                             export_dir){
 
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
   data<-scan(input_file, "character", sep="\n", skip=1)
@@ -523,8 +524,8 @@ GenerateSVFusionSeq<-function(input_file,
     }
   }
   
-  write.table(fasta, paste(input_file, job_id, "peptide","fasta",sep="."),
+  write.table(fasta, paste(input_file, ".", job_id, ".", "peptide", ".", "fasta",sep="."),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  write.table(refFasta, paste(input_file, job_id, "peptide","txt",sep="."),
+  write.table(refFasta, paste(input_file, ".", job_id, ".", "peptide","txt",sep="."),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

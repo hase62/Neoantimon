@@ -12,5 +12,6 @@ Suggests:
   knitr,
   rmarkdown
 LazyData: FALSE
-Imports: utils
+Imports: utils,
+		 data.table
 RoxygenNote: 6.0.1
