@@ -1,8 +1,8 @@
-GenerateMutatedFragments<-function(input_sequence, 
-                                   hmdir, 
-                                   job_id, 
-                                   refflat_file, 
-                                   refmrna_file, 
+GenerateMutatedFragments<-function(input_sequence,
+                                   hmdir,
+                                   job_id,
+                                   refflat_file,
+                                   refmrna_file,
                                    max_peptide_length,
                                    min_peptide_length,
                                    reading_frame,
@@ -10,24 +10,26 @@ GenerateMutatedFragments<-function(input_sequence,
 
   #READ refFlat
   list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)
-  tmp <- sapply(list_nm, function(x) strsplit(x, "\t")[[1]])
+  tmp <- t(apply(list_nm, 1, function(x) strsplit(x[1], "\t")[[1]]))
   list_nm_gene <- tmp[,1]
   list_nm_cut <- tmp[,2]
-    
+
   #Get RNA-Code Data
-  list_mra<-scan(refmrna_file, "character", sep=" ")
-  start_<-grep(">", list_mra)
+  list_mra <- scan(refmrna_file, "character", sep=" ")
+  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\t', data.table = FALSE)
+
+    start_<-grep(">", list_mra)
   end_<-c(start_[-1] - 1, length(list_mra))
   list_fl_NMID<-gsub(">", "", list_mra[start_])
   list_fl_dna <-sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 2):end_[x]], collapse = ""))
-  
+
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")
-  
+
   fasta<-NULL
   refFasta<-NULL
   random<-0
-  
+
   #Obtain refFLAT Data
   s_variants <- match(nm_id, list_nm_cut)
   if(is.na(s_variants)) {
@@ -35,24 +37,24 @@ GenerateMutatedFragments<-function(input_sequence,
     print(paste("NM_ID NOT Macth, Skip:", nm_id))
     next
   }
-    
+
   #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
   for(v in s_variants){
     #Whether Last or Not
     nm_sep <- strsplit(list_nm[v], "\t")[[1]]
     nm_id <- nm_sep[2]
-      
+
     #Skip Such As "ch5_hap"
     if(nchar(nm_sep[3]) > 5) next
     strand <- nm_sep[4]
     g_name <- nm_sep[1]
-      
+
     #Get Translation Start/End, Exon Start/End
     trans_start<-as.numeric(nm_sep[7])
     trans_end<-as.numeric(nm_sep[8])
     exon_start<-as.numeric(strsplit(nm_sep[10], ",")[[1]])
     exon_end<-as.numeric(strsplit(nm_sep[11], ",")[[1]])
-        
+
     #Obtain DNA sequence of Transcriptome
     #DNAseq is Unique
     dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
@@ -63,7 +65,7 @@ GenerateMutatedFragments<-function(input_sequence,
         next
       }
     }
-        
+
     #Get Relative Translation-Start Position (0-start to 1-start)
     if(strand=="+"){
       point<-(exon_end > trans_start)
@@ -74,13 +76,13 @@ GenerateMutatedFragments<-function(input_sequence,
       ts_point<-sum((exon_end - exon_start)[point]) +
         (exon_end[rev(which(!point))[1]] - trans_end) + 1
     }
-        
+
     #Check Start Codon
     if(substr(dna, ts_point, ts_point + 2)!="atg"){
       print(paste("Start Position is not ATG, Skip", nm_id))
       next
     }
-        
+
     #Get Relative Translation-End Position
     if(strand=="+"){
       point<-(exon_end >= trans_end)
@@ -97,7 +99,7 @@ GenerateMutatedFragments<-function(input_sequence,
         print(paste("End Position Amino Acid is not X, Skip", nm_id))
         next
     }
-        
+
     #Check Peptide Length
     stop_loop<-FALSE
     dna_trans <- substr(dna, ts_point, te_point)
@@ -107,7 +109,7 @@ GenerateMutatedFragments<-function(input_sequence,
       print("The Length of RNA is not a multiple of 3, Skip")
       next
     }
-          
+
     #Make Normal Peptide
     peptide_normal <- NULL
     dna_trans_normal <- dna_trans
@@ -144,7 +146,7 @@ GenerateMutatedFragments<-function(input_sequence,
       if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
                        (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
     }
-    
+
     peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
     for(peptide in strsplit(peptide_mutated, "-")[[1]]){
       #Save Peptide
@@ -156,7 +158,7 @@ GenerateMutatedFragments<-function(input_sequence,
                         NA,
                         NA,
                         NA,
-                        NA, 
+                        NA,
                         NA,
                         exon_start[1],
                         rev(exon_end)[1],
@@ -164,22 +166,22 @@ GenerateMutatedFragments<-function(input_sequence,
                         NA,
                         NA,
                         paste(peptide_normal, collapse=""),
-                        peptide, 
-                        dna_trans_normal, 
+                        peptide,
+                        dna_trans_normal,
                         input_sequence))
-          
+
         #Remove X and Save Fasta in Mutated Peptide
         if(!is.na(match("X", peptide))){
           peptide <- peptide[1:(match("X", peptide) - 1)]
         }
         fasta <- c(fasta, sub("_","", paste(">", random, gsub("\"","", g_name), sep="_")))
         fasta <- c(fasta, paste(peptide, collapse=""))
-          
+
         random <- random + 1
         print("Peptide Successfully Generated!!")
     }
   }
-  
+
   #Integrate The Same Peptide
   if(is.null(refFasta)) {
     return(NULL)
@@ -212,10 +214,10 @@ GenerateMutatedFragments<-function(input_sequence,
       i<-i+1
     }
   }
-  write.table(fasta, 
+  write.table(fasta,
               paste(export_dir, "/", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  write.table(cbind(refFasta, matrix(nrow = nrow(refFasta), ncol = 27 - ncol(refFasta), NA)), 
+  write.table(cbind(refFasta, matrix(nrow = nrow(refFasta), ncol = 27 - ncol(refFasta), NA)),
               paste(export_dir, "/", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

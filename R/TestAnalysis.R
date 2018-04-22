@@ -36,7 +36,7 @@ TestAnalysis<-function(){
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14
   )
- 
+
   Result_HLA1_INDEL <- MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "lib/data/sample_hla_table_c1.txt",
@@ -86,7 +86,7 @@ TestAnalysis<-function(){
                                        gene_symbol_column = 7,
                                        mate_id_column = 8
   )
-  
+
   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "lib/data/sample_hla_table_c1.txt",
@@ -95,10 +95,10 @@ TestAnalysis<-function(){
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                                           nm_id = "NM_003998",
+                                           nm_id = c("NM_003998", "NM_003998"),
                                            reading_frame = 1
   )
-  
+
   Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "aaatggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "lib/data/sample_hla_table_c2.txt",
