@@ -10,7 +10,7 @@ MainSeqFragmentClass1(input_sequence, hla_file, file_name_in_hla_table,
   job_id = "NO_job_id", export_dir = paste("result", file_name_in_hla_table,
   job_id, "SeqFragment", sep = "."), netMHCpan_dir = paste(hmdir,
   "lib/netMHCpan-4.0/netMHCpan", sep = "/"), peptide_length = c(8, 9, 10, 11,
-  12, 13), nm_id, gene_symbol, reading_frame = 1)
+  12, 13), nm_id = NA, gene_symbol = NA, reading_frame = 1)
 }
 \arguments{
 \item{hla_file}{(Required) A tab separated file indicating HLA types.
