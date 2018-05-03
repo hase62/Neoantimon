@@ -2,7 +2,7 @@
 % Please edit documentation in R/MainINDELClass1.R
 \name{MainINDELClass1}
 \alias{MainINDELClass1}
-\title{Calculate Neoantigen Candidates on Indels for MHC Class1}
+\title{Calculate Neoantigen Candidates on INDELs for MHC Class1}
 \usage{
 MainINDELClass1(input_file, hla_file, file_name_in_hla_table = input_file,
   refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
@@ -63,7 +63,7 @@ See data(sample_copynum); sample_copynum;}
 
 \item{purity}{Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).}
 
-\item{netMHCpan_dir}{The file directory to netMHCpan (Default="lib/netMHCpan-3.0/netMHCpan").}
+\item{netMHCpan_dir}{The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").}
 
 \item{refdna_file}{refdna_file information to be used to calculate RNA VAF (Default=NA).
 
@@ -86,7 +86,7 @@ samtools 0_x_x includes bcftools in the directory.}
 
 \item{mutation_alt_column}{The column number describing mutation Alt in input_file (Default=NA, but will automatically search "Alt" in header).}
 
-\item{nm_id_column}{(Required) The column number describing NM IDs in input_file such as
+\item{nm_id_column}{The column number describing NM IDs in input_file such as
 
 "SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).}
 
@@ -101,8 +101,64 @@ samtools 0_x_x includes bcftools in the directory.}
 \item{peptide_length}{Peptide Length to be generated (Default = {8,9,10,11,12,13}).}
 }
 \value{
-void (Calculated Neoantigen Files will be generated as .tsv files.)
+void (Calculated Neoantigen Files will be generated as .tsv files.):
+
+HLA:  HLA type used to calculate neoantigen.
+
+Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
+
+Gene:  Gene symbol used to be evaluated in NetMHCpan.
+
+Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+
+Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+
+Mut_IC50: IC50 value for evaluated mutant peptide.
+
+Mut_Rank: Rank value for evaluated mutanat peptide.
+
+Chr: Chromosome Number of the mutation.
+
+NM_ID: NM_ID used to construct peptides from the mutation.
+
+Change: The annotation to be described in .vcf file.
+
+Ref: reference type nucleic acid base.
+
+Alt: alternative type nucleic acid base.
+
+Prob: A probability of reference nucleic acid base described in .vcf file.
+
+Mutation_Prob: A probability of alternative nucleic acid base described in .vcf file.
+
+Exon_Start: The exon start position of the corrsponding NM_ID.
+
+Exon_End: The exon end position of the corrsponding NM_ID.
+
+Mutation_Position: The mutation position of the corrsponding NM_ID.
+
+Total_Depth: The sum depth of the reference and alternative nucleic acid base.
+
+Tumor_Depth: The depth of the alternative nucleic acid base.
+
+Wt_Peptide: The full-length of the wild-type peptide.
+
+Mutant_Peptide: The full-length of the mutant peptide.
+
+Total_RNA: The expression amount of the corresponding RNA.
+
+Tumor_RNA_Ratio: The variant allele frequency of the corresponding RNA.
+
+Tumor_RNA: The modified amount of the corresponding RNA level based on RNA Reads.
+
+Tumor_RNA_based_on_DNA: The modified amount of the corresponding RNA level based on DNA Reads.
+
+MutRatio: The mean value of the cancer cell fraction probability.
+
+MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
+
+MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 }
 \description{
-Calculate Neoantigen Candidates on Indels for MHC Class1
+Calculate Neoantigen Candidates on INDELs for MHC Class1
 }

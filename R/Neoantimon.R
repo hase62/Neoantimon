@@ -95,3 +95,35 @@ NULL
 #' @name sample_result_INDEL_CLASS2_ALL
 #' @usage data(sample_result_INDEL_CLASS2_ALL)
 NULL
+
+#' Analyzed Result for SV Fusion CLASS1
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_SVFusion_CLASS1_ALL
+#' @usage data(sample_result_SVFusion_CLASS1_ALL)
+NULL
+
+#' Analyzed Result for SVFusion CLASS2
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_SVFusion_CLASS2_ALL
+#' @usage data(sample_result_SVFusion_CLASS2_ALL)
+NULL
+
+#' Analyzed Result for A DNA Fragment CLASS1
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_SeqFragment_CLASS1_ALL
+#' @usage data(sample_result_SeqFragment_CLASS1_ALL)
+NULL
+
+#' Analyzed Result for A DNA Fragment CLASS2
+#'
+#' @docType data
+#' @keywords result
+#' @name sample_result_SeqFragment_CLASS2_ALL
+#' @usage data(sample_result_SeqFragment_CLASS2_ALL)
+NULL

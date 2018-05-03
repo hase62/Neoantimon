@@ -18,7 +18,7 @@ GenerateIndelSeq<-function(input_file,
 
   #READ Data
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
-  data<-scan(input_file, "character", sep="\n", skip=1)
+  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[-1, 1]
   data<-data[grep("\texonic\t", data)]
   data<-data[grep("insertion|deletion", data)]
   data<-gsub("\"", "",data)
@@ -456,9 +456,9 @@ GenerateIndelSeq<-function(input_file,
    }
   }
   write.table(fasta,
-              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "fasta", sep=""),
+              paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
   write.table(refFasta,
-              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "txt", sep=""),
+              paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

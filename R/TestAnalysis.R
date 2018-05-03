@@ -67,7 +67,7 @@ TestAnalysis<-function(){
                                        refflat_file  = "lib/refFlat.txt",
                                        refmrna_file = "lib/refMrna.fa",
                                        rnaexp_file = "lib/data/sample_rna_exp.txt",
-                                       netMHCpan_dir = "lib/netMHCpan-3.0/netMHCpan",
+                                       netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                        refdna_file = "lib/GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
@@ -108,6 +108,6 @@ TestAnalysis<-function(){
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                                            gene_symbol = c("NFKB1", "BCL3"),
-                                           reading_frame = 2
+                                           reading_frame = 3
   )
 }

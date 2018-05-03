@@ -1,27 +1,15 @@
-#'Calculate Neoantigen Candidates on SV fusions for MHC Class2
+#'Calculate Neoantigen Candidates from A Given Sequence for MHC Class2
 #'
-#'@param input_file (Required) An input vcf file (BND format) annotated by,
+#'@param input_sequence (Required) An input vcf file annotated by,
 #'
 #'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
 #'
-#'See by data(sample_sv_bnd); sample_sv_bnd;
+#'See by data(sample_vcf); sample_vcf;
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
-#'See by data(sample_hla_table_c1); sample_hla_table_c1;
-#'
-#'@param refdna_file (Required) refdna_file information to be used to create SVs Region (Default=NA).
-#'
-#'See "https://github.com/hase62/Neoantimon"
-#'
-#'@param nm_id_column (Required if gene_symbol_column = NA) The column number describing NM IDs in input_file such as
-#'
-#'"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
-#'
-#'@param gene_symbol_column (Required if nm_id_column = NA) The column number describing gene symbol in input_file (Default=NA).
-#'
-#'@param mate_id_column (Required) The column indicating mateIDs or svIDs such as "SVMERGE1_1" (Default=NA).
+#'See by data(sample_hla_table_c2); sample_hla_table_c2;
 #'
 #'@param file_name_in_hla_table If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).
 #'
@@ -31,27 +19,9 @@
 #'
 #'@param export_dir The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")
 #'
-#'@param peptide_length Peptide Length to be generated (Default = {15} in HLA Class2).
+#'@param peptide_length Peptide Length to be generated (Default = {15}).
 #'
-#'@param chr_column The column number describing chromosome number in input_file (Default=NA, but will automatically search "Chr" in header).
-#'
-#'@param mutation_start_column The column number describing mutation start Position in input_file (Default=NA, but will automatically search "Start" in header) .
-#'
-#'@param mutation_end_column The column number describing mutation end Position in input_file (Default=NA, but will automatically search "End" in header).
-#'
-#'@param mutation_ref_column The column number describing mutation Ref in input_file (Default=NA, but will automatically search "Ref" in header).
-#'
-#'@param mutation_alt_bnd_column The column number describing mutation Alt (BND format) in input_file (Default=NA, but will automatically search "Alt" in header).
-#'
-#'@param depth_normal_column The column number describing the read count from normal cells (Default = NA).
-#'
-#'@param depth_tumor_column The column number describing the read count from tumor cells (Default = NA).
-#'
-#'@param ambiguous_between_exon The maximum number to permit the differences between Exon-Lengths from refFlat and refMrna (Default=0).
-#'
-#'@param ambiguous_codon The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).
-#'
-#'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt",sep="").
+#'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
 #'
 #'See "https://github.com/hase62/Neoantimon"
 #'
@@ -59,37 +29,75 @@
 #'
 #'See "https://github.com/hase62/Neoantimon"
 #'
-#'@param rnaexp_file A file including RNA expressions (Default=NA).
-#'The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend (locus) ExpressionAmount", respectively.
-#'The 1st row should be any header.
+#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCIIpan").
 #'
-#'See by data(sample_rna_exp); sample_rna_exp;
+#'@param nm_id (Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+#'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
+#'It can be indicated when gene_symbol is not NA.
 #'
-#'@param rnabam_file RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).
+#'@param gene_symbol (Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+#'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
+#'It can be indicated when nm_id is not NA.
 #'
+#'@param reading_frame The starting frame of the input sequence (Default = 1)
 #'
+#'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
+#'@return HLA:  HLA type used to calculate neoantigen.
 #'
+#'@return Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
 #'
-#'@param cnv_file A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
-#'The format is according to ASCAT output files.
-#'The columns are "SNPName Chromosome Position LogR segmentedLogR BAF segmentedBAF CopyNumber MinorAllele RawCopyNumber"
-#'The 1st row should be the above header.
+#'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'See data(sample_copynum); sample_copynum;
+#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
-#'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).
+#'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
 #'
-#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").
+#'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
-#'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
-#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
+#'@return Mut_Rank: Rank value for evaluated mutanat peptide.
 #'
-#'@param bcftools_dir The file directory to netMHCpan (Default="bcftools").
-#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
-#'samtools 0_x_x includes bcftools in the directory.
+#'@return Chr: Chromosome Number of the mutation.
 #'
-#'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
+#'@return NM_ID: NM_ID used to construct peptides from the mutation.
+#'
+#'@return Change: The annotation to be described in .vcf file.
+#'
+#'@return Ref: reference type nucleic acid base.
+#'
+#'@return Alt: alternative type nucleic acid base.
+#'
+#'@return Prob: A probability of reference nucleic acid base described in .vcf file.
+#'
+#'@return Mutation_Prob: A probability of alternative nucleic acid base described in .vcf file.
+#'
+#'@return Exon_Start: The exon start position of the corrsponding NM_ID.
+#'
+#'@return Exon_End: The exon end position of the corrsponding NM_ID.
+#'
+#'@return Mutation_Position: The mutation position of the corrsponding NM_ID.
+#'
+#'@return Total_Depth: The sum depth of the reference and alternative nucleic acid base.
+#'
+#'@return Tumor_Depth: The depth of the alternative nucleic acid base.
+#'
+#'@return Wt_Peptide: The full-length of the wild-type peptide.
+#'
+#'@return Mutant_Peptide: The full-length of the mutant peptide.
+#'
+#'@return Total_RNA: The expression amount of the corresponding RNA.
+#'
+#'@return Tumor_RNA_Ratio: The variant allele frequency of the corresponding RNA.
+#'
+#'@return Tumor_RNA: The modified amount of the corresponding RNA level based on RNA Reads.
+#'
+#'@return Tumor_RNA_based_on_DNA: The modified amount of the corresponding RNA level based on DNA Reads.
+#'
+#'@return MutRatio: The mean value of the cancer cell fraction probability.
+#'
+#'@return MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
+#'
+#'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
 #'@export
 MainSeqFragmentClass2<-function(input_sequence,
@@ -102,8 +110,8 @@ MainSeqFragmentClass2<-function(input_sequence,
                                 export_dir = paste("result", file_name_in_hla_table, job_id, "SeqFragment", sep="."),
                                 netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep="/"),
                                 peptide_length = c(15),
-                                nm_id,
-                                gene_symbol,
+                                nm_id = NA,
+                                gene_symbol = NA,
                                 reading_frame = 1){
 
   #Check Required Files
@@ -128,7 +136,9 @@ MainSeqFragmentClass2<-function(input_sequence,
                            max_peptide_length = max(peptide_length),
                            min_peptide_length = min(peptide_length),
                            reading_frame = reading_frame,
-                           export_dir = export_dir)
+                           export_dir = export_dir,
+                           nm_id = nm_id,
+                           gene_symbol = gene_symbol)
 
   #Check Output
   output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
@@ -195,9 +205,9 @@ MainSeqFragmentClass2<-function(input_sequence,
       }
     }
   }
-  result <- MainMergeINDELSVClass2(input_dir = export_dir,
-                                   file_prefix = job_id,
-                                   annotation_file = output_peptide_txt_file)
+  result <- MergeINDELSVClass2(input_dir = export_dir,
+                               file_prefix = job_id,
+                               annotation_file = output_peptide_txt_file)
 
   print("Successfully Finished.")
   return(result)

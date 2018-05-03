@@ -6,7 +6,9 @@ GenerateMutatedFragments<-function(input_sequence,
                                    max_peptide_length,
                                    min_peptide_length,
                                    reading_frame,
-                                   export_dir){
+                                   export_dir,
+                                   nm_id,
+                                   gene_symbol){
 
   #READ refFlat
   list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
@@ -48,18 +50,19 @@ GenerateMutatedFragments<-function(input_sequence,
 
     #Skip Such As "ch5_hap"
     if(nchar(nm_sep[3]) > 5) next
-    chrs <- paste(nm_sep[3], collapse = ";")
+    chr <- nm_sep[3]
+    chrs <- paste(chrs, nm_sep[3], sep = ifelse(length(chrs) > 0, ";", ""))
     strand <- nm_sep[4]
     g_name <- nm_sep[1]
-    gene_ids <- paste(gene_ids, g_name, collapse = ";")
+    gene_ids <- paste(gene_ids, g_name, sep = ifelse(length(gene_ids) > 0, ";", ""))
 
     #Get Translation Start/End, Exon Start/End
     trans_start <- as.numeric(nm_sep[7])
     trans_end <- as.numeric(nm_sep[8])
     exon_start <- as.numeric(strsplit(nm_sep[10], ",")[[1]])
-    exon_starts <- paste(exon_starts, exon_start, collapse = ";")
+    exon_starts <- paste(exon_starts, exon_start[1], sep = ifelse(length(exon_starts) > 0, ";", ""))
     exon_end <- as.numeric(strsplit(nm_sep[11], ",")[[1]])
-    exon_ends <- paste(exon_ends, rev(exon_end)[1], collapse = ";")
+    exon_ends <- paste(exon_ends, rev(exon_end)[1], sep = ifelse(length(exon_ends) > 0, ";", ""))
 
     #Obtain DNA sequence of Transcriptome
     #DNAseq is Unique
@@ -126,7 +129,7 @@ GenerateMutatedFragments<-function(input_sequence,
     if(match("X", peptide_normal) < length(peptide_normal)){
       next
     }
-    peptide_normal_merged <- c(peptide_normal_merged, "X", peptide_normal)
+    peptide_normal_merged <- c(peptide_normal_merged, ifelse(length(peptide_normal_merged) > 0, "X", ""), peptide_normal)
   }
 
   #Make Mutated Peptide

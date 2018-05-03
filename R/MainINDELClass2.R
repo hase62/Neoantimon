@@ -1,4 +1,4 @@
-#'Calculate Neoantigen Candidates on Indels for MHC Class2
+#'Calculate Neoantigen Candidates on INDELs for MHC Class2
 #'
 #'@param input_file (Required) An input vcf file annotated by,
 #'
@@ -15,7 +15,7 @@
 #'
 #'
 #'
-#'@param nm_id_column (Required) The column number describing NM IDs in input_file such as
+#'@param nm_id_column The column number describing NM IDs in input_file such as
 #'
 #'"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
 #'
@@ -89,7 +89,63 @@
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'samtools 0_x_x includes bcftools in the directory.
 #'
-#'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
+#'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
+#'
+#'@return HLA:  HLA type used to calculate neoantigen.
+#'
+#'@return Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
+#'
+#'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
+#'
+#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+#'
+#'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'
+#'@return Mut_IC50: IC50 value for evaluated mutant peptide.
+#'
+#'@return Mut_Rank: Rank value for evaluated mutanat peptide.
+#'
+#'@return Chr: Chromosome Number of the mutation.
+#'
+#'@return NM_ID: NM_ID used to construct peptides from the mutation.
+#'
+#'@return Change: The annotation to be described in .vcf file.
+#'
+#'@return Ref: reference type nucleic acid base.
+#'
+#'@return Alt: alternative type nucleic acid base.
+#'
+#'@return Prob: A probability of reference nucleic acid base described in .vcf file.
+#'
+#'@return Mutation_Prob: A probability of alternative nucleic acid base described in .vcf file.
+#'
+#'@return Exon_Start: The exon start position of the corrsponding NM_ID.
+#'
+#'@return Exon_End: The exon end position of the corrsponding NM_ID.
+#'
+#'@return Mutation_Position: The mutation position of the corrsponding NM_ID.
+#'
+#'@return Total_Depth: The sum depth of the reference and alternative nucleic acid base.
+#'
+#'@return Tumor_Depth: The depth of the alternative nucleic acid base.
+#'
+#'@return Wt_Peptide: The full-length of the wild-type peptide.
+#'
+#'@return Mutant_Peptide: The full-length of the mutant peptide.
+#'
+#'@return Total_RNA: The expression amount of the corresponding RNA.
+#'
+#'@return Tumor_RNA_Ratio: The variant allele frequency of the corresponding RNA.
+#'
+#'@return Tumor_RNA: The modified amount of the corresponding RNA level based on RNA Reads.
+#'
+#'@return Tumor_RNA_based_on_DNA: The modified amount of the corresponding RNA level based on DNA Reads.
+#'
+#'@return MutRatio: The mean value of the cancer cell fraction probability.
+#'
+#'@return MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
+#'
+#'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
 #'@export
 MainINDELClass2<-function(input_file,
@@ -172,7 +228,8 @@ MainINDELClass2<-function(input_file,
                    ambiguous_codon = ambiguous_codon,
                    export_dir = export_dir)
 
-  output_peptide_txt_file <- paste(export_dir, "/", input_file, ".", job_id, ".peptide.txt", sep="")
+  output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
+  output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
     return(NULL)
@@ -213,7 +270,7 @@ MainINDELClass2<-function(input_file,
       if(length(grep("DRB1", hla_type))==1) {
         system(paste(netMHCIIpan_dir,
                      " -length ", paste(peptide_length, collapse = ","),
-                     " -f ", paste(input_file,job_id, pep,"fasta",sep="."),
+                     " -f ", paste(output_peptide_prefix, pep, "fasta",sep="."),
                      " -a ", gsub("\\*","_", gsub("\\:","",hla_type)),
                      " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
                      sep=""))
@@ -224,7 +281,7 @@ MainINDELClass2<-function(input_file,
         for(hla2 in hla_types[grep("DPB1", hla_types)]){
           system(paste(netMHCIIpan_dir,
                        " -length ", paste(peptide_length, collapse = ","),
-                       " -f ", paste(input_file,job_id, pep,"fasta",sep="."),
+                       " -f ", paste(output_peptide_prefix, pep, "fasta",sep="."),
                        " -choose -cha ", gsub("\\*|\\:","", hla_type),
                        " -choose -chb ", gsub("\\*|\\:","", hla2),
                        " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
@@ -237,7 +294,7 @@ MainINDELClass2<-function(input_file,
         for(hla2 in hla_types[grep("DQB1", hla_types)]){
           system(paste(netMHCIIpan_dir,
                        " -length ", paste(peptide_length, collapse = ","),
-                       " -f ", paste(input_file,job_id, pep,"fasta",sep="."),
+                       " -f ", paste(output_peptide_prefix, pep, "fasta",sep="."),
                        " -choose -cha ", gsub("\\*|\\:","", hla_type),
                        " -choose -chb ", gsub("\\*|\\:","", hla2),
                        " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
@@ -247,9 +304,9 @@ MainINDELClass2<-function(input_file,
       }
     }
   }
-  result <- MainMergeINDELSVClass2(input_dir = export_dir,
-                                   file_prefix = job_id,
-                                   annotation_file = output_peptide_txt_file)
+  result <- MergeINDELSVClass2(input_dir = export_dir,
+                               file_prefix = job_id,
+                               annotation_file = output_peptide_txt_file)
 
   print("Successfully Finished.")
   return(result)

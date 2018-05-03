@@ -19,7 +19,7 @@ GenerateSVFusionSeq<-function(input_file,
                              export_dir){
 
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
-  data<-scan(input_file, "character", sep="\n", skip=1)
+  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[-1, 1]
 
   if(length(data)<1){
     q("no")
@@ -30,16 +30,19 @@ GenerateSVFusionSeq<-function(input_file,
   uIDs<-unique(mateIDs)[sapply(unique(mateIDs), function(x) length(which(!is.na(match(mateIDs, x)))) > 1)]
 
   #READ refFlat
-  list_nm<-scan(refflat_file, "character", sep="\n")
-  list_nm_c<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][1])
-  list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
+  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
+  tmp <- t(sapply(list_nm, function(x) strsplit(x[1], "\t")[[1]]))
+  list_nm_gene <- tmp[, 1]
+  list_nm_cut <- tmp[, 2]
 
   #Get RNA-Code Data
-  list_mra<-scan(refmrna_file, "character", sep=" ")
-  start_<-grep(">", list_mra)
-  end_<-c(start_[-1] - 1, length(list_mra))
-  list_fl_NMID<-gsub(">", "", list_mra[start_])
-  list_fl_dna <-sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 2):end_[x]], collapse = ""))
+  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+  start_ <- grep(">", list_mra)
+  end_ <- c(start_[-1] - 1, length(list_mra))
+  tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
+  list_fl_NMID <- tmp
+  list_fl_dna <- sapply(1:length(start_),
+                        function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
 
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")
@@ -130,7 +133,7 @@ GenerateSVFusionSeq<-function(input_file,
       #For example, f[10]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
       if(is.na(nm_id_column) | nm_id_column == 0){
         g_name<-f[gene_symbol_column]
-        nm_ids<-list_nm_cut[which(!is.na(match(list_nm_c, g_name)))]
+        nm_ids<-list_nm_cut[which(!is.na(match(list_nm_gene, g_name)))]
       } else {
         nm_ids<-f[nm_id_column]
       }
@@ -525,9 +528,9 @@ GenerateSVFusionSeq<-function(input_file,
   }
 
   write.table(fasta,
-              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "fasta", sep=""),
+              paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
   write.table(refFasta,
-              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "txt", sep=""),
+              paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

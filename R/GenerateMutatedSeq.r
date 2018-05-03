@@ -437,10 +437,10 @@ GenerateMutatedSeq<-function(input_file,
         next
      }
      #Collapse NM_ID, Info, Exon-start, Exon-end
-     temp1<-paste(refFasta[hit,3],collapse=";")
-     temp2<-paste(refFasta[hit,4],collapse=";")
-     temp3<-paste(refFasta[hit,9],collapse=";")
-     temp4<-paste(refFasta[hit,10],collapse=";")
+     temp1<-paste(refFasta[hit,3], collapse=";")
+     temp2<-paste(refFasta[hit,4], collapse=";")
+     temp3<-paste(refFasta[hit,9], collapse=";")
+     temp4<-paste(refFasta[hit,10], collapse=";")
      refFasta[i,3]<-temp1
      refFasta[i,4]<-temp2
      refFasta[i,9]<-temp3
@@ -455,12 +455,12 @@ GenerateMutatedSeq<-function(input_file,
    }
   }
   write.table(fasta,
-              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "fasta", sep=""),
+              paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
   write.table(fasta_norm,
-              paste(export_dir, "/", input_file, ".", job_id, ".", "normpeptide", ".", "fasta", sep=""),
+              paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "normpeptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
   write.table(refFasta,
-              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "txt", sep=""),
+              paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

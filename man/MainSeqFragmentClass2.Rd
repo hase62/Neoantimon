@@ -2,7 +2,7 @@
 % Please edit documentation in R/MainSeqFragmentClass2.R
 \name{MainSeqFragmentClass2}
 \alias{MainSeqFragmentClass2}
-\title{Calculate Neoantigen Candidates on SV fusions for MHC Class2}
+\title{Calculate Neoantigen Candidates from A Given Sequence for MHC Class2}
 \usage{
 MainSeqFragmentClass2(input_sequence, hla_file, file_name_in_hla_table,
   refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
@@ -10,17 +10,23 @@ MainSeqFragmentClass2(input_sequence, hla_file, file_name_in_hla_table,
   job_id = "NO_job_id", export_dir = paste("result", file_name_in_hla_table,
   job_id, "SeqFragment", sep = "."), netMHCIIpan_dir = paste(hmdir,
   "lib/netMHCIIpan-3.1/netMHCIIpan", sep = "/"), peptide_length = c(15),
-  nm_id, gene_symbol, reading_frame = 1)
+  nm_id = NA, gene_symbol = NA, reading_frame = 1)
 }
 \arguments{
+\item{input_sequence}{(Required) An input vcf file annotated by,
+
+e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+
+See by data(sample_vcf); sample_vcf;}
+
 \item{hla_file}{(Required) A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
 
-See by data(sample_hla_table_c1); sample_hla_table_c1;}
+See by data(sample_hla_table_c2); sample_hla_table_c2;}
 
 \item{file_name_in_hla_table}{If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).}
 
-\item{refflat_file}{refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt",sep="").
+\item{refflat_file}{refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
 
 See "https://github.com/hase62/Neoantimon"}
 
@@ -34,73 +40,79 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{export_dir}{The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")}
 
-\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").}
+\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCIIpan").}
 
-\item{peptide_length}{Peptide Length to be generated (Default = {15} in HLA Class2).}
+\item{peptide_length}{Peptide Length to be generated (Default = {15}).}
 
-\item{input_file}{(Required) An input vcf file (BND format) annotated by,
+\item{nm_id}{(Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
+It can be indicated when gene_symbol is not NA.}
 
-e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+\item{gene_symbol}{(Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
+It can be indicated when nm_id is not NA.}
 
-See by data(sample_sv_bnd); sample_sv_bnd;}
-
-\item{refdna_file}{(Required) refdna_file information to be used to create SVs Region (Default=NA).
-
-See "https://github.com/hase62/Neoantimon"}
-
-\item{nm_id_column}{(Required if gene_symbol_column = NA) The column number describing NM IDs in input_file such as
-
-"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).}
-
-\item{gene_symbol_column}{(Required if nm_id_column = NA) The column number describing gene symbol in input_file (Default=NA).}
-
-\item{mate_id_column}{(Required) The column indicating mateIDs or svIDs such as "SVMERGE1_1" (Default=NA).}
-
-\item{chr_column}{The column number describing chromosome number in input_file (Default=NA, but will automatically search "Chr" in header).}
-
-\item{mutation_start_column}{The column number describing mutation start Position in input_file (Default=NA, but will automatically search "Start" in header) .}
-
-\item{mutation_end_column}{The column number describing mutation end Position in input_file (Default=NA, but will automatically search "End" in header).}
-
-\item{mutation_ref_column}{The column number describing mutation Ref in input_file (Default=NA, but will automatically search "Ref" in header).}
-
-\item{mutation_alt_bnd_column}{The column number describing mutation Alt (BND format) in input_file (Default=NA, but will automatically search "Alt" in header).}
-
-\item{depth_normal_column}{The column number describing the read count from normal cells (Default = NA).}
-
-\item{depth_tumor_column}{The column number describing the read count from tumor cells (Default = NA).}
-
-\item{ambiguous_between_exon}{The maximum number to permit the differences between Exon-Lengths from refFlat and refMrna (Default=0).}
-
-\item{ambiguous_codon}{The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).}
-
-\item{rnaexp_file}{A file including RNA expressions (Default=NA).
-The 1st, 2nd and 3rd columns are "GeneSymbol Chr:Exonstart-Exonend (locus) ExpressionAmount", respectively.
-The 1st row should be any header.
-
-See by data(sample_rna_exp); sample_rna_exp;}
-
-\item{rnabam_file}{RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).}
-
-\item{cnv_file}{A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
-The format is according to ASCAT output files.
-The columns are "SNPName Chromosome Position LogR segmentedLogR BAF segmentedBAF CopyNumber MinorAllele RawCopyNumber"
-The 1st row should be the above header.
-
-See data(sample_copynum); sample_copynum;}
-
-\item{purity}{Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).}
-
-\item{samtools_dir}{The file directory to samtools_0_x_x (Default="samtools").
-It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .}
-
-\item{bcftools_dir}{The file directory to netMHCpan (Default="bcftools").
-It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
-samtools 0_x_x includes bcftools in the directory.}
+\item{reading_frame}{The starting frame of the input sequence (Default = 1)}
 }
 \value{
-void (Calculated Neoantigen Files will be generated as .tsv files.)
+void (Calculated Neoantigen Files will be generated as .tsv files.):
+
+HLA:  HLA type used to calculate neoantigen.
+
+Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
+
+Gene:  Gene symbol used to be evaluated in NetMHCpan.
+
+Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+
+Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+
+Mut_IC50: IC50 value for evaluated mutant peptide.
+
+Mut_Rank: Rank value for evaluated mutanat peptide.
+
+Chr: Chromosome Number of the mutation.
+
+NM_ID: NM_ID used to construct peptides from the mutation.
+
+Change: The annotation to be described in .vcf file.
+
+Ref: reference type nucleic acid base.
+
+Alt: alternative type nucleic acid base.
+
+Prob: A probability of reference nucleic acid base described in .vcf file.
+
+Mutation_Prob: A probability of alternative nucleic acid base described in .vcf file.
+
+Exon_Start: The exon start position of the corrsponding NM_ID.
+
+Exon_End: The exon end position of the corrsponding NM_ID.
+
+Mutation_Position: The mutation position of the corrsponding NM_ID.
+
+Total_Depth: The sum depth of the reference and alternative nucleic acid base.
+
+Tumor_Depth: The depth of the alternative nucleic acid base.
+
+Wt_Peptide: The full-length of the wild-type peptide.
+
+Mutant_Peptide: The full-length of the mutant peptide.
+
+Total_RNA: The expression amount of the corresponding RNA.
+
+Tumor_RNA_Ratio: The variant allele frequency of the corresponding RNA.
+
+Tumor_RNA: The modified amount of the corresponding RNA level based on RNA Reads.
+
+Tumor_RNA_based_on_DNA: The modified amount of the corresponding RNA level based on DNA Reads.
+
+MutRatio: The mean value of the cancer cell fraction probability.
+
+MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
+
+MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 }
 \description{
-Calculate Neoantigen Candidates on SV fusions for MHC Class2
+Calculate Neoantigen Candidates from A Given Sequence for MHC Class2
 }
