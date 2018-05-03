@@ -45,6 +45,22 @@ head(sample_result_INDEL_CLASS1_ALL, row.names = FALSE)
 data("sample_result_INDEL_CLASS2_ALL")
 head(sample_result_INDEL_CLASS2_ALL)
 
+## ----Sample.Result.SV.HLACLASS1------------------------------------------
+data("sample_result_SVFusion_CLASS1_ALL")
+head(sample_result_SVFusion_CLASS1_ALL, row.names = FALSE)
+
+## ----Sample.Result.SV.HLACLASS2------------------------------------------
+data("sample_result_SVFusion_CLASS2_ALL")
+head(sample_result_SVFusion_CLASS2_ALL)
+
+## ----Sample.Result.SeqFragment.HLACLASS1---------------------------------
+data("sample_result_SeqFragment_CLASS1_ALL")
+head(sample_result_SeqFragment_CLASS1_ALL, row.names = FALSE)
+
+## ----Sample.Result.SeqFragment.HLACLASS2---------------------------------
+data("sample_result_SeqFragment_CLASS2_ALL")
+head(sample_result_SeqFragment_CLASS2_ALL)
+
 ## ----Get Sample and Test Analysis----------------------------------------
 TestAnalysis
 

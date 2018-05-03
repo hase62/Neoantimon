@@ -1,7 +1,7 @@
 ---
 title: "SampleCodeForNeoantimon"
 author: "T. Hasegawa"
-date: "2018/01/04"
+date: "2018/05/02"
 output: html_document
 ---
 
@@ -69,8 +69,26 @@ data("sample_result_INDEL_CLASS2_ALL")
 head(sample_result_INDEL_CLASS2_ALL)
 ```
 
+```{r Sample.Result.SV.HLACLASS1}
+data("sample_result_SVFusion_CLASS1_ALL")
+head(sample_result_SVFusion_CLASS1_ALL, row.names = FALSE)
+```
+
+```{r Sample.Result.SV.HLACLASS2}
+data("sample_result_SVFusion_CLASS2_ALL")
+head(sample_result_SVFusion_CLASS2_ALL)
+```
+
+```{r Sample.Result.SeqFragment.HLACLASS1}
+data("sample_result_SeqFragment_CLASS1_ALL")
+head(sample_result_SeqFragment_CLASS1_ALL, row.names = FALSE)
+```
+
+```{r Sample.Result.SeqFragment.HLACLASS2}
+data("sample_result_SeqFragment_CLASS2_ALL")
+head(sample_result_SeqFragment_CLASS2_ALL)
+```
+
 ```{r Get Sample and Test Analysis}
 TestAnalysis
 ```
-
-

@@ -1,4 +1,4 @@
-# Updated on 18, Apr. 2018. 
+# Updated on 3, May. 2018. 
 ## 1. Preparation
 ### -Download and Set netMHCpan4.0 (Required)
 
@@ -6,13 +6,7 @@
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and run it as "./setNetMHCpan4.0.sh". 
 
-### -Download and Set netMHCpan3.0 (If you require the old version)
-
-1. Download netMHCpan3.0 from http://www.cbs.dtu.dk/cgi-bin/sw_request?netMHCpan+3.0. 
-
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan3.0.sh and run it as "./setNetMHCpan3.0.sh". 
-
-### -Download and Set netMHCIIpan (Required)
+### -Download and Set netMHCIIpan3.1 (Required)
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
@@ -275,108 +269,104 @@ library(Neoantimon);
 
 ##### Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
 ```
-  Result_HLA1_SNV <- MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
-                file_name_in_hla_table = "sample",
-                hla_file = "lib/data/sample_hla_table_c1.txt",
-                refflat_file  = "lib/refFlat.txt",
-                refmrna_file = "lib/refMrna.fa",
-                rnaexp_file = "lib/data/sample_rna_exp.txt",
-                netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                nm_id_column = 10,
-                depth_tumor_column = 12,
-                depth_normal_column = 14
+    Result_HLA1_SNV <- MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
+                                   file_name_in_hla_table = "sample",
+                                   hla_file = "lib/data/sample_hla_table_c1.txt",
+                                   refflat_file  = "lib/refFlat.txt",
+                                   refmrna_file = "lib/refMrna.fa",
+                                   rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                   netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                                   depth_tumor_column = 12,
+                                   depth_normal_column = 14
   )
 
   Result_HLA2_SNV <- MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
-                file_name_in_hla_table = "sample",
-                hla_file = "lib/data/sample_hla_table_c2.txt",
-                refflat_file  = "lib/refFlat.txt",
-                refmrna_file = "lib/refMrna.fa",
-                rnaexp_file = "lib/data/sample_rna_exp.txt",
-                netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                nm_id_column = 10,
-                depth_tumor_column = 12,
-                depth_normal_column = 14
+                                   file_name_in_hla_table = "sample",
+                                   hla_file = "lib/data/sample_hla_table_c2.txt",
+                                   refflat_file  = "lib/refFlat.txt",
+                                   refmrna_file = "lib/refMrna.fa",
+                                   rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                   netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                   depth_tumor_column = 12,
+                                   depth_normal_column = 14
   )
- 
+
   Result_HLA1_INDEL <- MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
-                  file_name_in_hla_table = "sample",
-                  hla_file = "lib/data/sample_hla_table_c1.txt",
-                  refflat_file  = "lib/refFlat.txt",
-                  refmrna_file = "lib/refMrna.fa",
-                  rnaexp_file = "lib/data/sample_rna_exp.txt",
-                  netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                  nm_id_column = 10,
-                  depth_tumor_column = 12,
-                  depth_normal_column = 14
+                                       file_name_in_hla_table = "sample",
+                                       hla_file = "lib/data/sample_hla_table_c1.txt",
+                                       refflat_file  = "lib/refFlat.txt",
+                                       refmrna_file = "lib/refMrna.fa",
+                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                                       depth_tumor_column = 12,
+                                       depth_normal_column = 14
   )
 
   Result_HLA2_INDEL <- MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
-                  file_name_in_hla_table = "sample",
-                  hla_file = "lib/data/sample_hla_table_c2.txt",
-                  refflat_file  = "lib/refFlat.txt",
-                  refmrna_file = "lib/refMrna.fa",
-                  rnaexp_file = "lib/data/sample_rna_exp.txt",
-                  netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                  nm_id_column = 10,
-                  depth_tumor_column = 12,
-                  depth_normal_column = 14
+                                       file_name_in_hla_table = "sample",
+                                       hla_file = "lib/data/sample_hla_table_c2.txt",
+                                       refflat_file  = "lib/refFlat.txt",
+                                       refmrna_file = "lib/refMrna.fa",
+                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                       depth_tumor_column = 12,
+                                       depth_normal_column = 14
   )
 ```
 
 ##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
 ```
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
-                     file_name_in_hla_table = "sample",
-                     hla_file = "lib/data/sample_hla_table_c1.txt",
-                     refflat_file  = "lib/refFlat.txt",
-                     refmrna_file = "lib/refMrna.fa",
-                     rnaexp_file = "lib/data/sample_rna_exp.txt",
-                     netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                     refdna_file = "lib/GRCh37.fa",
-                     mutation_alt_bnd_column = 5,
-                     gene_symbol_column = 7,
-                     mate_id_column = 8
+                                       file_name_in_hla_table = "sample",
+                                       hla_file = "lib/data/sample_hla_table_c1.txt",
+                                       refflat_file  = "lib/refFlat.txt",
+                                       refmrna_file = "lib/refMrna.fa",
+                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                                       refdna_file = "lib/GRCh37.fa",
+                                       mutation_alt_bnd_column = 5,
+                                       gene_symbol_column = 7,
+                                       mate_id_column = 8
   )
 
   Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.txt",
-                     file_name_in_hla_table = "sample",
-                     hla_file = "lib/data/sample_hla_table_c2.txt",
-                     refflat_file  = "lib/refFlat.txt",
-                     refmrna_file = "lib/refMrna.fa",
-                     rnaexp_file = "lib/data/sample_rna_exp.txt",
-                     netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                     refdna_file = "lib/GRCh37.fa",
-                     mutation_alt_bnd_column = 5,
-                     gene_symbol_column = 7,
-                     mate_id_column = 8
+                                       file_name_in_hla_table = "sample",
+                                       hla_file = "lib/data/sample_hla_table_c2.txt",
+                                       refflat_file  = "lib/refFlat.txt",
+                                       refmrna_file = "lib/refMrna.fa",
+                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                       refdna_file = "lib/GRCh37.fa",
+                                       mutation_alt_bnd_column = 5,
+                                       gene_symbol_column = 7,
+                                       mate_id_column = 8
   )
 ```
 
 ##### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 ```
-  Result_HLA1_Seq <- MainSeqFragmentClass1(
-                     input_file = "ATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
-                     file_name_in_hla_table = "sample",
-                     hla_file = "lib/data/sample_hla_table_c1.txt",
-                     refflat_file  = "lib/refFlat.txt",
-                     refmrna_file = "lib/refMrna.fa",
-                     netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                     refdna_file = "lib/GRCh37.fa",
-                     nm_id = "NM_003998",
-                     reading_frame = 1
+  Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
+                                           file_name_in_hla_table = "sample",
+                                           hla_file = "lib/data/sample_hla_table_c1.txt",
+                                           hmdir = getwd(),
+                                           job_id = "NO_job_id",
+                                           refflat_file  = "lib/refFlat.txt",
+                                           refmrna_file = "lib/refMrna.fa",
+                                           netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                                           nm_id = c("NM_003998", "NM_001165412"),
+                                           reading_frame = 1
   )
-  
-  Result_HLA2_Seq <- MainSeqFragmentClass2(
-                     input_file = "AATGGCAGAAGATGATGGCAGAAGATGATACATATTTGGGAAGGC",
-                     file_name_in_hla_table = "sample",
-                     hla_file = "lib/data/sample_hla_table_c2.txt",
-                     refflat_file  = "lib/refFlat.txt",
-                     refmrna_file = "lib/refMrna.fa",
-                     netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                     refdna_file = "lib/GRCh37.fa",
-                     gene_symbol = "NFKB1",
-                     reading_frame = 2
+
+  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "aaatggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
+                                           file_name_in_hla_table = "sample",
+                                           hla_file = "lib/data/sample_hla_table_c2.txt",
+                                           hmdir = getwd(),
+                                           job_id = "NO_job_id",
+                                           refflat_file  = "lib/refFlat.txt",
+                                           refmrna_file = "lib/refMrna.fa",
+                                           netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                           gene_symbol = c("NFKB1", "BCL3"),
+                                           reading_frame = 3
   )
 ```
 
@@ -384,20 +374,214 @@ library(Neoantimon);
 
 **They're also included in Result_HLA1_SNV**
 
+sample_result_SNV_CLASS1_ALL.txt
+```
+##           HLA Pos    Gene Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank
+## 1 HLA-A*02:01   2 0_DHX15            EPERDYLEAAIRA  37952.9  63.3899
+## 2 HLA-A*02:01   3 0_DHX15            PERDYLEAAIRAV  12108.2  16.5100
+## 3 HLA-A*02:01   4 0_DHX15            ERDYLEAAIRAVI  12109.5  16.5114
+## 4 HLA-A*02:01   5 0_DHX15            RDYLEAAIRAVIQ  32063.2  46.0009
+## 5 HLA-A*02:01   6 0_DHX15            DYLEAAIRAVIQI   4819.6   9.2763
+## 6 HLA-A*02:01   7 0_DHX15            YLEAAIRAVIQIH   7309.7  11.8086
+##   Evaluated_Wt_Peptide Wt_IC50 Wt_Rank Chr     NM_ID   Change Ref Alt Prob
+## 1        EPERDYLEAAIRT 41213.3 75.7538   4 NM_001358 c.A1012G   T   C    0
+## 2        PERDYLEAAIRTV 11859.7 16.2523   4 NM_001358 c.A1012G   T   C    0
+## 3        ERDYLEAAIRTVI 14831.9 19.2905   4 NM_001358 c.A1012G   T   C    0
+## 4        RDYLEAAIRTVIQ 33185.2 48.8110   4 NM_001358 c.A1012G   T   C    0
+## 5        DYLEAAIRTVIQI  4504.5  8.9225   4 NM_001358 c.A1012G   T   C    0
+## 6        YLEAAIRTVIQIH  6924.0 11.4357   4 NM_001358 c.A1012G   T   C    0
+##   Mutation_Prob. Exon_Start Exon_End Mutation_Position Total_Depth
+## 1              0   24529087 24586184        4_24556416         294
+## 2              0   24529087 24586184        4_24556416         294
+## 3              0   24529087 24586184        4_24556416         294
+## 4              0   24529087 24586184        4_24556416         294
+## 5              0   24529087 24586184        4_24556416         294
+## 6              0   24529087 24586184        4_24556416         294
+##   Tumor_Depth                  Wt_Peptide              Mutant_Peptide
+## 1         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
+## 2         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
+## 3         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
+## 4         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
+## 5         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
+## 6         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
+##   Total_RNA Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio
+## 1   1.35204              NA        NA              0.6576249       NA
+## 2   1.35204              NA        NA              0.6576249       NA
+## 3   1.35204              NA        NA              0.6576249       NA
+## 4   1.35204              NA        NA              0.6576249       NA
+## 5   1.35204              NA        NA              0.6576249       NA
+## 6   1.35204              NA        NA              0.6576249       NA
+##   MutRatio_Min MutRatio_Max
+## 1           NA           NA
+## 2           NA           NA
+## 3           NA           NA
+## 4           NA           NA
+## 5           NA           NA
+## 6           NA           NA
+```
+
 sample_result_INDEL_CLASS1_ALL.txt
 ```
-##	HLA	Pos	Gene	MutatedPeptide	Mut_IC50	Mut_Rank	Norm_Peptide	Norm_IC50	Norm_Rank		Gene ID	Chr	NM_ID	Change	ref	alt	Prob	Mutation Prob.	Exon Start	Exon End	Mutation Position	Depth	TumorDepth	Peptide Normal	Peptide Mutation	TotalRNA	TumorRNARatio	TumorRNA	nA	nB	Checker	MutRatio	MutRatio Min	MutRatio Max
-##	HLA-A*02:01	2	0_CYP4A11	HQERCREEIHSLP	37362.9	55.00	HQERCREEIHSLL	27284.3	32.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
-##	HLA-A*02:01	3	0_CYP4A11	QERCREEIHSLPG	45831.8	90.00	QERCREEIHSLLG	44161.6	85.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
-##	HLA-A*02:01	4	0_CYP4A11	ERCREEIHSLPGD	45989.7	90.00	ERCREEIHSLLGD	44575.4	85.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
-##	HLA-A*02:01	5	0_CYP4A11	RCREEIHSLPGDG	46482.0	95.00	RCREEIHSLLGDG	44377.6	85.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
-##	HLA-A*02:01	6	0_CYP4A11	CREEIHSLPGDGA	42936.1	80.00	CREEIHSLLGDGA	41760.9	70.00	1	0_CYP4A11	1	NM_000778	c.T1064C	A	G	0	0	47394845	47407156	1_47399872	49	113	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	NA	NA	NA	NA	NA	NA	NA	NA	NA
-##  ...
+##           HLA Pos      Gene Evaluated_Mutant_Peptide_Core
+## 1 HLA-A*02:01   1 0_UGT2B28                    GIPMVGIPLV
+## 2 HLA-A*02:01   2 0_UGT2B28                 YHGIPMVGIPLVL
+## 3 HLA-A*02:01   3 0_UGT2B28                  HGIPMVGIPLVL
+## 4 HLA-A*02:01   4 0_UGT2B28                    GIPMVGIPLV
+## 5 HLA-A*02:01   5 0_UGT2B28                    IPMVGIPLVL
+## 6 HLA-A*02:01   2 0_UGT2B28                    GIPMVGIPLV
+##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank Chr     NM_ID         Change
+## 1            IYHGIPMVGIPLV   8158.7  12.6683   4 NM_053039 Out_c.1186dupT
+## 2            YHGIPMVGIPLVL    264.7   1.9668   4 NM_053039 Out_c.1186dupT
+## 3            HGIPMVGIPLVLG  14185.4  18.6104   4 NM_053039 Out_c.1186dupT
+## 4            GIPMVGIPLVLGS  13299.6  17.6940   4 NM_053039 Out_c.1186dupT
+## 5            IPMVGIPLVLGST  17674.7  22.4056   4 NM_053039 Out_c.1186dupT
+## 6             YHGIPMVGIPLV   5439.5   9.9316   4 NM_053039 Out_c.1186dupT
+##   Ref Alt Prob Mutation_Prob. Exon_Start Exon_End Mutation_Position
+## 1   -   T    0              0   70146216 70160768        4_70156404
+## 2   -   T    0              0   70146216 70160768        4_70156404
+## 3   -   T    0              0   70146216 70160768        4_70156404
+## 4   -   T    0              0   70146216 70160768        4_70156404
+## 5   -   T    0              0   70146216 70160768        4_70156404
+## 6   -   T    0              0   70146216 70160768        4_70156404
+##   Total_Depth Tumor_Depth                   Wt_Peptide     Mutant_Peptide
+## 1          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
+## 2          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
+## 3          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
+## 4          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
+## 5          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
+## 6          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
+##   Total_RNA Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio
+## 1         0              NA        NA                      0       NA
+## 2         0              NA        NA                      0       NA
+## 3         0              NA        NA                      0       NA
+## 4         0              NA        NA                      0       NA
+## 5         0              NA        NA                      0       NA
+## 6         0              NA        NA                      0       NA
+##   MutRatio_Min MutRatio_Max
+## 1           NA           NA
+## 2           NA           NA
+## 3           NA           NA
+## 4           NA           NA
+## 5           NA           NA
+## 6           NA           NA
 ```
 
-sample_vcf.txt.Summary.tsv
+sample_result_SVFusion_CLASS1_ALL.txt
 ```
-##  sample_name	Pep_50	Pep_200	Pep_500	Pep_50_wt500	Pep_200_wt500	Pep_500_wt500	Peptides	Alt_50	Alt_200	Alt_500	Alt_50_wt500	Alt_200_wt500	Alt_500_wt500	Alterations
-##  sample1	37	97	169	17	57	69	3682	23	47	61	3	17	21	96
+##           HLA Pos       Gene Evaluated_Mutant_Peptide_Core
+## 1 HLA-A*02:01   1 0_SLC25A12                 GDPHELRNIFLQL
+## 2 HLA-A*02:01   2 0_SLC25A12                  DPHELRNIFLQL
+## 3 HLA-A*02:01   3 0_SLC25A12                   ELRNIFLQLSA
+## 4 HLA-A*02:01   4 0_SLC25A12                 HELRNIFLQLSAV
+## 5 HLA-A*02:01   5 0_SLC25A12                  ELRNIFLQLSAV
+## 6 HLA-A*02:01   6 0_SLC25A12                   LRNIFLQLSAV
+##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank Chr               NM_ID
+## 1            GDPHELRNIFLQL   7994.3  12.5026   2 NM_003705_NM_015090
+## 2            DPHELRNIFLQLS  36655.0  59.0000   2 NM_003705_NM_015090
+## 3            PHELRNIFLQLSA  31164.0  43.8594   2 NM_003705_NM_015090
+## 4            HELRNIFLQLSAV   2243.7   6.1823   2 NM_003705_NM_015090
+## 5            ELRNIFLQLSAVQ  20527.4  25.8717   2 NM_003705_NM_015090
+## 6            LRNIFLQLSAVQE  22787.8  28.8756   2 NM_003705_NM_015090
+##                            Change Ref            Alt Prob Mutation_Prob.
+## 1 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
+## 2 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
+## 3 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
+## 4 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
+## 5 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
+## 6 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
+##   Exon_Start  Exon_End Mutation_Position Total_Depth Tumor_Depth
+## 1  172639914 172750816       2_172743385           0           0
+## 2  172639914 172750816       2_172743385           0           0
+## 3  172639914 172750816       2_172743385           0           0
+## 4  172639914 172750816       2_172743385           0           0
+## 5  172639914 172750816       2_172743385           0           0
+## 6  172639914 172750816       2_172743385           0           0
+##   Wt_Peptide
+## 1 MAVKVQTT...
+## 2 MAVKVQTT...
+## 3 MAVKVQTT...
+## 4 MAVKVQTT...
+## 5 MAVKVQTT...
+## 6 MAVKVQTT...
+##                                                      Mutant_Peptide
+## 1 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
+## 2 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
+## 3 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
+## 4 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
+## 5 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
+## 6 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
+##   Total_RNA Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio
+## 1   5.24517              NA        NA                    NaN       NA
+## 2   5.24517              NA        NA                    NaN       NA
+## 3   5.24517              NA        NA                    NaN       NA
+## 4   5.24517              NA        NA                    NaN       NA
+## 5   5.24517              NA        NA                    NaN       NA
+## 6   5.24517              NA        NA                    NaN       NA
+##   MutRatio_Min MutRatio_Max
+## 1           NA           NA
+## 2           NA           NA
+## 3           NA           NA
+## 4           NA           NA
+## 5           NA           NA
+## 6           NA           NA
 ```
 
+sample_result_SeqFragment_CLASS1_ALL.txt
+```
+##           HLA Pos    Gene Evaluated_Mutant_Peptide_Core
+## 1 HLA-A*02:01   1 0_NFKB1                 MAEDDPYLGRPEK
+## 2 HLA-A*02:01   2 0_NFKB1                 AEDDPYLGRPEKM
+## 3 HLA-A*02:01   3 0_NFKB1                     YLGRPEKMF
+## 4 HLA-A*02:01   4 0_NFKB1                    YLGRPEKMFH
+## 5 HLA-A*02:01   5 0_NFKB1                   YLGRPEKMFHL
+## 6 HLA-A*02:01   6 0_NFKB1                   YLGRPEKMFHL
+##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank       Chr
+## 1            MAEDDPYLGRPEK  34529.5  52.6059 chr4;chr4
+## 2            AEDDPYLGRPEKM  37395.3  61.4560 chr4;chr4
+## 3            EDDPYLGRPEKMF  41328.0  76.2274 chr4;chr4
+## 4            DDPYLGRPEKMFH  42864.6  82.5363 chr4;chr4
+## 5            DPYLGRPEKMFHL   3345.9   7.5921 chr4;chr4
+## 6            PYLGRPEKMFHLD  19715.7  24.8190 chr4;chr4
+##                    NM_ID      Change Ref Alt Prob Mutation_Prob.
+## 1 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
+## 2 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
+## 3 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
+## 4 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
+## 5 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
+## 6 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
+##            Exon_Start            Exon_End Mutation_Position Total_Depth
+## 1 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
+## 2 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
+## 3 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
+## 4 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
+## 5 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
+## 6 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
+##   Tumor_Depth
+## 1          NA
+## 2          NA
+## 3          NA
+## 4          NA
+## 5          NA
+## 6          NA
+##   Wt_Peptide
+## 1 MAEDDPY...
+## 2 MAEDDPY...
+## 3 MAEDDPY...
+## 4 MAEDDPY...
+## 5 MAEDDPY...
+## 6 MAEDDPY...
+##              Mutant_Peptide Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## 1 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
+## 2 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
+## 3 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
+## 4 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
+## 5 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
+## 6 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
+##   Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## 1                     NA       NA           NA           NA
+## 2                     NA       NA           NA           NA
+## 3                     NA       NA           NA           NA
+## 4                     NA       NA           NA           NA
+## 5                     NA       NA           NA           NA
+## 6                     NA       NA           NA           NA
+```

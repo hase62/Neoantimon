@@ -20,7 +20,6 @@ TestAnalysis<-function(){
                                    refmrna_file = "lib/refMrna.fa",
                                    rnaexp_file = "lib/data/sample_rna_exp.txt",
                                    netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                                   nm_id_column = 10,
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14
   )
@@ -32,7 +31,6 @@ TestAnalysis<-function(){
                                    refmrna_file = "lib/refMrna.fa",
                                    rnaexp_file = "lib/data/sample_rna_exp.txt",
                                    netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                                   nm_id_column = 10,
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14
   )
@@ -44,7 +42,6 @@ TestAnalysis<-function(){
                                        refmrna_file = "lib/refMrna.fa",
                                        rnaexp_file = "lib/data/sample_rna_exp.txt",
                                        netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                                       nm_id_column = 10,
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14
   )
@@ -56,7 +53,6 @@ TestAnalysis<-function(){
                                        refmrna_file = "lib/refMrna.fa",
                                        rnaexp_file = "lib/data/sample_rna_exp.txt",
                                        netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                                       nm_id_column = 10,
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14
   )
