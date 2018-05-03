@@ -95,7 +95,7 @@ TestAnalysis<-function(){
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                                           nm_id = c("NM_003998", "NM_003998"),
+                                           nm_id = c("NM_003998", "NM_001165412"),
                                            reading_frame = 1
   )
 
@@ -107,7 +107,7 @@ TestAnalysis<-function(){
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                                           gene_symbol = "NFKB1",
+                                           gene_symbol = c("NFKB1", "BCL3"),
                                            reading_frame = 2
   )
 }

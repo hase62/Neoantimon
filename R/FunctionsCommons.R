@@ -1,6 +1,6 @@
-CheckRequiredFiles<-function(input_file, 
-                             hla_file, 
-                             refflat_file, 
+CheckRequiredFiles<-function(input_file,
+                             hla_file,
+                             refflat_file,
                              refmrna_file){
   if(!file.exists(input_file)) {
     print(paste("Did not find Mutation File:", input_file))
@@ -21,9 +21,9 @@ CheckRequiredFiles<-function(input_file,
   return(FALSE)
 }
 
-CheckRequiredFiles2 <- function(input_sequence, 
-                                hla_file, 
-                                refflat_file, 
+CheckRequiredFiles2 <- function(input_sequence,
+                                hla_file,
+                                refflat_file,
                                 refmrna_file,
                                 nm_id = NA,
                                 gene_symbol = NA,
@@ -52,9 +52,14 @@ CheckRequiredFiles2 <- function(input_sequence,
   } else {
     print(paste("refMrna:", refmrna_file))
   }
-  if(is.na(nm_id) & is.na(gene_symbol)) {
-    print("Please Specify Either One of: nm_id or gene_symbol.")
-    return(TRUE)
+  if(length(nm_id) <= 1 & length(gene_symbol) <= 1){
+    if(is.na(nm_id) & is.na(gene_symbol)) {
+      print("Please Specify Either One of: nm_id or gene_symbol.")
+      return(TRUE)
+    }else {
+      print(paste("NM_ID: ", nm_id))
+      print(paste("Gene Symbol:", gene_symbol))
+    }
   } else {
     print(paste("NM_ID: ", nm_id))
     print(paste("Gene Symbol:", gene_symbol))
@@ -64,7 +69,7 @@ CheckRequiredFiles2 <- function(input_sequence,
 }
 
 CheckRequiredColumns<-function(input_file,
-                               chr_column, 
+                               chr_column,
                                mutation_start_column,
                                mutation_end_column,
                                mutation_ref_column,
@@ -74,73 +79,73 @@ CheckRequiredColumns<-function(input_file,
                                depth_tumor_column
                                ){
   index<-scan(input_file, "character", nlines = 1)
-  
+
   if(is.na(chr_column)) {
-    chr_column<-grep("chr", tolower(index))[1]; 
+    chr_column<-grep("chr", tolower(index))[1];
     if(is.na(chr_column)) {
       print("Please Manually Indicate chr_column")
       return(0)
-    } 
+    }
   }
   print(paste("Set chr_column as", chr_column))
-  
+
   if(is.na(mutation_start_column)) {
-    mutation_start_column<-grep("start", tolower(index))[1]; 
+    mutation_start_column<-grep("start", tolower(index))[1];
     if(is.na(mutation_start_column)) {
       print("Please Manually Indicate mutation_start_column")
       return(0)
     }
   }
   print(paste("Set mutation_start_column as", mutation_start_column))
-  
+
   if(is.na(mutation_end_column)) {
-    mutation_end_column<-grep("end", tolower(index))[1]; 
+    mutation_end_column<-grep("end", tolower(index))[1];
     if(is.na(mutation_end_column)) {
       print("Please Manually Indicate mutation_end_column")
       return(0)
-    } 
+    }
   }
   print(paste("Set mutation_end_column as", mutation_end_column))
-        
+
   if(is.na(mutation_ref_column)) {
-    mutation_ref_column<-grep("ref", tolower(index))[1]; 
+    mutation_ref_column<-grep("ref", tolower(index))[1];
     if(is.na(mutation_ref_column)) {
       print("Please Manually Indicate mutation_ref_column")
       return(0)
-    } 
+    }
   }
   print(paste("Set mutation_ref_column as", mutation_ref_column))
 
   if(is.na(mutation_alt_column)) {
-    mutation_alt_column<-grep("alt", tolower(index))[1]; 
+    mutation_alt_column<-grep("alt", tolower(index))[1];
     if(is.na(mutation_alt_column)) {
       print("Please Manually Indicate mutation_alt_column")
       return(0)
-    } 
+    }
   }
   print(paste("Set mutation_alt_column as", mutation_alt_column))
 
   if(is.na(depth_normal_column)) {
-    depth_normal_column<-intersect(grep("depth", tolower(index)), grep("normal", tolower(index)))[1]; 
+    depth_normal_column<-intersect(grep("depth", tolower(index)), grep("normal", tolower(index)))[1];
     if(is.na(depth_normal_column)) {
       print("Please Manually Indicate depth_normal_column")
-    } 
+    }
   }
   print(paste("Set depth_normal_column as", depth_normal_column))
-  
+
   if(is.na(depth_tumor_column)) {
-    depth_tumor_column<-intersect(grep("depth", tolower(index)), grep("tumor", tolower(index)))[1]; 
+    depth_tumor_column<-intersect(grep("depth", tolower(index)), grep("tumor", tolower(index)))[1];
     if(is.na(depth_tumor_column)) {
       print("Please Manually Indicate depth_tumor_column")
-    } 
+    }
   }
   print(paste("Set depth_tumor_column as", depth_tumor_column))
 
   if(is.na(nm_id_column)) {
-    nm_id_column<-grep("AAChange.refGene", tolower(index))[1]; 
+    nm_id_column<-grep("AAChange.refGene", tolower(index))[1];
     if(is.na(nm_id_column)) {
       index<-scan(input_file, "character", nlines = 1, skip = 1)
-      nm_id_column<-grep("nm_|nr_", tolower(index))[1]; 
+      nm_id_column<-grep("nm_|nr_", tolower(index))[1];
       if(is.na(nm_id_column)) {
         print("Please Manually Indicate nm_id_column")
         return(0)
@@ -148,8 +153,8 @@ CheckRequiredColumns<-function(input_file,
     }
   }
   print(paste("Set nm_id_column as", nm_id_column))
-  
-  return(c(chr_column, 
+
+  return(c(chr_column,
            mutation_start_column,
            mutation_end_column,
            mutation_ref_column,
@@ -166,7 +171,7 @@ SettingNetMHCpan<-function(netMHCpan_dir){
     dir.create(paste(getwd(), "/", netMHCpan_par, "/tmp", sep=""))
   }
   netMHCpan_script<-gsub("#setnv", "setenv", netMHCpan_script)
-  
+
   netMHCpan_script[grep("setenv\tNMHOME", netMHCpan_script)]<-
     paste("setenv\tNMHOME ", getwd(), "/", netMHCpan_par, sep="")
   write.table(netMHCpan_script, netMHCpan_dir, row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
@@ -202,4 +207,4 @@ apply2<-function(x, y, f){
   }
 }
 
-  
+

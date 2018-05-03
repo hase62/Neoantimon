@@ -102,10 +102,10 @@ MainSeqFragmentClass1<-function(input_sequence,
                                 export_dir = paste("result", file_name_in_hla_table, job_id, "SeqFragment", sep="."),
                                 netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
                                 peptide_length = c(8, 9, 10, 11, 12, 13),
-                                nm_id,
-                                gene_symbol,
+                                nm_id = NA,
+                                gene_symbol = NA,
                                 reading_frame = 1){
-  
+
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
                          hla_file = hla_file,
@@ -117,7 +117,7 @@ MainSeqFragmentClass1<-function(input_sequence,
 
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  
+
   #Generate FASTA and Mutation Profile
   job_id = paste(job_id, "SeqFragment", sep = "_")
   GenerateMutatedFragments(input_sequence = input_sequence,
@@ -129,7 +129,7 @@ MainSeqFragmentClass1<-function(input_sequence,
                            min_peptide_length = min(peptide_length),
                            reading_frame = reading_frame,
                            export_dir = export_dir)
-  
+
   #Check Output
   output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
@@ -172,7 +172,7 @@ MainSeqFragmentClass1<-function(input_sequence,
   result <- MainMergeINDELSVClass1(input_dir = export_dir,
                                    file_prefix = job_id,
                                    annotation_file = output_peptide_txt_file)
-  
+
   print("Successfully Finished.")
   return(result)
 }

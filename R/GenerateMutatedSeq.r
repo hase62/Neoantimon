@@ -1,40 +1,44 @@
-GenerateMutatedSeq<-function(input_file, 
-                             hmdir, 
+GenerateMutatedSeq<-function(input_file,
+                             hmdir,
                              job_id,
                              refflat_file,
                              refmrna_file,
-                             max_peptide_length, 
-                             chr_column, 
+                             max_peptide_length,
+                             chr_column,
                              mutation_start_column,
-                             mutation_end_column, 
-                             mutation_ref_column, 
+                             mutation_end_column,
+                             mutation_ref_column,
                              mutation_alt_column,
-                             nm_id_column, 
-                             depth_normal_column, 
+                             nm_id_column,
+                             depth_normal_column,
                              depth_tumor_column,
-                             ambiguous_between_exon, 
+                             ambiguous_between_exon,
                              ambiguous_codon,
                              export_dir){
 
   #READ Data
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
-  data<-scan(input_file, "character", sep="\n", skip=1)
+  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[-1, 1]
   data<-data[grep("\texonic\t", data)]
   data<-data[grep("\tnonsynonymous", data)]
   data<-gsub("\"", "",data)
-  if(length(data)<1) return(NULL)
+  if(length(data) < 1) return(NULL)
 
   #READ refFlat
-  list_nm<-scan(refflat_file, "character", sep="\n")
-  list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
+  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
+  tmp <- t(sapply(list_nm, function(x) strsplit(x[1], "\t")[[1]]))
+  list_nm_gene <- tmp[, 1]
+  list_nm_cut <- tmp[, 2]
 
   #Get RNA-Code Data
-  list_mra<-scan(refmrna_file, "character", sep=" ")
-  start_<-grep(">", list_mra)
-  end_<-c(start_[-1] - 1, length(list_mra))
-  list_fl_NMID<-gsub(">", "", list_mra[start_])
-  list_fl_dna <-sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 2):end_[x]], collapse = ""))
-  
+  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+  start_ <- grep(">", list_mra)
+  end_ <- c(start_[-1] - 1, length(list_mra))
+  tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
+  list_fl_NMID <- tmp
+  list_fl_dna <- sapply(1:length(start_),
+                        function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
+
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")
 
@@ -296,42 +300,42 @@ GenerateMutatedSeq<-function(input_file,
             substr(dna_trans, m_point_2, m_point_2)<-trans_to[match(tolower(m_alt),trans_from)]
           }
           dna_trans_mut<-dna_trans
-            
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          #Make Mutated-Peptide
          peptide<-NULL
          while(nchar(dna_trans) >= 3){
@@ -340,7 +344,7 @@ GenerateMutatedSeq<-function(input_file,
            if(a=="X") break
            dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
          }
-         
+
          target_amino_after<-peptide[ceiling(m_point_2/3.0)]
          #VCF Description of Normal Amino Acid is not What Generated
          if(target_amino_before==target_amino_after | target_amino_after == "X"){
@@ -359,11 +363,11 @@ GenerateMutatedSeq<-function(input_file,
          if(peptide_end>length(peptide)) peptide_end<-length(peptide)
          peptide <- peptide[peptide_start:peptide_end]
          peptide_normal <- peptide_normal[peptide_start:peptide_end]
-         
-         
-         
-         
-         
+
+
+
+
+
          #Save Peptide
          if(length(peptide) < 8) break
          refFasta<-rbind(refFasta,
@@ -373,7 +377,7 @@ GenerateMutatedSeq<-function(input_file,
                            nm_ids[[1]][h+2],
                            m_ref,
                            m_alt,
-                           round(as.numeric(MP),5), 
+                           round(as.numeric(MP),5),
                            ifelse(is.character(GP), GP, round(GP,5)),
                            exon_start[1],
                            rev(exon_end)[1],
@@ -381,8 +385,8 @@ GenerateMutatedSeq<-function(input_file,
                            DP,
                            TDP,
                            paste(peptide_normal, collapse=""),
-                           paste(peptide, collapse=""), 
-                           dna_trans_normal, 
+                           paste(peptide, collapse=""),
+                           dna_trans_normal,
                            dna_trans_mut))
 
          #Remove X and Save Fasta in Mutated Peptide
@@ -450,10 +454,13 @@ GenerateMutatedSeq<-function(input_file,
      i<-i+1
    }
   }
-  write.table(fasta, paste(input_file, job_id, ".", "peptide", ".", "fasta", sep="."),
+  write.table(fasta,
+              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  write.table(fasta_norm, paste(input_file, job_id, ".", "normpeptide", ".", "fasta",sep="."),
+  write.table(fasta_norm,
+              paste(export_dir, "/", input_file, ".", job_id, ".", "normpeptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  write.table(refFasta, paste(input_file, job_id, "peptide", "txt", sep="."),
+  write.table(refFasta,
+              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

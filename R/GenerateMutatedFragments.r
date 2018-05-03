@@ -9,36 +9,38 @@ GenerateMutatedFragments<-function(input_sequence,
                                    export_dir){
 
   #READ refFlat
-  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)
-  tmp <- t(apply(list_nm, 1, function(x) strsplit(x[1], "\t")[[1]]))
-  list_nm_gene <- tmp[,1]
-  list_nm_cut <- tmp[,2]
+  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
+  tmp <- t(sapply(list_nm, function(x) strsplit(x[1], "\t")[[1]]))
+  list_nm_gene <- tmp[, 1]
+  list_nm_cut <- tmp[, 2]
 
   #Get RNA-Code Data
-  list_mra <- scan(refmrna_file, "character", sep=" ")
-  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\t', data.table = FALSE)
-
-    start_<-grep(">", list_mra)
-  end_<-c(start_[-1] - 1, length(list_mra))
-  list_fl_NMID<-gsub(">", "", list_mra[start_])
-  list_fl_dna <-sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 2):end_[x]], collapse = ""))
+  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+  start_ <- grep(">", list_mra)
+  end_ <- c(start_[-1] - 1, length(list_mra))
+  tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
+  list_fl_NMID <- tmp
+  list_fl_dna <- sapply(1:length(start_),
+                        function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
 
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")
 
-  fasta<-NULL
-  refFasta<-NULL
-  random<-0
-
   #Obtain refFLAT Data
-  s_variants <- match(nm_id, list_nm_cut)
-  if(is.na(s_variants)) {
-    s_variants <- which(!is.na(match(list_nm_gene, gene_symbol)))
+  s_variants_from_nmid <- match(nm_id, list_nm_cut)
+  s_variants_from_gene <- which(!is.na(match(list_nm_gene, gene_symbol)))
+  s_variants <- sort(unique(c(s_variants_from_nmid, s_variants_from_gene)))
+  if(length(s_variants) == 0){
     print(paste("NM_ID NOT Macth, Skip:", nm_id))
     next
   }
 
   #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
+  peptide_normal_merged <- NULL
+  chrs <- NULL
+  gene_ids <- NULL
+  exon_starts <- NULL
+  exon_ends <- NULL
   for(v in s_variants){
     #Whether Last or Not
     nm_sep <- strsplit(list_nm[v], "\t")[[1]]
@@ -46,18 +48,22 @@ GenerateMutatedFragments<-function(input_sequence,
 
     #Skip Such As "ch5_hap"
     if(nchar(nm_sep[3]) > 5) next
+    chrs <- paste(nm_sep[3], collapse = ";")
     strand <- nm_sep[4]
     g_name <- nm_sep[1]
+    gene_ids <- paste(gene_ids, g_name, collapse = ";")
 
     #Get Translation Start/End, Exon Start/End
-    trans_start<-as.numeric(nm_sep[7])
-    trans_end<-as.numeric(nm_sep[8])
-    exon_start<-as.numeric(strsplit(nm_sep[10], ",")[[1]])
-    exon_end<-as.numeric(strsplit(nm_sep[11], ",")[[1]])
+    trans_start <- as.numeric(nm_sep[7])
+    trans_end <- as.numeric(nm_sep[8])
+    exon_start <- as.numeric(strsplit(nm_sep[10], ",")[[1]])
+    exon_starts <- paste(exon_starts, exon_start, collapse = ";")
+    exon_end <- as.numeric(strsplit(nm_sep[11], ",")[[1]])
+    exon_ends <- paste(exon_ends, rev(exon_end)[1], collapse = ";")
 
     #Obtain DNA sequence of Transcriptome
     #DNAseq is Unique
-    dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
+    dna <- list_fl_dna[match(nm_id, list_fl_NMID)]
     if(nchar(dna) != sum(exon_end - exon_start)){
       dif <- sum(exon_end - exon_start) - nchar(dna)
       if(abs(dif) <= 0) {
@@ -78,7 +84,7 @@ GenerateMutatedFragments<-function(input_sequence,
     }
 
     #Check Start Codon
-    if(substr(dna, ts_point, ts_point + 2)!="atg"){
+    if(substr(dna, ts_point, ts_point + 2) != "atg"){
       print(paste("Start Position is not ATG, Skip", nm_id))
       next
     }
@@ -105,7 +111,7 @@ GenerateMutatedFragments<-function(input_sequence,
     dna_trans <- substr(dna, ts_point, te_point)
 
     #Translation Region is not Valid
-    if(nchar(dna_trans)%%3!=0) {
+    if(nchar(dna_trans)%%3 != 0) {
       print("The Length of RNA is not a multiple of 3, Skip")
       next
     }
@@ -113,73 +119,77 @@ GenerateMutatedFragments<-function(input_sequence,
     #Make Normal Peptide
     peptide_normal <- NULL
     dna_trans_normal <- dna_trans
-    while(nchar(dna_trans)>=3){
-      peptide_normal <- c(peptide_normal,amino[match(substr(dna_trans, 1, 3), codon)])
+    while(nchar(dna_trans) >= 3){
+      peptide_normal <- c(peptide_normal, amino[match(substr(dna_trans, 1, 3), codon)])
       dna_trans <- substr(dna_trans, 4, nchar(dna_trans))
     }
     if(match("X", peptide_normal) < length(peptide_normal)){
       next
     }
+    peptide_normal_merged <- c(peptide_normal_merged, "X", peptide_normal)
+  }
 
-    #Make Mutated Peptide
-    peptide_mutated <- NULL
-    input_sequence <- substr(tolower(input_sequence), reading_frame, nchar(input_sequence))
-    input_sequence_2 <- input_sequence
-    while(nchar(input_sequence_2)>=3){
-      peptide_mutated <- c(peptide_mutated, amino[match(substr(input_sequence_2, 1, 3), codon)])
-      input_sequence_2 <- substr(input_sequence_2, 4, nchar(input_sequence_2))
+  #Make Mutated Peptide
+  peptide_mutated <- NULL
+  input_sequence <- substr(tolower(input_sequence), reading_frame, nchar(input_sequence))
+  input_sequence_2 <- input_sequence
+  while(nchar(input_sequence_2) >= 3){
+    peptide_mutated <- c(peptide_mutated, amino[match(substr(input_sequence_2, 1, 3), codon)])
+    input_sequence_2 <- substr(input_sequence_2, 4, nchar(input_sequence_2))
+  }
+  if(!is.na(match("X", peptide_mutated))){
+    if(match("X", peptide_mutated) < length(peptide_mutated)){
+      peptide_mutated <- peptide_mutated[1:(match("X", peptide_mutated) - 1)]
     }
-    if(!is.na(match("X", peptide_mutated))){
-      if(match("X", peptide_mutated) < length(peptide_mutated)){
-        peptide_mutated <- peptide_mutated[1:(match("X", peptide_mutated) - 1)]
+  }
+  pep_end_pos <- length(peptide_mutated) - min_peptide_length
+  if(pep_end_pos < 1) {
+    print("Mutated Peptide is too short, Skip")
+    next
+  }
+  flg_vec <- rep(FALSE, length(peptide_mutated))
+  ref_pep <- paste(peptide_normal_merged, collapse = "")
+  for(i in 1:(pep_end_pos + 1)){
+    flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
+    if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
+                     (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
+  }
+
+  fasta<-NULL
+  refFasta<-NULL
+  random<-0
+  peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
+  for(peptide in strsplit(peptide_mutated, "-")[[1]]){
+    #Save Peptide
+    if(nchar(peptide) < min_peptide_length) break
+    refFasta<-rbind(refFasta,
+                    c(paste(random, gsub("\"","", g_name), sep="_"),
+                      chrs,
+                      paste(list_nm_cut[s_variants], collapse = ";"),
+                      gene_ids,
+                      NA,
+                      NA,
+                      NA,
+                      NA,
+                      exon_starts,
+                      exon_ends,
+                      NA,
+                      NA,
+                      NA,
+                      paste(peptide_normal_merged, collapse=""),
+                      peptide,
+                      dna_trans_normal,
+                      input_sequence))
+
+      #Remove X and Save Fasta in Mutated Peptide
+      if(!is.na(match("X", peptide))){
+        peptide <- peptide[1:(match("X", peptide) - 1)]
       }
-    }
-    pep_end_pos <- length(peptide_mutated) - min_peptide_length
-    if(pep_end_pos < 1) {
-      print("Mutated Peptide is too short, Skip")
-      next
-    }
-    flg_vec <- rep(FALSE, length(peptide_mutated))
-    ref_pep <- paste(peptide_normal, collapse = "")
-    for(i in 1:(pep_end_pos + 1)){
-      flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
-      if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
-                       (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
-    }
+      fasta <- c(fasta, sub("_","", paste(">", random, gsub("\"","", g_name), sep="_")))
+      fasta <- c(fasta, paste(peptide, collapse=""))
 
-    peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
-    for(peptide in strsplit(peptide_mutated, "-")[[1]]){
-      #Save Peptide
-      if(nchar(peptide) < min_peptide_length) break
-      refFasta<-rbind(refFasta,
-                      c(paste(random, gsub("\"","", g_name), sep="_"),
-                        nm_sep[3],
-                        nm_id,
-                        NA,
-                        NA,
-                        NA,
-                        NA,
-                        NA,
-                        exon_start[1],
-                        rev(exon_end)[1],
-                        NA,
-                        NA,
-                        NA,
-                        paste(peptide_normal, collapse=""),
-                        peptide,
-                        dna_trans_normal,
-                        input_sequence))
-
-        #Remove X and Save Fasta in Mutated Peptide
-        if(!is.na(match("X", peptide))){
-          peptide <- peptide[1:(match("X", peptide) - 1)]
-        }
-        fasta <- c(fasta, sub("_","", paste(">", random, gsub("\"","", g_name), sep="_")))
-        fasta <- c(fasta, paste(peptide, collapse=""))
-
-        random <- random + 1
-        print("Peptide Successfully Generated!!")
-    }
+      random <- random + 1
+      print("Peptide Successfully Generated!!")
   }
 
   #Integrate The Same Peptide

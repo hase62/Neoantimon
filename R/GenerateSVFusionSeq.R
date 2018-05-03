@@ -1,49 +1,49 @@
-GenerateSVFusionSeq<-function(input_file, 
-                             hmdir, 
-                             job_id, 
+GenerateSVFusionSeq<-function(input_file,
+                             hmdir,
+                             job_id,
                              refflat_file,
-                             refmrna_file, 
-                             max_peptide_length, 
-                             chr_column, 
-                             mutation_start_column, 
-                             mutation_end_column, 
-                             mutation_ref_column, 
-                             mutation_alt_bnd_column, 
-                             nm_id_column, 
+                             refmrna_file,
+                             max_peptide_length,
+                             chr_column,
+                             mutation_start_column,
+                             mutation_end_column,
+                             mutation_ref_column,
+                             mutation_alt_bnd_column,
+                             nm_id_column,
                              gene_symbol_column,
-                             depth_normal_column, 
+                             depth_normal_column,
                              depth_tumor_column,
                              mate_id_column,
-                             ambiguous_between_exon, 
+                             ambiguous_between_exon,
                              ambiguous_codon,
                              export_dir){
 
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
   data<-scan(input_file, "character", sep="\n", skip=1)
-  
+
   if(length(data)<1){
     q("no")
   }
-  
-  mateIDs<-sapply(sapply(data, function(x) strsplit(x, "\t")[[1]][mate_id_column]), 
+
+  mateIDs<-sapply(sapply(data, function(x) strsplit(x, "\t")[[1]][mate_id_column]),
                   function(x) strsplit(x, "_")[[1]][1])
   uIDs<-unique(mateIDs)[sapply(unique(mateIDs), function(x) length(which(!is.na(match(mateIDs, x)))) > 1)]
-  
+
   #READ refFlat
   list_nm<-scan(refflat_file, "character", sep="\n")
   list_nm_c<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][1])
   list_nm_cut<-sapply(list_nm, function(x) strsplit(x, "\t")[[1]][2])
-  
+
   #Get RNA-Code Data
   list_mra<-scan(refmrna_file, "character", sep=" ")
   start_<-grep(">", list_mra)
   end_<-c(start_[-1] - 1, length(list_mra))
   list_fl_NMID<-gsub(">", "", list_mra[start_])
   list_fl_dna <-sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 2):end_[x]], collapse = ""))
-  
+
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")
-  
+
   random<-0
   fasta<-NULL
   refFasta<-NULL
@@ -57,28 +57,28 @@ GenerateSVFusionSeq<-function(input_file,
       #f is a row of mutation data
       #Extract i-th Data
       f<-strsplit(data[i], "\t")[[1]]
-      
+
       #Chromosome
       chr<-f[chr_column]
-      
-      whether_exon_intron<-ifelse(length(grep("exon", f)) > 0, 
-                                  ifelse(length(grep("intron", f)) > 0, 
+
+      whether_exon_intron<-ifelse(length(grep("exon", f)) > 0,
+                                  ifelse(length(grep("intron", f)) > 0,
                                          ifelse(grep("exon", f)[1] > grep("intron", f)[1], "exon", "intron"),
                                          "exon"),
                                   "intron")
-      
+
       #MP:Somatic Mutation Probability
       MP<-0
       if(length(grep("MP=", f))>0){
         MP<-as.numeric(strsplit(strsplit(f[grep("MP=",f)], "MP=")[[1]][2],";")[[1]][1])
       }
-      
+
       #GP:Genotype Probability
       GP<-0
       if(length(grep("GP=",f))>0){
         GP<-strsplit(strsplit(f[grep("GP=",f)], "GP=")[[1]][2],";")[[1]][1]
       }
-      
+
       #DP:Total Depth
       DP<-0
       alt<-NULL
@@ -94,7 +94,7 @@ GenerateSVFusionSeq<-function(input_file,
           DP<-as.numeric(ref) + as.numeric(alt)
         }
       }
-      
+
       #TDP:Tumor Depth
       TDP<-0
       if(!is.na(depth_tumor_column)){
@@ -104,7 +104,7 @@ GenerateSVFusionSeq<-function(input_file,
       }else if(!is.null(alt) & !is.null(ref)){
         TDP<-as.numeric(alt)
       }
-      
+
       #Mutation Start/End Position
       m_start<-as.numeric(f[mutation_start_column])
       m_end<-as.numeric(f[mutation_end_column])
@@ -116,16 +116,16 @@ GenerateSVFusionSeq<-function(input_file,
       m_alt_pos<-strsplit(strsplit(m_alt, ":")[[1]][2], "\\]|\\[")[[1]][1]
       m_alt_dir<-ifelse(nchar(strsplit(m_alt, "\\[|\\]")[[1]][1]) > 0, "head", "tail")
       m_alt_tra<-ifelse(length(grep("\\[", m_alt))==1, "forward", "reverse")
-      m_alt_cont<-ifelse(m_alt_dir == "head", 
-                         strsplit(m_alt, "\\[|\\]")[[1]][1], 
+      m_alt_cont<-ifelse(m_alt_dir == "head",
+                         strsplit(m_alt, "\\[|\\]")[[1]][1],
                          rev(strsplit(m_alt, "\\[|\\]")[[1]])[1])
-      m_alt_cont<-ifelse(m_alt_dir == "head", 
-                         substr(m_alt_cont, 2, nchar(m_alt_cont)), 
+      m_alt_cont<-ifelse(m_alt_dir == "head",
+                         substr(m_alt_cont, 2, nchar(m_alt_cont)),
                          substr(m_alt_cont, 1, nchar(m_alt_cont) - 1))
-      m_alt_cont<-ifelse(m_alt_dir == "head", 
-                         tolower(m_alt_cont), 
+      m_alt_cont<-ifelse(m_alt_dir == "head",
+                         tolower(m_alt_cont),
                          paste(rev(trans_to[match(strsplit(tolower(m_alt_cont), "")[[1]], trans_from)]), collapse=""))
-      
+
       #When Including MultipleIDs
       #For example, f[10]=SAMD11:NM_152486:exon9:c.C880T:p.Q294X...
       if(is.na(nm_id_column) | nm_id_column == 0){
@@ -154,7 +154,7 @@ GenerateSVFusionSeq<-function(input_file,
               next
             }
             strand<-nm_sep[4]
-            
+
             trans_start<-as.numeric(nm_sep[7])
             trans_end<-as.numeric(nm_sep[8])
             if(trans_start==trans_end) {
@@ -163,7 +163,7 @@ GenerateSVFusionSeq<-function(input_file,
             }
             exon_start<-as.numeric(strsplit(nm_sep[10], ",")[[1]])
             exon_end<-as.numeric(strsplit(nm_sep[11], ",")[[1]])
-            
+
             #Obtain DNA sequence of Transcriptome
             #DNAseq is Unique
             dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
@@ -174,7 +174,7 @@ GenerateSVFusionSeq<-function(input_file,
                 next
               }
             }
-            
+
             #Get Relative Mutation Position
             if(whether_exon_intron == "exon" & length(which((exon_start - m_start) * (exon_end - m_start) <= 0)) == 0){
               print("Annotation is Exonic but Position is Intronic")
@@ -186,7 +186,7 @@ GenerateSVFusionSeq<-function(input_file,
               print("Annotation is Intronic but Position is not Intron")
               next
             }
-            
+
             if(whether_exon_intron == "intron") {
               #Mutation Position May Be 1-based Position
               if(strand =="+"){
@@ -234,18 +234,18 @@ GenerateSVFusionSeq<-function(input_file,
                 m_point_slave  <-sum((exon_end - exon_start)[point])
               }
             }
-            
+
             #Get Relative Translation-Start Position (Correct 0-start to 1-start)
             if(strand== "+"){
               point<-(exon_end > trans_start)
-              ts_point<-sum((exon_end - exon_start)[!point]) + 
+              ts_point<-sum((exon_end - exon_start)[!point]) +
                 (trans_start - exon_start[which(point)[1]]) + 1
             }else{
               point<-(exon_start > trans_end)
-              ts_point<-sum((exon_end - exon_start)[point]) + 
+              ts_point<-sum((exon_end - exon_start)[point]) +
                 (exon_end[rev(which(!point))[1]] - trans_end) + 1
             }
-            
+
             #Check Start Codon
             d<-0
             if(substr(dna, ts_point, ts_point + 2)!="atg"){
@@ -258,8 +258,8 @@ GenerateSVFusionSeq<-function(input_file,
               }
               if(flag){
                 if(d < 0){
-                  dna<-sub(" ", "", paste(paste(rep("x", -d),collapse=""), dna, collapse="")) 
-                }else{	        	        
+                  dna<-sub(" ", "", paste(paste(rep("x", -d),collapse=""), dna, collapse=""))
+                }else{
                   dna<-substr(dna, d + 1, nchar(dna))
                 }
               }else{
@@ -267,18 +267,18 @@ GenerateSVFusionSeq<-function(input_file,
                 next
               }
             }
-            
+
             #Get Relative Translation-End Position
             if(strand=="+"){
               point<-(exon_end >= trans_end)
-              te_point<-sum((exon_end - exon_start)[!point]) + 
+              te_point<-sum((exon_end - exon_start)[!point]) +
                 (trans_end - exon_start[which(point)[1]])
             }else{
               point<-(exon_start > trans_start)
-              te_point<-sum((exon_end - exon_start)[point]) + 
+              te_point<-sum((exon_end - exon_start)[point]) +
                 (exon_end[rev(which(!point))[1]] - trans_start)
             }
-            
+
             #Check Stop Codon
             e<-0
             if(amino[match(substr(dna, te_point-2, te_point), codon)]!="X"){
@@ -298,11 +298,11 @@ GenerateSVFusionSeq<-function(input_file,
                 next
               }
             }
-            
+
             #Make Peptide
             dna_full<-dna
             dna_trans<-substr(dna, ts_point, te_point)
-            
+
             #Make Normal Peptide
             peptide_normal<-NULL
             dna<-dna_trans
@@ -310,12 +310,12 @@ GenerateSVFusionSeq<-function(input_file,
               peptide_normal<-c(peptide_normal, amino[match(substr(dna_trans, 1, 3), codon)])
               dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
             }
-            
+
             if(nchar(dna_trans)%%3!=0) {
               print("Peptide_Length_Miss!!")
               next
             }
-            
+
             if(strand == "+" & m_alt_dir == "head") {
               master_slave <- "master"
               if(m_alt_tra == "forward") {
@@ -346,14 +346,14 @@ GenerateSVFusionSeq<-function(input_file,
                 mate_strand <- "+"
               } else {
                 mate_strand <- "-"
-              }	    
+              }
             }
             m_point_master_2 <- m_point_master - (ts_point) + 1
             m_point_slave_2  <- m_point_slave  - (ts_point) + 1
-            
+
             dna_master <- substr(dna, 1, m_point_master_2)
-            if(master_slave == "master" & 
-               whether_exon_intron == "exon" & 
+            if(master_slave == "master" &
+               whether_exon_intron == "exon" &
                mate_whether_exon_intron == "exon" &
                nchar(m_alt_cont) > 0){
               paste(dna_master, m_alt_cont, sep = "")
@@ -361,7 +361,7 @@ GenerateSVFusionSeq<-function(input_file,
             dna_slave  <- substr(dna_full, m_point_slave, nchar(dna_full))
             frame <- nchar(substr(dna, 1, m_point_slave_2 - 1))
             if(frame == 0) frame <- m_point_slave - ts_point
-            
+
             set<-rbind(set, c(g_name,
                               nm_id,
                               strand,
@@ -385,34 +385,34 @@ GenerateSVFusionSeq<-function(input_file,
       }
       sets<-c(sets, list(set))
     }
-    
+
     if(length(sets) < 2) next
-    
+
     count_main <- 0
     for(main_set in sets){
       count_main <- count_main + 1
       if(is.null(main_set)) next
-      
+
       count_sub <- 0
       for(sub_set in sets){
         count_sub <- count_sub + 1
         if(is.null(sub_set)) next
-        
-        if(count_main == count_sub) next      
-        
+
+        if(count_main == count_sub) next
+
         for(row1 in 1:nrow(main_set)){
           d1<-main_set[row1, ]
           if(d1[17] =="slave" | nchar(d1[11])==0) next
-          
+
           for(row2 in 1:nrow(sub_set)){
             d2<-sub_set[row2, ]
             if(d2[17] =="master" | nchar(d2[12])==0) next
-            
+
             if(d1[16] != d2[15] | d2[16] != d1[16]) next
             if(d1[1] == d2[1] & d1[2] != d2[2]){
               next
             }
-            
+
             flag<-FALSE
             dna_trans<-""
             if( (d1[3] == "+" & d1[6] == "head" & d1[7] == "forward" & d2[3] == "+") |
@@ -422,7 +422,7 @@ GenerateSVFusionSeq<-function(input_file,
               dna_trans<-paste(d1[11], d2[12], collapse = "", sep="")
               flag<-TRUE
             }
-            
+
             if(flag){
               peptide<-NULL
               dna_mut<-dna_trans
@@ -430,14 +430,14 @@ GenerateSVFusionSeq<-function(input_file,
                 peptide<-c(peptide, amino[match(substr(dna_trans, 1, 3), codon)])
                 dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
               }
-              
+
               #Calculate Peptide Start
               peptide_normal<-strsplit(d1[13], "")[[1]]
               min_len<-min(length(peptide), length(peptide_normal))
               peptide_start<-which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - max_peptide_length + 1
               if(is.na(peptide_start)) break
               if(peptide_start < 1) peptide_start<-1
-              
+
               #Calculate Peptide End
               if(as.numeric(d2[18]) >= 0){
                 frame<-ifelse(nchar(d1[11])%%3 == (as.numeric(d2[18]) %% 3), "In", "Out")
@@ -454,7 +454,7 @@ GenerateSVFusionSeq<-function(input_file,
               } else {
                 peptide_end = length(peptide)
               }
-              
+
               peptide <- peptide[peptide_start:peptide_end]
               peptide_normal <- paste(d1[13], "X", d2[13], sep="", collapse="")
               #Save Peptide
@@ -478,7 +478,7 @@ GenerateSVFusionSeq<-function(input_file,
                                           paste(peptide, sep="", collapse=""),
                                           0,
                                           dna_mut))
-              
+
               #Remove X and Save Fasta
               if(!is.na(match("X",peptide)))
                 peptide<-peptide[1:(match("X",peptide) - 1)]
@@ -492,7 +492,7 @@ GenerateSVFusionSeq<-function(input_file,
       }
     }
   }
-  
+
   #Integrate The Same Peptide
   if(is.null(refFasta)) q("no")
   i<-1
@@ -523,9 +523,11 @@ GenerateSVFusionSeq<-function(input_file,
       i<-i+1
     }
   }
-  
-  write.table(fasta, paste(input_file, ".", job_id, ".", "peptide", ".", "fasta",sep="."),
+
+  write.table(fasta,
+              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  write.table(refFasta, paste(input_file, ".", job_id, ".", "peptide","txt",sep="."),
+  write.table(refFasta,
+              paste(export_dir, "/", input_file, ".", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

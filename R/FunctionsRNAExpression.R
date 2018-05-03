@@ -1,22 +1,23 @@
-RNAExpression<-function(rnaexp_file, output_peptide_txt_file, 
-                        width, 
-                        samtools_dir, 
-                        refdna_file, 
-                        rnabam_file, 
-                        bcftools_dir, 
+RNAExpression<-function(rnaexp_file,
+                        output_peptide_txt_file,
+                        width,
+                        samtools_dir,
+                        refdna_file,
+                        rnabam_file,
+                        bcftools_dir,
                         indel){
   #Attach RNAseq Data if Exist, Otherwise set NULL column
   skip=FALSE
   if(!is.na(rnaexp_file) & !is.na(rnabam_file) & !is.na(samtools_dir) & !is.na(bcftools_dir)){
     if(!file.exists(rnaexp_file) | !file.exists(rnabam_file)) {
       print("Indicated RNA File or RNA bam file do not exist.")
-    } else if(!file.exists(samtools_dir) | !file.exists(bcftools_dir)) { 
+    } else if(!file.exists(samtools_dir) | !file.exists(bcftools_dir)) {
       print("Indicated samtools and bcftools do not exist. ")
-    } else if(file.exists(rnaexp_file) & file.exists(rnabam_file) 
+    } else if(file.exists(rnaexp_file) & file.exists(rnabam_file)
        & file.exists(samtools_dir) & file.exists(bcftools_dir)) {
       GenerateListForGetRNASeq(output_peptide_txt_file, width = width)
       output_file_rna_list<-paste(output_peptide_txt_file, ".list.txt", sep="")
-      
+
       print(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refdna_file, rnabam_file,
                    ">", paste(output_peptide_txt_file, "list.mp", sep=".")))
       error<-tryCatch2(system(paste(samtools_dir, "mpileup -l", output_file_rna_list, "-uf", refdna_file, rnabam_file,
@@ -32,7 +33,7 @@ RNAExpression<-function(rnaexp_file, output_peptide_txt_file,
     }
   }
   if(indel){
-    GetRNAseq_indel(output_peptide_txt_file = output_peptide_txt_file, 
+    GetRNAseq_indel(output_peptide_txt_file = output_peptide_txt_file,
                     rnaexp_file = rnaexp_file,
                     output_file_rna_vcf = paste(output_peptide_txt_file, "list.vcf", sep="."))
   } else {
@@ -42,8 +43,8 @@ RNAExpression<-function(rnaexp_file, output_peptide_txt_file,
   }
 }
 
-GetRNAseq_indel<-function(output_peptide_txt_file, 
-                          rnaexp_file, 
+GetRNAseq_indel<-function(output_peptide_txt_file,
+                          rnaexp_file,
                           output_file_rna_vcf){
   data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   if(ifelse(is.na(rnaexp_file), TRUE, !file.exists(rnaexp_file))){
@@ -52,7 +53,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
                 row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
     return()
   }
-  
+
   ##Get RNA Data
   temp<-scan(rnaexp_file, "character", sep="\n")
   if(length(temp) < 2){
@@ -65,7 +66,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
   rna<-rna[-1,]
   rna_pos<-t(sapply(rna[,2], function(x) strsplit(x, ":|-")[[1]]))
   hit<-match(sapply(data[,2], function(x) strsplit(x,"_")[[1]][2]), rna[,1])
-  
+
   #data[,chr], data[,m_position]
   for(x in which(is.na(hit))){
     hit_pos<-which(data[x,3]==rna_pos[,1])
@@ -76,12 +77,12 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
       hit[x]<-abs_hit_pos[1]
     }
   }
-  
+
   data<-cbind(data, rna[hit,3])
   colnames(data)<-NULL
   rownames(data)<-NULL
   tail_col<-ncol(data)
-  
+
   ##Get Ratio
   print(output_file_rna_vcf)
   if(ifelse(is.na(output_file_rna_vcf), FALSE, file.exists(output_file_rna_vcf))){
@@ -92,7 +93,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
     if(ncol(ratio)==0){
       ratio_matrix<-matrix(nrow=nrow(data), ncol=2, NA)
     } else {
-      size<-sum(as.numeric(sapply(strsplit(ratio[1,3],"M|D|I")[[1]], 
+      size<-sum(as.numeric(sapply(strsplit(ratio[1,3],"M|D|I")[[1]],
                                   function(x) rev(strsplit(x,"N|S|H|P")[[1]])[1])))
       ratio_matrix<-NULL
       for(i in 1:nrow(data)){
@@ -116,17 +117,18 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
 }
 
-GetRNAseq<-function(output_peptide_txt_file, 
-                    rnaexp_file, 
+GetRNAseq<-function(output_peptide_txt_file,
+                    rnaexp_file,
                     output_file_rna_vcf){
   data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
+
   if(ifelse(is.na(rnaexp_file), TRUE, !file.exists(rnaexp_file))){
     ratio_matrix<-matrix(nrow=nrow(data), ncol=3, NA)
     write.table(cbind(data, ratio_matrix), output_peptide_txt_file,
                 row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
     return()
   }
-  
+
   ##Get RNA Data
   temp<-scan(rnaexp_file, "character", sep="\n")
   if(length(temp) < 2){
@@ -139,7 +141,7 @@ GetRNAseq<-function(output_peptide_txt_file,
   rna<-rna[-1,]
   rna_pos<-t(sapply(rna[,2], function(x) strsplit(x, ":|-")[[1]]))
   hit<-match(sapply(data[,2], function(x) strsplit(x,"_")[[1]][2]), rna[,1])
-  
+
   #data[,chr], data[,m_position]
   for(x in which(is.na(hit))){
     hit_pos<-which(data[x,3]==rna_pos[,1])
@@ -150,12 +152,12 @@ GetRNAseq<-function(output_peptide_txt_file,
       hit[x]<-abs_hit_pos[1]
     }
   }
-  
+
   data<-cbind(data, rna[hit,3])
   colnames(data)<-NULL
   rownames(data)<-NULL
   tail_col<-ncol(data)
-  
+
   ##Get Ratio
   print(output_file_rna_vcf)
   if(ifelse(is.na(output_file_rna_vcf), FALSE, file.exists(output_file_rna_vcf))){
@@ -166,7 +168,7 @@ GetRNAseq<-function(output_peptide_txt_file,
     if(ncol(ratio)==0){
       ratio_matrix<-matrix(nrow=nrow(data), ncol=2, NA)
     } else {
-      
+
       ratio_matrix<-NULL
       for(i in 1:nrow(data)){
         hit<-which(data[i, 3]==ratio[,1] & data[i, 12]==ratio[,2])
@@ -190,9 +192,9 @@ GetRNAseq<-function(output_peptide_txt_file,
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
 }
 
-GenerateListForGetRNASeq<-function(output_peptide_txt_file, 
+GenerateListForGetRNASeq<-function(output_peptide_txt_file,
                                    width){
-  data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"), 
+  data<-t(sapply(scan(output_peptide_txt_file, "character", sep="\n"),
                  function(x) strsplit(x, "\t")[[1]]))
   data<-cbind(data[,3], as.numeric(data[,12]) - width, as.numeric(data[,12]) + width)
   write.table(data, paste(output_peptide_txt_file, ".list.txt", sep=""), row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")

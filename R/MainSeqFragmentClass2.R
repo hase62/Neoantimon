@@ -105,7 +105,7 @@ MainSeqFragmentClass2<-function(input_sequence,
                                 nm_id,
                                 gene_symbol,
                                 reading_frame = 1){
-  
+
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
                          hla_file = hla_file,
@@ -114,11 +114,11 @@ MainSeqFragmentClass2<-function(input_sequence,
                          nm_id,
                          gene_symbol,
                          reading_frame)) return(NULL)
-  
+
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  
-  #Generate FASTA and mutation Profile
+
+  #Generate FASTA and Mutation Profile
   job_id = paste(job_id, "SeqFragment", sep = "_")
   GenerateMutatedFragments(input_sequence = input_sequence,
                            hmdir = hmdir,
@@ -129,14 +129,14 @@ MainSeqFragmentClass2<-function(input_sequence,
                            min_peptide_length = min(peptide_length),
                            reading_frame = reading_frame,
                            export_dir = export_dir)
-  
+
   #Check Output
   output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
     return(NULL)
   }
-  
+
   #NetMHCIIpan
   if(is.na(netMHCIIpan_dir) | !file.exists(netMHCIIpan_dir)) {
     print(paste("Did not find", netMHCIIpan_dir))
@@ -152,7 +152,7 @@ MainSeqFragmentClass2<-function(input_sequence,
     print(file_name_in_hla_table, "is not included in", hla_file)
     return (NULL)
   }
-  
+
   #Execute NetMHCpan
   hla_types <- hla[hit, -1]
   for(pep in c("peptide")){
@@ -198,7 +198,7 @@ MainSeqFragmentClass2<-function(input_sequence,
   result <- MainMergeINDELSVClass2(input_dir = export_dir,
                                    file_prefix = job_id,
                                    annotation_file = output_peptide_txt_file)
-  
+
   print("Successfully Finished.")
   return(result)
 }

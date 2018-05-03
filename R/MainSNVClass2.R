@@ -151,7 +151,7 @@ MainSNVClass2<-function(input_file,
 
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  
+
   #Generate FASTA and mutation Profile
   job_id = paste(job_id, "SNV", sep = "_")
   GenerateMutatedSeq(input_file = input_file,
@@ -169,9 +169,10 @@ MainSNVClass2<-function(input_file,
                      depth_normal_column = depth_normal_column,
                      depth_tumor_column = depth_tumor_column,
                      ambiguous_between_exon = ambiguous_between_exon,
-                     ambiguous_codon = ambiguous_codon)
+                     ambiguous_codon = ambiguous_codon,
+                     export_dir = export_dir)
 
-  output_peptide_txt_file<-paste(input_file, ".", job_id, ".peptide.txt", sep="")
+  output_peptide_txt_file <- paste(export_dir, "/", input_file, ".", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
     return(NULL)
@@ -250,7 +251,7 @@ MainSNVClass2<-function(input_file,
   result <- MainMergeSNVClass2(input_dir = export_dir,
                                file_prefix = job_id,
                                annotation_file = output_peptide_txt_file)
-  
+
   print("Successfully Finished.")
   return(result)
 }
