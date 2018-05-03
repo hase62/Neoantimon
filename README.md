@@ -241,6 +241,14 @@ print(sample_copynum, row.names = FALSE)
 
 ##### Sample files can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 ```
+lib/data/sample_result_INDEL_CLASS1_ALL.txt
+lib/data/sample_result_INDEL_CLASS2_ALL.txt
+lib/data/sample_result_SeqFragment_CLASS1_ALL.txt
+lib/data/sample_result_SeqFragment_CLASS2_ALL.txt
+lib/data/sample_result_SNV_CLASS1_ALL.txt
+lib/data/sample_result_SNV_CLASS2_ALL.txt
+lib/data/sample_result_SVFusion_CLASS1_ALL.txt
+lib/data/sample_result_SVFusion_CLASS2_ALL.txt
 lib/data/sample_copynum.txt
 lib/data/sample_hla_table_c1.txt
 lib/data/sample_hla_table_c2.txt
@@ -372,7 +380,7 @@ library(Neoantimon);
 
 ## 5. Result
 
-**They're also included in Result_HLA1_SNV**
+**They're also included in Result_HLA*_**
 
 sample_result_SNV_CLASS1_ALL.txt
 ```
