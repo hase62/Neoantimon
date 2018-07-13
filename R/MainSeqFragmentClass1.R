@@ -100,7 +100,8 @@
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
 #'@export
-MainSeqFragmentClass1<-function(input_sequence,
+MainSeqFragmentClass1<-function(input_sequence = NA,
+                                input_nm_id = NA,
                                 hla_file,
                                 file_name_in_hla_table,
                                 refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
@@ -116,6 +117,7 @@ MainSeqFragmentClass1<-function(input_sequence,
 
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
+                         input_nm_id = input_nm_id,
                          hla_file = hla_file,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,
@@ -129,6 +131,7 @@ MainSeqFragmentClass1<-function(input_sequence,
   #Generate FASTA and Mutation Profile
   job_id = paste(job_id, "SeqFragment", sep = "_")
   GenerateMutatedFragments(input_sequence = input_sequence,
+                           input_nm_id = input_nm_id,
                            hmdir = hmdir,
                            job_id = job_id,
                            refflat_file = refflat_file,

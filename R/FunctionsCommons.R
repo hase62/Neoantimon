@@ -22,17 +22,23 @@ CheckRequiredFiles<-function(input_file,
 }
 
 CheckRequiredFiles2 <- function(input_sequence,
+                                input_nm_id,
                                 hla_file,
                                 refflat_file,
                                 refmrna_file,
                                 nm_id = NA,
                                 gene_symbol = NA,
                                 reading_frame = 1){
-  if(is.na(input_sequence)) {
+  if(is.na(input_sequence) & is.na(input_nm_id)) {
     print("Sequence is NaN")
     return(TRUE)
-  } else {
+  } else if(!is.na(input_sequence) & !is.na(input_nm_id)) {
+    print(paste("Please Specify Either One of", input_sequence, "or", input_nm_id))
+    return(TRUE)
+  } else if(is.na(input_sequence)) {
     print(paste("Sequence:", input_sequence))
+  } else if(is.na(input_nm_id)) {
+    print(paste("NM_ID:", input_nm_id))
   }
   if(!file.exists(hla_file)) {
     print(paste("Did not find HLA Table:", hla_file))

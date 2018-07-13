@@ -91,7 +91,7 @@ gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
 ```
 
-### -Download SampleFiles (Not Required)
+### -Download SampleFiles
 
 You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 Otherwise, run the following codes or use "InstallSampleFiles()" after installing Neoantimon. 
@@ -115,7 +115,7 @@ library(Neoantimon);
 
 ```r
 library(Neoantimon)
-data(“sample_hla_table_c1”)
+data("sample_hla_table_c1")
 print(sample_hla_table_c1, row.names = FALSE)
 ```
 
@@ -129,7 +129,7 @@ print(sample_hla_table_c1, row.names = FALSE)
 **2. A HLA Class II table file must be according to the following format.**
 
 ```r
-data("sample_hla_table_c2”)
+data("sample_hla_table_c2")
 print(sample_hla_table_c2, row.names = FALSE)
 ```
 
@@ -145,9 +145,9 @@ print(sample_hla_table_c2, row.names = FALSE)
 **An annotated VCF file is required for Snv/Indel.**
 
 It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
-Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
+Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you have to manually indicate columns. 
 ```r
-data(“sample_vcf”)
+data("sample_vcf")
 print(sample_vcf, row.names = FALSE)
 ```
 
@@ -166,9 +166,9 @@ print(sample_vcf, row.names = FALSE)
 *An annotated BND format VCF file is required for SV fusion.*
 
 It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)" or "Gene Symbol (Gene.refGene)".
-Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you must indicate columns for them when using Main**() functions. 
+Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you have to manually indicate columns. 
 ```r
-data(“sample_sv_bnd”)
+data("sample_sv_bnd")
 print(sample_sv_bnd, row.names = FALSE)
 ```
 
@@ -182,13 +182,13 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
 ```
 
-### -RNAseq file (Not Required)
+### -RNAseq file
 
-**An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
-If you also indicate "rnabam_file", variant allele frequencies are also attached. **
+An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file" in main functions.
+If you also indicate "rnabam_file", variant allele frequencies and tumor specific RNA expressions are also attached in the results. 
 
 ```r
-data(“sample_rna_exp”)
+data("sample_rna_exp")
 print(sample_rna_exp, row.names = FALSE)
 ```
 
@@ -217,13 +217,14 @@ print(sample_rna_exp, row.names = FALSE)
 ##          AADACL2 HSCHR3_1_CTG2_1:151462241-151489665 0.00000000
 ```
 
-### -CNV file (Not Required)
+### -CNV file
 
-**A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity".
-Purity is set 1 as default value. **
+A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity" in main functions.
+They are used to calculate tumor subclonal cell population 
+Purity is set 1 as default value. 
 
 ```r
-data(“sample_copynum”)
+data("sample_copynum")
 print(sample_copynum, row.names = FALSE)
 ```
 
@@ -277,7 +278,7 @@ library(Neoantimon);
 
 ##### Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
 ```
-    Result_HLA1_SNV <- MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA1_SNV <- MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "lib/data/sample_hla_table_c1.txt",
                                    refflat_file  = "lib/refFlat.txt",
