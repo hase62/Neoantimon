@@ -1,10 +1,8 @@
 #'Calculate Neoantigen Candidates from A Given Sequence for MHC Class2
 #'
-#'@param input_sequence (Required) An input vcf file annotated by,
+#'@param input_sequence (Required) An input amino acid sequence
 #'
-#'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
-#'
-#'See by data(sample_vcf); sample_vcf;
+#'@param input_nm_id (Required) An input amino acid sequence indicated as NM_ID
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.

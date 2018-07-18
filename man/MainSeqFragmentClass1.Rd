@@ -4,20 +4,19 @@
 \alias{MainSeqFragmentClass1}
 \title{Calculate Neoantigen Candidates from A Given Sequence for MHC Class1}
 \usage{
-MainSeqFragmentClass1(input_sequence, hla_file, file_name_in_hla_table,
-  refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
-  refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"), hmdir = getwd(),
-  job_id = "NO_job_id", export_dir = paste("result", file_name_in_hla_table,
-  job_id, "SeqFragment", sep = "."), netMHCpan_dir = paste(hmdir,
-  "lib/netMHCpan-4.0/netMHCpan", sep = "/"), peptide_length = c(8, 9, 10, 11,
-  12, 13), nm_id = NA, gene_symbol = NA, reading_frame = 1)
+MainSeqFragmentClass1(input_sequence = NA, input_nm_id = NA, hla_file,
+  file_name_in_hla_table, refflat_file = paste(hmdir, "lib/refFlat.txt", sep =
+  "/"), refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
+  hmdir = getwd(), job_id = "NO_job_id", export_dir = paste("result",
+  file_name_in_hla_table, job_id, "SeqFragment", sep = "."),
+  netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep = "/"),
+  peptide_length = c(8, 9, 10, 11, 12, 13), nm_id = NA, gene_symbol = NA,
+  reading_frame = 1)
 }
 \arguments{
-\item{input_sequence}{(Required) An input vcf file annotated by,
+\item{input_sequence}{(Required) An input amino acid sequence}
 
-e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
-
-See by data(sample_vcf); sample_vcf;}
+\item{input_nm_id}{(Required) An input amino acid sequence indicated as NM_ID}
 
 \item{hla_file}{(Required) A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.

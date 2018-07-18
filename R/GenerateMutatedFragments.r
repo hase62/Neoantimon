@@ -137,6 +137,7 @@ GenerateMutatedFragments<-function(input_sequence,
   peptide_mutated <- NULL
 
   #Obtain refFLAT Data
+  s_variants_from_input_nmid <- NULL
   if(!is.na(input_nm_id)){
     s_variants_from_input_nmid <- match(input_nm_id, list_nm_cut)
     s_variants_from_input_nmid <- sort(unique(s_variants_from_input_nmid))
@@ -146,7 +147,7 @@ GenerateMutatedFragments<-function(input_sequence,
     return(NULL)
   }
 
-  if(is.na(input_sequence)){
+  if(length(s_variants_from_input_nmid) != 0){
     input_sequence <- NULL
     for(v in s_variants_from_input_nmid){
       #Whether Last or Not
@@ -225,65 +226,72 @@ GenerateMutatedFragments<-function(input_sequence,
 
   if(is.na(input_sequence)) return(NULL)
 
-  input_sequence <- substr(tolower(input_sequence), reading_frame, nchar(input_sequence))
-  input_sequence_2 <- input_sequence
-  while(nchar(input_sequence_2) >= 3){
-    peptide_mutated <- c(peptide_mutated, amino[match(substr(input_sequence_2, 1, 3), codon)])
-    input_sequence_2 <- substr(input_sequence_2, 4, nchar(input_sequence_2))
-  }
-  if(!is.na(match("X", peptide_mutated))){
-    if(match("X", peptide_mutated) < length(peptide_mutated) & is.na(input_nm_id)){
-      peptide_mutated <- peptide_mutated[1:(match("X", peptide_mutated) - 1)]
-    }
-  }
-  pep_end_pos <- length(peptide_mutated) - min_peptide_length
-  if(pep_end_pos < 1) {
-    print("Mutated Peptide is too short, Skip")
-    return(NULL)
-  }
-  flg_vec <- rep(FALSE, length(peptide_mutated))
-  ref_pep <- paste(peptide_normal_merged, collapse = "")
-  for(i in 1:(pep_end_pos + 1)){
-    flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
-    if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
-                      (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
-  }
-
   fasta<-NULL
   refFasta<-NULL
   random<-0
-  peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
-  for(peptide in strsplit(peptide_mutated, "-")[[1]]){
-    #Save Peptide
-    if(nchar(peptide) < min_peptide_length) break
-    refFasta<-rbind(refFasta,
-                    c(paste(random, gsub("\"","", g_name), sep="_"),
-                      chrs,
-                      paste(list_nm_cut[s_variants], collapse = ";"),
-                      gene_ids,
-                      NA,
-                      NA,
-                      NA,
-                      NA,
-                      exon_starts,
-                      exon_ends,
-                      NA,
-                      NA,
-                      NA,
-                      paste(peptide_normal_merged, collapse=""),
-                      peptide,
-                      dna_trans_normal,
-                      input_sequence))
-
-    #Remove X and Save Fasta in Mutated Peptide
-    if(!is.na(match("X", peptide))){
-      peptide <- peptide[1:(match("X", peptide) - 1)]
+  for(input_sequence_1 in input_sequence){
+    input_sequence_1 <- substr(tolower(input_sequence_1), reading_frame, nchar(input_sequence_1))
+    input_sequence_2 <- input_sequence_1
+    while(nchar(input_sequence_2) >= 3){
+      peptide_mutated <- c(peptide_mutated, amino[match(substr(input_sequence_2, 1, 3), codon)])
+      input_sequence_2 <- substr(input_sequence_2, 4, nchar(input_sequence_2))
     }
-    fasta <- c(fasta, sub("_","", paste(">", random, gsub("\"","", g_name), sep="_")))
-    fasta <- c(fasta, paste(peptide, collapse=""))
 
-    random <- random + 1
-    print("Peptide Successfully Generated!!")
+    number_of_peptide <- length(peptide_mutated)
+    peptide_mutated_sep <- strsplit(paste(peptide_mutated, collapse = ""), "X")[[1]]
+    number_of_stop <- length(peptide_mutated_sep) - 1
+    for(peptide_mutated in peptide_mutated_sep){
+
+      peptide_mutated <- strsplit(peptide_mutated, "")[[1]]
+      if(length(peptide_mutated) < min_peptide_length) next
+
+      pep_end_pos <- length(peptide_mutated) - min_peptide_length
+      if(pep_end_pos < 1) {
+        print("Mutated Peptide is too short, Skip")
+        next
+      }
+      flg_vec <- rep(FALSE, length(peptide_mutated))
+      ref_pep <- paste(peptide_normal_merged, collapse = "")
+      for(i in 1:(pep_end_pos + 1)){
+        flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
+        if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
+                          (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
+      }
+
+      peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
+      for(peptide in strsplit(peptide_mutated, "-")[[1]]){
+        #Save Peptide
+        if(nchar(peptide) < min_peptide_length) next
+        refFasta<-rbind(refFasta,
+                        c(paste(random, gsub("\"","", g_name), sep="_"),
+                          chrs,
+                          paste(list_nm_cut[s_variants], collapse = ";"),
+                          gene_ids,
+                          NA,
+                          NA,
+                          number_of_peptide,
+                          number_of_stop,
+                          exon_starts,
+                          exon_ends,
+                          NA,
+                          NA,
+                          NA,
+                          paste(peptide_normal_merged, collapse=""),
+                          peptide,
+                          dna_trans_normal,
+                          input_sequence_1))
+
+        #Remove X and Save Fasta in Mutated Peptide
+        if(!is.na(match("X", peptide))){
+          peptide <- peptide[1:(match("X", peptide) - 1)]
+        }
+        fasta <- c(fasta, sub("_","", paste(">", random, gsub("\"","", g_name), sep="_")))
+        fasta <- c(fasta, paste(peptide, collapse=""))
+
+        random <- random + 1
+        print("Peptide Successfully Generated!!")
+      }
+    }
   }
 
   #Integrate The Same Peptide
