@@ -34,20 +34,22 @@ GenerateMutatedFragments<-function(input_sequence,
   s_variants_from_gene <- which(!is.na(match(list_nm_gene, gene_symbol)))
   s_variants <- sort(unique(c(s_variants_from_nmid, s_variants_from_gene)))
   if(length(s_variants) == 0){
-    print(paste("NM_ID NOT Macth, Skip:", nm_id))
-    next
+    print("No Wt-NM_ID Identified")
   }
 
   #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
   peptide_normal_merged <- NULL
+  dna_trans_normal_merged <- NULL
   chrs <- NULL
   gene_ids <- NULL
+  nm_ids <- NULL
   exon_starts <- NULL
   exon_ends <- NULL
   for(v in s_variants){
     #Whether Last or Not
     nm_sep <- strsplit(list_nm[v], "\t")[[1]]
     nm_id <- nm_sep[2]
+    nm_ids <- paste(nm_ids, nm_id, sep = ifelse(length(nm_ids) > 0, ";", ""))
 
     #Skip Such As "ch5_hap"
     if(nchar(nm_sep[3]) > 5) next
@@ -122,7 +124,7 @@ GenerateMutatedFragments<-function(input_sequence,
 
     #Make Normal Peptide
     peptide_normal <- NULL
-    dna_trans_normal <- dna_trans
+    dna_trans_normal_merged <- c(dna_trans_normal_merged, dna_trans)
     while(nchar(dna_trans) >= 3){
       peptide_normal <- c(peptide_normal, amino[match(substr(dna_trans, 1, 3), codon)])
       dna_trans <- substr(dna_trans, 4, nchar(dna_trans))
@@ -142,13 +144,14 @@ GenerateMutatedFragments<-function(input_sequence,
     s_variants_from_input_nmid <- match(input_nm_id, list_nm_cut)
     s_variants_from_input_nmid <- sort(unique(s_variants_from_input_nmid))
   }
-  if(is.na(input_sequence) & length(s_variants_from_input_nmid) == 0){
+  if(is.na(input_sequence[1]) & length(s_variants_from_input_nmid) == 0){
     print(paste("NM_ID NOT Macth, Skip:", nm_id))
     return(NULL)
   }
 
+  names(input_sequence) <- ""
   if(length(s_variants_from_input_nmid) != 0){
-    input_sequence <- NULL
+    if(is.na(input_sequence[1])) input_sequence <- NULL
     for(v in s_variants_from_input_nmid){
       #Whether Last or Not
       nm_sep <- strsplit(list_nm[v], "\t")[[1]]
@@ -221,10 +224,11 @@ GenerateMutatedFragments<-function(input_sequence,
         next
       }
       input_sequence <- c(input_sequence, dna_trans)
+      names(input_sequence)[length(input_sequence)] <- paste(g_name, nm_id, sep = ";")
     }
   }
 
-  if(is.na(input_sequence)) return(NULL)
+  if(is.na(input_sequence[1])) return(NULL)
 
   fasta<-NULL
   refFasta<-NULL
@@ -262,24 +266,30 @@ GenerateMutatedFragments<-function(input_sequence,
       for(peptide in strsplit(peptide_mutated, "-")[[1]]){
         #Save Peptide
         if(nchar(peptide) < min_peptide_length) next
+        seq_num <- match(input_sequence_1, input_sequence)
+        g_name <- strsplit(names(input_sequence)[seq_num], ";")[[1]][1]
+        g_name <- ifelse(is.na(g_name) | g_name == "", substr(input_sequence_1, 1, 10), g_name)
+        nm_id <- strsplit(names(input_sequence)[seq_num], ";")[[1]][2]
+        nm_id <- ifelse(is.na(nm_id), "", nm_id)
+
         refFasta<-rbind(refFasta,
-                        c(paste(random, gsub("\"","", g_name), sep="_"),
-                          chrs,
-                          paste(list_nm_cut[s_variants], collapse = ";"),
-                          gene_ids,
-                          NA,
-                          NA,
-                          number_of_peptide,
-                          number_of_stop,
-                          exon_starts,
-                          exon_ends,
-                          NA,
-                          NA,
-                          NA,
-                          paste(peptide_normal_merged, collapse=""),
-                          peptide,
-                          dna_trans_normal,
-                          input_sequence_1))
+                        c(paste(random, g_name, sep="_"),
+                        0,
+                        nm_id,
+                        reading_frame,
+                        ifelse(length(nm_ids) > 0, "TRUE", "FALSE"),
+                        ifelse(is.null(chrs) | is.na(chrs), "", chrs),
+                        ifelse(is.null(nm_ids) | is.na(nm_ids), "", nm_ids),
+                        ifelse(is.null(gene_ids) | is.na(gene_ids), "", gene_ids),
+                        ifelse(is.null(exon_starts) | is.na(exon_starts), "", exon_starts),
+                        ifelse(is.null(exon_ends) | is.na(exon_ends), "", exon_end),
+                        seq_num,
+                        number_of_peptide,
+                        number_of_stop,
+                        ifelse(is.null(paste(peptide_normal_merged, collapse="")), "", paste(peptide_normal_merged, collapse="")),
+                        peptide,
+                        ifelse(is.null(dna_trans_normal_merged), "", dna_trans_normal_merged),
+                        input_sequence_1))
 
         #Remove X and Save Fasta in Mutated Peptide
         if(!is.na(match("X", peptide))){
@@ -303,7 +313,7 @@ GenerateMutatedFragments<-function(input_sequence,
     while(i<=nrow(refFasta)){
       #If mutation position, mutated peptide, normal peptide are all the same, Integrate These Peptides
       #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process.
-      hit <- which(refFasta[i, 14]==refFasta[,14] &
+      hit <- which(refFasta[i, 14]==refFasta[, 14] &
                      refFasta[i, 15]==refFasta[,15])
       if(length(hit)==1){
         i<-i+1

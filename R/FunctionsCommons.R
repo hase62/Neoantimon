@@ -29,16 +29,14 @@ CheckRequiredFiles2 <- function(input_sequence,
                                 nm_id = NA,
                                 gene_symbol = NA,
                                 reading_frame = 1){
-  if(is.na(input_sequence) & is.na(input_nm_id)) {
+  if(is.na(input_sequence[1]) & is.na(input_nm_id[1])) {
     print("Sequence is NaN")
     return(TRUE)
-  } else if(!is.na(input_sequence) & !is.na(input_nm_id)) {
-    print(paste("Please Specify Either One of", input_sequence, "or", input_nm_id))
-    return(TRUE)
-  } else if(is.na(input_sequence)) {
+  }
+  if(is.na(input_sequence[1])) {
+    print(paste("NM_ID:", input_nm_id[1]))
+  } else if(is.na(input_nm_id[1])) {
     print(paste("Sequence:", input_sequence))
-  } else if(is.na(input_nm_id)) {
-    print(paste("NM_ID:", input_nm_id))
   }
   if(!file.exists(hla_file)) {
     print(paste("Did not find HLA Table:", hla_file))
@@ -58,18 +56,9 @@ CheckRequiredFiles2 <- function(input_sequence,
   } else {
     print(paste("refMrna:", refmrna_file))
   }
-  if(length(nm_id) <= 1 & length(gene_symbol) <= 1){
-    if(is.na(nm_id) & is.na(gene_symbol)) {
-      print("Please Specify Either One of: nm_id or gene_symbol.")
-      return(TRUE)
-    }else {
-      print(paste("NM_ID: ", nm_id))
-      print(paste("Gene Symbol:", gene_symbol))
-    }
-  } else {
-    print(paste("NM_ID: ", nm_id))
-    print(paste("Gene Symbol:", gene_symbol))
-  }
+  print(paste("Wt-NM_ID: ", nm_id))
+  print(paste("Wt-Gene Symbol:", gene_symbol))
+
   print(paste("Start Position of Reading Frame is:", reading_frame))
   return(FALSE)
 }
