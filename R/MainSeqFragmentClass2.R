@@ -4,6 +4,8 @@
 #'
 #'@param input_nm_id (Required) An input amino acid sequence indicated as NM_ID
 #'
+#'@param group_ids flag to cluster the same group
+#'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
@@ -100,6 +102,7 @@
 #'@export
 MainSeqFragmentClass2<-function(input_sequence = NA,
                                 input_nm_id = NA,
+                                group_ids = NULL,
                                 hla_file,
                                 file_name_in_hla_table,
                                 refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
@@ -122,7 +125,14 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
                          nm_id,
                          gene_symbol,
                          reading_frame)) return(NULL)
-
+  
+  #Attach Group IDs
+  if(is.null(group_ids[1])) group_ids <- seq(from = 1, 
+                                           to = ifelse(is.na(input_sequence[1]), 0, length(input_sequence)) + 
+                                             ifelse(is.na(input_nm_id[1]), 0, length(input_nm_id)))
+  tmp <- c(input_sequence, input_nm_id)
+  names(group_ids) <- tmp[!is.na(tmp)]
+  
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
@@ -130,6 +140,7 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
   job_id = paste(job_id, "SeqFragment", sep = "_")
   GenerateMutatedFragments(input_sequence = input_sequence,
                            input_nm_id = input_nm_id,
+                           group_ids = group_ids,
                            hmdir = hmdir,
                            job_id = job_id,
                            refflat_file = refflat_file,
