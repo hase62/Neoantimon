@@ -1,5 +1,6 @@
 GenerateMutatedFragments<-function(input_sequence,
                                    input_nm_id,
+                                   group_ids,
                                    hmdir,
                                    job_id,
                                    refflat_file,
@@ -280,19 +281,21 @@ GenerateMutatedFragments<-function(input_sequence,
         g_name <- ifelse(is.na(g_name) | g_name == "", substr(input_sequence_1, 1, 10), g_name)
         nm_id <- strsplit(names(input_sequence)[seq_num], ";")[[1]][2]
         nm_id <- ifelse(is.na(nm_id), "", nm_id)
-
+        group_id <- group_ids[match(input_sequence_1, names(group_ids))]
+        if(is.na(group_id)) group_id <- group_ids[match(nm_id, names(group_ids))]
+        
         refFasta<-rbind(refFasta,
                         c(paste(random, g_name, sep="_"),
                         0,
                         nm_id,
                         reading_frame,
-                        ifelse(length(nm_ids) > 0, "TRUE", "FALSE"),
+                        seq_num,
                         ifelse(is.null(chrs), "", chrs),
                         ifelse(is.null(nm_ids), "", nm_ids),
                         ifelse(is.null(gene_ids), "", gene_ids),
                         ifelse(is.null(exon_starts), "", exon_starts),
                         ifelse(is.null(exon_ends), "", exon_ends),
-                        seq_num,
+                        group_id,
                         number_of_peptide,
                         number_of_stop,
                         ifelse(is.null(paste(peptide_normal_merged, collapse="")), "", paste(peptide_normal_merged, collapse="")),
