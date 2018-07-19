@@ -149,7 +149,7 @@ GenerateMutatedFragments<-function(input_sequence,
     return(NULL)
   }
 
-  names(input_sequence) <- ""
+  names(input_sequence) <- rep("", length(input_sequence))
   if(length(s_variants_from_input_nmid) != 0){
     if(is.na(input_sequence[1])) input_sequence <- NULL
     for(v in s_variants_from_input_nmid){
@@ -216,15 +216,24 @@ GenerateMutatedFragments<-function(input_sequence,
 
       #Check Peptide Length
       stop_loop<-FALSE
-      dna_trans <- substr(dna, ts_point, te_point)
+      dna_trans <- substr(dna, ts_point, nchar(dna))
+
+      count_dna <- 0
+      dna_trans <- substr(tolower(dna_trans), reading_frame, nchar(dna_trans))
+      while(nchar(dna_trans) >= 3){
+        if(amino[match(substr(dna_trans, 1, 3), codon)] == "X" & count_dna >= te_point - ts_point - 3) break
+        dna_trans <- substr(dna_trans, 4, nchar(dna_trans))
+        count_dna <- count_dna + 3
+      }
+      dna_trans <- substr(dna, ts_point, min(ts_point + count_dna + 3, nchar(dna)))
 
       #Translation Region is not Valid
-      if(nchar(dna_trans)%%3 != 0) {
+      if((te_point - ts_point + 1)%%3 != 0) {
         print("The Length of RNA is not a multiple of 3, Skip")
         next
       }
       input_sequence <- c(input_sequence, dna_trans)
-      names(input_sequence)[length(input_sequence)] <- paste(g_name, nm_id, sep = ";")
+      names(input_sequence)[length(input_sequence)] <- paste(g_name, nm_id, chr, sep = ";")
     }
   }
 
@@ -234,8 +243,8 @@ GenerateMutatedFragments<-function(input_sequence,
   refFasta<-NULL
   random<-0
   for(input_sequence_1 in input_sequence){
-    input_sequence_1 <- substr(tolower(input_sequence_1), reading_frame, nchar(input_sequence_1))
-    input_sequence_2 <- input_sequence_1
+    peptide_mutated <- NULL
+    input_sequence_2 <- substr(tolower(input_sequence_1), reading_frame, nchar(input_sequence_1))
     while(nchar(input_sequence_2) >= 3){
       peptide_mutated <- c(peptide_mutated, amino[match(substr(input_sequence_2, 1, 3), codon)])
       input_sequence_2 <- substr(input_sequence_2, 4, nchar(input_sequence_2))
@@ -278,11 +287,11 @@ GenerateMutatedFragments<-function(input_sequence,
                         nm_id,
                         reading_frame,
                         ifelse(length(nm_ids) > 0, "TRUE", "FALSE"),
-                        ifelse(is.null(chrs) | is.na(chrs), "", chrs),
-                        ifelse(is.null(nm_ids) | is.na(nm_ids), "", nm_ids),
-                        ifelse(is.null(gene_ids) | is.na(gene_ids), "", gene_ids),
-                        ifelse(is.null(exon_starts) | is.na(exon_starts), "", exon_starts),
-                        ifelse(is.null(exon_ends) | is.na(exon_ends), "", exon_end),
+                        ifelse(is.null(chrs), "", chrs),
+                        ifelse(is.null(nm_ids), "", nm_ids),
+                        ifelse(is.null(gene_ids), "", gene_ids),
+                        ifelse(is.null(exon_starts), "", exon_starts),
+                        ifelse(is.null(exon_ends), "", exon_ends),
                         seq_num,
                         number_of_peptide,
                         number_of_stop,
