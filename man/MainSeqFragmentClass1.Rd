@@ -4,7 +4,8 @@
 \alias{MainSeqFragmentClass1}
 \title{Calculate Neoantigen Candidates from A Given Sequence for MHC Class1}
 \usage{
-MainSeqFragmentClass1(input_sequence = NA, input_nm_id = NA, hla_file,
+MainSeqFragmentClass1(input_sequence = NA, input_nm_id = NA,
+  group_ids = NA, hla_file = "hla.table.txt", hla_types = NA,
   file_name_in_hla_table, refflat_file = paste(hmdir, "lib/refFlat.txt", sep =
   "/"), refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
   hmdir = getwd(), job_id = "NO_job_id", export_dir = paste("result",
@@ -18,10 +19,14 @@ MainSeqFragmentClass1(input_sequence = NA, input_nm_id = NA, hla_file,
 
 \item{input_nm_id}{(Required) An input amino acid sequence indicated as NM_ID}
 
+\item{group_ids}{flag to cluster the same group}
+
 \item{hla_file}{(Required) A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
 
 See by data(sample_hla_table_c1); sample_hla_table_c1;}
+
+\item{hla_types}{Set a list of HLA types}
 
 \item{file_name_in_hla_table}{If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).}
 

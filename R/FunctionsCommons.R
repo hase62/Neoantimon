@@ -24,6 +24,7 @@ CheckRequiredFiles<-function(input_file,
 CheckRequiredFiles2 <- function(input_sequence,
                                 input_nm_id,
                                 hla_file,
+                                hla_types,
                                 refflat_file,
                                 refmrna_file,
                                 nm_id = NA,
@@ -38,12 +39,16 @@ CheckRequiredFiles2 <- function(input_sequence,
   } else if(is.na(input_nm_id[1])) {
     print(paste("Sequence:", input_sequence))
   }
-  if(!file.exists(hla_file)) {
+  if(!file.exists(hla_file) & is.na(hla_types)) {
     print(paste("Did not find HLA Table:", hla_file))
     return(TRUE)
+  } else if(file.exists(hla_file) & !is.na(hla_types)){
+    print(paste("Enforced to use:", hla_file))
   } else {
     print(paste("HLA file:", hla_file))
+    print(paste("HLAtype:", hla_types))
   }
+  
   if(!file.exists(refflat_file)) {
     print(paste("Did not find refFlat File:", refflat_file))
     return(TRUE)

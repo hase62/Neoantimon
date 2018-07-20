@@ -11,6 +11,8 @@
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
 #'
+#'@param hla_types Set a list of HLA types
+#'
 #'@param file_name_in_hla_table If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).
 #'
 #'@param hmdir Home directory for the analysis (Default = getwd()).
@@ -102,8 +104,9 @@
 #'@export
 MainSeqFragmentClass1<-function(input_sequence = NA,
                                 input_nm_id = NA,
-                                group_ids = NA, 
-                                hla_file,
+                                group_ids = NA,
+                                hla_file = "hla.table.txt",
+                                hla_types = NA,
                                 file_name_in_hla_table,
                                 refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                                 refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
@@ -115,23 +118,24 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                 nm_id = NA,
                                 gene_symbol = NA,
                                 reading_frame = 1){
-  
+
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
                          input_nm_id = input_nm_id,
                          hla_file = hla_file,
+                         hla_types = hla_types,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,
                          nm_id,
                          gene_symbol,
                          reading_frame)) return(NULL)
-  
+
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  
+
   #Attach Group IDs
-  if(is.null(group_ids[1])) group_ids <- seq(from = 1, 
-                                             to = ifelse(is.na(input_sequence[1]), 0, length(input_sequence)) + 
+  if(is.null(group_ids[1])) group_ids <- seq(from = 1,
+                                             to = ifelse(is.na(input_sequence[1]), 0, length(input_sequence)) +
                                                ifelse(is.na(input_nm_id[1]), 0, length(input_nm_id)))
   tmp <- c(input_sequence, input_nm_id)
   names(group_ids) <- tmp[!is.na(tmp)]
@@ -168,16 +172,18 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
   SettingNetMHCpan(netMHCpan_dir)
 
   #Get HLA-Type
-  hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-  hit <- match(file_name_in_hla_table, hla[,1])
-  if(is.na(hit)) {
-    print(file_name_in_hla_table, "is not included in", hla_file)
+  if(file.exists(hla_file)){
+    hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
+    hit <- match(file_name_in_hla_table, hla[,1])
+    if(is.na(hit)) {
+      print(file_name_in_hla_table, "is not included in", hla_file)
+      return (NULL)
+    }
     return (NULL)
+    hla_types <- hla[hit, -1]
   }
-  return (NULL)
-  
+
   #Execute NetMHCpan
-  hla_types <- hla[hit, -1]
   for(pep in c("peptide")){
     COUNT<-1
     for(hla_type in hla_types){
