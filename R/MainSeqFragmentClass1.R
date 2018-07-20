@@ -115,7 +115,7 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                 nm_id = NA,
                                 gene_symbol = NA,
                                 reading_frame = 1){
-
+  
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
                          input_nm_id = input_nm_id,
@@ -174,7 +174,8 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
     print(file_name_in_hla_table, "is not included in", hla_file)
     return (NULL)
   }
-
+  return (NULL)
+  
   #Execute NetMHCpan
   hla_types <- hla[hit, -1]
   for(pep in c("peptide")){

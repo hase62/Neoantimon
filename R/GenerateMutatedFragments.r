@@ -51,7 +51,7 @@ GenerateMutatedFragments<-function(input_sequence,
     nm_sep <- strsplit(list_nm[v], "\t")[[1]]
     nm_id <- nm_sep[2]
     nm_ids <- paste(nm_ids, nm_id, sep = ifelse(length(nm_ids) > 0, ";", ""))
-
+    
     #Skip Such As "ch5_hap"
     if(nchar(nm_sep[3]) > 5) next
     chr <- nm_sep[3]
@@ -141,7 +141,7 @@ GenerateMutatedFragments<-function(input_sequence,
 
   #Obtain refFLAT Data
   s_variants_from_input_nmid <- NULL
-  if(!is.na(input_nm_id)){
+  if(!is.na(input_nm_id[1])){
     s_variants_from_input_nmid <- match(input_nm_id, list_nm_cut)
     s_variants_from_input_nmid <- sort(unique(s_variants_from_input_nmid))
   }
@@ -257,25 +257,26 @@ GenerateMutatedFragments<-function(input_sequence,
     for(peptide_mutated in peptide_mutated_sep){
 
       peptide_mutated <- strsplit(peptide_mutated, "")[[1]]
-      if(length(peptide_mutated) < min_peptide_length) next
-
-      pep_end_pos <- length(peptide_mutated) - min_peptide_length
-      if(pep_end_pos < 1) {
-        print("Mutated Peptide is too short, Skip")
-        next
+      if(length(peptide_mutated) >= min_peptide_length) {
+        pep_end_pos <- length(peptide_mutated) - min_peptide_length
+        if(pep_end_pos < 1) {
+          print("Mutated Peptide is too short, Skip")
+          next
+        }
+        flg_vec <- rep(FALSE, length(peptide_mutated))
+        ref_pep <- paste(peptide_normal_merged, collapse = "")
+        for(i in 1:(pep_end_pos + 1)){
+          flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
+          if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
+                            (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
+        }
+        peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
+      } else {
+        peptide_mutated <- paste(peptide_mutated, collapse = "")
       }
-      flg_vec <- rep(FALSE, length(peptide_mutated))
-      ref_pep <- paste(peptide_normal_merged, collapse = "")
-      for(i in 1:(pep_end_pos + 1)){
-        flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
-        if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
-                          (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
-      }
-
-      peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
       for(peptide in strsplit(peptide_mutated, "-")[[1]]){
         #Save Peptide
-        if(nchar(peptide) < min_peptide_length) next
+        #if(nchar(peptide) < min_peptide_length) next
         seq_num <- match(input_sequence_1, input_sequence)
         g_name <- strsplit(names(input_sequence)[seq_num], ";")[[1]][1]
         g_name <- ifelse(is.na(g_name) | g_name == "", substr(input_sequence_1, 1, 10), g_name)
@@ -316,38 +317,6 @@ GenerateMutatedFragments<-function(input_sequence,
     }
   }
 
-  #Integrate The Same Peptide
-  if(is.null(refFasta)) {
-    return(NULL)
-  }
-  i<-1
-  if(!is.null(nrow(refFasta))){
-    while(i<=nrow(refFasta)){
-      #If mutation position, mutated peptide, normal peptide are all the same, Integrate These Peptides
-      #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process.
-      hit <- which(refFasta[i, 14]==refFasta[, 14] &
-                     refFasta[i, 15]==refFasta[,15])
-      if(length(hit)==1){
-        i<-i+1
-        next
-      }
-      #Collapse NM_ID, Info, Exon-start, Exon-end
-      temp1<-paste(refFasta[hit,3],collapse=";")
-      temp2<-paste(refFasta[hit,4],collapse=";")
-      temp3<-paste(refFasta[hit,9],collapse=";")
-      temp4<-paste(refFasta[hit,10],collapse=";")
-      refFasta[i,3]<-temp1
-      refFasta[i,4]<-temp2
-      refFasta[i,9]<-temp3
-      refFasta[i,10]<-temp4
-      refFasta<-refFasta[-hit[-1],]
-      if(is.null(nrow(refFasta))){
-        refFasta<-t(refFasta)
-      }
-      fasta<-fasta[-(c(hit[-1] * 2 - 1, hit[-1] * 2))]
-      i<-i+1
-    }
-  }
   write.table(fasta,
               paste(export_dir, "/", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
