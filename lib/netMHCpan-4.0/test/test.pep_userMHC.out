@@ -1,0 +1,62 @@
+# /usr/cbs/bio/src/netMHCpan-4.0/Linux_x86_64/bin/netMHCpan -hlaseq B0702.fsa -p test.pep
+# Thu Oct 12 02:04:49 2017
+# User: mniel
+# PWD : /usr/cbs/bio/src/netMHCpan-4.0/test
+# Host: Linux padawan 3.0.101-105-desktop x86_64
+# -hlaseq  B0702.fsa            File with full length HLA sequences
+# -p       1                    Use peptide input
+# Command line parameters set to:
+#	[-rdir filename]     /usr/cbs/bio/src/netMHCpan-4.0/Linux_x86_64 Home directory for NetMHpan
+#	[-syn filename]      /usr/cbs/bio/src/netMHCpan-4.0/Linux_x86_64/data/synlist.bin Synaps file
+#	[-v]                 0                    Verbose mode
+#	[-dirty]             0                    Dirty mode, leave tmp dir+files
+#	[-tdir filename]     /scratch/netMHCpanXXXXXX Temporary directory (made with mkdtemp)
+#	[-hlapseudo filename] /usr/cbs/bio/src/netMHCpan-4.0/Linux_x86_64/data/MHC_pseudo.dat File with HLA pseudo sequences
+#	[-hlaseq filename]   B0702.fsa            File with full length HLA sequences
+#	[-a line]            HLA-A02:01           HLA allele
+#	[-f filename]                             File name with input
+#	[-w]                 0                    w option for webface
+#	[-s]                 0                    Sort output on descending affinity
+#	[-p]                 1                    Use peptide input
+#	[-rth float]         0.500000             Rank Threshold for high binding peptides
+#	[-rlt float]         2.000000             Rank Threshold for low binding peptides
+#	[-l string]          8,9,10,11            Peptide length [8-11] (multiple length with ,)
+#	[-xls]               0                    Save output to xls file
+#	[-xlsfile filename]  NetMHCpan_out.xls    Filename for xls dump
+#	[-t float]           -99.900002           Threshold for output
+#	[-thrfmt filename]   /usr/cbs/bio/src/netMHCpan-4.0/Linux_x86_64/data/threshold/%s.thr.%s Format for threshold filenames
+#	[-expfix]            0                    Exclude prefix from synlist
+#	[-version filename]  /usr/cbs/bio/src/netMHCpan-4.0/Linux_x86_64/data/version File with version information
+#	[-inptype int]       0                    Input type [0] FASTA [1] Peptide
+#	[-listMHC]           0                    Print list of alleles included in netMHCpan
+#	[-allname filename]  /usr/cbs/bio/src/netMHCpan-4.0/Linux_x86_64/data/allelenames File with print names for alleles
+#	[-BA]                0                    Make Binding affinity prediction
+
+# NetMHCpan version 4.0
+
+# Tmpdir made /scratch/netMHCpanU89M0G
+# Use user MHC pseudo sequence YYSEYRNIYAQTDESNLYLSYDYYTWAERAYEWY USER_DEF
+# Input is in PEPTIDE format
+
+# Make Eluted ligand likelihood predictions
+
+USER_DEF : Distance to training data  0.000 (using nearest neighbor HLA-B07:02)
+
+-----------------------------------------------------------------------------------
+  Pos          HLA         Peptide       Core Of Gp Gl Ip Il        Icore        Identity     Score     Exp  BindLevel
+-----------------------------------------------------------------------------------
+    1     USER_DEF       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.0011650  0.7426
+    1     USER_DEF       AAGLQDCTM  AAGLQDCTM  0  0  0  0  0    AAGLQDCTM         PEPLIST 0.0027810  0.0000
+    1     USER_DEF       AARNIVRRA  AARNIVRRA  0  0  0  0  0    AARNIVRRA         PEPLIST 0.0267270  0.0000
+    1     USER_DEF       AARPDDPTL  AARPDDPTL  0  0  0  0  0    AARPDDPTL         PEPLIST 0.4151490  0.1488
+    1     USER_DEF       AASCGGAVF  AASCGGAVF  0  0  0  0  0    AASCGGAVF         PEPLIST 0.0981800  0.1492
+    1     USER_DEF       AASKQQMLM  AASKQQMLM  0  0  0  0  0    AASKQQMLM         PEPLIST 0.0353380  0.0000
+    1     USER_DEF       AASSTHRKV  AASSTHRKV  0  0  0  0  0    AASSTHRKV         PEPLIST 0.0156460  0.2717
+    1     USER_DEF       AEALLADGL  AEALLADGL  0  0  0  0  0    AEALLADGL         PEPLIST 0.0025590  0.0847
+    1     USER_DEF       AEESLSLEA  AEESLSLEA  0  0  0  0  0    AEESLSLEA         PEPLIST 0.0005720  0.0000
+    1     USER_DEF       AEFGPWQTV  AEFGPWQTV  0  0  0  0  0    AEFGPWQTV         PEPLIST 0.0194370  0.3156
+-----------------------------------------------------------------------------------
+
+Protein PEPLIST. Allele USER_DEF. Number of high binders 0. Number of weak binders 0. Number of peptides 10
+
+-----------------------------------------------------------------------------------

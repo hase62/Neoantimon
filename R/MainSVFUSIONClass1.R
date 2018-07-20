@@ -15,6 +15,8 @@
 #'
 #'See "https://github.com/hase62/Neoantimon"
 #'
+#'@param hla_types Set a list of HLA types
+#'
 #'@param nm_id_column (Required if gene_symbol_column = NA) The column number describing NM IDs in input_file such as
 #'
 #'"SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs" (Default=NA).
@@ -149,7 +151,8 @@
 #'
 #'@export
 MainSVFUSIONClass1<-function(input_file,
-                             hla_file,
+                             hla_file = "here_is_a_table",
+                             hla_types = NA,
                              file_name_in_hla_table = input_file,
                              refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                              refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
@@ -270,16 +273,21 @@ MainSVFUSIONClass1<-function(input_file,
     return(NULL)
   }
   print(paste("Executing netMHCpan to", export_dir))
-  SettingNetMHCpan(netMHCpan_dir)
-
+  #SettingNetMHCpan(netMHCpan_dir)
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-  hit<-match(file_name_in_hla_table, hla[,1])
-  if(is.na(hit)) {
-    print(file_name_in_hla_table, "is not included in", hla_file)
-    return (NULL)
+  
+  #Get HLA-Type
+  if(file.exists(hla_file)){
+    hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
+    hit<-match(file_name_in_hla_table, hla[,1])
+    if(is.na(hit)) {
+      print(file_name_in_hla_table, "is not included in", hla_file)
+      return (NULL)
+    }
+    hla_types<-hla[hit, -1]
   }
-  hla_types<-hla[hit, -1]
+  
+  #Execute NetMHCpan
   for(pep in c("peptide")){
     COUNT<-1
     for(hla_type in hla_types){

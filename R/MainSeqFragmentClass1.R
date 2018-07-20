@@ -105,7 +105,7 @@
 MainSeqFragmentClass1<-function(input_sequence = NA,
                                 input_nm_id = NA,
                                 group_ids = NA,
-                                hla_file = "hla.table.txt",
+                                hla_file = "here_is_a_table",
                                 hla_types = NA,
                                 file_name_in_hla_table = NA,
                                 refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
@@ -170,7 +170,7 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
   }
   print(paste("Executing netMHCpan to", export_dir))
   ##SettingNetMHCpan(netMHCpan_dir)
-  if(!dir.exists(export_dir)) dir.create(export_dir)
+  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
   
   #Get HLA-Type
   if(file.exists(hla_file)){
@@ -189,12 +189,6 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
     COUNT<-1
     for(hla_type in hla_types){
       paste("Calculating", pep, hla_type)
-      print(paste(netMHCpan_dir,
-                  " -BA ",
-                  " -l ", paste(peptide_length, collapse = ","),
-                  " -f ", paste(export_dir, "/", job_id, ".", pep, ".", "fasta", sep=""),
-                  " -a HLA-", gsub("\\*", "", hla_type),
-                  " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
       system(paste(netMHCpan_dir,
                    " -BA ",
                    " -l ", paste(peptide_length, collapse = ","),

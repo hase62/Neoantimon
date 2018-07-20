@@ -105,7 +105,7 @@
 MainSeqFragmentClass2<-function(input_sequence = NA,
                                 input_nm_id = NA,
                                 group_ids = NULL,
-                                hla_file = "hla.table.txt",
+                                hla_file = "here_is_a_table",
                                 hla_types = NA,
                                 file_name_in_hla_table = NA,
                                 refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
@@ -170,7 +170,7 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
   }
   print(paste("Executing netMHCIIpan to", export_dir))
   #SettingNetMHCIIpan(netMHCIIpan_dir)
-  if(!dir.exists(export_dir)) dir.create(export_dir)
+  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
   
   #Get HLA-Type
   if(file.exists(hla_file)){

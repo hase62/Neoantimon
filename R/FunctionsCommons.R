@@ -6,9 +6,14 @@ CheckRequiredFiles<-function(input_file,
     print(paste("Did not find Mutation File:", input_file))
     return(TRUE)
   }
-  if(!file.exists(hla_file)) {
+  if(!file.exists(hla_file) & is.na(hla_types[1])) {
     print(paste("Did not find HLA Table:", hla_file))
     return(TRUE)
+  } else if(file.exists(hla_file) & !is.na(hla_types[1])){
+    print(paste("Enforced to use:", hla_file))
+  } else {
+    print(paste("HLA file:", hla_file))
+    print(paste("HLAtype:", hla_types))
   }
   if(!file.exists(refflat_file)) {
     print(paste("Did not find refFlat File:", refflat_file))

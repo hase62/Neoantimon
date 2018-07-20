@@ -1,0 +1,4 @@
+../netMHCpan -p test.pep > test.pep.out
+../netMHCpan test.fsa > test.fsa.out
+../netMHCpan -hlaseq B0702.fsa -p test.pep > test.pep_userMHC.out
+../netMHCpan -p test.pep -BA > test.pep_BA.out
