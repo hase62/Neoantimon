@@ -39,10 +39,10 @@ CheckRequiredFiles2 <- function(input_sequence,
   } else if(is.na(input_nm_id[1])) {
     print(paste("Sequence:", input_sequence))
   }
-  if(!file.exists(hla_file) & is.na(hla_types)) {
+  if(!file.exists(hla_file) & is.na(hla_types[1])) {
     print(paste("Did not find HLA Table:", hla_file))
     return(TRUE)
-  } else if(file.exists(hla_file) & !is.na(hla_types)){
+  } else if(file.exists(hla_file) & !is.na(hla_types[1])){
     print(paste("Enforced to use:", hla_file))
   } else {
     print(paste("HLA file:", hla_file))
