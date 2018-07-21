@@ -238,6 +238,7 @@ GenerateMutatedFragments<-function(input_sequence,
     }
   }
 
+  if(is.null(input_sequence[1])) return(NULL)
   if(is.na(input_sequence[1])) return(NULL)
 
   fasta<-NULL
