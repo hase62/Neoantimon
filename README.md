@@ -83,7 +83,7 @@ gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-**GRCh37**: Download human refSeq:
+**GRCh37/hg19**: Download human refSeq:
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
