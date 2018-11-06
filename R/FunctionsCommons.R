@@ -1,5 +1,6 @@
 CheckRequiredFiles<-function(input_file,
                              hla_file,
+                             hla_types,
                              refflat_file,
                              refmrna_file){
   if(!file.exists(input_file)) {
@@ -53,7 +54,7 @@ CheckRequiredFiles2 <- function(input_sequence,
     print(paste("HLA file:", hla_file))
     print(paste("HLAtype:", hla_types))
   }
-  
+
   if(!file.exists(refflat_file)) {
     print(paste("Did not find refFlat File:", refflat_file))
     return(TRUE)
