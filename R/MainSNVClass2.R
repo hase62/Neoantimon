@@ -186,6 +186,7 @@ MainSNVClass2<-function(input_file,
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,
                         hla_file = hla_file,
+                        hla_types = hla_types,
                         refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
   flg<-CheckRequiredColumns(input_file = input_file,
@@ -274,7 +275,7 @@ MainSNVClass2<-function(input_file,
     }
     hla_types<-hla[hit, -1]
   }
-  
+
   #Execute NetMHCpan
   for(pep in c("peptide", "normpeptide")){
     COUNT<-1

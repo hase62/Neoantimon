@@ -184,6 +184,7 @@ MainSVFUSIONClass1<-function(input_file,
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,
                         hla_file = hla_file,
+                        hla_types = hla_types,
                         refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
   flg<-CheckRequiredColumns(input_file = input_file,
@@ -275,7 +276,7 @@ MainSVFUSIONClass1<-function(input_file,
   print(paste("Executing netMHCpan to", export_dir))
   #SettingNetMHCpan(netMHCpan_dir)
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  
+
   #Get HLA-Type
   if(file.exists(hla_file)){
     hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
@@ -286,7 +287,7 @@ MainSVFUSIONClass1<-function(input_file,
     }
     hla_types<-hla[hit, -1]
   }
-  
+
   #Execute NetMHCpan
   for(pep in c("peptide")){
     COUNT<-1
