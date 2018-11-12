@@ -51,7 +51,7 @@ MergeSNVClass1<-function(hmdir = getwd(),
     ee1<-grep("Protein", test1)-2
     num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][12])
 
-    test2<-scan(paste(dir, sub("peptide\\.txt", "normpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
+    test2<-scan(paste(dir, sub("peptide\\.txt", "wtpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
     test2<-gsub(" <= WB", "", test2)
     ss2<-grep(" Pos ", test2)+2
     ee2<-grep("Protein", test2)-2

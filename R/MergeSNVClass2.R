@@ -51,7 +51,7 @@ MergeSNVClass2<-function(hmdir = getwd(),
     ee1<-grep("of strong", test1) - 2
     num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][5])
 
-    test2<-scan(paste(dir, sub("peptide\\.txt", "normpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
+    test2<-scan(paste(dir, sub("peptide\\.txt", "wtpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
     test2<-gsub(" <=WB| <=SB", "", test2)
     ss2<-grep(" Pos ", test2) + 2
     ee2<-grep("of strong", test2) - 2
