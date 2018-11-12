@@ -111,7 +111,7 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                 refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                                 refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
                                 hmdir = getwd(),
-                                job_id = "NO_job_id",
+                                job_id = "ID",
                                 export_dir = paste("result", file_name_in_hla_table, job_id, "SeqFragment", sep="."),
                                 netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
                                 peptide_length = c(8, 9, 10, 11, 12, 13),
@@ -187,16 +187,25 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
   #Execute NetMHCpan
   for(pep in c("peptide")){
     COUNT<-1
+    output_f <- paste(export_dir, "/", job_id, ".", pep, ".", "fasta", sep="")
+    USETEMP <- FALSE
+    if(nchar(output_f) > 230) {
+      output_f_new <- paste("temp.Neoantimon.", runif(1) * 1000000, "txt", sep = "")
+      file.copy(from = output_f, to = output_f_new)
+      output_f <- output_f_new
+      USETEMP <- TRUE
+    }
     for(hla_type in hla_types){
       paste("Calculating", pep, hla_type)
       system(paste(netMHCpan_dir,
                    " -BA ",
                    " -l ", paste(peptide_length, collapse = ","),
-                   " -f ", paste(export_dir, "/", job_id, ".", pep, ".", "fasta", sep=""),
+                   " -f ", output_f,
                    " -a HLA-", gsub("\\*", "", hla_type),
                    " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
       COUNT <- COUNT + 1
     }
+    if(USETEMP) file.remove(output_f)
   }
   print("Merging Results...")
   result <- MergeINDELSVClass1(input_dir = export_dir,

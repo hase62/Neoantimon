@@ -157,7 +157,7 @@ MainSVFUSIONClass2<-function(input_file,
                              refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                              refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
                              hmdir = getwd(),
-                             job_id = "NO_job_id",
+                             job_id = "ID",
                              export_dir = paste("result", file_name_in_hla_table, job_id, "SV", sep="."),
                              rnaexp_file = NA,
                              rnabam_file = NA,
@@ -290,11 +290,19 @@ MainSVFUSIONClass2<-function(input_file,
   #Execute NetMHCpan
   for(pep in c("peptide")){
     COUNT<-1
+    output_f <- paste(output_peptide_prefix, pep, "fasta",sep=".")
+    USETEMP <- FALSE
+    if(nchar(output_f) > 230) {
+      output_f_new <- paste("temp.Neoantimon.", runif(1) * 1000000, "txt", sep = "")
+      file.copy(from = output_f, to = output_f_new)
+      output_f <- output_f_new
+      USETEMP <- TRUE
+    }
     for(hla_type in hla_types){
       if(length(grep("DRB1", hla_type))==1) {
         system(paste(netMHCIIpan_dir,
                      " -length ", paste(peptide_length, collapse = ","),
-                     " -f ", paste(output_peptide_prefix, pep, "fasta",sep="."),
+                     " -f ", output_f,
                      " -a ", gsub("\\*","_", gsub("\\:","",hla_type)),
                      " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
                      sep=""))
@@ -305,7 +313,7 @@ MainSVFUSIONClass2<-function(input_file,
         for(hla2 in hla_types[grep("DPB1", hla_types)]){
           system(paste(netMHCIIpan_dir,
                        " -length ", paste(peptide_length, collapse = ","),
-                       " -f ", paste(output_peptide_prefix, pep, "fasta",sep="."),
+                       " -f ", output_f,
                        " -choose -cha ", gsub("\\*|\\:","", hla_type),
                        " -choose -chb ", gsub("\\*|\\:","", hla2),
                        " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
@@ -318,7 +326,7 @@ MainSVFUSIONClass2<-function(input_file,
         for(hla2 in hla_types[grep("DQB1", hla_types)]){
           system(paste(netMHCIIpan_dir,
                        " -length ", paste(peptide_length, collapse = ","),
-                       " -f ", paste(output_peptide_prefix, pep, "fasta",sep="."),
+                       " -f ", output_f,
                        " -choose -cha ", gsub("\\*|\\:","", hla_type),
                        " -choose -chb ", gsub("\\*|\\:","", hla2),
                        " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
@@ -327,7 +335,9 @@ MainSVFUSIONClass2<-function(input_file,
         }
       }
     }
+    if(USETEMP) file.remove(output_f)
   }
+  print("Merging Results...")
   result <- MergeINDELSVClass2(input_dir = export_dir,
                                file_prefix = job_id,
                                annotation_file = output_peptide_txt_file)

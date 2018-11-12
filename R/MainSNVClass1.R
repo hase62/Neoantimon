@@ -161,7 +161,7 @@ MainSNVClass1<-function(input_file,
                         refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                         refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
                         hmdir = getwd(),
-                        job_id = "NO_job_id",
+                        job_id = "ID",
                         export_dir = paste("result", file_name_in_hla_table, job_id, "SNV", sep="."),
                         rnaexp_file = NA,
                         rnabam_file = NA,
@@ -276,18 +276,27 @@ MainSNVClass1<-function(input_file,
   }
   
   #Execute NetMHCpan
-  for(pep in c("peptide", "normpeptide")){
+  for(pep in c("peptide", "wtpeptide")){
     COUNT<-1
+    output_f <- paste(output_peptide_prefix, pep, "fasta",sep=".")
+    USETEMP <- FALSE
+    if(nchar(output_f) > 230) {
+      output_f_new <- paste("temp.Neoantimon.", runif(1) * 1000000, "txt", sep = "")
+      file.copy(from = output_f, to = output_f_new)
+      output_f <- output_f_new
+      USETEMP <- TRUE
+    }
     for(hla_type in hla_types){
       paste("Calculating", pep, hla_type)
       system(paste(netMHCpan_dir,
                    " -BA ",
                    " -l ", paste(peptide_length, collapse = ","),
-                   " -f ", paste(output_peptide_prefix, pep, "fasta",sep="."),
+                   " -f ", output_f,
                    " -a HLA-", gsub("\\*","",hla_type),
                    " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
       COUNT <- COUNT + 1
     }
+    if(USETEMP) file.remove(output_f)
   }
   print("Merging Results...")
   result <- MergeSNVClass1(input_dir = export_dir,

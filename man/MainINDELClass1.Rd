@@ -4,19 +4,21 @@
 \alias{MainINDELClass1}
 \title{Calculate Neoantigen Candidates on INDELs for MHC Class1}
 \usage{
-MainINDELClass1(input_file, hla_file = "here_is_a_table", hla_types = NA,
-  file_name_in_hla_table = input_file, refflat_file = paste(hmdir,
-  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir, "lib/refMrna.fa",
-  sep = "/"), hmdir = getwd(), job_id = "NO_job_id",
-  export_dir = paste("result", file_name_in_hla_table, job_id, "INDEL", sep =
-  "."), rnaexp_file = NA, rnabam_file = NA, cnv_file = NA, purity = 1,
+MainINDELClass1(input_file, hla_file = "here_is_a_table",
+  hla_types = NA, file_name_in_hla_table = input_file,
+  refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
+  refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
+  hmdir = getwd(), job_id = "ID", export_dir = paste("result",
+  file_name_in_hla_table, job_id, "INDEL", sep = "."), rnaexp_file = NA,
+  rnabam_file = NA, cnv_file = NA, purity = 1,
   netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep = "/"),
   refdna_file = NA, samtools_dir = NA, bcftools_dir = NA,
-  chr_column = NA, mutation_start_column = NA, mutation_end_column = NA,
-  mutation_ref_column = NA, mutation_alt_column = NA, nm_id_column = NA,
+  chr_column = NA, mutation_start_column = NA,
+  mutation_end_column = NA, mutation_ref_column = NA,
+  mutation_alt_column = NA, nm_id_column = NA,
   depth_normal_column = NA, depth_tumor_column = NA,
-  ambiguous_between_exon = 0, ambiguous_codon = 0, peptide_length = c(8,
-  9, 10, 11, 12, 13))
+  ambiguous_between_exon = 0, ambiguous_codon = 0,
+  peptide_length = c(8, 9, 10, 11, 12, 13))
 }
 \arguments{
 \item{input_file}{(Required) An input vcf file annotated by,

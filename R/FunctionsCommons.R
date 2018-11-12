@@ -87,68 +87,70 @@ CheckRequiredColumns<-function(input_file,
   index<-scan(input_file, "character", nlines = 1)
 
   if(is.na(chr_column)) {
-    chr_column<-grep("chr", tolower(index))[1];
+    chr_column<-grep("chr", index, ignore.case = TRUE)[1];
     if(is.na(chr_column)) {
       print("Please Manually Indicate chr_column")
       return(0)
     }
   }
-  print(paste("Set chr_column as", chr_column))
+  print(paste("Set chr_column as", chr_column, index[chr_column]))
 
   if(is.na(mutation_start_column)) {
-    mutation_start_column<-grep("start", tolower(index))[1];
+    mutation_start_column<-grep("start", index, ignore.case = TRUE)[1];
     if(is.na(mutation_start_column)) {
       print("Please Manually Indicate mutation_start_column")
       return(0)
     }
   }
-  print(paste("Set mutation_start_column as", mutation_start_column))
+  print(paste("Set mutation_start_column as", mutation_start_column, index[mutation_start_column]))
 
   if(is.na(mutation_end_column)) {
-    mutation_end_column<-grep("end", tolower(index))[1];
+    mutation_end_column<-grep("end", index, ignore.case = TRUE)[1];
     if(is.na(mutation_end_column)) {
       print("Please Manually Indicate mutation_end_column")
       return(0)
     }
   }
-  print(paste("Set mutation_end_column as", mutation_end_column))
+  print(paste("Set mutation_end_column as", mutation_end_column, index[mutation_end_column]))
 
   if(is.na(mutation_ref_column)) {
-    mutation_ref_column<-grep("ref", tolower(index))[1];
+    mutation_ref_column<-grep("ref", index, ignore.case = TRUE)[1];
     if(is.na(mutation_ref_column)) {
       print("Please Manually Indicate mutation_ref_column")
       return(0)
     }
   }
-  print(paste("Set mutation_ref_column as", mutation_ref_column))
+  print(paste("Set mutation_ref_column as", mutation_ref_column, index[mutation_ref_column]))
 
   if(is.na(mutation_alt_column)) {
-    mutation_alt_column<-grep("alt", tolower(index))[1];
+    mutation_alt_column<-grep("alt", index, ignore.case = TRUE)[1];
     if(is.na(mutation_alt_column)) {
       print("Please Manually Indicate mutation_alt_column")
       return(0)
     }
   }
-  print(paste("Set mutation_alt_column as", mutation_alt_column))
+  print(paste("Set mutation_alt_column as", mutation_alt_column, index[mutation_alt_column]))
 
   if(is.na(depth_normal_column)) {
-    depth_normal_column<-intersect(grep("depth", tolower(index)), grep("normal", tolower(index)))[1];
+    depth_normal_column<-intersect(grep("depth", index, ignore.case = TRUE), 
+                                   grep("normal", index, ignore.case = TRUE))[1];
     if(is.na(depth_normal_column)) {
       print("Please Manually Indicate depth_normal_column")
     }
   }
-  print(paste("Set depth_normal_column as", depth_normal_column))
+  print(paste("Set depth_normal_column as", depth_normal_column, index[depth_normal_column]))
 
   if(is.na(depth_tumor_column)) {
-    depth_tumor_column<-intersect(grep("depth", tolower(index)), grep("tumor", tolower(index)))[1];
+    depth_tumor_column<-intersect(grep("depth", index, ignore.case = TRUE), 
+                                  grep("tumor", index, ignore.case = TRUE))[1];
     if(is.na(depth_tumor_column)) {
       print("Please Manually Indicate depth_tumor_column")
     }
   }
-  print(paste("Set depth_tumor_column as", depth_tumor_column))
+  print(paste("Set depth_tumor_column as", depth_tumor_column, index[depth_tumor_column]))
 
   if(is.na(nm_id_column)) {
-    nm_id_column<-grep("AAChange.refGene", tolower(index))[1];
+    nm_id_column<-grep("AAChange", index, ignore.case = TRUE)[1];
     if(is.na(nm_id_column)) {
       index<-scan(input_file, "character", nlines = 1, skip = 1)
       nm_id_column<-grep("nm_|nr_", tolower(index))[1];
@@ -158,7 +160,7 @@ CheckRequiredColumns<-function(input_file,
       }
     }
   }
-  print(paste("Set nm_id_column as", nm_id_column))
+  print(paste("Set nm_id_column as", nm_id_column, index[nm_id_column]))
 
   return(c(chr_column,
            mutation_start_column,
