@@ -33,8 +33,8 @@ CheckRequiredFiles2 <- function(input_sequence,
                                 hla_types,
                                 refflat_file,
                                 refmrna_file,
-                                nm_id = NA,
-                                gene_symbol = NA,
+                                reference_nm_id = NA,
+                                reference_gene_symbol = NA,
                                 reading_frame = 1){
   if(is.na(input_sequence[1]) & is.na(input_nm_id[1])) {
     print("Sequence is NaN")
@@ -67,8 +67,8 @@ CheckRequiredFiles2 <- function(input_sequence,
   } else {
     print(paste("refMrna:", refmrna_file))
   }
-  print(paste("Wt-NM_ID: ", nm_id))
-  print(paste("Wt-Gene Symbol:", gene_symbol))
+  print(paste("Wt-NM_ID: ", reference_nm_id))
+  print(paste("Wt-Gene Symbol:", reference_gene_symbol))
 
   print(paste("Start Position of Reading Frame is:", reading_frame))
   return(FALSE)
@@ -132,7 +132,7 @@ CheckRequiredColumns<-function(input_file,
   print(paste("Set mutation_alt_column as", mutation_alt_column, index[mutation_alt_column]))
 
   if(is.na(depth_normal_column)) {
-    depth_normal_column<-intersect(grep("depth", index, ignore.case = TRUE), 
+    depth_normal_column<-intersect(grep("depth", index, ignore.case = TRUE),
                                    grep("normal", index, ignore.case = TRUE))[1];
     if(is.na(depth_normal_column)) {
       print("Please Manually Indicate depth_normal_column")
@@ -141,7 +141,7 @@ CheckRequiredColumns<-function(input_file,
   print(paste("Set depth_normal_column as", depth_normal_column, index[depth_normal_column]))
 
   if(is.na(depth_tumor_column)) {
-    depth_tumor_column<-intersect(grep("depth", index, ignore.case = TRUE), 
+    depth_tumor_column<-intersect(grep("depth", index, ignore.case = TRUE),
                                   grep("tumor", index, ignore.case = TRUE))[1];
     if(is.na(depth_tumor_column)) {
       print("Please Manually Indicate depth_tumor_column")

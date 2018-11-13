@@ -33,11 +33,11 @@
 #'
 #'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCIIpan").
 #'
-#'@param nm_id (Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+#'@param reference_nm_id Corresponding original sequences that the input sequence is generated.
 #'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 #'It can be indicated when gene_symbol is not NA.
 #'
-#'@param gene_symbol (Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+#'@param reference_gene_symbol Corresponding original sequences that the input sequence is generated.
 #'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 #'It can be indicated when nm_id is not NA.
 #'
@@ -115,8 +115,8 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
                                 export_dir = paste("result", file_name_in_hla_table, job_id, "SeqFragment", sep="."),
                                 netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep="/"),
                                 peptide_length = c(15),
-                                nm_id = NA,
-                                gene_symbol = NA,
+                                reference_nm_id = NA,
+                                reference_gene_symbol = NA,
                                 reading_frame = 1){
 
   #Check Required Files
@@ -126,8 +126,8 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
                          hla_types = hla_types,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,
-                         nm_id,
-                         gene_symbol,
+                         reference_nm_id,
+                         reference_gene_symbol,
                          reading_frame)) return(NULL)
 
   #Attach Group IDs
@@ -153,8 +153,8 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
                            min_peptide_length = min(peptide_length),
                            reading_frame = reading_frame,
                            export_dir = export_dir,
-                           nm_id = nm_id,
-                           gene_symbol = gene_symbol)
+                           reference_nm_id = reference_nm_id,
+                           reference_gene_symbol = reference_gene_symbol)
 
   #Check Output
   output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
@@ -171,7 +171,7 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
   print(paste("Executing netMHCIIpan to", export_dir))
   #SettingNetMHCIIpan(netMHCIIpan_dir)
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  
+
   #Get HLA-Type
   if(file.exists(hla_file)){
     hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))

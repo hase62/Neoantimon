@@ -9,8 +9,8 @@ GenerateMutatedFragments<-function(input_sequence,
                                    min_peptide_length,
                                    reading_frame,
                                    export_dir,
-                                   nm_id,
-                                   gene_symbol){
+                                   reference_nm_id,
+                                   reference_gene_symbol){
 
   #READ refFlat
   list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
@@ -31,8 +31,8 @@ GenerateMutatedFragments<-function(input_sequence,
   trans_to<-c("t", "a", "c", "g")
 
   #Obtain refFLAT Data
-  s_variants_from_nmid <- match(nm_id, list_nm_cut)
-  s_variants_from_gene <- which(!is.na(match(list_nm_gene, gene_symbol)))
+  s_variants_from_nmid <- match(reference_nm_id, list_nm_cut)
+  s_variants_from_gene <- which(!is.na(match(list_nm_gene, reference_gene_symbol)))
   s_variants <- sort(unique(c(s_variants_from_nmid, s_variants_from_gene)))
   if(length(s_variants) == 0){
     print("No Wt-NM_ID Identified")
@@ -51,7 +51,7 @@ GenerateMutatedFragments<-function(input_sequence,
     nm_sep <- strsplit(list_nm[v], "\t")[[1]]
     nm_id <- nm_sep[2]
     nm_ids <- paste(nm_ids, nm_id, sep = ifelse(length(nm_ids) > 0, ";", ""))
-    
+
     #Skip Such As "ch5_hap"
     if(nchar(nm_sep[3]) > 5) next
     chr <- nm_sep[3]
@@ -285,7 +285,7 @@ GenerateMutatedFragments<-function(input_sequence,
         nm_id <- ifelse(is.na(nm_id), "", nm_id)
         group_id <- group_ids[match(input_sequence_1, names(group_ids))]
         if(is.na(group_id)) group_id <- group_ids[match(nm_id, names(group_ids))]
-        
+
         refFasta<-rbind(refFasta,
                         c(paste(random, g_name, sep="_"),
                         0,

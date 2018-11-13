@@ -12,7 +12,8 @@ MainSeqFragmentClass1(input_sequence = NA, input_nm_id = NA,
   export_dir = paste("result", file_name_in_hla_table, job_id,
   "SeqFragment", sep = "."), netMHCpan_dir = paste(hmdir,
   "lib/netMHCpan-4.0/netMHCpan", sep = "/"), peptide_length = c(8, 9, 10,
-  11, 12, 13), nm_id = NA, gene_symbol = NA, reading_frame = 1)
+  11, 12, 13), reference_nm_id = NA, reference_gene_symbol = NA,
+  reading_frame = 1)
 }
 \arguments{
 \item{input_sequence}{(Required) An input amino acid sequence}
@@ -48,11 +49,11 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{peptide_length}{Peptide Length to be generated (Default = {8,9,10,11,12,13}).}
 
-\item{nm_id}{(Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+\item{reference_nm_id}{Corresponding original sequences that the input sequence is generated.
 If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 It can be indicated when gene_symbol is not NA.}
 
-\item{gene_symbol}{(Required if gene_symbol is NA) Corresponding original sequences that the input sequence is generated.
+\item{reference_gene_symbol}{Corresponding original sequences that the input sequence is generated.
 If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 It can be indicated when nm_id is not NA.}
 
