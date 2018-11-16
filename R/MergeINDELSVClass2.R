@@ -90,7 +90,7 @@ MergeINDELSVClass2<-function(hmdir = getwd(),
   }
 
   full_peptide<-full_peptide[,match(tag, colnames(full_peptide))]
-  write.table(full_peptide, paste(dir, "/", file_prefix, ".CLASS2.ALL.txt", sep=""),
+  write.table(full_peptide, paste(dir, "/", file_prefix, ".HLACLASS2.ALL.txt", sep=""),
               row.names=FALSE, col.names=TRUE, quote=FALSE, sep="\t")
   return(full_peptide)
 }

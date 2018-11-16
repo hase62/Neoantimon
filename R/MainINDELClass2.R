@@ -314,7 +314,7 @@ MainINDELClass2<-function(input_file,
                        " -f ", output_f,
                        " -choose -cha ", gsub("\\*|\\:","", hla_type),
                        " -choose -chb ", gsub("\\*|\\:","", hla2),
-                       " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
+                       " > ", export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
                        sep=""))
           COUNT <- COUNT + 1
         }
@@ -324,7 +324,7 @@ MainINDELClass2<-function(input_file,
   }
   print("Merging Results...")
   result <- MergeINDELSVClass2(input_dir = export_dir,
-                               file_prefix = job_id,
+                               file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
                                annotation_file = output_peptide_txt_file)
 
   print("Successfully Finished.")

@@ -18,14 +18,37 @@
 #'
 #'@return Num_Peptide_Generating_NeoAg The number of evaluated peptides that can be neoantigen.
 #'
+#'@return Weight The weight for alterations.
+#'
+#'@return WriteLongIndel Write Long Indels by Indicating Output File name.
+#'
 #'@export
 Export_Summary_IndelSV <- function(Input,
                                mut_IC50_th,
                                Total_RNA_th = NA,
                                Tumor_RNA_th = NA,
-                               MutRatio_th = NA){
+                               MutRatio_th = NA,
+                               Weight = NA,
+                               WriteLongIndel = NA){
 
   index <- colnames(Input)
+  if(!is.na(WriteLongIndel)){
+    theoretical_pro <- 3 * 4^3 / 61^2
+    tmp <- Input[sapply(Input[, match("Mutant_Peptide", index)], function(x) (1-theoretical_pro)^nchar(x)) < 0.01, ]
+    tmp <- match(unique(tmp[, grep("Mutation_Position", index)]),
+                 tmp[, grep("Mutation_Position", index)])
+    if(length(tmp) > 0){
+      write.table(tmp[, (match("Chr", index)):ncol(Input)],
+                paste(WriteLongIndel, ".txt", sep = ""),
+                row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
+    }
+  }
+
+  if(!is.na(Weight[1])){
+    Input <- cbind(Input, match(Input[, match("NM_ID", index)], unique(Input[, grep("NM_ID", index)])))
+    print("Set Weight as")
+    print(paste(unique(Input[, grep("NM_ID", index)]), "is", Weight))
+  }
   Num_Alteration <-length(unique(Input[, grep("Mutation_Position", index)]))
   Num_Peptide <-length(unique(Input[, grep("Evaluated_Mutant", index)]))
 
@@ -47,8 +70,16 @@ Export_Summary_IndelSV <- function(Input,
       return(NULL)
     }
   }
-  alt_count <- length(unique(Input[, grep("Mutation_Position", index)]))
-  pep_count <- length(unique(Input[, grep("Evaluated_Mutant", index)]))
+  if(is.na(Weight[1])){
+    alt_count <- length(unique(Input[, grep("Mutation_Position", index)]))
+    pep_count <- length(unique(Input[, grep("Evaluated_Mutant", index)]))
+  } else {
+
+    alt_count <- sum(Weight[as.numeric(Input[match(unique(Input[, grep("Mutation_Position", index)]),
+                      Input[, grep("Mutation_Position", index)]), ncol(Input)])])
+    pep_count <- sum(Weight[as.numeric(Input[match(unique(Input[, grep("Evaluated_Mutant", index)]),
+                                                   Input[, grep("Evaluated_Mutant", index)]), ncol(Input)])])
+  }
 
   ans <- c(Num_Alteration, alt_count, Num_Peptide, pep_count)
   names(ans) <- c("Num_Alteration", "Num_Alteration_Generating_NeoAg",

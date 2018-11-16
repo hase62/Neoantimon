@@ -294,14 +294,14 @@ MainSNVClass1<-function(input_file,
                    " -l ", paste(peptide_length, collapse = ","),
                    " -f ", output_f,
                    " -a HLA-", gsub("\\*","",hla_type),
-                   " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
+                   " > ", export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
       COUNT <- COUNT + 1
     }
     if(USETEMP) file.remove(output_f)
   }
   print("Merging Results...")
   result <- MergeSNVClass1(input_dir = export_dir,
-                           file_prefix = job_id,
+                           file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
                            annotation_file = output_peptide_txt_file)
 
   print("Successfully Finished.")
