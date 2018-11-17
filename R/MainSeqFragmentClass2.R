@@ -184,7 +184,7 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
     hla_types <- hla[hit, -1]
   }
 
-  if(is.na(input_nm_id)){
+  if(is.na(input_nm_id[1])){
   #Execute NetMHCpan
   for(pep in c("peptide")){
     COUNT<-1
@@ -246,16 +246,8 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
     result <- t(sapply(sort(unique(result[,1])),
                     function(x) apply3(result[!is.na(match(result[,1], x)), c(2, 3)], 2,
                                        function(y) median(as.numeric(y)))))
-    result <- apply(result, 1, function(x) as.numeric(x[2]) / as.numeric(x[1]))
+    result <- apply2(result, 1, function(x) as.numeric(x[2]) / as.numeric(x[1]))
   }
-
-  res <- scan(output_peptide_txt_file, "character", sep = "\t")
-  res <- matrix(res, byrow = TRUE, ncol = 28)
-  res <- res[match(unique(res[,4]), res[, 4]), c(12, 13, 14)]
-  res <- t(sapply(sort(unique(res[,1])),
-                  function(x) apply3(res[!is.na(match(res[,1], x)), c(2, 3)], 2,
-                                     function(y) median(as.numeric(y)))))
-  weight_ <- apply2(res, 1, function(x) as.numeric(x[2]) / as.numeric(x[1]))
 
   print("Successfully Finished.")
   return(list(result, weight_))
