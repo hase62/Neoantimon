@@ -6,18 +6,16 @@
 \usage{
 MainSNVClass2(input_file, hla_file = "here_is_a_table", hla_types = NA,
   file_name_in_hla_table = input_file, refflat_file = paste(hmdir,
-  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir,
-  "lib/refMrna.fa", sep = "/"), hmdir = getwd(), job_id = "ID",
-  export_dir = paste("result", file_name_in_hla_table, job_id, "SNV", sep
-  = "."), rnaexp_file = NA, rnabam_file = NA, cnv_file = NA,
-  purity = 1, netMHCIIpan_dir = paste(hmdir,
+  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir, "lib/refMrna.fa",
+  sep = "/"), hmdir = getwd(), job_id = "ID", export_dir = paste("result",
+  job_id, "SNV2", sep = "."), rnaexp_file = NA, rnabam_file = NA,
+  cnv_file = NA, purity = 1, netMHCIIpan_dir = paste(hmdir,
   "lib/netMHCIIpan-3.1/netMHCIIpan", sep = "/"), refdna_file = NA,
   samtools_dir = NA, bcftools_dir = NA, chr_column = NA,
   mutation_start_column = NA, mutation_end_column = NA,
-  mutation_ref_column = NA, mutation_alt_column = NA,
-  nm_id_column = NA, depth_normal_column = NA,
-  depth_tumor_column = NA, ambiguous_between_exon = 0,
-  ambiguous_codon = 0, peptide_length = c(15))
+  mutation_ref_column = NA, mutation_alt_column = NA, nm_id_column = NA,
+  depth_normal_column = NA, depth_tumor_column = NA,
+  ambiguous_between_exon = 0, ambiguous_codon = 0, peptide_length = c(15))
 }
 \arguments{
 \item{input_file}{(Required) An input vcf file annotated by,

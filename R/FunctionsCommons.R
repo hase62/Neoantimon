@@ -215,4 +215,10 @@ apply2<-function(x, y, f){
   }
 }
 
-
+apply3<-function(x, y, z){
+  if(is.null(dim(x))){
+    return(x)
+  } else {
+    return(apply(x, y, z))
+  }
+}
