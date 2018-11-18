@@ -28,7 +28,8 @@ Export_Summary_IndelSV <- function(Input,
                                Total_RNA_th = NA,
                                Tumor_RNA_th = NA,
                                MutRatio_th = NA,
-                               Weight = NA,
+                               Weight_rf2 = NA,
+                               Weight_rf3 = NA,
                                WriteLongIndel = NA){
 
   index <- colnames(Input)
@@ -44,7 +45,10 @@ Export_Summary_IndelSV <- function(Input,
     }
   }
 
-  if(!is.na(Weight[1])){
+  if(!is.na(Weight_rf2[1]) && !is.na(Weight_rf3[1])){
+    pos <- match(unique(Input[, grep("NM_ID", index)]), Input[, grep("NM_ID", index)])
+    pos <- apply2(gsub("-", "", Input[pos, c(11, 12)]), 1, function(x) nchar(x[1]) - nchar(x[2])) %% 3
+    Weight = ifelse(pos == 1, weight_2, ifelse(pos == 2, weight_3, 0))
     Input <- cbind(Input, match(Input[, match("NM_ID", index)], unique(Input[, grep("NM_ID", index)])))
     print("Set Weight as")
     print(paste(unique(Input[, grep("NM_ID", index)]), "is", Weight))
@@ -70,11 +74,10 @@ Export_Summary_IndelSV <- function(Input,
       return(NULL)
     }
   }
-  if(is.na(Weight[1])){
+  if(is.na(Weight_rf2[1]) | is.na(Weight_rf3[1])){
     alt_count <- length(unique(Input[, grep("Mutation_Position", index)]))
     pep_count <- length(unique(Input[, grep("Evaluated_Mutant", index)]))
   } else {
-
     alt_count <- sum(Weight[as.numeric(Input[match(unique(Input[, grep("Mutation_Position", index)]),
                       Input[, grep("Mutation_Position", index)]), ncol(Input)])])
     pep_count <- sum(Weight[as.numeric(Input[match(unique(Input[, grep("Evaluated_Mutant", index)]),
