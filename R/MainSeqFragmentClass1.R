@@ -223,5 +223,5 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
   }
 
   print("Successfully Finished.")
-  return(list(result, weight_))
+  return(result)
 }
