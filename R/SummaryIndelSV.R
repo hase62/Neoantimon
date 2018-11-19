@@ -37,9 +37,9 @@ Export_Summary_IndelSV <- function(Input,
     theoretical_pro <- 3 * 4^3 / 61^2
     tmp <- Input[sapply(Input[, match("Mutant_Peptide", index)], function(x) (1-theoretical_pro)^nchar(x)) < 0.01, ]
     tmp <- match(unique(tmp[, grep("Mutation_Position", index)]),
-                 tmp[, grep("Mutation_Position", index)])
+                 Input[, grep("Mutation_Position", index)])
     if(length(tmp) > 0){
-      write.table(tmp[, (match("Chr", index)):ncol(Input)],
+      write.table(Input[tmp, (match("Chr", index)):ncol(Input)],
                 paste(WriteLongIndel, ".txt", sep = ""),
                 row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
     }
