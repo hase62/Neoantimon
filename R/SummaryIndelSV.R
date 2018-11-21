@@ -70,13 +70,14 @@ Export_Summary_IndelSV <- function(Input,
     Input <- Input[as.numeric(Input[, match("MutRatio", index)]) > MutRatio_th, ]
   }
 
-  if(is.null(Input)) {
+  if(is.null(Input) | is.null(dim(Input)[1])) {
     if(length(Input) > 10) {
       Input <- t(Input)
     } else {
       return(NULL)
     }
   }
+
   if(is.na(Weight_rf2[1]) | is.na(Weight_rf3[1])){
     alt_count <- length(unique(Input[, grep("Mutation_Position", index)]))
     pep_count <- length(unique(Input[, grep("Evaluated_Mutant", index)]))
