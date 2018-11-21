@@ -7,12 +7,12 @@
 MainSeqFragmentClass1(input_sequence = NA, input_nm_id = NA,
   group_ids = NA, hla_file = "here_is_a_table", hla_types = NA,
   file_name_in_hla_table = NA, refflat_file = paste(hmdir,
-  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir, "lib/refMrna.fa",
-  sep = "/"), hmdir = getwd(), job_id = "ID", export_dir = paste("result",
-  job_id, "SeqFragment1", sep = "."), netMHCpan_dir = paste(hmdir,
-  "lib/netMHCpan-4.0/netMHCpan", sep = "/"), peptide_length = c(8, 9, 10, 11,
-  12, 13), reference_nm_id = NA, reference_gene_symbol = NA,
-  reading_frame = 1)
+  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir,
+  "lib/refMrna.fa", sep = "/"), hmdir = getwd(), job_id = "ID",
+  export_dir = paste("result", job_id, "SeqFragment1", sep = "."),
+  netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep = "/"),
+  peptide_length = c(8, 9, 10, 11, 12, 13), reference_nm_id = NA,
+  reference_gene_symbol = NA, reading_frame = 1)
 }
 \arguments{
 \item{input_sequence}{(Required) An input amino acid sequence}

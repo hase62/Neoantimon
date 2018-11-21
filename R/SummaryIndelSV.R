@@ -10,6 +10,12 @@
 #'
 #'@param MutRatio_th The mutation ratio threshold.
 #'
+#'@param Weight_rf2 The weight for alterations.
+#'
+#'@param Weight_rf3 The weight for alterations.
+#'
+#'@param WriteLongIndel If setting a file name, Write Long Indels.
+#'
 #'@return Num_Alteration The number of evaluated alterations.
 #'
 #'@return Num_Alteration_Generating_NeoAg The number of evaluated alterations that can generate neoantigen.
@@ -18,9 +24,6 @@
 #'
 #'@return Num_Peptide_Generating_NeoAg The number of evaluated peptides that can be neoantigen.
 #'
-#'@return Weight The weight for alterations.
-#'
-#'@return WriteLongIndel Write Long Indels by Indicating Output File name.
 #'
 #'@export
 Export_Summary_IndelSV <- function(Input,

@@ -5,8 +5,8 @@
 \title{Export Summary Count from Indel/SV Results}
 \usage{
 Export_Summary_IndelSV(Input, mut_IC50_th, Total_RNA_th = NA,
-  Tumor_RNA_th = NA, MutRatio_th = NA, Weight_rf2 = NA, Weight_rf3 = NA,
-  WriteLongIndel = NA)
+  Tumor_RNA_th = NA, MutRatio_th = NA, Weight_rf2 = NA,
+  Weight_rf3 = NA, WriteLongIndel = NA)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}
@@ -18,6 +18,12 @@ Export_Summary_IndelSV(Input, mut_IC50_th, Total_RNA_th = NA,
 \item{Tumor_RNA_th}{The tumor specific RNA expression threshold.}
 
 \item{MutRatio_th}{The mutation ratio threshold.}
+
+\item{Weight_rf2}{The weight for alterations.}
+
+\item{Weight_rf3}{The weight for alterations.}
+
+\item{WriteLongIndel}{If setting a file name, Write Long Indels.}
 }
 \value{
 Num_Alteration The number of evaluated alterations.
@@ -27,10 +33,6 @@ Num_Alteration_Generating_NeoAg The number of evaluated alterations that can gen
 Num_Peptide The number of evaluated peptifdes.
 
 Num_Peptide_Generating_NeoAg The number of evaluated peptides that can be neoantigen.
-
-Weight The weight for alterations.
-
-WriteLongIndel Write Long Indels by Indicating Output File name.
 }
 \description{
 Export Summary Count from Indel/SV Results
