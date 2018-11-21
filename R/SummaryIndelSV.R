@@ -48,7 +48,7 @@ Export_Summary_IndelSV <- function(Input,
   if(!is.na(Weight_rf2[1]) && !is.na(Weight_rf3[1])){
     pos <- match(unique(Input[, grep("NM_ID", index)]), Input[, grep("NM_ID", index)])
     pos <- apply2(gsub("-", "", Input[pos, c(11, 12)]), 1, function(x) nchar(x[1]) - nchar(x[2])) %% 3
-    Weight = ifelse(pos == 1, weight_2, ifelse(pos == 2, weight_3, 0))
+    Weight = ifelse(pos == 1, Weight_rf2, ifelse(pos == 2, Weight_rf3, 0))
     Input <- cbind(Input, match(Input[, match("NM_ID", index)], unique(Input[, grep("NM_ID", index)])))
     print("Set Weight as")
     print(paste(unique(Input[, grep("NM_ID", index)]), "is", Weight))
