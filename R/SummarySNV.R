@@ -29,8 +29,8 @@ Export_Summary_SNV <- function(Input,
                                MutRatio_th = NA){
 
   index <- colnames(Input)
-  Num_Alteration <-length(unique(Input[, grep("Mutation_Position", index)]))
-  Num_Peptide <-length(unique(Input[, grep("Evaluated_Mutant", index)]))
+  Num_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
+  Num_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
   Input <- Input[as.numeric(Input[, match("Mut_IC50", index)]) < mut_IC50_th, ]
   if(!is.na(wt_IC50_th)){
@@ -54,8 +54,8 @@ Export_Summary_SNV <- function(Input,
     }
   }
 
-  alt_count <- length(unique(Input[, grep("Mutation_Position", index)]))
-  pep_count <- length(unique(Input[, grep("Evaluated_Mutant", index)]))
+  alt_count <- length(unique(Input[, match("Mutation_Position", index)]))
+  pep_count <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
   ans <- c(Num_Alteration, alt_count, Num_Peptide, pep_count)
   names(ans) <- c("Num_Alteration", "Num_Alteration_Generating_NeoAg",

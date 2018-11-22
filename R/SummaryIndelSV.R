@@ -39,8 +39,8 @@ Export_Summary_IndelSV <- function(Input,
   if(!is.na(WriteLongIndel)){
     theoretical_pro <- 3 * 4^3 / 61^2
     tmp <- Input[sapply(Input[, match("Mutant_Peptide", index)], function(x) (1-theoretical_pro)^nchar(x)) < 0.01, ]
-    tmp <- match(unique(tmp[, grep("Mutation_Position", index)]),
-                 Input[, grep("Mutation_Position", index)])
+    tmp <- match(unique(tmp[, match("Mutation_Position", index)]),
+                 Input[, match("Mutation_Position", index)])
     if(length(tmp) > 0){
       write.table(Input[tmp, (match("Chr", index)):ncol(Input)],
                 paste(WriteLongIndel, ".txt", sep = ""),
@@ -49,15 +49,15 @@ Export_Summary_IndelSV <- function(Input,
   }
 
   if(!is.na(Weight_rf2[1]) && !is.na(Weight_rf3[1])){
-    pos <- match(unique(Input[, grep("NM_ID", index)]), Input[, grep("NM_ID", index)])
+    pos <- match(unique(Input[, match("NM_ID", index)]), Input[, match("NM_ID", index)])
     pos <- apply2(gsub("-", "", Input[pos, c(11, 12)]), 1, function(x) nchar(x[1]) - nchar(x[2])) %% 3
     Weight = ifelse(pos == 1, Weight_rf2, ifelse(pos == 2, Weight_rf3, 0))
-    Input <- cbind(Input, match(Input[, match("NM_ID", index)], unique(Input[, grep("NM_ID", index)])))
+    Input <- cbind(Input, match(Input[, match("NM_ID", index)], unique(Input[, match("NM_ID", index)])))
     print("Set Weight as")
-    print(paste(unique(Input[, grep("NM_ID", index)]), "is", Weight))
+    print(paste(unique(Input[, match("NM_ID", index)]), "is", Weight))
   }
-  Num_Alteration <-length(unique(Input[, grep("Mutation_Position", index)]))
-  Num_Peptide <-length(unique(Input[, grep("Evaluated_Mutant", index)]))
+  Num_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
+  Num_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
   Input <- Input[as.numeric(Input[, match("Mut_IC50", index)]) < mut_IC50_th, ]
   if(!is.na(Total_RNA_th)){
@@ -79,13 +79,13 @@ Export_Summary_IndelSV <- function(Input,
   }
 
   if(is.na(Weight_rf2[1]) | is.na(Weight_rf3[1])){
-    alt_count <- length(unique(Input[, grep("Mutation_Position", index)]))
-    pep_count <- length(unique(Input[, grep("Evaluated_Mutant", index)]))
+    alt_count <- length(unique(Input[, match("Mutation_Position", index)]))
+    pep_count <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
   } else {
-    alt_count <- sum(Weight[as.numeric(Input[match(unique(Input[, grep("Mutation_Position", index)]),
-                      Input[, grep("Mutation_Position", index)]), ncol(Input)])])
-    pep_count <- sum(Weight[as.numeric(Input[match(unique(Input[, grep("Evaluated_Mutant", index)]),
-                                                   Input[, grep("Evaluated_Mutant", index)]), ncol(Input)])])
+    alt_count <- sum(Weight[as.numeric(Input[match(unique(Input[, match("Mutation_Position", index)]),
+                      Input[, match("Mutation_Position", index)]), ncol(Input)])])
+    pep_count <- sum(Weight[as.numeric(Input[match(unique(Input[, match("Evaluated_Mutant_Peptide", index)]),
+                                                   Input[, match("Evaluated_Mutant_Peptide", index)]), ncol(Input)])])
   }
 
   ans <- c(Num_Alteration, alt_count, Num_Peptide, pep_count)
