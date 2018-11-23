@@ -263,8 +263,6 @@ MainSVFUSIONClass2<-function(input_file,
     print(paste("Did not find", netMHCIIpan_dir))
     return(NULL)
   }
-  print(paste("Executing netMHCIIpan to", export_dir))
-  #SettingNetMHCIIpan(netMHCIIpan_dir)
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
   #Get HLA-Type

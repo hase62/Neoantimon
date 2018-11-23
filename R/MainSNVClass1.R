@@ -251,7 +251,6 @@ MainSNVClass1<-function(input_file,
     print(paste("Did not find", netMHCpan_dir))
     return(NULL)
   }
-  print(paste("Executing netMHCpan to", export_dir))
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
   #Get HLA-Type
