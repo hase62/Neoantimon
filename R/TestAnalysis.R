@@ -91,11 +91,10 @@ TestAnalysis<-function(){
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                                           reference_nm_id = c("NM_003998", "NM_001165412"),
-                                           reading_frame = 1
+                                           reference_nm_id = c("NM_003998", "NM_001165412")
   )
 
-  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "aaatggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
+  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "lib/data/sample_hla_table_c2.txt",
                                            hmdir = getwd(),
@@ -103,7 +102,6 @@ TestAnalysis<-function(){
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
-                                           reference_gene_symbol = c("NFKB1", "BCL3"),
-                                           reading_frame = 3
+                                           reference_gene_symbol = c("NFKB1", "BCL3")
   )
 }

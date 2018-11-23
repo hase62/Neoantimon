@@ -222,3 +222,13 @@ apply3<-function(x, y, z){
     return(apply(x, y, z))
   }
 }
+
+getHLAtypes<-function(hla_file, file_name_in_hla_table){
+  hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
+  hit <- match(file_name_in_hla_table, hla[, 1])
+  if(is.na(hit)) {
+    print(file_name_in_hla_table, "is not included in", hla_file)
+    return (NA)
+  }
+  return(hla[hit, -1])
+}

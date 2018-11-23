@@ -2,6 +2,8 @@ MergeINDELSVClass2<-function(hmdir = getwd(),
                              annotation_file,
                              input_dir,
                              file_prefix){
+  print("Merging Results...")
+
   dir<-paste(hmdir, input_dir, sep="/")
   files<-list.files(paste(dir, sep="/"))
 

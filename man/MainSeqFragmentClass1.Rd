@@ -4,20 +4,18 @@
 \alias{MainSeqFragmentClass1}
 \title{Calculate Neoantigen Candidates from A Given Sequence for MHC Class1}
 \usage{
-MainSeqFragmentClass1(input_sequence = NA, input_nm_id = NA,
-  group_ids = NA, hla_file = "here_is_a_table", hla_types = NA,
-  file_name_in_hla_table = NA, refflat_file = paste(hmdir,
-  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir,
-  "lib/refMrna.fa", sep = "/"), hmdir = getwd(), job_id = "ID",
-  export_dir = paste("result", job_id, "SeqFragment1", sep = "."),
-  netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep = "/"),
-  peptide_length = c(8, 9, 10, 11, 12, 13), reference_nm_id = NA,
-  reference_gene_symbol = NA, reading_frame = 1)
+MainSeqFragmentClass1(input_sequence = NA,
+  group_ids = seq(1:length(input_nm_id)), hla_file = "here_is_a_table",
+  hla_types = NA, file_name_in_hla_table = NA,
+  refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
+  refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
+  hmdir = getwd(), job_id = "ID", export_dir = paste("result",
+  job_id, "SeqFragment1", sep = "."), netMHCpan_dir = paste(hmdir,
+  "lib/netMHCpan-4.0/netMHCpan", sep = "/"), peptide_length = c(8, 9, 10,
+  11, 12, 13), reference_nm_id = NA, reference_gene_symbol = NA)
 }
 \arguments{
 \item{input_sequence}{(Required) An input amino acid sequence}
-
-\item{input_nm_id}{(Required) An input amino acid sequence indicated as NM_ID}
 
 \item{group_ids}{flag to cluster the same group}
 
@@ -55,8 +53,6 @@ It can be indicated when gene_symbol is not NA.}
 \item{reference_gene_symbol}{Corresponding original sequences that the input sequence is generated.
 If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 It can be indicated when nm_id is not NA.}
-
-\item{reading_frame}{The starting frame of the input sequence (Default = 1)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

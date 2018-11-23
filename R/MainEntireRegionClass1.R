@@ -1,13 +1,13 @@
-#'Calculate Neoantigen Candidates from A Given Sequence for MHC Class2
+#'Calculate Neoantigen Candidates from A Given Sequence for MHC Class1
 #'
-#'@param input_sequence (Required) An input amino acid sequence
+#'@param input_nm_id (Required) An input amino acid sequence indicated as NM_ID
 #'
 #'@param group_ids flag to cluster the same group
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
-#'See by data(sample_hla_table_c2); sample_hla_table_c2;
+#'See by data(sample_hla_table_c1); sample_hla_table_c1;
 #'
 #'@param hla_types Set a list of HLA types
 #'
@@ -19,7 +19,7 @@
 #'
 #'@param export_dir The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")
 #'
-#'@param peptide_length Peptide Length to be generated (Default = {15}).
+#'@param peptide_length Peptide Length to be generated (Default = {8,9,10,11,12,13}).
 #'
 #'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
 #'
@@ -29,15 +29,11 @@
 #'
 #'See "https://github.com/hase62/Neoantimon"
 #'
-#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCIIpan").
+#'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
-#'@param reference_nm_id Corresponding original sequences that the input sequence is generated.
-#'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
-#'It can be indicated when gene_symbol is not NA.
+#'@param reading_frame The starting frame of the input sequence (Default = 1)
 #'
-#'@param reference_gene_symbol Corresponding original sequences that the input sequence is generated.
-#'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
-#'It can be indicated when nm_id is not NA.
+#'@param CalculateIC50 Whether Calculate IC50 by NetMHCpan or not.
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
@@ -98,7 +94,7 @@
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
 #'@export
-MainSeqFragmentClass2<-function(input_sequence = NA,
+MainEntireRegionClass1<-function(input_nm_id,
                                 group_ids = seq(1:length(input_nm_id)),
                                 hla_file = "here_is_a_table",
                                 hla_types = NA,
@@ -107,31 +103,31 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
                                 refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
                                 hmdir = getwd(),
                                 job_id = "ID",
-                                export_dir = paste("result", job_id, "SeqFragment2", sep="."),
-                                netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep="/"),
-                                peptide_length = c(15),
-                                reference_nm_id = NA,
-                                reference_gene_symbol = NA){
+                                export_dir = paste("result", job_id, "EntireRegion1", sep="."),
+                                netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
+                                peptide_length = c(8, 9, 10, 11, 12, 13),
+                                reading_frame = 1,
+                                CalculateIC50 = FALSE){
 
   #Check Required Files
-  if(CheckRequiredFiles2(input_sequence = input_sequence,
-                         input_nm_id = NA,
+  if(CheckRequiredFiles2(input_sequence = NA,
+                         input_nm_id = input_nm_id,
                          hla_file = hla_file,
                          hla_types = hla_types,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,
-                         reference_nm_id,
-                         reference_gene_symbol,
-                         1)) return(NULL)
+                         reference_nm_id = NA,
+                         reference_gene_symbol = NA,
+                         reading_frame)) return(NULL)
 
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-  names(group_ids) <- input_sequence
+  names(group_ids) <- input_nm_id
 
   #Generate FASTA and Mutation Profile
-  job_id = paste(job_id, "SeqFragment", sep = "_")
-  GenerateMutatedFragments(input_sequence = input_sequence,
-                           input_nm_id = NA,
+  job_id = paste(job_id, "EntireRegion", sep = "_")
+  GenerateMutatedFragments(input_sequence = NA,
+                           input_nm_id = input_nm_id,
                            group_ids = group_ids,
                            hmdir = hmdir,
                            job_id = job_id,
@@ -139,10 +135,10 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
                            refmrna_file = refmrna_file,
                            max_peptide_length = max(peptide_length),
                            min_peptide_length = min(peptide_length),
-                           reading_frame = 1,
+                           reading_frame = reading_frame,
                            export_dir = export_dir,
-                           reference_nm_id = reference_nm_id,
-                           reference_gene_symbol = reference_gene_symbol)
+                           reference_nm_id = NA,
+                           reference_gene_symbol = NA)
 
   #Check Output
   output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
@@ -151,9 +147,9 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
     return(NULL)
   }
 
-  #NetMHCIIpan
-  if(is.na(netMHCIIpan_dir) | !file.exists(netMHCIIpan_dir)) {
-    print(paste("Did not find", netMHCIIpan_dir))
+  #NetMHCpan
+  if(is.na(netMHCpan_dir) | !file.exists(netMHCpan_dir)) {
+    print(paste("Did not find", netMHCpan_dir))
     return(NULL)
   }
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
@@ -164,20 +160,30 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
   }
   if(is.na(hla_types)) return(NULL)
 
-  #Execute NetMHCpan
-  ExeNetMHCpanClass2(output_peptide_prefix = export_dir,
-                     "peptide",
-                     hla_types,
-                     netMHCIIpan_dir,
-                     peptide_length,
-                     export_dir,
-                     input_file = "Frag",
-                     job_id)
+  if(CalculateIC50){
+    #Execute NetMHCpan
+    ExeNetMHCpanClass1(output_peptide_prefix = export_dir,
+                       "peptide",
+                       hla_types,
+                       netMHCpan_dir,
+                       peptide_length,
+                       export_dir,
+                       input_file = "Frag",
+                       job_id)
 
-  #Merge Results
-  result <- MergeINDELSVClass2(input_dir = export_dir,
-                               file_prefix = job_id,
-                               annotation_file = output_peptide_txt_file)
+    #Merge Results
+    result <- MergeINDELSVClass1(input_dir = export_dir,
+                                 file_prefix = job_id,
+                                 annotation_file = output_peptide_txt_file)
+  } else {
+    result <- scan(output_peptide_txt_file, "character", sep = "\t")
+    result <- matrix(result, byrow = TRUE, ncol = 28)
+    result <- result[match(unique(result[,4]), result[, 4]), c(12, 13, 14)]
+    result <- t(sapply(sort(unique(result[,1])),
+                       function(x) apply3(result[!is.na(match(result[,1], x)), c(2, 3)], 2,
+                                          function(y) median(as.numeric(y)))))
+    result <- apply2(result, 1, function(x) as.numeric(x[2]) / as.numeric(x[1]))
+  }
 
   print("Successfully Finished.")
   return(result)

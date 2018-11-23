@@ -2,8 +2,6 @@
 #'
 #'@param input_sequence (Required) An input amino acid sequence
 #'
-#'@param input_nm_id (Required) An input amino acid sequence indicated as NM_ID
-#'
 #'@param group_ids flag to cluster the same group
 #'
 #'@param hla_file (Required) A tab separated file indicating HLA types.
@@ -40,8 +38,6 @@
 #'@param reference_gene_symbol Corresponding original sequences that the input sequence is generated.
 #'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 #'It can be indicated when nm_id is not NA.
-#'
-#'@param reading_frame The starting frame of the input sequence (Default = 1)
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
@@ -103,8 +99,7 @@
 #'
 #'@export
 MainSeqFragmentClass1<-function(input_sequence = NA,
-                                input_nm_id = NA,
-                                group_ids = NA,
+                                group_ids = seq(1:length(input_nm_id)),
                                 hla_file = "here_is_a_table",
                                 hla_types = NA,
                                 file_name_in_hla_table = NA,
@@ -116,34 +111,27 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                 netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
                                 peptide_length = c(8, 9, 10, 11, 12, 13),
                                 reference_nm_id = NA,
-                                reference_gene_symbol = NA,
-                                reading_frame = 1){
+                                reference_gene_symbol = NA){
 
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
-                         input_nm_id = input_nm_id,
+                         input_nm_id = NA,
                          hla_file = hla_file,
                          hla_types = hla_types,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,
                          reference_nm_id,
                          reference_gene_symbol,
-                         reading_frame)) return(NULL)
+                         1)) return(NULL)
 
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-
-  #Attach Group IDs
-  if(is.null(group_ids[1])) group_ids <- seq(from = 1,
-                                             to = ifelse(is.na(input_sequence[1]), 0, length(input_sequence)) +
-                                               ifelse(is.na(input_nm_id[1]), 0, length(input_nm_id)))
-  tmp <- c(input_sequence, input_nm_id)
-  names(group_ids) <- tmp[!is.na(tmp)]
+  names(group_ids) <- input_sequence
 
   #Generate FASTA and Mutation Profile
   job_id = paste(job_id, "SeqFragment", sep = "_")
   GenerateMutatedFragments(input_sequence = input_sequence,
-                           input_nm_id = input_nm_id,
+                           input_nm_id = NA,
                            group_ids = group_ids,
                            hmdir = hmdir,
                            job_id = job_id,
@@ -151,7 +139,7 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                            refmrna_file = refmrna_file,
                            max_peptide_length = max(peptide_length),
                            min_peptide_length = min(peptide_length),
-                           reading_frame = reading_frame,
+                           reading_frame = 1,
                            export_dir = export_dir,
                            reference_nm_id = reference_nm_id,
                            reference_gene_symbol = reference_gene_symbol)
@@ -168,59 +156,28 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
     print(paste("Did not find", netMHCpan_dir))
     return(NULL)
   }
-  print(paste("Executing netMHCpan to", export_dir))
-  ##SettingNetMHCpan(netMHCpan_dir)
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
   #Get HLA-Type
   if(file.exists(hla_file)){
-    hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-    hit <- match(file_name_in_hla_table, hla[,1])
-    if(is.na(hit)) {
-      print(file_name_in_hla_table, "is not included in", hla_file)
-      return (NULL)
-    }
-    return (NULL)
-    hla_types <- hla[hit, -1]
+    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
   }
+  if(is.na(hla_types)) return(NULL)
 
-  if(is.na(input_nm_id[1])){
   #Execute NetMHCpan
-  for(pep in c("peptide")){
-    COUNT<-1
-    output_f <- paste(export_dir, "/", job_id, ".", pep, ".", "fasta", sep="")
-    USETEMP <- FALSE
-    if(nchar(output_f) > 230) {
-      output_f_new <- paste("temp.Neoantimon.", runif(1) * 1000000, "txt", sep = "")
-      file.copy(from = output_f, to = output_f_new)
-      output_f <- output_f_new
-      USETEMP <- TRUE
-    }
-    for(hla_type in hla_types){
-      paste("Calculating", pep, hla_type)
-      system(paste(netMHCpan_dir,
-                   " -BA ",
-                   " -l ", paste(peptide_length, collapse = ","),
-                   " -f ", output_f,
-                   " -a HLA-", gsub("\\*", "", hla_type),
-                   " > ", export_dir, "/", job_id, ".HLACLASS1.", COUNT, ".", pep, ".txt", sep=""))
-      COUNT <- COUNT + 1
-    }
-    if(USETEMP) file.remove(output_f)
-  }
-  print("Merging Results...")
+  ExeNetMHCpanClass1(output_peptide_prefix = export_dir,
+                     "peptide",
+                     hla_types,
+                     netMHCpan_dir,
+                     peptide_length,
+                     export_dir,
+                     input_file = "Frag",
+                     job_id)
+
+  #Merge Results
   result <- MergeINDELSVClass1(input_dir = export_dir,
                                file_prefix = job_id,
                                annotation_file = output_peptide_txt_file)
-  } else {
-    result <- scan(output_peptide_txt_file, "character", sep = "\t")
-    result <- matrix(result, byrow = TRUE, ncol = 28)
-    result <- result[match(unique(result[,4]), result[, 4]), c(12, 13, 14)]
-    result <- t(sapply(sort(unique(result[,1])),
-                       function(x) apply3(result[!is.na(match(result[,1], x)), c(2, 3)], 2,
-                                          function(y) median(as.numeric(y)))))
-    result <- apply2(result, 1, function(x) as.numeric(x[2]) / as.numeric(x[1]))
-  }
 
   print("Successfully Finished.")
   return(result)

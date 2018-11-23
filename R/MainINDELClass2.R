@@ -185,29 +185,19 @@ MainINDELClass2<-function(input_file,
                         hla_types = hla_types,
                         refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
-  flg<-CheckRequiredColumns(input_file = input_file,
-                            chr_column = chr_column,
-                            mutation_start_column = mutation_start_column,
-                            mutation_end_column = mutation_end_column,
-                            mutation_ref_column = mutation_ref_column,
-                            mutation_alt_column = mutation_alt_column,
-                            nm_id_column = nm_id_column,
-                            depth_normal_column = depth_normal_column,
-                            depth_tumor_column = depth_tumor_column)
+
+  flg <- CheckRequiredColumns(input_file = input_file,
+                              chr_column = chr_column,
+                              mutation_start_column = mutation_start_column,
+                              mutation_end_column = mutation_end_column,
+                              mutation_ref_column = mutation_ref_column,
+                              mutation_alt_column = mutation_alt_column,
+                              nm_id_column = nm_id_column,
+                              depth_normal_column = depth_normal_column,
+                              depth_tumor_column = depth_tumor_column)
 
   #Check and Set Required Columns
-  if(length(flg)<=1) {
-    return(NULL)
-  } else {
-    chr_column = flg[1]
-    mutation_start_column = flg[2]
-    mutation_end_column = flg[3]
-    mutation_ref_column = flg[4]
-    mutation_alt_column = flg[5]
-    nm_id_column = flg[6]
-    depth_normal_column = flg[7]
-    depth_tumor_column = flg[8]
-  }
+  if(length(flg)<=1) return(NULL)
 
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
@@ -220,14 +210,14 @@ MainINDELClass2<-function(input_file,
                    refflat_file = refflat_file,
                    refmrna_file = refmrna_file,
                    max_peptide_length = max(peptide_length),
-                   chr_column = chr_column,
-                   mutation_start_column = mutation_start_column,
-                   mutation_end_column = mutation_end_column,
-                   mutation_ref_column = mutation_ref_column,
-                   mutation_alt_column = mutation_alt_column,
-                   nm_id_column = nm_id_column,
-                   depth_normal_column = depth_normal_column,
-                   depth_tumor_column = depth_tumor_column,
+                   chr_column = flg[1],
+                   mutation_start_column = flg[2],
+                   mutation_end_column = flg[3],
+                   mutation_ref_column = flg[4],
+                   mutation_alt_column = flg[5],
+                   nm_id_column = flg[6],
+                   depth_normal_column = flg[7],
+                   depth_tumor_column = flg[8],
                    ambiguous_between_exon = ambiguous_between_exon,
                    ambiguous_codon = ambiguous_codon,
                    export_dir = export_dir)
@@ -263,66 +253,21 @@ MainINDELClass2<-function(input_file,
 
   #Get HLA-Type
   if(file.exists(hla_file)){
-    hla<-t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-    hit<-match(file_name_in_hla_table, hla[,1])
-    if(is.na(hit)) {
-      print(file_name_in_hla_table, "is not included in", hla_file)
-      return (NULL)
-    }
-    hla_types<-hla[hit, -1]
+    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
   }
+  if(is.na(hla_types)) return(NULL)
 
   #Execute NetMHCpan
-  for(pep in c("peptide")){
-    COUNT<-1
-    output_f <- paste(output_peptide_prefix, pep, "fasta",sep=".")
-    USETEMP <- FALSE
-    if(nchar(output_f) > 230) {
-      output_f_new <- paste("temp.Neoantimon.", runif(1) * 1000000, "txt", sep = "")
-      file.copy(from = output_f, to = output_f_new)
-      output_f <- output_f_new
-      USETEMP <- TRUE
-    }
-    for(hla_type in hla_types){
-      if(length(grep("DRB1", hla_type))==1) {
-        system(paste(netMHCIIpan_dir,
-                     " -length ", paste(peptide_length, collapse = ","),
-                     " -f ", output_f,
-                     " -a ", gsub("\\*","_", gsub("\\:","",hla_type)),
-                     " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
-                     sep=""))
-        COUNT <- COUNT + 1
-      }
+  ExeNetMHCpanClass2(output_peptide_prefix,
+                     "peptide",
+                     hla_types,
+                     netMHCIIpan_dir,
+                     peptide_length,
+                     export_dir,
+                     input_file,
+                     job_id)
 
-      if(length(grep("DPA1", hla_type))==1) {
-        for(hla2 in hla_types[grep("DPB1", hla_types)]){
-          system(paste(netMHCIIpan_dir,
-                       " -length ", paste(peptide_length, collapse = ","),
-                       " -f ", output_f,
-                       " -choose -cha ", gsub("\\*|\\:","", hla_type),
-                       " -choose -chb ", gsub("\\*|\\:","", hla2),
-                       " > ", export_dir, "/", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
-                       sep=""))
-          COUNT <- COUNT + 1
-        }
-      }
-
-      if(length(grep("DQA1", hla_type))==1) {
-        for(hla2 in hla_types[grep("DQB1", hla_types)]){
-          system(paste(netMHCIIpan_dir,
-                       " -length ", paste(peptide_length, collapse = ","),
-                       " -f ", output_f,
-                       " -choose -cha ", gsub("\\*|\\:","", hla_type),
-                       " -choose -chb ", gsub("\\*|\\:","", hla2),
-                       " > ", export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".HLACLASS2.", COUNT, ".", pep, ".txt",
-                       sep=""))
-          COUNT <- COUNT + 1
-        }
-      }
-    }
-    if(USETEMP) file.remove(output_f)
-  }
-  print("Merging Results...")
+  #Merge Results
   result <- MergeINDELSVClass2(input_dir = export_dir,
                                file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
                                annotation_file = output_peptide_txt_file)
