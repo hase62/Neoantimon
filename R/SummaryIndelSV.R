@@ -42,8 +42,7 @@ Export_Summary_IndelSV <- function(Input,
 
   #Calculate Pvalues
   theoretical_pro <- 3 * 4^3 / 61^2
-  pvalues <- Input[sapply(Input[, match("Mutant_Peptide", colnames(Input))],
-                          function(x) (1 - theoretical_pro)^nchar(x)), ]
+  pvalues <- sapply(Input[, match("Mutant_Peptide", colnames(Input))], function(x) (1 - theoretical_pro)^nchar(x))
   Input <- cbind(Input, pvalues)
   colnames(Input)[colnames(Input)] <- "Pvalue"
 
