@@ -5,8 +5,8 @@
 \title{Export Summary Count from Indel/SV Results}
 \usage{
 Export_Summary_IndelSV(Input, mut_IC50_th, Total_RNA_th = NA,
-  Tumor_RNA_th = NA, MutRatio_th = NA, Weight_rf2 = NA,
-  Weight_rf3 = NA, WriteLongIndel = NA)
+  Tumor_RNA_th = NA, MutRatio_th = NA, Weight = NA,
+  WriteLongIndel = NA, IgnoreLongIndel = 0)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}
@@ -19,11 +19,11 @@ Export_Summary_IndelSV(Input, mut_IC50_th, Total_RNA_th = NA,
 
 \item{MutRatio_th}{The mutation ratio threshold.}
 
-\item{Weight_rf2}{The weight for alterations.}
+\item{Weight}{The weight for alterations.}
 
-\item{Weight_rf3}{The weight for alterations.}
+\item{WriteLongIndel}{If setting a file name, Write Long Indels of which the p-value is less than 0.05.}
 
-\item{WriteLongIndel}{If setting a file name, Write Long Indels.}
+\item{IgnoreLongIndel}{Ignore Indels of which p-value is less than the indicated value for counting.}
 }
 \value{
 Num_Alteration The number of evaluated alterations.

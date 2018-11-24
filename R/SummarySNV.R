@@ -29,10 +29,12 @@ Export_Summary_SNV <- function(Input,
                                MutRatio_th = NA){
 
   index <- colnames(Input)
+
+  # Count All
   Num_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
   Num_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
-  Input <- Input[as.numeric(Input[, match("Mut_IC50", index)]) < mut_IC50_th, ]
+  # Conditioning
   if(!is.na(wt_IC50_th)){
     Input <- Input[as.numeric(Input[, match("Wt_IC50", index)]) < wt_IC50_th, ]
   }
@@ -46,6 +48,13 @@ Export_Summary_SNV <- function(Input,
       Input <- Input[as.numeric(Input[, match("MutRatio", index)]) > MutRatio_th, ]
   }
 
+  # Count Conditioned
+  Num_Cond_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
+  Num_Cond_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
+
+  # Extract by IC50
+  Input <- Input[as.numeric(Input[, match("Mut_IC50", index)]) < mut_IC50_th, ]
+
   if(is.null(Input) | is.null(dim(Input)[1])) {
     if(length(Input) > 10) {
       Input <- t(Input)
@@ -54,12 +63,14 @@ Export_Summary_SNV <- function(Input,
     }
   }
 
-  alt_count <- length(unique(Input[, match("Mutation_Position", index)]))
-  pep_count <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
+  # Count Rest
+  Num_Rest_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
+  Num_Rest_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
-  ans <- c(Num_Alteration, alt_count, Num_Peptide, pep_count)
-  names(ans) <- c("Num_Alteration", "Num_Alteration_Generating_NeoAg",
-                  "Num_Peptide", "Num_Peptide_Generating_NeoAg")
+  ans <- c(Num_Alteration, Num_Cond_Alteration, Num_Rest_Alteration,
+           Num_Peptide, Num_Cond_Peptide, Num_Rest_Peptide)
+  names(ans) <- c("Num_All_Alteration", "Num_Evaluated_Alteration", "Num_Alteration_Generating_NeoAg",
+                  "Num_All_Peptide", "Num_Evaluated_Peptide", "Num_Peptide_Generating_NeoAg")
 
   return(ans)
 }
