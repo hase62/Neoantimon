@@ -53,9 +53,11 @@ Export_Summary_IndelSV <- function(Input,
     hit <- match(unique(Input[pvalues < 0.05, match("Mutation_Position", colnames(Input))]),
                  Input[, match("Mutation_Position", colnames(Input))])
     if(length(hit) > 0){
-      write.table(Input[hit, (match("Chr", colnames(Input))):ncol(Input)],
-                paste(WriteLongIndel, ".txt", sep = ""),
-                row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
+      tmp <- Input[hit, (match("Chr", colnames(Input))):ncol(Input)]
+      if(length(hit)==1) tmp <- t(tmp)
+      write.table(tmp,
+                  WriteLongIndel,
+                  row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
     }
   }
 
