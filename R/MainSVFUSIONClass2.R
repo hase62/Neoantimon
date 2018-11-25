@@ -269,7 +269,7 @@ MainSVFUSIONClass2<-function(input_file,
   if(file.exists(hla_file)){
     hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
   }
-  if(is.na(hla_types)) return(NULL)
+  if(is.na(hla_types[1])) return(NULL)
 
   #Execute NetMHCpan
   ExeNetMHCpanClass2(output_peptide_prefix,

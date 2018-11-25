@@ -35,7 +35,7 @@ Export_Summary_IndelSV <- function(Input,
                                IgnoreLongIndel = 0){
 
   #Attach Weight
-  if(!is.na(Weight)) {
+  if(!is.na(Weight[1])) {
     Input <- cbind(Weight, Input)
     colnames(Input)[1] <- "Weight"
   }
@@ -44,7 +44,7 @@ Export_Summary_IndelSV <- function(Input,
   theoretical_pro <- 3 * 4^3 / 61^2
   pvalues <- sapply(Input[, match("Mutant_Peptide", colnames(Input))], function(x) (1 - theoretical_pro)^nchar(x))
   Input <- cbind(Input, pvalues)
-  colnames(Input)[colnames(Input)] <- "Pvalue"
+  colnames(Input)[ncol(Input)] <- "Pvalue"
 
   index <- colnames(Input)
 
@@ -65,7 +65,7 @@ Export_Summary_IndelSV <- function(Input,
 
   # Conditioning
   if(IgnoreLongIndel > 0){
-    Input <- Input[pvalues < IgnoreLongIndel, ]
+    Input <- Input[pvalues > IgnoreLongIndel, ]
   }
   if(!is.na(Total_RNA_th)){
     Input <- Input[as.numeric(Input[, match("Total_RNA", index)]) > Total_RNA_th, ]
@@ -101,7 +101,7 @@ Export_Summary_IndelSV <- function(Input,
   names(ans) <- c("Num_All_Alteration", "Num_Evaluated_Alteration", "Num_Alteration_Generating_NeoAg",
                   "Num_All_Peptide", "Num_Evaluated_Peptide", "Num_Peptide_Generating_NeoAg")
 
-  if(!is.na(Weight)){
+  if(!is.na(Weight[1])){
     alt_count <- sum(as.numeric(Input[match(unique(Input[, match("Mutation_Position", index)]),
                                             Input[, match("Mutation_Position", index)]),
                                       match("Weight", index)]))

@@ -158,7 +158,7 @@ MainEntireRegionClass1<-function(input_nm_id,
   if(file.exists(hla_file)){
     hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
   }
-  if(is.na(hla_types)) return(NULL)
+  if(is.na(hla_types[1])) return(NULL)
 
   if(CalculateIC50){
     #Execute NetMHCpan
