@@ -179,6 +179,7 @@ MainEntireRegionClass2<-function(input_nm_id,
     result <- scan(output_peptide_txt_file, "character", sep = "\t")
     result <- matrix(result, byrow = TRUE, ncol = 28)
     result <- result[match(unique(result[,4]), result[, 4]), c(12, 13, 14)]
+    if(!is.matrix(result)) result <- t(result)
     result <- t(sapply(sort(unique(result[,1])),
                        function(x) apply3(result[!is.na(match(result[,1], x)), c(2, 3)], 2,
                                           function(y) median(as.numeric(y)))))
