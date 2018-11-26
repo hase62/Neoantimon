@@ -19,7 +19,7 @@ GenerateSVFusionSeq<-function(input_file,
                              export_dir){
 
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
-  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[-1, 1]
+  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
 
   if(length(data)<1){
     q("no")

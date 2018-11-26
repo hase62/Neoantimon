@@ -18,7 +18,7 @@ GenerateIndelSeq<-function(input_file,
 
   #READ Data
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
-  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[-1, 1]
+  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
   data<-data[grep("\texonic\t", data)]
   data<-data[grep("insertion|deletion", data)]
   data<-gsub("\"", "",data)
