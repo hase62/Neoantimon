@@ -170,6 +170,10 @@ GenerateSVFusionSeq<-function(input_file,
             #Obtain DNA sequence of Transcriptome
             #DNAseq is Unique
             dna<-list_fl_dna[match(nm_id, list_fl_NMID)]
+            if(is.na(dna)){
+              print(paste(nm_id, "was not found in refMrn."))
+              next
+            }
             if(nchar(dna) != sum(exon_end - exon_start)){
               dif<-sum(exon_end - exon_start) - nchar(dna)
               if(dif > 200 | dif < -400) {

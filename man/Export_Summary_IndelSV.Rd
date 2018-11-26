@@ -5,8 +5,8 @@
 \title{Export Summary Count from Indel/SV Results}
 \usage{
 Export_Summary_IndelSV(Input, mut_IC50_th, Total_RNA_th = NA,
-  Tumor_RNA_th = NA, MutRatio_th = NA, Weight = NA,
-  WriteLongIndel = NA, IgnoreLongIndel = 0)
+  Tumor_RNA_th = NA, MutRatio_th = NA, Weight = NA, WriteLongIndel = NA,
+  IgnoreLongIndel = 0)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}
