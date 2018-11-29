@@ -162,7 +162,7 @@ MainEntireRegionClass1<-function(input_nm_id,
 
   if(CalculateIC50){
     #Execute NetMHCpan
-    ExeNetMHCpanClass1(output_peptide_prefix = export_dir,
+    ExeNetMHCpanClass1(output_peptide_prefix = output_peptide_txt_file,
                        "peptide",
                        hla_types,
                        netMHCpan_dir,
