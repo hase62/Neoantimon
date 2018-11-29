@@ -173,7 +173,7 @@ MainEntireRegionClass1<-function(input_nm_id,
 
     #Merge Results
     result <- MergeINDELSVClass1(input_dir = export_dir,
-                                 file_prefix = job_id,
+                                 file_prefix = paste("Frag", job_id, "."),
                                  annotation_file = output_peptide_txt_file)
   } else {
     result <- scan(output_peptide_txt_file, "character", sep = "\t")
