@@ -165,7 +165,7 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
   if(is.na(hla_types[1])) return(NULL)
 
   #Execute NetMHCpan
-  ExeNetMHCpanClass2(output_peptide_prefix = export_dir,
+  ExeNetMHCpanClass2(output_peptide_prefix = output_peptide_txt_file,
                      "peptide",
                      hla_types,
                      netMHCIIpan_dir,

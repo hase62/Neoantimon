@@ -4,19 +4,21 @@
 \alias{MainSVFUSIONClass1}
 \title{Calculate Neoantigen Candidates on SV fusions for MHC Class1}
 \usage{
-MainSVFUSIONClass1(input_file, hla_file = "here_is_a_table", hla_types = NA,
-  file_name_in_hla_table = input_file, refflat_file = paste(hmdir,
-  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir, "lib/refMrna.fa",
-  sep = "/"), hmdir = getwd(), job_id = "ID", export_dir = paste("result",
+MainSVFUSIONClass1(input_file, hla_file = "here_is_a_table",
+  hla_types = NA, file_name_in_hla_table = input_file,
+  refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
+  refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
+  hmdir = getwd(), job_id = "ID", export_dir = paste("result",
   job_id, "SV1", sep = "."), rnaexp_file = NA, rnabam_file = NA,
   cnv_file = NA, purity = 1, netMHCpan_dir = paste(hmdir,
   "lib/netMHCpan-4.0/netMHCpan", sep = "/"), refdna_file = NA,
   samtools_dir = NA, bcftools_dir = NA, chr_column = NA,
   mutation_start_column = NA, mutation_end_column = NA,
   mutation_ref_column = NA, mutation_alt_bnd_column = NA,
-  depth_normal_column = NA, depth_tumor_column = NA, nm_id_column = NA,
-  ambiguous_between_exon = 0, ambiguous_codon = 0, peptide_length = c(8,
-  9, 10, 11, 12, 13), gene_symbol_column = NA, mate_id_column = NA)
+  depth_normal_column = NA, depth_tumor_column = NA,
+  nm_id_column = NA, ambiguous_between_exon = 0, ambiguous_codon = 0,
+  peptide_length = c(8, 9, 10, 11, 12, 13), gene_symbol_column = NA,
+  mate_id_column = NA)
 }
 \arguments{
 \item{input_file}{(Required) An input vcf file (BND format) annotated by,
