@@ -141,6 +141,7 @@ MainEntireRegionClass2<-function(input_nm_id,
                            reference_gene_symbol = NA)
 
   #Check Output
+  output_peptide_prefix <- paste(export_dir, "/", job_id, sep="")
   output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
@@ -162,7 +163,7 @@ MainEntireRegionClass2<-function(input_nm_id,
 
   if(CalculateIC50){
     #Execute NetMHCpan
-    ExeNetMHCpanClass2(output_peptide_prefix = output_peptide_txt_file,
+    ExeNetMHCpanClass2(output_peptide_prefix = output_peptide_prefix,
                        "peptide",
                        hla_types,
                        netMHCIIpan_dir,
