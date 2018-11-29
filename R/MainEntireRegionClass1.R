@@ -169,7 +169,7 @@ MainEntireRegionClass1<-function(input_nm_id,
                        netMHCpan_dir,
                        peptide_length,
                        export_dir,
-                       input_file = "Frag",
+                       input_file = "",
                        job_id)
 
     #Merge Results

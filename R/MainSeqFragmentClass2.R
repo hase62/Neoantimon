@@ -172,7 +172,7 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
                      netMHCIIpan_dir,
                      peptide_length,
                      export_dir,
-                     input_file = "Frag",
+                     input_file = "",
                      job_id)
 
   #Merge Results
