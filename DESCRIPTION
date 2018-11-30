@@ -1,7 +1,7 @@
 Package: Neoantimon
 Type: Package
 Title: Neoantimon: An R package for automatic identification of tumor-specific neoantigens from sequencing data
-Version: 1.1.18
+Version: 1.1.19
 Date: 2018-11-29
 Author: Takanori Hasegawa
 Maintainer: Takanori Hasegawa <t-hasegw@ims.u-tokyo.ac.jp>
