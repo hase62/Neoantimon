@@ -17,7 +17,7 @@ MergeFragmentsClass2<-function(hmdir = getwd(),
   info<-t(sapply(scan(paste(annotation_file, sep="/"), "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   cinfo<-c("", "Gene_ID", "Chr", "NM_ID", "ReadingFrame", "SequenceNumber", "Chrs", "NM_IDs", "GeneIDs", "Exon_Starts",
            "Exon_Ends", "GroupID", "NumOfPeptides", "NumOfStops", "Wt_Peptide", "Mutant_Peptide",
-           "Wt_DNA", "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
+           "Wt_DNA", "Mutant_DNA", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
            "nB", "Checker", "MutRatio", "MutRatio_Min", "MutRatio_Max")
   info<-info[, 1:length(cinfo)]
 

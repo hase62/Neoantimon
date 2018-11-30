@@ -51,7 +51,7 @@ Export_Summary_Fragments <- function(Input,
 
   # Count All
   unq <- unique(Input[, match("GroupID", index)])
-  names(unq) <- Input[match(unq, Input[, match("GroupID", index)]), ncol(Input)]
+  names(unq) <- Input[match(unq, Input[, match("GroupID", index)]), match("Pvalue", index)]
   Num_Alteration <-length(unq)
   Num_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
   Num_Peptide_Per_Grp <- sapply(unq, function(x) length(which(!is.na(match(Input[, match("GroupID", index)], x)))))
