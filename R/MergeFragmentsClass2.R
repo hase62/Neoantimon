@@ -1,7 +1,7 @@
-MergeSNVClass2<-function(hmdir = getwd(),
-                         annotation_file,
-                         input_dir,
-                         file_prefix){
+MergeFragmentsClass2<-function(hmdir = getwd(),
+                               annotation_file,
+                               input_dir,
+                               file_prefix){
   print("Merging Results...")
 
   dir<-paste(hmdir, input_dir, sep="/")
@@ -15,9 +15,9 @@ MergeSNVClass2<-function(hmdir = getwd(),
   }
 
   info<-t(sapply(scan(paste(annotation_file, sep="/"), "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-  cinfo<-c("", "Gene_ID", "Chr", "NM_ID", "Change", "Ref", "Alt", "Prob", "Mutation_Prob.", "Exon_Start",
-           "Exon_End", "Mutation_Position", "Total_Depth", "Tumor_Depth", "Wt_Peptide", "Mutant_Peptide",
-           "Wt_DNA", "Mutant_DNA", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
+  cinfo<-c("", "Gene_ID", "Chr", "NM_ID", "ReadingFrame", "SequenceNumber", "Chrs", "NM_IDs", "GeneIDs", "Exon_Starts",
+           "Exon_Ends", "GroupID", "NumOfPeptides", "NumOfStops", "Wt_Peptide", "Mutant_Peptide",
+           "Wt_DNA", "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
            "nB", "Checker", "MutRatio", "MutRatio_Min", "MutRatio_Max")
   info<-info[, 1:length(cinfo)]
 
@@ -53,42 +53,25 @@ MergeSNVClass2<-function(hmdir = getwd(),
     ee1<-grep("of strong", test1) - 2
     num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][5])
 
-    test2<-scan(paste(dir, sub("peptide\\.txt", "wtpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
-    test2<-gsub(" <=WB| <=SB", "", test2)
-    ss2<-grep(" Pos ", test2) + 2
-    ee2<-grep("of strong", test2) - 2
-    num2<-sapply(gsub("[ ]+","\t",test2[ss2]), function(x) strsplit(x, "\t")[[1]][5])
-
     if(length(grep("No peptides derived", test1[1:45]))>0) next
     if(length(grep("cannot be found in hla_pseudo list", test1))>0) next
     if(length(grep("Could not find allele", test1))>0) next
     for(h1 in 1:length(num1)){
-      #Skip if not match
-      if(is.na(grep(num1[h1], info[,2])[1]))next
-
-      d4<-NULL
-      hit<-match(num1[h1], num2)
-      d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,5,10,11)]))
-      d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,5,10,11)]))
-      l1<-sapply(d1[,3], nchar)
-      l2<-sapply(d2[,3], nchar)
-      for(r1 in unique(l1)){
-        hit1<-which(l1 == r1)
-        hit2<-which(l2 == r1)
-        if(length(hit1) == 0) next
-        if(length(hit1) == 1){
-          d3<-t(c(d1[hit1,c(2,1,4,3,5,6)], d2[hit2[match(d1[hit1,1], d2[hit2,1])], c(3,5,6)]))
-        } else {
-          d3<-cbind(d1[hit1,c(2,1,4,3,5,6)], d2[hit2[match(d1[hit1,1], d2[hit2,1])], c(3,5,6)])
-        }
-        d3<-d3[d3[, 4] != d3[, 7],]
-        d4<-rbind(d4, d3)
+      if(ss1[h1] == ee1[h1]){
+        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(3,2,5,7,4,10,11)])
+        d1<-t(d1[sapply(d1[,5], function(x) length(grep(x, info[match(num1[h1], info[,2]), 15]))==0),])
+      } else {
+        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(3,2,5,7,4,10,11)]))
+        d1<-d1[sapply(d1[,5], function(x) length(grep(x, info[match(num1[h1], info[,2]), 15]))==0),]
+        if(is.null(nrow(d1))) d1<-t(d1)
       }
-      if(nrow(d4)==0) {
-        print("Warning!! d4 is zero!!")
+      if(nrow(d1)==0 | ncol(d1)==0) {
+        r_can<-match(num1[h1], info[,2])
+        if(is.na(r_can)){r_can<-grep(num1[h1], info[,2])}
+        remove<-c(remove, r_can)
         next
       }
-      full_peptide<-rbind(full_peptide, d4)
+      full_peptide<-rbind(full_peptide, d1)
     }
   }
 
@@ -96,16 +79,15 @@ MergeSNVClass2<-function(hmdir = getwd(),
   if(nrow(full_peptide)==0) return(NULL)
 
   #Bind Full Peptide and info
-  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide", "Mut_IC50", "Mut_Rank",
-         "Evaluated_Wt_Peptide", "Wt_IC50", "Wt_Rank", "Chr", "NM_ID", "Change",
-         "Ref", "Alt", "Prob", "Mutation_Prob.", "Exon_Start", "Exon_End",
-         "Mutation_Position", "Total_Depth", "Tumor_Depth", "Wt_Peptide",
-         "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA",
-         "Tumor_RNA_based_on_DNA", "MutRatio", "MutRatio_Min", "MutRatio_Max")
+  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide_Core", "Evaluated_Mutant_Peptide", "Mut_IC50",
+         "Mut_Rank", "Chr", "NM_ID", "ReadingFrame", "SequenceNumber", "Chrs", "NM_IDs", "GeneIDs",
+         "Exon_Starts", "Exon_Ends", "GroupID", "NumOfPeptides", "NumOfStops", "Wt_Peptide",
+         "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
+         "MutRatio", "MutRatio_Min", "MutRatio_Max")
   colnames(full_peptide)<-tag[1:ncol(full_peptide)]
   if(nrow(full_peptide)==1){
     full_peptide<-cbind(full_peptide, t(info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
-  }else{
+  } else {
     full_peptide<-cbind(full_peptide, info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
   }
 

@@ -176,9 +176,9 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                      job_id)
 
   #Merge Results
-  result <- MergeINDELSVClass1(input_dir = export_dir,
-                               file_prefix = job_id,
-                               annotation_file = output_peptide_txt_file)
+  result <- MergeFragmentsClass1(input_dir = export_dir,
+                                 file_prefix = job_id,
+                                 annotation_file = output_peptide_txt_file)
 
   print("Successfully Finished.")
   return(result)

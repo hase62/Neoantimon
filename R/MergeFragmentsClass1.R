@@ -1,7 +1,7 @@
-MergeINDELSVClass1<-function(hmdir = getwd(),
-                             annotation_file,
-                             input_dir,
-                             file_prefix){
+MergeFragmentsClass1<-function(hmdir = getwd(),
+                               annotation_file,
+                               input_dir,
+                               file_prefix){
   print("Merging Results...")
 
   dir<-paste(hmdir, input_dir, sep="/")
@@ -15,9 +15,9 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
   }
 
   info<-t(sapply(scan(paste(annotation_file, sep="/"), "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
-  cinfo<-c("", "Gene_ID", "Chr", "NM_ID", "Change", "Ref", "Alt", "Prob", "Mutation_Prob.", "Exon_Start",
-           "Exon_End", "Mutation_Position", "Total_Depth", "Tumor_Depth", "Wt_Peptide", "Mutant_Peptide",
-           "Wt_DNA", "Mutant_DNA", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
+  cinfo<-c("", "Gene_ID", "Chr", "NM_ID", "ReadingFrame", "SequenceNumber", "Chrs", "NM_IDs", "GeneIDs", "Exon_Starts",
+           "Exon_Ends", "GroupID", "NumOfPeptides", "NumOfStops", "Wt_Peptide", "Mutant_Peptide",
+           "Wt_DNA", "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
            "nB", "Checker", "MutRatio", "MutRatio_Min", "MutRatio_Max")
   info<-info[, 1:length(cinfo)]
 
@@ -33,7 +33,7 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
 
   #Remove RNAseq Info
   rownames(info)<-NULL
-  info<-info[, -match(c("Wt_DNA", "Mutant_DNA"), colnames(info))]
+  info<-info[, -match(c("Wt_DNA", "Mutant_Peptide"), colnames(info))]
   if(is.null(ncol(info))){info<-t(as.matrix(info))}
 
   #Include Stop Codon
@@ -79,11 +79,11 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
   if(nrow(full_peptide)==0) return(NULL)
 
   #Bind Full Peptide and info
-  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide_Core", "Evaluated_Mutant_Peptide", "Mut_IC50", "Mut_Rank",
-         "Chr", "NM_ID", "Change", "Ref", "Alt", "Prob", "Mutation_Prob.", "Exon_Start", "Exon_End",
-         "Mutation_Position", "Total_Depth", "Tumor_Depth", "Wt_Peptide",
-         "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA",
-         "Tumor_RNA_based_on_DNA", "MutRatio", "MutRatio_Min", "MutRatio_Max")
+  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide_Core", "Evaluated_Mutant_Peptide", "Mut_IC50",
+         "Mut_Rank", "Chr", "NM_ID", "ReadingFrame", "SequenceNumber", "Chrs", "NM_IDs", "GeneIDs",
+         "Exon_Starts", "Exon_Ends", "GroupID", "NumOfPeptides", "NumOfStops", "Wt_Peptide",
+         "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",
+         "MutRatio", "MutRatio_Min", "MutRatio_Max")
   colnames(full_peptide)<-tag[1:ncol(full_peptide)]
   if(nrow(full_peptide)==1){
     full_peptide<-cbind(full_peptide, t(info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))

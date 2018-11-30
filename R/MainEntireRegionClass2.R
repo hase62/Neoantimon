@@ -173,9 +173,9 @@ MainEntireRegionClass2<-function(input_nm_id,
                        job_id)
 
     #Merge Results
-    result <- MergeINDELSVClass2(input_dir = export_dir,
-                                 file_prefix =  paste("Frag", job_id, "."),
-                                 annotation_file = output_peptide_txt_file)
+    result <- MergeFragmentsClass2(input_dir = export_dir,
+                                   file_prefix =  paste("Frag", job_id, "."),
+                                   annotation_file = output_peptide_txt_file)
   } else {
     result <- scan(output_peptide_txt_file, "character", sep = "\t")
     result <- matrix(result, byrow = TRUE, ncol = 28)

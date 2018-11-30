@@ -59,7 +59,7 @@ MergeSNVClass1<-function(hmdir = getwd(),
     ee2<-grep("Protein", test2)-2
     num2<-sapply(gsub("[ ]+","\t",test2[ss2]), function(x) strsplit(x, "\t")[[1]][12])
 
-    if(length(grep("No peptides derived", test1))>0) next
+    if(length(grep("No peptides derived", test1[1:45]))>0) next
     if(length(grep("cannot be found in hla_pseudo list", test1))>0) next
     if(length(grep("Could not find allele", test1))>0) next
     for(h1 in 1:length(num1)){
