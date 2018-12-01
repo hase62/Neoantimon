@@ -33,7 +33,7 @@ MergeFragmentsClass1<-function(hmdir = getwd(),
 
   #Remove RNAseq Info
   rownames(info)<-NULL
-  info<-info[, -match(c("Wt_DNA", "Mutant_Peptide"), colnames(info))]
+  info<-info[, -match(c("Wt_DNA", "Mutant_DNA"), colnames(info))]
   if(is.null(ncol(info))){info<-t(as.matrix(info))}
 
   #Include Stop Codon
@@ -53,7 +53,7 @@ MergeFragmentsClass1<-function(hmdir = getwd(),
     ee1<-grep("Protein", test1) - 2
     num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][12])
 
-    if(length(grep("No peptides derived", test1[1:45])) > 0) next
+    #if(length(grep("No peptides derived", test1[1:45])) > 0) next
     if(length(grep("cannot be found in hla_pseudo list", test1)) > 0) next
     if(length(grep("Could not find allele", test1)) > 0) next
     for(h1 in 1:length(num1)){
