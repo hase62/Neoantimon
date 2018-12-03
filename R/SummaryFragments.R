@@ -56,7 +56,6 @@ Export_Summary_Fragments <- function(Input,
   Num_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
   Num_Peptide_Per_Grp <- sapply(unq, function(x) length(which(!is.na(match(Input[, match("GroupID", index)], x)))))
 
-
   # Conditioning
   if(!is.na(Total_RNA_th)){
     Input <- Input[as.numeric(Input[, match("Total_RNA", index)]) > Total_RNA_th, ]
