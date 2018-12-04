@@ -58,14 +58,12 @@ Export_Summary_SNV <- function(Input,
   if(is.null(Input) | is.null(dim(Input)[1])) {
     if(length(Input) > 10) {
       Input <- t(Input)
-    } else {
-      return(NULL)
     }
   }
 
   # Count Rest
-  Num_Rest_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
-  Num_Rest_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
+  Num_Rest_Alteration <- length(unique(Input[, match("Mutation_Position", index)]))
+  Num_Rest_Peptide <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
   ans <- c(Num_Alteration, Num_Cond_Alteration, Num_Rest_Alteration,
            Num_Peptide, Num_Cond_Peptide, Num_Rest_Peptide)
