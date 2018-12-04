@@ -2,7 +2,9 @@
 #'
 #'@param Input Input file generated from MainSNVClass1,2.
 #'
-#'@param mut_IC50_th The threshold for mutant peptide to be neoantigen.
+#'@param Mut_IC50_th The threshold for mutant peptide to be neoantigen by IC50.
+#'
+#'@param Mut_Rank_th The threshold for mutant peptide to be neoantigen by Rank.
 #'
 #'@param Total_RNA_th The total RNA expression threshold.
 #'
@@ -16,6 +18,8 @@
 #'
 #'@param IgnoreLongIndel Ignore Indels of which p-value is less than the indicated value for counting.
 #'
+#'@param DupCount Count for each different HLA type
+#'
 #'@return Num_Alteration The number of evaluated alterations.
 #'
 #'@return Num_Alteration_Generating_NeoAg The number of evaluated alterations that can generate neoantigen.
@@ -26,21 +30,36 @@
 #'
 #'@export
 Export_Summary_IndelSV <- function(Input,
-                               mut_IC50_th,
-                               Total_RNA_th = NA,
-                               Tumor_RNA_th = NA,
-                               MutRatio_th = NA,
-                               Weight = NA,
-                               WriteLongIndel = NA,
-                               IgnoreLongIndel = 0){
+                                   Mut_IC50_th = NA,
+                                   Mut_Rank_th = NA,
+                                   Total_RNA_th = NA,
+                                   Tumor_RNA_th = NA,
+                                   MutRatio_th = NA,
+                                   Weight = NA,
+                                   WriteLongIndel = NA,
+                                   IgnoreLongIndel = 0,
+                                   DupCount = FALSE){
 
-  #Attach Weight
+  if((!is.na(Mut_IC50_th) & !is.na(Mut_Rank_th)) |  (is.na(Mut_IC50_th) & is.na(Mut_Rank_th))){
+    print("Please Specify Either One of Mut_IC50_th or Mut_Rank_th")
+    return(NULL)
+  }
+
+  # IC50 or Rank
+  m_th <- Mut_IC50_th
+  m_th_column <- "Mut_IC50"
+  if(!is.na(Mut_Rank_th)) {
+    m_th <- Mut_Rank_th
+    m_th_column <- "Mut_Rank"
+  }
+
+  # Attach Weight
   if(!is.na(Weight[1])) {
     Input <- cbind(Weight, Input)
     colnames(Input)[1] <- "Weight"
   }
 
-  #Calculate Pvalues
+  # Calculate Pvalues
   theoretical_pro <- 3 * 4^3 / 61^2
   pvalues <- sapply(Input[, match("Mutant_Peptide", colnames(Input))], function(x) (1 - theoretical_pro)^nchar(x))
   Input <- cbind(Input, pvalues)
@@ -50,10 +69,10 @@ Export_Summary_IndelSV <- function(Input,
 
   # Write Long Indels
   if(!is.na(WriteLongIndel)){
-    hit <- match(unique(Input[pvalues < 0.05, match("Mutation_Position", colnames(Input))]),
-                 Input[, match("Mutation_Position", colnames(Input))])
+    unq <- unique(Input[, match("Mutant_Peptide", index)])
+    hit <- unq[as.numeric(Input[match(unq, Input[, match("Mutant_Peptide", index)]), match("Pvalue", index)]) < 0.001]
     if(length(hit) > 0){
-      tmp <- Input[hit, (match("Chr", colnames(Input))):ncol(Input)]
+      tmp <- Input[match(hit, Input[, match("Mutant_Peptide", index)]), (match("Chr", colnames(Input))):ncol(Input)]
       if(length(hit)==1) tmp <- t(tmp)
       write.table(tmp,
                   WriteLongIndel,
@@ -61,9 +80,15 @@ Export_Summary_IndelSV <- function(Input,
     }
   }
 
+  # Duplication
+  if(DupCount){
+    Input[, match("Mutation_Position", index)] <- paste(Input[, match("HLA", index)], Input[, match("Mutation_Position", index)], sep = "_")
+    Input[, match("Evaluated_Mutant_Peptide", index)] <- paste(Input[, match("HLA", index)], Input[, match("Evaluated_Mutant_Peptide", index)], sep = "_")
+  }
+
   # Count All
-  Num_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
-  Num_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
+  Num_Alteration <- length(unique(Input[, match("Mutation_Position", index)]))
+  Num_Peptide <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
   # Conditioning
   if(IgnoreLongIndel > 0){
@@ -80,11 +105,11 @@ Export_Summary_IndelSV <- function(Input,
   }
 
   # Count Conditioned
-  Num_Cond_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
-  Num_Cond_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
+  Num_Cond_Alteration <- length(unique(Input[, match("Mutation_Position", index)]))
+  Num_Cond_Peptide <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
   # Extract by IC50
-  Input <- Input[as.numeric(Input[, match("Mut_IC50", index)]) < mut_IC50_th, ]
+  Input <- Input[as.numeric(Input[, match(m_th_column, index)]) < m_th, ]
 
   if(is.null(Input) | is.null(dim(Input)[1])) {
     if(length(Input) > 10) {

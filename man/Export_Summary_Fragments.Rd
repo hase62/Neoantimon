@@ -4,13 +4,16 @@
 \alias{Export_Summary_Fragments}
 \title{Export Summary Count from Indel/SV Results}
 \usage{
-Export_Summary_Fragments(Input, mut_IC50_th, Total_RNA_th = NA,
-  Tumor_RNA_th = NA, MutRatio_th = NA, WriteLongIndel = NA)
+Export_Summary_Fragments(Input, Mut_IC50_th = NA, Mut_Rank_th = NA,
+  Total_RNA_th = NA, Tumor_RNA_th = NA, MutRatio_th = NA,
+  WriteLongIndel = NA, DupCount = FALSE)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}
 
-\item{mut_IC50_th}{The threshold for mutant peptide to be neoantigen.}
+\item{Mut_IC50_th}{The threshold for mutant peptide to be neoantigen by IC50.}
+
+\item{Mut_Rank_th}{The threshold for mutant peptide to be neoantigen by Rank.}
 
 \item{Total_RNA_th}{The total RNA expression threshold.}
 
@@ -19,6 +22,8 @@ Export_Summary_Fragments(Input, mut_IC50_th, Total_RNA_th = NA,
 \item{MutRatio_th}{The mutation ratio threshold.}
 
 \item{WriteLongIndel}{If setting a file name, Write Long Indels of which the p-value is less than 0.05.}
+
+\item{DupCount}{Count for each different HLA type}
 }
 \value{
 Num_Alteration The number of evaluated alterations.

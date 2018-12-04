@@ -4,21 +4,28 @@
 \alias{Export_Summary_SNV}
 \title{Export Summary Count from SNV Results}
 \usage{
-Export_Summary_SNV(Input, mut_IC50_th, wt_IC50_th = NA,
-  Total_RNA_th = NA, Tumor_RNA_th = NA, MutRatio_th = NA)
+Export_Summary_SNV(Input, Mut_IC50_th = NA, Mut_Rank_th = NA,
+  Wt_IC50_th = NA, Wt_Rank_th = NA, Total_RNA_th = NA,
+  Tumor_RNA_th = NA, MutRatio_th = NA, DupCount = FALSE)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}
 
-\item{mut_IC50_th}{The threshold for mutant peptide to be neoantigen.}
+\item{Mut_IC50_th}{The threshold for mutant peptide to be neoantigen.}
 
-\item{wt_IC50_th}{The threshold for wt peptide to be neoantigen.}
+\item{Mut_Rank_th}{The threshold for mutant peptide to be neoantigen.}
+
+\item{Wt_IC50_th}{The threshold for wt peptide to be neoantigen.}
+
+\item{Wt_Rank_th}{The threshold for wt peptide to be neoantigen.}
 
 \item{Total_RNA_th}{The total RNA expression threshold.}
 
 \item{Tumor_RNA_th}{The tumor specific RNA expression threshold.}
 
 \item{MutRatio_th}{The mutation ratio threshold.}
+
+\item{DupCount}{Count for each different HLA type}
 }
 \value{
 Num_Alteration The number of evaluated alterations.
