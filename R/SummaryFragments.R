@@ -52,6 +52,8 @@ Export_Summary_Fragments <- function(Input,
 
   # Count All
   unq_grp <- unique(Input[, match("GroupID", index)])
+  unq_grp_gene <- Input[match(unq_grp, Input[, match("GroupID", index)]), match("Gene", index)]
+  unq_grp_gene <- sapply(unq_grp_gene, function(x) strsplit(x, "_")[[1]][2])
   unq_nm <- unique(Input[, match("NM_ID", index)])
   unq_pep <- unique(Input[, match("Mutant_Peptide", index)])
   names(unq_grp) <- sapply(unq_grp, function(x) min(as.numeric(Input[which(!is.na(match(Input[, match("GroupID", index)], x))), match("Pvalue", index)])))
@@ -126,10 +128,13 @@ Export_Summary_Fragments <- function(Input,
                               Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep,
                               -log10(as.numeric(names(unq_pep)))), 3)
 
+  colnames(ratio_pep_grp) <- unq_grp_gene
   rownames(ratio_pep_grp) <- c("Num_Peptide_Per_Grp", "Num_Cond_Peptide_Per_Grp", "Num_Rest_Peptide_Per_Grp",
                                "Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp", "-logP")
+  colnames(ratio_pep_nm) <- unq_nm
   rownames(ratio_pep_nm) <- c("Num_Peptide_Per_NM", "Num_Cond_Peptide_Per_NM", "Num_Rest_Peptide_Per_NM",
                                "Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM", "-logP")
+  colnames(ratio_pep_pep) <- unq_pep
   rownames(ratio_pep_pep) <- c("Num_Peptide_Per_Pep", "Num_Cond_Peptide_Per_Pep", "Num_Rest_Peptide_Per_Pep",
                               "Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep", "-logP")
 
