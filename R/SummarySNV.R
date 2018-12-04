@@ -53,9 +53,11 @@ Export_Summary_SNV <- function(Input,
   index <- colnames(Input)
 
   # Duplication
+  num_of_hla <- 1
   if(DupCount){
     Input[, match("Mutation_Position", index)] <- paste(Input[, match("HLA", index)], Input[, match("Mutation_Position", index)], sep = "_")
     Input[, match("Evaluated_Mutant_Peptide", index)] <- paste(Input[, match("HLA", index)], Input[, match("Evaluated_Mutant_Peptide", index)], sep = "_")
+    num_of_hla <- length(unique(Input[, match("HLA", index)]))
   }
 
   # Count All
@@ -96,8 +98,8 @@ Export_Summary_SNV <- function(Input,
   Num_Rest_Alteration <- length(unique(Input[, match("Mutation_Position", index)]))
   Num_Rest_Peptide <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
-  ans <- c(Num_Alteration, Num_Cond_Alteration, Num_Rest_Alteration,
-           Num_Peptide, Num_Cond_Peptide, Num_Rest_Peptide)
+  ans <- c(Num_Alteration / num_of_hla, Num_Cond_Alteration / num_of_hla, Num_Rest_Alteration / num_of_hla,
+           Num_Peptide / num_of_hla, Num_Cond_Peptide / num_of_hla, Num_Rest_Peptide / num_of_hla)
   names(ans) <- c("Num_All_Alteration", "Num_Evaluated_Alteration", "Num_Alteration_Generating_NeoAg",
                   "Num_All_Peptide", "Num_Evaluated_Peptide", "Num_Peptide_Generating_NeoAg")
 
