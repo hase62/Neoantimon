@@ -12,7 +12,8 @@ MainSeqFragmentClass2(input_sequence = NA,
   hmdir = getwd(), job_id = "ID", export_dir = paste("result",
   job_id, "SeqFragment2", sep = "."), netMHCIIpan_dir = paste(hmdir,
   "lib/netMHCIIpan-3.1/netMHCIIpan", sep = "/"), peptide_length = c(15),
-  reference_nm_id = NA, reference_gene_symbol = NA)
+  reference_nm_id = NA, reference_gene_symbol = NA,
+  IgnoreShortPeptides = TRUE)
 }
 \arguments{
 \item{input_sequence}{(Required) An input amino acid sequence}
@@ -53,6 +54,8 @@ It can be indicated when gene_symbol is not NA.}
 \item{reference_gene_symbol}{Corresponding original sequences that the input sequence is generated.
 If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 It can be indicated when nm_id is not NA.}
+
+\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

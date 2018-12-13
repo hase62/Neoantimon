@@ -39,6 +39,8 @@
 #'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 #'It can be indicated when nm_id is not NA.
 #'
+#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
 #'@return HLA:  HLA type used to calculate neoantigen.
@@ -111,7 +113,8 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                 netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
                                 peptide_length = c(8, 9, 10, 11, 12, 13),
                                 reference_nm_id = NA,
-                                reference_gene_symbol = NA){
+                                reference_gene_symbol = NA,
+                                IgnoreShortPeptides = TRUE){
 
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
@@ -142,7 +145,8 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                            reading_frame = 1,
                            export_dir = export_dir,
                            reference_nm_id = reference_nm_id,
-                           reference_gene_symbol = reference_gene_symbol)
+                           reference_gene_symbol = reference_gene_symbol,
+                           IgnoreShortPeptides = IgnoreShortPeptides)
 
   #Check Output
   output_peptide_prefix <- paste(export_dir, "/", job_id, sep="")

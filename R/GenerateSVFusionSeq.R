@@ -16,7 +16,8 @@ GenerateSVFusionSeq<-function(input_file,
                              mate_id_column,
                              ambiguous_between_exon,
                              ambiguous_codon,
-                             export_dir){
+                             export_dir,
+                             IgnoreShortPeptides){
 
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
   data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
@@ -467,7 +468,8 @@ GenerateSVFusionSeq<-function(input_file,
               #Save Peptide
               if(length(grep(paste(peptide, sep="", collapse=""), refFasta[,15])) > 0) next
               X<-grep("X", peptide)
-              if(length(X) > 0){if(X < 8) next}
+              if(length(X) > 0 & IgnoreShortPeptides){if(X < 8) next}
+              if(max_peptide_length >= 15 & length(X) > 0 & IgnoreShortPeptides){if(X < 15) next}
               refFasta<-rbind(refFasta, c(paste(random, d1[1], sep="_"),
                                           d1[14],
                                           paste(d1[2], d2[2], sep="_"),

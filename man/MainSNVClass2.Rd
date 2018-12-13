@@ -17,7 +17,7 @@ MainSNVClass2(input_file, hla_file = "here_is_a_table", hla_types = NA,
   mutation_alt_column = NA, nm_id_column = NA,
   depth_normal_column = NA, depth_tumor_column = NA,
   ambiguous_between_exon = 0, ambiguous_codon = 0,
-  peptide_length = c(15))
+  peptide_length = c(15), IgnoreShortPeptides = TRUE)
 }
 \arguments{
 \item{input_file}{(Required) An input vcf file annotated by,
@@ -102,6 +102,8 @@ samtools 0_x_x includes bcftools in the directory.}
 \item{ambiguous_codon}{The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).}
 
 \item{peptide_length}{Peptide Length to be generated (Default={15} in HLA Class2).}
+
+\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

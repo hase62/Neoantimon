@@ -18,7 +18,7 @@ MainSVFUSIONClass1(input_file, hla_file = "here_is_a_table",
   depth_normal_column = NA, depth_tumor_column = NA,
   nm_id_column = NA, ambiguous_between_exon = 0, ambiguous_codon = 0,
   peptide_length = c(8, 9, 10, 11, 12, 13), gene_symbol_column = NA,
-  mate_id_column = NA)
+  mate_id_column = NA, IgnoreShortPeptides = TRUE)
 }
 \arguments{
 \item{input_file}{(Required) An input vcf file (BND format) annotated by,
@@ -107,6 +107,8 @@ samtools 0_x_x includes bcftools in the directory.}
 \item{gene_symbol_column}{(Required if nm_id_column = NA) The column number describing gene symbol in input_file (Default=NA).}
 
 \item{mate_id_column}{(Required) The column indicating mateIDs or svIDs such as "SVMERGE1_1" (Default=NA).}
+
+\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

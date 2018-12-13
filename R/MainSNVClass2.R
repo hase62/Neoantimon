@@ -91,6 +91,8 @@
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
 #'samtools 0_x_x includes bcftools in the directory.
 #'
+#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
 #'@return HLA:  HLA type used to calculate neoantigen.
@@ -181,7 +183,8 @@ MainSNVClass2<-function(input_file,
                         depth_tumor_column = NA,
                         ambiguous_between_exon = 0,
                         ambiguous_codon = 0,
-                        peptide_length = c(15)){
+                        peptide_length = c(15),
+                        IgnoreShortPeptides = TRUE){
 
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,
@@ -224,7 +227,8 @@ MainSNVClass2<-function(input_file,
                      depth_tumor_column = flg[8],
                      ambiguous_between_exon = ambiguous_between_exon,
                      ambiguous_codon = ambiguous_codon,
-                     export_dir = export_dir)
+                     export_dir = export_dir,
+                     IgnoreShortPeptides = IgnoreShortPeptides)
 
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")

@@ -10,7 +10,8 @@ GenerateMutatedFragments<-function(input_sequence,
                                    reading_frame,
                                    export_dir,
                                    reference_nm_id,
-                                   reference_gene_symbol){
+                                   reference_gene_symbol,
+                                   IgnoreShortPeptides){
 
   #READ refFlat
   list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]

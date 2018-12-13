@@ -35,6 +35,8 @@
 #'
 #'@param CalculateIC50 Whether Calculate IC50 by NetMHCpan or not.
 #'
+#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
 #'@return HLA:  HLA type used to calculate neoantigen.
@@ -107,7 +109,8 @@ MainEntireRegionClass2<-function(input_nm_id,
                                 netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep="/"),
                                 peptide_length = c(15),
                                 reading_frame = 1,
-                                CalculateIC50 = FALSE){
+                                CalculateIC50 = FALSE,
+                                IgnoreShortPeptides = TRUE){
 
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = NA,
@@ -138,7 +141,8 @@ MainEntireRegionClass2<-function(input_nm_id,
                            reading_frame = reading_frame,
                            export_dir = export_dir,
                            reference_nm_id = NA,
-                           reference_gene_symbol = NA)
+                           reference_gene_symbol = NA,
+                           IgnoreShortPeptides = IgnoreShortPeptides)
 
   #Check Output
   output_peptide_prefix <- paste(export_dir, "/", job_id, sep="")

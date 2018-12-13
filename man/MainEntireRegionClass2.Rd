@@ -12,7 +12,8 @@ MainEntireRegionClass2(input_nm_id,
   hmdir = getwd(), job_id = "ID", export_dir = paste("result",
   job_id, "EntireRegion2", sep = "."), netMHCIIpan_dir = paste(hmdir,
   "lib/netMHCIIpan-3.1/netMHCIIpan", sep = "/"), peptide_length = c(15),
-  reading_frame = 1, CalculateIC50 = FALSE)
+  reading_frame = 1, CalculateIC50 = FALSE,
+  IgnoreShortPeptides = TRUE)
 }
 \arguments{
 \item{input_nm_id}{(Required) An input amino acid sequence indicated as NM_ID}
@@ -49,6 +50,8 @@ See "https://github.com/hase62/Neoantimon"}
 \item{reading_frame}{The starting frame of the input sequence (Default = 1)}
 
 \item{CalculateIC50}{Whether Calculate IC50 by NetMHCpan or not.}
+
+\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

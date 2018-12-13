@@ -14,7 +14,8 @@ GenerateMutatedSeq<-function(input_file,
                              depth_tumor_column,
                              ambiguous_between_exon,
                              ambiguous_codon,
-                             export_dir){
+                             export_dir,
+                             IgnoreShortPeptides){
 
   #READ Data
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
@@ -362,9 +363,9 @@ GenerateMutatedSeq<-function(input_file,
 
          #Generate Mutated and Normal Peptide
          peptide_start<-ceiling(m_point_2/3.0) - max_peptide_length
-         if(peptide_start<1) peptide_start<-1
+         if(peptide_start < 1) peptide_start<-1
          peptide_end<-ceiling(m_point_2/3.0) + max_peptide_length
-         if(peptide_end>length(peptide)) peptide_end<-length(peptide)
+         if(peptide_end > length(peptide)) peptide_end<-length(peptide)
          peptide <- peptide[peptide_start:peptide_end]
          peptide_normal <- peptide_normal[peptide_start:peptide_end]
 
@@ -373,7 +374,8 @@ GenerateMutatedSeq<-function(input_file,
 
 
          #Save Peptide
-         if(length(peptide) < 8) break
+         if(length(peptide) < 8 & IgnoreShortPeptides) break
+         if(max_peptide_length >= 15 & IgnoreShortPeptides & length(peptide) < 8) next
          refFasta<-rbind(refFasta,
                          c(paste(random, gsub("\"","", g_name), sep="_"),
                            chr,

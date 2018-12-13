@@ -223,6 +223,12 @@ apply3<-function(x, y, z){
   }
 }
 
+apply4<-function(x, y, z){
+  out <- apply(x, y, z)
+  if(!is.matrix(out)) out <- t(out)
+  return(out)
+}
+
 getHLAtypes<-function(hla_file, file_name_in_hla_table){
   hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   hit <- match(file_name_in_hla_table, hla[, 1])
