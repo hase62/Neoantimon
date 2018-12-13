@@ -81,9 +81,11 @@ Export_Summary_IndelSV <- function(Input,
   }
 
   # Duplication
+  num_of_hla <- 1
   if(DupCount){
     Input[, match("Mutation_Position", index)] <- paste(Input[, match("HLA", index)], Input[, match("Mutation_Position", index)], sep = "_")
     Input[, match("Evaluated_Mutant_Peptide", index)] <- paste(Input[, match("HLA", index)], Input[, match("Evaluated_Mutant_Peptide", index)], sep = "_")
+    num_of_hla <- length(unique(Input[, match("HLA", index)]))
   }
 
   # Count All
@@ -121,8 +123,8 @@ Export_Summary_IndelSV <- function(Input,
   Num_Rest_Alteration <- length(unique(Input[, match("Mutation_Position", index)]))
   Num_Rest_Peptide <- length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
-  ans <- c(Num_Alteration, Num_Cond_Alteration, Num_Rest_Alteration,
-           Num_Peptide, Num_Cond_Peptide, Num_Rest_Peptide)
+  ans <- c(Num_Alteration / num_of_hla, Num_Cond_Alteration / num_of_hla, Num_Rest_Alteration / num_of_hla,
+           Num_Peptide / num_of_hla, Num_Cond_Peptide / num_of_hla, Num_Rest_Peptide / num_of_hla)
   names(ans) <- c("Num_All_Alteration", "Num_Evaluated_Alteration", "Num_Alteration_Generating_NeoAg",
                   "Num_All_Peptide", "Num_Evaluated_Peptide", "Num_Peptide_Generating_NeoAg")
 
@@ -133,7 +135,7 @@ Export_Summary_IndelSV <- function(Input,
     pep_count <- sum(as.numeric(Input[match(unique(Input[, match("Evaluated_Mutant_Peptide", index)]),
                                             Input[, match("Evaluated_Mutant_Peptide", index)]),
                                       match("Weight", index)]))
-    ans <- c(ans[1:3], alt_count, ans[4:6], pep_count)
+    ans <- c(ans[1:3], alt_count / num_of_hla, ans[4:6], pep_count / num_of_hla)
     names(ans)[c(4, 8)] <- c("Weighted_Num_Alteration_Generating_NeoAg", "Weighted_Num_Peptide_Generating_NeoAg")
   }
   return(ans)

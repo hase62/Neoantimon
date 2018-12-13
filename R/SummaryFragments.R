@@ -69,8 +69,10 @@ Export_Summary_Fragments <- function(Input,
   }
 
   # Duplication
+  num_of_hla <- 1
   if(DupCount){
     Input[, match("Evaluated_Mutant_Peptide", index)] <- paste(Input[, match("HLA", index)], Input[, match("Evaluated_Mutant_Peptide", index)], sep = "_")
+    num_of_hla <- length(unique(Input[, match("HLA", index)]))
   }
 
   # Count All
@@ -117,21 +119,21 @@ Export_Summary_Fragments <- function(Input,
   Num_Rest_Peptide_Per_NM <- sapply(unq_nm, function(x) length(unique(Input[!is.na(match(Input[, match("NM_ID", index)], x)), match("Evaluated_Mutant_Peptide", index)])))
   Num_Rest_Peptide_Per_Pep <- sapply(unq_pep, function(x) length(unique(Input[!is.na(match(Input[, match("Mutant_Peptide", index)], x)), match("Evaluated_Mutant_Peptide", index)])))
 
-  ratio_pep_grp <- round(rbind(Num_Peptide_Per_Grp,
-                               Num_Cond_Peptide_Per_Grp,
-                               Num_Rest_Peptide_Per_Grp,
+  ratio_pep_grp <- round(rbind(Num_Peptide_Per_Grp / num_of_hla,
+                               Num_Cond_Peptide_Per_Grp / num_of_hla,
+                               Num_Rest_Peptide_Per_Grp / num_of_hla,
                                Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp,
                                -log10(as.numeric(names(unq_grp)))), 3)
 
-  ratio_pep_nm <- round(rbind(Num_Peptide_Per_NM,
-                              Num_Cond_Peptide_Per_NM,
-                              Num_Rest_Peptide_Per_NM,
+  ratio_pep_nm <- round(rbind(Num_Peptide_Per_NM / num_of_hla,
+                              Num_Cond_Peptide_Per_NM / num_of_hla,
+                              Num_Rest_Peptide_Per_NM / num_of_hla,
                               Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM,
                               -log10(as.numeric(names(unq_nm)))), 3)
 
-  ratio_pep_pep <- round(rbind(Num_Peptide_Per_Pep,
-                              Num_Cond_Peptide_Per_Pep,
-                              Num_Rest_Peptide_Per_Pep,
+  ratio_pep_pep <- round(rbind(Num_Peptide_Per_Pep / num_of_hla,
+                              Num_Cond_Peptide_Per_Pep / num_of_hla,
+                              Num_Rest_Peptide_Per_Pep / num_of_hla,
                               Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep,
                               -log10(as.numeric(names(unq_pep)))), 3)
 

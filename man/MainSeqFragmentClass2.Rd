@@ -6,10 +6,9 @@
 \usage{
 MainSeqFragmentClass2(input_sequence = NA,
   group_ids = seq(1:length(input_nm_id)), hla_file = "here_is_a_table",
-  hla_types = NA, file_name_in_hla_table = NA,
-  refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
-  refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
-  hmdir = getwd(), job_id = "ID", export_dir = paste("result",
+  hla_types = NA, file_name_in_hla_table = NA, refflat_file = paste(hmdir,
+  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir, "lib/refMrna.fa",
+  sep = "/"), hmdir = getwd(), job_id = "ID", export_dir = paste("result",
   job_id, "SeqFragment2", sep = "."), netMHCIIpan_dir = paste(hmdir,
   "lib/netMHCIIpan-3.1/netMHCIIpan", sep = "/"), peptide_length = c(15),
   reference_nm_id = NA, reference_gene_symbol = NA,
