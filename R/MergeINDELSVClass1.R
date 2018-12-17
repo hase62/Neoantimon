@@ -47,22 +47,24 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
   for(f in files_part[grep("\\.peptide\\.txt", files_part)]){
     print(paste(dir, f, sep="/"))
 
-    test1<-scan(paste(dir, f, sep="/"), "character", sep="\n", skip=1)
-    test1<-gsub(" <= WB", "", test1)
-    ss1<-grep(" Pos ", test1) + 2
-    ee1<-grep("Protein", test1) - 2
-    num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][12])
+    test1 <- fread(paste(dir, f, sep="/"), stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
+    #test1<-scan(paste(dir, f, sep="/"), "character", sep="\n", skip=1)
+    test1<-gsub(" <=WB| <=SB", "", test1)
+    ss1<-intersect(grep("Pos ", test1), grep("Icore ", test1)) + 2
+    ee1<-intersect(grep("Protein", test1), grep("binders", test1)) - 2
+    num1<-sapply(gsub("[ ]+", "\t", test1[ss1]), function(x) strsplit(x, "\t")[[1]][11])
 
     #if(length(grep("No peptides derived", test1[1:45])) > 0) next
     if(length(grep("cannot be found in hla_pseudo list", test1)) > 0) next
     if(length(grep("Could not find allele", test1)) > 0) next
     for(h1 in 1:length(num1)){
+      print(h1 / length(num1))
       if(ss1[h1] == ee1[h1]){
-        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(3,2,12,11,4,14,15)])
-        d1<-t(d1[sapply(d1[,5], function(x) length(grep(x, info[match(num1[h1], info[,2]), 15]))==0),])
+        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(3, 2, 12, 11, 4, 14, 15) - 1])
+        d1<-t(d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),])
       } else {
-        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(3,2,12,11,4,14,15)]))
-        d1<-d1[sapply(d1[,5], function(x) length(grep(x, info[match(num1[h1], info[,2]), 15]))==0),]
+        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(3, 2, 12, 11, 4, 14, 15) - 1]))
+        d1<-d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),]
         if(is.null(nrow(d1))) d1<-t(d1)
       }
       if(nrow(d1)==0 | ncol(d1)==0) {
@@ -71,6 +73,7 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
         remove<-c(remove, r_can)
         next
       }
+      rownames(d1) <- NULL
       full_peptide<-rbind(full_peptide, d1)
     }
   }
@@ -86,9 +89,9 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
          "Tumor_RNA_based_on_DNA", "MutRatio", "MutRatio_Min", "MutRatio_Max")
   colnames(full_peptide)<-tag[1:ncol(full_peptide)]
   if(nrow(full_peptide)==1){
-    full_peptide<-cbind(full_peptide, t(info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),]))
+    full_peptide<-cbind(full_peptide, t(info[match(substr(full_peptide[, 3], 1, 10), substr(info[, 2], 1, 10)),]))
   } else {
-    full_peptide<-cbind(full_peptide, info[match(substr(full_peptide[,3], 1, 10), substr(info[,2], 1, 10)),])
+    full_peptide<-cbind(full_peptide, info[match(substr(full_peptide[, 3], 1, 10), substr(info[, 2], 1, 10)),])
   }
 
   full_peptide<-full_peptide[,match(tag, colnames(full_peptide))]
