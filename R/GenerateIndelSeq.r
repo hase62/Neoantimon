@@ -272,11 +272,13 @@ GenerateIndelSeq<-function(input_file,
 
           #Mutation Position is not between Translational Region
           if(m_point_2 < 0) {
+            print("Mutation Position is not between Translational Region")
             next
           }
 
-          #Translation Region is not VAlid
+          #Translation Region is not Valid
           if(nchar(dna_trans)%%3!=0) {
+            print("Translation Region is not Valid")
             next
           }
 
@@ -288,6 +290,7 @@ GenerateIndelSeq<-function(input_file,
             dna_trans<-substr(dna_trans, 4, nchar(dna_trans))
           }
           if(k==e & match("X", peptide_normal) < length(peptide_normal)){
+            print("Indel is Too Short")
             next
           }
           target_amino_before<-peptide_normal[ceiling(m_point_2/3.0)]
@@ -295,7 +298,10 @@ GenerateIndelSeq<-function(input_file,
           #Make Mutated-DNA
           dna_trans<-substr(dna, ts_point, nchar(dna))
           m_point_2<-m_point - (ts_point) + 1
-          if(m_point_2 < 4) next
+          if(m_point_2 < 4) {
+            print("Indel is Too Short: 2")
+            next
+          }
 	        if(strand == "+"){
 	          if(m_ref == "-"){
 	            #Insertion
@@ -304,14 +310,22 @@ GenerateIndelSeq<-function(input_file,
                                             function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
                                substr(dna_trans, m_point_2, nchar(dna_trans)), sep="")
             } else {
-              if(substr(dna_trans, m_point_2, m_point_2 + nchar(m_ref) - 1) ==
-                  paste(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")){
-
+              ref_ <- substr(dna_trans, m_point_2, m_point_2 + nchar(m_ref) - 1)
+              alt_ <- paste(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")
+              match_ <- ref_ == alt_
+              match_length <- length(which(strsplit(ref_, "")[[1]] == strsplit(alt_, "")[[1]]))
+              match_pval <- 1 - pbinom(match_length, nchar(ref_), 0.25)
+              if(!match_ & match_pval < 0.02){
+                print("The Ref and vcf have miss-match ... but p-val is less than 0.02 ... Continue Convertion. ")
+                match_ <- TRUE
+              }
+              if(match_){
                 dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
                                  gsub("NA", "", paste(sapply(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt)),
                                                              function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
                                  substr(dna_trans, m_point_2 + nchar(m_ref), nchar(dna_trans)), sep="")
               } else {
+                print("The Ref and vcf are not matched")
                 next
               }
             }
@@ -323,14 +337,22 @@ GenerateIndelSeq<-function(input_file,
                                          function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
                             substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
            } else {
-             if(paste(substring(substr(dna_trans, m_point_2 - nchar(m_ref) + 1, m_point_2), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="") ==
-                 paste(sapply(rev(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref))), function(x) trans_to[match(tolower(x),trans_from)]), collapse="")){
-
+             ref_ <- paste(substring(substr(dna_trans, m_point_2 - nchar(m_ref) + 1, m_point_2), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")
+             alt_ <- paste(sapply(rev(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref))), function(x) trans_to[match(tolower(x),trans_from)]), collapse="")
+             match_ <- ref_ == alt_
+             match_length <- length(which(strsplit(ref_, "")[[1]] == strsplit(alt_, "")[[1]]))
+             match_pval <- 1 - pbinom(match_length, nchar(ref_), 0.25)
+             if(!match_ & match_pval < 0.02){
+               print("The Ref and vcf have miss-match ... but p-val is less tnan 0.02 ... Continue Convertion. ")
+               match_ <- TRUE
+             }
+             if(match_){
                dna_trans<-paste(substr(dna_trans, 1, m_point_2 - nchar(m_ref)),
                           gsub("NA","",paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))),
                                                     function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
                           substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
              } else {
+               print("The Ref and vcf are not matched")
                next
              }
            }
@@ -360,7 +382,10 @@ GenerateIndelSeq<-function(input_file,
          #Generate Mutated and Normal Peptide
          min_len<-min(length(peptide), length(peptide_normal))
          peptide_start<-which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - max_peptide_length + 1
-         if(is.na(peptide_start)) break
+         if(is.na(peptide_start)) {
+           print("Peptide Start is NA")
+           break
+         }
          if(peptide_start < 1) peptide_start<-1
          peptide_end<-which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1]
          if(is.na(peptide_end)) peptide_end <- min_len
@@ -373,8 +398,18 @@ GenerateIndelSeq<-function(input_file,
 
          #Save Peptide
          X<-grep("X", peptide)
-         if(length(X) > 0 & IgnoreShortPeptides){if(X < 8) next}
-         if(max_peptide_length >= 15 & length(X) > 0 & IgnoreShortPeptides){if(X < 15) next}
+         if(length(X) > 0 & IgnoreShortPeptides){
+           if(X < 8) {
+               print("Indel is Too Short")
+               next
+           }
+         }
+         if(max_peptide_length >= 15 & length(X) > 0 & IgnoreShortPeptides){
+           if(X < 15) {
+             print("Indel is Too Short")
+             next
+           }
+         }
          frame <- ifelse(abs(nchar(gsub("-", "", m_alt)) - nchar(gsub("-", "", m_ref))) %% 3 == 0, "In", "Out")
          refFasta<-rbind(refFasta,
                          c(paste(random, gsub("\"","", g_name), sep="_"),

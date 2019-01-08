@@ -8,6 +8,7 @@ Maintainer: Takanori Hasegawa <t-hasegw@ims.u-tokyo.ac.jp>
 Description: This Package is develped to calculate candidates neoantigens from Mutation Data (.vcf,.txt,string) requiring netMHCpan4.0(or 3.0), netMHCIIpan3.1, human refMrna, and refFlat. If you do not have some of these files, see README.md.
 License: MIT + file LICENSE
 VignetteBuilder: knitr
+Encoding: UTF-8
 Suggests: 
     knitr,
     rmarkdown
