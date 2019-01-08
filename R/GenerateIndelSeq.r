@@ -315,8 +315,9 @@ GenerateIndelSeq<-function(input_file,
               match_ <- ref_ == alt_
               match_length <- length(which(strsplit(ref_, "")[[1]] == strsplit(alt_, "")[[1]]))
               match_pval <- 1 - pbinom(match_length, nchar(ref_), 0.25)
-              if(!match_ & match_pval < 0.02){
-                print("The Ref and vcf have miss-match ... but p-val is less than 0.02 ... Continue Convertion. ")
+              if(!match_ & match_pval < 0.03){
+                print(paste("Ref is", ref_, ", and vcf is", alt_))
+                print(paste("The Ref and vcf have miss-match ... but p-val(", match_pval, ") is less tnan 0.03 ... Continue Convertion. ", sep = ""))
                 match_ <- TRUE
               }
               if(match_){
@@ -342,8 +343,9 @@ GenerateIndelSeq<-function(input_file,
              match_ <- ref_ == alt_
              match_length <- length(which(strsplit(ref_, "")[[1]] == strsplit(alt_, "")[[1]]))
              match_pval <- 1 - pbinom(match_length, nchar(ref_), 0.25)
-             if(!match_ & match_pval < 0.02){
-               print("The Ref and vcf have miss-match ... but p-val is less tnan 0.02 ... Continue Convertion. ")
+             if(!match_ & match_pval < 0.03){
+               print(paste("Ref is", ref_, ", and vcf is", alt_))
+               print(paste("The Ref and vcf have miss-match ... but p-val(", match_pval, ") is less tnan 0.03 ... Continue Convertion. ", sep = ""))
                match_ <- TRUE
              }
              if(match_){
