@@ -58,7 +58,7 @@ MergeINDELSVClass2<-function(hmdir = getwd(),
     if(length(grep("cannot be found in hla_pseudo list", test1)) > 0) next
     if(length(grep("Could not find allele", test1)) > 0) next
     for(h1 in 1:length(num1)){
-      print(h1 / length(num1))
+      print(paste((h1 / length(num1)) * 100, "perc. fin"))
       if(ss1[h1] == ee1[h1]){
         d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(3, 2, 5, 7, 4, 10, 11) - 1])
         d1<-t(d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),])
