@@ -57,9 +57,6 @@ Otherwise, run the following codes or use "InstallSamtools()" after installing N
 ```
 wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
-cd samtools-0.1.19
-make
-cd ..
 ```
 
 ### -Download human refSeq
