@@ -33,12 +33,12 @@ Export_Summary_Fragments_fast <- function(Input,
                                           MutRatio_th = NA,
                                           WriteLongIndel = NA,
                                           DupCount = FALSE){
-  
+
   if((!is.na(Mut_IC50_th) & !is.na(Mut_Rank_th)) | (is.na(Mut_IC50_th) & is.na(Mut_Rank_th))){
     print("Please Specify Either One of Mut_IC50_th or Mut_Rank_th")
     return(NULL)
   }
-  
+
   # IC50 or Rank
   m_th <- Mut_IC50_th
   m_th_column <- "Mut_IC50"
@@ -46,16 +46,16 @@ Export_Summary_Fragments_fast <- function(Input,
     m_th <- Mut_Rank_th
     m_th_column <- "Mut_Rank"
   }
-  
+
   # Calculate Pvalues
   theoretical_pro <- 3 * 4^3 / 61^2
-  pvalues <- sapply(Input[, match("Mutant_Peptide", colnames(Input))], 
+  pvalues <- sapply(Input[, match("Mutant_Peptide", colnames(Input))],
                     function(x) (1 - theoretical_pro)^nchar(x))
   Input <- cbind(Input, pvalues)
   colnames(Input)[ncol(Input)] <- "Pvalue"
-  
+
   index <- colnames(Input)
-  
+
   # Write Long Indels
   if(!is.na(WriteLongIndel)){
     unq <- unique(Input[, match("Mutant_Peptide", index)])
@@ -68,19 +68,22 @@ Export_Summary_Fragments_fast <- function(Input,
                   row.names = FALSE, col.names = FALSE, quote = FALSE, sep = "\t")
     }
   }
-  
+
   # Duplication
   num_of_hla <- 1
   if(DupCount){
-    Input[, match("Evaluated_Mutant_Peptide", index)] <- paste(Input[, match("HLA", index)], 
+    Input[, match("Evaluated_Mutant_Peptide", index)] <- paste(Input[, match("HLA", index)],
                                                                Input[, match("Evaluated_Mutant_Peptide", index)], sep = "_")
     num_of_hla <- length(unique(Input[, match("HLA", index)]))
   }
-  
+
   # Count All
   res <- NULL
   for(tag in c("GroupID", "NM_ID", "Mutant_Peptide")){
     Input_tag <- Input[, match(tag, index)]
+    if(tag == "Mutant_Peptide"){
+      Input_tag <- paste(Input_tag, Input[, match("Gene", index)], Input[, match("GroupID", index)], sep = "-")
+    }
     unq_tag <- unique(Input_tag)
     id_unq_tag <- sapply(unq_tag, function(x) which(!is.na(match(Input_tag, x))))
     Input_unq_tag <- lapply(id_unq_tag, function(x) Input[x, ])
@@ -105,7 +108,7 @@ Export_Summary_Fragments_fast <- function(Input,
       Input_unq_tag <- lapply(Input_unq_tag, function(x) {x[as.numeric(x[, rna_col]) > MutRatio_th, ]
                                                           if(!is.matrix(x)) {t(x)}else{x}})
     }
-    
+
     # Count Conditioned
     Num_Cond_Peptide_Per_tag <- unlist(lapply(Input_unq_tag, function(x) length(unique(x[, eval_col]))))
 
@@ -116,7 +119,7 @@ Export_Summary_Fragments_fast <- function(Input,
 
     # Count Rest
     Num_Rest_Peptide_Per_tag <- unlist(lapply(Input_unq_tag, function(x) length(unique(x[, eval_col]))))
-    
+
     ratio_pep_tag <- round(rbind(Num_Peptide_Per_tag / num_of_hla,
                                  Num_Cond_Peptide_Per_tag / num_of_hla,
                                  Num_Rest_Peptide_Per_tag / num_of_hla,
@@ -128,30 +131,30 @@ Export_Summary_Fragments_fast <- function(Input,
       unq_grp_gene <- Input_Gene[match(unq_tag, Input[, match("GroupID", index)])]
       unq_grp_gene <- sapply(unq_grp_gene, function(x) strsplit(x, "_")[[1]][2])
       colnames(ratio_pep_tag) <- unq_grp_gene
-      rownames(ratio_pep_tag) <- c("Num_Peptide_Per_Grp", 
-                                   "Num_Cond_Peptide_Per_Grp", 
+      rownames(ratio_pep_tag) <- c("Num_Peptide_Per_Grp",
+                                   "Num_Cond_Peptide_Per_Grp",
                                    "Num_Rest_Peptide_Per_Grp",
-                                   "Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp", 
+                                   "Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp",
                                    "-logP")
     }
-    
+
     if(tag == "NM_ID") {
       colnames(ratio_pep_tag) <- unq_tag
-      rownames(ratio_pep_tag) <- c("Num_Peptide_Per_NM", 
+      rownames(ratio_pep_tag) <- c("Num_Peptide_Per_NM",
                                   "Num_Cond_Peptide_Per_NM", "Num_Rest_Peptide_Per_NM",
-                                  "Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM", 
+                                  "Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM",
                                   "-logP")
     }
     if(tag == "Mutant_Peptide") {
       colnames(ratio_pep_tag) <- unq_tag
-      rownames(ratio_pep_tag) <- c("Num_Peptide_Per_Pep", 
-                                   "Num_Cond_Peptide_Per_Pep", 
+      rownames(ratio_pep_tag) <- c("Num_Peptide_Per_Pep",
+                                   "Num_Cond_Peptide_Per_Pep",
                                    "Num_Rest_Peptide_Per_Pep",
-                                   "Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep", 
+                                   "Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep",
                                    "-logP")
     }
     res <- c(res, list(ratio_pep_tag))
   }
-  
+
   return(res)
 }
