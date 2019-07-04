@@ -95,6 +95,14 @@ Export_Summary_IndelSV_perFragments <- function(Input,
     }else{
       id_unq_tag <- sapply(unq_tag, function(x) which(!is.na(match(Input_tag, x))))
     }
+    if(is.matrix(id_unq_tag)){
+      tmp <- NULL
+      for(col in 1:ncol(id_unq_tag)){
+        tmp <- c(tmp, list(id_unq_tag[, col]))
+      }
+      id_unq_tag <- tmp
+    }
+
     Input_unq_tag <- lapply(id_unq_tag, function(x) Input[x, ])
     names(unq_tag) <- lapply(id_unq_tag, function(x) min(as.numeric(pvalues[x])))
 
