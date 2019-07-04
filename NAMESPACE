@@ -3,6 +3,7 @@
 export(Export_Summary_Fragments)
 export(Export_Summary_Fragments_fast)
 export(Export_Summary_IndelSV)
+export(Export_Summary_IndelSV_perFragments)
 export(Export_Summary_SNV)
 export(InstallRefFlat)
 export(InstallRefMrnaFile)
