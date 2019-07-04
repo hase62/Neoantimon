@@ -90,7 +90,11 @@ Export_Summary_IndelSV_perFragments <- function(Input,
     Input_tag <- paste(Input_tag, Input[, match("Gene", index)], sep = "-")
     unq_tag <- unique(Input_tag)
 
-    id_unq_tag <- sapply(unq_tag, function(x) which(!is.na(match(Input_tag, x))))
+    if(length(unq_tag) == 1) {
+      id_unq_tag <- list(which(!is.na(match(Input_tag, unq_tag))))
+    }else{
+      id_unq_tag <- sapply(unq_tag, function(x) which(!is.na(match(Input_tag, x))))
+    }
     Input_unq_tag <- lapply(id_unq_tag, function(x) Input[x, ])
     names(unq_tag) <- lapply(id_unq_tag, function(x) min(as.numeric(pvalues[x])))
 
