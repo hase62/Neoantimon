@@ -31,7 +31,7 @@ chmod 750 setNetMHCIIpan3.2.sh
 
 ### -Download refMrna Files (Required)
 
-**(You have to selecty your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
+**(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
 
 **GRCh38/hg38**: Run the following codes. 
 ```
@@ -47,7 +47,7 @@ gunzip refMrna.fa.gz
 
 ### -Download refFlat Files (Required)
 
-**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
+**(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
 
 **GRCh38/hg38**: Run the following codes. 
 ```
@@ -61,12 +61,16 @@ wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 ```
 
-### -Install Samtools 0_x_x
+### -Install Samtools (using local samtools or anaconda environment)
 
 **Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression based on RNA bam.**
+1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, then run the following codes. 
+```
+conda install -c bioconda samtools
+conda install -c bioconda/label/cf201901 samtools
+```
 
-You can install samtools_0_x_x version from https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2. 
-Otherwise, run the following codes or use "InstallSamtools()" after installing Neoantimon. 
+2. Otherwise, you can install samtools_0_x_x version from https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2. 
 ```
 wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
