@@ -2,12 +2,18 @@
 # A manuscript for this journal is at bioarxiv (). 
 
 ## 1. Preparation
+### -Install wget  (Required)
+```
+brew install wget
+```
+
 ### -Download and Set netMHCpan4.0 (Required)
 
 1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and type commands.
 ```
+wget https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
 chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
 ```
@@ -18,6 +24,7 @@ chmod 750 setNetMHCpan4.0.sh
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh and type commands.
 ```
+wget https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
 chmod 750 setNetMHCIIpan3.2.sh
 ./setNetMHCIIpan3.2.sh
 ```
