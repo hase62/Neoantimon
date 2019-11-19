@@ -1,11 +1,15 @@
-# Updated on 19, Jul. 2018. 
+# Major Version was released on 20, Nov. 2019. 
+
 ## 1. Preparation
 ### -Download and Set netMHCpan4.0 (Required)
 
 1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and run it as "./setNetMHCpan4.0.sh". 
-Please change mode as "chmod 755 setNetMHCpan4.0.sh"
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and type command 
+```
+chmod 755 setNetMHCpan4.0.sh
+./setNetMHCpan4.0.sh 
+```
 
 ### -Download and Set netMHCIIpan3.1 (Required)
 

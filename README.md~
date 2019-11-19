@@ -5,12 +5,14 @@
 1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and run it as "./setNetMHCpan4.0.sh". 
+Please change mode as "chmod 755 setNetMHCpan4.0.sh"
 
 ### -Download and Set netMHCIIpan3.1 (Required)
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.1.sh and run it as "./setNetMHCIIpan3.1.sh". 
+Please change mode as "chmod 755 setNetMHCIIpan3.1.sh"
 
 ### -Download refMrna Files (Required)
 
