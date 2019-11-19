@@ -17,6 +17,14 @@ wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/
 chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
 ```
+### -Download and Set mhcflurry (Not Required)
+1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, then run the following codes. 
+```
+pip install mhcflurry
+mhcflurry-downloads fetch
+```
+
+2. Otherwise, install python from https://www.python.org/downloads/release/python-380/, then run the above codes.
 
 ### -Download and Set netMHCIIpan3.2 (Required)
 
