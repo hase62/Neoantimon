@@ -9,22 +9,22 @@ brew install wget
 
 ### -Download and Set netMHCpan4.0 (Required)
 
-1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
+1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and move it to a working directory. 
 
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and type commands.
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and do initial setting as followings.
 ```
-wget https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
+wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
 chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
 ```
 
 ### -Download and Set netMHCIIpan3.2 (Required)
 
-1. Download netMHCIIpan 3.2 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
+1. Download netMHCIIpan 3.2 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan and move it to a working directory. 
 
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh and type commands.
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh and do initial setting as followings.
 ```
-wget https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
+wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
 chmod 750 setNetMHCIIpan3.2.sh
 ./setNetMHCIIpan3.2.sh
 ```
