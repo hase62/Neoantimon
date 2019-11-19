@@ -61,7 +61,7 @@ wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 ```
 
-### -Install Samtools (using local samtools or anaconda environment)
+### -Install Samtools (Not Required)
 
 **Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression based on RNA bam.**
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, then run the following codes. 
@@ -80,9 +80,9 @@ tar jxf samtools-0.1.19.tar.bz2
 
 **Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.**
 
-**You have to get your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
+**You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
 
-**GRCh38**: Download human refSeq by
+**GRCh38**: Run the following codes.
 ```
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
@@ -90,14 +90,14 @@ gunzip GRCh38.fa.gz
 samtools faidx GRCh38.fa
 ```
 
-**hg38**: Download human refSeq by:
+**hg38**: Run the following codes.
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
 ```
 
-**GRCh37/hg19**: Download human refSeq:
+**GRCh37/hg19**: Run the following codes.
 ```
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
@@ -105,10 +105,9 @@ gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
 ```
 
-### -Download SampleFiles
+### -Download SampleFiles (Not required)
 
-You can get these from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
-Otherwise, run the following codes or use "InstallSampleFiles()" after installing Neoantimon. 
+Run the following codes. 
 ```
 wget https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
 unzip data.zip
@@ -196,10 +195,10 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
 ```
 
-### -RNAseq file
+### -RNA expression file
 
-An RNAseq file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file" in main functions.
-If you also indicate "rnabam_file", variant allele frequencies and tumor specific RNA expressions are also attached in the results. 
+An RNA expressoin file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file" in main functions.
+If you also indicate "rnabam_file", variant allele frequencies and tumor specific RNA expressions are also attached to the results. 
 
 ```r
 data("sample_rna_exp")
