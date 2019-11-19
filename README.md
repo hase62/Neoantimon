@@ -12,11 +12,11 @@ chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
 ```
 
-### -Download and Set netMHCIIpan3.1 (Required)
+### -Download and Set netMHCIIpan3.2 (Required)
 
-1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
+1. Download netMHCIIpan 3.2 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.1.sh and type commands.
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh and type commands.
 ```
 chmod 750 setNetMHCpan3.2.sh
 ./setNetMHCIIpan3.2.sh"
