@@ -1,4 +1,4 @@
-# Major Version will be released soon. 
+# A stable version will be released soon. 
 # A manuscript for this journal is at bioarxiv (). 
 
 ## 1. Preparation
