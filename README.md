@@ -67,10 +67,10 @@ gunzip refFlat.txt.gz
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, then run the following codes. 
 ```
 conda install -c bioconda samtools
-conda install -c bioconda/label/cf201901 samtools
+conda install -c bioconda/label/cf201911 samtools
 ```
 
-2. Otherwise, you can install samtools_0_x_x version from https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2. 
+2. Otherwise, you can install local samtools as followings. 
 ```
 wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
