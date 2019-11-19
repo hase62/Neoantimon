@@ -17,7 +17,7 @@ if [ -e ./../netMHCIIpan-3.2.Linux.tar.gz ]; then
  wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.2/data.Linux.tar.gz
  tar -xvf data.Linux.tar.gz
 fi
-if [ -e ./../netMHIICpan-3.2.Darwin.tar.gz ]; then
+if [ -e ./../netMHCIICpan-3.2.Darwin.tar.gz ]; then
  wget http://www.cbs.dtu.dk/services/NetMHCIIpan-3.2/data.Darwin.tar.gz
  tar -xvf data.Darwin.tar.gz
 fi
