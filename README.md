@@ -109,7 +109,7 @@ samtools faidx GRCh37.fa
 
 Run the following codes. 
 ```
-wget https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
+wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
 unzip data.zip
 ```
 
