@@ -1,13 +1,14 @@
-# Major Version was released on 20, Nov. 2019. 
+# Major Version will be released soon. 
+# A manuscript for this journal is at bioarxiv (). 
 
 ## 1. Preparation
 ### -Download and Set netMHCpan4.0 (Required)
 
 1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan. 
 
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and type command 
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh and type commands.
 ```
-chmod 755 setNetMHCpan4.0.sh
+chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
 ```
 
@@ -15,8 +16,11 @@ chmod 755 setNetMHCpan4.0.sh
 
 1. Download netMHCIIpan 3.1 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan. 
 
-2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.1.sh and run it as "./setNetMHCIIpan3.1.sh". 
-Please change mode as "chmod 755 setNetMHCIIpan3.1.sh"
+2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.1.sh and type commands.
+```
+chmod 750 setNetMHCpan3.2.sh
+./setNetMHCIIpan3.2.sh"
+```
 
 ### -Download refMrna Files (Required)
 
