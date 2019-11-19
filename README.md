@@ -18,8 +18,8 @@ chmod 750 setNetMHCpan4.0.sh
 
 2. Download a script from https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh and type commands.
 ```
-chmod 750 setNetMHCpan3.2.sh
-./setNetMHCIIpan3.2.sh"
+chmod 750 setNetMHCIIpan3.2.sh
+./setNetMHCIIpan3.2.sh
 ```
 
 ### -Download refMrna Files (Required)
