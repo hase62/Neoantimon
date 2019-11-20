@@ -2,7 +2,7 @@
 # A manuscript for this journal is at bioarxiv (). 
 
 ## 1. Preparation
-### -Install wget  (Required)
+### <font color="DarkOrange"></font> -Install wget  (Required)
 ```
 (CentOS) yum install wget
 (Mac) brew install wget
