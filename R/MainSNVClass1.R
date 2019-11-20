@@ -2,7 +2,7 @@
 #'
 #'@param input_file (Required) An input vcf file annotated by,
 #'
-#'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
+#'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares, or apply annotation_option = TRUE.
 #'
 #'See by data(sample_vcf); sample_vcf;
 #'
@@ -185,6 +185,13 @@ MainSNVClass1<-function(input_file,
                         ambiguous_codon = 0,
                         peptide_length = c(8, 9, 10, 11, 12, 13),
                         IgnoreShortPeptides = TRUE){
+
+  if(!library(data.table, logical.return = TRUE)) {
+    install.packages("data.table")
+    library(data.table)
+  }
+  library(data.table)
+
 
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,

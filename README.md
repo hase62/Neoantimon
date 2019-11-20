@@ -1,5 +1,5 @@
 # A stable version will be released soon. 
-# A manuscript for this journal is at bioarxiv (). 
+## A manuscript for this journal is at bioarxiv (). 
 
 ## 1. Preparation
 ### -Install wget  (Required)
@@ -73,7 +73,7 @@ gunzip refFlat.txt.gz
 ### -Install Samtools (Not Required)
 
 **Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression based on RNA bam.**
-1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, then run the following codes. 
+1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
 conda install -c bioconda samtools
 conda install -c bioconda/label/cf201911 samtools
@@ -283,8 +283,7 @@ lib/data/sample_sv_bnd.txt
 ##### Prepare the following files using the above explanations. 
 ```
 lib/netMHCpan-4.0
-lib/netMHCIIpan-3.1  
-lib/samtools-0.1.19
+lib/netMHCIIpan-3.1
 lib/refFlat.txt 
 lib/refMrna.fa
 lib/GRCh37.fa
@@ -317,7 +316,7 @@ library(Neoantimon);
                                    refflat_file  = "lib/refFlat.txt",
                                    refmrna_file = "lib/refMrna.fa",
                                    rnaexp_file = "lib/data/sample_rna_exp.txt",
-                                   netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                   netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14
   )
@@ -339,7 +338,7 @@ library(Neoantimon);
                                        refflat_file  = "lib/refFlat.txt",
                                        refmrna_file = "lib/refMrna.fa",
                                        rnaexp_file = "lib/data/sample_rna_exp.txt",
-                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14
   )
@@ -366,7 +365,7 @@ library(Neoantimon);
                                        refflat_file  = "lib/refFlat.txt",
                                        refmrna_file = "lib/refMrna.fa",
                                        rnaexp_file = "lib/data/sample_rna_exp.txt",
-                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
                                        refdna_file = "lib/GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
@@ -396,7 +395,7 @@ library(Neoantimon);
                                            job_id = "NO_job_id",
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
-                                           netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
+                                           netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
                                            gene_symbol = c("NFKB1", "BCL3"),
                                            reading_frame = 3
   )
