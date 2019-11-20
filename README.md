@@ -4,7 +4,8 @@
 ## 1. Preparation
 ### -Install wget  (Required)
 ```
-brew install wget
+(CentOS) yum install wget
+(Mac) brew install wget
 ```
 
 ### -Download and Set netMHCpan4.0 (Required)
