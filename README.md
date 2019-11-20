@@ -10,28 +10,28 @@
 
 ### -Download and Set netMHCpan4.0 (Required)
 
-1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and move it to a working directory. 
+1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and move it to the working directory. 
 
-2. Do initial setting as followings.
+2. Do initial setting at the working directory as followings.
 ```
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
 chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
 ```
 ### -Download and Set mhcflurry (Not Required)
-1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, then run the following codes. 
+1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
 pip install mhcflurry
 mhcflurry-downloads fetch
 ```
 
-2. Otherwise, install python from https://www.python.org/downloads/release/python-380/, then run the above codes.
+2. Otherwise, install python from https://www.python.org/downloads/release/python-380/, and then run the above codes.
 
 ### -Download and Set netMHCIIpan3.2 (Required)
 
-1. Download netMHCIIpan 3.2 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan and move it to a working directory. 
+1. Download netMHCIIpan 3.2 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan and move it to the working directory. 
 
-2. Do initial setting as followings.
+2. Do initial setting at the working directory as followings.
 ```
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
 chmod 750 setNetMHCIIpan3.2.sh
