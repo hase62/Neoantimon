@@ -6,7 +6,7 @@
 #'
 #'See by data(sample_vcf); sample_vcf;
 #'
-#'@param hla_file (Required) A tab separated file indicating HLA types.
+#'@param hla_file A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
@@ -29,7 +29,7 @@
 #'
 #'@param hmdir Home directory for the analysis (Default = getwd()).
 #'
-#'@param job_id Job-Id to be attached in output files (Default = "NO_job_id").
+#'@param job_id Job-id to be attached in output files (Default = "NO_job_id").
 #'
 #'@param export_dir The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")
 #'
@@ -83,6 +83,8 @@
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
+#'
+#'@param MHCflurry Also output results using MHCflurry (Default=FALSE).
 #'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
@@ -170,8 +172,9 @@ MainSNVClass1<-function(input_file,
                         cnv_file=NA,
                         purity = 1,
                         netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
+                        MHCflurry = FALSE,
                         refdna_file = NA,
-                        samtools_dir = NA,
+                        samtools_dir = "samtools",
                         bcftools_dir = NA,
                         chr_column = NA,
                         mutation_start_column = NA,
@@ -186,16 +189,24 @@ MainSNVClass1<-function(input_file,
                         peptide_length = c(8, 9, 10, 11, 12, 13),
                         IgnoreShortPeptides = TRUE){
 
+  #Install data.table
   if(!library(data.table, logical.return = TRUE)) {
-    install.packages("data.table")
+    install.packages("data.table", quiet = TRUE)
     library(data.table)
   }
   library(data.table)
 
+  #Get HLA-Type
+  if(file.exists(hla_file) & !is.na(hla_types[1])){
+    print(paste("Using:", hla_file))
+  }
+  if(file.exists(hla_file)){
+    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  }
+  if(is.na(hla_types[1])) return(NULL)
 
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,
-                        hla_file = hla_file,
                         hla_types = hla_types,
                         refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
@@ -263,12 +274,6 @@ MainSNVClass1<-function(input_file,
     return(NULL)
   }
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-
-  #Get HLA-Type
-  if(file.exists(hla_file)){
-    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
-  }
-  if(is.na(hla_types[1])) return(NULL)
 
   #Execute NetMHCpan
   ExeNetMHCpanClass1(output_peptide_prefix,
