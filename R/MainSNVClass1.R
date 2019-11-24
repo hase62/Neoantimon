@@ -187,12 +187,12 @@ MainSNVClass1<-function(input_file,
                         ambiguous_between_exon = 0,
                         ambiguous_codon = 0,
                         peptide_length = c(8, 9, 10, 11, 12, 13),
-                        IgnoreShortPeptides = TRUE){
+                        IgnoreShortPeptides = TRUE,
+                        SNPs = NA){
 
   #Install data.table
   if(!library(data.table, logical.return = TRUE)) {
     install.packages("data.table", quiet = TRUE)
-    library(data.table)
   }
   library(data.table)
 

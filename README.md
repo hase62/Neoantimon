@@ -1,5 +1,5 @@
 # A stable version will be released soon. 
-## A manuscript for this journal is at bioarxiv (). 
+## A manuscript is at bioarxiv (). 
 
 ## 1. Preparation
 ### -Install wget  (Required)
