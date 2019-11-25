@@ -310,7 +310,7 @@ MainSNVClass1<-function(input_file,
                      export_dir,
                      input_file,
                      job_id)
-  if(MHCflurry){
+  if(!is.na(MHCflurry)){
     ExemhcflurryClass1(output_peptide_prefix,
                        c("peptide", "wtpeptide"),
                        hla_types,

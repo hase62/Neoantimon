@@ -225,6 +225,15 @@ apply4<-function(x, y, z){
   return(out)
 }
 
+cut_peptide <- function(peptide, lens) {
+  pep_result <- NULL
+  for(l in lens){
+    tmp <- sapply(1:(nchar(peptide) - l + 1), function(x) substr(peptide, x, x + l - 1))
+    pep_result <- rbind(pep_result, cbind(1:length(tmp), tmp))
+  }
+  return(pep_result)
+}
+
 getHLAtypes<-function(hla_file, file_name_in_hla_table){
   hla <- t(sapply(scan(hla_file, "character", sep="\n"), function(x) strsplit(x, "\t")[[1]]))
   hit <- match(file_name_in_hla_table, hla[, 1])
