@@ -310,6 +310,16 @@ MainSNVClass1<-function(input_file,
                      export_dir,
                      input_file,
                      job_id)
+  if(MHCflurry){
+    ExemhcflurryClass1(output_peptide_prefix,
+                       c("peptide", "wtpeptide"),
+                       hla_types,
+                       netMHCpan_dir,
+                       peptide_length,
+                       export_dir,
+                       input_file,
+                       job_id)
+  }
 
   #Merge Results
   result <- MergeSNVClass1(input_dir = export_dir,
