@@ -23,6 +23,7 @@ chmod 750 setNetMHCpan4.0.sh
 ```
 pip install mhcflurry
 mhcflurry-downloads fetch
+pip install mhctools
 ```
 
 2. Otherwise, install python from https://www.python.org/downloads/release/python-380/, and then run the above codes.

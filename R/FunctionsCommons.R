@@ -131,7 +131,7 @@ CheckRequiredColumns<-function(input_file,
     depth_normal_column<-intersect(grep("depth", index, ignore.case = TRUE),
                                    grep("normal", index, ignore.case = TRUE))[1];
     if(is.na(depth_normal_column)) {
-      print("Please Manually Indicate depth_normal_column")
+      print("Please Manually Indicate depth_normal_column if you want to use.")
     }
   }
   print(paste("Set depth_normal_column as", depth_normal_column, index[depth_normal_column]))
@@ -140,7 +140,7 @@ CheckRequiredColumns<-function(input_file,
     depth_tumor_column<-intersect(grep("depth", index, ignore.case = TRUE),
                                   grep("tumor", index, ignore.case = TRUE))[1];
     if(is.na(depth_tumor_column)) {
-      print("Please Manually Indicate depth_tumor_column")
+      print("Please Manually Indicate depth_tumor_column if you want to use.")
     }
   }
   print(paste("Set depth_tumor_column as", depth_tumor_column, index[depth_tumor_column]))

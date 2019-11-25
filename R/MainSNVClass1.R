@@ -203,7 +203,10 @@ MainSNVClass1<-function(input_file,
   if(file.exists(hla_file)){
     hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
   }
-  if(is.na(hla_types[1])) return(NULL)
+  if(is.na(hla_types[1])) {
+    print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
+    return(NULL)
+  }
 
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,
@@ -228,7 +231,30 @@ MainSNVClass1<-function(input_file,
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
   #Generate FASTA and mutation Profile
-  job_id = paste(job_id, "SNV", sep = "_")
+  job_id <- paste(job_id, "SNV", sep = "_")
+
+  ##
+  input_file = input_file
+  hmdir = hmdir
+  job_id = job_id
+  refflat_file = refflat_file
+  refmrna_file = refmrna_file
+  max_peptide_length = max(peptide_length)
+  chr_column = flg[1]
+  mutation_start_column = flg[2]
+  mutation_end_column = flg[3]
+  mutation_ref_column = flg[4]
+  mutation_alt_column = flg[5]
+  nm_id_column = flg[6]
+  depth_normal_column = flg[7]
+  depth_tumor_column = flg[8]
+  ambiguous_between_exon = ambiguous_between_exon
+  ambiguous_codon = ambiguous_codon
+  export_dir = export_dir
+  IgnoreShortPeptides = IgnoreShortPeptides
+  SNPs = NA
+  ##
+
   GenerateMutatedSeq(input_file = input_file,
                      hmdir = hmdir,
                      job_id = job_id,
@@ -246,7 +272,8 @@ MainSNVClass1<-function(input_file,
                      ambiguous_between_exon = ambiguous_between_exon,
                      ambiguous_codon = ambiguous_codon,
                      export_dir = export_dir,
-                     IgnoreShortPeptides = IgnoreShortPeptides)
+                     IgnoreShortPeptides = IgnoreShortPeptides,
+                     SNPs = NA)
 
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
@@ -273,7 +300,6 @@ MainSNVClass1<-function(input_file,
     print(paste("Did not find", netMHCpan_dir))
     return(NULL)
   }
-  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
   #Execute NetMHCpan
   ExeNetMHCpanClass1(output_peptide_prefix,
