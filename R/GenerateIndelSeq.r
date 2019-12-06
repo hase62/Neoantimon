@@ -15,7 +15,10 @@ GenerateIndelSeq<-function(input_file,
                            ambiguous_between_exon,
                            ambiguous_codon,
                            export_dir,
-                           IgnoreShortPeptides){
+                           IgnoreShortPeptides,
+                           SNPs = NA,
+                           multiple_variants = FALSE,
+                           apply_annotation = FALSE){
 
   #READ Data
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]

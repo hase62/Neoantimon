@@ -243,3 +243,235 @@ getHLAtypes<-function(hla_file, file_name_in_hla_table){
   }
   return(hla[hit, -1])
 }
+
+check_dna_validity <- function(dna, nm_id, exon_end, exon_start, ambiguous_between_exon, Last, Pass){
+  if(is.na(dna)){
+    print(paste(nm_id, "was not found in refMrn."))
+    return(TRUE)
+  }
+  if(nchar(dna) != sum(exon_end - exon_start)){
+    dif<-sum(exon_end - exon_start) - nchar(dna)
+    if(abs(dif) <= ambiguous_between_exon) {
+      if(Last && !Pass){
+        print(paste("cDNA Length does not Match to Exon-Start/End Length, Skip", nm_id))
+      } else {
+        print(paste("Permit Ambiguous Exonic Region:", nm_id))
+      }
+      return(TRUE)
+    }
+  }
+  return(FALSE)
+}
+
+get_relative_mutation_position <- function(strand, exon_end, m_start, exon_start){
+  if(strand=="+"){
+    point<-(exon_end > m_start)
+    plus<-0
+    if(length(which(point))>0){
+      if(m_start - exon_start[which(point)[1]] > 0) {
+        plus<-m_start - exon_start[which(point)[1]]
+      }
+    }
+    m_point<-sum((exon_end - exon_start)[!point]) + plus
+  }else{
+    point<-(exon_start > m_start)
+    plus<-0
+    if(length(which(!point))>0){
+      if((exon_end[rev(which(!point))[1]] - m_start) + 1 > 0){
+        plus<-(exon_end[rev(which(!point))[1]] - m_start) + 1
+      }
+    }
+    m_point<-sum((exon_end - exon_start)[point]) + plus
+  }
+  return(m_point)
+}
+
+get_relative_translation_start_position <- function(strand, exon_end, trans_start, exon_start, trans_end){
+  if(strand=="+"){
+    point<-(exon_end > trans_start)
+    ts_point<-sum((exon_end - exon_start)[!point]) +
+      (trans_start - exon_start[which(point)[1]]) + 1
+  }else{
+    point<-(exon_start > trans_end)
+    ts_point<-sum((exon_end - exon_start)[point]) +
+      (exon_end[rev(which(!point))[1]] - trans_end) + 1
+  }
+  return(ts_point)
+}
+
+check_start_codon <- function(dna, ts_point, ambiguous_codon, nm_id){
+  d<-0
+  if(substr(dna, ts_point, ts_point + 2) != "atg"){
+    flag <- FALSE
+    for(d in  (-1 * ambiguous_codon):(ambiguous_codon)){
+      if(substr(dna, ts_point + d, ts_point + 2 + d)=="atg"){
+        flag<-TRUE
+        break
+      }
+    }
+    if(flag){
+      if(d < 0){
+        dna <- sub(" ", "", paste(paste(rep("x", -d), collapse = ""), dna, collapse = ""))
+      }else{
+        dna <- substr(dna, d + 1, nchar(dna))
+      }
+      print("Permit Ambiguous Codon Start")
+    }else{
+      print(paste("Start Position is not ATG, Skip", nm_id))
+      return(-999)
+    }
+  }
+  return(d)
+}
+
+get_relative_translation_end_position <- function(strand, exon_end, trans_start, exon_start, trans_end){
+  if(strand == "+"){
+    point<-(exon_end >= trans_end)
+    te_point<-sum((exon_end - exon_start)[!point]) +
+      (trans_end - exon_start[which(point)[1]])
+  }else{
+    point<-(exon_start > trans_start)
+    te_point<-sum((exon_end - exon_start)[point]) +
+      (exon_end[rev(which(!point))[1]] - trans_start)
+  }
+  return(te_point)
+}
+
+check_stop_codon <- function(dna, te_point, ts_point, ambiguous_codon, amino, nm_id){
+  e<-0
+  if(amino[match(substr(dna, te_point-2, te_point), codon)]!="X"){
+    dna_trans<-substr(dna, ts_point, te_point)
+    flag <- FALSE
+    dif <- nchar(dna_trans)%%3
+    for(e in (seq(from=-1 * ambiguous_codon, to=ambiguous_codon, 3) - dif)){
+      if(nchar(dna) < te_point) break
+      if(amino[match(substr(dna, te_point - 2 + e, te_point + e), codon)]=="X"){
+        te_point <- te_point + e
+        flag<-TRUE
+        break
+      }
+    }
+    if(!flag){
+      print(paste("End Position Amino Acid is not X, Skip", nm_id))
+      return(-999)
+    } else {
+      print("Permit Ambiguous Codon Start")
+    }
+  }
+  return(e)
+}
+
+make_normal_peptide <- function(dna_trans, amino, codon, k, e){
+  peptide_normal <- NULL
+  while(nchar(dna_trans) >= 3){
+    peptide_normal <- c(peptide_normal, amino[match(substr(dna_trans, 1, 3), codon)])
+    dna_trans <- substr(dna_trans, 4, nchar(dna_trans))
+  }
+  if(k==e & match("X", peptide_normal) < length(peptide_normal)){
+    next
+  }
+  return(peptide_normal)
+}
+
+make_mutated_dna <- function(strand, dna_trans, m_point_2, m_ref, m_alt, trans_to, trans_from){
+  if(strand=="+"){
+    if(substr(dna_trans, m_point_2, m_point_2) == tolower(m_ref))
+      substr(dna_trans, m_point_2, m_point_2) <- tolower(m_alt)
+  } else {
+    if(substr(dna_trans, m_point_2, m_point_2) == trans_to[match(tolower(m_ref), trans_from)])
+      substr(dna_trans, m_point_2, m_point_2) <- trans_to[match(tolower(m_alt), trans_from)]
+  }
+  return(dna_trans)
+}
+
+make_mutated_peptide <- function(dna_trans_mut, amino, codon){
+  peptide <- NULL
+  while(nchar(dna_trans_mut) >= 3){
+    a <- amino[match(substr(dna_trans_mut, 1, 3), codon)]
+    peptide <- c(peptide, a)
+    if(a=="X") break
+    dna_trans_mut <- substr(dna_trans_mut, 4, nchar(dna_trans_mut))
+  }
+  return(peptide)
+}
+
+generate_fraction <- function(m_point_2, max_peptide_length, peptide){
+  peptide_start <- ceiling(m_point_2 / 3.0) - max_peptide_length
+  if(peptide_start < 1) peptide_start <- 1
+  peptide_end <- ceiling(m_point_2 / 3.0) + max_peptide_length
+  if(peptide_end > length(peptide)) peptide_end <- length(peptide)
+  return(peptide_start:peptide_end)
+}
+
+integrate_same_peptide <- function(refFasta, fasta, fasta_wt){
+  i <- 1
+  while(i <= nrow(refFasta)){
+    #If mutation position, mutated peptide, normal peptide are all the same, Integrate These Peptides
+    #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process.
+    hit<-which((refFasta[i, 11]==refFasta[,11]) &
+                 (refFasta[i, 14]==refFasta[,14]) &
+                 (refFasta[i, 15]==refFasta[,15]))
+    if(length(hit)==1){
+      i<-i+1
+      next
+    }
+    #Collapse NM_ID, Info, Exon-start, Exon-end
+    temp1<-paste(refFasta[hit,3], collapse=";")
+    temp2<-paste(refFasta[hit,4], collapse=";")
+    temp3<-paste(refFasta[hit,9], collapse=";")
+    temp4<-paste(refFasta[hit,10], collapse=";")
+    refFasta[i,3]<-temp1
+    refFasta[i,4]<-temp2
+    refFasta[i,9]<-temp3
+    refFasta[i,10]<-temp4
+    refFasta<-refFasta[-hit[-1],]
+    if(is.null(nrow(refFasta))){
+      refFasta<-t(refFasta)
+    }
+    fasta<-fasta[-(c(hit[-1] * 2 - 1, hit[-1] * 2))]
+    fasta_wt<-fasta_wt[-(c(hit[-1] * 2 - 1, hit[-1] * 2))]
+    i<-i+1
+  }
+  return(list(refFasta, fasta, fasta_wt))
+}
+
+check_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr){
+  multi_i <- integer(0)
+  if(multiple_variants & nrow(data) > 1){
+    multi_i <- (1:nrow(data))[-i][sapply((1:nrow(data))[-i],
+                                         function(x) length(which(exon_start < data[x, mutation_start_column] &
+                                                                    data[x, mutation_start_column] <= exon_end  &
+                                                                    data[x, chr_column] == chr)) == 1)]
+  }
+  return(multi_i)
+}
+
+apply_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
+  multi_i <- check_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr)
+  for(multi_i_element in multi_i){
+    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)
+    dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2_mv, data[multi_i_element, mutation_ref_column], data[multi_i_element, mutation_alt_column], trans_to, trans_from)
+  }
+  return(dna_trans_mut)
+}
+
+check_multiple_snps <- function(SNPs_vcf, exon_start, mutation_start_column, exon_end, chr){
+  multi_i <- integer(0)
+  if(nrow(SNPs_vcf) > 1){
+    multi_i <- (1:nrow(SNPs_vcf))[sapply((1:nrow(SNPs_vcf)),
+                                         function(x) length(which(exon_start < SNPs_vcf[x, 2] &
+                                                                  SNPs_vcf[x, 2] <= exon_end  &
+                                                                  SNPs_vcf[x, 1] == chr)) == 1)]
+  }
+  return(multi_i)
+}
+
+apply_multiple_snps <- function(SNPs_vcf, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans, trans_to, trans_from){
+  multi_i <- check_multiple_snps(SNPs_vcf, exon_start, mutation_start_column, exon_end, chr)
+  for(multi_i_element in multi_i){
+    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, SNPs_vcf[multi_i_element, 2], exon_start)
+    dna_trans <- make_mutated_dna(strand, dna_trans, m_point_2_mv, tolower(SNPs_vcf[multi_i_element, 4]), tolower(SNPs_vcf[multi_i_element, 5]), trans_to, trans_from)
+  }
+  return(dna_trans)
+}
+

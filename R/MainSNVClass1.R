@@ -87,13 +87,13 @@
 #'@param MHCflurry Also output results using MHCflurry (Default=FALSE).
 #'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
-#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
+#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'
 #'@param bcftools_dir The file directory to netMHCpan (Default="bcftools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
 #'samtools 0_x_x includes bcftools in the directory.
 #'
-#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
@@ -104,6 +104,8 @@
 #'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
 #'
 #'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'
+#'
 #'
 #'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
@@ -157,6 +159,12 @@
 #'
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
+#'@return SNPs: Apply indivisual SNPs on peptides by indicate a vcf file.
+#'
+#'@return multiple_variants: Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.
+#'
+#'@return apply_annotation: Anontate by Ensembl Variant Effect Predictor (VEP).
+#'
 #'@export
 MainSNVClass1<-function(input_file,
                         hla_file = "here_is_a_table",
@@ -172,7 +180,7 @@ MainSNVClass1<-function(input_file,
                         cnv_file=NA,
                         purity = 1,
                         netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
-                        MHCflurry = FALSE,
+                        MHCflurry = NA,
                         refdna_file = NA,
                         samtools_dir = "samtools",
                         bcftools_dir = NA,
@@ -188,7 +196,9 @@ MainSNVClass1<-function(input_file,
                         ambiguous_codon = 0,
                         peptide_length = c(8, 9, 10, 11, 12, 13),
                         IgnoreShortPeptides = TRUE,
-                        SNPs = NA){
+                        SNPs = NA,
+                        multiple_variants = FALSE,
+                        apply_annotation = FALSE){
 
   #Install data.table
   if(!library(data.table, logical.return = TRUE)) {
@@ -230,31 +240,9 @@ MainSNVClass1<-function(input_file,
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
-  #Generate FASTA and mutation Profile
   job_id <- paste(job_id, "SNV", sep = "_")
 
-  ##
-  input_file = input_file
-  hmdir = hmdir
-  job_id = job_id
-  refflat_file = refflat_file
-  refmrna_file = refmrna_file
-  max_peptide_length = max(peptide_length)
-  chr_column = flg[1]
-  mutation_start_column = flg[2]
-  mutation_end_column = flg[3]
-  mutation_ref_column = flg[4]
-  mutation_alt_column = flg[5]
-  nm_id_column = flg[6]
-  depth_normal_column = flg[7]
-  depth_tumor_column = flg[8]
-  ambiguous_between_exon = ambiguous_between_exon
-  ambiguous_codon = ambiguous_codon
-  export_dir = export_dir
-  IgnoreShortPeptides = IgnoreShortPeptides
-  SNPs = NA
-  ##
-
+  #Generate FASTA and mutation Profile
   GenerateMutatedSeq(input_file = input_file,
                      hmdir = hmdir,
                      job_id = job_id,
@@ -273,7 +261,8 @@ MainSNVClass1<-function(input_file,
                      ambiguous_codon = ambiguous_codon,
                      export_dir = export_dir,
                      IgnoreShortPeptides = IgnoreShortPeptides,
-                     SNPs = NA)
+                     SNPs = SNPs,
+                     multiple_variants = multiple_variants)
 
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
@@ -310,6 +299,13 @@ MainSNVClass1<-function(input_file,
                      export_dir,
                      input_file,
                      job_id)
+
+  #Merge Results
+  result <- MergeSNVClass1(input_dir = export_dir,
+                           file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
+                           annotation_file = output_peptide_txt_file)
+
+  #Execute mhcflurry
   if(!is.na(MHCflurry)){
     ExemhcflurryClass1(output_peptide_prefix,
                        c("peptide", "wtpeptide"),
@@ -319,12 +315,10 @@ MainSNVClass1<-function(input_file,
                        export_dir,
                        input_file,
                        job_id)
+    result_mhcflu <- InsertMhcflurryResults(result, output_peptide_prefix, hla_types)
+    print("Successfully Finished.")
+    return(list(result, result_mhcflu))
   }
-
-  #Merge Results
-  result <- MergeSNVClass1(input_dir = export_dir,
-                           file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
-                           annotation_file = output_peptide_txt_file)
 
   print("Successfully Finished.")
   return(result)

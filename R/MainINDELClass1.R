@@ -6,7 +6,7 @@
 #'
 #'See by data(sample_vcf); sample_vcf;
 #'
-#'@param hla_file (Required) A tab separated file indicating HLA types.
+#'@param hla_file A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
@@ -29,7 +29,7 @@
 #'
 #'@param hmdir Home directory for the analysis (Default = getwd()).
 #'
-#'@param job_id Job-Id to be attached in output files (Default = "NO_job_id").
+#'@param job_id Job-id to be attached in output files (Default = "NO_job_id").
 #'
 #'@param export_dir The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")
 #'
@@ -84,6 +84,8 @@
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
+#'@param MHCflurry Also output results using MHCflurry (Default=FALSE).
+#'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'
@@ -91,7 +93,7 @@
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'samtools 0_x_x includes bcftools in the directory.
 #'
-#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
@@ -101,13 +103,19 @@
 #'
 #'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
-#'
 #'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'
+#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
 #'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
 #'@return Mut_Rank: Rank value for evaluated mutanat peptide.
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@return Chr: Chromosome Number of the mutation.
 #'
@@ -151,6 +159,12 @@
 #'
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
+#'@return SNPs: Apply indivisual SNPs on peptides by indicate a vcf file.
+#'
+#'@return multiple_variants: Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.
+#'
+#'@return annotation: Anontate by Ensembl Variant Effect Predictor (VEP).
+#'
 #'@export
 MainINDELClass1<-function(input_file,
                           hla_file = "here_is_a_table",
@@ -166,8 +180,9 @@ MainINDELClass1<-function(input_file,
                           cnv_file=NA,
                           purity = 1,
                           netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep="/"),
+                          MHCflurry = NA,
                           refdna_file = NA,
-                          samtools_dir = NA,
+                          samtools_dir = "samtools",
                           bcftools_dir = NA,
                           chr_column = NA,
                           mutation_start_column = NA,
@@ -180,11 +195,31 @@ MainINDELClass1<-function(input_file,
                           ambiguous_between_exon = 0,
                           ambiguous_codon = 0,
                           peptide_length = c(8, 9, 10, 11, 12, 13),
-                          IgnoreShortPeptides = TRUE){
+                          IgnoreShortPeptides = TRUE,
+                          SNPs = NA,
+                          multiple_variants = FALSE,
+                          apply_annotation = FALSE){
+
+  #Install data.table
+  if(!library(data.table, logical.return = TRUE)) {
+    install.packages("data.table", quiet = TRUE)
+  }
+  library(data.table)
+
+  #Get HLA-Type
+  if(file.exists(hla_file) & !is.na(hla_types[1])){
+    print(paste("Using:", hla_file))
+  }
+  if(file.exists(hla_file)){
+    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  }
+  if(is.na(hla_types[1])) {
+    print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
+    return(NULL)
+  }
 
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,
-                        hla_file = hla_file,
                         hla_types = hla_types,
                         refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
@@ -205,8 +240,9 @@ MainINDELClass1<-function(input_file,
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
+  job_id <- paste(job_id, "INDEL", sep = "_")
+
   #Generate FASTA and mutation Profile
-  job_id = paste(job_id, "INDEL", sep = "_")
   GenerateIndelSeq(input_file = input_file,
                    hmdir = hmdir,
                    job_id = job_id,
@@ -224,7 +260,10 @@ MainINDELClass1<-function(input_file,
                    ambiguous_between_exon = ambiguous_between_exon,
                    ambiguous_codon = ambiguous_codon,
                    export_dir = export_dir,
-                   IgnoreShortPeptides = IgnoreShortPeptides)
+                   IgnoreShortPeptides = IgnoreShortPeptides,
+                   SNPs = NA,
+                   multiple_variants = FALSE,
+                   apply_annotation = FALSE)
 
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
@@ -251,13 +290,6 @@ MainINDELClass1<-function(input_file,
     print(paste("Did not find", netMHCpan_dir))
     return(NULL)
   }
-  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-
-  #Get HLA-Type
-  if(file.exists(hla_file)){
-    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
-  }
-  if(is.na(hla_types[1])) return(NULL)
 
   #Execute NetMHCpan
   ExeNetMHCpanClass1(output_peptide_prefix,
@@ -273,6 +305,21 @@ MainINDELClass1<-function(input_file,
   result <- MergeINDELSVClass1(input_dir = export_dir,
                                file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
                                annotation_file = output_peptide_txt_file)
+
+  #Execute mhcflurry
+  if(!is.na(MHCflurry)){
+    ExemhcflurryClass1(output_peptide_prefix,
+                       "peptide",
+                       hla_types,
+                       netMHCpan_dir,
+                       peptide_length,
+                       export_dir,
+                       input_file,
+                       job_id)
+    result_mhcflu <- InsertMhcflurryResults(result, output_peptide_prefix, hla_types)
+    print("Successfully Finished.")
+    return(list(result, result_mhcflu))
+  }
 
   print("Successfully Finished.")
   return(result)
