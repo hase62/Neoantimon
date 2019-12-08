@@ -261,9 +261,9 @@ MainINDELClass1<-function(input_file,
                    ambiguous_codon = ambiguous_codon,
                    export_dir = export_dir,
                    IgnoreShortPeptides = IgnoreShortPeptides,
-                   SNPs = NA,
-                   multiple_variants = FALSE,
-                   apply_annotation = FALSE)
+                   SNPs = SNPs,
+                   multiple_variants = multiple_variants,
+                   apply_annotation = apply_annotation)
 
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")

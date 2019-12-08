@@ -403,14 +403,33 @@ generate_fraction <- function(m_point_2, max_peptide_length, peptide){
   return(peptide_start:peptide_end)
 }
 
+generate_fraction_indel <- function (peptide, peptide_normal, max_peptide_length){
+  min_len <- min(length(peptide), length(peptide_normal))
+  peptide_start <- which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - max_peptide_length + 1
+  if(is.na(peptide_start)) {
+    print("Peptide Start is NA")
+    break
+  }
+  if(peptide_start < 1) peptide_start<-1
+  peptide_end<-which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1]
+  if(is.na(peptide_end)) peptide_end <- min_len
+  peptide_end <- min_len - peptide_end + max_peptide_length + 10
+  if(peptide_end > length(peptide)) peptide_end = length(peptide)
+  peptide <- peptide[peptide_start:peptide_end]
+  peptide_end <- peptide_end + 10
+  if(peptide_end > length(peptide_normal)) peptide_end = length(peptide_normal)
+  peptide_normal <- peptide_normal[peptide_start:min(peptide_end, length(peptide_normal))]
+  return(list(peptide, peptide_normal))
+}
+
 integrate_same_peptide <- function(refFasta, fasta, fasta_wt){
   i <- 1
   while(i <= nrow(refFasta)){
     #If mutation position, mutated peptide, normal peptide are all the same, Integrate These Peptides
     #Note That, If the mutation position and chromosome number are the same, Merge script integrate them in the later process.
     hit<-which((refFasta[i, 11]==refFasta[,11]) &
-                 (refFasta[i, 14]==refFasta[,14]) &
-                 (refFasta[i, 15]==refFasta[,15]))
+               (refFasta[i, 14]==refFasta[,14]) &
+               (refFasta[i, 15]==refFasta[,15]))
     if(length(hit)==1){
       i<-i+1
       next
@@ -473,5 +492,103 @@ apply_multiple_snps <- function(SNPs_vcf, exon_start, mutation_start_column, exo
     dna_trans <- make_mutated_dna(strand, dna_trans, m_point_2_mv, tolower(SNPs_vcf[multi_i_element, 4]), tolower(SNPs_vcf[multi_i_element, 5]), trans_to, trans_from)
   }
   return(dna_trans)
+}
+
+make_indel_dna <- function(strand, dna_trans, m_point_2, m_alt, trans_to, trans_from, m_ref){
+  if(strand == "+"){
+    if(m_ref == "-"){
+      #Insertion
+      dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
+                       paste(sapply(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt)),
+                                    function(x) trans_to[match(tolower(x), trans_from)]), collapse=""),
+                       substr(dna_trans, m_point_2, nchar(dna_trans)), sep="")
+    } else {
+      ref_ <- substr(dna_trans, m_point_2, m_point_2 + nchar(m_ref) - 1)
+      alt_ <- paste(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")
+      match_ <- ref_ == alt_
+      match_length <- length(which(strsplit(ref_, "")[[1]] == strsplit(alt_, "")[[1]]))
+      match_pval <- 1 - pbinom(match_length, nchar(ref_), 0.25)
+      if(!match_ & match_pval < 0.03){
+        print(paste("Ref is", ref_, ", and vcf is", alt_))
+        print(paste("The Ref and vcf have miss-match ... but p-val(", match_pval, ") is less tnan 0.03 ... Continue Convertion. ", sep = ""))
+        match_ <- TRUE
+      }
+      if(match_){
+        dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
+                         gsub("NA", "", paste(sapply(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt)),
+                                                     function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
+                         substr(dna_trans, m_point_2 + nchar(m_ref), nchar(dna_trans)), sep="")
+      } else {
+        print("The Ref and vcf are not matched")
+        next
+      }
+    }
+  } else {
+    if(m_ref == "-"){
+      #Insertion
+      dna_trans<-paste(substr(dna_trans, 1, m_point_2),
+                       paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))),
+                                    function(x) trans_to[match(tolower(x),trans_from)]), collapse=""),
+                       substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
+    } else {
+      ref_ <- paste(substring(substr(dna_trans, m_point_2 - nchar(m_ref) + 1, m_point_2), 1:nchar(m_ref), 1:nchar(m_ref)), collapse="")
+      alt_ <- paste(sapply(rev(substring(tolower(m_ref), 1:nchar(m_ref), 1:nchar(m_ref))), function(x) trans_to[match(tolower(x),trans_from)]), collapse="")
+      match_ <- ref_ == alt_
+      match_length <- length(which(strsplit(ref_, "")[[1]] == strsplit(alt_, "")[[1]]))
+      match_pval <- 1 - pbinom(match_length, nchar(ref_), 0.25)
+      if(!match_ & match_pval < 0.03){
+        print(paste("Ref is", ref_, ", and vcf is", alt_))
+        print(paste("The Ref and vcf have miss-match ... but p-val(", match_pval, ") is less tnan 0.03 ... Continue Convertion. ", sep = ""))
+        match_ <- TRUE
+      }
+      if(match_){
+        dna_trans<-paste(substr(dna_trans, 1, m_point_2 - nchar(m_ref)),
+                         gsub("NA","",paste(sapply(rev(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt))),
+                                                   function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
+                         substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
+      } else {
+        print("The Ref and vcf are not matched")
+        next
+      }
+    }
+  }
+  return(dna_trans)
+}
+
+check_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, exon_end, chr){
+  multi_i <- integer(0)
+  if(multiple_variants & nrow(data) > 1){
+    multi_i <- (1:nrow(data))[sapply((1:nrow(data)),
+                                     function(x) length(which(exon_start < data[x, mutation_start_column] &
+                                                              data[x, mutation_start_column] <= exon_end  &
+                                                              data[x, chr_column] == chr)) == 1)]
+  }
+  return(multi_i)
+}
+
+apply_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
+  multi_i <- check_multiple_snvs_to_indel(data, multiple_variants, exon_start, mutation_start_column, exon_end, chr)
+  for(multi_i_element in multi_i){
+    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)
+    dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2_mv, data[multi_i_element, mutation_ref_column], data[multi_i_element, mutation_alt_column], trans_to, trans_from)
+  }
+  return(dna_trans_mut)
+}
+
+check_valid_indel <- function(peptide, IgnoreShortPeptides, max_peptide_length){
+  X <- grep("X", peptide)
+  if(length(X) > 0 & IgnoreShortPeptides){
+    if(X < 8) {
+      print("Indel is Too Short")
+      return(TRUE)
+    }
+  }
+  if(max_peptide_length >= 15 & length(X) > 0 & IgnoreShortPeptides){
+    if(X < 15) {
+      print("Indel is Too Short")
+      return(TRUE)
+    }
+  }
+  return(FALSE)
 }
 

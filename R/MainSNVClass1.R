@@ -93,7 +93,7 @@
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
 #'samtools 0_x_x includes bcftools in the directory.
 #'
-#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
+#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min (peptide_length)
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
@@ -101,7 +101,7 @@
 #'
 #'@return Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
 #'
-#'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
+#'@return Gene: Gene symbol used to be evaluated in NetMHCpan.
 #'
 #'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
 #'
@@ -262,7 +262,8 @@ MainSNVClass1<-function(input_file,
                      export_dir = export_dir,
                      IgnoreShortPeptides = IgnoreShortPeptides,
                      SNPs = SNPs,
-                     multiple_variants = multiple_variants)
+                     multiple_variants = multiple_variants,
+                     apply_annotation = apply_annotation)
 
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")

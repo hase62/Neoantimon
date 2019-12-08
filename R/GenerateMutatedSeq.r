@@ -17,20 +17,20 @@ GenerateMutatedSeq<-function(input_file,
                              export_dir,
                              IgnoreShortPeptides,
                              SNPs = NA,
-                             multiple_variants = TRUE){
+                             multiple_variants = TRUE,
+                             apply_annotation = FALSE){
 
   #READ Data
   data <- fread(input_file, stringsAsFactors=FALSE, sep="\t", data.table = FALSE)
   data <- data[grep("\texonic\t", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
+
   data <- data[grep("\tnonsynonymous", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
-  #data <- gsub("\"", "", data)
   if(nrow(data) < 1 | is.null(data)) return(NULL)
 
   #READ refFlat
-  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
-  tmp <- t(sapply(list_nm, function(x) strsplit(x[1], "\t")[[1]]))
-  list_nm_gene <- tmp[, 1]
-  list_nm_cut <- tmp[, 2]
+  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\t", data.table = FALSE)
+  list_nm_gene <- list_nm[, 1]
+  list_nm_cut <- list_nm[, 2]
 
   #READ SNPs Data if available
   SNPs_vcf <- NULL
@@ -40,7 +40,7 @@ GenerateMutatedSeq<-function(input_file,
   }
 
   #Get RNA-Code Data
-  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, header = FALSE, sep='\t', data.table = FALSE)[, 1]
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
   list_fl_NMID <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
@@ -130,13 +130,13 @@ GenerateMutatedSeq<-function(input_file,
       s_variants<-match(nm_id, list_nm_cut)
       if(is.na(s_variants)) {
         print(paste("NM_ID NOT Macth, Skip:", nm_id))
-         next
+        next
       }
 
       #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
       for(v in s_variants){
         final_s_variants <- match(v, s_variants) / length(s_variants) == 1
-        nm_sep <- strsplit(list_nm[v], "\t")[[1]]
+        nm_sep <- sapply(list_nm[v, ], as.character)
 
         #Skip Such As "ch5_hap"
         if(nchar(nm_sep[3]) > 5) next
@@ -179,7 +179,7 @@ GenerateMutatedSeq<-function(input_file,
         ts_point <- get_relative_translation_start_position(strand, exon_end, trans_start, exon_start, trans_end)
 
         #Check Start Codon
-        d <- check_start_codon(dna, ts_point, ambiguous_codon)
+        d <- check_start_codon(dna, ts_point, ambiguous_codon, nm_id)
         if(d < -998) next
 
         #Get Relative Translation-End Position
@@ -198,18 +198,37 @@ GenerateMutatedSeq<-function(input_file,
           m_point_2 <- m_point - ts_point + 1 - k
 
           #Mutation Position is not between Translational Region
+          if(m_point_2 < 0) {
+            print("Mutation Position is not between Translational Region")
+            next
+          }
+
           #Translation Region is not Valid
-          if(m_point_2 < 0 | nchar(dna_trans) %% 3 != 0) next
+          if(nchar(dna_trans)%%3!=0) {
+            print("Translation Region is not Valid.")
+            next
+          }
 
           #Make Normal Peptide
           peptide_normal <- make_normal_peptide(dna_trans, amino, codon, k, e)
           target_amino_before <- peptide_normal[ceiling(m_point_2 / 3.0)]
 
-          #Make Mutated-DNA
-          dna_trans_mut <- make_mutated_dna(strand, dna_trans, m_point_2, m_ref, m_alt, trans_to, trans_from)
+          if(match("X", peptide_normal) < length(peptide_normal)){
+            print("Invalid peptide was generated.")
+            next
+          }
+
+
+
+
+
+
 
           #Apply Multiple SNVs
-          dna_trans_mut <- apply_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from)
+          dna_trans_mut <- apply_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans, trans_to, trans_from)
+
+          #Make Mutated-DNA
+          dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2, m_ref, m_alt, trans_to, trans_from)
 
           #Make Mutated-Peptide
           peptide <- make_mutated_peptide(dna_trans_mut, amino, codon)
@@ -292,6 +311,7 @@ GenerateMutatedSeq<-function(input_file,
     fasta <- integrated_results[[2]]
     fasta_wt <- integrated_results[[3]]
   }
+
   write.table(fasta,
               paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
