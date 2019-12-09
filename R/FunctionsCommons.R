@@ -592,3 +592,9 @@ check_valid_indel <- function(peptide, IgnoreShortPeptides, max_peptide_length){
   return(FALSE)
 }
 
+#library("ensemblVEP")
+#param <- VEPFlags()
+#f_path <- "data/sample.snps.vcf"
+#file <- system.file(f_path, "ex2.vcf", package="VariantAnnotation")
+#gr <- ensemblVEP(file)
+
