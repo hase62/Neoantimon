@@ -95,6 +95,12 @@
 #'
 #'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
 #'
+#'@param SNPs Apply indivisual SNPs on peptides by indicate a vcf file.
+#'
+#'@param multiple_variants Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.
+#'
+#'@param apply_annotation Anontate by Ensembl Variant Effect Predictor (VEP).
+#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
 #'@return HLA:  HLA type used to calculate neoantigen.
@@ -159,12 +165,6 @@
 #'
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
-#'@return SNPs: Apply indivisual SNPs on peptides by indicate a vcf file.
-#'
-#'@return multiple_variants: Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.
-#'
-#'@return annotation: Anontate by Ensembl Variant Effect Predictor (VEP).
-#'
 #'@export
 MainINDELClass1<-function(input_file,
                           hla_file = "here_is_a_table",
@@ -201,10 +201,10 @@ MainINDELClass1<-function(input_file,
                           apply_annotation = FALSE){
 
   #Install data.table
-  if(!library(data.table, logical.return = TRUE)) {
-    install.packages("data.table", quiet = TRUE)
-  }
-  library(data.table)
+  #if(!library(data.table, logical.return = TRUE)) {
+  #  install.packages("data.table", quiet = TRUE)
+  #}
+  #library(data.table)
 
   #Get HLA-Type
   if(file.exists(hla_file) & !is.na(hla_types[1])){

@@ -180,14 +180,14 @@ GenerateMutatedSeq<-function(input_file,
 
         #Check Start Codon
         d <- check_start_codon(dna, ts_point, ambiguous_codon, nm_id)
-        if(d < -998) next
+        if(d < -998 | is.null(d)) next
 
         #Get Relative Translation-End Position
         te_point <- get_relative_translation_end_position(strand, exon_end, trans_start, exon_start, trans_end)
 
         #Check Stop Codon
         e <- check_stop_codon(dna, te_point, ts_point, ambiguous_codon, amino, nm_id)
-        if(e < -998) next
+        if(e < -998 | is.null(e)) next
 
         #Check Peptide Length
         stop_loop<-FALSE
@@ -211,6 +211,7 @@ GenerateMutatedSeq<-function(input_file,
 
           #Make Normal Peptide
           peptide_normal <- make_normal_peptide(dna_trans, amino, codon, k, e)
+          if(is.null(peptide_normal)) next
           target_amino_before <- peptide_normal[ceiling(m_point_2 / 3.0)]
 
           if(match("X", peptide_normal) < length(peptide_normal)){
@@ -229,9 +230,11 @@ GenerateMutatedSeq<-function(input_file,
 
           #Make Mutated-DNA
           dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2, m_ref, m_alt, trans_to, trans_from)
+          if(is.null(dna_trans_mut)) next
 
           #Make Mutated-Peptide
           peptide <- make_mutated_peptide(dna_trans_mut, amino, codon)
+          if(is.null(peptide)) next
           target_amino_after <- peptide[ceiling(m_point_2 / 3.0)]
 
           #VCF Description of Normal Amino Acid is not What Generated
@@ -246,6 +249,7 @@ GenerateMutatedSeq<-function(input_file,
 
           #Generate Mutated and Normal Peptide
           frac <- generate_fraction(m_point_2, max_peptide_length, peptide)
+          if(is.null(frac)) next
           peptide <- peptide[frac]
           peptide_normal <- peptide_normal[frac]
 

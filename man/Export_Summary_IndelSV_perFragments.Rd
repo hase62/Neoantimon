@@ -4,10 +4,18 @@
 \alias{Export_Summary_IndelSV_perFragments}
 \title{Export Summary Count from Indel/SV Results}
 \usage{
-Export_Summary_IndelSV_perFragments(Input, Mut_IC50_th = NA,
-  Mut_Rank_th = NA, Total_RNA_th = NA, Tumor_RNA_th = NA,
-  MutRatio_th = NA, Weight = NA, WriteLongIndel = NA,
-  IgnoreLongIndel = 0, DupCount = FALSE)
+Export_Summary_IndelSV_perFragments(
+  Input,
+  Mut_IC50_th = NA,
+  Mut_Rank_th = NA,
+  Total_RNA_th = NA,
+  Tumor_RNA_th = NA,
+  MutRatio_th = NA,
+  Weight = NA,
+  WriteLongIndel = NA,
+  IgnoreLongIndel = 0,
+  DupCount = FALSE
+)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}

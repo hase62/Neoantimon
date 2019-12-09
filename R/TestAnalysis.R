@@ -5,9 +5,6 @@
 #'@export
 TestAnalysis<-function(){
   print("Please Install NetMHCpan and NetMHCIIpan if you did not do it.")
-  InstallSampleFiles(export_dir = "lib")
-  InstallSamtools(url = "https://github.com/hase62/Neoantimon/raw/master/lib/samtools-0.1.19.tar.bz2",
-                  export_dir = "lib")
   InstallRefFlat(url = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz",
                  export_dir = "lib")
   InstallRefMrnaFile(url = "http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz",
@@ -21,7 +18,10 @@ TestAnalysis<-function(){
                                    rnaexp_file = "lib/data/sample_rna_exp.txt",
                                    netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                    depth_tumor_column = 12,
-                                   depth_normal_column = 14
+                                   depth_normal_column = 14,
+                                   SNPs <- "data/sample.snps.vcf",
+                                   multiple_variants = TRUE,
+                                   apply_annotation = FALSE
   )
 
   Result_HLA2_SNV <- MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
@@ -32,7 +32,10 @@ TestAnalysis<-function(){
                                    rnaexp_file = "lib/data/sample_rna_exp.txt",
                                    netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                                    depth_tumor_column = 12,
-                                   depth_normal_column = 14
+                                   depth_normal_column = 14,
+                                   SNPs <- "data/sample.snps.vcf",
+                                   multiple_variants = TRUE,
+                                   apply_annotation = FALSE
   )
 
   Result_HLA1_INDEL <- MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
@@ -43,7 +46,10 @@ TestAnalysis<-function(){
                                        rnaexp_file = "lib/data/sample_rna_exp.txt",
                                        netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                        depth_tumor_column = 12,
-                                       depth_normal_column = 14
+                                       depth_normal_column = 14,
+                                       SNPs <- "data/sample.snps.vcf",
+                                       multiple_variants = TRUE,
+                                       apply_annotation = FALSE
   )
 
   Result_HLA2_INDEL <- MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
@@ -54,7 +60,10 @@ TestAnalysis<-function(){
                                        rnaexp_file = "lib/data/sample_rna_exp.txt",
                                        netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                                        depth_tumor_column = 12,
-                                       depth_normal_column = 14
+                                       depth_normal_column = 14,
+                                       SNPs <- "data/sample.snps.vcf",
+                                       multiple_variants = TRUE,
+                                       apply_annotation = FALSE
   )
 
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",

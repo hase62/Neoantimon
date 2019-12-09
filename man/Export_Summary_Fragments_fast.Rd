@@ -4,9 +4,16 @@
 \alias{Export_Summary_Fragments_fast}
 \title{Export Summary Count from Indel/SV Results}
 \usage{
-Export_Summary_Fragments_fast(Input, Mut_IC50_th = NA,
-  Mut_Rank_th = NA, Total_RNA_th = NA, Tumor_RNA_th = NA,
-  MutRatio_th = NA, WriteLongIndel = NA, DupCount = FALSE)
+Export_Summary_Fragments_fast(
+  Input,
+  Mut_IC50_th = NA,
+  Mut_Rank_th = NA,
+  Total_RNA_th = NA,
+  Tumor_RNA_th = NA,
+  MutRatio_th = NA,
+  WriteLongIndel = NA,
+  DupCount = FALSE
+)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}

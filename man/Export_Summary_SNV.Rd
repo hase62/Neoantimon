@@ -4,9 +4,17 @@
 \alias{Export_Summary_SNV}
 \title{Export Summary Count from SNV Results}
 \usage{
-Export_Summary_SNV(Input, Mut_IC50_th = NA, Mut_Rank_th = NA,
-  Wt_IC50_th = NA, Wt_Rank_th = NA, Total_RNA_th = NA,
-  Tumor_RNA_th = NA, MutRatio_th = NA, DupCount = FALSE)
+Export_Summary_SNV(
+  Input,
+  Mut_IC50_th = NA,
+  Mut_Rank_th = NA,
+  Wt_IC50_th = NA,
+  Wt_Rank_th = NA,
+  Total_RNA_th = NA,
+  Tumor_RNA_th = NA,
+  MutRatio_th = NA,
+  DupCount = FALSE
+)
 }
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}

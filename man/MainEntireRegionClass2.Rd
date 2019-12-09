@@ -4,16 +4,23 @@
 \alias{MainEntireRegionClass2}
 \title{Calculate Neoantigen Candidates from A Given Sequence for MHC Class2}
 \usage{
-MainEntireRegionClass2(input_nm_id,
-  group_ids = seq(1:length(input_nm_id)), hla_file = "here_is_a_table",
-  hla_types = NA, file_name_in_hla_table = NA,
+MainEntireRegionClass2(
+  input_nm_id,
+  group_ids = seq(1:length(input_nm_id)),
+  hla_file = "here_is_a_table",
+  hla_types = NA,
+  file_name_in_hla_table = NA,
   refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
   refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
-  hmdir = getwd(), job_id = "ID", export_dir = paste("result",
-  job_id, "EntireRegion2", sep = "."), netMHCIIpan_dir = paste(hmdir,
-  "lib/netMHCIIpan-3.1/netMHCIIpan", sep = "/"), peptide_length = c(15),
-  reading_frame = 1, CalculateIC50 = FALSE,
-  IgnoreShortPeptides = TRUE)
+  hmdir = getwd(),
+  job_id = "ID",
+  export_dir = paste("result", job_id, "EntireRegion2", sep = "."),
+  netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep = "/"),
+  peptide_length = c(15),
+  reading_frame = 1,
+  CalculateIC50 = FALSE,
+  IgnoreShortPeptides = TRUE
+)
 }
 \arguments{
 \item{input_nm_id}{(Required) An input amino acid sequence indicated as NM_ID}

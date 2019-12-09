@@ -4,20 +4,40 @@
 \alias{MainSNVClass2}
 \title{Calculate Neoantigen Candidates on SNVs for MHC Class2}
 \usage{
-MainSNVClass2(input_file, hla_file = "here_is_a_table", hla_types = NA,
-  file_name_in_hla_table = input_file, refflat_file = paste(hmdir,
-  "lib/refFlat.txt", sep = "/"), refmrna_file = paste(hmdir,
-  "lib/refMrna.fa", sep = "/"), hmdir = getwd(), job_id = "ID",
+MainSNVClass2(
+  input_file,
+  hla_file = "here_is_a_table",
+  hla_types = NA,
+  file_name_in_hla_table = input_file,
+  refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
+  refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
+  hmdir = getwd(),
+  job_id = "ID",
   export_dir = paste("result", job_id, "SNV2", sep = "."),
-  rnaexp_file = NA, rnabam_file = NA, cnv_file = NA, purity = 1,
-  netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep =
-  "/"), refdna_file = NA, samtools_dir = NA, bcftools_dir = NA,
-  chr_column = NA, mutation_start_column = NA,
-  mutation_end_column = NA, mutation_ref_column = NA,
-  mutation_alt_column = NA, nm_id_column = NA,
-  depth_normal_column = NA, depth_tumor_column = NA,
-  ambiguous_between_exon = 0, ambiguous_codon = 0,
-  peptide_length = c(15), IgnoreShortPeptides = TRUE)
+  rnaexp_file = NA,
+  rnabam_file = NA,
+  cnv_file = NA,
+  purity = 1,
+  netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.2/netMHCIIpan", sep = "/"),
+  refdna_file = NA,
+  samtools_dir = "samtools",
+  bcftools_dir = NA,
+  chr_column = NA,
+  mutation_start_column = NA,
+  mutation_end_column = NA,
+  mutation_ref_column = NA,
+  mutation_alt_column = NA,
+  nm_id_column = NA,
+  depth_normal_column = NA,
+  depth_tumor_column = NA,
+  ambiguous_between_exon = 0,
+  ambiguous_codon = 0,
+  peptide_length = c(15),
+  IgnoreShortPeptides = TRUE,
+  SNPs = NA,
+  multiple_variants = FALSE,
+  apply_annotation = FALSE
+)
 }
 \arguments{
 \item{input_file}{(Required) An input vcf file annotated by,
@@ -26,7 +46,7 @@ e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwa
 
 See by data(sample_vcf); sample_vcf;}
 
-\item{hla_file}{(Required) A tab separated file indicating HLA types.
+\item{hla_file}{A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
 
 See by data(sample_hla_table_c2); sample_hla_table_c2;}
@@ -66,7 +86,7 @@ See data(sample_copynum); sample_copynum;}
 
 \item{purity}{Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).}
 
-\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").}
+\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.2/netMHCpan").}
 
 \item{refdna_file}{refdna_file information to be used to calculate RNA VAF (Default=NA).
 
@@ -101,9 +121,15 @@ samtools 0_x_x includes bcftools in the directory.}
 
 \item{ambiguous_codon}{The maximum number to permit the differences between inputfile- and refMrna-oriented translation start/end position (Default=0).}
 
-\item{peptide_length}{Peptide Length to be generated (Default={15} in HLA Class2).}
+\item{peptide_length}{Peptide Length to be generated (Default = {15} in HLA Class2).}
 
-\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
+\item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min (peptide_length)}
+
+\item{SNPs}{Apply indivisual SNPs on peptides by indicate a vcf file.}
+
+\item{multiple_variants}{Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.}
+
+\item{apply_annotation}{Anontate by Ensembl Variant Effect Predictor (VEP).}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
@@ -112,7 +138,7 @@ HLA:  HLA type used to calculate neoantigen.
 
 Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
 
-Gene:  Gene symbol used to be evaluated in NetMHCpan.
+Gene: Gene symbol used to be evaluated in NetMHCpan.
 
 Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
 

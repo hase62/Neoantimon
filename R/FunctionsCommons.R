@@ -306,7 +306,7 @@ check_start_codon <- function(dna, ts_point, ambiguous_codon, nm_id){
     for(d in  (-1 * ambiguous_codon):(ambiguous_codon)){
       if(substr(dna, ts_point + d, ts_point + 2 + d)=="atg"){
         flag<-TRUE
-        break
+        return(NULL)
       }
     }
     if(flag){
@@ -368,7 +368,7 @@ make_normal_peptide <- function(dna_trans, amino, codon, k, e){
     dna_trans <- substr(dna_trans, 4, nchar(dna_trans))
   }
   if(k==e & match("X", peptide_normal) < length(peptide_normal)){
-    next
+    return(NULL)
   }
   return(peptide_normal)
 }
@@ -408,7 +408,7 @@ generate_fraction_indel <- function (peptide, peptide_normal, max_peptide_length
   peptide_start <- which(peptide[1:min_len] != peptide_normal[1:min_len])[1] - max_peptide_length + 1
   if(is.na(peptide_start)) {
     print("Peptide Start is NA")
-    break
+    return(NULL)
   }
   if(peptide_start < 1) peptide_start<-1
   peptide_end<-which(rev(peptide)[1:min_len] != rev(peptide_normal)[1:min_len])[1]
@@ -520,7 +520,7 @@ make_indel_dna <- function(strand, dna_trans, m_point_2, m_alt, trans_to, trans_
                          substr(dna_trans, m_point_2 + nchar(m_ref), nchar(dna_trans)), sep="")
       } else {
         print("The Ref and vcf are not matched")
-        next
+        return(NULL)
       }
     }
   } else {
@@ -548,7 +548,7 @@ make_indel_dna <- function(strand, dna_trans, m_point_2, m_alt, trans_to, trans_
                          substr(dna_trans, m_point_2 + 1, nchar(dna_trans)), sep="")
       } else {
         print("The Ref and vcf are not matched")
-        next
+        return(NULL)
       }
     }
   }

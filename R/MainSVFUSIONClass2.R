@@ -184,9 +184,26 @@ MainSVFUSIONClass2<-function(input_file,
                              mate_id_column = NA,
                              IgnoreShortPeptides = TRUE){
 
+  #Install data.table
+  #if(!library(data.table, logical.return = TRUE)) {
+  #  install.packages("data.table", quiet = TRUE)
+  #}
+  #library(data.table)
+
+  #Get HLA-Type
+  if(file.exists(hla_file) & !is.na(hla_types[1])){
+    print(paste("Using:", hla_file))
+  }
+  if(file.exists(hla_file)){
+    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  }
+  if(is.na(hla_types[1])) {
+    print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
+    return(NULL)
+  }
+
   #Check Required Files
   if(CheckRequiredFiles(input_file = input_file,
-                        hla_file = hla_file,
                         hla_types = hla_types,
                         refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
@@ -201,6 +218,12 @@ MainSVFUSIONClass2<-function(input_file,
                               depth_normal_column = depth_normal_column,
                               depth_tumor_column = depth_tumor_column)
 
+  #Check and Set Required Columns
+  if(length(flg)<=1) return(NULL)
+
+  #Make Directory
+  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
+
   #Check nm_id and gene_symbol
   if(is.na(nm_id_column) & is.na(gene_symbol_column)) {
     print("Please Specify nm_id_column or genesymbol column")
@@ -213,14 +236,9 @@ MainSVFUSIONClass2<-function(input_file,
     return(NULL)
   }
 
-  #Check and Set Required Columns
-  if(length(flg)<=1) return(NULL)
-
-  #Make Directory
-  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-
   #Generate FASTA and mutation Profile
   job_id = paste(job_id, "SVFusion", sep = "_")
+
   GenerateSVFusionSeq(input_file = input_file,
                       hmdir = hmdir,
                       job_id = job_id,
@@ -267,13 +285,6 @@ MainSVFUSIONClass2<-function(input_file,
     print(paste("Did not find", netMHCIIpan_dir))
     return(NULL)
   }
-  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-
-  #Get HLA-Type
-  if(file.exists(hla_file)){
-    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
-  }
-  if(is.na(hla_types[1])) return(NULL)
 
   #Execute NetMHCpan
   ExeNetMHCpanClass2(output_peptide_prefix,
