@@ -1,5 +1,5 @@
 # A stable version will be released soon. 
-## A manuscript is at bioarxiv (). 
+## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1). 
 
 ## 1. Preparation
 ### -Install wget  (Required)
@@ -122,6 +122,18 @@ Run the following codes.
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
 unzip data.zip
 ```
+
+### -Install VEP (Notrequired)
+
+1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and move it to the working directory. 
+
+2. Do initial setting at the working directory as followings.
+```
+wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
+chmod 750 setNetMHCpan4.0.sh
+./setNetMHCpan4.0.sh 
+```
+
 
 ## 2. Use on R
 ```

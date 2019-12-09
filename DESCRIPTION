@@ -2,14 +2,16 @@ Package: Neoantimon
 Type: Package
 Title: Neoantimon: An R package for automatic identification of tumor-specific neoantigens from sequencing data
 Version: 2.0.0
-Date: 2019-11-20
+Date: 2019-12-10
 Author: Takanori Hasegawa
 Maintainer: Takanori Hasegawa <t-hasegw@ims.u-tokyo.ac.jp>
-Description: This Package has been develped to calculate candidates neoantigens from Mutation Data (.vcf,.txt,string). If you do not have some of these files, see README.md.
+Description: This Package has been developed to calculate candidates neoantigens from Mutation Data (.vcf,.txt,string). 
 License: MIT + file LICENSE
 VignetteBuilder: knitr
 Encoding: UTF-8
+Depends: R (>= 3.3.0)
+biocViews:
+Imports: data.table, ensemblVEP, devtools, graphics, grDevices, stats, utils
 Suggests: knitr, rmarkdown
-Imports: data.table, devtools, graphics, grDevices, stats, utils
 LazyData: FALSE
 RoxygenNote: 7.0.1
