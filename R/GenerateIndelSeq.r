@@ -180,7 +180,7 @@ GenerateIndelSeq<-function(input_file,
 
         #Check Start Codon
         d <- check_start_codon(dna, ts_point, ambiguous_codon, nm_id)
-        if(d < -998 | is.null(e)) next
+        if(d < -998 | is.null(d)) next
 
         #Get Relative Translation-End Position
         te_point <- get_relative_translation_end_position(strand, exon_end, trans_start, exon_start, trans_end)

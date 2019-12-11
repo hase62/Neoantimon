@@ -14,4 +14,4 @@ biocViews:
 Imports: data.table, ensemblVEP, devtools, graphics, grDevices, stats, utils
 Suggests: knitr, rmarkdown
 LazyData: FALSE
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2

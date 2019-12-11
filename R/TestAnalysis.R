@@ -19,10 +19,11 @@ TestAnalysis<-function(){
                                    netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs <- "data/sample.snps.vcf",
+                                   SNPs = "lib/sample.snps.vcf",
                                    multiple_variants = TRUE,
                                    apply_annotation = FALSE
   )
+  print(Export_Summary_SNV(Input = Result_HLA1_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 
   Result_HLA2_SNV <- MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
@@ -33,7 +34,7 @@ TestAnalysis<-function(){
                                    netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs <- "data/sample.snps.vcf",
+                                   SNPs = "lib/sample.snps.vcf",
                                    multiple_variants = TRUE,
                                    apply_annotation = FALSE
   )
@@ -47,10 +48,12 @@ TestAnalysis<-function(){
                                        netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs <- "data/sample.snps.vcf",
+                                       SNPs = "lib/sample.snps.vcf",
                                        multiple_variants = TRUE,
                                        apply_annotation = FALSE
   )
+  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL, Mut_IC50_th = 500))
+  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL, Mut_IC50_th = 500))
 
   Result_HLA2_INDEL <- MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
@@ -61,7 +64,7 @@ TestAnalysis<-function(){
                                        netMHCIIpan_dir = "lib/netMHCIIpan-3.1/netMHCIIpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs <- "data/sample.snps.vcf",
+                                       SNPs = "lib/sample.snps.vcf",
                                        multiple_variants = TRUE,
                                        apply_annotation = FALSE
   )
@@ -78,6 +81,8 @@ TestAnalysis<-function(){
                                        gene_symbol_column = 7,
                                        mate_id_column = 8
   )
+  print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
+  print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
 
   Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
@@ -102,6 +107,7 @@ TestAnalysis<-function(){
                                            netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412")
   )
+  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 
   Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",

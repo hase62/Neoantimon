@@ -101,7 +101,7 @@
 #'
 #'@export
 MainSeqFragmentClass1<-function(input_sequence = NA,
-                                group_ids = seq(1:length(input_nm_id)),
+                                group_ids = seq(1:length(reference_nm_id)),
                                 hla_file = "here_is_a_table",
                                 hla_types = NA,
                                 file_name_in_hla_table = NA,
@@ -118,7 +118,7 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
 
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
-                         input_nm_id = NA,
+                         reference_nm_id = NA,
                          hla_file = hla_file,
                          hla_types = hla_types,
                          refflat_file = refflat_file,

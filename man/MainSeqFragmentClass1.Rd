@@ -6,7 +6,7 @@
 \usage{
 MainSeqFragmentClass1(
   input_sequence = NA,
-  group_ids = seq(1:length(input_nm_id)),
+  group_ids = seq(1:length(reference_nm_id)),
   hla_file = "here_is_a_table",
   hla_types = NA,
   file_name_in_hla_table = NA,
