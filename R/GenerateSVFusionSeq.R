@@ -21,7 +21,7 @@ GenerateSVFusionSeq<-function(input_file,
 
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
   if(requireNamespace("data.table", quietly=TRUE)) {
-    data <- fread(input_file, stringsAsFactors=FALSE, header = TRUE, sep="\n", data.table = FALSE)[, 1]
+    data <- data.table::fread(input_file, stringsAsFactors=FALSE, header = TRUE, sep="\n", data.table = FALSE)[, 1]
   } else {
     data  <- scan(input_file, "character", sep = "\n", skip = 1)
   }

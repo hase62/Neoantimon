@@ -602,7 +602,7 @@ read_data <- function(input_file){
   print(paste("Please Confirm that Reading Start Line is", read_start))
   print(tmp[read_start])
   if(requireNamespace("data.table", quietly=TRUE)) {
-    data <- fread(input_file, stringsAsFactors=FALSE, sep="\t", skip = read_start - 1, header =TRUE, data.table = FALSE)
+    data <- data.table::fread(input_file, stringsAsFactors=FALSE, sep="\t", skip = read_start - 1, header =TRUE, data.table = FALSE)
   } else {
     index <- scan(input_file, "character", sep = "\t", nlines = 1, skip = read_start - 1)
     data  <- matrix(scan(input_file, "character", sep = "\t", skip = read_start), ncol = length(index), byrow = TRUE)
@@ -613,7 +613,7 @@ read_data <- function(input_file){
 
 read_refFlat <- function(refflat_file){
   if(requireNamespace("data.table", quietly=TRUE)) {
-    list_nm <- fread(refflat_file, stringsAsFactors=FALSE, header = FALSE, sep="\t", data.table = FALSE)
+    list_nm <- data.table::fread(refflat_file, stringsAsFactors=FALSE, header = FALSE, sep="\t", data.table = FALSE)
   } else {
     index <- scan(refflat_file, "character", sep = "\t", nlines = 1)
     list_nm  <- matrix(scan(refflat_file, "character", sep = "\t", skip = 1), ncol = length(index), byrow = TRUE)
@@ -623,7 +623,7 @@ read_refFlat <- function(refflat_file){
 
 read_refmrn <- function(refmrna_file){
   if(requireNamespace("data.table", quietly=TRUE)) {
-    list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, header = FALSE, sep='\t', data.table = FALSE)[, 1]
+    list_mra <- data.table::fread(refmrna_file, stringsAsFactors=FALSE, header = FALSE, sep='\t', data.table = FALSE)[, 1]
   } else {
     list_mra <- scan(refmrna_file, "character", sep = "\n")
   }
@@ -632,7 +632,7 @@ read_refmrn <- function(refmrna_file){
 
 read_1col_by_fread_or_scan <- function(f_name) {
   if(requireNamespace("data.table", quietly=TRUE)) {
-    tmp <- fread(f_name, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+    tmp <- data.table::fread(f_name, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
   } else {
     tmp <- scan(f_name, "character", sep = "\n")
   }

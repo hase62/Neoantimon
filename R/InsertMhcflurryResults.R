@@ -7,7 +7,7 @@ InsertMhcflurryResults<-function(result,
   for(h_ in 1:length(hla_types)){
     if(file.exists(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""))){
       if(requireNamespace("data.table", quietly=TRUE)) {
-        mhcf_mut <-fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""),
+        mhcf_mut <-data.table::fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""),
                          stringsAsFactors=FALSE, sep=",", data.table = FALSE)
       } else {
         index <- scan(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""),
@@ -22,7 +22,7 @@ InsertMhcflurryResults<-function(result,
       result_mhcflu[hla_hit, match("Mut_Rank", colnames(result_mhcflu))] <- mhcf_mut$percentile_rank[peptide_mut_hit]
       if(file.exists(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""))){
         if(requireNamespace("data.table", quietly=TRUE)) {
-          mhcf_wd <-fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""),
+          mhcf_wd <-data.table::fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""),
                           stringsAsFactors=FALSE, sep=",", data.table = FALSE)
         } else {
           index <- scan(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""),
