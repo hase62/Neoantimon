@@ -592,6 +592,54 @@ check_valid_indel <- function(peptide, IgnoreShortPeptides, max_peptide_length){
   return(FALSE)
 }
 
+read_data <- function(input_file){
+  data <- NULL
+  tmp <- scan(input_file, "character", sep = "\n", nlines = 200)
+  read_start <- grep("\\#chr", tolower(tmp))[1]
+  if(is.na(read_start)) read_start <- rev(grep("\\#", tmp))[1] + 1
+  if(is.na(read_start)) read_start <- grep("chr", tolower(tmp))[1]
+  if(is.na(read_start)) read_start <- 1
+  print(paste("Please Confirm that Reading Start Line is", read_start))
+  print(tmp[read_start])
+  if(requireNamespace("data.table", quietly=TRUE)) {
+    data <- fread(input_file, stringsAsFactors=FALSE, sep="\t", skip = read_start - 1, header =TRUE, data.table = FALSE)
+  } else {
+    index <- scan(input_file, "character", sep = "\t", nlines = 1, skip = read_start - 1)
+    data  <- matrix(scan(input_file, "character", sep = "\t", skip = read_start), ncol = length(index), byrow = TRUE)
+    colnames(data) <- index
+  }
+  return(data)
+}
+
+read_refFlat <- function(refflat_file){
+  if(requireNamespace("data.table", quietly=TRUE)) {
+    list_nm <- fread(refflat_file, stringsAsFactors=FALSE, header = FALSE, sep="\t", data.table = FALSE)
+  } else {
+    index <- scan(refflat_file, "character", sep = "\t", nlines = 1)
+    list_nm  <- matrix(scan(refflat_file, "character", sep = "\t", skip = 1), ncol = length(index), byrow = TRUE)
+  }
+  return(list_nm)
+}
+
+read_refmrn <- function(refmrna_file){
+  if(requireNamespace("data.table", quietly=TRUE)) {
+    list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, header = FALSE, sep='\t', data.table = FALSE)[, 1]
+  } else {
+    list_mra <- scan(refmrna_file, "character", sep = "\n")
+  }
+  return(list_mra)
+}
+
+read_1col_by_fread_or_scan <- function(f_name) {
+  if(requireNamespace("data.table", quietly=TRUE)) {
+    tmp <- fread(f_name, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+  } else {
+    tmp <- scan(f_name, "character", sep = "\n")
+  }
+  return(tmp)
+
+}
+
 #library("ensemblVEP")
 #param <- VEPFlags()
 #f_path <- "data/sample.snps.vcf"

@@ -14,13 +14,12 @@ GenerateMutatedFragments<-function(input_sequence,
                                    IgnoreShortPeptides){
 
   #READ refFlat
-  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
-  tmp <- t(sapply(list_nm, function(x) strsplit(x[1], "\t")[[1]]))
+  list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- tmp[, 1]
   list_nm_cut <- tmp[, 2]
 
   #Get RNA-Code Data
-  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+  list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
   tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))

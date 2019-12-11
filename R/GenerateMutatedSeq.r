@@ -21,26 +21,22 @@ GenerateMutatedSeq<-function(input_file,
                              apply_annotation = FALSE){
 
   #READ Data
-  data <- fread(input_file, stringsAsFactors=FALSE, sep="\t", data.table = FALSE)
+  data <- read_data(input_file)
   data <- data[grep("\texonic\t", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
-
   data <- data[grep("\tnonsynonymous", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
+
   if(nrow(data) < 1 | is.null(data)) return(NULL)
 
   #READ refFlat
-  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\t", data.table = FALSE)
+  list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- list_nm[, 1]
   list_nm_cut <- list_nm[, 2]
 
   #READ SNPs Data if available
-  SNPs_vcf <- NULL
-  if(!is.na(SNPs)){
-    read_start <- rev(grep("\\#", fread(SNPs, stringsAsFactors=FALSE, sep="\n", data.table = FALSE, nrows = 100)[, 1]))[1]
-    SNPs_vcf <- fread(SNPs, stringsAsFactors=FALSE, sep="\t", data.table = FALSE , skip = read_start)
-  }
+  if(!is.na(SNPs)) SNPs_vcf <- read_data(SNPs)
 
   #Get RNA-Code Data
-  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, header = FALSE, sep='\t', data.table = FALSE)[, 1]
+  list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
   list_fl_NMID <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))

@@ -6,15 +6,31 @@ InsertMhcflurryResults<-function(result,
   result_mhcflu <- as.matrix(result)
   for(h_ in 1:length(hla_types)){
     if(file.exists(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""))){
-      mhcf_mut <-fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""),
-                       stringsAsFactors=FALSE, sep=",", data.table = FALSE)
+      if(requireNamespace("data.table", quietly=TRUE)) {
+        mhcf_mut <-fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""),
+                         stringsAsFactors=FALSE, sep=",", data.table = FALSE)
+      } else {
+        index <- scan(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""),
+                      "character", sep = ",", nlines = 1)
+        mhcf_mut  <- matrix(scan(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".peptide.mhcflurry.csv", sep = ""),
+                                "character", sep = ",", skip = 1), ncol = length(index), byrow = TRUE)
+        colnames(mhcf_mut) <- index
+      }
       hla_hit <- which(!is.na(match(result_mhcflu[, 1], mhcf_mut$allele[1])))
       peptide_mut_hit <- match(result_mhcflu[hla_hit, match("Evaluated_Mutant_Peptide", colnames(result_mhcflu))], mhcf_mut$peptide)
       result_mhcflu[hla_hit, match("Mut_IC50", colnames(result_mhcflu))] <- as.numeric(mhcf_mut$affinity[peptide_mut_hit])
       result_mhcflu[hla_hit, match("Mut_Rank", colnames(result_mhcflu))] <- mhcf_mut$percentile_rank[peptide_mut_hit]
       if(file.exists(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""))){
-        mhcf_wd <-fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""),
-                        stringsAsFactors=FALSE, sep=",", data.table = FALSE)
+        if(requireNamespace("data.table", quietly=TRUE)) {
+          mhcf_wd <-fread(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""),
+                          stringsAsFactors=FALSE, sep=",", data.table = FALSE)
+        } else {
+          index <- scan(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""),
+                        "character", sep = ",", nlines = 1)
+          mhcf_mut  <- matrix(scan(paste(output_peptide_prefix, ".mhcflurry.HLACLASS1.", h_, ".wtpeptide.mhcflurry.csv", sep = ""),
+                                   "character", sep = ",", skip = 1), ncol = length(index), byrow = TRUE)
+          colnames(mhcf_mut) <- index
+        }
         peptide_wd_hit <-  match(result_mhcflu[hla_hit, match("Evaluated_Wt_Peptide", colnames(result_mhcflu))], mhcf_wd$peptide)
         result_mhcflu[hla_hit, match("Wt_IC50",  colnames(result_mhcflu))] <- mhcf_wd$affinity[peptide_wd_hit]
         result_mhcflu[hla_hit, match("Wt_Rank",  colnames(result_mhcflu))] <- mhcf_wd$percentile_rank[peptide_wd_hit]

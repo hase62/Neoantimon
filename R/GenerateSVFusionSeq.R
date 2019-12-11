@@ -20,7 +20,11 @@ GenerateSVFusionSeq<-function(input_file,
                              IgnoreShortPeptides){
 
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
-  data <- fread(input_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
+  if(requireNamespace("data.table", quietly=TRUE)) {
+    data <- fread(input_file, stringsAsFactors=FALSE, header = TRUE, sep="\n", data.table = FALSE)[, 1]
+  } else {
+    data  <- scan(input_file, "character", sep = "\n", skip = 1)
+  }
 
   if(length(data)<1){
     q("no")
@@ -31,13 +35,12 @@ GenerateSVFusionSeq<-function(input_file,
   uIDs<-unique(mateIDs)[sapply(unique(mateIDs), function(x) length(which(!is.na(match(mateIDs, x)))) > 1)]
 
   #READ refFlat
-  list_nm <- fread(refflat_file, stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
-  tmp <- t(sapply(list_nm, function(x) strsplit(x[1], "\t")[[1]]))
+  list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- tmp[, 1]
   list_nm_cut <- tmp[, 2]
 
   #Get RNA-Code Data
-  list_mra <- fread(refmrna_file, stringsAsFactors=FALSE, sep='\n', data.table = FALSE)[, 1]
+  list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
   tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))

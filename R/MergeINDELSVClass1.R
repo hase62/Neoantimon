@@ -46,9 +46,7 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
   full_peptide<-NULL
   for(f in files_part[grep("\\.peptide\\.txt", files_part)]){
     print(paste(dir, f, sep="/"))
-
-    test1 <- fread(paste(dir, f, sep="/"), stringsAsFactors=FALSE, sep="\n", data.table = FALSE)[, 1]
-    #test1<-scan(paste(dir, f, sep="/"), "character", sep="\n", skip=1)
+    test1 <- read_1col_by_fread_or_scan(paste(dir, f, sep="/"))
     test1<-gsub(" <=WB| <=SB", "", test1)
     ss1<-intersect(grep("Pos ", test1), grep("Icore ", test1)) + 2
     ee1<-intersect(grep("Protein", test1), grep("binders", test1)) - 2
