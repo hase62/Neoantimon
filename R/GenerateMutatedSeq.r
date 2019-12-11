@@ -16,9 +16,9 @@ GenerateMutatedSeq<-function(input_file,
                              ambiguous_codon,
                              export_dir,
                              IgnoreShortPeptides,
-                             SNPs = NA,
-                             multiple_variants = TRUE,
-                             apply_annotation = FALSE){
+                             SNPs,
+                             multiple_variants,
+                             apply_annotation){
 
   #READ Data
   data <- read_data(input_file)
