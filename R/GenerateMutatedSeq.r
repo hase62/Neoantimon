@@ -222,7 +222,7 @@ GenerateMutatedSeq<-function(input_file,
 
 
           #Apply Multiple SNVs
-          dna_trans_mut <- apply_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans, trans_to, trans_from)
+          dna_trans_mut <- apply_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, exon_end, chr, strand, dna_trans, trans_to, trans_from)
 
           #Make Mutated-DNA
           dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2, m_ref, m_alt, trans_to, trans_from)

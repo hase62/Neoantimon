@@ -36,8 +36,8 @@ GenerateSVFusionSeq<-function(input_file,
 
   #READ refFlat
   list_nm <- read_refFlat(refflat_file)
-  list_nm_gene <- tmp[, 1]
-  list_nm_cut <- tmp[, 2]
+  list_nm_gene <- list_nm[, 1]
+  list_nm_cut <- list_nm[, 2]
 
   #Get RNA-Code Data
   list_mra <- read_refmrn(refmrna_file)
@@ -154,7 +154,7 @@ GenerateSVFusionSeq<-function(input_file,
         #Calculate Sets for NM_ID, because NM_id:ExonRegion is not unique!!
         for(v in s_variants){
           for(mate_whether_exon_intron in c("exon", "intron")){
-            nm_sep<-strsplit(list_nm[v], "\t")[[1]]
+            nm_sep<-sapply(list_nm[v, ], as.character)
             #Skip Such As "ch5_hap"
             if(nchar(nm_sep[3]) > 5) {
               print("Invarid NM_ID")

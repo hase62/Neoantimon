@@ -6,8 +6,8 @@ CheckRequiredFiles<-function(input_file,
     print(paste("Did not find Mutation File:", input_file))
     return(TRUE)
   }
-  if(!file.exists(hla_file) & is.na(hla_types[1])) {
-    print(paste("Did not find HLA Table:", hla_file))
+  if(is.na(hla_types[1])) {
+    print(paste("Did not find HLA Types"))
     return(TRUE)
   } else {
     print(paste("HLAtype:", hla_types))
@@ -25,7 +25,6 @@ CheckRequiredFiles<-function(input_file,
 
 CheckRequiredFiles2 <- function(input_sequence,
                                 input_nm_id,
-                                hla_file,
                                 hla_types,
                                 refflat_file,
                                 refmrna_file,
@@ -41,13 +40,10 @@ CheckRequiredFiles2 <- function(input_sequence,
   } else if(is.na(input_nm_id[1])) {
     print(paste("Sequence:", input_sequence))
   }
-  if(!file.exists(hla_file) & is.na(hla_types[1])) {
-    print(paste("Did not find HLA Table:", hla_file))
+  if(is.na(hla_types[1])) {
+    print(paste("Did not find HLA Types"))
     return(TRUE)
-  } else if(file.exists(hla_file) & !is.na(hla_types[1])){
-    print(paste("Enforced to use:", hla_file))
   } else {
-    print(paste("HLA file:", hla_file))
     print(paste("HLAtype:", hla_types))
   }
 
@@ -454,7 +450,7 @@ integrate_same_peptide <- function(refFasta, fasta, fasta_wt){
   return(list(refFasta, fasta, fasta_wt))
 }
 
-check_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr){
+check_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, exon_end, chr){
   multi_i <- integer(0)
   if(multiple_variants & nrow(data) > 1){
     multi_i <- (1:nrow(data))[-i][sapply((1:nrow(data))[-i],
@@ -465,8 +461,8 @@ check_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation
   return(multi_i)
 }
 
-apply_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
-  multi_i <- check_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, exon_end, chr)
+apply_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
+  multi_i <- check_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, exon_end, chr)
   for(multi_i_element in multi_i){
     m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)
     dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2_mv, data[multi_i_element, mutation_ref_column], data[multi_i_element, mutation_alt_column], trans_to, trans_from)
@@ -555,7 +551,7 @@ make_indel_dna <- function(strand, dna_trans, m_point_2, m_alt, trans_to, trans_
   return(dna_trans)
 }
 
-check_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, exon_end, chr){
+check_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr){
   multi_i <- integer(0)
   if(multiple_variants & nrow(data) > 1){
     multi_i <- (1:nrow(data))[sapply((1:nrow(data)),
@@ -566,8 +562,8 @@ check_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mu
   return(multi_i)
 }
 
-apply_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
-  multi_i <- check_multiple_snvs_to_indel(data, multiple_variants, exon_start, mutation_start_column, exon_end, chr)
+apply_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
+  multi_i <- check_multiple_snvs_to_indel(data, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr)
   for(multi_i_element in multi_i){
     m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)
     dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2_mv, data[multi_i_element, mutation_ref_column], data[multi_i_element, mutation_alt_column], trans_to, trans_from)

@@ -6,7 +6,7 @@
 \usage{
 MainSNVClass1(
   input_file,
-  hla_file = "data/sample_hla_table_c1.txt",
+  hla_file = "here_is_a_table",
   hla_types = NA,
   file_name_in_hla_table = input_file,
   refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),

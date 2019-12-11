@@ -25,7 +25,7 @@
 #'@return Num_Peptide_Generating_NeoAg The number of evaluated peptides that can be neoantigen.
 #'
 #'@export
-Export_Summary_Fragments_fast <- function(Input,
+Export_Summary_Entire_Fragments <- function(Input,
                                           Mut_IC50_th = NA,
                                           Mut_Rank_th = NA,
                                           Total_RNA_th = NA,

@@ -15,17 +15,15 @@ GenerateMutatedFragments<-function(input_sequence,
 
   #READ refFlat
   list_nm <- read_refFlat(refflat_file)
-  list_nm_gene <- tmp[, 1]
-  list_nm_cut <- tmp[, 2]
+  list_nm_gene <- list_nm[, 1]
+  list_nm_cut <- list_nm[, 2]
 
   #Get RNA-Code Data
   list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
-  tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
-  list_fl_NMID <- tmp
-  list_fl_dna <- sapply(1:length(start_),
-                        function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
+  list_fl_NMID <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
+  list_fl_dna <- sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
 
   trans_from<-c("a", "t", "g", "c")
   trans_to<-c("t", "a", "c", "g")
@@ -48,7 +46,7 @@ GenerateMutatedFragments<-function(input_sequence,
   exon_ends <- NULL
   for(v in s_variants){
     #Whether Last or Not
-    nm_sep <- strsplit(list_nm[v], "\t")[[1]]
+    nm_sep <- sapply(list_nm[v, ], as.character)
     nm_id <- nm_sep[2]
     nm_ids <- paste(nm_ids, nm_id, sep = ifelse(length(nm_ids) > 0, ";", ""))
 

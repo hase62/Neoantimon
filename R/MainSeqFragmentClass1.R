@@ -116,10 +116,21 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                 reference_gene_symbol = NA,
                                 IgnoreShortPeptides = TRUE){
 
+  #Get HLA-Type
+  if(file.exists(hla_file) & !is.na(hla_types[1])){
+    print(paste("Using:", hla_file))
+  }
+  if(file.exists(hla_file)){
+    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  }
+  if(is.na(hla_types[1])) {
+    print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
+    return(NULL)
+  }
+
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
                          reference_nm_id = NA,
-                         hla_file = hla_file,
                          hla_types = hla_types,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,
@@ -162,12 +173,6 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
     return(NULL)
   }
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-
-  #Get HLA-Type
-  if(file.exists(hla_file)){
-    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
-  }
-  if(is.na(hla_types[1])) return(NULL)
 
   #Execute NetMHCpan
   ExeNetMHCpanClass1(output_peptide_prefix = output_peptide_prefix,

@@ -222,7 +222,7 @@ GenerateIndelSeq<-function(input_file,
           }
 
           #Apply Multiple SNVs
-          dna_trans_mut <- apply_multiple_snvs_to_indel(data_snv, multiple_variants, exon_start, mutation_start_column, exon_end, chr, strand, substr(dna, ts_point, nchar(dna)), trans_to, trans_from)
+          dna_trans_mut <- apply_multiple_snvs_to_indel(data_snv, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr, strand, substr(dna, ts_point, nchar(dna)), trans_to, trans_from)
 
           #Make Mutated-DNA
           dna_trans_mut <- make_indel_dna(strand, dna_trans_mut, m_point_2, m_alt, trans_to, trans_from, m_ref)

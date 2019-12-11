@@ -167,7 +167,7 @@
 #'
 #'@export
 MainSNVClass1<-function(input_file,
-                        hla_file = "data/sample_hla_table_c1.txt",
+                        hla_file = "here_is_a_table",
                         hla_types = NA,
                         file_name_in_hla_table = input_file,
                         refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
@@ -264,7 +264,7 @@ MainSNVClass1<-function(input_file,
                      SNPs = SNPs,
                      multiple_variants = multiple_variants,
                      apply_annotation = apply_annotation)
-return(0)
+
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){

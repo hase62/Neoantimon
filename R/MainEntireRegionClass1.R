@@ -112,10 +112,21 @@ MainEntireRegionClass1<-function(input_nm_id,
                                 CalculateIC50 = FALSE,
                                 IgnoreShortPeptides = TRUE){
 
+  #Get HLA-Type
+  if(file.exists(hla_file) & !is.na(hla_types[1])){
+    print(paste("Using:", hla_file))
+  }
+  if(file.exists(hla_file)){
+    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  }
+  if(is.na(hla_types[1])) {
+    print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
+    return(NULL)
+  }
+
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = NA,
                          input_nm_id = input_nm_id,
-                         hla_file = hla_file,
                          hla_types = hla_types,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,
@@ -158,12 +169,6 @@ MainEntireRegionClass1<-function(input_nm_id,
     return(NULL)
   }
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
-
-  #Get HLA-Type
-  if(file.exists(hla_file)){
-    hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
-  }
-  if(is.na(hla_types[1])) return(NULL)
 
   if(CalculateIC50){
     #Execute NetMHCpan
