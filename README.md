@@ -129,7 +129,7 @@ install.packages("devtools");
 library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
-#(Suggest)
+#Suggest
 install_github('data.table');
 library(data.table);
 ```
