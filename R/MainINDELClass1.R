@@ -308,10 +308,10 @@ MainINDELClass1<-function(input_file,
 
   #Execute mhcflurry
   if(!is.na(MHCflurry)){
-    ExemhcflurryClass1(output_peptide_prefix,
+    ExemhcflurryClass1(netMHCpan_dir,
+                       output_peptide_prefix,
                        "peptide",
                        hla_types,
-                       netMHCpan_dir,
                        peptide_length,
                        export_dir,
                        input_file,

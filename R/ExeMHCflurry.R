@@ -1,8 +1,8 @@
 #Execute NetMHCpan
-ExemhcflurryClass1<-function(output_peptide_prefix,
+ExemhcflurryClass1<-function(MHCflurry,
+                             output_peptide_prefix,
                              peptides,
                              hla_types,
-                             netMHCpan_dir,
                              peptide_length,
                              export_dir,
                              input_file,

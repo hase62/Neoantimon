@@ -82,7 +82,7 @@
 #'
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).
 #'
-#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").
+#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.2/netMHCpan").
 #'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .

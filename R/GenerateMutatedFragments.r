@@ -67,74 +67,39 @@ GenerateMutatedFragments<-function(input_sequence,
     exon_ends <- paste(exon_ends, rev(exon_end)[1], sep = ifelse(length(exon_ends) > 0, ";", ""))
 
     #Obtain DNA sequence of Transcriptome
-    #DNAseq is Unique
     dna <- list_fl_dna[match(nm_id, list_fl_NMID)]
-    if(is.na(dna)){
-      print(paste(nm_id, "was not found in refMrn."))
-      next
-    }
-    if(nchar(dna) != sum(exon_end - exon_start)){
-      dif <- sum(exon_end - exon_start) - nchar(dna)
-      if(abs(dif) <= 0) {
-        print(paste("cDNA Length does not Match to Exon-Start/End Length, Skip", nm_id))
-        next
-      }
-    }
+
+    #Check DNA
+    if(check_dna_validity(dna, nm_id, exon_end, exon_start, ambiguous_between_exon, final_s_variants, Pass)) next
 
     #Get Relative Translation-Start Position (0-start to 1-start)
-    if(strand=="+"){
-      point<-(exon_end > trans_start)
-      ts_point<-sum((exon_end - exon_start)[!point]) +
-        (trans_start - exon_start[which(point)[1]]) + 1
-    }else{
-      point<-(exon_start > trans_end)
-      ts_point<-sum((exon_end - exon_start)[point]) +
-        (exon_end[rev(which(!point))[1]] - trans_end) + 1
-    }
+    ts_point <- get_relative_translation_start_position(strand, exon_end, trans_start, exon_start, trans_end)
 
     #Check Start Codon
-    if(substr(dna, ts_point, ts_point + 2) != "atg"){
-      print(paste("Start Position is not ATG, Skip", nm_id))
-      next
-    }
+    d <- check_start_codon(dna, ts_point, ambiguous_codon, nm_id)
+    if(d < -998 | is.null(d)) next
 
     #Get Relative Translation-End Position
-    if(strand=="+"){
-      point<-(exon_end >= trans_end)
-      te_point<-sum((exon_end - exon_start)[!point]) +
-        (trans_end - exon_start[which(point)[1]])
-    } else {
-      point<-(exon_start > trans_start)
-      te_point<-sum((exon_end - exon_start)[point]) +
-        (exon_end[rev(which(!point))[1]] - trans_start)
-    }
+    te_point <- get_relative_translation_end_position(strand, exon_end, trans_start, exon_start, trans_end)
 
     #Check Stop Codon
-    if(amino[match(substr(dna, te_point-2, te_point), codon)]!="X"){
-      print(paste("End Position Amino Acid is not X, Skip", nm_id))
-      next
-    }
+    e <- check_stop_codon(dna, te_point, ts_point, ambiguous_codon, amino, nm_id)
+    if(e < -998 | is.null(e)) next
 
     #Check Peptide Length
     stop_loop<-FALSE
     dna_trans <- substr(dna, ts_point, te_point)
 
     #Translation Region is not Valid
-    if(nchar(dna_trans)%%3 != 0) {
-      print("The Length of RNA is not a multiple of 3, Skip")
+    if(nchar(dna_trans)%%3!=0) {
+      print("Translation Region is not Valid.")
       next
     }
 
     #Make Normal Peptide
-    peptide_normal <- NULL
     dna_trans_normal_merged <- c(dna_trans_normal_merged, dna_trans)
-    while(nchar(dna_trans) >= 3){
-      peptide_normal <- c(peptide_normal, amino[match(substr(dna_trans, 1, 3), codon)])
-      dna_trans <- substr(dna_trans, 4, nchar(dna_trans))
-    }
-    if(match("X", peptide_normal) < length(peptide_normal)){
-      next
-    }
+    peptide_normal <- make_normal_peptide(dna_trans, amino, codon, 0, 0)
+    if(is.null(peptide_normal)) next
     peptide_normal_merged <- c(peptide_normal_merged, ifelse(length(peptide_normal_merged) > 0, "X", ""), peptide_normal)
   }
 
@@ -152,12 +117,13 @@ GenerateMutatedFragments<-function(input_sequence,
     return(NULL)
   }
 
+  #
   names(input_sequence) <- rep("", length(input_sequence))
   if(length(s_variants_from_input_nmid) != 0){
     if(is.na(input_sequence[1])) input_sequence <- NULL
     for(v in s_variants_from_input_nmid){
       #Whether Last or Not
-      nm_sep <- strsplit(list_nm[v], "\t")[[1]]
+      nm_sep <- as.character(list_nm[v,])
       nm_id <- nm_sep[2]
 
       #Skip Such As "ch5_hap"
@@ -173,53 +139,24 @@ GenerateMutatedFragments<-function(input_sequence,
       exon_end <- as.numeric(strsplit(nm_sep[11], ",")[[1]])
 
       #Obtain DNA sequence of Transcriptome
-      #DNAseq is Unique
       dna <- list_fl_dna[match(nm_id, list_fl_NMID)]
-      if(is.na(dna)){
-        print(paste(nm_id, "was not found in refMrn."))
-        next
-      }
-      if(nchar(dna) != sum(exon_end - exon_start)){
-        dif <- sum(exon_end - exon_start) - nchar(dna)
-        if(abs(dif) <= 0) {
-          print(paste("cDNA Length does not Match to Exon-Start/End Length, Skip", nm_id))
-          next
-        }
-      }
+
+      #Check DNA
+      if(check_dna_validity(dna, nm_id, exon_end, exon_start, ambiguous_between_exon, final_s_variants, Pass)) next
 
       #Get Relative Translation-Start Position (0-start to 1-start)
-      if(strand=="+"){
-        point<-(exon_end > trans_start)
-        ts_point<-sum((exon_end - exon_start)[!point]) +
-          (trans_start - exon_start[which(point)[1]]) + 1
-      }else{
-        point<-(exon_start > trans_end)
-        ts_point<-sum((exon_end - exon_start)[point]) +
-          (exon_end[rev(which(!point))[1]] - trans_end) + 1
-      }
+      ts_point <- get_relative_translation_start_position(strand, exon_end, trans_start, exon_start, trans_end)
 
       #Check Start Codon
-      if(substr(dna, ts_point, ts_point + 2) != "atg"){
-        print(paste("Start Position is not ATG, Skip", nm_id))
-        next
-      }
+      d <- check_start_codon(dna, ts_point, ambiguous_codon, nm_id)
+      if(d < -998 | is.null(d)) next
 
       #Get Relative Translation-End Position
-      if(strand=="+"){
-        point<-(exon_end >= trans_end)
-        te_point<-sum((exon_end - exon_start)[!point]) +
-          (trans_end - exon_start[which(point)[1]])
-      } else {
-        point<-(exon_start > trans_start)
-        te_point<-sum((exon_end - exon_start)[point]) +
-          (exon_end[rev(which(!point))[1]] - trans_start)
-      }
+      te_point <- get_relative_translation_end_position(strand, exon_end, trans_start, exon_start, trans_end)
 
       #Check Stop Codon
-      if(amino[match(substr(dna, te_point-2, te_point), codon)]!="X"){
-        print(paste("End Position Amino Acid is not X, Skip", nm_id))
-        next
-      }
+      e <- check_stop_codon(dna, te_point, ts_point, ambiguous_codon, amino, nm_id)
+      if(e < -998 | is.null(e)) next
 
       #Check Peptide Length
       stop_loop<-FALSE
@@ -234,11 +171,6 @@ GenerateMutatedFragments<-function(input_sequence,
       }
       dna_trans <- substr(dna, ts_point, min(ts_point + count_dna + 3, nchar(dna)))
 
-      #Translation Region is not Valid
-      if((te_point - ts_point + 1)%%3 != 0) {
-        print("The Length of RNA is not a multiple of 3, Skip")
-        next
-      }
       input_sequence <- c(input_sequence, dna_trans)
       names(input_sequence)[length(input_sequence)] <- paste(g_name, nm_id, chr, sep = ";")
     }
@@ -262,26 +194,26 @@ GenerateMutatedFragments<-function(input_sequence,
     peptide_mutated_sep <- strsplit(paste(peptide_mutated, collapse = ""), "X")[[1]]
     number_of_stop <- length(peptide_mutated_sep) - 1
     for(peptide_mutated in peptide_mutated_sep){
-
+      peptide <- peptide_mutated
       peptide_mutated <- strsplit(peptide_mutated, "")[[1]]
-      if(length(peptide_mutated) >= min_peptide_length) {
-        pep_end_pos <- length(peptide_mutated) - min_peptide_length
-        if(pep_end_pos < 1) {
-          print("Mutated Peptide is too short, Skip")
-          next
-        }
-        flg_vec <- rep(FALSE, length(peptide_mutated))
-        ref_pep <- paste(peptide_normal_merged, collapse = "")
-        for(i in 1:(pep_end_pos + 1)){
-          flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
-          if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
-                            (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
-        }
-        peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
-      } else {
-        peptide_mutated <- paste(peptide_mutated, collapse = "")
-      }
-      for(peptide in strsplit(peptide_mutated, "-")[[1]]){
+      # if(length(peptide_mutated) >= min_peptide_length) {
+      #   pep_end_pos <- length(peptide_mutated) - min_peptide_length
+      #   if(pep_end_pos < 1) {
+      #     print("Mutated Peptide is too short, Skip")
+      #     next
+      #   }
+      #   flg_vec <- rep(FALSE, length(peptide_mutated))
+      #   ref_pep <- paste(peptide_normal_merged, collapse = "")
+      #   for(i in 1:(pep_end_pos + 1)){
+      #     flg <- length(grep(paste(peptide_mutated[i:(i + min_peptide_length - 1)], collapse = ""), ref_pep)) == 0
+      #     if(flg) flg_vec[(ifelse(i - (max_peptide_length - min_peptide_length) < 1, 1, i - (max_peptide_length - min_peptide_length))):
+      #                       (ifelse(i + max_peptide_length - 1 > length(peptide_mutated), length(peptide_mutated), i + max_peptide_length - 1))] <- TRUE
+      #   }
+      #   peptide_mutated <- paste(ifelse(flg_vec, peptide_mutated, "-"), collapse = "")
+      # } else {
+      #   peptide_mutated <- paste(peptide_mutated, collapse = "")
+      # }
+      # for(peptide in strsplit(peptide_mutated, "-")[[1]]){
         #Save Peptide
         #if(nchar(peptide) < min_peptide_length) next
         seq_num <- match(input_sequence_1, input_sequence)
@@ -307,27 +239,23 @@ GenerateMutatedFragments<-function(input_sequence,
                         number_of_peptide,
                         number_of_stop,
                         ifelse(is.null(paste(peptide_normal_merged, collapse="")), "", paste(peptide_normal_merged, collapse="")),
-                        peptide,
+                        paste(peptide_mutated, collapse = ""),
                         ifelse(is.null(dna_trans_normal_merged), "", dna_trans_normal_merged),
                         input_sequence_1))
 
-        #Remove X and Save Fasta in Mutated Peptide
-        if(!is.na(match("X", peptide))){
-          peptide <- peptide[1:(match("X", peptide) - 1)]
-        }
         fasta <- c(fasta, sub("_","", paste(">", random, gsub("\"","", g_name), sep="_")))
         fasta <- c(fasta, paste(peptide, collapse=""))
 
         random <- random + 1
         print("Peptide Successfully Generated!!")
-      }
+
     }
   }
 
   write.table(fasta,
               paste(export_dir, "/", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
-  write.table(cbind(refFasta, matrix(nrow = nrow(refFasta), ncol = 27 - ncol(refFasta), NA)),
+  write.table(cbind(refFasta, matrix(nrow = nrow(refFasta), ncol = 27 - ncol(refFasta) - 1, NA)),
               paste(export_dir, "/", job_id, ".", "peptide", ".", "txt", sep=""),
               row.names=seq(1:nrow(refFasta)), col.names=FALSE, quote=FALSE, sep="\t")
 }

@@ -89,6 +89,7 @@ MergeSNVClass1<-function(hmdir = getwd(),
         print("Warning!! d4 is zero!!")
         next
       }
+      rownames(d4) <- NULL
       full_peptide<-rbind(full_peptide, d4)
     }
   }

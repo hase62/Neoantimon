@@ -27,10 +27,10 @@ MainSeqFragmentClass2(
 
 \item{group_ids}{flag to cluster the same group}
 
-\item{hla_file}{(Required) A tab separated file indicating HLA types.
+\item{hla_file}{A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
 
-See by data(sample_hla_table_c2); sample_hla_table_c2;}
+See by data(sample_hla_table_c1); sample_hla_table_c1;}
 
 \item{hla_types}{Set a list of HLA types}
 
@@ -50,9 +50,9 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{export_dir}{The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")}
 
-\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCIIpan").}
+\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.2/netMHCIIpan").}
 
-\item{peptide_length}{Peptide Length to be generated (Default = {15}).}
+\item{peptide_length}{Peptide Length to be generated (Default = {8,9,10,11,12,13}).}
 
 \item{reference_nm_id}{Corresponding original sequences that the input sequence is generated.
 If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
@@ -62,7 +62,7 @@ It can be indicated when gene_symbol is not NA.}
 If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 It can be indicated when nm_id is not NA.}
 
-\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
+\item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
@@ -73,9 +73,9 @@ Pos:  The position of a fraction of peptide used to be evaluated from the full-l
 
 Gene:  Gene symbol used to be evaluated in NetMHCpan.
 
-Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
-
 Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+
+Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 
 Mut_IC50: IC50 value for evaluated mutant peptide.
 

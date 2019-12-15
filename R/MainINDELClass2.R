@@ -14,7 +14,6 @@
 #'
 #'
 #'
-#'
 #'@param hla_types Set a list of HLA types
 #'
 #'@param nm_id_column The column number describing NM IDs in input_file such as
@@ -82,7 +81,7 @@
 #'
 #'@param purity Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).
 #'
-#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").
+#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.2/netMHCpan").
 #'
 #'
 #'

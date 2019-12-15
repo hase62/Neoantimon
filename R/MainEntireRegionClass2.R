@@ -1,25 +1,57 @@
-#'Calculate Neoantigen Candidates from A Given Sequence for MHC Class2
+#'Calculate A Set All Neoantigen Candidates from A Given Gene Symbol and nm_id for MHC Class2 (Not yet stably available)
 #'
 #'@param input_nm_id (Required) An input amino acid sequence indicated as NM_ID
 #'
 #'@param group_ids flag to cluster the same group
 #'
-#'@param hla_file (Required) A tab separated file indicating HLA types.
+#'
+#'
+#'@param hla_file A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
-#'See by data(sample_hla_table_c2); sample_hla_table_c2;
+#'See by data(sample_hla_table_c1); sample_hla_table_c1;
+#'
+#'
+#'
+#'
 #'
 #'@param hla_types Set a list of HLA types
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@param file_name_in_hla_table If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).
 #'
 #'@param hmdir Home directory for the analysis (Default = getwd()).
 #'
-#'@param job_id Job-Id to be attached in output files (Default = "NO_job_id").
+#'@param job_id Job-id to be attached in output files (Default = "NO_job_id").
 #'
 #'@param export_dir The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")
 #'
-#'@param peptide_length Peptide Length to be generated (Default = {15}).
+#'@param peptide_length Peptide Length to be generated (Default = {8,9,10,11,12,13}).
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
 #'
@@ -29,13 +61,45 @@
 #'
 #'See "https://github.com/hase62/Neoantimon"
 #'
-#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCIIpan").
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'@param netMHCIIpan_dir The file directory to netMHCpan (Default="lib/netMHCIIpan-3.2/netMHCIIpan").
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
 #'
 #'@param reading_frame The starting frame of the input sequence (Default = 1)
 #'
 #'@param CalculateIC50 Whether Calculate IC50 by NetMHCpan or not.
 #'
-#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+#'
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
@@ -45,13 +109,19 @@
 #'
 #'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
-#'
 #'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'
+#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
 #'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
 #'@return Mut_Rank: Rank value for evaluated mutanat peptide.
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@return Chr: Chromosome Number of the mutation.
 #'

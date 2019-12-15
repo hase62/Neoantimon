@@ -22,7 +22,7 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
   info<-info[, 1:length(cinfo)]
 
   if(is.null(ncol(info))) info<-t(as.matrix(info))
-  row.names(info)<-NULL
+  rownames(info)<-NULL
   colnames(info)<-cinfo
 
   info[,12]<-paste(info[,3], info[,12], sep="_")
@@ -32,7 +32,6 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
       as.numeric(info[,match("Total_Depth",colnames(info))])
 
   #Remove RNAseq Info
-  rownames(info)<-NULL
   info<-info[, -match(c("Wt_DNA", "Mutant_DNA"), colnames(info))]
   if(is.null(ncol(info))){info<-t(as.matrix(info))}
 

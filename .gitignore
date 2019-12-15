@@ -1,7 +1,13 @@
 .DS_Store
 
-libfull
-.libfull
-libfull/*
-.libfull*
+lib/netMHCIIpan-3.2
+lib/netMHCIIpan-3.2/*
+lib/netMHCpan-4.0
+lib/netMHCpan-4.0/*
+lib/Sample.R
+lib/refFlat.txt
+lib/refMrna.fa
+
 .Rproj.user
+doc
+Meta

@@ -2,7 +2,7 @@
 % Please edit documentation in R/MainEntireRegionClass2.R
 \name{MainEntireRegionClass2}
 \alias{MainEntireRegionClass2}
-\title{Calculate Neoantigen Candidates from A Given Sequence for MHC Class2}
+\title{Calculate A Set All Neoantigen Candidates from A Given Gene Symbol and nm_id for MHC Class2 (Not yet stably available)}
 \usage{
 MainEntireRegionClass2(
   input_nm_id,
@@ -27,10 +27,10 @@ MainEntireRegionClass2(
 
 \item{group_ids}{flag to cluster the same group}
 
-\item{hla_file}{(Required) A tab separated file indicating HLA types.
+\item{hla_file}{A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
 
-See by data(sample_hla_table_c2); sample_hla_table_c2;}
+See by data(sample_hla_table_c1); sample_hla_table_c1;}
 
 \item{hla_types}{Set a list of HLA types}
 
@@ -46,19 +46,19 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{hmdir}{Home directory for the analysis (Default = getwd()).}
 
-\item{job_id}{Job-Id to be attached in output files (Default = "NO_job_id").}
+\item{job_id}{Job-id to be attached in output files (Default = "NO_job_id").}
 
 \item{export_dir}{The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")}
 
-\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCIIpan").}
+\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.2/netMHCIIpan").}
 
-\item{peptide_length}{Peptide Length to be generated (Default = {15}).}
+\item{peptide_length}{Peptide Length to be generated (Default = {8,9,10,11,12,13}).}
 
 \item{reading_frame}{The starting frame of the input sequence (Default = 1)}
 
 \item{CalculateIC50}{Whether Calculate IC50 by NetMHCpan or not.}
 
-\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
+\item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
@@ -69,9 +69,9 @@ Pos:  The position of a fraction of peptide used to be evaluated from the full-l
 
 Gene:  Gene symbol used to be evaluated in NetMHCpan.
 
-Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
-
 Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+
+Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 
 Mut_IC50: IC50 value for evaluated mutant peptide.
 
@@ -120,5 +120,5 @@ MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
 MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 }
 \description{
-Calculate Neoantigen Candidates from A Given Sequence for MHC Class2
+Calculate A Set All Neoantigen Candidates from A Given Gene Symbol and nm_id for MHC Class2 (Not yet stably available)
 }

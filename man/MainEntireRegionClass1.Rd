@@ -2,7 +2,7 @@
 % Please edit documentation in R/MainEntireRegionClass1.R
 \name{MainEntireRegionClass1}
 \alias{MainEntireRegionClass1}
-\title{Calculate Neoantigen Candidates from A Given Sequence for MHC Class1}
+\title{Calculate A Set All Neoantigen Candidates from A Given Gene Symbol and nm_id for MHC Class1 (Not yet stably available)}
 \usage{
 MainEntireRegionClass1(
   input_nm_id,
@@ -27,7 +27,7 @@ MainEntireRegionClass1(
 
 \item{group_ids}{flag to cluster the same group}
 
-\item{hla_file}{(Required) A tab separated file indicating HLA types.
+\item{hla_file}{A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
 
 See by data(sample_hla_table_c1); sample_hla_table_c1;}
@@ -46,7 +46,7 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{hmdir}{Home directory for the analysis (Default = getwd()).}
 
-\item{job_id}{Job-Id to be attached in output files (Default = "NO_job_id").}
+\item{job_id}{Job-id to be attached in output files (Default = "NO_job_id").}
 
 \item{export_dir}{The directory will be stored results (Default = "paste("result", file_name_in_hla_table, job_id, sep=".")")}
 
@@ -58,7 +58,9 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{CalculateIC50}{Whether Calculate IC50 by NetMHCpan or not.}
 
-\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
+\item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
+
+\item{MHCflurry}{Also output results using MHCflurry (Default=FALSE).}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
@@ -69,9 +71,9 @@ Pos:  The position of a fraction of peptide used to be evaluated from the full-l
 
 Gene:  Gene symbol used to be evaluated in NetMHCpan.
 
-Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
-
 Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+
+Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 
 Mut_IC50: IC50 value for evaluated mutant peptide.
 
@@ -120,5 +122,5 @@ MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
 MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 }
 \description{
-Calculate Neoantigen Candidates from A Given Sequence for MHC Class1
+Calculate A Set All Neoantigen Candidates from A Given Gene Symbol and nm_id for MHC Class1 (Not yet stably available)
 }

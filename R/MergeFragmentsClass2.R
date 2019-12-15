@@ -22,17 +22,12 @@ MergeFragmentsClass2<-function(hmdir = getwd(),
   info<-info[, 1:length(cinfo)]
 
   if(is.null(ncol(info))) info<-t(as.matrix(info))
-  row.names(info)<-NULL
+  rownames(info)<-NULL
   colnames(info)<-cinfo
 
   info[,12]<-paste(info[,3], info[,12], sep="_")
-  info[, match("Tumor_RNA_based_on_DNA",colnames(info))]<-
-    as.numeric(info[,match("Total_RNA",colnames(info))]) *
-     as.numeric(info[,match("Tumor_Depth",colnames(info))]) /
-      as.numeric(info[,match("Total_Depth",colnames(info))])
 
   #Remove RNAseq Info
-  rownames(info)<-NULL
   info<-info[, -match(c("Wt_DNA", "Mutant_DNA"), colnames(info))]
   if(is.null(ncol(info))){info<-t(as.matrix(info))}
 
@@ -50,7 +45,7 @@ MergeFragmentsClass2<-function(hmdir = getwd(),
     test1<-gsub(" <=WB| <=SB", "", test1)
     ss1<-grep("Pos ", test1) + 2
     ee1<-grep("of strong", test1) - 2
-    num1<-sapply(gsub("[ ]+", "\t", test1[ss1]), function(x) strsplit(x, "\t")[[1]][11])
+    num1<-sapply(gsub("[ ]+", "\t", test1[ss1]), function(x) strsplit(x, "\t")[[1]][4])
 
     #if(length(grep("No peptides derived", test1[1:45])) > 0) next
     if(length(grep("cannot be found in hla_pseudo list", test1)) > 0) next
@@ -58,10 +53,10 @@ MergeFragmentsClass2<-function(hmdir = getwd(),
     for(h1 in 1:length(num1)){
       print(paste((h1 / length(num1)) * 100, "perc. fin"))
       if(ss1[h1] == ee1[h1]){
-        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(3, 2, 5, 7, 4, 10, 11) - 1])
+        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(2, 5, 4, 6, 3, 9, 10)])
         d1<-t(d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),])
       } else {
-        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(3, 2, 5, 7, 4, 10, 11) + 1]))
+        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(2, 5, 4, 6, 3, 9, 10)]))
         d1<-d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),]
         if(is.null(nrow(d1))) d1<-t(d1)
       }

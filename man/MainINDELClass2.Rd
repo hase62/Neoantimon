@@ -86,7 +86,7 @@ See data(sample_copynum); sample_copynum;}
 
 \item{purity}{Tumor purity or tumor contents ratio required to calculate CCFP (Default=1).}
 
-\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.1/netMHCpan").}
+\item{netMHCIIpan_dir}{The file directory to netMHCpan (Default="lib/netMHCIIpan-3.2/netMHCpan").}
 
 \item{refdna_file}{refdna_file information to be used to calculate RNA VAF (Default=NA).
 

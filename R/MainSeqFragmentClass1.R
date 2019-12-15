@@ -4,12 +4,25 @@
 #'
 #'@param group_ids flag to cluster the same group
 #'
-#'@param hla_file (Required) A tab separated file indicating HLA types.
+#'
+#'
+#'@param hla_file A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
 #'
+#'
+#'
+#'
 #'@param hla_types Set a list of HLA types
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@param file_name_in_hla_table If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).
 #'
@@ -21,6 +34,24 @@
 #'
 #'@param peptide_length Peptide Length to be generated (Default = {8,9,10,11,12,13}).
 #'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'@param refflat_file refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
 #'
 #'See "https://github.com/hase62/Neoantimon"
@@ -28,6 +59,27 @@
 #'@param refmrna_file refMrna file to be used in constructing peptide (Default=paste(hmdir, "lib/refMrna.fa", sep="").
 #'
 #'See "https://github.com/hase62/Neoantimon"
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
@@ -39,7 +91,14 @@
 #'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 #'It can be indicated when nm_id is not NA.
 #'
-#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+
+#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
@@ -49,13 +108,19 @@
 #'
 #'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
-#'
 #'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'
+#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
 #'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
 #'@return Mut_Rank: Rank value for evaluated mutanat peptide.
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@return Chr: Chromosome Number of the mutation.
 #'
