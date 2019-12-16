@@ -1,18 +1,18 @@
 #'Calculate Neoantigen Candidates on SNVs for MHC Class1
 #'
-#'@param input_file (Required) An input vcf file annotated by,
+#'@param input_annovar_file An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
 #'
-#'e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares, or apply annotation_option = TRUE.
+#'See by data(sample_vcf); sample_vcf.txt;
 #'
-#'See by data(sample_vcf); sample_vcf;
+#'@param input_vep_format_file An input file annotated by Ensembl Variant Effect Predictor (VEP).
+#'
+#'@param input_vcf_format_file_and_vep A list of (1) An input vcf file, (2) path to Ensembl Variant Effect Predictor (VEP), and (3) cache file for VEP.
+#'Before using this option, please install vep according to the official cite ("https://asia.ensembl.org/info/docs/tools/vep/index.html").
 #'
 #'@param hla_file A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
-#'
-#'
-#'
 #'
 #'
 #'@param hla_types Set a list of HLA types
@@ -25,7 +25,7 @@
 #'
 #'
 #'
-#'@param file_name_in_hla_table If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).
+#'@param file_name_in_hla_table If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name.
 #'
 #'@param hmdir Home directory for the analysis (Default = getwd()).
 #'
@@ -99,8 +99,6 @@
 #'
 #'@param multiple_variants Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.
 #'
-#'@param apply_annotation Anontate by Ensembl Variant Effect Predictor (VEP).
-#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
 #'@return HLA:  HLA type used to calculate neoantigen.
@@ -166,10 +164,12 @@
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
 #'@export
-MainSNVClass1<-function(input_file,
+MainSNVClass1<-function(input_annovar_format_file = NA,
+                        input_vep_format_file = NA,
+                        input_vcf_format_file_and_vep = NA,
                         hla_file = "here_is_a_table",
                         hla_types = NA,
-                        file_name_in_hla_table = input_file,
+                        file_name_in_hla_table,
                         refflat_file = paste(hmdir, "lib/refFlat.txt", sep="/"),
                         refmrna_file = paste(hmdir, "lib/refMrna.fa", sep="/"),
                         hmdir = getwd(),
@@ -197,14 +197,15 @@ MainSNVClass1<-function(input_file,
                         peptide_length = c(8, 9, 10, 11, 12, 13),
                         IgnoreShortPeptides = TRUE,
                         SNPs = NA,
-                        multiple_variants = FALSE,
-                        apply_annotation = FALSE){
+                        multiple_variants = FALSE){
 
-  #Install data.table
-  #if(!library(data.table, logical.return = TRUE)) {
-  #  install.packages("data.table", quiet = TRUE)
-  #}
-  #library(data.table)
+  #Obtain Data
+  if(Read_files(input_annovar_format_file, input_vep_format_file, input_vcf_format_file_and_vep)) return(NULL)
+  if(!is.na(input_vcf_format_file_and_vep)) input_vep_format_file <- annotation_by_vep(input_vcf_format_file_and_vep[1],
+                                                                                       input_vcf_format_file_and_vep[2],
+                                                                                       input_vcf_format_file_and_vep[3])
+  if(is.null(input_vep_format_file)) return(NULL)
+  if(!is.na(input_vep_format_file)) input_annovar_format_file <- convert_to_annovar_format_from_vep(input_vep_format_file)
 
   #Get HLA-Type
   if(file.exists(hla_file) & !is.na(hla_types[1])){
@@ -219,12 +220,12 @@ MainSNVClass1<-function(input_file,
   }
 
   #Check Required Files
-  if(CheckRequiredFiles(input_file = input_file,
+  if(CheckRequiredFiles(input_file = input_annovar_format_file,
                         hla_types = hla_types,
                         refflat_file = refflat_file,
                         refmrna_file = refmrna_file)) return(NULL)
 
-  flg <- CheckRequiredColumns(input_file = input_file,
+  flg <- CheckRequiredColumns(input_file = input_annovar_format_file,
                               chr_column = chr_column,
                               mutation_start_column = mutation_start_column,
                               mutation_end_column = mutation_end_column,
@@ -243,7 +244,7 @@ MainSNVClass1<-function(input_file,
   job_id <- paste(job_id, "SNV", sep = "_")
 
   #Generate FASTA and mutation Profile
-  GenerateMutatedSeq(input_file = input_file,
+  GenerateMutatedSeq(input_file = input_annovar_format_file,
                      hmdir = hmdir,
                      job_id = job_id,
                      refflat_file = refflat_file,
@@ -265,7 +266,7 @@ MainSNVClass1<-function(input_file,
                      multiple_variants = multiple_variants,
                      apply_annotation = apply_annotation)
 
-  output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
+  output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_annovar_format_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
@@ -298,12 +299,12 @@ MainSNVClass1<-function(input_file,
                      netMHCpan_dir,
                      peptide_length,
                      export_dir,
-                     input_file,
+                     input_annovar_format_file,
                      job_id)
 
   #Merge Results
   result <- MergeSNVClass1(input_dir = export_dir,
-                           file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
+                           file_prefix = paste(rev(strsplit(input_annovar_format_file, "/")[[1]])[1], job_id, sep = "."),
                            annotation_file = output_peptide_txt_file)
 
   #Execute mhcflurry
@@ -314,7 +315,7 @@ MainSNVClass1<-function(input_file,
                        hla_types,
                        peptide_length,
                        export_dir,
-                       input_file,
+                       input_annovar_format_file,
                        job_id)
     result_mhcflu <- InsertMhcflurryResults(result, output_peptide_prefix, hla_types)
     print("Successfully Finished.")

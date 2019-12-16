@@ -1,0 +1,5 @@
+Chr	Start	End	Ref	Alt	Func.refGene	Gene.refGene	GeneDetail.refGene	ExonicFunc.refGene	AAChange.refGene
+1	3843202	3843202	T	C	exonic	CEP104	.	missense_variant	CEP104:NM_014704:exon_:c.t1028c:p.T230A
+1	8361355	8361355	T	A	exonic	RERE	.	missense_variant	RERE:NM_012102:exon_:c.t2787a:p.T718S,RERE:NM_001042681:exon_:c.t2787a:p.T718S,RERE:NM_001042682:exon_:c.t2787a:p.T718S
+1	8361355	8361355	T	A	exonic	RERE	.	missense_variant	RERE:NM_012102:exon_:c.t1503a:p.T450S,RERE:NM_001042681:exon_:c.t1503a:p.T450S,RERE:NM_001042682:exon_:c.t1503a:p.T450S
+1	16425116	16425116	T	G	exonic	SPATA21	.	missense_variant	SPATA21:NM_198546:exon_:c.t924g:p.E195A,SPATA21:NM_001353349:exon_:c.t924g:p.E195A

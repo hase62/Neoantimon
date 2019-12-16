@@ -1,3 +1,15 @@
+Read_files <- function(input_annovar_format_file, input_vep_format_file, input_vcf_format_file_and_vep){
+  num_files <- length(which(!is.na(c(input_annovar_format_file,
+                                     input_vep_format_file,
+                                     input_vcf_format_file_and_vep))))
+  if(num_files != 1) {
+    print("Please indicate one of input_annovar_format_file, input_vep_format_file, and input_vcf_format_file_and_vep. ")
+    return(TRUE)
+  }
+  return(FALSE)
+}
+
+
 CheckRequiredFiles<-function(input_file,
                              hla_types,
                              refflat_file,

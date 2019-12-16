@@ -11,7 +11,7 @@ VignetteBuilder: knitr
 Encoding: UTF-8
 Depends: R (>= 3.3.0)
 biocViews:
-Imports: ensemblVEP, devtools, graphics, grDevices, stats, utils
+Imports: ensemblVEP, devtools, graphics, grDevices, stats, utils, biomaRt
 Suggests: data.table, knitr, rmarkdown
 LazyData: FALSE
 RoxygenNote: 7.0.2

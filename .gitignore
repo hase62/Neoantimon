@@ -7,6 +7,8 @@ lib/netMHCpan-4.0/*
 lib/Sample.R
 lib/refFlat.txt
 lib/refMrna.fa
+lib/refFlat.grch38.txt
+lib/refMrna.grch38.fa
 
 .Rproj.user
 doc
