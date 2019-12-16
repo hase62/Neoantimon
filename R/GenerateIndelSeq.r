@@ -110,7 +110,7 @@ GenerateIndelSeq<-function(input_file,
     hit <- as.numeric(sapply(nm_ids, function(x) grep("NM_", x)))
 
     #Calculate All NM_IDs in Each Mutation
-    Pass <- FALSE
+    Pass <- TRUE
     for(h in hit){
       #For example, nm_ids[[1]]="SAMD11"    "NM_152486" "exon9"     "c.C880T"   "p.Q294X"...
       g_name <- nm_ids[[1]][h - 1]
@@ -187,6 +187,7 @@ GenerateIndelSeq<-function(input_file,
 
         #Check Peptide Length
         stop_loop<-FALSE
+        PASS <- FALSE
         for(k in unique(0, d, e)){
           dna_trans <- substr(dna, ts_point, te_point)
           if(!is.na(SNPs)) dna_trans <- apply_multiple_snps(SNPs_vcf, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans, trans_to, trans_from)
@@ -222,7 +223,7 @@ GenerateIndelSeq<-function(input_file,
           }
 
           #Apply Multiple SNVs
-          dna_trans_mut <- apply_multiple_snvs_to_indel(data_snv, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr, strand, substr(dna, ts_point, nchar(dna)), trans_to, trans_from)
+          dna_trans_mut <- apply_multiple_snvs_to_indel(data_snv, multiple_variants, exon_start, mutation_start_column, chr_column, mutation_ref_column, mutation_alt_column, exon_end, chr, strand, substr(dna, ts_point, nchar(dna)), trans_to, trans_from)
 
           #Make Mutated-DNA
           dna_trans_mut <- make_indel_dna(strand, dna_trans_mut, m_point_2, m_alt, trans_to, trans_from, m_ref)
@@ -231,6 +232,8 @@ GenerateIndelSeq<-function(input_file,
           #Make Mutated-Peptide
           peptide <- make_mutated_peptide(dna_trans_mut, amino, codon)
           if(is.null(peptide)) next
+
+
 
 
 

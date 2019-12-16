@@ -5,10 +5,12 @@
 \title{Calculate Neoantigen Candidates on INDELs for MHC Class1}
 \usage{
 MainINDELClass1(
-  input_file,
+  input_annovar_format_file = NA,
+  input_vep_format_file = NA,
+  input_vcf_format_file_and_vep = NA,
   hla_file = "here_is_a_table",
   hla_types = NA,
-  file_name_in_hla_table = input_file,
+  file_name_in_hla_table = "sample",
   refflat_file = paste(hmdir, "lib/refFlat.txt", sep = "/"),
   refmrna_file = paste(hmdir, "lib/refMrna.fa", sep = "/"),
   hmdir = getwd(),
@@ -36,16 +38,14 @@ MainINDELClass1(
   peptide_length = c(8, 9, 10, 11, 12, 13),
   IgnoreShortPeptides = TRUE,
   SNPs = NA,
-  multiple_variants = FALSE,
-  apply_annotation = FALSE
+  multiple_variants = FALSE
 )
 }
 \arguments{
-\item{input_file}{(Required) An input vcf file annotated by,
+\item{input_vep_format_file}{An input file annotated by Ensembl Variant Effect Predictor (VEP).}
 
-e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwares.
-
-See by data(sample_vcf); sample_vcf;}
+\item{input_vcf_format_file_and_vep}{An input vcf file and path to Ensembl Variant Effect Predictor (VEP).
+Before using this option, please install vep according to the official cite ("https://asia.ensembl.org/info/docs/tools/vep/index.html").}
 
 \item{hla_file}{A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
@@ -54,7 +54,7 @@ See by data(sample_hla_table_c1); sample_hla_table_c1;}
 
 \item{hla_types}{Set a list of HLA types}
 
-\item{file_name_in_hla_table}{If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name (Default=input_file).}
+\item{file_name_in_hla_table}{If the name (1st column) in HLA table is not the same as input_file, indicate the corresponding name.}
 
 \item{refflat_file}{refFlat file to be used in constructing peptide. (Default=paste(hmdir, "lib/refFlat.txt", sep="").
 
@@ -132,7 +132,9 @@ samtools 0_x_x includes bcftools in the directory.}
 
 \item{multiple_variants}{Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.}
 
-\item{apply_annotation}{Anontate by Ensembl Variant Effect Predictor (VEP).}
+\item{input_annovar_file}{An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
+
+See by data(sample_vcf); sample_vcf.txt;}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

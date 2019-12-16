@@ -4,16 +4,15 @@
 #'
 #'@export
 TestAnalysis<-function(){
-  retur(NULL)
   install.packages('devtools');
   library(devtools);
   install_github('hase62/Neoantimon');
   library(Neoantimon);
-  ls(all=T)
-  character(0)
-  rm(list=ls(all=TRUE))
+  #ls(all=T)
+  #character(0)
+  #rm(list=ls(all=TRUE))
 
-  for(rc in list.files("/Users/takaorihasegawa/Git/Neoantimon/R")) source(paste("/Users/takaorihasegawa/Git/Neoantimon/R", rc, sep = "/"))
+  #for(rc in list.files("/Users/takaorihasegawa/Git/Neoantimon/R")) source(paste("/Users/takaorihasegawa/Git/Neoantimon/R", rc, sep = "/"))
 
   print("Please Install NetMHCpan and NetMHCIIpan if you did not do it.")
   print("Please Download refFlat and refmRNA files if you did not do it.")
@@ -33,11 +32,11 @@ TestAnalysis<-function(){
   print(head(Result_HLA1_SNV))
   print(Export_Summary_SNV(Input = Result_HLA1_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 
-  Result_HLA1_SNV <- MainSNVClass1(input_vep_format_file = "data/sample.vep.txt",
+  Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file =  "data/sample.vep.txt.annovar_format.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
-                                   refflat_file  = "lib/refFlat.txt",
-                                   refmrna_file = "lib/refMrna.fa",
+                                   refflat_file  = "lib/refFlat.grch38.txt",
+                                   refmrna_file = "lib/refMrna.grch38.fa",
                                    rnaexp_file = "data/sample_rna_exp.txt",
                                    netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                    SNPs = "lib/sample.snps.vcf",
@@ -89,7 +88,7 @@ TestAnalysis<-function(){
                                        multiple_variants = TRUE)
   print(head(Result_HLA2_INDEL))
 
-  Result_HLA1_SV <- MainSVFUSIONClass1(input_annovar_format_file = "data/sample_sv_bnd.txt",
+  Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
                                        refflat_file  = "lib/refFlat.txt",
@@ -104,7 +103,7 @@ TestAnalysis<-function(){
   print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
   print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
 
-  Result_HLA2_SV <- MainSVFUSIONClass2(input_annovar_format_file = "data/sample_sv_bnd.txt",
+  Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
                                        refflat_file  = "lib/refFlat.txt",

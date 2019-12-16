@@ -386,6 +386,9 @@ make_mutated_dna <- function(strand, dna_trans, m_point_2, m_ref, m_alt, trans_t
     if(substr(dna_trans, m_point_2, m_point_2) == tolower(m_ref))
       substr(dna_trans, m_point_2, m_point_2) <- tolower(m_alt)
   } else {
+    print(substr(dna_trans, m_point_2, m_point_2))
+    print(tolower(m_ref))
+    print(trans_to[match(tolower(m_ref), trans_from)])
     if(substr(dna_trans, m_point_2, m_point_2) == trans_to[match(tolower(m_ref), trans_from)])
       substr(dna_trans, m_point_2, m_point_2) <- trans_to[match(tolower(m_alt), trans_from)]
   }
@@ -473,7 +476,7 @@ check_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation
   return(multi_i)
 }
 
-apply_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
+apply_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, mutation_ref_column, mutation_alt_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
   multi_i <- check_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, exon_end, chr)
   for(multi_i_element in multi_i){
     m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)
@@ -574,7 +577,7 @@ check_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mu
   return(multi_i)
 }
 
-apply_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
+apply_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, chr_column, mutation_ref_column, mutation_alt_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
   multi_i <- check_multiple_snvs_to_indel(data, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr)
   for(multi_i_element in multi_i){
     m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)

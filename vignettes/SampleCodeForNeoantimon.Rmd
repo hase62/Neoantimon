@@ -18,6 +18,7 @@ output:
 #library(devtools);
 #install_github('hase62/Neoantimon');
 #library(Neoantimon);
+return()
 for(rc in list.files("/Users/takaorihasegawa/Git/Neoantimon/R")) source(paste("/Users/takaorihasegawa/Git/Neoantimon/R", rc, sep = "/"))
 
 ```
@@ -97,7 +98,7 @@ TestAnalysis
 ```
 
 ```{r Get SNV Sample 1 in Test Analysis}
-  Result_HLA1_SNV <- MainSNVClass1(input_file = "data/sample_vcf.txt",
+  Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
                                    refflat_file  = "lib/refFlat.txt",
@@ -108,7 +109,6 @@ TestAnalysis
                                    depth_normal_column = 14,
                                    SNPs = "lib/sample.snps.vcf",
                                    multiple_variants = TRUE,
-                                   apply_annotation = FALSE,
                                    MHCflurry = "mhctools")
   print(head(Result_HLA1_SNV[[1]]))
 ```

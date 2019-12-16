@@ -19,14 +19,14 @@ convert_to_annovar_format_from_vep <- function(vep_file) {
             Chr <- tmp[1]
             Start <- tmp[2]
             End <- tmp[2]
-            Ref <- gsub("a|t|g|c", "", strsplit(x[match("Codons", colnames(data))], "/")[[1]][1])
-            Ref <- ifelse(length(grep("STRAND=1", x[match("Extra", colnames(data))])) == 1, Ref, trans_to[match(tolower(Ref), trans_from)])
-            Alt <- gsub("a|t|g|c", "", strsplit(x[match("Codons", colnames(data))], "/")[[1]][2])
-            Alt <- ifelse(length(grep("STRAND=1", x[match("Extra", colnames(data))])) == 1, Alt, trans_to[match(tolower(Alt), trans_from)])
+            Ref_acid <- gsub("a|t|g|c", "", strsplit(x[match("Codons", colnames(data))], "/")[[1]][1])
+            Ref <- ifelse(length(grep("STRAND=1", x[match("Extra", colnames(data))])) == 1, Ref_acid, trans_to[match(tolower(Ref_acid), trans_from)])
+            Alt_acid <- gsub("a|t|g|c", "", strsplit(x[match("Codons", colnames(data))], "/")[[1]][2])
+            Alt <- ifelse(length(grep("STRAND=1", x[match("Extra", colnames(data))])) == 1, Alt_acid, trans_to[match(tolower(Alt_acid), trans_from)])
             Func.refGene <- "exonic"
             Gene.refGene <- paste(unique(values[which(!is.na(match(values[, 2], x[match("Gene", colnames(data))]))), 3]), collapse = ";")
             ExonicFunc.refGene <- x[match("Consequence", colnames(data))]
-            am <- paste("c.", Ref, x[match("cDNA_position", colnames(data))], Alt, sep = "")
+            am <- paste("c.", Ref_acid, x[match("cDNA_position", colnames(data))], Alt_acid, sep = "")
             pr <- paste("p.", gsub("/", x[match("Protein_position", colnames(data))],
                         x[match("Amino_acids", colnames(data))]), sep = "")
             tmp <- values[which(!is.na(match(values[, 2], x[match("Gene", colnames(data))]))), c(3, 1)]
