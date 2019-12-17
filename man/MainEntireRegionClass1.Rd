@@ -59,8 +59,6 @@ See "https://github.com/hase62/Neoantimon"}
 \item{CalculateIC50}{Whether Calculate IC50 by NetMHCpan or not.}
 
 \item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
-
-\item{MHCflurry}{Also output results using MHCflurry (Default=FALSE).}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

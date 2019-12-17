@@ -84,7 +84,7 @@
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
-#'@param MHCflurry Also output results using MHCflurry (Default=FALSE).
+#'
 #'
 #'
 #'

@@ -1,6 +1,6 @@
 #'Calculate Neoantigen Candidates on INDELs for MHC Class2
 #'
-#'@param input_annovar_file An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
+#'@param input_annovar_format_file An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
 #'
 #'See by data(sample_vcf); sample_vcf.txt;
 #'

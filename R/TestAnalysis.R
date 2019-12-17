@@ -4,10 +4,10 @@
 #'
 #'@export
 TestAnalysis<-function(){
-  install.packages('devtools');
-  library(devtools);
-  install_github('hase62/Neoantimon');
-  library(Neoantimon);
+  #install.packages('devtools');
+  #library(devtools);
+  #install_github('hase62/Neoantimon');
+  #library(Neoantimon);
   #ls(all=T)
   #character(0)
   #rm(list=ls(all=TRUE))

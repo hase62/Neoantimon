@@ -42,6 +42,10 @@ MainINDELClass1(
 )
 }
 \arguments{
+\item{input_annovar_format_file}{An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
+
+See by data(sample_vcf); sample_vcf.txt;}
+
 \item{input_vep_format_file}{An input file annotated by Ensembl Variant Effect Predictor (VEP).}
 
 \item{input_vcf_format_file_and_vep}{An input vcf file and path to Ensembl Variant Effect Predictor (VEP).
@@ -131,10 +135,6 @@ samtools 0_x_x includes bcftools in the directory.}
 \item{SNPs}{Apply indivisual SNPs on peptides by indicate a vcf file.}
 
 \item{multiple_variants}{Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.}
-
-\item{input_annovar_file}{An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
-
-See by data(sample_vcf); sample_vcf.txt;}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
