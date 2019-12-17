@@ -303,320 +303,729 @@ library(Neoantimon);
 
 ##### Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
 ```
-  Result_HLA1_SNV <- MainSNVClass1(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
-                                   hla_file = "lib/data/sample_hla_table_c1.txt",
+                                   hla_file = "data/sample_hla_table_c1.txt",
                                    refflat_file  = "lib/refFlat.txt",
                                    refmrna_file = "lib/refMrna.fa",
-                                   rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                   rnaexp_file = "data/sample_rna_exp.txt",
                                    netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                    depth_tumor_column = 12,
-                                   depth_normal_column = 14
-  )
+                                   depth_normal_column = 14,
+                                   SNPs = "lib/sample.snps.vcf",
+                                   multiple_variants = TRUE,
+                                   MHCflurry = "mhctools")
 
-  Result_HLA2_SNV <- MainSNVClass2(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
-                                   hla_file = "lib/data/sample_hla_table_c2.txt",
+                                   hla_file = "data/sample_hla_table_c2.txt",
                                    refflat_file  = "lib/refFlat.txt",
                                    refmrna_file = "lib/refMrna.fa",
-                                   rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                   rnaexp_file = "data/sample_rna_exp.txt",
                                    netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
                                    depth_tumor_column = 12,
-                                   depth_normal_column = 14
-  )
+                                   depth_normal_column = 14,
+                                   SNPs = "lib/sample.snps.vcf",
+                                   multiple_variants = TRUE)
 
-  Result_HLA1_INDEL <- MainINDELClass1(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "lib/data/sample_hla_table_c1.txt",
+                                       hla_file = "data/sample_hla_table_c1.txt",
                                        refflat_file  = "lib/refFlat.txt",
                                        refmrna_file = "lib/refMrna.fa",
-                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       rnaexp_file = "data/sample_rna_exp.txt",
                                        netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                        depth_tumor_column = 12,
-                                       depth_normal_column = 14
-  )
+                                       depth_normal_column = 14,
+                                       SNPs = "lib/sample.snps.vcf",
+                                       multiple_variants = TRUE,
+                                       MHCflurry = "mhctools")
 
-  Result_HLA2_INDEL <- MainINDELClass2(input_file = "lib/data/sample_vcf.txt",
+  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "lib/data/sample_hla_table_c2.txt",
+                                       hla_file = "data/sample_hla_table_c2.txt",
                                        refflat_file  = "lib/refFlat.txt",
                                        refmrna_file = "lib/refMrna.fa",
-                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       rnaexp_file = "data/sample_rna_exp.txt",
                                        netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
                                        depth_tumor_column = 12,
-                                       depth_normal_column = 14
-  )
+                                       depth_normal_column = 14,
+                                       SNPs = "lib/sample.snps.vcf",
+                                       multiple_variants = TRUE)
 ```
 
 ##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
 ```
-  Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "lib/data/sample_sv_bnd.txt",
+  Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "lib/data/sample_hla_table_c1.txt",
+                                       hla_file = "data/sample_hla_table_c1.txt",
                                        refflat_file  = "lib/refFlat.txt",
                                        refmrna_file = "lib/refMrna.fa",
-                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       rnaexp_file = "data/sample_rna_exp.txt",
                                        netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
                                        refdna_file = "lib/GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
-                                       mate_id_column = 8
-  )
+                                       mate_id_column = 8)
 
-  Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "lib/data/sample_sv_bnd.txt",
+  Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "lib/data/sample_hla_table_c2.txt",
+                                       hla_file = "data/sample_hla_table_c2.txt",
                                        refflat_file  = "lib/refFlat.txt",
                                        refmrna_file = "lib/refMrna.fa",
-                                       rnaexp_file = "lib/data/sample_rna_exp.txt",
+                                       rnaexp_file = "data/sample_rna_exp.txt",
                                        netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
                                        refdna_file = "lib/GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
-                                       mate_id_column = 8
-  )
+                                       mate_id_column = 8)
 ```
 
 ##### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 ```
-  Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = c("atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
-  															  "tggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc"),
+  Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
-                                           hla_file = "lib/data/sample_hla_table_c1.txt",
+                                           hla_file = "data/sample_hla_table_c1.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                                           nm_id = c("NM_003998", "NM_001165412"),
-                                           reading_frame = 1
-  )
+                                           reference_nm_id = c("NM_003998", "NM_001165412"))
 
-  Result_HLA2_Seq <- MainSeqFragmentClass2(input_nm_id = c("NM_003998", "NM_001165412"),
+  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
-                                           hla_file = "lib/data/sample_hla_table_c2.txt",
+                                           hla_file = "data/sample_hla_table_c2.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
                                            refflat_file  = "lib/refFlat.txt",
                                            refmrna_file = "lib/refMrna.fa",
                                            netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
-                                           gene_symbol = c("NFKB1", "BCL3"),
-                                           reading_frame = 3
-  )
+                                           reference_gene_symbol = c("NFKB1", "BCL3"))
 ```
 
 ## 5. Result
 
 **They're also included in Result_HLA*_**
-
-sample_result_SNV_CLASS1_ALL.txt
+  print(head(Result_HLA1_SNV[[1]]))
 ```
-##           HLA Pos    Gene Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank
-## 1 HLA-A*02:01   2 0_DHX15            EPERDYLEAAIRA  37952.9  63.3899
-## 2 HLA-A*02:01   3 0_DHX15            PERDYLEAAIRAV  12108.2  16.5100
-## 3 HLA-A*02:01   4 0_DHX15            ERDYLEAAIRAVI  12109.5  16.5114
-## 4 HLA-A*02:01   5 0_DHX15            RDYLEAAIRAVIQ  32063.2  46.0009
-## 5 HLA-A*02:01   6 0_DHX15            DYLEAAIRAVIQI   4819.6   9.2763
-## 6 HLA-A*02:01   7 0_DHX15            YLEAAIRAVIQIH   7309.7  11.8086
-##   Evaluated_Wt_Peptide Wt_IC50 Wt_Rank Chr     NM_ID   Change Ref Alt Prob
-## 1        EPERDYLEAAIRT 41213.3 75.7538   4 NM_001358 c.A1012G   T   C    0
-## 2        PERDYLEAAIRTV 11859.7 16.2523   4 NM_001358 c.A1012G   T   C    0
-## 3        ERDYLEAAIRTVI 14831.9 19.2905   4 NM_001358 c.A1012G   T   C    0
-## 4        RDYLEAAIRTVIQ 33185.2 48.8110   4 NM_001358 c.A1012G   T   C    0
-## 5        DYLEAAIRTVIQI  4504.5  8.9225   4 NM_001358 c.A1012G   T   C    0
-## 6        YLEAAIRTVIQIH  6924.0 11.4357   4 NM_001358 c.A1012G   T   C    0
-##   Mutation_Prob. Exon_Start Exon_End Mutation_Position Total_Depth
-## 1              0   24529087 24586184        4_24556416         294
-## 2              0   24529087 24586184        4_24556416         294
-## 3              0   24529087 24586184        4_24556416         294
-## 4              0   24529087 24586184        4_24556416         294
-## 5              0   24529087 24586184        4_24556416         294
-## 6              0   24529087 24586184        4_24556416         294
-##   Tumor_Depth                  Wt_Peptide              Mutant_Peptide
-## 1         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
-## 2         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
-## 3         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
-## 4         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
-## 5         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
-## 6         143 PEPERDYLEAAIRTVIQIHMCEEEEGD PEPERDYLEAAIRAVIQIHMCEEEEGD
-##   Total_RNA Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio
-## 1   1.35204              NA        NA              0.6576249       NA
-## 2   1.35204              NA        NA              0.6576249       NA
-## 3   1.35204              NA        NA              0.6576249       NA
-## 4   1.35204              NA        NA              0.6576249       NA
-## 5   1.35204              NA        NA              0.6576249       NA
-## 6   1.35204              NA        NA              0.6576249       NA
-##   MutRatio_Min MutRatio_Max
-## 1           NA           NA
-## 2           NA           NA
-## 3           NA           NA
-## 4           NA           NA
-## 5           NA           NA
-## 6           NA           NA
-```
-
-sample_result_INDEL_CLASS1_ALL.txt
-```
-##           HLA Pos      Gene Evaluated_Mutant_Peptide_Core
-## 1 HLA-A*02:01   1 0_UGT2B28                    GIPMVGIPLV
-## 2 HLA-A*02:01   2 0_UGT2B28                 YHGIPMVGIPLVL
-## 3 HLA-A*02:01   3 0_UGT2B28                  HGIPMVGIPLVL
-## 4 HLA-A*02:01   4 0_UGT2B28                    GIPMVGIPLV
-## 5 HLA-A*02:01   5 0_UGT2B28                    IPMVGIPLVL
-## 6 HLA-A*02:01   2 0_UGT2B28                    GIPMVGIPLV
-##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank Chr     NM_ID         Change
-## 1            IYHGIPMVGIPLV   8158.7  12.6683   4 NM_053039 Out_c.1186dupT
-## 2            YHGIPMVGIPLVL    264.7   1.9668   4 NM_053039 Out_c.1186dupT
-## 3            HGIPMVGIPLVLG  14185.4  18.6104   4 NM_053039 Out_c.1186dupT
-## 4            GIPMVGIPLVLGS  13299.6  17.6940   4 NM_053039 Out_c.1186dupT
-## 5            IPMVGIPLVLGST  17674.7  22.4056   4 NM_053039 Out_c.1186dupT
-## 6             YHGIPMVGIPLV   5439.5   9.9316   4 NM_053039 Out_c.1186dupT
-##   Ref Alt Prob Mutation_Prob. Exon_Start Exon_End Mutation_Position
-## 1   -   T    0              0   70146216 70160768        4_70156404
-## 2   -   T    0              0   70146216 70160768        4_70156404
-## 3   -   T    0              0   70146216 70160768        4_70156404
-## 4   -   T    0              0   70146216 70160768        4_70156404
-## 5   -   T    0              0   70146216 70160768        4_70156404
-## 6   -   T    0              0   70146216 70160768        4_70156404
-##   Total_Depth Tumor_Depth                   Wt_Peptide     Mutant_Peptide
-## 1          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
-## 2          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
-## 3          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
-## 4          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
-## 5          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
-## 6          84          43 IYHGIPMVGIPLFWDQPDNIAHMKAKGA IYHGIPMVGIPLVLGSTX
-##   Total_RNA Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio
-## 1         0              NA        NA                      0       NA
-## 2         0              NA        NA                      0       NA
-## 3         0              NA        NA                      0       NA
-## 4         0              NA        NA                      0       NA
-## 5         0              NA        NA                      0       NA
-## 6         0              NA        NA                      0       NA
-##   MutRatio_Min MutRatio_Max
-## 1           NA           NA
-## 2           NA           NA
-## 3           NA           NA
-## 4           NA           NA
-## 5           NA           NA
-## 6           NA           NA
+##      HLA           Pos Gene        Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank 
+## [1,] "HLA-A*02:01" "2" "0_CYP4A11" "HQERCREEIHSLP"          "38277.9" "64.5038"
+## [2,] "HLA-A*02:01" "3" "0_CYP4A11" "QERCREEIHSLPG"          "44731.5" "90.0840"
+## [3,] "HLA-A*02:01" "4" "0_CYP4A11" "ERCREEIHSLPGD"          "45387.7" "92.3912"
+## [4,] "HLA-A*02:01" "5" "0_CYP4A11" "RCREEIHSLPGDG"          "45916.2" "94.2252"
+## [5,] "HLA-A*02:01" "6" "0_CYP4A11" "CREEIHSLPGDGA"          "41190.5" "75.6598"
+## [6,] "HLA-A*02:01" "7" "0_CYP4A11" "REEIHSLPGDGAS"          "42224.3" "79.8820"
+##      Evaluated_Wt_Peptide Wt_IC50   Wt_Rank   Chr NM_ID       Change     Ref
+## [1,] "HQERCREEIHSLL"      "21979.5" "27.7445" "1" "NM_000778" "c.T1064C" "A"
+## [2,] "QERCREEIHSLLG"      "43057.5" "83.3295" "1" "NM_000778" "c.T1064C" "A"
+## [3,] "ERCREEIHSLLGD"      "43941.4" "86.9293" "1" "NM_000778" "c.T1064C" "A"
+## [4,] "RCREEIHSLLGDG"      "43591.4" "85.5092" "1" "NM_000778" "c.T1064C" "A"
+## [5,] "CREEIHSLLGDGA"      "40373.3" "72.4303" "1" "NM_000778" "c.T1064C" "A"
+## [6,] "REEIHSLLGDGAS"      "41200.3" "75.7003" "1" "NM_000778" "c.T1064C" "A"
+##      Alt Prob Mutation_Prob. Exon_Start Exon_End   Mutation_Position
+## [1,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
+## [2,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
+## [3,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
+## [4,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
+## [5,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
+## [6,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
+##      Total_Depth Tumor_Depth Wt_Peptide                   
+## [1,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
+## [2,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
+## [3,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
+## [4,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
+## [5,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
+## [6,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
+##      Mutant_Peptide                Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
+## [2,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
+## [3,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
+## [4,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
+## [5,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
+## [6,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] "0"                    "NA"     "NA"         "NA"        
+## [2,] "0"                    "NA"     "NA"         "NA"        
+## [3,] "0"                    "NA"     "NA"         "NA"        
+## [4,] "0"                    "NA"     "NA"         "NA"        
+## [5,] "0"                    "NA"     "NA"         "NA"        
+## [6,] "0"                    "NA"     "NA"         "NA"
 ```
 
-sample_result_SVFusion_CLASS1_ALL.txt
+  print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
 ```
-##           HLA Pos       Gene Evaluated_Mutant_Peptide_Core
-## 1 HLA-A*02:01   1 0_SLC25A12                 GDPHELRNIFLQL
-## 2 HLA-A*02:01   2 0_SLC25A12                  DPHELRNIFLQL
-## 3 HLA-A*02:01   3 0_SLC25A12                   ELRNIFLQLSA
-## 4 HLA-A*02:01   4 0_SLC25A12                 HELRNIFLQLSAV
-## 5 HLA-A*02:01   5 0_SLC25A12                  ELRNIFLQLSAV
-## 6 HLA-A*02:01   6 0_SLC25A12                   LRNIFLQLSAV
-##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank Chr               NM_ID
-## 1            GDPHELRNIFLQL   7994.3  12.5026   2 NM_003705_NM_015090
-## 2            DPHELRNIFLQLS  36655.0  59.0000   2 NM_003705_NM_015090
-## 3            PHELRNIFLQLSA  31164.0  43.8594   2 NM_003705_NM_015090
-## 4            HELRNIFLQLSAV   2243.7   6.1823   2 NM_003705_NM_015090
-## 5            ELRNIFLQLSAVQ  20527.4  25.8717   2 NM_003705_NM_015090
-## 6            LRNIFLQLSAVQE  22787.8  28.8756   2 NM_003705_NM_015090
-##                            Change Ref            Alt Prob Mutation_Prob.
-## 1 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
-## 2 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
-## 3 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
-## 4 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
-## 5 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
-## 6 In_SLC25A12_intron_NFASC_intron   A [1:204908711[A    0              0
-##   Exon_Start  Exon_End Mutation_Position Total_Depth Tumor_Depth
-## 1  172639914 172750816       2_172743385           0           0
-## 2  172639914 172750816       2_172743385           0           0
-## 3  172639914 172750816       2_172743385           0           0
-## 4  172639914 172750816       2_172743385           0           0
-## 5  172639914 172750816       2_172743385           0           0
-## 6  172639914 172750816       2_172743385           0           0
-##   Wt_Peptide
-## 1 MAVKVQTT...
-## 2 MAVKVQTT...
-## 3 MAVKVQTT...
-## 4 MAVKVQTT...
-## 5 MAVKVQTT...
-## 6 MAVKVQTT...
-##                                                      Mutant_Peptide
-## 1 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
-## 2 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
-## 3 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
-## 4 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
-## 5 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
-## 6 GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG
-##   Total_RNA Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio
-## 1   5.24517              NA        NA                    NaN       NA
-## 2   5.24517              NA        NA                    NaN       NA
-## 3   5.24517              NA        NA                    NaN       NA
-## 4   5.24517              NA        NA                    NaN       NA
-## 5   5.24517              NA        NA                    NaN       NA
-## 6   5.24517              NA        NA                    NaN       NA
-##   MutRatio_Min MutRatio_Max
-## 1           NA           NA
-## 2           NA           NA
-## 3           NA           NA
-## 4           NA           NA
-## 5           NA           NA
-## 6           NA           NA
+##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               4                               4 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               2                             252 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                             252                               3
 ```
 
-sample_result_SeqFragment_CLASS1_ALL.txt
+  print(head(Result_HLA2_SNV))
 ```
-##           HLA Pos    Gene Evaluated_Mutant_Peptide_Core
-## 1 HLA-A*02:01   1 0_NFKB1                 MAEDDPYLGRPEK
-## 2 HLA-A*02:01   2 0_NFKB1                 AEDDPYLGRPEKM
-## 3 HLA-A*02:01   3 0_NFKB1                     YLGRPEKMF
-## 4 HLA-A*02:01   4 0_NFKB1                    YLGRPEKMFH
-## 5 HLA-A*02:01   5 0_NFKB1                   YLGRPEKMFHL
-## 6 HLA-A*02:01   6 0_NFKB1                   YLGRPEKMFHL
-##   Evaluated_Mutant_Peptide Mut_IC50 Mut_Rank       Chr
-## 1            MAEDDPYLGRPEK  34529.5  52.6059 chr4;chr4
-## 2            AEDDPYLGRPEKM  37395.3  61.4560 chr4;chr4
-## 3            EDDPYLGRPEKMF  41328.0  76.2274 chr4;chr4
-## 4            DDPYLGRPEKMFH  42864.6  82.5363 chr4;chr4
-## 5            DPYLGRPEKMFHL   3345.9   7.5921 chr4;chr4
-## 6            PYLGRPEKMFHLD  19715.7  24.8190 chr4;chr4
-##                    NM_ID      Change Ref Alt Prob Mutation_Prob.
-## 1 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
-## 2 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
-## 3 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
-## 4 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
-## 5 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
-## 6 NM_003998;NM_001165412 NFKB1;NFKB1  NA  NA   NA             NA
-##            Exon_Start            Exon_End Mutation_Position Total_Depth
-## 1 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
-## 2 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
-## 3 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
-## 4 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
-## 5 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
-## 6 103422485;103422485 103538459;103538459      chr4;chr4_NA          NA
-##   Tumor_Depth
-## 1          NA
-## 2          NA
-## 3          NA
-## 4          NA
-## 5          NA
-## 6          NA
-##   Wt_Peptide
-## 1 MAEDDPY...
-## 2 MAEDDPY...
-## 3 MAEDDPY...
-## 4 MAEDDPY...
-## 5 MAEDDPY...
-## 6 MAEDDPY...
-##              Mutant_Peptide Total_RNA Tumor_RNA_Ratio Tumor_RNA
-## 1 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
-## 2 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
-## 3 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
-## 4 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
-## 5 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
-## 6 MAEDDPYLGRPEKMFHLDPSLTHTI        NA              NA        NA
-##   Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
-## 1                     NA       NA           NA           NA
-## 2                     NA       NA           NA           NA
-## 3                     NA       NA           NA           NA
-## 4                     NA       NA           NA           NA
-## 5                     NA       NA           NA           NA
-## 6                     NA       NA           NA           NA
+24" "95.00"  "RCREEIHSLLGDGAS"    "5387.49" "75.00" "1" "NM_000778"
+##      Change     Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
+## [1,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
+## [2,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
+## [3,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
+## [4,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
+## [5,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
+## [6,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
+##      Mutation_Position Total_Depth Tumor_Depth
+## [1,] "1_47399872"      "113"       "64"       
+## [2,] "1_47399872"      "113"       "64"       
+## [3,] "1_47399872"      "113"       "64"       
+## [4,] "1_47399872"      "113"       "64"       
+## [5,] "1_47399872"      "113"       "64"       
+## [6,] "1_47399872"      "113"       "64"       
+##      Wt_Peptide                        Mutant_Peptide                   
+## [1,] "HPKHQERCREEIHSLLGDGASITWNHLDQMP" "HPKHQERCREEIHSLPGDGASITWNHLDQMP"
+## [2,] "HPKHQERCREEIHSLLGDGASITWNHLDQMP" "HPKHQERCREEIHSLPGDGASITWNHLDQMP"
+## [3,] "HPKHQERCREEIHSLLGDGASITWNHLDQMP" "HPKHQERCREEIHSLPGDGASITWNHLDQMP"
+## [4,] "HPKHQERCREEIHSLLGDGASITWNHLDQMP" "HPKHQERCREEIHSLPGDGASITWNHLDQMP"
+## [5,] "HPKHQERCREEIHSLLGDGASITWNHLDQMP" "HPKHQERCREEIHSLPGDGASITWNHLDQMP"
+## [6,] "HPKHQERCREEIHSLLGDGASITWNHLDQMP" "HPKHQERCREEIHSLPGDGASITWNHLDQMP"
+##      Total_RNA Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio
+## [1,] "0"       "NA"            "NA"      "0"                    "NA"    
+## [2,] "0"       "NA"            "NA"      "0"                    "NA"    
+## [3,] "0"       "NA"            "NA"      "0"                    "NA"    
+## [4,] "0"       "NA"            "NA"      "0"                    "NA"    
+## [5,] "0"       "NA"            "NA"      "0"                    "NA"    
+## [6,] "0"       "NA"            "NA"      "0"                    "NA"    
+##      MutRatio_Min MutRatio_Max
+## [1,] "NA"         "NA"        
+## [2,] "NA"         "NA"        
+## [3,] "NA"         "NA"        
+## [4,] "NA"         "NA"        
+## [5,] "NA"         "NA"        
+## [6,] "NA"         "NA"
+```
+
+  print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
+```
+##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               4                               4 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               2                              60 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                              60                              10
+```
+
+  print(head(Result_HLA1_INDEL[[1]]))
+```
+xon_End  
+## [1,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [2,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [3,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [4,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [5,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [6,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+##      Mutation_Position Total_Depth Tumor_Depth Wt_Peptide                    
+## [1,] "4_70156404"      "84"        "43"        "IYHGIPMVGIPLFWDQPDNIAHMKAKGA"
+## [2,] "4_70156404"      "84"        "43"        "IYHGIPMVGIPLFWDQPDNIAHMKAKGA"
+## [3,] "4_70156404"      "84"        "43"        "IYHGIPMVGIPLFWDQPDNIAHMKAKGA"
+## [4,] "4_70156404"      "84"        "43"        "IYHGIPMVGIPLFWDQPDNIAHMKAKGA"
+## [5,] "4_70156404"      "84"        "43"        "IYHGIPMVGIPLFWDQPDNIAHMKAKGA"
+## [6,] "4_70156404"      "84"        "43"        "IYHGIPMVGIPLFWDQPDNIAHMKAKGA"
+##      Mutant_Peptide       Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] "IYHGIPMVGIPLVLGSTX" "0"       "NA"            "NA"     
+## [2,] "IYHGIPMVGIPLVLGSTX" "0"       "NA"            "NA"     
+## [3,] "IYHGIPMVGIPLVLGSTX" "0"       "NA"            "NA"     
+## [4,] "IYHGIPMVGIPLVLGSTX" "0"       "NA"            "NA"     
+## [5,] "IYHGIPMVGIPLVLGSTX" "0"       "NA"            "NA"     
+## [6,] "IYHGIPMVGIPLVLGSTX" "0"       "NA"            "NA"     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] "0"                    "NA"     "NA"         "NA"        
+## [2,] "0"                    "NA"     "NA"         "NA"        
+## [3,] "0"                    "NA"     "NA"         "NA"        
+## [4,] "0"                    "NA"     "NA"         "NA"        
+## [5,] "0"                    "NA"     "NA"         "NA"        
+## [6,] "0"                    "NA"     "NA"         "NA"
+```
+
+  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+```
+##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               3                               3 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               3                             270 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                             270                              15
+```
+  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+```
+##                                                     EMARDFLPSLKNPFWKPSILPIFMYKHCSVQFSVRHGDVQTKVHX-2_SLCO1C1
+## Num_Peptide_Per_Pep                                                                                 192.000
+## Num_Cond_Peptide_Per_Pep                                                                            192.000
+## Num_Rest_Peptide_Per_Pep                                                                              9.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                   0.047
+## -logP                                                                                                 1.035~
+```
+
+  print(head(Result_HLA2_INDEL))
+```
+      Change           Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
+## [1,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [2,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [3,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [4,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [5,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
+## [6,] "Out_c.628delA"  "T" "-" "0"  "0"            "75794041" "75915769"
+##      Mutation_Position Total_Depth Tumor_Depth
+## [1,] "4_70156404"      "84"        "43"       
+## [2,] "4_70156404"      "84"        "43"       
+## [3,] "4_70156404"      "84"        "43"       
+## [4,] "4_70156404"      "84"        "43"       
+## [5,] "4_70156404"      "84"        "43"       
+## [6,] "6_75899298"      "195"       "122"      
+##      Wt_Peptide                          Mutant_Peptide            Total_RNA
+## [1,] "EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA"    "EAIYHGIPMVGIPLVLGSTX"    "0"      
+## [2,] "EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA"    "EAIYHGIPMVGIPLVLGSTX"    "0"      
+## [3,] "EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA"    "EAIYHGIPMVGIPLVLGSTX"    "0"      
+## [4,] "EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA"    "EAIYHGIPMVGIPLVLGSTX"    "0"      
+## [5,] "EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA"    "EAIYHGIPMVGIPLVLGSTX"    "0"      
+## [6,] "QYYQRDELLAAIKKIPYKGGNTMTGDAIDYLVK" "QYYQRDELLAAIKKFHIKVATQX" "0"      
+##      Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio MutRatio_Min
+## [1,] "NA"            "NA"      "0"                    "NA"     "NA"        
+## [2,] "NA"            "NA"      "0"                    "NA"     "NA"        
+## [3,] "NA"            "NA"      "0"                    "NA"     "NA"        
+## [4,] "NA"            "NA"      "0"                    "NA"     "NA"        
+## [5,] "NA"            "NA"      "0"                    "NA"     "NA"        
+## [6,] "NA"            "NA"      "0"                    "NA"     "NA"        
+##      MutRatio_Max
+## [1,] "NA"        
+## [2,] "NA"        
+## [3,] "NA"        
+## [4,] "NA"        
+## [5,] "NA"        
+## [6,] "NA"
+```
+
+  print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
+```
+##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               3                               3 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               3                              45 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                              45                              32
+```
+
+  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
+```
+##                                                     EAIYHGIPMVGIPLVLGSTX-0_UGT2B28
+## Num_Peptide_Per_Pep                                                           5.00
+## Num_Cond_Peptide_Per_Pep                                                      5.00
+## Num_Rest_Peptide_Per_Pep                                                      5.00
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                           1.00
+## -logP                                                                         0.46
+##                                                     QYYQRDELLAAIKKFHIKVATQX-1_COL12A1
+## Num_Peptide_Per_Pep                                                             8.000
+## Num_Cond_Peptide_Per_Pep                                                        8.000
+## Num_Rest_Peptide_Per_Pep                                                        7.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                             0.875
+## -logP                                                                           0.529
+##                                                     IMEMARDFLPSLKNPFWKPSILPIFMYKHCSVQFSVRHGDVQTKVHX-2_SLCO1C1
+## Num_Peptide_Per_Pep                                                                                    32.000
+## Num_Cond_Peptide_Per_Pep                                                                               32.000
+## Num_Rest_Peptide_Per_Pep                                                                               20.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                     0.625
+## -logP                                                                                                   1.081
+```
+
+  print(head(Result_HLA1_SV))
+```
+hange                     Ref Alt              Prob Mutation_Prob.
+## [1,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [2,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [3,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [4,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [5,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [6,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+##      Exon_Start Exon_End   Mutation_Position Total_Depth Tumor_Depth
+## [1,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [2,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [3,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [4,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [5,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [6,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+##      Wt_Peptide                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+## [1,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [2,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [3,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [4,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [5,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [6,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+##      Mutant_Peptide                       Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] "DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE" "3.03498" "NA"            "NA"     
+## [2,] "DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE" "3.03498" "NA"            "NA"     
+## [3,] "DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE" "3.03498" "NA"            "NA"     
+## [4,] "DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE" "3.03498" "NA"            "NA"     
+## [5,] "DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE" "3.03498" "NA"            "NA"     
+## [6,] "DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE" "3.03498" "NA"            "NA"     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] "NaN"                  "NA"     "NA"         "NA"        
+## [2,] "NaN"                  "NA"     "NA"         "NA"        
+## [3,] "NaN"                  "NA"     "NA"         "NA"        
+## [4,] "NaN"                  "NA"     "NA"         "NA"        
+## [5,] "NaN"                  "NA"     "NA"         "NA"        
+## [6,] "NaN"                  "NA"     "NA"         "NA"~
+```
+
+  print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
+```
+##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                              16                              16 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                              10                            3183 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                            3183                             119
+```
+
+  print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
+```
+##                                                     DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE-0_AAR2
+## Num_Peptide_Per_Pep                                                                    57.000
+## Num_Cond_Peptide_Per_Pep                                                               57.000
+## Num_Rest_Peptide_Per_Pep                                                                0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                     0.000
+## -logP                                                                                   0.782
+##                                                     GDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGG-1_SLC25A12
+## Num_Peptide_Per_Pep                                                                                                      237.000
+## Num_Cond_Peptide_Per_Pep                                                                                                 237.000
+## Num_Rest_Peptide_Per_Pep                                                                                                   6.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                        0.025
+## -logP                                                                                                                      1.496
+##                                                     TMAEKRQLFIEMLYRLX-2_DTNB
+## Num_Peptide_Per_Pep                                                   24.000
+## Num_Cond_Peptide_Per_Pep                                              24.000
+## Num_Rest_Peptide_Per_Pep                                               6.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                    0.250
+## -logP                                                                  0.391
+##                                                     TDWLSDCCFHPSERCRCTLYGHTDSVNSIEFFP-3_SPAG16
+## Num_Peptide_Per_Pep                                                                     51.000
+## Num_Cond_Peptide_Per_Pep                                                                51.000
+## Num_Rest_Peptide_Per_Pep                                                                 0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                      0.000
+## -logP                                                                                    0.759
+##                                                     ACLPGEEGTAERSCKRNLSTTTGSSERX-4_TMCC1
+## Num_Peptide_Per_Pep                                                               90.000
+## Num_Cond_Peptide_Per_Pep                                                          90.000
+## Num_Rest_Peptide_Per_Pep                                                           0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                0.000
+## -logP                                                                              0.644
+##                                                     MKSCKRNLSTTTGSSERX-5_TMCC1
+## Num_Peptide_Per_Pep                                                     45.000
+## Num_Cond_Peptide_Per_Pep                                                45.000
+## Num_Rest_Peptide_Per_Pep                                                 0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                      0.000
+## -logP                                                                    0.414
+##                                                     VQRFSLRRQLSKSCKRNLSTTTGSSERX-6_TMCC1
+## Num_Peptide_Per_Pep                                                               90.000
+## Num_Cond_Peptide_Per_Pep                                                          90.000
+## Num_Rest_Peptide_Per_Pep                                                           0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                0.000
+## -logP                                                                              0.644
+##                                                     QRKGSYCWDFEESCKRNLSTTTGSSERX-7_TMCC1
+## Num_Peptide_Per_Pep                                                               90.000
+## Num_Cond_Peptide_Per_Pep                                                          90.000
+## Num_Rest_Peptide_Per_Pep                                                           0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                0.000
+## -logP                                                                              0.644
+##                                                     IRPKPFVIPGRSRTLECKQQKIILLRREMKETX-8_PDLIM3
+## Num_Peptide_Per_Pep                                                                    120.000
+## Num_Cond_Peptide_Per_Pep                                                               120.000
+## Num_Rest_Peptide_Per_Pep                                                                 1.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                      0.008
+## -logP                                                                                    0.759
+##                                                     GQLRGLIPSSPQKTLECKQQKIILLRREMKETX-9_PDLIM3
+## Num_Peptide_Per_Pep                                                                    120.000
+## Num_Cond_Peptide_Per_Pep                                                               120.000
+## Num_Rest_Peptide_Per_Pep                                                                 1.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                      0.008
+## -logP                                                                                    0.759
+##                                                     GDQYIVDMANTKRTLLWTRPMTVILGKPFCVMPKQQKTAHIGFLQHIPRLSPKPCLPKLNLMMRKQRMSQNGKNVKFEESHLRAVCMSGRGMGQVWVFFLCSX-10_WDR70
+## Num_Peptide_Per_Pep                                                                                                                                          540.000
+## Num_Cond_Peptide_Per_Pep                                                                                                                                     540.000
+## Num_Rest_Peptide_Per_Pep                                                                                                                                      39.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                                                            0.072
+## -logP                                                                                                                                                          2.370
+##                                                     LCPASRALEEKKGHELLGGPSLGAPRPGSQERTGENTAACQDHRFWAGQTAGCGRERIPCRRRQSAYQVDGIGINFTQNLYPPEX-11_EGFR
+## Num_Peptide_Per_Pep                                                                                                                       432.000
+## Num_Cond_Peptide_Per_Pep                                                                                                                  432.000
+## Num_Rest_Peptide_Per_Pep                                                                                                                    3.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                                         0.007
+## -logP                                                                                                                                       1.956
+##                                                     LTPMPEGLSQQQDMLKNTSKGHPDRLPLQMALT-12_ARHGEF10
+## Num_Peptide_Per_Pep                                                                        51.000
+## Num_Cond_Peptide_Per_Pep                                                                   51.000
+## Num_Rest_Peptide_Per_Pep                                                                    0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                         0.000
+## -logP                                                                                       0.759
+##                                                     PGVQGKKVRKPSPTTSASSSSWTSAGTSWPAGRRTGTATSGTATTTSVWPGCGTRMWSTQWSSVPRSRSCCSRPATTPPSKPGAPHAPCASSRHLAHGLAPSSPGLPARGAEVCWVHWSHRDPLRTSPGSVAFSRAGEVEMLIAVTPX-13_NOTCH1
+## Num_Peptide_Per_Pep                                                                                                                                                                                        810.000
+## Num_Cond_Peptide_Per_Pep                                                                                                                                                                                   810.000
+## Num_Rest_Peptide_Per_Pep                                                                                                                                                                                    41.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                                                                                                          0.051
+## -logP                                                                                                                                                                                                        3.405
+##                                                     SRGRGNNNRKGREVTPL-14_UBAP2
+## Num_Peptide_Per_Pep                                                     30.000
+## Num_Cond_Peptide_Per_Pep                                                30.000
+## Num_Rest_Peptide_Per_Pep                                                 0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                      0.000
+## -logP                                                                    0.391
+##                                                     IPSSQLAAKLLHMLTMRMLSKSATGRWX-15_RASGRP2
+## Num_Peptide_Per_Pep                                                                  90.000
+## Num_Cond_Peptide_Per_Pep                                                             90.000
+## Num_Rest_Peptide_Per_Pep                                                             11.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                   0.122
+## -logP                                                                                 0.644
+##                                                     RKSPPEKKLRRYPPGQGATIGVDFMIKTVEINGE-16_GAB2
+## Num_Peptide_Per_Pep                                                                     57.000
+## Num_Cond_Peptide_Per_Pep                                                                57.000
+## Num_Rest_Peptide_Per_Pep                                                                 0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                      0.000
+## -logP                                                                                    0.782
+##                                                     MSVIVLPQPDEVLNLVQSYVTLRVPLYVSYVFH-17_MTRF1
+## Num_Peptide_Per_Pep                                                                     51.000
+## Num_Cond_Peptide_Per_Pep                                                                51.000
+## Num_Rest_Peptide_Per_Pep                                                                 2.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                      0.039
+## -logP                                                                                    0.759
+##                                                     LWKCLRKPVLNDRNLQLHTDKGSFLKEKNKKLKKK-18_EVI2B
+## Num_Peptide_Per_Pep                                                                       63.000
+## Num_Cond_Peptide_Per_Pep                                                                  63.000
+## Num_Rest_Peptide_Per_Pep                                                                   1.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.016
+## -logP                                                                                      0.805
+##                                                     RTFLQSTDPGDTGGVFEGSTLCPSDPAFSRTDDPX-19_IKZF3
+## Num_Peptide_Per_Pep                                                                      132.000
+## Num_Cond_Peptide_Per_Pep                                                                 132.000
+## Num_Rest_Peptide_Per_Pep                                                                   2.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.015
+## -logP                                                                                      0.805
+##                                                     NVLMVHKRSHTGGVFEGSTLCPSDPAFSRTDDPX-20_IKZF3
+## Num_Peptide_Per_Pep                                                                     126.000
+## Num_Cond_Peptide_Per_Pep                                                                126.000
+## Num_Rest_Peptide_Per_Pep                                                                  4.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                       0.032
+## -logP                                                                                     0.782
+##                                                     DALTGHLRTHSGGVFEGSTLCPSDPAFSRTDDPX-21_IKZF3
+## Num_Peptide_Per_Pep                                                                     126.000
+## Num_Cond_Peptide_Per_Pep                                                                126.000
+## Num_Rest_Peptide_Per_Pep                                                                  4.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                       0.032
+## -logP                                                                                     0.782
+##                                                     FNVLMVHKRSHTGGVFEGSTLCPSDPAFSRTDDPX-22_IKZF3
+## Num_Peptide_Per_Pep                                                                      132.000
+## Num_Cond_Peptide_Per_Pep                                                                 132.000
+## Num_Rest_Peptide_Per_Pep                                                                   4.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.030
+## -logP                                                                                      0.805
+##                                                     EGPANEDEDIGGGVFEGSTLCPSDPAFSRTDDPX-23_IKZF3
+## Num_Peptide_Per_Pep                                                                     126.000
+## Num_Cond_Peptide_Per_Pep                                                                126.000
+## Num_Rest_Peptide_Per_Pep                                                                  1.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                       0.008
+## -logP                                                                                     0.782
+##                                                     GEGPANEDEDIGGGVFEGSTLCPSDPAFSRTDDPX-24_IKZF3
+## Num_Peptide_Per_Pep                                                                      132.000
+## Num_Cond_Peptide_Per_Pep                                                                 132.000
+## Num_Rest_Peptide_Per_Pep                                                                   1.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.008
+## -logP                                                                                      0.805
+##                                                     RDALTGHLRTHSGGVFEGSTLCPSDPAFSRTDDPX-25_IKZF3
+## Num_Peptide_Per_Pep                                                                      132.000
+## Num_Cond_Peptide_Per_Pep                                                                 132.000
+## Num_Rest_Peptide_Per_Pep                                                                   4.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.030
+## -logP                                                                                      0.805
+```
+
+  print(head(Result_HLA2_SV))
+```
+        "2000.52" "50.00"  "20" "NM_015511_NM_015906"
+##      Change                     Ref Alt              Prob Mutation_Prob.
+## [1,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [2,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [3,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [4,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [5,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [6,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+##      Exon_Start Exon_End   Mutation_Position Total_Depth Tumor_Depth
+## [1,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [2,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [3,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [4,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [5,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+## [6,] "34824338" "34844863" "20_34827929"     "0"         "0"        
+##      Wt_Peptide                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+## [1,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [2,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [3,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [4,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [5,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+## [6,] "MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFVCFLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX"
+##      Mutant_Peptide                           Total_RNA Tumor_RNA_Ratio
+## [1,] "GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK" "3.03498" "NA"           
+## [2,] "GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK" "3.03498" "NA"           
+## [3,] "GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK" "3.03498" "NA"           
+## [4,] "GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK" "3.03498" "NA"           
+## [5,] "GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK" "3.03498" "NA"           
+## [6,] "GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK" "3.03498" "NA"           
+##      Tumor_RNA Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] "NA"      "NaN"                  "NA"     "NA"         "NA"        
+## [2,] "NA"      "NaN"                  "NA"     "NA"         "NA"        
+## [3,] "NA"      "NaN"                  "NA"     "NA"         "NA"        
+## [4,] "NA"      "NaN"                  "NA"     "NA"         "NA"        
+## [5,] "NA"      "NaN"                  "NA"     "NA"         "NA"        
+## [6,] "NA"      "NaN"                  "NA"     "NA"         "NA"
+```
+
+  print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
+```
+##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                              16                              16 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                              12                             588 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                             588                             298
+```
+
+  print(head(Result_HLA1_Seq))
+```
+    
+##      SequenceNumber Chrs        NM_IDs                   GeneIDs      
+## [1,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
+## [2,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
+## [3,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
+## [4,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
+## [5,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
+## [6,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
+##      Exon_Starts           Exon_Ends             GroupID NumOfPeptides
+## [1,] "103422515;103422515" "103538459;103538459" "0_1"   "27"         
+## [2,] "103422515;103422515" "103538459;103538459" "0_1"   "27"         
+## [3,] "103422515;103422515" "103538459;103538459" "0_1"   "27"         
+## [4,] "103422515;103422515" "103538459;103538459" "0_1"   "27"         
+## [5,] "103422515;103422515" "103538459;103538459" "0_1"   "27"         
+## [6,] "103422515;103422515" "103538459;103538459" "0_1"   "27"         
+##      NumOfStops
+## [1,] "0"       
+## [2,] "0"       
+## [3,] "0"       
+## [4,] "0"       
+## [5,] "0"       
+## [6,] "0"       
+##      Wt_Peptide                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+## [1,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [2,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [3,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [4,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [5,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [6,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+##      Mutant_Peptide                Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] "MAEDDPYLGRPEKMFHLDPSLTHTIFN" "NA"      "NA"            "NA"     
+## [2,] "MAEDDPYLGRPEKMFHLDPSLTHTIFN" "NA"      "NA"            "NA"     
+## [3,] "MAEDDPYLGRPEKMFHLDPSLTHTIFN" "NA"      "NA"            "NA"     
+## [4,] "MAEDDPYLGRPEKMFHLDPSLTHTIFN" "NA"      "NA"            "NA"     
+## [5,] "MAEDDPYLGRPEKMFHLDPSLTHTIFN" "NA"      "NA"            "NA"     
+## [6,] "MAEDDPYLGRPEKMFHLDPSLTHTIFN" "NA"      "NA"            "NA"     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] "NA"                   "NA"     "NA"         "NA"        
+## [2,] "NA"                   "NA"     "NA"         "NA"        
+## [3,] "NA"                   "NA"     "NA"         "NA"        
+## [4,] "NA"                   "NA"     "NA"         "NA"        
+## [5,] "NA"                   "NA"     "NA"         "NA"        
+## [6,] "NA"                   "NA"     "NA"         "NA"
+```
+
+  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
+```
+                                                            63.000
+## Num_Rest_Peptide_Per_Pep                                                                   5.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.079
+## -logP                                                                                      0.621
+```
+
+  print(head(Result_HLA2_Seq))
+```
+,] "PYLGRPEQMFHLILL"        "3239.61" "80.00"  "0" ""    "1"         
+##      SequenceNumber Chrs                  
+## [1,] "1"            "chr4;chr4;chr19;chr4"
+## [2,] "1"            "chr4;chr4;chr19;chr4"
+## [3,] "1"            "chr4;chr4;chr19;chr4"
+## [4,] "1"            "chr4;chr4;chr19;chr4"
+## [5,] "1"            "chr4;chr4;chr19;chr4"
+## [6,] "1"            "chr4;chr4;chr19;chr4"
+##      NM_IDs                                          GeneIDs                 
+## [1,] "NM_001165412;NM_003998;NM_005178;NM_001319226" "NFKB1;NFKB1;BCL3;NFKB1"
+## [2,] "NM_001165412;NM_003998;NM_005178;NM_001319226" "NFKB1;NFKB1;BCL3;NFKB1"
+## [3,] "NM_001165412;NM_003998;NM_005178;NM_001319226" "NFKB1;NFKB1;BCL3;NFKB1"
+## [4,] "NM_001165412;NM_003998;NM_005178;NM_001319226" "NFKB1;NFKB1;BCL3;NFKB1"
+## [5,] "NM_001165412;NM_003998;NM_005178;NM_001319226" "NFKB1;NFKB1;BCL3;NFKB1"
+## [6,] "NM_001165412;NM_003998;NM_005178;NM_001319226" "NFKB1;NFKB1;BCL3;NFKB1"
+##      Exon_Starts                             
+## [1,] "103422515;103422515;45251964;103423090"
+## [2,] "103422515;103422515;45251964;103423090"
+## [3,] "103422515;103422515;45251964;103423090"
+## [4,] "103422515;103422515;45251964;103423090"
+## [5,] "103422515;103422515;45251964;103423090"
+## [6,] "103422515;103422515;45251964;103423090"
+##      Exon_Ends                                GroupID NumOfPeptides NumOfStops
+## [1,] "103538459;103538459;45263301;103538459" "0_1"   "27"          "1"       
+## [2,] "103538459;103538459;45263301;103538459" "0_1"   "27"          "1"       
+## [3,] "103538459;103538459;45263301;103538459" "0_1"   "27"          "1"       
+## [4,] "103538459;103538459;45263301;103538459" "0_1"   "27"          "1"       
+## [5,] "103538459;103538459;45263301;103538459" "0_1"   "27"          "1"       
+## [6,] "103538459;103538459;45263301;103538459" "0_1"   "27"          "1"       
+##      Wt_Peptide                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+## [1,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMPRCPAGAMDEGPVDLRTRPKAAGLPGAALPLRKRPLRAPSPEPAAPRGAAGLVVPLDPLRGGCDLPAVPGPPHGLARPEALYYPGALLPLYPTRAMGSPFPLVNLPTPLYPMMCPMEHPLSADIAMATRADEDGDTPLHIAVVQGNLPAVHRLVNLFQQGGRELDIYNNLRQTPLHLAVITTLPSVVRLLVTAGASPMALDRHGQTAAHLACEHRSPTCLRALLDSAAPGTLDLEARNYDGLTALHVAVNTECQETVQLLLERGADIDAVDIKSGRSPLIHAVENNSLSMVQLLLQHGANVNAQMYSGSSALHSASGRGLLPLVRTLVRSGADSSLKNCHNDTPLMVARSRRVIDILRGKATRPASTSQPDPSPDRSANTSPESSSRLSSNGLLSASPSSSPSQSPPRDPPGFPMAPPNFFLPSPSPPAFLPFAGVLRGPGRPVPPSPAPGGSXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [2,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMPRCPAGAMDEGPVDLRTRPKAAGLPGAALPLRKRPLRAPSPEPAAPRGAAGLVVPLDPLRGGCDLPAVPGPPHGLARPEALYYPGALLPLYPTRAMGSPFPLVNLPTPLYPMMCPMEHPLSADIAMATRADEDGDTPLHIAVVQGNLPAVHRLVNLFQQGGRELDIYNNLRQTPLHLAVITTLPSVVRLLVTAGASPMALDRHGQTAAHLACEHRSPTCLRALLDSAAPGTLDLEARNYDGLTALHVAVNTECQETVQLLLERGADIDAVDIKSGRSPLIHAVENNSLSMVQLLLQHGANVNAQMYSGSSALHSASGRGLLPLVRTLVRSGADSSLKNCHNDTPLMVARSRRVIDILRGKATRPASTSQPDPSPDRSANTSPESSSRLSSNGLLSASPSSSPSQSPPRDPPGFPMAPPNFFLPSPSPPAFLPFAGVLRGPGRPVPPSPAPGGSXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [3,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMPRCPAGAMDEGPVDLRTRPKAAGLPGAALPLRKRPLRAPSPEPAAPRGAAGLVVPLDPLRGGCDLPAVPGPPHGLARPEALYYPGALLPLYPTRAMGSPFPLVNLPTPLYPMMCPMEHPLSADIAMATRADEDGDTPLHIAVVQGNLPAVHRLVNLFQQGGRELDIYNNLRQTPLHLAVITTLPSVVRLLVTAGASPMALDRHGQTAAHLACEHRSPTCLRALLDSAAPGTLDLEARNYDGLTALHVAVNTECQETVQLLLERGADIDAVDIKSGRSPLIHAVENNSLSMVQLLLQHGANVNAQMYSGSSALHSASGRGLLPLVRTLVRSGADSSLKNCHNDTPLMVARSRRVIDILRGKATRPASTSQPDPSPDRSANTSPESSSRLSSNGLLSASPSSSPSQSPPRDPPGFPMAPPNFFLPSPSPPAFLPFAGVLRGPGRPVPPSPAPGGSXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [4,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMPRCPAGAMDEGPVDLRTRPKAAGLPGAALPLRKRPLRAPSPEPAAPRGAAGLVVPLDPLRGGCDLPAVPGPPHGLARPEALYYPGALLPLYPTRAMGSPFPLVNLPTPLYPMMCPMEHPLSADIAMATRADEDGDTPLHIAVVQGNLPAVHRLVNLFQQGGRELDIYNNLRQTPLHLAVITTLPSVVRLLVTAGASPMALDRHGQTAAHLACEHRSPTCLRALLDSAAPGTLDLEARNYDGLTALHVAVNTECQETVQLLLERGADIDAVDIKSGRSPLIHAVENNSLSMVQLLLQHGANVNAQMYSGSSALHSASGRGLLPLVRTLVRSGADSSLKNCHNDTPLMVARSRRVIDILRGKATRPASTSQPDPSPDRSANTSPESSSRLSSNGLLSASPSSSPSQSPPRDPPGFPMAPPNFFLPSPSPPAFLPFAGVLRGPGRPVPPSPAPGGSXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [5,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMPRCPAGAMDEGPVDLRTRPKAAGLPGAALPLRKRPLRAPSPEPAAPRGAAGLVVPLDPLRGGCDLPAVPGPPHGLARPEALYYPGALLPLYPTRAMGSPFPLVNLPTPLYPMMCPMEHPLSADIAMATRADEDGDTPLHIAVVQGNLPAVHRLVNLFQQGGRELDIYNNLRQTPLHLAVITTLPSVVRLLVTAGASPMALDRHGQTAAHLACEHRSPTCLRALLDSAAPGTLDLEARNYDGLTALHVAVNTECQETVQLLLERGADIDAVDIKSGRSPLIHAVENNSLSMVQLLLQHGANVNAQMYSGSSALHSASGRGLLPLVRTLVRSGADSSLKNCHNDTPLMVARSRRVIDILRGKATRPASTSQPDPSPDRSANTSPESSSRLSSNGLLSASPSSSPSQSPPRDPPGFPMAPPNFFLPSPSPPAFLPFAGVLRGPGRPVPPSPAPGGSXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+## [6,] "MAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTADGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIXXMPRCPAGAMDEGPVDLRTRPKAAGLPGAALPLRKRPLRAPSPEPAAPRGAAGLVVPLDPLRGGCDLPAVPGPPHGLARPEALYYPGALLPLYPTRAMGSPFPLVNLPTPLYPMMCPMEHPLSADIAMATRADEDGDTPLHIAVVQGNLPAVHRLVNLFQQGGRELDIYNNLRQTPLHLAVITTLPSVVRLLVTAGASPMALDRHGQTAAHLACEHRSPTCLRALLDSAAPGTLDLEARNYDGLTALHVAVNTECQETVQLLLERGADIDAVDIKSGRSPLIHAVENNSLSMVQLLLQHGANVNAQMYSGSSALHSASGRGLLPLVRTLVRSGADSSLKNCHNDTPLMVARSRRVIDILRGKATRPASTSQPDPSPDRSANTSPESSSRLSSNGLLSASPSSSPSQSPPRDPPGFPMAPPNFFLPSPSPPAFLPFAGVLRGPGRPVPPSPAPGGSXXMAEDDPYLGRPEQMFHLDPSLTHTIFNPEVFQPQMALPTDGPYLQILEQPKQRGFRFRYVCEGPSHGGLPGASSEKNKKSYPQVKICNYVGPAKVIVQLVTNGKNIHLHAHSLVGKHCEDGICTVTAGPKDMVVGFANLGILHVTKKKVFETLEARMTEACIRGYNPGLLVHPDLAYLQAEGGGDRQLGDREKELIRQAALQQTKEMDLSVVRLMFTAFLPDSTGSFTRRLEPVVSDAIYDSKAPNASNLKIVRMDRTAGCVTGGEEIYLLCDKVQKDDIQIRFYEEEENGGVWEGFGDFSPTDVHRQFAIVFKTPKYKDINITKPASVFVQLRRKSDLETSEPKPFLYYPEIKDKEEVQRKRQKLMPNFSDSFGGGSGAGAGGGGMFGSGGGGGGTGSTGPGYSFPHYGFPTYGGITFHPGTTKSNAGMKHGTMDTESKKDPEGCDKSDDKNTVNLFGKVIETTEQDQEPSEATVGNGEVTLTYATGTKEESAGVQDNLFLEKAMQLAKRHANALFDYAVTGDVKMLLAVQRHLTAVQDENGDSVLHLAIIHLHSQLVRDLLEVTSGLISDDIINMRNDLYQTPLHLAVITKQEDVVEDLLRAGADLSLLDRLGNSVLHLAAKEGHDKVLSILLKHKKAALLLDHPNGDGLNAIHLAMMSNSLPCLLLLVAAGADVNAQEQKSGRTALHLAVEHDNISLAGCLLLEGDAHVDSTTYDGTTPLHIAAGRGSTRLAALLKAAGADPLVENFEPLYDLDDSWENAGEDEGVVPGTTPLDMATSWQVFDILNGKPYEPEFTSDDLLAQGDMKQLAEDVKLQLYKLLEIPDPDKNWATLAQKLGLGILNNAFRLSPAPSKTLMDNYEVSGGTVRELVEALRQMGYTEAIEVIQAASSPVKTTSQAHSLPLSPASTRQQIDELRDSDSVCDSGVETSFRKLSFTESLTSGASLLTLNKMPHDYGQEGPLEGKIX"
+##      Mutant_Peptide         Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] "MAEDDPYLGRPEQMFHLILL" "NA"      "NA"            "NA"     
+## [2,] "MAEDDPYLGRPEQMFHLILL" "NA"      "NA"            "NA"     
+## [3,] "MAEDDPYLGRPEQMFHLILL" "NA"      "NA"            "NA"     
+## [4,] "MAEDDPYLGRPEQMFHLILL" "NA"      "NA"            "NA"     
+## [5,] "MAEDDPYLGRPEQMFHLILL" "NA"      "NA"            "NA"     
+## [6,] "MAEDDPYLGRPEQMFHLILL" "NA"      "NA"            "NA"     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] "NA"                   "NA"     "NA"         "NA"        
+## [2,] "NA"                   "NA"     "NA"         "NA"        
+## [3,] "NA"                   "NA"     "NA"         "NA"        
+## [4,] "NA"                   "NA"     "NA"         "NA"        
+## [5,] "NA"                   "NA"     "NA"         "NA"        
+## [6,] "NA"                   "NA"     "NA"         "NA"
+```
+
+  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+```
+## [[1]]
+##                                                     atggcagaag
+## Num_Peptide_Per_Grp                                      3.000
+## Num_Cond_Peptide_Per_Grp                                 3.000
+## Num_Rest_Peptide_Per_Grp                                 1.000
+## Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp      0.333
+## -logP                                                    0.460
+## 
+## [[2]]
+##                                                        
+## Num_Peptide_Per_NM                                3.000
+## Num_Cond_Peptide_Per_NM                           3.000
+## Num_Rest_Peptide_Per_NM                           1.000
+## Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM 0.333
+## -logP                                             0.460
+##
+## [[3]]
+##                                                     MAEDDPYLGRPEQMFHLILL-0_atggcagaag-0_1
+## Num_Peptide_Per_Pep                                                                 3.000
+## Num_Cond_Peptide_Per_Pep                                                            3.000
+## Num_Rest_Peptide_Per_Pep                                                            1.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                 0.333
+## -logP                                                                               0.460
 ```
