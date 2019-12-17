@@ -1178,7 +1178,10 @@ print(head(Result_HLA2_Seq))
 ## [6,] "NA"                   "NA"     "NA"         "NA"
 ```
 
-  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+```
+print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+```
+
 ```
 ## [[1]]
 ##                                                     atggcagaag
