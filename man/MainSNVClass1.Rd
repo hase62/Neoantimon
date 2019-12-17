@@ -93,7 +93,7 @@ See data(sample_copynum); sample_copynum;}
 
 \item{netMHCpan_dir}{The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").}
 
-\item{MHCflurry}{Also output results using MHCflurry (Default=FALSE).}
+\item{MHCflurry}{Also output results using MHCflurry. Return a list of both results (Default=FALSE).}
 
 \item{refdna_file}{refdna_file information to be used to calculate RNA VAF (Default=NA).
 

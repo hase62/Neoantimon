@@ -84,7 +84,7 @@
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
-#'@param MHCflurry Also output results using MHCflurry (Default=FALSE).
+#'@param MHCflurry Also output results using MHCflurry. Return a list of both results (Default=FALSE). 
 #'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
