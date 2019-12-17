@@ -405,9 +405,10 @@ library(Neoantimon);
 ```
 
 ## 5. Result
-
-**They're also included in Result_HLA*_**
-  print(head(Result_HLA1_SNV[[1]]))
+```
+print(head(Result_HLA1_SNV[[1]]))
+```
+  
 ```
 ##      HLA           Pos Gene        Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank 
 ## [1,] "HLA-A*02:01" "2" "0_CYP4A11" "HQERCREEIHSLP"          "38277.9" "64.5038"
@@ -453,7 +454,10 @@ library(Neoantimon);
 ## [6,] "0"                    "NA"     "NA"         "NA"
 ```
 
-  print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
+```
+print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
+```
+
 ```
 ##              Num_All_Alteration        Num_Evaluated_Alteration 
 ##                               4                               4 
@@ -463,9 +467,25 @@ library(Neoantimon);
 ##                             252                               3
 ```
 
-  print(head(Result_HLA2_SNV))
 ```
-24" "95.00"  "RCREEIHSLLGDGAS"    "5387.49" "75.00" "1" "NM_000778"
+print(head(Result_HLA2_SNV))
+```
+  
+```
+##      HLA                     Pos Gene        Evaluated_Mutant_Peptide
+## [1,] "HLA-DPA10103-DPB10201" "2" "0_CYP4A11" "PKHQERCREEIHSLP"       
+## [2,] "HLA-DPA10103-DPB10201" "3" "0_CYP4A11" "KHQERCREEIHSLPG"       
+## [3,] "HLA-DPA10103-DPB10201" "4" "0_CYP4A11" "HQERCREEIHSLPGD"       
+## [4,] "HLA-DPA10103-DPB10201" "5" "0_CYP4A11" "QERCREEIHSLPGDG"       
+## [5,] "HLA-DPA10103-DPB10201" "6" "0_CYP4A11" "ERCREEIHSLPGDGA"       
+## [6,] "HLA-DPA10103-DPB10201" "7" "0_CYP4A11" "RCREEIHSLPGDGAS"       
+##      Mut_IC50   Mut_Rank Evaluated_Wt_Peptide Wt_IC50   Wt_Rank Chr NM_ID      
+## [1,] "12151.54" "95.00"  "PKHQERCREEIHSLL"    "5209.84" "75.00" "1" "NM_000778"
+## [2,] "11550.05" "90.00"  "KHQERCREEIHSLLG"    "4635.67" "70.00" "1" "NM_000778"
+## [3,] "12677.06" "95.00"  "HQERCREEIHSLLGD"    "4880.31" "75.00" "1" "NM_000778"
+## [4,] "13675.38" "95.00"  "QERCREEIHSLLGDG"    "5435.50" "75.00" "1" "NM_000778"
+## [5,] "13240.19" "95.00"  "ERCREEIHSLLGDGA"    "5173.27" "75.00" "1" "NM_000778"
+## [6,] "13790.24" "95.00"  "RCREEIHSLLGDGAS"    "5387.49" "75.00" "1" "NM_000778"
 ##      Change     Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
 ## [1,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
 ## [2,] "c.T1064C" "A" "G" "0"  "0"            "47394859" "47407148"
@@ -503,7 +523,10 @@ library(Neoantimon);
 ## [6,] "NA"         "NA"
 ```
 
-  print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
+```
+print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
+```
+
 ```
 ##              Num_All_Alteration        Num_Evaluated_Alteration 
 ##                               4                               4 
@@ -513,9 +536,26 @@ library(Neoantimon);
 ##                              60                              10
 ```
 
-  print(head(Result_HLA1_INDEL[[1]]))
 ```
-xon_End  
+print(head(Result_HLA1_INDEL[[1]]))
+```
+
+```
+##      HLA           Pos Gene        Evaluated_Mutant_Peptide_Core
+## [1,] "HLA-A*02:01" "1" "0_UGT2B28" "GIPMVGIPLV"                 
+## [2,] "HLA-A*02:01" "2" "0_UGT2B28" "YHGIPMVGIPLVL"              
+## [3,] "HLA-A*02:01" "3" "0_UGT2B28" "HGIPMVGIPLVL"               
+## [4,] "HLA-A*02:01" "4" "0_UGT2B28" "GIPMVGIPLV"                 
+## [5,] "HLA-A*02:01" "5" "0_UGT2B28" "IPMVGIPLVL"                 
+## [6,] "HLA-A*02:01" "2" "0_UGT2B28" "GIPMVGIPLV"                 
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank  Chr NM_ID      
+## [1,] "IYHGIPMVGIPLV"          "8158.7"  "12.6683" "4" "NM_053039"
+## [2,] "YHGIPMVGIPLVL"          "264.7"   "1.9668"  "4" "NM_053039"
+## [3,] "HGIPMVGIPLVLG"          "14185.4" "18.6104" "4" "NM_053039"
+## [4,] "GIPMVGIPLVLGS"          "13299.6" "17.6940" "4" "NM_053039"
+## [5,] "IPMVGIPLVLGST"          "17674.7" "22.4056" "4" "NM_053039"
+## [6,] "YHGIPMVGIPLV"           "5439.5"  "9.9316"  "4" "NM_053039"
+##      Change           Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
 ## [1,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
 ## [2,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
 ## [3,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
@@ -545,7 +585,10 @@ xon_End
 ## [6,] "0"                    "NA"     "NA"         "NA"
 ```
 
-  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+```
+print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+```
+
 ```
 ##              Num_All_Alteration        Num_Evaluated_Alteration 
 ##                               3                               3 
@@ -554,19 +597,52 @@ xon_End
 ##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
 ##                             270                              15
 ```
-  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+
 ```
+print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+```
+
+```
+##                                                     IYHGIPMVGIPLVLGSTX-0_UGT2B28
+## Num_Peptide_Per_Pep                                                       30.000
+## Num_Cond_Peptide_Per_Pep                                                  30.000
+## Num_Rest_Peptide_Per_Pep                                                   4.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                        0.133
+## -logP                                                                      0.414
+##                                                     YQRDELLAAIKKFHIKVATQX-1_COL12A1
+## Num_Peptide_Per_Pep                                                          48.000
+## Num_Cond_Peptide_Per_Pep                                                     48.000
+## Num_Rest_Peptide_Per_Pep                                                      2.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                           0.042
+## -logP                                                                         0.483
 ##                                                     EMARDFLPSLKNPFWKPSILPIFMYKHCSVQFSVRHGDVQTKVHX-2_SLCO1C1
 ## Num_Peptide_Per_Pep                                                                                 192.000
 ## Num_Cond_Peptide_Per_Pep                                                                            192.000
 ## Num_Rest_Peptide_Per_Pep                                                                              9.000
 ## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                   0.047
-## -logP                                                                                                 1.035~
+## -logP                                                                                                 1.035
 ```
 
-  print(head(Result_HLA2_INDEL))
 ```
-      Change           Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
+print(head(Result_HLA2_INDEL))
+```
+
+```
+##      HLA                     Pos Gene        Evaluated_Mutant_Peptide_Core
+## [1,] "HLA-DPA10103-DPB10201" "3" "0_UGT2B28" "YHGIPMVGI"                  
+## [2,] "HLA-DPA10103-DPB10201" "2" "0_UGT2B28" "YHGIPMVGI"                  
+## [3,] "HLA-DPA10103-DPB10201" "1" "0_UGT2B28" "YHGIPMVGI"                  
+## [4,] "HLA-DPA10103-DPB10201" "4" "0_UGT2B28" "PMVGIPLVL"                  
+## [5,] "HLA-DPA10103-DPB10201" "3" "0_UGT2B28" "PMVGIPLVL"                  
+## [6,] "HLA-DPA10103-DPB10201" "2" "1_COL12A1" "YQRDELLAA"                  
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank Chr NM_ID      
+## [1,] "EAIYHGIPMVGIPLV"        "682.35"  "28.00"  "4" "NM_053039"
+## [2,] "AIYHGIPMVGIPLVL"        "643.18"  "27.00"  "4" "NM_053039"
+## [3,] "IYHGIPMVGIPLVLG"        "799.71"  "31.00"  "4" "NM_053039"
+## [4,] "YHGIPMVGIPLVLGS"        "984.87"  "35.00"  "4" "NM_053039"
+## [5,] "HGIPMVGIPLVLGST"        "1262.77" "40.00"  "4" "NM_053039"
+## [6,] "QYYQRDELLAAIKKF"        "528.36"  "23.00"  "6" "NM_004370"
+##      Change           Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
 ## [1,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
 ## [2,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
 ## [3,] "Out_c.1186dupT" "-" "T" "0"  "0"            "70146192" "70160768"
@@ -603,7 +679,10 @@ xon_End
 ## [6,] "NA"
 ```
 
-  print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
+```
+print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
+```
+
 ```
 ##              Num_All_Alteration        Num_Evaluated_Alteration 
 ##                               3                               3 
@@ -613,7 +692,10 @@ xon_End
 ##                              45                              32
 ```
 
-  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
+```
+print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
+```
+
 ```
 ##                                                     EAIYHGIPMVGIPLVLGSTX-0_UGT2B28
 ## Num_Peptide_Per_Pep                                                           5.00
@@ -635,9 +717,26 @@ xon_End
 ## -logP                                                                                                   1.081
 ```
 
-  print(head(Result_HLA1_SV))
 ```
-hange                     Ref Alt              Prob Mutation_Prob.
+print(head(Result_HLA1_SV))
+```
+  
+```
+##      HLA           Pos Gene     Evaluated_Mutant_Peptide_Core
+## [1,] "HLA-A*02:01" "1" "0_AAR2" "YNSWEVGPKF"                 
+## [2,] "HLA-A*02:01" "2" "0_AAR2" "YNSWEVGPKF"                 
+## [3,] "HLA-A*02:01" "3" "0_AAR2" "NSWEVGPKFREQL"              
+## [4,] "HLA-A*02:01" "4" "0_AAR2" "WEVGPKFREQLK"               
+## [5,] "HLA-A*02:01" "5" "0_AAR2" "WEVGPKFREQLKL"              
+## [6,] "HLA-A*02:01" "6" "0_AAR2" "EVGPKFREQLKL"               
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank  Chr  NM_ID                
+## [1,] "DYNSWEVGPKFRE"          "41548.2" "77.1323" "20" "NM_015511_NM_015906"
+## [2,] "YNSWEVGPKFREQ"          "37159.3" "60.6291" "20" "NM_015511_NM_015906"
+## [3,] "NSWEVGPKFREQL"          "17541.5" "22.2465" "20" "NM_015511_NM_015906"
+## [4,] "SWEVGPKFREQLK"          "41225.3" "75.8035" "20" "NM_015511_NM_015906"
+## [5,] "WEVGPKFREQLKL"          "30625.8" "42.6216" "20" "NM_015511_NM_015906"
+## [6,] "EVGPKFREQLKLF"          "40083.0" "71.2831" "20" "NM_015511_NM_015906"
+##      Change                     Ref Alt              Prob Mutation_Prob.
 ## [1,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
 ## [2,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
 ## [3,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
@@ -671,10 +770,13 @@ hange                     Ref Alt              Prob Mutation_Prob.
 ## [3,] "NaN"                  "NA"     "NA"         "NA"        
 ## [4,] "NaN"                  "NA"     "NA"         "NA"        
 ## [5,] "NaN"                  "NA"     "NA"         "NA"        
-## [6,] "NaN"                  "NA"     "NA"         "NA"~
+## [6,] "NaN"                  "NA"     "NA"         "NA"
 ```
 
-  print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
+```
+print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
+```
+
 ```
 ##              Num_All_Alteration        Num_Evaluated_Alteration 
 ##                              16                              16 
@@ -684,7 +786,10 @@ hange                     Ref Alt              Prob Mutation_Prob.
 ##                            3183                             119
 ```
 
-  print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
+```
+print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
+```
+
 ```
 ##                                                     DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE-0_AAR2
 ## Num_Peptide_Per_Pep                                                                    57.000
@@ -844,16 +949,32 @@ hange                     Ref Alt              Prob Mutation_Prob.
 ## -logP                                                                                      0.805
 ```
 
-  print(head(Result_HLA2_SV))
 ```
-        "2000.52" "50.00"  "20" "NM_015511_NM_015906"
+print(head(Result_HLA2_SV))
+```
+
+```
+#      HLA                     Pos Gene     Evaluated_Mutant_Peptide_Core
+## [1,] "HLA-DPA10103-DPB10201" "6" "0_AAR2" "WEVGPKFRE"                  
+## [2,] "HLA-DPA10103-DPB10201" "5" "0_AAR2" "WEVGPKFRE"                  
+## [3,] "HLA-DPA10103-DPB10201" "4" "0_AAR2" "WEVGPKFRE"                  
+## [4,] "HLA-DPA10103-DPB10201" "3" "0_AAR2" "WEVGPKFRE"                  
+## [5,] "HLA-DPA10103-DPB10201" "2" "0_AAR2" "WEVGPKFRE"                  
+## [6,] "HLA-DPA10103-DPB10201" "6" "0_AAR2" "KFREQLKLF"
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank Chr  NM_ID                
+## [1,] "GIDYNSWEVGPKFRE"        "3510.19" "65.00"  "20" "NM_015511_NM_015906"
+## [2,] "IDYNSWEVGPKFREQ"        "3548.49" "65.00"  "20" "NM_015511_NM_015906"
+## [3,] "DYNSWEVGPKFREQL"        "3382.78" "65.00"  "20" "NM_015511_NM_015906"
+## [4,] "YNSWEVGPKFREQLK"        "3259.68" "65.00"  "20" "NM_015511_NM_015906"
+## [5,] "NSWEVGPKFREQLKL"        "3578.45" "65.00"  "20" "NM_015511_NM_015906"
+## [6,] "SWEVGPKFREQLKLF"        "2000.52" "50.00"  "20" "NM_015511_NM_015906"
 ##      Change                     Ref Alt              Prob Mutation_Prob.
 ## [1,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
 ## [2,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
 ## [3,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
 ## [4,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
 ## [5,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
-## [6,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"           
+## [6,] "In_AAR2_exon_TRIM33_exon" "G" "G]1:115005805]" "0"  "0"         
 ##      Exon_Start Exon_End   Mutation_Position Total_Depth Tumor_Depth
 ## [1,] "34824338" "34844863" "20_34827929"     "0"         "0"        
 ## [2,] "34824338" "34844863" "20_34827929"     "0"         "0"        
@@ -884,7 +1005,10 @@ hange                     Ref Alt              Prob Mutation_Prob.
 ## [6,] "NA"      "NaN"                  "NA"     "NA"         "NA"
 ```
 
-  print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
+```
+print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
+```
+
 ```
 ##              Num_All_Alteration        Num_Evaluated_Alteration 
 ##                              16                              16 
@@ -896,7 +1020,20 @@ hange                     Ref Alt              Prob Mutation_Prob.
 
   print(head(Result_HLA1_Seq))
 ```
-    
+##      HLA           Pos Gene           Evaluated_Mutant_Peptide_Core
+## [1,] "HLA-A*02:01" "1" "0_atggcagaag" "MAEDDPYLGRPEK"              
+## [2,] "HLA-A*02:01" "2" "0_atggcagaag" "AEDDPYLGRPEKM"              
+## [3,] "HLA-A*02:01" "3" "0_atggcagaag" "YLGRPEKMF"                  
+## [4,] "HLA-A*02:01" "4" "0_atggcagaag" "YLGRPEKMFH"                 
+## [5,] "HLA-A*02:01" "5" "0_atggcagaag" "YLGRPEKMFHL"                
+## [6,] "HLA-A*02:01" "6" "0_atggcagaag" "YLGRPEKMFHL"                
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank  Chr NM_ID ReadingFrame
+## [1,] "MAEDDPYLGRPEK"          "34529.5" "52.6059" "0" ""    "1"         
+## [2,] "AEDDPYLGRPEKM"          "37395.3" "61.4560" "0" ""    "1"         
+## [3,] "EDDPYLGRPEKMF"          "41328.0" "76.2274" "0" ""    "1"         
+## [4,] "DDPYLGRPEKMFH"          "42864.6" "82.5363" "0" ""    "1"         
+## [5,] "DPYLGRPEKMFHL"          "3345.9"  "7.5921"  "0" ""    "1"         
+## [6,] "PYLGRPEKMFHLD"          "19715.7" "24.8190" "0" ""    "1"
 ##      SequenceNumber Chrs        NM_IDs                   GeneIDs      
 ## [1,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
 ## [2,] "1"            "chr4;chr4" "NM_001165412;NM_003998" "NFKB1;NFKB1"
@@ -941,17 +1078,55 @@ hange                     Ref Alt              Prob Mutation_Prob.
 ## [6,] "NA"                   "NA"     "NA"         "NA"
 ```
 
-  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 ```
-                                                            63.000
+print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
+```
+
+```
+## [[1]]
+##                                                     atggcagaag
+## Num_Peptide_Per_Grp                                     63.000
+## Num_Cond_Peptide_Per_Grp                                63.000
+## Num_Rest_Peptide_Per_Grp                                 5.000
+## Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp      0.079
+## -logP                                                    0.621
+## 
+## [[2]]
+##                                                         
+## Num_Peptide_Per_NM                                63.000
+## Num_Cond_Peptide_Per_NM                           63.000
+## Num_Rest_Peptide_Per_NM                            5.000
+## Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM  0.079
+## -logP                                              0.621
+## 
+## [[3]]
+##                                                     MAEDDPYLGRPEKMFHLDPSLTHTIFN-0_atggcagaag-0_1
+## Num_Peptide_Per_Pep                                                                       63.000
+## Num_Cond_Peptide_Per_Pep                                                                  63.000
 ## Num_Rest_Peptide_Per_Pep                                                                   5.000
 ## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.079
 ## -logP                                                                                      0.621
 ```
 
-  print(head(Result_HLA2_Seq))
 ```
-,] "PYLGRPEQMFHLILL"        "3239.61" "80.00"  "0" ""    "1"         
+print(head(Result_HLA2_Seq))
+```
+
+```
+##      HLA                     Pos Gene           Evaluated_Mutant_Peptide_Core
+## [1,] "HLA-DPA10103-DPB10201" "5" "0_atggcagaag" "GRPEQMFHL"                  
+## [2,] "HLA-DPA10103-DPB10201" "4" "0_atggcagaag" "GRPEQMFHL"                  
+## [3,] "HLA-DPA10103-DPB10201" "6" "0_atggcagaag" "EQMFHLILL"                  
+## [4,] "DRB1_1302"             "3" "0_atggcagaag" "YLGRPEQMF"                  
+## [5,] "DRB1_1302"             "4" "0_atggcagaag" "GRPEQMFHL"                  
+## [6,] "DRB1_1302"             "3" "0_atggcagaag" "GRPEQMFHL"
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank Chr NM_ID ReadingFrame
+## [1,] "DDPYLGRPEQMFHLI"        "2116.65" "55.00"  "0" ""    "1"         
+## [2,] "DPYLGRPEQMFHLIL"        "938.03"  "34.00"  "0" ""    "1"         
+## [3,] "PYLGRPEQMFHLILL"        "285.69"  "14.00"  "0" ""    "1"         
+## [4,] "DDPYLGRPEQMFHLI"        "5199.08" "90.00"  "0" ""    "1"         
+## [5,] "DPYLGRPEQMFHLIL"        "3820.74" "80.00"  "0" ""    "1"         
+## [6,] "PYLGRPEQMFHLILL"        "3239.61" "80.00"  "0" ""    "1"         
 ##      SequenceNumber Chrs                  
 ## [1,] "1"            "chr4;chr4;chr19;chr4"
 ## [2,] "1"            "chr4;chr4;chr19;chr4"
