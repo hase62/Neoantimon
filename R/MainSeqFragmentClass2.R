@@ -195,7 +195,7 @@ MainSeqFragmentClass2<-function(input_sequence = NA,
 
   #Check Required Files
   if(CheckRequiredFiles2(input_sequence = input_sequence,
-                         reference_nm_id = NA,
+                         input_nm_id = NA,
                          hla_types = hla_types,
                          refflat_file = refflat_file,
                          refmrna_file = refmrna_file,

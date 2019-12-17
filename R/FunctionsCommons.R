@@ -386,9 +386,6 @@ make_mutated_dna <- function(strand, dna_trans, m_point_2, m_ref, m_alt, trans_t
     if(substr(dna_trans, m_point_2, m_point_2) == tolower(m_ref))
       substr(dna_trans, m_point_2, m_point_2) <- tolower(m_alt)
   } else {
-    print(substr(dna_trans, m_point_2, m_point_2))
-    print(tolower(m_ref))
-    print(trans_to[match(tolower(m_ref), trans_from)])
     if(substr(dna_trans, m_point_2, m_point_2) == trans_to[match(tolower(m_ref), trans_from)])
       substr(dna_trans, m_point_2, m_point_2) <- trans_to[match(tolower(m_alt), trans_from)]
   }
