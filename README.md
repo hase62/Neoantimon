@@ -1,4 +1,3 @@
-# A stable version will be released soon. 
 ## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1). 
 
 ## 1. Preparation
@@ -129,13 +128,13 @@ install.packages("devtools");
 library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
-#Suggest
-install_github('data.table');
+#<Suggest>
+install.packages('data.table');
 library(data.table);
 ```
 
 ## 3. Data Format
-### -HLA Table
+### -HLA Table (or, You can indicate HLA types directly)
 
 **1. A HLA Class I table file must be according to the following format.**
 
@@ -168,9 +167,9 @@ print(sample_hla_table_c2, row.names = FALSE)
 
 ### -Annotated VCF file
 
-**An annotated VCF file is required for Snv/Indel.**
+**An annovar format or an Ensembl Variant Effect Predictor (VEP) format annotated VCF file is required for Snv/Indel.**
 
-It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
+When indicating annovar format, it must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you have to manually indicate columns. 
 ```r
 data("sample_vcf")
