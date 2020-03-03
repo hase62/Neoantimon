@@ -10,6 +10,14 @@ lib/refMrna.fa
 lib/refFlat.grch38.txt
 lib/refMrna.grch38.fa
 
+lib/netMHCIIpan-3.1a.Linux.tar.gz
+lib/netMHCIIpan-3.2.Darwin.tar.gz
+lib/netMHCIIpan-3.2.Linux.tar.gz
+lib/netMHCpan-3.0a.Darwin.tar.gz
+lib/netMHCpan-3.0a.Linux.tar.gz
+lib/netMHCpan-4.0a.Darwin.tar.gz
+lib/netMHCpan-4.0a.Linux.tar.gz
+
 .Rproj.user
 doc
 Meta
