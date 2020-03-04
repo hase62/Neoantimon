@@ -273,7 +273,7 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-##### Please download sample files from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
+##### Please download sample files from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip.
 ```
 data/sample_result_INDEL_CLASS1_ALL.txt
 data/sample_result_INDEL_CLASS2_ALL.txt
@@ -292,7 +292,7 @@ data/sample_sv_bnd.txt
 data/sample.snps.vcf
 ```
 
-##### Prepare the following files using the above explanations. 
+##### Prepare following files. 
 ```
 netMHCpan-4.0
 netMHCIIpan-3.1
@@ -301,7 +301,7 @@ refMrna.fa
 GRCh37.fa
 ```
 
-##### Preparation
+##### Prepare to use on R. 
 ```
 install.packages("devtools");
 library(devtools);
@@ -314,13 +314,13 @@ library(Neoantimon);
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
-                                   refflat_file  = "lib/refFlat.txt",
-                                   refmrna_file = "lib/refMrna.fa",
+                                   refflat_file  = "refFlat.grch37.txt",
+                                   refmrna_file = "refMrna.grch37.fa",
                                    rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                                   netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "lib/sample.snps.vcf",
+                                   SNPs = "sample.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "mhctools")
 

@@ -84,7 +84,7 @@
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
-#'@param MHCflurry Also output results using MHCflurry. Return a list of both results (Default=FALSE). 
+#'@param MHCflurry Also output results using MHCflurry. Return a list of both results (Default=FALSE).
 #'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
@@ -309,7 +309,7 @@ MainINDELClass1<-function(input_annovar_format_file = NA,
 
   #Execute mhcflurry
   if(!is.na(MHCflurry)){
-    ExemhcflurryClass1(netMHCpan_dir,
+    ExemhcflurryClass1(MHCflurry,
                        output_peptide_prefix,
                        "peptide",
                        hla_types,

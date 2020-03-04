@@ -309,7 +309,7 @@ MainSNVClass1<-function(input_annovar_format_file = NA,
 
   #Execute mhcflurry
   if(!is.na(MHCflurry)){
-    ExemhcflurryClass1(netMHCpan_dir,
+    ExemhcflurryClass1(MHCflurry,
                        output_peptide_prefix,
                        c("peptide", "wtpeptide"),
                        hla_types,
