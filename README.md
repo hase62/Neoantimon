@@ -126,14 +126,17 @@ wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/
 unzip data.zip
 ```
 
-## 2. Use on R
+## 2. Prepare to Use on R
+**Required**
 ```
-#Required
 install.packages("devtools");
 library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
-#Suggest to Read Data at High Speed
+```
+
+**Suggest to Read Data at High Speed**
+```
 install.packages('data.table');
 library(data.table);
 ```
@@ -166,7 +169,6 @@ print(sample_hla_table_c2, row.names = FALSE)
 ##	Name	DPA11	DPA12	DPB11	DPB12	DQA11	DQA12	DQB11	DQB12	DRB11	DRB12
 ##	sample	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
 ##	sample2	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
-##
 ```
 
 ### -Annotated VCF file
@@ -188,6 +190,7 @@ print(sample_vcf, row.names = FALSE)
 ##   4  70156404  70156404   -   T       exonic      UGT2B28           frameshift          insertion   UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs     4q13.2          43               15           41
 ##   6  75899298  75899298   T   -       exonic      COL12A1           frameshift           deletion    COL12A1:NM_004370:exon6:c.628delA:p.I210fs       6q13         122               38           73
 ##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
+...
 ```
 
 ### -Annotated BND format VCF file
@@ -209,11 +212,12 @@ print(sample_sv_bnd, row.names = FALSE)
 ##   2  25965720  25965720   T  T[2:25870536[       exonic        ASXL2     SVMERGE116_2
 ##   2 214794791 214794791   C C[2:214798169[       exonic       SPAG16       SVMERGE3_1
 ##   2 214798169 214798169   T ]2:214794791]T     intronic       SPAG16       SVMERGE3_2
+...
 ```
 
 ### -RNA expression file
 
-An RNA expressoin file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file" in main functions.
+An RNA expressoin file is not required, but you can attach "RNA expression" information by indicating "rnaexp_file".
 If you also indicate "rnabam_file", variant allele frequencies and tumor specific RNA expressions are also attached to the results. 
 
 ```r
@@ -249,7 +253,7 @@ print(sample_rna_exp, row.names = FALSE)
 ### -CNV file
 
 A copynumber file is not required, but you can attach "Copy Number" information by indicating "cnv_file" and "purity" in main functions.
-They are used to calculate tumor subclonal cell population 
+They are used to calculate tumor subclonal cell population. 
 Purity is set 1 as default value. 
 
 ```r
@@ -269,31 +273,32 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-##### Sample files can be downloaded from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
+##### Please download sample files from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip. 
 ```
-lib/data/sample_result_INDEL_CLASS1_ALL.txt
-lib/data/sample_result_INDEL_CLASS2_ALL.txt
-lib/data/sample_result_SeqFragment_CLASS1_ALL.txt
-lib/data/sample_result_SeqFragment_CLASS2_ALL.txt
-lib/data/sample_result_SNV_CLASS1_ALL.txt
-lib/data/sample_result_SNV_CLASS2_ALL.txt
-lib/data/sample_result_SVFusion_CLASS1_ALL.txt
-lib/data/sample_result_SVFusion_CLASS2_ALL.txt
-lib/data/sample_copynum.txt
-lib/data/sample_hla_table_c1.txt
-lib/data/sample_hla_table_c2.txt
-lib/data/sample_rna_exp.txt
-lib/data/sample_vcf.txt
-lib/data/sample_sv_bnd.txt
+data/sample_result_INDEL_CLASS1_ALL.txt
+data/sample_result_INDEL_CLASS2_ALL.txt
+data/sample_result_SeqFragment_CLASS1_ALL.txt
+data/sample_result_SeqFragment_CLASS2_ALL.txt
+data/sample_result_SNV_CLASS1_ALL.txt
+data/sample_result_SNV_CLASS2_ALL.txt
+data/sample_result_SVFusion_CLASS1_ALL.txt
+data/sample_result_SVFusion_CLASS2_ALL.txt
+data/sample_copynum.txt
+data/sample_hla_table_c1.txt
+data/sample_hla_table_c2.txt
+data/sample_rna_exp.txt
+data/sample_vcf.txt
+data/sample_sv_bnd.txt
+data/sample.snps.vcf
 ```
 
 ##### Prepare the following files using the above explanations. 
 ```
-lib/netMHCpan-4.0
-lib/netMHCIIpan-3.1
-lib/refFlat.txt 
-lib/refMrna.fa
-lib/GRCh37.fa
+netMHCpan-4.0
+netMHCIIpan-3.1
+refFlat.txt 
+refMrna.fa
+GRCh37.fa
 ```
 
 ##### Preparation
