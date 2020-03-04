@@ -128,11 +128,12 @@ unzip data.zip
 
 ## 2. Use on R
 ```
+#Required
 install.packages("devtools");
 library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
-#<Suggest>
+#Suggest to Read Data at High Speed
 install.packages('data.table');
 library(data.table);
 ```
@@ -149,10 +150,9 @@ print(sample_hla_table_c1, row.names = FALSE)
 ```
 
 ```
-##     Name      A1      A2      B1      B2      C1      C2
-##   sample A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
-##  sample2 A*02:01 A*32:01 B*15:17 B*51:01 C*07:01 C*15:02
-##  ...
+##	Name	A1	A2	B1	B2	C1	C2
+##	sample	A*02:01	A*32:01	B*15:17	B*51:01	C*07:01	C*15:02
+##	sample2	A*02:01	A*32:01	B*15:17	B*51:01	C*07:01	C*15:02
 ```
 
 **2. A HLA Class II table file must be according to the following format.**
@@ -166,7 +166,7 @@ print(sample_hla_table_c2, row.names = FALSE)
 ##	Name	DPA11	DPA12	DPB11	DPB12	DQA11	DQA12	DQB11	DQB12	DRB11	DRB12
 ##	sample	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
 ##	sample2	DPA1*01:03	DPA1*02:01	DPB1*02:01	DPB1*09:01	DQA1*01:02	DQA1*05:05	DQB1*03:01	DQB1*06:04	DRB1*11:04	DRB1*13:02
-##  ...
+##
 ```
 
 ### -Annotated VCF file
