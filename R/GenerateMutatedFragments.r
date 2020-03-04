@@ -14,11 +14,19 @@ GenerateMutatedFragments<-function(input_sequence,
                                    IgnoreShortPeptides){
 
   #READ refFlat
+  if(!file.exists(refflat_file)){
+    print("refflat file does not exist.")
+    return(NULL)
+  }
   list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- list_nm[, 1]
   list_nm_cut <- list_nm[, 2]
 
   #Get RNA-Code Data
+  if(!file.exists(refmrna_file)){
+    print("refmrna file does not exist.")
+    return(NULL)
+  }
   list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))

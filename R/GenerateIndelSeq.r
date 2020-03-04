@@ -21,6 +21,10 @@ GenerateIndelSeq<-function(input_file,
                            apply_annotation = FALSE){
 
   #READ Data
+  if(!file.exists(input_file)){
+    print("Input file does not exist.")
+    return(NULL)
+  }
   data <- read_data(input_file)
   data <- data[grep("\texonic\t", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
   data_snv <- data[grep("\tmissense_variant|\tnonsynonymous", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
@@ -28,14 +32,28 @@ GenerateIndelSeq<-function(input_file,
   if(nrow(data) < 1 | is.null(data)) return(NULL)
 
   #READ refFlat
+  if(!file.exists(refflat_file)){
+    print("refflat file does not exist.")
+    return(NULL)
+  }
   list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- list_nm[, 1]
   list_nm_cut <- list_nm[, 2]
 
   #READ SNPs Data if available
-  if(!is.na(SNPs)) SNPs_vcf <- read_data(SNPs)
+  if(!is.na(SNPs)) {
+    if(!file.exists(SNPs)){
+      print("SNP file is indicated, but it does not exist.")
+      return(NULL)
+    }
+    SNPs_vcf <- read_data(SNPs)
+  }
 
   #Get RNA-Code Data
+  if(!file.exists(refmrna_file)){
+    print("refmrna file does not exist.")
+    return(NULL)
+  }
   list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))

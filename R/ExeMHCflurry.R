@@ -21,13 +21,15 @@ ExemhcflurryClass1<-function(MHCflurry,
     }
     for(hla_type in hla_types){
       paste("Calculating", pep, hla_type)
-      system(paste(MHCflurry,
+      com <- paste(MHCflurry,
                    " --mhc-predictor mhcflurry",
                    " --input-fasta-file ", output_f,
                    " --mhc-alleles ", paste("HLA-", gsub("\\*|:","", hla_type), sep = ""),
                    " --mhc-peptide-lengths ", paste(peptide_length, collapse = ","),
                    " --extract-subsequences",
-                   " --output-csv ", export_dir, "/", output_f_header, ".HLACLASS1.", COUNT, ".", pep, ".mhcflurry.csv", sep=""))
+                   " --output-csv ", export_dir, "/", output_f_header, ".HLACLASS1.", COUNT, ".", pep, ".mhcflurry.csv", sep="")
+      print(com)
+      system(com)
       COUNT <- COUNT + 1
     }
     if(USETEMP) file.remove(output_f)

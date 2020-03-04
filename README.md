@@ -320,7 +320,7 @@ library(Neoantimon);
                                    netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "sample.snps.vcf",
+                                   SNPs = "data/sample.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "mhctools")
 

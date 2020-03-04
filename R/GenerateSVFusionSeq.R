@@ -18,28 +18,36 @@ GenerateSVFusionSeq<-function(input_file,
                              ambiguous_codon,
                              export_dir,
                              IgnoreShortPeptides){
-
+  if(!file.exists(input_file)){
+    print("Input file does not exist.")
+    return(NULL)
+  }
   index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
   if(requireNamespace("data.table", quietly=TRUE)) {
     data <- data.table::fread(input_file, stringsAsFactors=FALSE, header = TRUE, sep="\n", data.table = FALSE)[, 1]
   } else {
     data  <- scan(input_file, "character", sep = "\n", skip = 1)
   }
-
-  if(length(data)<1){
-    q("no")
-  }
+  if(length(data) < 1 | is.null(data)) return(NULL)
 
   mateIDs<-sapply(sapply(data, function(x) strsplit(x, "\t")[[1]][mate_id_column]),
                   function(x) strsplit(x, "_")[[1]][1])
   uIDs<-unique(mateIDs)[sapply(unique(mateIDs), function(x) length(which(!is.na(match(mateIDs, x)))) > 1)]
 
   #READ refFlat
+  if(!file.exists(refflat_file)){
+    print("refflat file does not exist.")
+    return(NULL)
+  }
   list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- list_nm[, 1]
   list_nm_cut <- list_nm[, 2]
 
   #Get RNA-Code Data
+  if(!file.exists(refmrna_file)){
+    print("refmrna file does not exist.")
+    return(NULL)
+  }
   list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
