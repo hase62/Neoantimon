@@ -9,7 +9,7 @@
 
 ### -Download and Set netMHCpan4.0 (Required)
 
-1. Download netMHCpan4.0 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCpan and move it to the working directory. 
+1. Download netMHCpan4.0 from https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0 and move it to the working directory. 
 
 2. Do initial setting at the working directory as followings.
 ```
@@ -25,11 +25,11 @@ mhcflurry-downloads fetch
 pip install mhctools
 ```
 
-2. Otherwise, install python from https://www.python.org/downloads/release/python-380/, and then run the above codes.
+2. Otherwise, install python from https://www.python.org/downloads/release, and then run the above codes.
 
 ### -Download and Set netMHCIIpan3.2 (Required)
 
-1. Download netMHCIIpan 3.2 from http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?netMHCIIpan and move it to the working directory. 
+1. Download netMHCIIpan 3.2 from https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2 and move it to the working directory. 
 
 2. Do initial setting at the working directory as followings.
 ```
@@ -46,12 +46,14 @@ chmod 750 setNetMHCIIpan3.2.sh
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
+mv refMrna.fa refMrna.grch38.fa
 ```
 
 **GRCh37/hg19**: Run the following codes. 
 ```
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
+mv refMrna.fa refMrna.grch37.fa
 ```
 
 ### -Download refFlat Files (Required)
@@ -62,12 +64,14 @@ gunzip refMrna.fa.gz
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
+mv refFlat.txt refFlat.grch38.txt
 ```
 
 **GRCh37/hg19**: Run the following codes. 
 ```
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
+mv refFlat.txt refFlat.grch37.txt
 ```
 
 ### -Install Samtools (Not Required)
