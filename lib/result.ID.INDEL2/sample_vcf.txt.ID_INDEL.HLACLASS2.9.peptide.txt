@@ -1,0 +1,77 @@
+# NetMHCIIpan version 3.2
+
+# Input is in FASTA format
+
+# Peptide length 15
+
+# Threshold for Strong binding peptides (%Rank)	2%
+# Threshold for Weak binding peptides (%Rank)	10%
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq        Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1     DRB1_1104      EAIYHGIPMVGIPLV       0_UGT2B28    3   YHGIPMVGI     0.390         0.378        836.06    26.00      NA       
+   2     DRB1_1104      AIYHGIPMVGIPLVL       0_UGT2B28    2   YHGIPMVGI     0.330         0.378        837.38    26.00      NA       
+   3     DRB1_1104      IYHGIPMVGIPLVLG       0_UGT2B28    1   YHGIPMVGI     0.255         0.364        977.14    29.00      NA       
+   4     DRB1_1104      YHGIPMVGIPLVLGS       0_UGT2B28    5   MVGIPLVLG     0.385         0.342       1236.84    34.00      NA       
+   5     DRB1_1104      HGIPMVGIPLVLGST       0_UGT2B28    4   MVGIPLVLG     0.495         0.333       1355.54    36.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq        Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1     DRB1_1104      QYYQRDELLAAIKKF       1_COL12A1    5   DELLAAIKK     0.485         0.411        584.77    20.00      NA       
+   2     DRB1_1104      YYQRDELLAAIKKFH       1_COL12A1    6   LLAAIKKFH     0.570         0.576         98.56     4.00      NA   <=WB
+   3     DRB1_1104      YQRDELLAAIKKFHI       1_COL12A1    6   LAAIKKFHI     0.455         0.675         33.67     0.80      NA   <=SB
+   4     DRB1_1104      QRDELLAAIKKFHIK       1_COL12A1    5   LAAIKKFHI     0.570         0.716         21.64     0.30      NA   <=SB
+   5     DRB1_1104      RDELLAAIKKFHIKV       1_COL12A1    4   LAAIKKFHI     0.560         0.730         18.51     0.17      NA   <=SB
+   6     DRB1_1104      DELLAAIKKFHIKVA       1_COL12A1    3   LAAIKKFHI     0.635         0.730         18.47     0.17      NA   <=SB
+   7     DRB1_1104      ELLAAIKKFHIKVAT       1_COL12A1    2   LAAIKKFHI     0.635         0.738         16.98     0.12      NA   <=SB
+   8     DRB1_1104      LLAAIKKFHIKVATQ       1_COL12A1    1   LAAIKKFHI     0.670         0.721         20.52     0.25      NA   <=SB
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 6 Number of weak binders: 1
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: DRB1_1104
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq        Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1     DRB1_1104      IMEMARDFLPSLKNP       2_SLCO1C1    4   ARDFLPSLK     0.255         0.306       1816.43    44.00      NA       
+   2     DRB1_1104      MEMARDFLPSLKNPF       2_SLCO1C1    6   FLPSLKNPF     0.520         0.373        879.74    27.00      NA       
+   3     DRB1_1104      EMARDFLPSLKNPFW       2_SLCO1C1    5   FLPSLKNPF     0.645         0.417        551.46    19.00      NA       
+   4     DRB1_1104      MARDFLPSLKNPFWK       2_SLCO1C1    4   FLPSLKNPF     0.735         0.451        380.30    14.00      NA       
+   5     DRB1_1104      ARDFLPSLKNPFWKP       2_SLCO1C1    3   FLPSLKNPF     0.755         0.437        442.07    16.00      NA       
+   6     DRB1_1104      RDFLPSLKNPFWKPS       2_SLCO1C1    2   FLPSLKNPF     0.760         0.423        513.19    18.00      NA       
+   7     DRB1_1104      DFLPSLKNPFWKPSI       2_SLCO1C1    1   FLPSLKNPF     0.650         0.376        855.60    27.00      NA       
+   8     DRB1_1104      FLPSLKNPFWKPSIL       2_SLCO1C1    0   FLPSLKNPF     0.440         0.349       1146.92    33.00      NA       
+   9     DRB1_1104      LPSLKNPFWKPSILP       2_SLCO1C1    4   KNPFWKPSI     0.320         0.257       3095.75    60.00      NA       
+  10     DRB1_1104      PSLKNPFWKPSILPI       2_SLCO1C1    6   FWKPSILPI     0.270         0.285       2277.56    50.00      NA       
+  11     DRB1_1104      SLKNPFWKPSILPIF       2_SLCO1C1    5   FWKPSILPI     0.305         0.319       1587.32    40.00      NA       
+  12     DRB1_1104      LKNPFWKPSILPIFM       2_SLCO1C1    4   FWKPSILPI     0.340         0.337       1305.85    35.00      NA       
+  13     DRB1_1104      KNPFWKPSILPIFMY       2_SLCO1C1    3   FWKPSILPI     0.290         0.362        999.28    30.00      NA       
+  14     DRB1_1104      NPFWKPSILPIFMYK       2_SLCO1C1    5   PSILPIFMY     0.275         0.381        806.21    26.00      NA       
+  15     DRB1_1104      PFWKPSILPIFMYKH       2_SLCO1C1    6   ILPIFMYKH     0.385         0.425        502.31    18.00      NA       
+  16     DRB1_1104      FWKPSILPIFMYKHC       2_SLCO1C1    5   ILPIFMYKH     0.470         0.436        448.01    16.00      NA       
+  17     DRB1_1104      WKPSILPIFMYKHCS       2_SLCO1C1    4   ILPIFMYKH     0.490         0.468        316.71    12.00      NA       
+  18     DRB1_1104      KPSILPIFMYKHCSV       2_SLCO1C1    3   ILPIFMYKH     0.405         0.505        212.49     8.50      NA   <=WB
+  19     DRB1_1104      PSILPIFMYKHCSVQ       2_SLCO1C1    4   PIFMYKHCS     0.330         0.499        225.22     9.00      NA   <=WB
+  20     DRB1_1104      SILPIFMYKHCSVQF       2_SLCO1C1    3   PIFMYKHCS     0.365         0.503        215.63     9.00      NA   <=WB
+  21     DRB1_1104      ILPIFMYKHCSVQFS       2_SLCO1C1    2   PIFMYKHCS     0.395         0.493        240.58     9.50      NA   <=WB
+  22     DRB1_1104      LPIFMYKHCSVQFSV       2_SLCO1C1    1   PIFMYKHCS     0.370         0.478        283.93    11.00      NA       
+  23     DRB1_1104      PIFMYKHCSVQFSVR       2_SLCO1C1    4   YKHCSVQFS     0.295         0.457        357.65    14.00      NA       
+  24     DRB1_1104      IFMYKHCSVQFSVRH       2_SLCO1C1    3   YKHCSVQFS     0.415         0.426        497.74    18.00      NA       
+  25     DRB1_1104      FMYKHCSVQFSVRHG       2_SLCO1C1    2   YKHCSVQFS     0.320         0.412        580.89    20.00      NA       
+  26     DRB1_1104      MYKHCSVQFSVRHGD       2_SLCO1C1    4   CSVQFSVRH     0.240         0.383        795.85    25.00      NA       
+  27     DRB1_1104      YKHCSVQFSVRHGDV       2_SLCO1C1    3   CSVQFSVRH     0.285         0.394        706.36    23.00      NA       
+  28     DRB1_1104      KHCSVQFSVRHGDVQ       2_SLCO1C1    4   VQFSVRHGD     0.350         0.385        772.23    25.00      NA       
+  29     DRB1_1104      HCSVQFSVRHGDVQT       2_SLCO1C1    3   VQFSVRHGD     0.430         0.365        963.56    29.00      NA       
+  30     DRB1_1104      CSVQFSVRHGDVQTK       2_SLCO1C1    2   VQFSVRHGD     0.415         0.353       1093.05    32.00      NA       
+  31     DRB1_1104      SVQFSVRHGDVQTKV       2_SLCO1C1    1   VQFSVRHGD     0.405         0.325       1477.40    38.00      NA       
+  32     DRB1_1104      VQFSVRHGDVQTKVH       2_SLCO1C1    4   VRHGDVQTK     0.340         0.264       2876.97    60.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 4
+--------------------------------------------------------------------------------------------------------------------------------------------

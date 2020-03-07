@@ -1,0 +1,108 @@
+# NetMHCIIpan version 3.2
+
+# Input is in FASTA format
+
+# Peptide length 15
+
+# Threshold for Strong binding peptides (%Rank)	2%
+# Threshold for Weak binding peptides (%Rank)	10%
+
+# Allele: HLA-DQA10505-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq                  Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1   HLA-DQA10505-DQB10604      HPKHQERCREEIHSL       0_CYP4A11    6   RCREEIHSL     0.285         0.033      34934.58    95.00      NA       
+   2   HLA-DQA10505-DQB10604      PKHQERCREEIHSLL       0_CYP4A11    6   CREEIHSLL     0.415         0.044      30926.52    95.00      NA       
+   3   HLA-DQA10505-DQB10604      KHQERCREEIHSLLG       0_CYP4A11    5   CREEIHSLL     0.380         0.050      28976.63    95.00      NA       
+   4   HLA-DQA10505-DQB10604      HQERCREEIHSLLGD       0_CYP4A11    6   EEIHSLLGD     0.295         0.057      27060.53    95.00      NA       
+   5   HLA-DQA10505-DQB10604      QERCREEIHSLLGDG       0_CYP4A11    5   EEIHSLLGD     0.275         0.062      25539.42    90.00      NA       
+   6   HLA-DQA10505-DQB10604      ERCREEIHSLLGDGA       0_CYP4A11    6   IHSLLGDGA     0.550         0.102      16563.37    60.00      NA       
+   7   HLA-DQA10505-DQB10604      RCREEIHSLLGDGAS       0_CYP4A11    5   IHSLLGDGA     0.585         0.114      14591.20    48.00      NA       
+   8   HLA-DQA10505-DQB10604      CREEIHSLLGDGASI       0_CYP4A11    4   IHSLLGDGA     0.520         0.136      11526.95    32.00      NA       
+   9   HLA-DQA10505-DQB10604      REEIHSLLGDGASIT       0_CYP4A11    3   IHSLLGDGA     0.410         0.150       9850.16    24.00      NA       
+  10   HLA-DQA10505-DQB10604      EEIHSLLGDGASITW       0_CYP4A11    2   IHSLLGDGA     0.330         0.154       9431.31    22.00      NA       
+  11   HLA-DQA10505-DQB10604      EIHSLLGDGASITWN       0_CYP4A11    4   LLGDGASIT     0.270         0.151       9761.36    23.00      NA       
+  12   HLA-DQA10505-DQB10604      IHSLLGDGASITWNH       0_CYP4A11    3   LLGDGASIT     0.315         0.142      10718.58    28.00      NA       
+  13   HLA-DQA10505-DQB10604      HSLLGDGASITWNHL       0_CYP4A11    2   LLGDGASIT     0.285         0.141      10874.65    29.00      NA       
+  14   HLA-DQA10505-DQB10604      SLLGDGASITWNHLD       0_CYP4A11    1   LLGDGASIT     0.285         0.136      11507.89    32.00      NA       
+  15   HLA-DQA10505-DQB10604      LLGDGASITWNHLDQ       0_CYP4A11    4   GASITWNHL     0.195         0.124      13059.50    40.00      NA       
+  16   HLA-DQA10505-DQB10604      LGDGASITWNHLDQM       0_CYP4A11    3   GASITWNHL     0.210         0.120      13608.96    43.00      NA       
+  17   HLA-DQA10505-DQB10604      GDGASITWNHLDQMP       0_CYP4A11    3   ASITWNHLD     0.190         0.114      14532.27    48.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10505-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq                  Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1   HLA-DQA10505-DQB10604      YTPEPERDYLEAAIR         1_DHX15    5   ERDYLEAAI     0.280         0.071      23147.89    85.00      NA       
+   2   HLA-DQA10505-DQB10604      TPEPERDYLEAAIRT         1_DHX15    6   DYLEAAIRT     0.270         0.081      20832.82    75.00      NA       
+   3   HLA-DQA10505-DQB10604      PEPERDYLEAAIRTV         1_DHX15    6   YLEAAIRTV     0.510         0.119      13808.45    44.00      NA       
+   4   HLA-DQA10505-DQB10604      EPERDYLEAAIRTVI         1_DHX15    5   YLEAAIRTV     0.455         0.145      10441.35    26.00      NA       
+   5   HLA-DQA10505-DQB10604      PERDYLEAAIRTVIQ         1_DHX15    4   YLEAAIRTV     0.425         0.148      10100.11    25.00      NA       
+   6   HLA-DQA10505-DQB10604      ERDYLEAAIRTVIQI         1_DHX15    3   YLEAAIRTV     0.440         0.160       8846.53    19.00      NA       
+   7   HLA-DQA10505-DQB10604      RDYLEAAIRTVIQIH         1_DHX15    2   YLEAAIRTV     0.415         0.157       9161.36    20.00      NA       
+   8   HLA-DQA10505-DQB10604      DYLEAAIRTVIQIHM         1_DHX15    1   YLEAAIRTV     0.330         0.159       8910.61    19.00      NA       
+   9   HLA-DQA10505-DQB10604      YLEAAIRTVIQIHMC         1_DHX15    1   LEAAIRTVI     0.205         0.151       9779.96    23.00      NA       
+  10   HLA-DQA10505-DQB10604      LEAAIRTVIQIHMCE         1_DHX15    4   IRTVIQIHM     0.230         0.130      12294.24    36.00      NA       
+  11   HLA-DQA10505-DQB10604      EAAIRTVIQIHMCEE         1_DHX15    3   IRTVIQIHM     0.285         0.123      13278.06    41.00      NA       
+  12   HLA-DQA10505-DQB10604      AAIRTVIQIHMCEEE         1_DHX15    2   IRTVIQIHM     0.245         0.118      14002.08    45.00      NA       
+  13   HLA-DQA10505-DQB10604      AIRTVIQIHMCEEEE         1_DHX15    1   IRTVIQIHM     0.240         0.114      14502.27    48.00      NA       
+  14   HLA-DQA10505-DQB10604      IRTVIQIHMCEEEEG         1_DHX15    3   VIQIHMCEE     0.175         0.107      15700.46    55.00      NA       
+  15   HLA-DQA10505-DQB10604      RTVIQIHMCEEEEGD         1_DHX15    2   VIQIHMCEE     0.210         0.096      17750.01    65.00      NA       
+  16   HLA-DQA10505-DQB10604      TVIQIHMCEEEEGDL         1_DHX15    1   VIQIHMCEE     0.195         0.091      18732.87    70.00      NA       
+  17   HLA-DQA10505-DQB10604      VIQIHMCEEEEGDLL         1_DHX15    3   IHMCEEEEG     0.280         0.084      20099.93    75.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10505-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq                  Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1   HLA-DQA10505-DQB10604      VMGCTEARRRCDRDS          2_GAS1    1   MGCTEARRR     0.280         0.039      32626.27    95.00      NA       
+   2   HLA-DQA10505-DQB10604      MGCTEARRRCDRDSR          2_GAS1    2   CTEARRRCD     0.220         0.029      36527.11    95.00      NA       
+   3   HLA-DQA10505-DQB10604      GCTEARRRCDRDSRC          2_GAS1    1   CTEARRRCD     0.230         0.028      36893.32    95.00      NA       
+   4   HLA-DQA10505-DQB10604      CTEARRRCDRDSRCN          2_GAS1    5   RRCDRDSRC     0.215         0.028      36893.72    95.00      NA       
+   5   HLA-DQA10505-DQB10604      TEARRRCDRDSRCNL          2_GAS1    4   RRCDRDSRC     0.245         0.032      35261.16    95.00      NA       
+   6   HLA-DQA10505-DQB10604      EARRRCDRDSRCNLA          2_GAS1    6   DRDSRCNLA     0.365         0.039      32626.98    95.00      NA       
+   7   HLA-DQA10505-DQB10604      ARRRCDRDSRCNLAL          2_GAS1    5   DRDSRCNLA     0.370         0.047      29973.79    95.00      NA       
+   8   HLA-DQA10505-DQB10604      RRRCDRDSRCNLALS          2_GAS1    4   DRDSRCNLA     0.245         0.058      26554.70    95.00      NA       
+   9   HLA-DQA10505-DQB10604      RRCDRDSRCNLALSR          2_GAS1    5   DSRCNLALS     0.250         0.063      25325.33    90.00      NA       
+  10   HLA-DQA10505-DQB10604      RCDRDSRCNLALSRY          2_GAS1    4   DSRCNLALS     0.215         0.073      22807.05    85.00      NA       
+  11   HLA-DQA10505-DQB10604      CDRDSRCNLALSRYL          2_GAS1    6   CNLALSRYL     0.460         0.101      16722.92    60.00      NA       
+  12   HLA-DQA10505-DQB10604      DRDSRCNLALSRYLT          2_GAS1    5   CNLALSRYL     0.465         0.108      15534.19    55.00      NA       
+  13   HLA-DQA10505-DQB10604      RDSRCNLALSRYLTY          2_GAS1    4   CNLALSRYL     0.400         0.120      13587.18    43.00      NA       
+  14   HLA-DQA10505-DQB10604      DSRCNLALSRYLTYC          2_GAS1    3   CNLALSRYL     0.390         0.116      14284.10    46.00      NA       
+  15   HLA-DQA10505-DQB10604      SRCNLALSRYLTYCG          2_GAS1    2   CNLALSRYL     0.345         0.113      14727.44    49.00      NA       
+  16   HLA-DQA10505-DQB10604      RCNLALSRYLTYCGK          2_GAS1    1   CNLALSRYL     0.335         0.106      15869.88    55.00      NA       
+  17   HLA-DQA10505-DQB10604      CNLALSRYLTYCGKV          2_GAS1    2   LALSRYLTY     0.195         0.099      17097.62    60.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DQA10505-DQB10604
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq                  Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1   HLA-DQA10505-DQB10604      KKGVKGFGDDIPGME         3_PDE6H    3   VKGFGDDIP     0.290         0.081      20794.09    75.00      NA       
+   2   HLA-DQA10505-DQB10604      KGVKGFGDDIPGMEG         3_PDE6H    2   VKGFGDDIP     0.255         0.078      21394.08    80.00      NA       
+   3   HLA-DQA10505-DQB10604      GVKGFGDDIPGMEGL         3_PDE6H    3   GFGDDIPGM     0.230         0.081      20726.48    75.00      NA       
+   4   HLA-DQA10505-DQB10604      VKGFGDDIPGMEGLG         3_PDE6H    2   GFGDDIPGM     0.275         0.075      22108.76    80.00      NA       
+   5   HLA-DQA10505-DQB10604      KGFGDDIPGMEGLGT         3_PDE6H    1   GFGDDIPGM     0.240         0.074      22457.86    85.00      NA       
+   6   HLA-DQA10505-DQB10604      GFGDDIPGMEGLGTD         3_PDE6H    5   IPGMEGLGT     0.210         0.069      23726.80    85.00      NA       
+   7   HLA-DQA10505-DQB10604      FGDDIPGMEGLGTDI         3_PDE6H    4   IPGMEGLGT     0.285         0.074      22339.35    85.00      NA       
+   8   HLA-DQA10505-DQB10604      GDDIPGMEGLGTDIT         3_PDE6H    6   MEGLGTDIT     0.455         0.091      18633.41    70.00      NA       
+   9   HLA-DQA10505-DQB10604      DDIPGMEGLGTDITV         3_PDE6H    5   MEGLGTDIT     0.455         0.107      15655.17    55.00      NA       
+  10   HLA-DQA10505-DQB10604      DIPGMEGLGTDITVI         3_PDE6H    4   MEGLGTDIT     0.410         0.131      12075.26    35.00      NA       
+  11   HLA-DQA10505-DQB10604      IPGMEGLGTDITVIC         3_PDE6H    3   MEGLGTDIT     0.330         0.133      11802.97    34.00      NA       
+  12   HLA-DQA10505-DQB10604      PGMEGLGTDITVICP         3_PDE6H    2   MEGLGTDIT     0.265         0.130      12239.69    36.00      NA       
+  13   HLA-DQA10505-DQB10604      GMEGLGTDITVICPW         3_PDE6H    3   GLGTDITVI     0.220         0.140      10969.78    29.00      NA       
+  14   HLA-DQA10505-DQB10604      MEGLGTDITVICPWE         3_PDE6H    2   GLGTDITVI     0.205         0.145      10387.37    26.00      NA       
+  15   HLA-DQA10505-DQB10604      EGLGTDITVICPWEA         3_PDE6H    6   ITVICPWEA     0.405         0.165       8396.36    17.00      NA       
+  16   HLA-DQA10505-DQB10604      GLGTDITVICPWEAF         3_PDE6H    5   ITVICPWEA     0.455         0.182       7001.19    11.00      NA       
+  17   HLA-DQA10505-DQB10604      LGTDITVICPWEAFS         3_PDE6H    4   ITVICPWEA     0.525         0.183       6906.62    11.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------

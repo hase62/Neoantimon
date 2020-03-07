@@ -322,43 +322,43 @@ library(Neoantimon);
                                    depth_normal_column = 14,
                                    SNPs = "data/sample.snps.vcf",
                                    multiple_variants = TRUE,
-                                   MHCflurry = "mhctools")
+                                   MHCflurry = "~/opt/anaconda3/bin/mhctools")
 
   Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c2.txt",
-                                   refflat_file  = "lib/refFlat.txt",
-                                   refmrna_file = "lib/refMrna.fa",
+                                   refflat_file  = "refFlat.grch37.txt",
+                                   refmrna_file = "refMrna.grch37.fa",
                                    rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
+                                   netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "lib/sample.snps.vcf",
+                                   SNPs = "data/sample.snps.vcf",
                                    multiple_variants = TRUE)
 
   Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
-                                       refflat_file  = "lib/refFlat.txt",
-                                       refmrna_file = "lib/refMrna.fa",
+                                       refflat_file  = "refFlat.grch37.txt",
+                                       refmrna_file = "refMrna.grch37.fa",
                                        rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                                       netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "lib/sample.snps.vcf",
+                                       SNPs = "data/sample.snps.vcf",
                                        multiple_variants = TRUE,
-                                       MHCflurry = "mhctools")
+                                       MHCflurry = "~/opt/anaconda3/bin/mhctools")
 
   Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
-                                       refflat_file  = "lib/refFlat.txt",
-                                       refmrna_file = "lib/refMrna.fa",
+                                       refflat_file  = "refFlat.grch37.txt",
+                                       refmrna_file = "refMrna.grch37.fa",
                                        rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
+                                       netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "lib/sample.snps.vcf",
+                                       SNPs = "data/sample.snps.vcf",
                                        multiple_variants = TRUE)
 ```
 
@@ -367,11 +367,11 @@ library(Neoantimon);
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
-                                       refflat_file  = "lib/refFlat.txt",
-                                       refmrna_file = "lib/refMrna.fa",
+                                       refflat_file  = "refFlat.grch37.txt",
+                                       refmrna_file = "refMrna.grch37.fa",
                                        rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
-                                       refdna_file = "lib/GRCh37.fa",
+                                       netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                       refdna_file = "GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
@@ -379,11 +379,11 @@ library(Neoantimon);
   Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
-                                       refflat_file  = "lib/refFlat.txt",
-                                       refmrna_file = "lib/refMrna.fa",
+                                       refflat_file  = "refFlat.grch37.txt",
+                                       refmrna_file = "refMrna.grch37.fa",
                                        rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
-                                       refdna_file = "lib/GRCh37.fa",
+                                       netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
+                                       refdna_file = "GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
@@ -396,9 +396,9 @@ library(Neoantimon);
                                            hla_file = "data/sample_hla_table_c1.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
-                                           refflat_file  = "lib/refFlat.txt",
-                                           refmrna_file = "lib/refMrna.fa",
-                                           netMHCpan_dir = "lib/netMHCpan-4.0/netMHCpan",
+                                           refflat_file  = "refFlat.grch37.txt",
+                                           refmrna_file = "refMrna.grch37.fa",
+                                           netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
 
   Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
@@ -406,9 +406,9 @@ library(Neoantimon);
                                            hla_file = "data/sample_hla_table_c2.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
-                                           refflat_file  = "lib/refFlat.txt",
-                                           refmrna_file = "lib/refMrna.fa",
-                                           netMHCIIpan_dir = "lib/netMHCIIpan-3.2/netMHCIIpan",
+                                           refflat_file  = "refFlat.grch37.txt",
+                                           refmrna_file = "refMrna.grch37.fa",
+                                           netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                            reference_gene_symbol = c("NFKB1", "BCL3"))
 ```
 

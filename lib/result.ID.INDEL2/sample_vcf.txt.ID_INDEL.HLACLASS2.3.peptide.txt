@@ -1,0 +1,77 @@
+# NetMHCIIpan version 3.2
+
+# Input is in FASTA format
+
+# Peptide length 15
+
+# Threshold for Strong binding peptides (%Rank)	2%
+# Threshold for Weak binding peptides (%Rank)	10%
+
+# Allele: HLA-DPA10201-DPB10201
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq                  Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1   HLA-DPA10201-DPB10201      EAIYHGIPMVGIPLV       0_UGT2B28    3   YHGIPMVGI     0.405         0.355       1074.92    30.00      NA       
+   2   HLA-DPA10201-DPB10201      AIYHGIPMVGIPLVL       0_UGT2B28    2   YHGIPMVGI     0.315         0.360       1014.17    29.00      NA       
+   3   HLA-DPA10201-DPB10201      IYHGIPMVGIPLVLG       0_UGT2B28    1   YHGIPMVGI     0.255         0.333       1366.98    35.00      NA       
+   4   HLA-DPA10201-DPB10201      YHGIPMVGIPLVLGS       0_UGT2B28    4   PMVGIPLVL     0.230         0.313       1687.86    40.00      NA       
+   5   HLA-DPA10201-DPB10201      HGIPMVGIPLVLGST       0_UGT2B28    3   PMVGIPLVL     0.295         0.290       2164.24    45.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DPA10201-DPB10201
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq                  Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1   HLA-DPA10201-DPB10201      QYYQRDELLAAIKKF       1_COL12A1    2   YQRDELLAA     0.335         0.391        725.33    23.00      NA       
+   2   HLA-DPA10201-DPB10201      YYQRDELLAAIKKFH       1_COL12A1    1   YQRDELLAA     0.320         0.355       1070.42    30.00      NA       
+   3   HLA-DPA10201-DPB10201      YQRDELLAAIKKFHI       1_COL12A1    6   LAAIKKFHI     0.385         0.373        881.68    27.00      NA       
+   4   HLA-DPA10201-DPB10201      QRDELLAAIKKFHIK       1_COL12A1    5   LAAIKKFHI     0.475         0.371        898.72    27.00      NA       
+   5   HLA-DPA10201-DPB10201      RDELLAAIKKFHIKV       1_COL12A1    4   LAAIKKFHI     0.510         0.396        687.65    22.00      NA       
+   6   HLA-DPA10201-DPB10201      DELLAAIKKFHIKVA       1_COL12A1    3   LAAIKKFHI     0.485         0.398        675.22    22.00      NA       
+   7   HLA-DPA10201-DPB10201      ELLAAIKKFHIKVAT       1_COL12A1    2   LAAIKKFHI     0.470         0.399        668.30    22.00      NA       
+   8   HLA-DPA10201-DPB10201      LLAAIKKFHIKVATQ       1_COL12A1    1   LAAIKKFHI     0.480         0.379        830.08    26.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 0
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+# Allele: HLA-DPA10201-DPB10201
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Seq                  Allele              Peptide        Identity  Pos        Core  Core_Rel 1-log50k(aff)  Affinity(nM)    %Rank Exp_Bind  BindingLevel
+--------------------------------------------------------------------------------------------------------------------------------------------
+   1   HLA-DPA10201-DPB10201      IMEMARDFLPSLKNP       2_SLCO1C1    3   MARDFLPSL     0.310         0.372        895.11    27.00      NA       
+   2   HLA-DPA10201-DPB10201      MEMARDFLPSLKNPF       2_SLCO1C1    6   FLPSLKNPF     0.260         0.363        987.24    29.00      NA       
+   3   HLA-DPA10201-DPB10201      EMARDFLPSLKNPFW       2_SLCO1C1    5   FLPSLKNPF     0.370         0.363        989.54    29.00      NA       
+   4   HLA-DPA10201-DPB10201      MARDFLPSLKNPFWK       2_SLCO1C1    4   FLPSLKNPF     0.415         0.363        986.47    29.00      NA       
+   5   HLA-DPA10201-DPB10201      ARDFLPSLKNPFWKP       2_SLCO1C1    3   FLPSLKNPF     0.480         0.343       1217.44    33.00      NA       
+   6   HLA-DPA10201-DPB10201      RDFLPSLKNPFWKPS       2_SLCO1C1    2   FLPSLKNPF     0.485         0.326       1465.22    36.00      NA       
+   7   HLA-DPA10201-DPB10201      DFLPSLKNPFWKPSI       2_SLCO1C1    1   FLPSLKNPF     0.385         0.314       1668.47    39.00      NA       
+   8   HLA-DPA10201-DPB10201      FLPSLKNPFWKPSIL       2_SLCO1C1    3   SLKNPFWKP     0.355         0.339       1273.35    34.00      NA       
+   9   HLA-DPA10201-DPB10201      LPSLKNPFWKPSILP       2_SLCO1C1    2   SLKNPFWKP     0.330         0.301       1929.00    43.00      NA       
+  10   HLA-DPA10201-DPB10201      PSLKNPFWKPSILPI       2_SLCO1C1    6   FWKPSILPI     0.500         0.419        536.73    19.00      NA       
+  11   HLA-DPA10201-DPB10201      SLKNPFWKPSILPIF       2_SLCO1C1    5   FWKPSILPI     0.480         0.490        248.99     9.00      NA   <=WB
+  12   HLA-DPA10201-DPB10201      LKNPFWKPSILPIFM       2_SLCO1C1    4   FWKPSILPI     0.455         0.528        164.96     6.00      NA   <=WB
+  13   HLA-DPA10201-DPB10201      KNPFWKPSILPIFMY       2_SLCO1C1    3   FWKPSILPI     0.380         0.557        120.46     4.00      NA   <=WB
+  14   HLA-DPA10201-DPB10201      NPFWKPSILPIFMYK       2_SLCO1C1    2   FWKPSILPI     0.335         0.549        132.25     4.50      NA   <=WB
+  15   HLA-DPA10201-DPB10201      PFWKPSILPIFMYKH       2_SLCO1C1    1   FWKPSILPI     0.280         0.539        147.15     5.00      NA   <=WB
+  16   HLA-DPA10201-DPB10201      FWKPSILPIFMYKHC       2_SLCO1C1    3   PSILPIFMY     0.210         0.519        182.86     6.50      NA   <=WB
+  17   HLA-DPA10201-DPB10201      WKPSILPIFMYKHCS       2_SLCO1C1    4   ILPIFMYKH     0.340         0.450        383.91    14.00      NA       
+  18   HLA-DPA10201-DPB10201      KPSILPIFMYKHCSV       2_SLCO1C1    3   ILPIFMYKH     0.375         0.442        418.21    15.00      NA       
+  19   HLA-DPA10201-DPB10201      PSILPIFMYKHCSVQ       2_SLCO1C1    2   ILPIFMYKH     0.365         0.412        580.86    20.00      NA       
+  20   HLA-DPA10201-DPB10201      SILPIFMYKHCSVQF       2_SLCO1C1    1   ILPIFMYKH     0.310         0.410        594.03    20.00      NA       
+  21   HLA-DPA10201-DPB10201      ILPIFMYKHCSVQFS       2_SLCO1C1    3   IFMYKHCSV     0.240         0.395        699.91    23.00      NA       
+  22   HLA-DPA10201-DPB10201      LPIFMYKHCSVQFSV       2_SLCO1C1    2   IFMYKHCSV     0.230         0.398        674.52    22.00      NA       
+  23   HLA-DPA10201-DPB10201      PIFMYKHCSVQFSVR       2_SLCO1C1    5   KHCSVQFSV     0.170         0.404        634.27    21.00      NA       
+  24   HLA-DPA10201-DPB10201      IFMYKHCSVQFSVRH       2_SLCO1C1    4   KHCSVQFSV     0.180         0.403        641.08    21.00      NA       
+  25   HLA-DPA10201-DPB10201      FMYKHCSVQFSVRHG       2_SLCO1C1    3   KHCSVQFSV     0.240         0.355       1072.57    30.00      NA       
+  26   HLA-DPA10201-DPB10201      MYKHCSVQFSVRHGD       2_SLCO1C1    2   KHCSVQFSV     0.275         0.300       1952.05    43.00      NA       
+  27   HLA-DPA10201-DPB10201      YKHCSVQFSVRHGDV       2_SLCO1C1    1   KHCSVQFSV     0.210         0.274       2590.22    50.00      NA       
+  28   HLA-DPA10201-DPB10201      KHCSVQFSVRHGDVQ       2_SLCO1C1    3   SVQFSVRHG     0.255         0.235       3945.68    65.00      NA       
+  29   HLA-DPA10201-DPB10201      HCSVQFSVRHGDVQT       2_SLCO1C1    2   SVQFSVRHG     0.280         0.207       5321.21    70.00      NA       
+  30   HLA-DPA10201-DPB10201      CSVQFSVRHGDVQTK       2_SLCO1C1    1   SVQFSVRHG     0.290         0.190       6382.64    75.00      NA       
+  31   HLA-DPA10201-DPB10201      SVQFSVRHGDVQTKV       2_SLCO1C1    3   FSVRHGDVQ     0.190         0.186       6660.47    80.00      NA       
+  32   HLA-DPA10201-DPB10201      VQFSVRHGDVQTKVH       2_SLCO1C1    2   FSVRHGDVQ     0.195         0.169       7990.68    85.00      NA       
+--------------------------------------------------------------------------------------------------------------------------------------------
+Number of strong binders: 0 Number of weak binders: 6
+--------------------------------------------------------------------------------------------------------------------------------------------
