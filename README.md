@@ -135,7 +135,7 @@ install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
-**Suggest to Read Data at High Speed**
+**Suggested to Install for Reading Data at High Speed**
 ```
 install.packages('data.table');
 library(data.table);
@@ -292,25 +292,18 @@ data/sample_sv_bnd.txt
 data/sample.snps.vcf
 ```
 
-##### Prepare following files. 
+##### Prepare following files according to 1. Preparation. 
 ```
 netMHCpan-4.0
-netMHCIIpan-3.1
-refFlat.txt 
-refMrna.fa
+netMHCIIpan-3.2
+refFlat.grch37.txt
+refMrna.grch37.fa
 GRCh37.fa
-```
-
-##### Prepare to use on R. 
-```
-install.packages("devtools");
-library(devtools);
-install_github('hase62/Neoantimon');
-library(Neoantimon);
 ```
 
 ##### Calculate Neoantigens on SNVs for HLA Class I and II. 
 ![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/1.png)
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/1.png" width="640px">
 ![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/2.png)
 
 ###### Attach Opitional Information
