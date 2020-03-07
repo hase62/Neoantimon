@@ -305,12 +305,6 @@ GRCh37.fa
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/1.png" width="640px">
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/2.png" width="640px">
 
-###### Attach Opitional Information
-<img src="https://github.com/hase62/Neoantimon/blob/images/images/8.png" width="640px">
-
-###### Output Result
-<img src="https://github.com/hase62/Neoantimon/blob/images/images/9.png" width="640px">
-
 ```
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
@@ -425,6 +419,12 @@ GRCh37.fa
 ```
 
 ## 5. Result
+###### Attach Opitional Information
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/8.png" width="640px">
+
+###### Output Result
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/9.png" width="640px">
+
 ```
 print(head(Result_HLA1_SNV[[1]]))
 ```
