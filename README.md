@@ -309,7 +309,16 @@ install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
-##### Calculate Neoantigens on SNVs/INDELs for HLA Class I and II. 
+##### Calculate Neoantigens on SNVs for HLA Class I and II. 
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/1.png)
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/2.png)
+
+###### Attach Opitional Information
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/8.png)
+
+###### Output Result
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/9.png)
+
 ```
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
@@ -335,7 +344,12 @@ library(Neoantimon);
                                    depth_normal_column = 14,
                                    SNPs = "data/sample.snps.vcf",
                                    multiple_variants = TRUE)
+```
 
+##### Calculate Neoantigens on INDELs for HLA Class I and II. 
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/3.png)
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/4.png)
+```
   Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
@@ -362,9 +376,9 @@ library(Neoantimon);
                                        multiple_variants = TRUE)
 ```
 
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/1.png)
-
 ##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/5.png)
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/6.png)
 ```
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
@@ -392,6 +406,7 @@ library(Neoantimon);
 ```
 
 ##### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/7.png)
 ```
   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
