@@ -273,7 +273,7 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-##### Please download sample files from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip.
+#### Please download sample files from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip.
 ```
 data/sample_result_INDEL_CLASS1_ALL.txt
 data/sample_result_INDEL_CLASS2_ALL.txt
@@ -292,7 +292,7 @@ data/sample_sv_bnd.txt
 data/sample.snps.vcf
 ```
 
-##### Prepare following files according to 1. Preparation. 
+#### Prepare following files according to 1. Preparation. 
 ```
 netMHCpan-4.0
 netMHCIIpan-3.2
@@ -301,7 +301,7 @@ refMrna.grch37.fa
 GRCh37.fa
 ```
 
-##### Calculate Neoantigens on SNVs for HLA Class I and II. 
+#### Calculate Neoantigens on SNVs for HLA Class I and II. 
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/1.png" width="640px">
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/2.png" width="640px">
 
@@ -332,7 +332,7 @@ GRCh37.fa
                                    multiple_variants = TRUE)
 ```
 
-##### Calculate Neoantigens on INDELs for HLA Class I and II. 
+#### Calculate Neoantigens on INDELs for HLA Class I and II. 
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/3.png" width="640px">
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/4.png" width="640px">
 
@@ -363,7 +363,7 @@ GRCh37.fa
                                        multiple_variants = TRUE)
 ```
 
-##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
+#### Calculate Neoantigens on SV fusions for HLA Class I and II. 
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/5.png" width="640px">
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/6.png" width="640px">
 
@@ -393,7 +393,7 @@ GRCh37.fa
                                        mate_id_column = 8)
 ```
 
-##### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
+#### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/7.png" width="640px">
 
 ```
@@ -419,10 +419,10 @@ GRCh37.fa
 ```
 
 ## 5. Result
-###### Attach Opitional Information
+##### Attach Opitional Information
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/8.png" width="640px">
 
-###### Output Result
+##### Output Result
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/9.png" width="640px">
 
 ```
