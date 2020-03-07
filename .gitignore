@@ -20,6 +20,8 @@ lib/netMHCpan-3.0a.Linux.tar.gz
 lib/netMHCpan-4.0a.Darwin.tar.gz
 lib/netMHCpan-4.0a.Linux.tar.gz
 
+lib/result*
+
 .Rproj.user
 doc
 Meta
