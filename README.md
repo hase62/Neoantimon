@@ -302,15 +302,14 @@ GRCh37.fa
 ```
 
 ##### Calculate Neoantigens on SNVs for HLA Class I and II. 
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/1.png)
 <img src="https://github.com/hase62/Neoantimon/blob/images/images/1.png" width="640px">
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/2.png)
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/2.png" width="640px">
 
 ###### Attach Opitional Information
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/8.png)
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/8.png" width="640px">
 
 ###### Output Result
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/9.png)
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/9.png" width="640px">
 
 ```
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
@@ -340,8 +339,9 @@ GRCh37.fa
 ```
 
 ##### Calculate Neoantigens on INDELs for HLA Class I and II. 
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/3.png)
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/4.png)
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/3.png" width="640px">
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/4.png" width="640px">
+
 ```
   Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
@@ -370,8 +370,9 @@ GRCh37.fa
 ```
 
 ##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/5.png)
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/6.png)
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/5.png" width="640px">
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/6.png" width="640px">
+
 ```
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
@@ -399,7 +400,8 @@ GRCh37.fa
 ```
 
 ##### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
-![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/7.png)
+<img src="https://github.com/hase62/Neoantimon/blob/images/images/7.png" width="640px">
+
 ```
   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
