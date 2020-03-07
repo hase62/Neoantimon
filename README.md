@@ -362,6 +362,8 @@ library(Neoantimon);
                                        multiple_variants = TRUE)
 ```
 
+https://raw.github.com/wiki/yukisov/web-sindan-crawler/images/foo.png
+
 ##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
 ```
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
