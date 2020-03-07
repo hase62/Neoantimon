@@ -362,7 +362,7 @@ library(Neoantimon);
                                        multiple_variants = TRUE)
 ```
 
-https://raw.github.com/wiki/yukisov/web-sindan-crawler/images/foo.png
+![Slide1](https://github.com/hase62/Neoantimon/blob/images/images/1.png)
 
 ##### Calculate Neoantigens on SV fusions for HLA Class I and II. 
 ```
