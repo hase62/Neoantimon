@@ -418,11 +418,11 @@ GRCh37.fa
                                            reference_gene_symbol = c("NFKB1", "BCL3"))
 ```
 
-## 5. Result
-##### Attach Opitional Information
+#### Attach Opitional Information
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/8.png" width="640px"></kbd>
 
-##### Output Result
+## 5. Result
+#### Output Result
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/9.png" width="640px"></kbd>
 
 ```
