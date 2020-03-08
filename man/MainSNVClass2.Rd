@@ -47,7 +47,7 @@ See by data(sample_vcf); sample_vcf.txt;}
 
 \item{input_vep_format_file}{An input file annotated by Ensembl Variant Effect Predictor (VEP).}
 
-\item{input_vcf_format_file_and_vep}{An input vcf file and path to Ensembl Variant Effect Predictor (VEP).
+\item{input_vcf_format_file_and_vep}{A list of (1) An input vcf file, (2) path to Ensembl Variant Effect Predictor (VEP), and (3) cache file for VEP.
 Before using this option, please install vep according to the official cite ("https://asia.ensembl.org/info/docs/tools/vep/index.html").}
 
 \item{hla_file}{A tab separated file indicating HLA types.
