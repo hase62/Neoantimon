@@ -7,7 +7,7 @@
 (Mac) brew install wget
 ```
 
-### -Download and Set netMHCpan4.0 (Required)
+### <span style="color: red; ">-Download and Set netMHCpan4.0 (Required)</span>
 
 1. Download netMHCpan4.0 from https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0 and move it to the working directory. 
 
