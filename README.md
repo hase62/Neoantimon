@@ -135,7 +135,7 @@ tar jxf samtools-0.1.19.tar.bz2
 
 ### -Download human refSeq (Required to analyze structural variants or utilize RNA BAM)
 
-**(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
+(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)
 
 **GRCh38**: Run the following codes.
 ```
@@ -316,7 +316,7 @@ wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/
 unzip data.zip
 ```
 
-We assume the following directory structure.
+We assume the following directory structure according to 1. Preparation.
 ```
 lib/
     ├ NetMHCpan4.0
@@ -339,15 +339,6 @@ lib/
       ├ sample_vcf.txt
       ├ sample_sv_bnd.txt
       └ sample.snps.vcf
-```
-
-#### Prepare following files according to 1. Preparation. 
-```
-netMHCpan-4.0
-netMHCIIpan-3.2
-refFlat.grch37.txt
-refMrna.grch37.fa
-GRCh37.fa
 ```
 
 #### Calculate Neoantigens on SNVs for HLA Class I and II. 
