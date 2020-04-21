@@ -34,9 +34,9 @@ lib/
     ├ netMHCpan-4.0a.{Darwin|Linux}.tar
     ├ setNetMHCpan4.0.sh
     └ NetMHCpan4.0
-      ├ Darwin_x86_64
+      ├ {Darwin|Linux}_x86_64
       ├ data
-      ├ data.Darwin.tar.gz
+      ├ data.{Darwin|Linux}.tar.gz
       ├ netMHCpan
       ├ netMHCpan-4.0.readme
       ├ netMHCpan-e
@@ -51,7 +51,6 @@ lib/
 pip install mhcflurry
 mhcflurry-downloads fetch
 pip install mhctools
-
 ```
 
 2. Otherwise, install python from https://www.python.org/downloads/release, and then run the above codes.
@@ -59,12 +58,31 @@ pip install mhctools
 ### -Download and Set netMHCIIpan3.2 (Required)
 
 1. Download netMHCIIpan 3.2 from https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2 and move it to the working directory. 
+(We assume that "lib" directory contains netMHCIIpan-3.2.{Darwin|Linux}.tar.gz.)
 
 2. Do initial setting at the working directory as followings.
 ```
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
 chmod 750 setNetMHCIIpan3.2.sh
 ./setNetMHCIIpan3.2.sh
+```
+
+We have
+```
+lib/
+    ├ netMHCpan-4.0a.{Darwin|Linux}.tar
+    ├ setNetMHCpan4.0.sh
+    └ netMHCIIpan-3.2
+      ├ {Darwin|Linux}_x86_64
+      ├ data
+      ├ data.{Darwin|Linux}.tar.gz
+      ├ netMHCIIpan
+      ├ NetMHCIIpan-3.2.pl
+      ├ netMHCIIpan-3.2.readme
+      ├ netMHCIIpan-e
+      ├ etMHCIIpan.1
+      ├ test
+      └ tmp
 ```
 
 ### -Download refMrna Files (Required)
@@ -103,9 +121,8 @@ gunzip refFlat.txt.gz
 mv refFlat.txt refFlat.grch37.txt
 ```
 
-### -Install Samtools (Not Required)
+### -Install Samtools (Required when analyzing structural variants or using RNA BAM)
 
-**Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression based on RNA bam.**
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
 conda install -c bioconda samtools
@@ -118,11 +135,9 @@ wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.
 tar jxf samtools-0.1.19.tar.bz2
 ```
 
-### -Download human refSeq
+### -Download human refSeq (Required when analyzing structural variants or using RNA BAM)
 
-**Required for SV fusions. Not Required for Snv/Indel, but please download if you want to calculate Allele Specific RNA Expression using RNA bam.**
-
-**You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.**
+**(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
 
 **GRCh38**: Run the following codes.
 ```
