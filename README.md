@@ -70,8 +70,8 @@ chmod 750 setNetMHCIIpan3.2.sh
 We have
 ```
 lib/
-    ├ netMHCpan-4.0a.{Darwin|Linux}.tar
-    ├ setNetMHCpan4.0.sh
+    ├ netMHCIIpan-3.2.{Darwin|Linux}.tar
+    ├ setNetMHCIIpan3.2.sh
     └ netMHCIIpan-3.2
       ├ {Darwin|Linux}_x86_64
       ├ data
@@ -86,7 +86,6 @@ lib/
 ```
 
 ### -Download refMrna Files (Required)
-
 **(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
 
 **GRCh38/hg38**: Run the following codes. 
