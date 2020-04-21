@@ -119,7 +119,7 @@ gunzip refFlat.txt.gz
 mv refFlat.txt refFlat.grch37.txt
 ```
 
-### -Install Samtools (Required when analyzing structural variants or using RNA BAM)
+### -Install Samtools (Required to analyze structural variants or utilize RNA BAM)
 
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
@@ -133,7 +133,7 @@ wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.
 tar jxf samtools-0.1.19.tar.bz2
 ```
 
-### -Download human refSeq (Required when analyzing structural variants or using RNA BAM)
+### -Download human refSeq (Required to analyze structural variants or utilize RNA BAM)
 
 **(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
 
@@ -158,14 +158,6 @@ wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.G
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
 gunzip GRCh37.fa.gz
 samtools faidx GRCh37.fa
-```
-
-### -Download SampleFiles (Not required)
-
-Run the following codes. 
-```
-wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
-unzip data.zip
 ```
 
 ## 2. Prepare to Use on R
@@ -315,23 +307,38 @@ print(sample_copynum, row.names = FALSE)
 
 ## 4. Sample Codes
 
-#### Please download sample files from https://github.com/hase62/Neoantimon/raw/master/lib/data.zip.
+### -Download SampleFiles
+
+Run the following codes. 
+(We assume that data will be downloaded into "lib" directory)
 ```
-data/sample_result_INDEL_CLASS1_ALL.txt
-data/sample_result_INDEL_CLASS2_ALL.txt
-data/sample_result_SeqFragment_CLASS1_ALL.txt
-data/sample_result_SeqFragment_CLASS2_ALL.txt
-data/sample_result_SNV_CLASS1_ALL.txt
-data/sample_result_SNV_CLASS2_ALL.txt
-data/sample_result_SVFusion_CLASS1_ALL.txt
-data/sample_result_SVFusion_CLASS2_ALL.txt
-data/sample_copynum.txt
-data/sample_hla_table_c1.txt
-data/sample_hla_table_c2.txt
-data/sample_rna_exp.txt
-data/sample_vcf.txt
-data/sample_sv_bnd.txt
-data/sample.snps.vcf
+wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
+unzip data.zip
+```
+
+We assume the following directory structure.
+```
+lib/
+    ├ NetMHCpan4.0
+    ├ netMHCIIpan-3.2
+    ├ refFlat.grch37.txt
+    ├ refMrna.grch37.fa
+    └ data/
+      ├ sample_result_INDEL_CLASS1_ALL.txt
+      ├ sample_result_INDEL_CLASS2_ALL.txt
+      ├ sample_result_SeqFragment_CLASS1_ALL.txt
+      ├ sample_result_SeqFragment_CLASS2_ALL.txt
+      ├ sample_result_SNV_CLASS1_ALL.txt
+      ├ sample_result_SNV_CLASS2_ALL.txt
+      ├ sample_result_SVFusion_CLASS1_ALL.txt
+      ├ sample_result_SVFusion_CLASS2_ALL.txt
+      ├ sample_copynum.txt
+      ├ sample_hla_table_c1.txt
+      ├ sample_hla_table_c2.txt
+      ├ sample_rna_exp.txt
+      ├ sample_vcf.txt
+      ├ sample_sv_bnd.txt
+      └ sample.snps.vcf
 ```
 
 #### Prepare following files according to 1. Preparation. 
