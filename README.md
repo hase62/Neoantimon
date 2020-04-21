@@ -415,7 +415,11 @@ GRCh37.fa
 ```
 
 #### Attach Opitional Information
+Users can optionally provide (a) RNA expression data with and without (b) the corresponding Binary Alignment Map (BAM) file to attach total and allele specific RNA expression levels, and (c) copy number variation data to calculate the posterior probability distribution over cancer-cell fraction (CCFP) to evaluate tumor sub-clonality (Lohr et al., 2014).
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_op2.png" width="640px"></kbd>
+
+
+In addition, users can consider specific cases of existing SNPs on the mutant peptide by providing (c) SNPs data, and multiple SNVs on the same mutant peptides and among the frameshift region caused by indels. These cases are explained as followings.
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_op1.png" width="640px"></kbd>
 
 ## 5. Result
