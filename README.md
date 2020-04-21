@@ -86,7 +86,7 @@ lib/
 ```
 
 ### -Download refMrna Files (Required)
-**(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
+(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)
 
 **GRCh38/hg38**: Run the following codes. 
 ```
@@ -103,8 +103,7 @@ mv refMrna.fa refMrna.grch37.fa
 ```
 
 ### -Download refFlat Files (Required)
-
-**(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)**
+(You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)
 
 **GRCh38/hg38**: Run the following codes. 
 ```
