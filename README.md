@@ -17,20 +17,41 @@ library(Neoantimon);
 
 ### -Download and Set netMHCpan4.0 (Required)
 
-1. Download netMHCpan4.0 from https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0 and move it to the working directory. 
+1. Download netMHCpan4.0 from https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0 and move it to any working directory. 
+(We assume that "lib" directory contains netMHCpan-4.0a.{Darwin|Linux}.tar.gz.)
 
-2. Do initial setting at the working directory as followings.
+2. Run the initial setting script at the directory that contains downloaded  as followings.
+
 ```
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
 chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
 ```
+
+We have
+```
+lib/
+    ├ netMHCpan-4.0a.{Darwin|Linux}.tar
+    ├ setNetMHCpan4.0.sh
+    └ NetMHCpan4.0
+      ├ Darwin_x86_64
+      ├ data
+      ├ data.Darwin.tar.gz
+      ├ netMHCpan
+      ├ netMHCpan-4.0.readme
+      ├ netMHCpan-e
+      ├ netMHCpan.1
+      ├ test
+      └ tmp
+```
+
 ### -Download and Set mhcflurry (Not Required)
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
 pip install mhcflurry
 mhcflurry-downloads fetch
 pip install mhctools
+
 ```
 
 2. Otherwise, install python from https://www.python.org/downloads/release, and then run the above codes.
