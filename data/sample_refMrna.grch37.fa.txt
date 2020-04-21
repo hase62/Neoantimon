@@ -1,3 +1,4 @@
+sequence
 >NM_001358__3
 ctcgtcgccgccgccattttagctgttggttccggccgcaccgtgtgggc
 tgtagtagcgggaggggtgggggtcctccagagttaagtggctgtcctcg
