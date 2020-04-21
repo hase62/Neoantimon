@@ -302,8 +302,7 @@ GRCh37.fa
 ```
 
 #### Calculate Neoantigens on SNVs for HLA Class I and II. 
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/1.png" width="640px"></kbd>
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/2.png" width="640px"></kbd>
+<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_snv.png" width="640px"></kbd>
 
 ```
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
@@ -333,9 +332,7 @@ GRCh37.fa
 ```
 
 #### Calculate Neoantigens on INDELs for HLA Class I and II. 
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/3.png" width="640px"></kbd>
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/4.png" width="640px"></kbd>
-
+<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_indel.png" width="640px"></kbd>
 ```
   Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                        file_name_in_hla_table = "sample",
@@ -364,8 +361,7 @@ GRCh37.fa
 ```
 
 #### Calculate Neoantigens on SV fusions for HLA Class I and II. 
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/5.png" width="640px"><kbd>
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/6.png" width="640px"><kbd>
+<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_sv.png" width="640px"><kbd>
 
 ```
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
@@ -394,7 +390,7 @@ GRCh37.fa
 ```
 
 #### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/7.png" width="640px"></kbd>
+<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_rna.png" width="640px"></kbd>
 
 ```
   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
@@ -419,11 +415,11 @@ GRCh37.fa
 ```
 
 #### Attach Opitional Information
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/8.png" width="640px"></kbd>
+<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_op2.png" width="640px"></kbd>
+<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_op1.png" width="640px"></kbd>
 
 ## 5. Result
 #### Output Result
-<kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/9.png" width="640px"></kbd>
 
 ```
 print(head(Result_HLA1_SNV[[1]]))
