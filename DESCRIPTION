@@ -1,8 +1,8 @@
 Package: Neoantimon
 Type: Package
 Title: Neoantimon: A multifunctional R package for identification of tumor-specific neoantigens
-Version: 2.0.3
-Date: 2019-12-13
+Version: 2.1.0
+Date: 2019-4-20
 Author: Takanori Hasegawa
 Maintainer: Takanori Hasegawa <t-hasegw@ims.u-tokyo.ac.jp>
 Description: This Package has been developed to calculate candidates neoantigens from Mutation Data (.vcf,.txt,string). 
@@ -14,4 +14,4 @@ biocViews:
 Imports: ensemblVEP, devtools, graphics, grDevices, stats, utils, biomaRt
 Suggests: data.table, knitr, rmarkdown
 LazyData: FALSE
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0

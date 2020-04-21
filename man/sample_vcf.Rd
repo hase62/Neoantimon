@@ -4,7 +4,9 @@
 \name{sample_vcf}
 \alias{sample_vcf}
 \title{A Format / Sample file for Annotated vcf file.}
-\format{A data frame with 9 rows and variables including "Chr"	"Start"	"End"	"Ref"	"Alt"	"Func.refGene (exonic, intron, intergenic, ...)"	"ExonicFunc.refGene (exonic nonsynonymous, synonymous, insertion, ...)"	"AAChange.refGene (e.g., SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs ...)"}
+\format{
+A data frame with 9 rows and variables including "Chr"	"Start"	"End"	"Ref"	"Alt"	"Func.refGene (exonic, intron, intergenic, ...)"	"ExonicFunc.refGene (exonic nonsynonymous, synonymous, insertion, ...)"	"AAChange.refGene (e.g., SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs ...)"
+}
 \usage{
 data(sample_vcf)
 }

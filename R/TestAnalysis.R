@@ -7,6 +7,9 @@ TestAnalysis<-function(){
   print("Please Install NetMHCpan and NetMHCIIpan if you did not do it.")
   print("Please Download refFlat and refmRNA files if you did not do it.")
 
+  #data("sample_vcf")
+  #data("sample_hla_table_c1")
+  #data("sample_result_SNV_CLASS1_ALL")
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",

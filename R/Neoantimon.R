@@ -20,6 +20,28 @@ NULL
 #' @format A data frame with at least 3 row and at most 10 variables
 NULL
 
+#' A Sample file for refFlat
+#'
+#' A dataset containing a part of refFlat data.
+#'
+#' @docType data
+#' @keywords datasets
+#' @name sample_refFlat.grch37
+#' @usage data(sample_refFlat.grch37)
+#' @format A data frame with 11 column.
+NULL
+
+#' A Sample file for refSeq RNA
+#'
+#' A dataset containing a part of refSeq RNA.
+#'
+#' @docType data
+#' @keywords datasets
+#' @name sample_refMrna.grch37.fa
+#' @usage data(sample_refMrna.grch37.fa)
+#' @format A data frame with 1 column.
+NULL
+
 #' A Format / Sample file for Copy Number Information
 #'
 #' A dataset containing the copy number information obtained by, e.g., ASCAT.
