@@ -1,4 +1,12 @@
-## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1). 
+## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1).
+
+## 0. Preliminary Use
+```
+install.packages("devtools");
+library(devtools);
+install_github('hase62/Neoantimon');
+library(Neoantimon);
+```
 
 ## 1. Preparation
 ### -Install wget  (Required)
