@@ -318,6 +318,7 @@ unzip data.zip
 
 We assume the following directory structure according to 1. Preparation.
 ```
+~/opt/anaconda3
 lib/
     ├ NetMHCpan4.0
     ├ netMHCIIpan-3.2
