@@ -1,11 +1,23 @@
 ## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1).
 
 ## 0. Preliminary Use
+### -Generate output without calculation
 ```
 install.packages("devtools");
 library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
+
+data("sample_vcf")
+data("sample_hla_table_c1")
+data("sample_refFlat.grch37")
+data("sample_refMrna.grch37.fa")
+
+MainSNVClass1(input_annovar_format_file = sample_vcf,
+              hla_types = sample_hla_table_c1[1,-1],
+              refflat_file = sample_refFlat.grch37,
+              refmrna_file = sample_refMrna.grch37.fa,
+              netMHCpan_dir = NA)
 ```
 
 ## 1. Preparation

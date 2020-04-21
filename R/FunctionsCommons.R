@@ -1,34 +1,45 @@
 Read_files <- function(input_annovar_format_file, input_vep_format_file, input_vcf_format_file_and_vep){
-  num_files <- length(which(!is.na(c(input_annovar_format_file,
+  num_files <- length(which(is.na(c(input_annovar_format_file,
                                      input_vep_format_file,
                                      input_vcf_format_file_and_vep))))
-  if(num_files != 1) {
+  if(num_files != 2) {
     print("Please indicate one of input_annovar_format_file, input_vep_format_file, and input_vcf_format_file_and_vep. ")
     return(TRUE)
   }
   return(FALSE)
 }
 
-
 CheckRequiredFiles<-function(input_file,
                              hla_types,
                              refflat_file,
                              refmrna_file){
-  if(!file.exists(input_file)) {
+  if(is.list(input_file) | is.matrix(input_file)){
+    print("Input Data is")
+    print(head(input_file))
+  } else if(!file.exists(input_file)) {
     print(paste("Did not find Mutation File:", input_file))
     return(TRUE)
   }
+
   if(is.na(hla_types[1])) {
     print(paste("Did not find HLA Types"))
     return(TRUE)
   } else {
     print(paste("HLAtype:", hla_types))
   }
-  if(!file.exists(refflat_file)) {
+
+  if(is.list(refflat_file) | is.matrix(refflat_file)){
+    print("refFlat is")
+    print(head(refflat_file))
+  } else if(!file.exists(refflat_file)) {
     print(paste("Did not find refFlat File:", refflat_file))
     return(TRUE)
   }
-  if(!file.exists(refmrna_file)) {
+
+  if(is.list(refmrna_file) | is.matrix(refmrna_file)){
+    print("refMrna is")
+    print(head(input_file))
+  } else if(!file.exists(refmrna_file)) {
     print(paste("Did not find refMrna File:", refmrna_file))
     return(TRUE)
   }
@@ -88,7 +99,11 @@ CheckRequiredColumns<-function(input_file,
                                depth_normal_column,
                                depth_tumor_column
                                ){
-  index<-scan(input_file, "character", nlines = 1)
+  if(is.list(input_file) | is.matrix(input_file)){
+    index <- colnames(input_file)
+  } else {
+    index<-scan(input_file, "character", nlines = 1)
+  }
 
   if(is.na(chr_column)) {
     chr_column<-grep("chr", index, ignore.case = TRUE)[1];

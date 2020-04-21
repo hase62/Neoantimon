@@ -188,6 +188,8 @@ MainEntireRegionClass2<-function(input_nm_id,
   }
   if(file.exists(hla_file)){
     hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  } else {
+    hla_types <- as.character(unlist(hla_types))
   }
   if(is.na(hla_types[1])) {
     print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
@@ -234,7 +236,11 @@ MainEntireRegionClass2<-function(input_nm_id,
   }
 
   #NetMHCIIpan
-  if(is.na(netMHCIIpan_dir) | !file.exists(netMHCIIpan_dir)) {
+  if(is.na(netMHCIIpan_dir)){
+    print("netMHCIIpan is NA.")
+    return(NULL)
+  }
+  if(!file.exists(netMHCIIpan_dir)) {
     print(paste("Did not find", netMHCIIpan_dir))
     return(NULL)
   }

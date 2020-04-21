@@ -35,20 +35,27 @@ GenerateSVFusionSeq<-function(input_file,
   uIDs<-unique(mateIDs)[sapply(unique(mateIDs), function(x) length(which(!is.na(match(mateIDs, x)))) > 1)]
 
   #READ refFlat
-  if(!file.exists(refflat_file)){
+  if(is.list(refflat_file) | is.matrix(refflat_file)){
+    list_nm <- refflat_file
+  } else if(!file.exists(refflat_file)){
     print("refflat file does not exist.")
     return(NULL)
+  } else {
+    list_nm <- read_refFlat(refflat_file)
   }
-  list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- list_nm[, 1]
   list_nm_cut <- list_nm[, 2]
 
   #Get RNA-Code Data
-  if(!file.exists(refmrna_file)){
+  #Get RNA-Code Data
+  if(is.list(refmrna_file) | is.matrix(refmrna_file)){
+    list_mra <- gsub("__", " ", as.character(unlist(refmrna_file)))
+  } else if(!file.exists(refmrna_file)){
     print("refmrna file does not exist.")
     return(NULL)
+  } else {
+    list_mra <- read_refmrn(refmrna_file)
   }
-  list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
   tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))

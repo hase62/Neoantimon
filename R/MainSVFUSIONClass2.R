@@ -184,18 +184,14 @@ MainSVFUSIONClass2<-function(input_file,
                              mate_id_column = NA,
                              IgnoreShortPeptides = TRUE){
 
-  #Install data.table
-  #if(!library(data.table, logical.return = TRUE)) {
-  #  install.packages("data.table", quiet = TRUE)
-  #}
-  #library(data.table)
-
   #Get HLA-Type
   if(file.exists(hla_file) & !is.na(hla_types[1])){
     print(paste("Using:", hla_file))
   }
   if(file.exists(hla_file)){
     hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  } else {
+    hla_types <- as.character(unlist(hla_types))
   }
   if(is.na(hla_types[1])) {
     print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
@@ -218,8 +214,10 @@ MainSVFUSIONClass2<-function(input_file,
                               depth_normal_column = depth_normal_column,
                               depth_tumor_column = depth_tumor_column)
 
-  #Check and Set Required Columns
-  if(length(flg)<=1) return(NULL)
+  if(length(flg)<=1) {
+    print("There is no available column names.")
+    return(NULL)
+  }
 
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
@@ -281,7 +279,11 @@ MainSVFUSIONClass2<-function(input_file,
             purity)
 
   #NetMHCIIpan
-  if(is.na(netMHCIIpan_dir) | !file.exists(netMHCIIpan_dir)) {
+  if(is.na(netMHCIIpan_dir)){
+    print("netMHCIIpan is NA.")
+    return(NULL)
+  }
+  if(!file.exists(netMHCIIpan_dir)) {
     print(paste("Did not find", netMHCIIpan_dir))
     return(NULL)
   }

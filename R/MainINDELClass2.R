@@ -204,7 +204,10 @@ MainINDELClass2<-function(input_annovar_format_file = NA,
   if(!is.na(input_vcf_format_file_and_vep)) input_vep_format_file <- annotation_by_vep(input_vcf_format_file_and_vep[1],
                                                                                        input_vcf_format_file_and_vep[2],
                                                                                        input_vcf_format_file_and_vep[3])
-  if(is.null(input_vep_format_file)) return(NULL)
+  if(is.null(input_vep_format_file)) {
+    print("Failed to annotate by VEP.")
+    return(NULL)
+  }
   if(!is.na(input_vep_format_file)) input_annovar_format_file <- convert_to_annovar_format_from_vep(input_vep_format_file)
 
   #Get HLA-Type
@@ -213,6 +216,8 @@ MainINDELClass2<-function(input_annovar_format_file = NA,
   }
   if(file.exists(hla_file)){
     hla_types <- getHLAtypes(hla_file, file_name_in_hla_table)
+  } else {
+    hla_types <- as.character(unlist(hla_types))
   }
   if(is.na(hla_types[1])) {
     print("Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.")
@@ -235,8 +240,10 @@ MainINDELClass2<-function(input_annovar_format_file = NA,
                               depth_normal_column = depth_normal_column,
                               depth_tumor_column = depth_tumor_column)
 
-  #Check and Set Required Columns
-  if(length(flg)<=1) return(NULL)
+  if(length(flg)<=1) {
+    print("There is no available column names.")
+    return(NULL)
+  }
 
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
@@ -263,9 +270,9 @@ MainINDELClass2<-function(input_annovar_format_file = NA,
                    export_dir = export_dir,
                    IgnoreShortPeptides = IgnoreShortPeptides,
                    SNPs = SNPs,
-                   multiple_variants = multiple_variants,
-                   apply_annotation = apply_annotation)
+                   multiple_variants = multiple_variants)
 
+  if(is.list(input_annovar_format_file) | is.matrix(input_annovar_format_file)) input_annovar_format_file <- "data"
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_annovar_format_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
@@ -287,7 +294,11 @@ MainINDELClass2<-function(input_annovar_format_file = NA,
             purity)
 
   #NetMHCIIpan
-  if(is.na(netMHCIIpan_dir) | !file.exists(netMHCIIpan_dir)) {
+  if(is.na(netMHCIIpan_dir)){
+    print("netMHCIIpan is NA.")
+    return(NULL)
+  }
+  if(!file.exists(netMHCIIpan_dir)) {
     print(paste("Did not find", netMHCIIpan_dir))
     return(NULL)
   }

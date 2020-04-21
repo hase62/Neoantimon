@@ -15,7 +15,8 @@ TestAnalysis<-function(){
   MainSNVClass1(input_annovar_format_file = sample_vcf,
                 hla_types = sample_hla_table_c1[1,-1],
                 refflat_file = sample_refFlat.grch37,
-                refmrna_file = )
+                refmrna_file = sample_refMrna.grch37.fa,
+                netMHCpan_dir = NA)
 
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
                                    file_name_in_hla_table = "sample",

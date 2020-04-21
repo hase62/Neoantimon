@@ -17,26 +17,32 @@ GenerateMutatedSeq<-function(input_file,
                              export_dir,
                              IgnoreShortPeptides,
                              SNPs,
-                             multiple_variants,
-                             apply_annotation){
+                             multiple_variants){
 
   #READ Data
-  if(!file.exists(input_file)){
+  if(is.list(input_file) | is.matrix(input_file)){
+    print("Input data is directly indicated.")
+    data <- as.matrix(input_file)
+  } else if(!file.exists(input_file)){
     print("Input file does not exist.")
     return(NULL)
+  } else {
+    data <- read_data(input_file)
   }
-  data <- read_data(input_file)
   data <- data[grep("\texonic\t", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
   data <- data[grep("\tmissense_variant|\tnonsynonymous", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
 
   if(nrow(data) < 1 | is.null(data)) return(NULL)
 
   #READ refFlat
-  if(!file.exists(refflat_file)){
+  if(is.list(refflat_file) | is.matrix(refflat_file)){
+    list_nm <- refflat_file
+  } else if(!file.exists(refflat_file)){
     print("refflat file does not exist.")
     return(NULL)
+  } else {
+    list_nm <- read_refFlat(refflat_file)
   }
-  list_nm <- read_refFlat(refflat_file)
   list_nm_gene <- list_nm[, 1]
   list_nm_cut <- list_nm[, 2]
 
@@ -50,11 +56,14 @@ GenerateMutatedSeq<-function(input_file,
   }
 
   #Get RNA-Code Data
-  if(!file.exists(refmrna_file)){
+  if(is.list(refmrna_file) | is.matrix(refmrna_file)){
+    list_mra <- gsub("__", " ", as.character(unlist(refmrna_file)))
+  } else if(!file.exists(refmrna_file)){
     print("refmrna file does not exist.")
     return(NULL)
+  } else {
+    list_mra <- read_refmrn(refmrna_file)
   }
-  list_mra <- read_refmrn(refmrna_file)
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
   list_fl_NMID <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
@@ -333,6 +342,7 @@ GenerateMutatedSeq<-function(input_file,
     fasta_wt <- integrated_results[[3]]
   }
 
+  if(is.list(input_file) | is.matrix(input_file)) input_file <- "data"
   write.table(fasta,
               paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")
