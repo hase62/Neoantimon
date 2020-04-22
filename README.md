@@ -20,6 +20,13 @@ MainSNVClass1(input_annovar_format_file = sample_vcf,
               netMHCpan_dir = NA)
 ```
 
+You can get the following output
+```
+##  Number  GeneSymbol  NM_id   AAchanges   Ref Alt Prob    Mutation_Prob   Exon_Start  Exon_End    Mutation_Position   Evaluated_Mutant_Peptide    Evaluated_Wt_Peptide    ..
+## 1	0_DHX15	 4	NM_001358	c.A1012G	T	C	0	0	24529097	24586177	24556416	294	143	PEPERDYLEAAIRTVIQIHMCEEEEGD	PEPERDYLEAAIRAVIQIHMCEEEEGD ..
+```
+
+
 ## 1. Preparation
 ### -Install wget  (Required)
 ```
@@ -347,6 +354,8 @@ lib/
       ├ sample_copynum.txt
       ├ sample_hla_table_c1.txt
       ├ sample_hla_table_c2.txt
+      ├ sample_refMrna.grch37.fa.txt
+      ├ sample_refFlat.grch37.txt
       ├ sample_rna_exp.txt
       ├ sample_vcf.txt
       ├ sample_sv_bnd.txt
