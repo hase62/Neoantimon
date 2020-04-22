@@ -27,26 +27,27 @@ write.table(file = "result.ID.SNV1/data.ID_SNV.peptide.SNV_CLASS1_ALL.txt",
 ```
 
 You can get the following outputs. 
-```
+
 data.ID_SNV.peptide.txt (annotation file)
+```
 ##  Number  GeneSymbol  NM_id   AAchanges   Ref Alt Prob    Mutation_Prob   Exon_Start  Exon_End    Mutation_Position   Evaluated_Mutant_Peptide    Evaluated_Wt_Peptide    ..
 ## 1	0_DHX15	 4	NM_001358	c.A1012G	T	C	0	0	24529097	24586177	24556416	294	143	PEPERDYLEAAIRTVIQIHMCEEEEGD	PEPERDYLEAAIRAVIQIHMCEEEEGD ..
 ```
 
-```
 data.ID_SNV.peptide.fasta (input for netMHCpan)
+```
 ##  >0_DHX15
 ##  PEPERDYLEAAIRAVIQIHMCEEEEGD
 ```
 
-```
 data.ID_SNV.wtpeptide.fasta (input for netMHCpan)
+```
 ##  >0_DHX15
 ##  PEPERDYLEAAIRTVIQIHMCEEEEGD
 ```
 
-```
 data.ID_SNV.peptide.SNV_CLASS1_ALL.txt (outputfile)
+```
 ##  HLA	Pos	Gene	Evaluated_Mutant_Peptide	Mut_IC50	Mut_Rank	Evaluated_Wt_Peptide	Wt_IC50	Wt_Rank	Chr	NM_ID	Change	Ref	Alt	Prob	Mutation_Prob.	Exon_Start	Exon_End	Mutation_Position	Total_Depth	Tumor_Depth	Wt_Peptide	Mutant_Peptide	Total_RNA	Tumor_RNA_Ratio	Tumor_RNA	Tumor_RNA_based_on_DNA	MutRatio	MutRatio_Min	MutRatio_Max
 ##  HLA-A*02:01	2	0_DHX15	EPERDYLEAAIRA	37952.9	63.3899	EPERDYLEAAIRT	41213.3	75.7538	4	NM_001358	c.A1012G	T	C	0	0	24529087	24586184	4_24556416	294	143	PEPERDYLEAAIRTVIQIHMCEEEEGD	PEPERDYLEAAIRAVIQIHMCEEEEGD	1.35204	NA	NA	0.657624897959184	NA	NA	NA
 ##  HLA-A*02:01	3	0_DHX15	PERDYLEAAIRAV	12108.2	16.51	PERDYLEAAIRTV	11859.7	16.2523	4	NM_001358	c.A1012G	T	C	0	0	24529087	24586184	4_24556416	294	143	PEPERDYLEAAIRTVIQIHMCEEEEGD	PEPERDYLEAAIRAVIQIHMCEEEEGD	1.35204	NA	NA	0.657624897959184	NA	NA	NA
