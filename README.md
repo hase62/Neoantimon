@@ -13,6 +13,7 @@ data("sample_vcf")
 data("sample_hla_table_c1")
 data("sample_refFlat.grch37")
 data("sample_refMrna.grch37.fa")
+data("sample_result_SNV_CLASS1_ALL")
 
 MainSNVClass1(input_annovar_format_file = sample_vcf,
               hla_types = sample_hla_table_c1[1,-1],
