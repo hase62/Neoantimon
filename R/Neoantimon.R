@@ -64,15 +64,37 @@ NULL
 #' @format A data frame with 22 rows and 3 variables
 NULL
 
-#' A Format / Sample file for Annotated vcf file.
+#' A Format / Sample file for Annotated vcf file basef on Annovar.
 #'
 #' A dataset containing the variant information of a patient.
 #'
 #' @docType data
 #' @keywords datasets
-#' @name sample_vcf
-#' @usage data(sample_vcf)
+#' @name sample_vcf.annovar
+#' @usage data(sample_vcf.annovar)
 #' @format A data frame with 9 rows and variables including "Chr"	"Start"	"End"	"Ref"	"Alt"	"Func.refGene (exonic, intron, intergenic, ...)"	"ExonicFunc.refGene (exonic nonsynonymous, synonymous, insertion, ...)"	"AAChange.refGene (e.g., SLCO1C1:NM_001145944:exon7:c.692_693insG:p.L231fs ...)"
+NULL
+
+#' A Format / Sample file for Annotated vcf file based on VEP.
+#'
+#' A dataset containing the variant information of a patient.
+#'
+#' @docType data
+#' @keywords datasets
+#' @name sample_vcf.vep
+#' @usage data(sample_vcf.vep)
+#' @format A data frame with variables including "#Uploaded_variation"	"Location"	"Allele"	"Gene"	"Feature"	"Feature_type"	"Consequence"	"cDNA_position"	"CDS_position"	"Protein_position"	"Amino_acids	Codons"	"Existing_variation"	"Extra"
+NULL
+
+#' A Format / Sample file for snp informatin.
+#'
+#' A dataset containing snps information of a patient.
+#'
+#' @docType data
+#' @keywords datasets
+#' @name sample.snps.vcf
+#' @usage data(sample.snps.vcf)
+#' @format A data frame with variables including "#CHROM"	"POS"	"ID"	"REF"	"ALT"	"QUAL"	"FILTER"	"INFO"	"FORMAT".
 NULL
 
 #' A Format / Sample file for Annotated vcf file.

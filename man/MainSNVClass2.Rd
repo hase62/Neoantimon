@@ -43,7 +43,7 @@ MainSNVClass2(
 \arguments{
 \item{input_annovar_format_file}{An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
 
-See by data(sample_vcf); sample_vcf.txt;}
+See by data(sample_vcf.annovar); sample_vcf.annovar.txt;}
 
 \item{input_vep_format_file}{An input file annotated by Ensembl Variant Effect Predictor (VEP).}
 

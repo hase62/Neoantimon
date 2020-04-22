@@ -9,13 +9,13 @@ library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
 
-data("sample_vcf")
+data("sample_vcf.annovar")
 data("sample_hla_table_c1")
 data("sample_refFlat.grch37")
 data("sample_refMrna.grch37.fa")
 data("sample_result_SNV_CLASS1_ALL")
 
-MainSNVClass1(input_annovar_format_file = sample_vcf,
+MainSNVClass1(input_annovar_format_file = sample_vcf.annovar,
               hla_types = sample_hla_table_c1[1,-1],
               refflat_file = sample_refFlat.grch37,
               refmrna_file = sample_refMrna.grch37.fa,
@@ -260,8 +260,8 @@ print(sample_hla_table_c2, row.names = FALSE)
 When indicating annovar format, it must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you have to manually indicate columns. 
 ```r
-data("sample_vcf")
-print(sample_vcf, row.names = FALSE)
+data("sample_vcf.annovar")
+print(sample_vcf.annovar, row.names = FALSE)
 ```
 
 ```
@@ -386,7 +386,7 @@ lib/
       ├ sample_refMrna.grch37.fa.txt
       ├ sample_refFlat.grch37.txt
       ├ sample_rna_exp.txt
-      ├ sample_vcf.txt
+      ├ sample_vcf.annovar.txt
       ├ sample_sv_bnd.txt
       └ sample.snps.vcf
 ```
@@ -395,7 +395,7 @@ lib/
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_snv.png" width="640px"></kbd>
 
 ```
-  Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
                                    refflat_file  = "refFlat.grch37.txt",
@@ -408,7 +408,7 @@ lib/
                                    multiple_variants = TRUE,
                                    MHCflurry = "~/opt/anaconda3/bin/mhctools")
 
-  Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c2.txt",
                                    refflat_file  = "refFlat.grch37.txt",
@@ -424,7 +424,7 @@ lib/
 #### Calculate Neoantigens on INDELs for HLA Class I and II. 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_indel.png" width="640px"></kbd>
 ```
-  Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
                                        refflat_file  = "refFlat.grch37.txt",
@@ -437,7 +437,7 @@ lib/
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
 
-  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
                                        refflat_file  = "refFlat.grch37.txt",

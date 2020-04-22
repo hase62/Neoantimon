@@ -7,18 +7,18 @@ TestAnalysis<-function(){
   print("Please Install NetMHCpan and NetMHCIIpan if you did not do it.")
   print("Please Download refFlat and refmRNA files if you did not do it.")
 
-  data("sample_vcf")
+  data("sample_vcf.annovar")
   data("sample_hla_table_c1")
   data("sample_refFlat.grch37")
   data("sample_refMrna.grch37.fa")
 
-  MainSNVClass1(input_annovar_format_file = sample_vcf,
+  MainSNVClass1(input_annovar_format_file = sample_vcf.annovar,
                 hla_types = sample_hla_table_c1[1,-1],
                 refflat_file = sample_refFlat.grch37,
                 refmrna_file = sample_refMrna.grch37.fa,
                 netMHCpan_dir = NA)
 
-  Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
                                    refflat_file  = "refFlat.grch37.txt",
@@ -32,7 +32,7 @@ TestAnalysis<-function(){
   print(head(Result_HLA1_SNV))
   print(Export_Summary_SNV(Input = Result_HLA1_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 
-  Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c2.txt",
                                    refflat_file  = "refFlat.grch37.txt",
@@ -46,7 +46,7 @@ TestAnalysis<-function(){
   print(head(Result_HLA2_SNV))
   print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 
-  Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
                                        refflat_file  = "refFlat.txt",
@@ -62,7 +62,7 @@ TestAnalysis<-function(){
   print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL, Mut_IC50_th = 500))
   print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL, Mut_IC50_th = 500))
 
-  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
                                        refflat_file  = "refFlat.txt",
