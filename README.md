@@ -112,7 +112,7 @@ We have
 lib/
     ├ netMHCpan-4.0a.{Darwin|Linux}.tar
     ├ setNetMHCpan4.0.sh
-    └ NetMHCpan4.0
+    └ NetMHCpan4.0/
       ├ {Darwin|Linux}_x86_64
       ├ data
       ├ data.{Darwin|Linux}.tar.gz
@@ -162,7 +162,7 @@ We have
 lib/
     ├ netMHCIIpan-3.2.{Darwin|Linux}.tar
     ├ setNetMHCIIpan3.2.sh
-    └ netMHCIIpan-3.2
+    └ netMHCIIpan-3.2/
       ├ {Darwin|Linux}_x86_64
       ├ data
       ├ data.{Darwin|Linux}.tar.gz
@@ -308,9 +308,9 @@ print(sample_hla_table_c2, row.names = FALSE)
 ```
 
 ### -Annotated VCF file
-
 **An annovar format or an Ensembl Variant Effect Predictor (VEP) format annotated VCF file is required for Snv/Indel.**
 
+#### -Annotated VCF file by Annovar
 When indicating annovar format, it must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you have to manually indicate columns. 
 ```r
@@ -328,6 +328,24 @@ print(sample_vcf.annovar, row.names = FALSE)
 ##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
 ...
 ```
+
+#### -Annotated VCF file by VEP
+```r
+[R]
+data("sample_vcf.vep")
+print(sample_vcf.vep, row.names = FALSE)
+```
+
+```
+## Chr     Start       End Ref Alt Func.refGene Gene.refGene   GeneDetail.refGene ExonicFunc.refGene                              AAChange.refGene   cytoBand depth_tumor variantNum_tumor depth_normal
+##   1 116941338 116941338   T   C       exonic       ATP1A1           synonymous                SNV   ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D     1p13.1         100               39          111
+##   4  24556416  24556416   T   C       exonic        DHX15        nonsynonymous                SNV        DHX15:NM_001358:exon5:c.A1012G:p.T338A     4p15.2         143               47          151
+##   4  70156404  70156404   -   T       exonic      UGT2B28           frameshift          insertion   UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs     4q13.2          43               15           41
+##   6  75899298  75899298   T   -       exonic      COL12A1           frameshift           deletion    COL12A1:NM_004370:exon6:c.628delA:p.I210fs       6q13         122               38           73
+##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
+...
+```
+
 
 ### -Annotated BND format VCF file
 
