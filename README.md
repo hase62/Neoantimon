@@ -99,7 +99,7 @@ lib/
   └ setNetMHCpan4.0.sh
 ```
 
-Then, run
+Run
 ```
 [command line]
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
@@ -141,6 +141,15 @@ pip install mhctools
 (We assume that "lib" directory contains netMHCIIpan-3.2.{Darwin|Linux}.tar.gz.)
 
 2. Do initial setting at the working directory as followings.
+
+We assume
+```
+lib/
+  ├ netMHCIIpan-3.2.{Darwin|Linux}.tar
+  └ setNetMHCIIpan3.2.sh
+```
+
+Run
 ```
 [command line]
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
