@@ -24,5 +24,9 @@ TestAnalysis<-function(){
               x = sample_result_SNV_CLASS1_ALL[grep("0_DHX15", sample_result_SNV_CLASS1_ALL$Gene), ],
               row.names = FALSE, quote = FALSE, sep = "\t")
 
+  data("sample_vcf.vep")
+  print(sample_vcf.vep, row.names = FALSE)
+  data("sample.snps.vcf")
+  print(sample.snps.vcf, row.row.names = FALSE)
 
 }

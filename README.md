@@ -337,12 +337,14 @@ print(sample_vcf.vep, row.names = FALSE)
 ```
 
 ```
-## Chr     Start       End Ref Alt Func.refGene Gene.refGene   GeneDetail.refGene ExonicFunc.refGene                              AAChange.refGene   cytoBand depth_tumor variantNum_tumor depth_normal
-##   1 116941338 116941338   T   C       exonic       ATP1A1           synonymous                SNV   ATP1A1:NM_001160234:exon16:c.T2127C:p.D709D     1p13.1         100               39          111
-##   4  24556416  24556416   T   C       exonic        DHX15        nonsynonymous                SNV        DHX15:NM_001358:exon5:c.A1012G:p.T338A     4p15.2         143               47          151
-##   4  70156404  70156404   -   T       exonic      UGT2B28           frameshift          insertion   UGT2B28:NM_053039:exon5:c.1186dupT:p.L395fs     4q13.2          43               15           41
-##   6  75899298  75899298   T   -       exonic      COL12A1           frameshift           deletion    COL12A1:NM_004370:exon6:c.628delA:p.I210fs       6q13         122               38           73
-##   9  89561162  89561162   C   T       exonic         GAS1        nonsynonymous                SNV          GAS1:NM_002048:exon1:c.G533A:p.R178H    9q21.33          20                5           26
+##  Uploaded_variation	Location	Allele	Gene	Feature	Feature_type	Consequence	cDNA_position	CDS_position	Protein_position	Amino_acids	Codons	Existing_variation	Extra
+##  file_name	1:1290161	A	ENSG00000162576	ENST00000309212	Transcript	missense_variant	881	850	284	R/C	Cgc/Tgc	-	IMPACT=MODERATE;STRAND=-1
+##  file_name	1:1434364	T	ENSG00000160072	ENST00000474481	Transcript	downstream_gene_variant	-	-	-	-	-	-	IMPACT=MODIFIER;DISTANCE=2783;STRAND=1
+##  file_name	1:12919618	A	ENSG00000120952	ENST00000240189	Transcript	missense_variant	445	358	120	W/R	Tgg/Agg	-	IMPACT=MODERATE;STRAND=1
+##  file_name	1:16890602	G	ENSG00000219481	ENST00000430580	Transcript	missense_variant	4144	3256	1086	M/L	Atg/Ctg	-	IMPACT=MODERATE;STRAND=-1
+##  file_name	1:16918457	C	ENSG00000219481	ENST00000392963	Transcript	"missense_variant,NMD_transcript_variant"	518	60	20	I/M	atC/atG	-	IMPACT=MODERATE;STRAND=-1
+##  file_name	1:20297876	G	ENSG00000188257	ENST00000482011	Transcript	downstream_gene_variant	-	-	-	-	-	-	IMPACT=MODIFIER;DISTANCE=4290;STRAND=-1
+##  file_name	1:48906934	T	ENSG00000132122	ENST00000487543	Transcript	"intron_variant,NMD_transcript_variant"	-	-	-	-	-	-	IMPACT=MODIFIER;STRAND=-1
 ...
 ```
 
