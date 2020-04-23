@@ -283,7 +283,6 @@ library(data.table);
 
 ```r
 [R]
-library(Neoantimon)
 data("sample_hla_table_c1")
 print(sample_hla_table_c1, row.names = FALSE)
 ```
