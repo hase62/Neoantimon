@@ -169,7 +169,7 @@ To calculate the binding affinity to HLA ClassI of neoantigen candaites directly
 ```
 
 ```{r Get Fragment Summary 1 in Test Analysis}
-  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
+#  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 ```
 
 To calculate the binding affinity to HLA ClassII of neoantigen candaites directly from RNA sequences. The peptides included in the riginal genes ("NM_003998", "NM_001165412") are removed from the results. 
@@ -187,5 +187,5 @@ To calculate the binding affinity to HLA ClassII of neoantigen candaites directl
 ```
 
 ```{r Get Fragment Summary 2 in Test Analysis}
-  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+#  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
 ```

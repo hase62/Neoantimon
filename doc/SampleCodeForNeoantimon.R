@@ -130,7 +130,7 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
   print(head(Result_HLA1_Seq))
 
 ## ----Get Fragment Summary 1 in Test Analysis----------------------------------
-  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
+#  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 
 ## ----Get Fragment Sample 2 in Test Analysis-----------------------------------
   Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
@@ -145,5 +145,5 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
   print(head(Result_HLA2_Seq))
 
 ## ----Get Fragment Summary 2 in Test Analysis----------------------------------
-  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+#  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
 
