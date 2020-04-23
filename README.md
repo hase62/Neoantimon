@@ -1,9 +1,24 @@
 ## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1).
 
 ## 0. Preliminary Use
+### -Install R (Required)
+CentOS
+```
+[command line]
+yum install R
+```
+
+Mac(Devian)
+```
+[command line]
+brew cask install r
+```
+
 ### -Generate output without calculation
 This code is a simple sample code for preliminary use to confirm the output. 
+
 ```
+[R]
 install.packages("devtools");
 library(devtools);
 install_github('hase62/Neoantimon');
@@ -57,19 +72,17 @@ data.ID_SNV.peptide.SNV_CLASS1_ALL.txt (output file)
 ```
 
 ## 1. Preparation
-### -Install R and wget (Required)
+### -Install wget (Required)
 CentOS
 ```
 [command line]
 yum install wget
-yum install R
 ```
 
 Mac(Devian)
 ```
 [command line]
 brew install wget
-brew cask install r
 ```
 
 ### -Download and Set netMHCpan4.0 (Required)
@@ -80,6 +93,7 @@ brew cask install r
 2. Run the initial setting script at the directory that contains downloaded  as followings.
 
 ```
+[command line]
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
 chmod 750 setNetMHCpan4.0.sh
 ./setNetMHCpan4.0.sh 
@@ -105,6 +119,7 @@ lib/
 ### -Download and Set mhcflurry (Not Required)
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
+[command line]
 pip install mhcflurry
 mhcflurry-downloads fetch
 pip install mhctools
@@ -119,6 +134,7 @@ pip install mhctools
 
 2. Do initial setting at the working directory as followings.
 ```
+[command line]
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
 chmod 750 setNetMHCIIpan3.2.sh
 ./setNetMHCIIpan3.2.sh
@@ -147,6 +163,7 @@ lib/
 
 **GRCh38/hg38**: Run the following codes. 
 ```
+[command line]
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 mv refMrna.fa refMrna.grch38.fa
@@ -154,6 +171,7 @@ mv refMrna.fa refMrna.grch38.fa
 
 **GRCh37/hg19**: Run the following codes. 
 ```
+[command line]
 wget http://hgdownload.cse.ucsc.edu/goldenPath/hg19/bigZips/refMrna.fa.gz
 gunzip refMrna.fa.gz
 mv refMrna.fa refMrna.grch37.fa
@@ -164,6 +182,7 @@ mv refMrna.fa refMrna.grch37.fa
 
 **GRCh38/hg38**: Run the following codes. 
 ```
+[command line]
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 mv refFlat.txt refFlat.grch38.txt
@@ -171,6 +190,7 @@ mv refFlat.txt refFlat.grch38.txt
 
 **GRCh37/hg19**: Run the following codes. 
 ```
+[command line]
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/refFlat.txt.gz
 gunzip refFlat.txt.gz
 mv refFlat.txt refFlat.grch37.txt
@@ -180,12 +200,14 @@ mv refFlat.txt refFlat.grch37.txt
 
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
+[command line]
 conda install -c bioconda samtools
 conda install -c bioconda/label/cf201911 samtools
 ```
 
 2. Otherwise, you can install local samtools as followings. 
 ```
+[command line]
 wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2
 tar jxf samtools-0.1.19.tar.bz2
 ```
@@ -196,6 +218,7 @@ tar jxf samtools-0.1.19.tar.bz2
 
 **GRCh38**: Run the following codes.
 ```
+[command line]
 wget ftp://ftp.ensembl.org/pub/release-87/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh38.dna.toplevel.fa.gz GRCh38.fa.gz
 gunzip GRCh38.fa.gz
@@ -204,6 +227,7 @@ samtools faidx GRCh38.fa
 
 **hg38**: Run the following codes.
 ```
+[command line]
 wget http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
 gunzip hg38.fa.gz
 samtools faidx hg38.fa
@@ -211,6 +235,7 @@ samtools faidx hg38.fa
 
 **GRCh37/hg19**: Run the following codes.
 ```
+[command line]
 wget ftp://ftp.ensembl.org/pub/release-75//fasta/homo_sapiens/dna/Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz
 mv Homo_sapiens.GRCh37.75.dna.toplevel.fa.gz GRCh37.fa.gz
 gunzip GRCh37.fa.gz
@@ -220,6 +245,7 @@ samtools faidx GRCh37.fa
 ## 2. Prepare to Use on R
 **Required**
 ```
+[R]
 install.packages("devtools");
 library(devtools);
 install_github('hase62/Neoantimon');
@@ -228,6 +254,7 @@ library(Neoantimon);
 
 **Suggested to Install for Reading Data at High Speed**
 ```
+[R]
 install.packages('data.table');
 library(data.table);
 ```
@@ -238,6 +265,7 @@ library(data.table);
 **1. A HLA Class I table file must be according to the following format.**
 
 ```r
+[R]
 library(Neoantimon)
 data("sample_hla_table_c1")
 print(sample_hla_table_c1, row.names = FALSE)
@@ -252,6 +280,7 @@ print(sample_hla_table_c1, row.names = FALSE)
 **2. A HLA Class II table file must be according to the following format.**
 
 ```r
+[R]
 data("sample_hla_table_c2")
 print(sample_hla_table_c2, row.names = FALSE)
 ```
@@ -269,6 +298,7 @@ print(sample_hla_table_c2, row.names = FALSE)
 When indicating annovar format, it must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "AAChange.refGene", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you have to manually indicate columns. 
 ```r
+[R]
 data("sample_vcf.annovar")
 print(sample_vcf.annovar, row.names = FALSE)
 ```
@@ -290,6 +320,7 @@ print(sample_vcf.annovar, row.names = FALSE)
 It must include columns representing "Chromosome Number", "Mutation Start Position", "Mutation End Position", "Mutation Ref", "Mutation Alt", and "NM_ID (AAChange.refGene)" or "Gene Symbol (Gene.refGene)".
 Annotations "Chr", "Start", "End", "Ref", "Alt", "Depth_tumor", and "Depth_normal" are automatically detected. Otherwise, you have to manually indicate columns. 
 ```r
+[R]
 data("sample_sv_bnd")
 print(sample_sv_bnd, row.names = FALSE)
 ```
@@ -311,6 +342,7 @@ An RNA expressoin file is not required, but you can attach "RNA expression" info
 If you also indicate "rnabam_file", variant allele frequencies and tumor specific RNA expressions are also attached to the results. 
 
 ```r
+[R]
 data("sample_rna_exp")
 print(sample_rna_exp, row.names = FALSE)
 ```
@@ -347,6 +379,7 @@ They are used to calculate tumor subclonal cell population.
 Purity is set 1 as default value. 
 
 ```r
+[R]
 data("sample_copynum")
 print(sample_copynum, row.names = FALSE)
 ```
@@ -368,6 +401,7 @@ print(sample_copynum, row.names = FALSE)
 Run the following codes. 
 (We assume that data will be downloaded into "lib" directory)
 ```
+[command line]
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/data.zip
 unzip data.zip
 ```
@@ -404,6 +438,7 @@ lib/
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_snv.png" width="640px"></kbd>
 
 ```
+[R]
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
@@ -433,6 +468,7 @@ lib/
 #### Calculate Neoantigens on INDELs for HLA Class I and II. 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_indel.png" width="640px"></kbd>
 ```
+[R]
   Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
@@ -463,6 +499,7 @@ lib/
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_sv.png" width="640px"><kbd>
 
 ```
+[R]
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
@@ -492,6 +529,7 @@ lib/
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_rna.png" width="640px"></kbd>
 
 ```
+[R]
   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "data/sample_hla_table_c1.txt",
@@ -527,6 +565,7 @@ In addition, users can consider specific cases of existing SNPs on the mutant pe
 #### Output Result
 
 ```
+[R]
 print(head(Result_HLA1_SNV[[1]]))
 ```
   
@@ -576,6 +615,7 @@ print(head(Result_HLA1_SNV[[1]]))
 ```
 
 ```
+[R]
 print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
 ```
 
@@ -589,6 +629,7 @@ print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC5
 ```
 
 ```
+[R]
 print(head(Result_HLA2_SNV))
 ```
   
@@ -645,6 +686,7 @@ print(head(Result_HLA2_SNV))
 ```
 
 ```
+[R]
 print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 ```
 
@@ -658,6 +700,7 @@ print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th 
 ```
 
 ```
+[R]
 print(head(Result_HLA1_INDEL[[1]]))
 ```
 
@@ -707,6 +750,7 @@ print(head(Result_HLA1_INDEL[[1]]))
 ```
 
 ```
+[R]
 print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
 ```
 
@@ -720,6 +764,7 @@ print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
 ```
 
 ```
+[R]
 print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
 ```
 
@@ -745,6 +790,7 @@ print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC
 ```
 
 ```
+[R]
 print(head(Result_HLA2_INDEL))
 ```
 
@@ -801,6 +847,7 @@ print(head(Result_HLA2_INDEL))
 ```
 
 ```
+[R]
 print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
 ```
 
@@ -814,6 +861,7 @@ print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
 ```
 
 ```
+[R]
 print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
 ```
 
@@ -839,6 +887,7 @@ print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th
 ```
 
 ```
+[R]
 print(head(Result_HLA1_SV))
 ```
   
@@ -895,6 +944,7 @@ print(head(Result_HLA1_SV))
 ```
 
 ```
+[R]
 print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
 ```
 
@@ -908,6 +958,7 @@ print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
 ```
 
 ```
+[R]
 print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
 ```
 
@@ -1071,6 +1122,7 @@ print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
 ```
 
 ```
+[R]
 print(head(Result_HLA2_SV))
 ```
 
@@ -1127,6 +1179,7 @@ print(head(Result_HLA2_SV))
 ```
 
 ```
+[R]
 print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
 ```
 
@@ -1138,8 +1191,8 @@ print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
 ##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
 ##                             588                             298
 ```
-
-  print(head(Result_HLA1_Seq))
+[R]
+print(head(Result_HLA1_Seq))
 ```
 ##      HLA           Pos Gene           Evaluated_Mutant_Peptide_Core
 ## [1,] "HLA-A*02:01" "1" "0_atggcagaag" "MAEDDPYLGRPEK"              
@@ -1200,6 +1253,7 @@ print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
 ```
 
 ```
+[R]
 print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 ```
 
@@ -1230,6 +1284,7 @@ print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 ```
 
 ```
+[R]
 print(head(Result_HLA2_Seq))
 ```
 
@@ -1300,6 +1355,7 @@ print(head(Result_HLA2_Seq))
 ```
 
 ```
+[R]
 print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
 ```
 
