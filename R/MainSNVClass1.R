@@ -208,7 +208,11 @@ MainSNVClass1<-function(input_annovar_format_file = NA,
     print("Failed to annotate by VEP.")
     return(NULL)
   }
-  if(!is.na(input_vep_format_file)) input_annovar_format_file <- convert_to_annovar_format_from_vep(input_vep_format_file)
+  if(is.list(input_vep_format_file) | is.matrix(input_vep_format_file)) {
+    input_annovar_format_file <- convert_to_annovar_format_from_vep(input_vep_format_file)
+  } else if(!is.na(input_vep_format_file)) {
+    input_annovar_format_file <- convert_to_annovar_format_from_vep(input_vep_format_file)
+  }
 
   #Get HLA-Type
   if(file.exists(hla_file) & !is.na(hla_types[1])){

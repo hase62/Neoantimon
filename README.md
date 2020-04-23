@@ -336,6 +336,15 @@ data("sample_vcf.vep")
 print(sample_vcf.vep, row.names = FALSE)
 ```
 
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("biomaRt")
+library(biomaRt)
+```
+
 ```
 ##  Uploaded_variation	Location	Allele	Gene	Feature	Feature_type	Consequence	cDNA_position	CDS_position	Protein_position	Amino_acids	Codons	Existing_variation	Extra
 ##  file_name	1:1290161	A	ENSG00000162576	ENST00000309212	Transcript	missense_variant	881	850	284	R/C	Cgc/Tgc	-	IMPACT=MODERATE;STRAND=-1

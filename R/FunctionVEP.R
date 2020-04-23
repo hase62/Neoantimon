@@ -8,6 +8,7 @@ convert_to_annovar_format_from_vep <- function(vep_file) {
   data <- data[grep("missense_variant|insertion|deletion|frameshift", data[, match("Consequence", colnames(data))]), ]
 
   #Execute ensembl
+  print("Executing Transformation")
   ensembl<-  useMart("ensembl", dataset="hsapiens_gene_ensembl")
   values <- getBM(attributes=c("refseq_mrna", "ensembl_gene_id", "hgnc_symbol"),
                   filters = "ensembl_gene_id", values = data[, match("Gene", colnames(data))], mart= ensembl)
