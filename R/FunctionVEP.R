@@ -36,14 +36,14 @@ convert_to_annovar_format_from_vep <- function(vep_file) {
             pr <- paste("p.", gsub("/", x[match("Protein_position", colnames(data))],
                         x[match("Amino_acids", colnames(data))]), sep = "")
             tmp <- values[which(!is.na(match(values[, 2], x[match("Gene", colnames(data))]))), c(3, 1)]
-            if(is.null(tmp)) return("")
-            if(nrow(tmp) == 0) return("")
+            if(is.null(tmp)) return(rep("", length(index) - 1))
+            if(nrow(tmp) == 0) return(rep("", length(index) - 1))
             tmp <- tmp[tmp[, 2] != "",]
-            AAChange.refGene <- paste(apply2(tmp, 1, function(y) paste(c(y, "exon_", am, pr), collapse = ":")), collapse = ",")
+            AAChange.refGene <- paste(apply2(tmp, 1, function(y) paste(c(y, "exonX", am, pr), collapse = ":")), collapse = ",")
 
             c(Chr, Start, End, toupper(Ref), toupper(Alt), Func.refGene, Gene.refGene, ExonicFunc.refGene, AAChange.refGene)
           }))
-  write.table(x = data_an, file = paste(vep_file, ".annovar_format.txt", sep = ""),
+  write.table(x = data_an[nchar(data_an[, 1]) > 0, ], file = paste(vep_file, ".annovar_format.txt", sep = ""),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
   return(paste(vep_file, ".annovar_format.txt", sep = ""))
 }

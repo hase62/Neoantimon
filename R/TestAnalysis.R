@@ -28,7 +28,6 @@ TestAnalysis<-function(){
                 refmrna_file = sample_refMrna.grch37.fa,
                 netMHCpan_dir = NA)
 
-
   write.table(file = "result.ID.SNV1/data.ID_SNV.peptide.SNV_CLASS1_ALL.txt",
               x = sample_result_SNV_CLASS1_ALL[grep("0_DHX15", sample_result_SNV_CLASS1_ALL$Gene), ],
               row.names = FALSE, quote = FALSE, sep = "\t")
