@@ -63,9 +63,6 @@ GenerateSVFusionSeq<-function(input_file,
   list_fl_dna <- sapply(1:length(start_),
                         function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
 
-  trans_from<-c("a", "t", "g", "c")
-  trans_to<-c("t", "a", "c", "g")
-
   random<-0
   fasta<-NULL
   refFasta<-NULL

@@ -2,6 +2,7 @@ convert_to_annovar_format_from_vep <- function(vep_file) {
   #Read vep data
   if(is.list(vep_file) | is.matrix(vep_file)){
     data <- as.matrix(vep_file)
+    vep_file <- paste("data", round(runif(1) * 10000), sep = ".")
   } else {
     data <- read_data(vep_file)
   }

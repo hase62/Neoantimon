@@ -33,9 +33,6 @@ GenerateMutatedFragments<-function(input_sequence,
   list_fl_NMID <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
   list_fl_dna <- sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
 
-  trans_from<-c("a", "t", "g", "c")
-  trans_to<-c("t", "a", "c", "g")
-
   #Obtain refFLAT Data
   s_variants_from_nmid <- match(reference_nm_id, list_nm_cut)
   s_variants_from_gene <- which(!is.na(match(list_nm_gene, reference_gene_symbol)))

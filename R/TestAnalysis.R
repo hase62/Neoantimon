@@ -4,6 +4,11 @@
 #'
 #'@export
 TestAnalysis<-function(){
+  #library(devtools);
+  #install_github('hase62/Neoantimon');
+  #library(Neoantimon);
+  #library(biomaRt)
+
   data("sample_vcf.annovar")
   data("sample_vcf.vep")
   data("sample_hla_table_c1")

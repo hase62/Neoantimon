@@ -69,9 +69,6 @@ GenerateIndelSeq<-function(input_file,
   list_fl_NMID <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
   list_fl_dna <- sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
 
-  trans_from <- c("a", "t", "g", "c")
-  trans_to <- c("t", "a", "c", "g")
-
   fasta <- NULL
 
   refFasta <- NULL
