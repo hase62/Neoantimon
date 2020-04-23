@@ -57,10 +57,19 @@ data.ID_SNV.peptide.SNV_CLASS1_ALL.txt (output file)
 ```
 
 ## 1. Preparation
-### -Install wget  (Required)
+### -Install R and wget (Required)
+CentOS
 ```
-(CentOS) yum install wget
-(Mac) brew install wget
+[command line]
+yum install wget
+yum install R
+```
+
+Mac(Devian)
+```
+[command line]
+brew install wget
+brew cask install r
 ```
 
 ### -Download and Set netMHCpan4.0 (Required)
