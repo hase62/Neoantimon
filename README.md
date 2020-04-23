@@ -96,7 +96,7 @@ We assume
 ```
 lib/
   ├ netMHCpan-4.0a.{Darwin|Linux}.tar
-    └ setNetMHCpan4.0.sh
+  └ setNetMHCpan4.0.sh
 ```
 
 ```
