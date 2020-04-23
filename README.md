@@ -99,6 +99,7 @@ lib/
   └ setNetMHCpan4.0.sh
 ```
 
+Then, run
 ```
 [command line]
 wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
