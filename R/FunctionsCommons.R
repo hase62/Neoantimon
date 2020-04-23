@@ -619,8 +619,10 @@ read_data <- function(input_file){
   data <- NULL
   tmp <- scan(input_file, "character", sep = "\n", nlines = 200)
   read_start <- grep("\\#chr", tolower(tmp))[1]
+  if(is.na(read_start)) read_start <- grep("\\#uploaded_variation", tolower(tmp))[1]
   if(is.na(read_start)) read_start <- rev(grep("\\#", tmp))[1] + 1
   if(is.na(read_start)) read_start <- grep("chr", tolower(tmp))[1]
+  if(is.na(read_start)) read_start <- grep("uploaded_variation", tolower(tmp))[1]
   if(is.na(read_start)) read_start <- 1
   print(paste("Please Confirm that Reading Start Line is", read_start))
   print(tmp[read_start])

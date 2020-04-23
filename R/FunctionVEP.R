@@ -1,6 +1,10 @@
 convert_to_annovar_format_from_vep <- function(vep_file) {
   #Read vep data
-  data <- read_vep_data(vep_file)
+  if(is.list(vep_file) | is.matrix(vep_file)){
+    data <- as.matrix(vep_file)
+  } else {
+    data <- read_data(vep_file)
+  }
   data <- data[grep("missense_variant|insertion|deletion|frameshift", data[, match("Consequence", colnames(data))]), ]
 
   #Execute ensembl
@@ -40,23 +44,6 @@ convert_to_annovar_format_from_vep <- function(vep_file) {
   write.table(x = data_an, file = paste(vep_file, ".annovar_format.txt", sep = ""),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
   return(paste(vep_file, ".annovar_format.txt", sep = ""))
-}
-
-read_vep_data <- function(vep_file){
-  tmp <- scan(vep_file, "character", sep = "\n", nlines = 200)
-  read_start <- grep("\\#uploaded_variation", tolower(tmp))[1]
-  if(is.na(read_start)) read_start <- rev(grep("\\#", tmp))[1] + 1
-  if(is.na(read_start)) read_start <- grep("chr", tolower(tmp))[1]
-  if(is.na(read_start)) read_start <- 1
-  print(paste("Please Confirm that Reading Start Line is", read_start))
-  print(tmp[read_start])
-  if(requireNamespace("data.table", quietly=TRUE)) {
-    data <- data.table::fread(vep_file, stringsAsFactors=FALSE, sep="\t", skip = read_start - 1, header =TRUE, data.table = FALSE)
-  } else {
-    index <- scan(vep_file, "character", sep = "\t", nlines = 1, skip = read_start - 1)
-    data  <- matrix(scan(vep_file, "character", sep = "\t", skip = read_start), ncol = length(index), byrow = TRUE)
-    colnames(data) <- index
-  }
 }
 
 annotation_by_vep <- function(input_file, vep_dir, cache_dir){

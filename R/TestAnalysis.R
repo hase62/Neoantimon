@@ -4,10 +4,6 @@
 #'
 #'@export
 TestAnalysis<-function(){
-  library(devtools);
-  install_github('hase62/Neoantimon');
-  library(Neoantimon);
-
   data("sample_vcf.annovar")
   data("sample_hla_table_c1")
   data("sample_refFlat.grch37")
@@ -26,6 +22,7 @@ TestAnalysis<-function(){
 
   data("sample_vcf.vep")
   print(sample_vcf.vep, row.names = FALSE)
+
   data("sample.snps.vcf")
   print(sample.snps.vcf, row.row.names = FALSE)
 
