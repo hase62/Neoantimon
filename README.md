@@ -5,7 +5,7 @@
 CentOS
 ```
 [command line]
-yum install R
+yum -y install R
 ```
 
 Mac(Devian)
@@ -91,6 +91,14 @@ brew install wget
 (We assume that "lib" directory contains netMHCpan-4.0a.{Darwin|Linux}.tar.gz.)
 
 2. Run the initial setting script at the directory that contains downloaded  as followings.
+
+```
+We assume
+```
+lib/
+    ├ netMHCpan-4.0a.{Darwin|Linux}.tar
+    └ setNetMHCpan4.0.sh
+```
 
 ```
 [command line]
