@@ -92,11 +92,10 @@ brew install wget
 
 2. Run the initial setting script at the directory that contains downloaded  as followings.
 
-```
 We assume
 ```
 lib/
-    ├ netMHCpan-4.0a.{Darwin|Linux}.tar
+  ├ netMHCpan-4.0a.{Darwin|Linux}.tar
     └ setNetMHCpan4.0.sh
 ```
 
