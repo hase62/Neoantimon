@@ -22,7 +22,7 @@ library(Neoantimon);
 
 To calculate the binding affinity to HLA ClassI of neoantigen candaites from SNVs. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. 
 ```{r Get SNV Sample 1 in Test Analysis}
-Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.txt",
+Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
                                    refflat_file  = "refFlat.grch37.txt",
@@ -43,7 +43,7 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.tx
 
 To calculate the binding affinity to HLA ClassII of neoantigen candaites from SNVs. 
 ```{r Get SNV Sample 2 in Test Analysis}
- Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.txt",
+ Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c2.txt",
                                    refflat_file  = "refFlat.grch37.txt",
@@ -63,7 +63,7 @@ To calculate the binding affinity to HLA ClassII of neoantigen candaites from SN
 
 To calculate the binding affinity to HLA ClassI of neoantigen candaites from indels. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. 
 ```{r Get INDEL Sample 1 in Test Analysis}
-Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.txt",
+Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
                                        refflat_file  = "refFlat.grch37.txt",
@@ -88,7 +88,7 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
 
 To calculate the binding affinity to HLA ClassII of neoantigen candaites from indels.  
 ```{r Get INDEL Sample 2 in Test Analysis}
-  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.txt",
+  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
                                        refflat_file  = "refFlat.grch37.txt",

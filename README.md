@@ -357,6 +357,14 @@ BiocManager::install("biomaRt")
 library(biomaRt)
 ```
 
+For example, please run as following. 
+```
+  MainSNVClass1(input_vep_format_file = sample_vcf.vep,
+                hla_types = sample_hla_table_c1[1,-1],
+                refflat_file = sample_refFlat.grch37,
+                refmrna_file = sample_refMrna.grch37.fa,
+                netMHCpan_dir = NA)
+```
 
 ### -Annotated BND format vcf file
 
@@ -475,6 +483,7 @@ lib/
       ├ sample_refFlat.grch37.txt
       ├ sample_rna_exp.txt
       ├ sample_vcf.annovar.txt
+      ├ sample_vcf.vep.txt
       ├ sample_sv_bnd.txt
       └ sample.snps.vcf
 ```

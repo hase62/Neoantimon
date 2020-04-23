@@ -221,23 +221,11 @@ library(devtools);
 <pre><code>## Downloading GitHub repo hase62/Neoantimon@master
 </code></pre>
 
-<pre><code>## rex (1.1.2 -&gt; 1.2.0) [CRAN]
-</code></pre>
-
-<pre><code>## Installing 1 packages: rex
-</code></pre>
-
-<pre><code>## Installing package into &#39;/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/Rtmp12uuHe/temp_libpath144ea5147aa70&#39;
-## (as &#39;lib&#39; is unspecified)
-</code></pre>
-
 <pre><code>## 
-## The downloaded binary packages are in
-##  /var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T//Rtmp12uuHe/downloaded_packages
 ##   
-   checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/Rtmp12uuHe/remotes144ea76a955bd/hase62-Neoantimon-a5c8b67/DESCRIPTION’ ...
+   checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpZZyACD/remotes171113583a759/hase62-Neoantimon-640bb20/DESCRIPTION’ ...
 
-✓  checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/Rtmp12uuHe/remotes144ea76a955bd/hase62-Neoantimon-a5c8b67/DESCRIPTION’
+✓  checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpZZyACD/remotes171113583a759/hase62-Neoantimon-640bb20/DESCRIPTION’
 ## 
 
 ─  preparing ‘Neoantimon’:
@@ -254,18 +242,17 @@ library(devtools);
 ─  checking for empty or unneeded directories
 ## 
 
-   Removed empty directory ‘Neoantimon/vignettes’
-## ─  looking to see if a ‘data/datalist’ file should be added
+─  looking to see if a ‘data/datalist’ file should be added
 ## 
 
-─  building ‘Neoantimon_2.1.0.tar.gz’ (546ms)
+─  building ‘Neoantimon_2.1.0.tar.gz’ (545ms)
 ## 
 
 
 ## 
 </code></pre>
 
-<pre><code>## Installing package into &#39;/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/Rtmp12uuHe/temp_libpath144ea5147aa70&#39;
+<pre><code>## Installing package into &#39;/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpZZyACD/temp_libpath171113cb222c2&#39;
 ## (as &#39;lib&#39; is unspecified)
 </code></pre>
 
@@ -274,7 +261,7 @@ library(devtools);
 
 <p>To calculate the binding affinity to HLA ClassI of neoantigen candaites from SNVs. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. </p>
 
-<pre><code class="r">Result_HLA1_SNV &lt;- MainSNVClass1(input_annovar_format_file = &quot;data/sample_vcf.txt&quot;,
+<pre><code class="r">Result_HLA1_SNV &lt;- MainSNVClass1(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                    file_name_in_hla_table = &quot;sample&quot;,
                                    hla_file = &quot;data/sample_hla_table_c1.txt&quot;,
                                    refflat_file  = &quot;refFlat.grch37.txt&quot;,
@@ -288,29 +275,206 @@ library(devtools);
                                    MHCflurry = &quot;~/opt/anaconda3/bin/mhctools&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;Did not find Mutation File: data/sample_vcf.txt&quot;
+<pre><code>## [1] &quot;HLAtype: A*02:01&quot; &quot;HLAtype: A*32:01&quot; &quot;HLAtype: B*15:17&quot; &quot;HLAtype: B*51:01&quot;
+## [5] &quot;HLAtype: C*07:01&quot; &quot;HLAtype: C*15:02&quot;
+## [1] &quot;Set chr_column as 1 Chr&quot;
+## [1] &quot;Set mutation_start_column as 2 Start&quot;
+## [1] &quot;Set mutation_end_column as 3 End&quot;
+## [1] &quot;Set mutation_ref_column as 4 Ref&quot;
+## [1] &quot;Set mutation_alt_column as 5 Alt&quot;
+## [1] &quot;Set depth_normal_column as 14 depth_normal&quot;
+## [1] &quot;Set depth_tumor_column as 12 depth_tumor&quot;
+## [1] &quot;Set nm_id_column as 10 AAChange.refGene&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 1&quot;
+## [1] &quot;Chr\tStart\tEnd\tRef\tAlt\tFunc.refGene\tGene.refGene\tGeneDetail.refGene\tExonicFunc.refGene\tAAChange.refGene\tcytoBand\tdepth_tumor\tvariantNum_tumor\tdepth_normal&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 24&quot;
+## [1] &quot;#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT&quot;
+## [1] &quot;Start Analysis: Mutation 1&quot;
+## [1] &quot;NM_001358 - Ref Matched to and NM_ID Attached Information&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 2&quot;
+## [1] &quot;NM_002048 - Ref Matched to and NM_ID Attached Information&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 3&quot;
+## [1] &quot;NM_006205 - Ref Matched to and NM_ID Attached Information&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.txt.list.vcf&quot;
+## [1] &quot;Executing netMHCpan to result.ID.SNV1&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a HLA-A02:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.1.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a HLA-A32:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.2.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a HLA-B15:17 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.3.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a HLA-B51:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.4.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a HLA-C07:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.5.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a HLA-C15:02 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.6.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a HLA-A02:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.1.wtpeptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a HLA-A32:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.2.wtpeptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a HLA-B15:17 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.3.wtpeptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a HLA-B51:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.4.wtpeptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a HLA-C07:01 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.5.wtpeptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a HLA-C15:02 &gt; result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.6.wtpeptide.txt&quot;
+## [1] &quot;Merging Results...&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.1.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.2.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.3.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.4.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.5.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.HLACLASS1.6.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;Executing mhcflurry to result.ID.SNV1&quot;
+## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta --mhc-alleles HLA-A0201 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.1.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta --mhc-alleles HLA-A3201 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.2.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta --mhc-alleles HLA-B1517 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.3.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta --mhc-alleles HLA-B5101 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.4.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta --mhc-alleles HLA-C0701 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.5.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.peptide.fasta --mhc-alleles HLA-C1502 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.6.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta --mhc-alleles HLA-A0201 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.1.wtpeptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta --mhc-alleles HLA-A3201 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.2.wtpeptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta --mhc-alleles HLA-B1517 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.3.wtpeptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta --mhc-alleles HLA-B5101 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.4.wtpeptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta --mhc-alleles HLA-C0701 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.5.wtpeptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta --mhc-alleles HLA-C1502 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.SNV1/sample_vcf.annovar.txt.ID_SNV.mhcflurry.HLACLASS1.6.wtpeptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;Writing mhcflurry Results...&quot;
+## [1] &quot;Successfully Finished.&quot;
 </code></pre>
 
 <pre><code class="r">  print(head(Result_HLA1_SNV[[1]]))
 </code></pre>
 
-<pre><code>## NULL
+<pre><code>##      HLA           Pos Gene      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank 
+## [1,] &quot;HLA-A*02:01&quot; &quot;2&quot; &quot;0_DHX15&quot; &quot;EPERDYLEAAIRA&quot;          &quot;37952.9&quot; &quot;63.3899&quot;
+## [2,] &quot;HLA-A*02:01&quot; &quot;3&quot; &quot;0_DHX15&quot; &quot;PERDYLEAAIRAV&quot;          &quot;12108.2&quot; &quot;16.5100&quot;
+## [3,] &quot;HLA-A*02:01&quot; &quot;4&quot; &quot;0_DHX15&quot; &quot;ERDYLEAAIRAVI&quot;          &quot;12109.5&quot; &quot;16.5114&quot;
+## [4,] &quot;HLA-A*02:01&quot; &quot;5&quot; &quot;0_DHX15&quot; &quot;RDYLEAAIRAVIQ&quot;          &quot;32063.2&quot; &quot;46.0009&quot;
+## [5,] &quot;HLA-A*02:01&quot; &quot;6&quot; &quot;0_DHX15&quot; &quot;DYLEAAIRAVIQI&quot;          &quot;4819.6&quot;  &quot;9.2763&quot; 
+## [6,] &quot;HLA-A*02:01&quot; &quot;7&quot; &quot;0_DHX15&quot; &quot;YLEAAIRAVIQIH&quot;          &quot;7309.7&quot;  &quot;11.8086&quot;
+##      Evaluated_Wt_Peptide Wt_IC50   Wt_Rank   Chr NM_ID       Change     Ref
+## [1,] &quot;EPERDYLEAAIRT&quot;      &quot;41213.3&quot; &quot;75.7538&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot; &quot;T&quot;
+## [2,] &quot;PERDYLEAAIRTV&quot;      &quot;11859.7&quot; &quot;16.2523&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot; &quot;T&quot;
+## [3,] &quot;ERDYLEAAIRTVI&quot;      &quot;14831.9&quot; &quot;19.2905&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot; &quot;T&quot;
+## [4,] &quot;RDYLEAAIRTVIQ&quot;      &quot;33185.2&quot; &quot;48.8110&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot; &quot;T&quot;
+## [5,] &quot;DYLEAAIRTVIQI&quot;      &quot;4504.5&quot;  &quot;8.9225&quot;  &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot; &quot;T&quot;
+## [6,] &quot;YLEAAIRTVIQIH&quot;      &quot;6924.0&quot;  &quot;11.4357&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot; &quot;T&quot;
+##      Alt Prob Mutation_Prob. Exon_Start Exon_End   Mutation_Position
+## [1,] &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [2,] &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [3,] &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [4,] &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [5,] &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [6,] &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+##      Total_Depth Tumor_Depth Wt_Peptide                   
+## [1,] &quot;294&quot;       &quot;143&quot;       &quot;PEPERDYLEAAIRTVIQIHMCEEEEGD&quot;
+## [2,] &quot;294&quot;       &quot;143&quot;       &quot;PEPERDYLEAAIRTVIQIHMCEEEEGD&quot;
+## [3,] &quot;294&quot;       &quot;143&quot;       &quot;PEPERDYLEAAIRTVIQIHMCEEEEGD&quot;
+## [4,] &quot;294&quot;       &quot;143&quot;       &quot;PEPERDYLEAAIRTVIQIHMCEEEEGD&quot;
+## [5,] &quot;294&quot;       &quot;143&quot;       &quot;PEPERDYLEAAIRTVIQIHMCEEEEGD&quot;
+## [6,] &quot;294&quot;       &quot;143&quot;       &quot;PEPERDYLEAAIRTVIQIHMCEEEEGD&quot;
+##      Mutant_Peptide                Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] &quot;PEPERDYLEAAIRAVIQIHMCEEEEGD&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [2,] &quot;PEPERDYLEAAIRAVIQIHMCEEEEGD&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [3,] &quot;PEPERDYLEAAIRAVIQIHMCEEEEGD&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [4,] &quot;PEPERDYLEAAIRAVIQIHMCEEEEGD&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [5,] &quot;PEPERDYLEAAIRAVIQIHMCEEEEGD&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [6,] &quot;PEPERDYLEAAIRAVIQIHMCEEEEGD&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [2,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [3,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [4,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [5,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [6,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;
 </code></pre>
 
 <pre><code class="r">  print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
 </code></pre>
 
 <pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
-##                               0                               0 
+##                               3                               3 
 ## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
-##                               0                               0 
+##                               2                             189 
 ##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
-##                               0                               0
+##                             189                               3
 </code></pre>
 
 <p>To calculate the binding affinity to HLA ClassII of neoantigen candaites from SNVs. </p>
 
-<pre><code class="r"> Result_HLA2_SNV &lt;- MainSNVClass2(input_annovar_format_file = &quot;data/sample_vcf.txt&quot;,
+<pre><code class="r"> Result_HLA2_SNV &lt;- MainSNVClass2(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                    file_name_in_hla_table = &quot;sample&quot;,
                                    hla_file = &quot;data/sample_hla_table_c2.txt&quot;,
                                    refflat_file  = &quot;refFlat.grch37.txt&quot;,
@@ -323,29 +487,158 @@ library(devtools);
                                    multiple_variants = TRUE)
 </code></pre>
 
-<pre><code>## [1] &quot;Did not find Mutation File: data/sample_vcf.txt&quot;
+<pre><code>##  [1] &quot;HLAtype: DPA1*01:03&quot; &quot;HLAtype: DPA1*02:01&quot; &quot;HLAtype: DPB1*02:01&quot;
+##  [4] &quot;HLAtype: DPB1*09:01&quot; &quot;HLAtype: DQA1*01:02&quot; &quot;HLAtype: DQA1*05:05&quot;
+##  [7] &quot;HLAtype: DQB1*03:01&quot; &quot;HLAtype: DQB1*06:04&quot; &quot;HLAtype: DRB1*11:04&quot;
+## [10] &quot;HLAtype: DRB1*13:02&quot;
+## [1] &quot;Set chr_column as 1 Chr&quot;
+## [1] &quot;Set mutation_start_column as 2 Start&quot;
+## [1] &quot;Set mutation_end_column as 3 End&quot;
+## [1] &quot;Set mutation_ref_column as 4 Ref&quot;
+## [1] &quot;Set mutation_alt_column as 5 Alt&quot;
+## [1] &quot;Set depth_normal_column as 14 depth_normal&quot;
+## [1] &quot;Set depth_tumor_column as 12 depth_tumor&quot;
+## [1] &quot;Set nm_id_column as 10 AAChange.refGene&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 1&quot;
+## [1] &quot;Chr\tStart\tEnd\tRef\tAlt\tFunc.refGene\tGene.refGene\tGeneDetail.refGene\tExonicFunc.refGene\tAAChange.refGene\tcytoBand\tdepth_tumor\tvariantNum_tumor\tdepth_normal&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 24&quot;
+## [1] &quot;#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT&quot;
+## [1] &quot;Start Analysis: Mutation 1&quot;
+## [1] &quot;NM_001358 - Ref Matched to and NM_ID Attached Information&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 2&quot;
+## [1] &quot;NM_002048 - Ref Matched to and NM_ID Attached Information&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 3&quot;
+## [1] &quot;NM_006205 - Ref Matched to and NM_ID Attached Information&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.txt.list.vcf&quot;
+## [1] &quot;Executing netMHCpan to result.ID.SNV2&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DPA10103 -choose -chb DPB10201 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.1.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DPA10103 -choose -chb DPB10901 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.2.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DPA10201 -choose -chb DPB10201 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.3.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DPA10201 -choose -chb DPB10901 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.4.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DQA10102 -choose -chb DQB10301 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.5.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DQA10102 -choose -chb DQB10604 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.6.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DQA10505 -choose -chb DQB10301 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.7.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -choose -cha DQA10505 -choose -chb DQB10604 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.8.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a DRB1_1104 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.9.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.peptide.fasta -a DRB1_1302 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.10.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DPA10103 -choose -chb DPB10201 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.1.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DPA10103 -choose -chb DPB10901 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.2.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DPA10201 -choose -chb DPB10201 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.3.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DPA10201 -choose -chb DPB10901 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.4.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DQA10102 -choose -chb DQB10301 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.5.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DQA10102 -choose -chb DQB10604 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.6.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DQA10505 -choose -chb DQB10301 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.7.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -choose -cha DQA10505 -choose -chb DQB10604 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.8.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a DRB1_1104 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.9.wtpeptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.wtpeptide.fasta -a DRB1_1302 &gt; result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.10.wtpeptide.txt&quot;
+## [1] &quot;Merging Results...&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.1.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.10.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.2.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.3.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.4.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.5.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.6.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.7.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.8.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.SNV2/sample_vcf.annovar.txt.ID_SNV.HLACLASS2.9.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;Successfully Finished.&quot;
 </code></pre>
 
 <pre><code class="r">  print(head(Result_HLA2_SNV))
 </code></pre>
 
-<pre><code>## NULL
+<pre><code>##      HLA                     Pos Gene      Evaluated_Mutant_Peptide Mut_IC50 
+## [1,] &quot;HLA-DPA10103-DPB10201&quot; &quot;2&quot; &quot;0_DHX15&quot; &quot;TPEPERDYLEAAIRA&quot;        &quot;5617.26&quot;
+## [2,] &quot;HLA-DPA10103-DPB10201&quot; &quot;3&quot; &quot;0_DHX15&quot; &quot;PEPERDYLEAAIRAV&quot;        &quot;2229.60&quot;
+## [3,] &quot;HLA-DPA10103-DPB10201&quot; &quot;4&quot; &quot;0_DHX15&quot; &quot;EPERDYLEAAIRAVI&quot;        &quot;1204.02&quot;
+## [4,] &quot;HLA-DPA10103-DPB10201&quot; &quot;5&quot; &quot;0_DHX15&quot; &quot;PERDYLEAAIRAVIQ&quot;        &quot;1145.18&quot;
+## [5,] &quot;HLA-DPA10103-DPB10201&quot; &quot;6&quot; &quot;0_DHX15&quot; &quot;ERDYLEAAIRAVIQI&quot;        &quot;848.12&quot; 
+## [6,] &quot;HLA-DPA10103-DPB10201&quot; &quot;7&quot; &quot;0_DHX15&quot; &quot;RDYLEAAIRAVIQIH&quot;        &quot;992.78&quot; 
+##      Mut_Rank Evaluated_Wt_Peptide Wt_IC50   Wt_Rank Chr NM_ID       Change    
+## [1,] &quot;75.00&quot;  &quot;TPEPERDYLEAAIRT&quot;    &quot;6356.04&quot; &quot;80.00&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot;
+## [2,] &quot;55.00&quot;  &quot;PEPERDYLEAAIRTV&quot;    &quot;2571.68&quot; &quot;60.00&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot;
+## [3,] &quot;39.00&quot;  &quot;EPERDYLEAAIRTVI&quot;    &quot;1404.71&quot; &quot;42.00&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot;
+## [4,] &quot;38.00&quot;  &quot;PERDYLEAAIRTVIQ&quot;    &quot;1357.96&quot; &quot;41.00&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot;
+## [5,] &quot;32.00&quot;  &quot;ERDYLEAAIRTVIQI&quot;    &quot;965.99&quot;  &quot;34.00&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot;
+## [6,] &quot;35.00&quot;  &quot;RDYLEAAIRTVIQIH&quot;    &quot;1085.94&quot; &quot;37.00&quot; &quot;4&quot; &quot;NM_001358&quot; &quot;c.A1012G&quot;
+##      Ref Alt Prob Mutation_Prob. Exon_Start Exon_End   Mutation_Position
+## [1,] &quot;T&quot; &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [2,] &quot;T&quot; &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [3,] &quot;T&quot; &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [4,] &quot;T&quot; &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [5,] &quot;T&quot; &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+## [6,] &quot;T&quot; &quot;C&quot; &quot;0&quot;  &quot;0&quot;            &quot;24529097&quot; &quot;24586177&quot; &quot;4_24556416&quot;     
+##      Total_Depth Tumor_Depth Wt_Peptide                       
+## [1,] &quot;294&quot;       &quot;143&quot;       &quot;YTPEPERDYLEAAIRTVIQIHMCEEEEGDLL&quot;
+## [2,] &quot;294&quot;       &quot;143&quot;       &quot;YTPEPERDYLEAAIRTVIQIHMCEEEEGDLL&quot;
+## [3,] &quot;294&quot;       &quot;143&quot;       &quot;YTPEPERDYLEAAIRTVIQIHMCEEEEGDLL&quot;
+## [4,] &quot;294&quot;       &quot;143&quot;       &quot;YTPEPERDYLEAAIRTVIQIHMCEEEEGDLL&quot;
+## [5,] &quot;294&quot;       &quot;143&quot;       &quot;YTPEPERDYLEAAIRTVIQIHMCEEEEGDLL&quot;
+## [6,] &quot;294&quot;       &quot;143&quot;       &quot;YTPEPERDYLEAAIRTVIQIHMCEEEEGDLL&quot;
+##      Mutant_Peptide                    Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] &quot;YTPEPERDYLEAAIRAVIQIHMCEEEEGDLL&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [2,] &quot;YTPEPERDYLEAAIRAVIQIHMCEEEEGDLL&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [3,] &quot;YTPEPERDYLEAAIRAVIQIHMCEEEEGDLL&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [4,] &quot;YTPEPERDYLEAAIRAVIQIHMCEEEEGDLL&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [5,] &quot;YTPEPERDYLEAAIRAVIQIHMCEEEEGDLL&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+## [6,] &quot;YTPEPERDYLEAAIRAVIQIHMCEEEEGDLL&quot; &quot;1.35204&quot; &quot;NA&quot;            &quot;NA&quot;     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [2,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [3,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [4,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [5,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [6,] &quot;0.657624897959184&quot;    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;
 </code></pre>
 
 <pre><code class="r">  print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 </code></pre>
 
 <pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
-##                               0                               0 
+##                               3                               3 
 ## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
-##                               0                               0 
+##                               1                              45 
 ##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
-##                               0                               0
+##                              45                               9
 </code></pre>
 
 <p>To calculate the binding affinity to HLA ClassI of neoantigen candaites from indels. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. </p>
 
-<pre><code class="r">Result_HLA1_INDEL &lt;- MainINDELClass1(input_annovar_format_file = &quot;data/sample_vcf.txt&quot;,
+<pre><code class="r">Result_HLA1_INDEL &lt;- MainINDELClass1(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                        file_name_in_hla_table = &quot;sample&quot;,
                                        hla_file = &quot;data/sample_hla_table_c1.txt&quot;,
                                        refflat_file  = &quot;refFlat.grch37.txt&quot;,
@@ -359,40 +652,187 @@ library(devtools);
                                        MHCflurry = &quot;~/opt/anaconda3/bin/mhctools&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;Did not find Mutation File: data/sample_vcf.txt&quot;
+<pre><code>## [1] &quot;HLAtype: A*02:01&quot; &quot;HLAtype: A*32:01&quot; &quot;HLAtype: B*15:17&quot; &quot;HLAtype: B*51:01&quot;
+## [5] &quot;HLAtype: C*07:01&quot; &quot;HLAtype: C*15:02&quot;
+## [1] &quot;Set chr_column as 1 Chr&quot;
+## [1] &quot;Set mutation_start_column as 2 Start&quot;
+## [1] &quot;Set mutation_end_column as 3 End&quot;
+## [1] &quot;Set mutation_ref_column as 4 Ref&quot;
+## [1] &quot;Set mutation_alt_column as 5 Alt&quot;
+## [1] &quot;Set depth_normal_column as 14 depth_normal&quot;
+## [1] &quot;Set depth_tumor_column as 12 depth_tumor&quot;
+## [1] &quot;Set nm_id_column as 10 AAChange.refGene&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 1&quot;
+## [1] &quot;Chr\tStart\tEnd\tRef\tAlt\tFunc.refGene\tGene.refGene\tGeneDetail.refGene\tExonicFunc.refGene\tAAChange.refGene\tcytoBand\tdepth_tumor\tvariantNum_tumor\tdepth_normal&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 24&quot;
+## [1] &quot;#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT&quot;
+## [1] &quot;Start Analysis: Mutation 1&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 2&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 3&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.txt.list.vcf&quot;
+## [1] &quot;Executing netMHCpan to result.ID.INDEL1&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a HLA-A02:01 &gt; result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.1.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a HLA-A32:01 &gt; result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.2.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a HLA-B15:17 &gt; result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.3.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a HLA-B51:01 &gt; result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.4.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a HLA-C07:01 &gt; result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.5.peptide.txt&quot;
+## [1] &quot;netMHCpan-4.0/netMHCpan -BA  -l 8,9,10,11,12,13 -f result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a HLA-C15:02 &gt; result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.6.peptide.txt&quot;
+## [1] &quot;Merging Results...&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.1.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.2.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.3.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.4.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.5.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.HLACLASS1.6.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;Executing mhcflurry to result.ID.INDEL1&quot;
+## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta --mhc-alleles HLA-A0201 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.mhcflurry.HLACLASS1.1.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta --mhc-alleles HLA-A3201 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.mhcflurry.HLACLASS1.2.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta --mhc-alleles HLA-B1517 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.mhcflurry.HLACLASS1.3.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta --mhc-alleles HLA-B5101 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.mhcflurry.HLACLASS1.4.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta --mhc-alleles HLA-C0701 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.mhcflurry.HLACLASS1.5.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;~/opt/anaconda3/bin/mhctools --mhc-predictor mhcflurry --input-fasta-file result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta --mhc-alleles HLA-C1502 --mhc-peptide-lengths 8,9,10,11,12,13 --extract-subsequences --output-csv result.ID.INDEL1/sample_vcf.annovar.txt.ID_INDEL.mhcflurry.HLACLASS1.6.peptide.mhcflurry.csv&quot;
+</code></pre>
+
+<pre><code>## Warning in system(com): 命令の実行中にエラーが起きました
+</code></pre>
+
+<pre><code>## [1] &quot;Writing mhcflurry Results...&quot;
+## [1] &quot;Successfully Finished.&quot;
 </code></pre>
 
 <pre><code class="r">  print(head(Result_HLA1_INDEL[[1]]))
 </code></pre>
 
-<pre><code>## NULL
+<pre><code>##      HLA           Pos Gene        Evaluated_Mutant_Peptide_Core
+## [1,] &quot;HLA-A*02:01&quot; &quot;1&quot; &quot;0_UGT2B28&quot; &quot;GIPMVGIPLV&quot;                 
+## [2,] &quot;HLA-A*02:01&quot; &quot;2&quot; &quot;0_UGT2B28&quot; &quot;YHGIPMVGIPLVL&quot;              
+## [3,] &quot;HLA-A*02:01&quot; &quot;3&quot; &quot;0_UGT2B28&quot; &quot;HGIPMVGIPLVL&quot;               
+## [4,] &quot;HLA-A*02:01&quot; &quot;4&quot; &quot;0_UGT2B28&quot; &quot;GIPMVGIPLV&quot;                 
+## [5,] &quot;HLA-A*02:01&quot; &quot;5&quot; &quot;0_UGT2B28&quot; &quot;IPMVGIPLVL&quot;                 
+## [6,] &quot;HLA-A*02:01&quot; &quot;2&quot; &quot;0_UGT2B28&quot; &quot;GIPMVGIPLV&quot;                 
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank  Chr NM_ID      
+## [1,] &quot;IYHGIPMVGIPLV&quot;          &quot;8158.7&quot;  &quot;12.6683&quot; &quot;4&quot; &quot;NM_053039&quot;
+## [2,] &quot;YHGIPMVGIPLVL&quot;          &quot;264.7&quot;   &quot;1.9668&quot;  &quot;4&quot; &quot;NM_053039&quot;
+## [3,] &quot;HGIPMVGIPLVLG&quot;          &quot;14185.4&quot; &quot;18.6104&quot; &quot;4&quot; &quot;NM_053039&quot;
+## [4,] &quot;GIPMVGIPLVLGS&quot;          &quot;13299.6&quot; &quot;17.6940&quot; &quot;4&quot; &quot;NM_053039&quot;
+## [5,] &quot;IPMVGIPLVLGST&quot;          &quot;17674.7&quot; &quot;22.4056&quot; &quot;4&quot; &quot;NM_053039&quot;
+## [6,] &quot;YHGIPMVGIPLV&quot;           &quot;5439.5&quot;  &quot;9.9316&quot;  &quot;4&quot; &quot;NM_053039&quot;
+##      Change           Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
+## [1,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [2,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [3,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [4,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [5,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [6,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+##      Mutation_Position Total_Depth Tumor_Depth Wt_Peptide                    
+## [1,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;        &quot;IYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;
+## [2,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;        &quot;IYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;
+## [3,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;        &quot;IYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;
+## [4,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;        &quot;IYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;
+## [5,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;        &quot;IYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;
+## [6,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;        &quot;IYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;
+##      Mutant_Peptide       Total_RNA Tumor_RNA_Ratio Tumor_RNA
+## [1,] &quot;IYHGIPMVGIPLVLGSTX&quot; &quot;0&quot;       &quot;NA&quot;            &quot;NA&quot;     
+## [2,] &quot;IYHGIPMVGIPLVLGSTX&quot; &quot;0&quot;       &quot;NA&quot;            &quot;NA&quot;     
+## [3,] &quot;IYHGIPMVGIPLVLGSTX&quot; &quot;0&quot;       &quot;NA&quot;            &quot;NA&quot;     
+## [4,] &quot;IYHGIPMVGIPLVLGSTX&quot; &quot;0&quot;       &quot;NA&quot;            &quot;NA&quot;     
+## [5,] &quot;IYHGIPMVGIPLVLGSTX&quot; &quot;0&quot;       &quot;NA&quot;            &quot;NA&quot;     
+## [6,] &quot;IYHGIPMVGIPLVLGSTX&quot; &quot;0&quot;       &quot;NA&quot;            &quot;NA&quot;     
+##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
+## [1,] &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [2,] &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [3,] &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [4,] &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [5,] &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;        
+## [6,] &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;
 </code></pre>
 
 <pre><code class="r">  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
 </code></pre>
 
 <pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
-##                               0                               0 
+##                               3                               3 
 ## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
-##                               0                               0 
+##                               3                             270 
 ##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
-##                               0                               0
+##                             270                              15
 </code></pre>
 
 <pre><code class="r">  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
 </code></pre>
 
-<pre><code>##                                                    
-## Num_Peptide_Per_Pep                                
-## Num_Cond_Peptide_Per_Pep                           
-## Num_Rest_Peptide_Per_Pep                           
-## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep
-## -logP
+<pre><code>##                                                     IYHGIPMVGIPLVLGSTX-0_UGT2B28
+## Num_Peptide_Per_Pep                                                       30.000
+## Num_Cond_Peptide_Per_Pep                                                  30.000
+## Num_Rest_Peptide_Per_Pep                                                   4.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                        0.133
+## -logP                                                                      0.414
+##                                                     YQRDELLAAIKKFHIKVATQX-1_COL12A1
+## Num_Peptide_Per_Pep                                                          48.000
+## Num_Cond_Peptide_Per_Pep                                                     48.000
+## Num_Rest_Peptide_Per_Pep                                                      2.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                           0.042
+## -logP                                                                         0.483
+##                                                     EMARDFLPSLKNPFWKPSILPIFMYKHCSVQFSVRHGDVQTKVHX-2_SLCO1C1
+## Num_Peptide_Per_Pep                                                                                 192.000
+## Num_Cond_Peptide_Per_Pep                                                                            192.000
+## Num_Rest_Peptide_Per_Pep                                                                              9.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                   0.047
+## -logP                                                                                                 1.035
 </code></pre>
 
 <p>To calculate the binding affinity to HLA ClassII of neoantigen candaites from indels.  </p>
 
-<pre><code class="r">  Result_HLA2_INDEL &lt;- MainINDELClass2(input_annovar_format_file = &quot;data/sample_vcf.txt&quot;,
+<pre><code class="r">  Result_HLA2_INDEL &lt;- MainINDELClass2(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                        file_name_in_hla_table = &quot;sample&quot;,
                                        hla_file = &quot;data/sample_hla_table_c2.txt&quot;,
                                        refflat_file  = &quot;refFlat.grch37.txt&quot;,
@@ -405,35 +845,173 @@ library(devtools);
                                        multiple_variants = TRUE)
 </code></pre>
 
-<pre><code>## [1] &quot;Did not find Mutation File: data/sample_vcf.txt&quot;
+<pre><code>##  [1] &quot;HLAtype: DPA1*01:03&quot; &quot;HLAtype: DPA1*02:01&quot; &quot;HLAtype: DPB1*02:01&quot;
+##  [4] &quot;HLAtype: DPB1*09:01&quot; &quot;HLAtype: DQA1*01:02&quot; &quot;HLAtype: DQA1*05:05&quot;
+##  [7] &quot;HLAtype: DQB1*03:01&quot; &quot;HLAtype: DQB1*06:04&quot; &quot;HLAtype: DRB1*11:04&quot;
+## [10] &quot;HLAtype: DRB1*13:02&quot;
+## [1] &quot;Set chr_column as 1 Chr&quot;
+## [1] &quot;Set mutation_start_column as 2 Start&quot;
+## [1] &quot;Set mutation_end_column as 3 End&quot;
+## [1] &quot;Set mutation_ref_column as 4 Ref&quot;
+## [1] &quot;Set mutation_alt_column as 5 Alt&quot;
+## [1] &quot;Set depth_normal_column as 14 depth_normal&quot;
+## [1] &quot;Set depth_tumor_column as 12 depth_tumor&quot;
+## [1] &quot;Set nm_id_column as 10 AAChange.refGene&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 1&quot;
+## [1] &quot;Chr\tStart\tEnd\tRef\tAlt\tFunc.refGene\tGene.refGene\tGeneDetail.refGene\tExonicFunc.refGene\tAAChange.refGene\tcytoBand\tdepth_tumor\tvariantNum_tumor\tdepth_normal&quot;
+## [1] &quot;Please Confirm that Reading Start Line is 24&quot;
+## [1] &quot;#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT&quot;
+## [1] &quot;Start Analysis: Mutation 1&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 2&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Start Analysis: Mutation 3&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;Peptide Successfully Generated!!&quot;
+## [1] &quot;result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.txt.list.vcf&quot;
+## [1] &quot;Executing netMHCpan to result.ID.INDEL2&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DPA10103 -choose -chb DPB10201 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.1.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DPA10103 -choose -chb DPB10901 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.2.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DPA10201 -choose -chb DPB10201 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.3.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DPA10201 -choose -chb DPB10901 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.4.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DQA10102 -choose -chb DQB10301 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.5.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DQA10102 -choose -chb DQB10604 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.6.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DQA10505 -choose -chb DQB10301 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.7.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -choose -cha DQA10505 -choose -chb DQB10604 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.8.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a DRB1_1104 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.9.peptide.txt&quot;
+## [1] &quot;netMHCIIpan-3.2/netMHCIIpan -length 15 -f result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.peptide.fasta -a DRB1_1302 &gt; result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.10.peptide.txt&quot;
+## [1] &quot;Merging Results...&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.1.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.10.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.2.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.3.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.4.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.5.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.6.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.7.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.8.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;/Users/takanorihasegawa/GitHub/Neoantimon/vignettes/result.ID.INDEL2/sample_vcf.annovar.txt.ID_INDEL.HLACLASS2.9.peptide.txt&quot;
+## [1] &quot;33.3333333333333 perc. fin&quot;
+## [1] &quot;66.6666666666667 perc. fin&quot;
+## [1] &quot;100 perc. fin&quot;
+## [1] &quot;Successfully Finished.&quot;
 </code></pre>
 
 <pre><code class="r">  print(head(Result_HLA2_INDEL))
 </code></pre>
 
-<pre><code>## NULL
+<pre><code>##      HLA                     Pos Gene        Evaluated_Mutant_Peptide_Core
+## [1,] &quot;HLA-DPA10103-DPB10201&quot; &quot;3&quot; &quot;0_UGT2B28&quot; &quot;YHGIPMVGI&quot;                  
+## [2,] &quot;HLA-DPA10103-DPB10201&quot; &quot;2&quot; &quot;0_UGT2B28&quot; &quot;YHGIPMVGI&quot;                  
+## [3,] &quot;HLA-DPA10103-DPB10201&quot; &quot;1&quot; &quot;0_UGT2B28&quot; &quot;YHGIPMVGI&quot;                  
+## [4,] &quot;HLA-DPA10103-DPB10201&quot; &quot;4&quot; &quot;0_UGT2B28&quot; &quot;PMVGIPLVL&quot;                  
+## [5,] &quot;HLA-DPA10103-DPB10201&quot; &quot;3&quot; &quot;0_UGT2B28&quot; &quot;PMVGIPLVL&quot;                  
+## [6,] &quot;HLA-DPA10103-DPB10201&quot; &quot;2&quot; &quot;1_COL12A1&quot; &quot;YQRDELLAA&quot;                  
+##      Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank Chr NM_ID      
+## [1,] &quot;EAIYHGIPMVGIPLV&quot;        &quot;682.35&quot;  &quot;28.00&quot;  &quot;4&quot; &quot;NM_053039&quot;
+## [2,] &quot;AIYHGIPMVGIPLVL&quot;        &quot;643.18&quot;  &quot;27.00&quot;  &quot;4&quot; &quot;NM_053039&quot;
+## [3,] &quot;IYHGIPMVGIPLVLG&quot;        &quot;799.71&quot;  &quot;31.00&quot;  &quot;4&quot; &quot;NM_053039&quot;
+## [4,] &quot;YHGIPMVGIPLVLGS&quot;        &quot;984.87&quot;  &quot;35.00&quot;  &quot;4&quot; &quot;NM_053039&quot;
+## [5,] &quot;HGIPMVGIPLVLGST&quot;        &quot;1262.77&quot; &quot;40.00&quot;  &quot;4&quot; &quot;NM_053039&quot;
+## [6,] &quot;QYYQRDELLAAIKKF&quot;        &quot;528.36&quot;  &quot;23.00&quot;  &quot;6&quot; &quot;NM_004370&quot;
+##      Change           Ref Alt Prob Mutation_Prob. Exon_Start Exon_End  
+## [1,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [2,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [3,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [4,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [5,] &quot;Out_c.1186dupT&quot; &quot;-&quot; &quot;T&quot; &quot;0&quot;  &quot;0&quot;            &quot;70146192&quot; &quot;70160768&quot;
+## [6,] &quot;Out_c.628delA&quot;  &quot;T&quot; &quot;-&quot; &quot;0&quot;  &quot;0&quot;            &quot;75794041&quot; &quot;75915769&quot;
+##      Mutation_Position Total_Depth Tumor_Depth
+## [1,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;       
+## [2,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;       
+## [3,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;       
+## [4,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;       
+## [5,] &quot;4_70156404&quot;      &quot;84&quot;        &quot;43&quot;       
+## [6,] &quot;6_75899298&quot;      &quot;195&quot;       &quot;122&quot;      
+##      Wt_Peptide                          Mutant_Peptide            Total_RNA
+## [1,] &quot;EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;    &quot;EAIYHGIPMVGIPLVLGSTX&quot;    &quot;0&quot;      
+## [2,] &quot;EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;    &quot;EAIYHGIPMVGIPLVLGSTX&quot;    &quot;0&quot;      
+## [3,] &quot;EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;    &quot;EAIYHGIPMVGIPLVLGSTX&quot;    &quot;0&quot;      
+## [4,] &quot;EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;    &quot;EAIYHGIPMVGIPLVLGSTX&quot;    &quot;0&quot;      
+## [5,] &quot;EAIYHGIPMVGIPLFWDQPDNIAHMKAKGA&quot;    &quot;EAIYHGIPMVGIPLVLGSTX&quot;    &quot;0&quot;      
+## [6,] &quot;QYYQRDELLAAIKKIPYKGGNTMTGDAIDYLVK&quot; &quot;QYYQRDELLAAIKKFHIKVATQX&quot; &quot;0&quot;      
+##      Tumor_RNA_Ratio Tumor_RNA Tumor_RNA_based_on_DNA MutRatio MutRatio_Min
+## [1,] &quot;NA&quot;            &quot;NA&quot;      &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;        
+## [2,] &quot;NA&quot;            &quot;NA&quot;      &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;        
+## [3,] &quot;NA&quot;            &quot;NA&quot;      &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;        
+## [4,] &quot;NA&quot;            &quot;NA&quot;      &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;        
+## [5,] &quot;NA&quot;            &quot;NA&quot;      &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;        
+## [6,] &quot;NA&quot;            &quot;NA&quot;      &quot;0&quot;                    &quot;NA&quot;     &quot;NA&quot;        
+##      MutRatio_Max
+## [1,] &quot;NA&quot;        
+## [2,] &quot;NA&quot;        
+## [3,] &quot;NA&quot;        
+## [4,] &quot;NA&quot;        
+## [5,] &quot;NA&quot;        
+## [6,] &quot;NA&quot;
 </code></pre>
 
 <pre><code class="r">  print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
 </code></pre>
 
 <pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
-##                               0                               0 
+##                               3                               3 
 ## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
-##                               0                               0 
+##                               3                              45 
 ##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
-##                               0                               0
+##                              45                              32
 </code></pre>
 
 <pre><code class="r">  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
 </code></pre>
 
-<pre><code>##                                                    
-## Num_Peptide_Per_Pep                                
-## Num_Cond_Peptide_Per_Pep                           
-## Num_Rest_Peptide_Per_Pep                           
-## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep
-## -logP
+<pre><code>##                                                     EAIYHGIPMVGIPLVLGSTX-0_UGT2B28
+## Num_Peptide_Per_Pep                                                           5.00
+## Num_Cond_Peptide_Per_Pep                                                      5.00
+## Num_Rest_Peptide_Per_Pep                                                      5.00
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                           1.00
+## -logP                                                                         0.46
+##                                                     QYYQRDELLAAIKKFHIKVATQX-1_COL12A1
+## Num_Peptide_Per_Pep                                                             8.000
+## Num_Cond_Peptide_Per_Pep                                                        8.000
+## Num_Rest_Peptide_Per_Pep                                                        7.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                             0.875
+## -logP                                                                           0.529
+##                                                     IMEMARDFLPSLKNPFWKPSILPIFMYKHCSVQFSVRHGDVQTKVHX-2_SLCO1C1
+## Num_Peptide_Per_Pep                                                                                    32.000
+## Num_Cond_Peptide_Per_Pep                                                                               32.000
+## Num_Rest_Peptide_Per_Pep                                                                               20.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                     0.625
+## -logP                                                                                                   1.081
 </code></pre>
 
 <p>To calculate the binding affinity to HLA ClassI of neoantigen candaites from SVs.  </p>
