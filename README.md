@@ -816,6 +816,8 @@ print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
 [R]
 print(head(Result_HLA1_Seq))
 ```
+
+```
 ##	HLA	Pos	Gene	Evaluated_Mutant_Peptide_Core	Evaluated_Mutant_Peptide	Mut_IC50	Mut_Rank	Chr	NM_ID	ReadingFrame	SequenceNumber	Chrs	NM_IDs	GeneIDs	Exon_Starts	Exon_Ends	GroupID	NumOfPeptides	NumOfStops
 ##	HLA-A*02:01	1	0_atggcagaag	MAEDDPYLGRPEK	MAEDDPYLGRPEK	34529.5	52.6059	0		1	1	chr4;chr4	NM_001165412;NM_003998	NFKB1;NFKB1	103422515;103422515	103538459;103538459	0_1	27	0
 ##	HLA-A*02:01	2	0_atggcagaag	AEDDPYLGRPEKM	AEDDPYLGRPEKM	37395.3	61.456	0		1	1	chr4;chr4	NM_001165412;NM_003998	NFKB1;NFKB1	103422515;103422515	103538459;103538459	0_1	27	0
