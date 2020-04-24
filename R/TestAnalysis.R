@@ -4,10 +4,10 @@
 #'
 #'@export
 TestAnalysis<-function(){
-  #library(devtools);
-  #install_github('hase62/Neoantimon');
-  #library(Neoantimon);
-  #library(biomaRt)
+  library(devtools);
+  install_github('hase62/Neoantimon');
+  library(Neoantimon);
+  library(biomaRt)
 
   data("sample_vcf.annovar")
   data("sample_vcf.vep")
@@ -50,4 +50,24 @@ TestAnalysis<-function(){
                                        SNPs = "data/sample.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
+
+  Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
+                                           file_name_in_hla_table = "sample",
+                                           hla_file = "data/sample_hla_table_c1.txt",
+                                           hmdir = getwd(),
+                                           job_id = "NO_job_id",
+                                           refflat_file  = "refFlat.grch37.txt",
+                                           refmrna_file = "refMrna.grch37.fa",
+                                           netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                           reference_nm_id = c("NM_003998", "NM_001165412"))
+
+  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
+                                           file_name_in_hla_table = "sample",
+                                           hla_file = "data/sample_hla_table_c2.txt",
+                                           hmdir = getwd(),
+                                           job_id = "NO_job_id",
+                                           refflat_file  = "refFlat.grch37.txt",
+                                           refmrna_file = "refMrna.grch37.fa",
+                                           netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
+                                           reference_gene_symbol = c("NFKB1", "BCL3"))
 }

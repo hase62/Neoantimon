@@ -624,48 +624,13 @@ print(head(Result_HLA1_SNV[[1]]))
 ```
   
 ```
-##      HLA           Pos Gene        Evaluated_Mutant_Peptide Mut_IC50  Mut_Rank 
-## [1,] "HLA-A*02:01" "2" "0_CYP4A11" "HQERCREEIHSLP"          "38277.9" "64.5038"
-## [2,] "HLA-A*02:01" "3" "0_CYP4A11" "QERCREEIHSLPG"          "44731.5" "90.0840"
-## [3,] "HLA-A*02:01" "4" "0_CYP4A11" "ERCREEIHSLPGD"          "45387.7" "92.3912"
-## [4,] "HLA-A*02:01" "5" "0_CYP4A11" "RCREEIHSLPGDG"          "45916.2" "94.2252"
-## [5,] "HLA-A*02:01" "6" "0_CYP4A11" "CREEIHSLPGDGA"          "41190.5" "75.6598"
-## [6,] "HLA-A*02:01" "7" "0_CYP4A11" "REEIHSLPGDGAS"          "42224.3" "79.8820"
-##      Evaluated_Wt_Peptide Wt_IC50   Wt_Rank   Chr NM_ID       Change     Ref
-## [1,] "HQERCREEIHSLL"      "21979.5" "27.7445" "1" "NM_000778" "c.T1064C" "A"
-## [2,] "QERCREEIHSLLG"      "43057.5" "83.3295" "1" "NM_000778" "c.T1064C" "A"
-## [3,] "ERCREEIHSLLGD"      "43941.4" "86.9293" "1" "NM_000778" "c.T1064C" "A"
-## [4,] "RCREEIHSLLGDG"      "43591.4" "85.5092" "1" "NM_000778" "c.T1064C" "A"
-## [5,] "CREEIHSLLGDGA"      "40373.3" "72.4303" "1" "NM_000778" "c.T1064C" "A"
-## [6,] "REEIHSLLGDGAS"      "41200.3" "75.7003" "1" "NM_000778" "c.T1064C" "A"
-##      Alt Prob Mutation_Prob. Exon_Start Exon_End   Mutation_Position
-## [1,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
-## [2,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
-## [3,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
-## [4,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
-## [5,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
-## [6,] "G" "0"  "0"            "47394859" "47407148" "1_47399872"     
-##      Total_Depth Tumor_Depth Wt_Peptide                   
-## [1,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
-## [2,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
-## [3,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
-## [4,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
-## [5,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
-## [6,] "113"       "64"        "KHQERCREEIHSLLGDGASITWNHLDQ"
-##      Mutant_Peptide                Total_RNA Tumor_RNA_Ratio Tumor_RNA
-## [1,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
-## [2,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
-## [3,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
-## [4,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
-## [5,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
-## [6,] "KHQERCREEIHSLPGDGASITWNHLDQ" "0"       "NA"            "NA"     
-##      Tumor_RNA_based_on_DNA MutRatio MutRatio_Min MutRatio_Max
-## [1,] "0"                    "NA"     "NA"         "NA"        
-## [2,] "0"                    "NA"     "NA"         "NA"        
-## [3,] "0"                    "NA"     "NA"         "NA"        
-## [4,] "0"                    "NA"     "NA"         "NA"        
-## [5,] "0"                    "NA"     "NA"         "NA"        
-## [6,] "0"                    "NA"     "NA"         "NA"
+##	HLA	Pos	Gene	Evaluated_Mutant_Peptide	Mut_IC50	Mut_Rank	Evaluated_Wt_Peptide	Wt_IC50	Wt_Rank	Chr	NM_ID	Change	Ref	Alt	Prob	Mutation_Prob.	Exon_Start	Exon_End	Mutation_Position	Total_Depth	Tumor_Depth	Wt_Peptide	Mutant_Peptide	Total_RNA	Tumor_RNA_Ratio	Tumor_RNA	Tumor_RNA_based_on_DNA	MutRatio	MutRatio_Min	MutRatio_Max
+##	HLA-A*02:01	2	0_CYP4A11	HQERCREEIHSLP	38277.9	64.5038	HQERCREEIHSLL	21979.5	27.7445	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	0	NA	NA	0	NA	NA	NA
+##	HLA-A*02:01	3	0_CYP4A11	QERCREEIHSLPG	44731.5	90.084	QERCREEIHSLLG	43057.5	83.3295	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	0	NA	NA	0	NA	NA	NA
+##	HLA-A*02:01	4	0_CYP4A11	ERCREEIHSLPGD	45387.7	92.3912	ERCREEIHSLLGD	43941.4	86.9293	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	0	NA	NA	0	NA	NA	NA
+##	HLA-A*02:01	5	0_CYP4A11	RCREEIHSLPGDG	45916.2	94.2252	RCREEIHSLLGDG	43591.4	85.5092	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	0	NA	NA	0	NA	NA	NA
+##	HLA-A*02:01	6	0_CYP4A11	CREEIHSLPGDGA	41190.5	75.6598	CREEIHSLLGDGA	40373.3	72.4303	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	0	NA	NA	0	NA	NA	NA
+##	HLA-A*02:01	7	0_CYP4A11	REEIHSLPGDGAS	42224.3	79.882	REEIHSLLGDGAS	41200.3	75.7003	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	0	NA	NA	0	NA	NA	NA
 ```
 
 ```
