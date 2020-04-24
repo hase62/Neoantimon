@@ -491,6 +491,8 @@ lib/
 #### Calculate Neoantigens on SNVs for HLA Class I and II. 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_snv.png" width="640px"></kbd>
 
+To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassI. 
+When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. 
 ```
 [R]
   Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
@@ -505,7 +507,11 @@ lib/
                                    SNPs = "data/sample.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "~/opt/anaconda3/bin/mhctools")
+```
 
+To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII. 
+```
+[R]
   Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c2.txt",
@@ -521,6 +527,9 @@ lib/
 
 #### Calculate Neoantigens on INDELs for HLA Class I and II. 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_indel.png" width="640px"></kbd>
+
+To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassI. 
+When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. 
 ```
 [R]
   Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
@@ -535,7 +544,11 @@ lib/
                                        SNPs = "data/sample.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
+```
 
+To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII. 
+```
+[R]
   Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
@@ -552,6 +565,7 @@ lib/
 #### Calculate Neoantigens on SV fusions for HLA Class I and II. 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_sv.png" width="640px"><kbd>
 
+To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassI. 
 ```
 [R]
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
@@ -565,7 +579,11 @@ lib/
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
+```
 
+To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassII. 
+```
+[R]
   Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c2.txt",
@@ -582,6 +600,7 @@ lib/
 #### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_rna.png" width="640px"></kbd>
 
+To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassI. 
 ```
 [R]
   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
@@ -593,7 +612,11 @@ lib/
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
+```
 
+To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassII. 
+```
+[R]
   Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "data/sample_hla_table_c2.txt",
@@ -610,7 +633,6 @@ Users can optionally provide (a) RNA expression data with and without (b) the co
 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_op2.png" width="640px"></kbd>
 
-
 In addition, users can consider specific cases of existing SNPs on the mutant peptide by providing (c) SNPs data, and multiple SNVs on the same mutant peptides and among the frameshift region caused by indels. These cases are explained as followings.
 
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_op1.png" width="640px"></kbd>
@@ -618,6 +640,7 @@ In addition, users can consider specific cases of existing SNPs on the mutant pe
 ## 5. Result
 #### Output Result
 
+Results generated from SNVs. 
 ```
 [R]
 print(head(Result_HLA1_SNV[[1]]))
@@ -633,6 +656,7 @@ print(head(Result_HLA1_SNV[[1]]))
 ##	HLA-A*02:01	7	0_CYP4A11	REEIHSLPGDGAS	42224.3	79.882	REEIHSLLGDGAS	41200.3	75.7003	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	KHQERCREEIHSLLGDGASITWNHLDQ	KHQERCREEIHSLPGDGASITWNHLDQ	0	NA	NA	0	NA	NA	NA
 ```
 
+Cound the number of neoantigens of which thresholds are IC 50 of mutatnt peptides < 500 and IC 50 of wild-type peptides > 500. 
 ```
 [R]
 print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
@@ -643,6 +667,7 @@ print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC5
 ##	4	4	2	252	252	3
 ```
 
+Results generated from SNVs. 
 ```
 [R]
 print(head(Result_HLA2_SNV))
@@ -658,16 +683,18 @@ print(head(Result_HLA2_SNV))
 ##	HLA-DPA10103-DPB10201	7	0_CYP4A11	RCREEIHSLPGDGAS	13790.24	95	RCREEIHSLLGDGAS	5387.49	75	1	NM_000778	c.T1064C	A	G	0	0	47394859	47407148	1_47399872	113	64	HPKHQERCREEIHSLLGDGASITWNHLDQMP	HPKHQERCREEIHSLPGDGASITWNHLDQMP	0	NA	NA	0	NA	NA	NA
 ```
 
+Cound the number of neoantigens of which thresholds are IC 50 of mutatnt peptides < 500 and IC 50 of wild-type peptides > 500. 
 ```
 [R]
 print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 ```
 
-```
+``` 
 ##	Num_All_Alteration	Num_Evaluated_Alteration	Num_Alteration_Generating_NeoAg	Num_All_Peptide	Num_Evaluated_Peptide	Num_Peptide_Generating_NeoAg	
 ##	4	4	2	60	60	10	
 ```
 
+Results generated from indels. 
 ```
 [R]
 print(head(Result_HLA1_INDEL[[1]]))
@@ -683,6 +710,7 @@ HLA-A*02:01	5	0_UGT2B28	IPMVGIPLVL	IPMVGIPLVLGST	17674.7	22.4056	4	NM_053039	Out
 HLA-A*02:01	2	0_UGT2B28	GIPMVGIPLV	YHGIPMVGIPLV	5439.5	9.9316	4	NM_053039	Out_c.1186dupT	-	T	0	0	70146192	70160768	4_70156404	84	43	IYHGIPMVGIPLFWDQPDNIAHMKAKGA	IYHGIPMVGIPLVLGSTX	0	NA	NA	0	NA	NA	NA
 ```
 
+Cound the number of neoantigens of which thresholds are IC 50 of mutatnt peptides < 500. 
 ```
 [R]
 print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
@@ -693,6 +721,7 @@ print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
 ##	3	3	3	270	270	15		
 ```
 
+Cound the number of neoantigens for each peptide of which thresholds are IC 50 of mutatnt peptides < 500. 
 ```
 [R]
 print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
@@ -707,6 +736,7 @@ print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC
 ##	-logP	0.46	0.529	1.081
 ```
 
+Results generated from indels. 
 ```
 [R]
 print(head(Result_HLA2_INDEL))
@@ -722,6 +752,7 @@ print(head(Result_HLA2_INDEL))
 ##	HLA-DPA10103-DPB10201	2	1_COL12A1	YQRDELLAA	QYYQRDELLAAIKKF	528.36	23	6	NM_004370	Out_c.628delA	T	-	0	0	75794041	75915769	6_75899298	195	122	QYYQRDELLAAIKKIPYKGGNTMTGDAIDYLVK	QYYQRDELLAAIKKFHIKVATQX	0	NA	NA	0	NA	NA	NA
 ```
 
+Cound the number of neoantigens of which thresholds are IC 50 of mutatnt peptides < 500. 
 ```
 [R]
 print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
@@ -732,6 +763,7 @@ print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
 ##	3	3	3	45	45	32
 ```
 
+Cound the number of neoantigens for each peptide of which thresholds are IC 50 of mutatnt peptides < 500. 
 ```
 [R]
 print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th = 500))
@@ -746,12 +778,11 @@ print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, Mut_IC50_th
 ##	-logP	0.46	0.529	1.081
 ```
 
+Results generated from SVs. 
 ```
 [R]
 print(head(Result_HLA1_SV))
 ```
-
-
 
 ```
 ##	HLA	Pos	Gene	Evaluated_Mutant_Peptide_Core	Evaluated_Mutant_Peptide	Mut_IC50	Mut_Rank	Chr	NM_ID	Change	Ref	Alt	Prob	Mutation_Prob.		Exon_Start	Exon_End	Mutation_Position	Total_Depth	Tumor_Depth	Wt_Peptide	Mutant_Peptide	Total_RNA	Tumor_RNA_Ratio	Tumor_RNA	Tumor_RNA_based_on_DNA	MutRatio	MutRatio_Min
@@ -763,6 +794,7 @@ print(head(Result_HLA1_SV))
 ##	HLA-A*02:01	6	0_AAR2	EVGPKFREQLKL	EVGPKFREQLKLF	40083	71.2831	20	NM_015511_NM_015906	In_AAR2_exon_TRIM33_exon	G	G]1:115005805]	0	0	34824338	34844863	20_34827929	0	0	MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFvcfLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX	DYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLE	3.03498	NA	NA	NaN	NA	NA	NA
 ```
 
+Cound the number of neoantigens of which thresholds are IC 50 of mutatnt peptides < 500. 
 ```
 [R]
 print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
@@ -773,6 +805,7 @@ print(Export_Summary_IndelSV(Result_HLA1_SV, Mut_IC50_th = 500))
 ##	16	16	10	3183	3183	119
 ```
 
+Cound the number of neoantigens for each peptide of which thresholds are IC 50 of mutatnt peptides < 500. 
 ```
 [R]
 print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
@@ -787,6 +820,7 @@ print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, Mut_IC50_th = 500))
 ##	-logP	0.782	1.496	0.391	0.759	0.644	0.759	2.37	1.956	0.759	3.405	0.391	0.644	0.782	0.759	0.805	0.805	0.782	0.782	0.805	0.782	0.805	0.805
 ```
 
+Results generated from SVs. 
 ```
 [R]
 print(head(Result_HLA2_SV))
@@ -802,6 +836,7 @@ print(head(Result_HLA2_SV))
 ##	HLA-DPA10103-DPB10201	6	0_AAR2	KFREQLKLF	SWEVGPKFREQLKLF	2000.52	50	20	NM_015511_NM_015906	In_AAR2_exon_TRIM33_exon	G	G]1:115005805]	0	0	34824338	34844863	20_34827929	0	0	MAAVQMDPELAKRLFFEGATVVILNMPKGTEFGIDYNSWEVGPKFRGVKMIPPGIHFLHYSSVDKANPKEVGPRMGFFLSLHQRGLTVLRWSTLREEVDLSPAPESEVEAMRANLQELDQFLGPYPYATLKKWISLTNFISEATVEKLQPENRQICAFSDVLPVLSMKHTKDRVGQNLPRCGIECKSYQEGLARLPEMKPRAGTEIRFSELPTQMFPEGATPAEITKHSMDLSYALETVLNKQFPSSPQDVLGELQFAFvcfLLGNVYEAFEHWKRLLNLLCRSEAAMMKHHTLYINLISILYHQLGEIPADFFVDIVSQDNFLTSTLQVFFSSACSIAVDATLRKKAEKFQAHLTKKFRWDFAAEPEDCAPVVVELPEGIEMGXXMAENKGGGEAESGGGGSGSAPVTAGAAGPAAQEAEPPLTAVLVEEEEEEGGRAGAEGGAAGPDDGGVAAASSGSAQAASSPAASVGTGVAGGAVSTPAPAPASAPAPGPSAGPPPGPPASLLDTCAVCQQSLQSRREAEPKLLPCLHSFCLRCLPEPERQLSVPIPGGSNGDIQQVGVIRCPVCRQECRQIDLVDNYFVKDTSEAPSSSDEKSEQVCTSCEDNASAVGFCVECGEWLCKTCIEAHQRVKFTKDHLIRKKEDVSESVGASGQRPVFCPVHKQEQLKLFCETCDRLTCRDCQLLEHKEHRYQFLEEAFQNQKGAIENLLAKLLEKKNYVHFAATQVQNRIKEVNETNKRVEQEIKVAIFTLINEINKKGKSLLQQLENVTKERQMKLLQQQNDITGLSRQVKHVMNFTNWAIASGSSTALLYSKRLITFQLRHILKARCDPVPAANGAIRFHCDPTFWAKNVVNLGNLVIESKPAPGYTPNVVVGQVPPGTNHISKTPGQINLAQLRLQHMQQQVYAQKHQQLQQMRMQQPPAPVPTTTTTTQQHPRQAAPQMLQQQPPRLISVQTMQRGNMNCGAFQAHQMRLAQNAARIPGIPRHSGPQYSMMQPHLQRQHSNPGHAGPFPVVSVHNTTINPTSPTTATMANANRGPTSPSVTAIELIPSVTNPENLPSLPDIPPIQLEDAGSSSLDNLLSRYISGSHLPPQPTSTMNPSPGPSALSPGSSGLSNSHTPVRPPSTSSTGSRGSCGSSGRTAEKTSLSFKSDQVKVKQEPGTEDEICSFSGGVKQEKTEDGRRSACMLSSPESSLTPPLSTNLHLESELDALASLENHVKIEPADMNESCKQSGLSSLVNGKSPIRSLMHRSARIGGDGNNKDDDPNEDWCAVCQNGGDLLCCEKCPKVFHLTCHVPTLLSFPSGDWICTFCRDIGKPEVEYDCDNLQHSKKGKTAQGLSPVDQRKCERLLLYLYCHELSIEFQEPVPASIPNYYKIIKKPMDLSTVKKKLQKKHSQHYQIPDDFVADVRLIFKNCERFNEMMKVVQVYADTQEINLKADSEVAQAGKAVALYFEDKLTEIYSDRTFAPLPEFEQEEDDGEVTEDSDEDFIQPRRKRLKSDERPVHIKX	GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK	3.03498	NA	NA	NaN	NA	NA	NA
 ```
 
+Cound the number of neoantigens of which thresholds are IC 50 of mutatnt peptides < 500. 
 ```
 [R]
 print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
@@ -812,6 +847,7 @@ print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
 ##	16	16	12	588	588	298
 ```
 
+Results generated from RNA sequences. 
 ```
 [R]
 print(head(Result_HLA1_Seq))
@@ -862,6 +898,7 @@ print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 ## -logP                                                                                      0.621
 ```
 
+Results generated from RNA sequences. 
 ```
 [R]
 print(head(Result_HLA2_Seq))
