@@ -38,4 +38,16 @@ TestAnalysis<-function(){
   data("sample.snps.vcf")
   print(sample.snps.vcf, row.row.names = FALSE)
 
+  Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
+                                       file_name_in_hla_table = "sample",
+                                       hla_file = "data/sample_hla_table_c1.txt",
+                                       refflat_file  = "refFlat.grch37.txt",
+                                       refmrna_file = "refMrna.grch37.fa",
+                                       rnaexp_file = "data/sample_rna_exp.txt",
+                                       netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                       depth_tumor_column = 12,
+                                       depth_normal_column = 14,
+                                       SNPs = "data/sample.snps.vcf",
+                                       multiple_variants = TRUE,
+                                       MHCflurry = "~/opt/anaconda3/bin/mhctools")
 }
