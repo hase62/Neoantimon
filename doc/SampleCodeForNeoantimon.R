@@ -114,11 +114,14 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        mate_id_column = 8)
   print(head(Result_HLA2_SV))
 
-## ----Get SV Summary Sample 2 in Test Analysis---------------------------------
+## ----Get SV Summary 2-1 in Test Analysis--------------------------------------
   print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_IC50_th = 500))
 
+## ----Get SV Summary 2-2 in Test Analysis--------------------------------------
+  print(Export_Summary_IndelSV_perFragments(Result_HLA2_SV, Mut_IC50_th = 500))
+
 ## ----Get Fragment Sample 1 in Test Analysis-----------------------------------
-  Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
+   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "data/sample_hla_table_c1.txt",
                                            hmdir = getwd(),
@@ -127,10 +130,10 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
-  print(head(Result_HLA1_Seq))
+print(head(Result_HLA1_Seq))
 
 ## ----Get Fragment Summary 1 in Test Analysis----------------------------------
-#  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
+  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 
 ## ----Get Fragment Sample 2 in Test Analysis-----------------------------------
   Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
@@ -142,8 +145,8 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                            reference_gene_symbol = c("NFKB1", "BCL3"))
-  print(head(Result_HLA2_Seq))
+print(head(Result_HLA2_Seq))
 
 ## ----Get Fragment Summary 2 in Test Analysis----------------------------------
-#  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
 

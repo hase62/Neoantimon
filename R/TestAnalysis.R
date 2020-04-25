@@ -4,10 +4,10 @@
 #'
 #'@export
 TestAnalysis<-function(){
-  library(devtools);
-  install_github('hase62/Neoantimon');
-  library(Neoantimon);
-  library(biomaRt)
+  #library(devtools);
+  #install_github('hase62/Neoantimon');
+  #library(Neoantimon);
+  #library(biomaRt)
 
   data("sample_vcf.annovar")
   data("sample_vcf.vep")
@@ -38,7 +38,7 @@ TestAnalysis<-function(){
   data("sample.snps.vcf")
   print(sample.snps.vcf, row.row.names = FALSE)
 
-  Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
+  Result_HLA1_INDEL <- MainSNVClass1(input_vep_format_file = "data/sample_vcf.vep.txt",
                                        file_name_in_hla_table = "sample",
                                        hla_file = "data/sample_hla_table_c1.txt",
                                        refflat_file  = "refFlat.grch37.txt",

@@ -221,13 +221,23 @@ library(devtools);
 <pre><code>## Downloading GitHub repo hase62/Neoantimon@master
 </code></pre>
 
-<pre><code>## Skipping 3 packages not available: ensemblVEP, devtools, biomaRt
+<pre><code>## xml2 (1.3.1 -&gt; 1.3.2) [CRAN]
 </code></pre>
 
-<pre><code>##   
-   checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpnYjKgZ/remotes73f256731e2/hase62-Neoantimon-b2b063c/DESCRIPTION’ ...
+<pre><code>## Installing 1 packages: xml2
+</code></pre>
 
-✓  checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpnYjKgZ/remotes73f256731e2/hase62-Neoantimon-b2b063c/DESCRIPTION’
+<pre><code>## Installing package into &#39;/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpsvY1mH/temp_libpath38f91e888ac3&#39;
+## (as &#39;lib&#39; is unspecified)
+</code></pre>
+
+<pre><code>## 
+## The downloaded binary packages are in
+##  /var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T//RtmpsvY1mH/downloaded_packages
+##   
+   checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpsvY1mH/remotes38f99c964f0/hase62-Neoantimon-f49bb64/DESCRIPTION’ ...
+
+✓  checking for file ‘/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpsvY1mH/remotes38f99c964f0/hase62-Neoantimon-f49bb64/DESCRIPTION’
 ## 
 
 ─  preparing ‘Neoantimon’:
@@ -247,21 +257,22 @@ library(devtools);
 ─  looking to see if a ‘data/datalist’ file should be added
 ## 
 
-─  building ‘Neoantimon_2.1.0.tar.gz’ (507ms)
+─  building ‘Neoantimon_2.1.0.tar.gz’ (469ms)
 ## 
 
 
 ## 
 </code></pre>
 
-<pre><code>## Installing package into &#39;/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpnYjKgZ/temp_libpath73f780ec3a0&#39;
+<pre><code>## Installing package into &#39;/private/var/folders/m7/lhqh5jjs3v5dqw94n1t534b80000gn/T/RtmpsvY1mH/temp_libpath38f91e888ac3&#39;
 ## (as &#39;lib&#39; is unspecified)
 </code></pre>
 
 <pre><code class="r">library(Neoantimon);
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassI of neoantigen candaites from SNVs. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. </p>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassI. 
+When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.</p>
 
 <pre><code class="r">Result_HLA1_SNV &lt;- MainSNVClass1(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                    file_name_in_hla_table = &quot;sample&quot;,
@@ -414,7 +425,7 @@ library(devtools);
 ##                             189                               3
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassII of neoantigen candaites from SNVs. </p>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII. </p>
 
 <pre><code class="r"> Result_HLA2_SNV &lt;- MainSNVClass2(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                    file_name_in_hla_table = &quot;sample&quot;,
@@ -578,7 +589,8 @@ library(devtools);
 ##                              45                               9
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassI of neoantigen candaites from indels. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively. </p>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassI. 
+When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.</p>
 
 <pre><code class="r">Result_HLA1_INDEL &lt;- MainINDELClass1(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                        file_name_in_hla_table = &quot;sample&quot;,
@@ -742,7 +754,7 @@ library(devtools);
 ## -logP                                                                                                 1.035
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassII of neoantigen candaites from indels.  </p>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII. </p>
 
 <pre><code class="r">  Result_HLA2_INDEL &lt;- MainINDELClass2(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
                                        file_name_in_hla_table = &quot;sample&quot;,
@@ -926,7 +938,7 @@ library(devtools);
 ## -logP                                                                                                   1.081
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassI of neoantigen candaites from SVs.  </p>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassI. </p>
 
 <pre><code class="r">  Result_HLA1_SV &lt;- MainSVFUSIONClass1(input_file = &quot;data/sample_sv_bnd.txt&quot;,
                                        file_name_in_hla_table = &quot;sample&quot;,
@@ -1410,7 +1422,7 @@ library(devtools);
 ## -logP                                                                                      0.805
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassII of neoantigen candaites from SVs.  </p>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassII. </p>
 
 <pre><code class="r">  Result_HLA2_SV &lt;- MainSVFUSIONClass2(input_file = &quot;data/sample_sv_bnd.txt&quot;,
                                        file_name_in_hla_table = &quot;sample&quot;,
@@ -1851,9 +1863,159 @@ library(devtools);
 ##                             573                             292
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassI of neoantigen candaites directly from RNA sequences. The peptides included in the riginal genes (&ldquo;NM_003998&rdquo;, &ldquo;NM_001165412&rdquo;) are removed from the results. </p>
+<pre><code class="r">  print(Export_Summary_IndelSV_perFragments(Result_HLA2_SV, Mut_IC50_th = 500))
+</code></pre>
 
-<pre><code class="r">  Result_HLA1_Seq &lt;- MainSeqFragmentClass1(input_sequence = &quot;atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc&quot;,
+<pre><code>##                                                     GIDYNSWEVGPKFREQLKLFCETCDRLTCRDCQLLEHK-0_AAR2
+## Num_Peptide_Per_Pep                                                                        14.000
+## Num_Cond_Peptide_Per_Pep                                                                   14.000
+## Num_Rest_Peptide_Per_Pep                                                                    0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                         0.000
+## -logP                                                                                       0.874
+##                                                     KRGDPHELRNIFLQLSAVQEAQLKRLEVTRPRVLGSREQGQVPRMARQPPPPWVHAAFLLCLLSLGGAI-1_SLC25A12
+## Num_Peptide_Per_Pep                                                                                                           44.000
+## Num_Cond_Peptide_Per_Pep                                                                                                      44.000
+## Num_Rest_Peptide_Per_Pep                                                                                                      19.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                            0.432
+## -logP                                                                                                                          1.588
+##                                                     RKTMAEKRQLFIEMLYRLX-2_DTNB
+## Num_Peptide_Per_Pep                                                      4.000
+## Num_Cond_Peptide_Per_Pep                                                 4.000
+## Num_Rest_Peptide_Per_Pep                                                 4.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                      1.000
+## -logP                                                                    0.437
+##                                                     GHTDWLSDCCFHPSERCRCTLYGHTDSVNSIEFFPFS-3_SPAG16
+## Num_Peptide_Per_Pep                                                                         13.000
+## Num_Cond_Peptide_Per_Pep                                                                    13.000
+## Num_Rest_Peptide_Per_Pep                                                                     0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                          0.000
+## -logP                                                                                        0.851
+##                                                     AAACLPGEEGTAERSCKRNLSTTTGSSERX-4_TMCC1
+## Num_Peptide_Per_Pep                                                                  15.00
+## Num_Cond_Peptide_Per_Pep                                                             15.00
+## Num_Rest_Peptide_Per_Pep                                                              0.00
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                   0.00
+## -logP                                                                                 0.69
+##                                                     MKSCKRNLSTTTGSSERX-5_TMCC1
+## Num_Peptide_Per_Pep                                                      3.000
+## Num_Cond_Peptide_Per_Pep                                                 3.000
+## Num_Rest_Peptide_Per_Pep                                                 0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                      0.000
+## -logP                                                                    0.414
+##                                                     MVQRFSLRRQLSKSCKRNLSTTTGSSERX-6_TMCC1
+## Num_Peptide_Per_Pep                                                                14.000
+## Num_Cond_Peptide_Per_Pep                                                           14.000
+## Num_Rest_Peptide_Per_Pep                                                            9.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                 0.643
+## -logP                                                                               0.667
+##                                                     PMQRKGSYCWDFEESCKRNLSTTTGSSERX-7_TMCC1
+## Num_Peptide_Per_Pep                                                                  15.00
+## Num_Cond_Peptide_Per_Pep                                                             15.00
+## Num_Rest_Peptide_Per_Pep                                                              0.00
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                   0.00
+## -logP                                                                                 0.69
+##                                                     HNIRPKPFVIPGRSRTLECKQQKIILLRREMKETX-8_PDLIM3
+## Num_Peptide_Per_Pep                                                                       20.000
+## Num_Cond_Peptide_Per_Pep                                                                  20.000
+## Num_Rest_Peptide_Per_Pep                                                                  10.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.500
+## -logP                                                                                      0.805
+##                                                     IKGDQYIVDMANTKRTLLWTRPMTVILGKPFCVMPKQQKTAHIGFLQHIPRLSPKPCLPKLNLMMRKQRMSQNGKNVKFEESHLRAVCMSGRGMGQVWVFFLCSX-9_WDR70
+## Num_Peptide_Per_Pep                                                                                                                                            90.000
+## Num_Cond_Peptide_Per_Pep                                                                                                                                       90.000
+## Num_Rest_Peptide_Per_Pep                                                                                                                                       55.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                                                             0.611
+## -logP                                                                                                                                                           2.416
+##                                                     AALCPASRALEEKKGHELLGGPSLGAPRPGSQERTGENTAACQDHRFWAGQTAGCGRERIPCRRRQSAYQVDGIGINFTQNLYPPEX-10_EGFR
+## Num_Peptide_Per_Pep                                                                                                                          72.000
+## Num_Cond_Peptide_Per_Pep                                                                                                                     72.000
+## Num_Rest_Peptide_Per_Pep                                                                                                                     24.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                                           0.333
+## -logP                                                                                                                                         2.002
+##                                                     AILTPMPEGLSQQQDMLKNTSKGHPDRLPLQMALTEL-11_ARHGEF10
+## Num_Peptide_Per_Pep                                                                            13.000
+## Num_Cond_Peptide_Per_Pep                                                                       13.000
+## Num_Rest_Peptide_Per_Pep                                                                        0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                             0.000
+## -logP                                                                                           0.851
+##                                                     LKPGVQGKKVRKPSPTTSASSSSWTSAGTSWPAGRRTGTATSGTATTTSVWPGCGTRMWSTQWSSVPRSRSCCSRPATTPPSKPGAPHAPCASSRHLAHGLAPSSPGLPARGAEVCWVHWSHRDPLRTSPGSVAFSRAGEVEMLIAVTPX-12_NOTCH1
+## Num_Peptide_Per_Pep                                                                                                                                                                                          135.000
+## Num_Cond_Peptide_Per_Pep                                                                                                                                                                                     135.000
+## Num_Rest_Peptide_Per_Pep                                                                                                                                                                                      94.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                                                                                                                                            0.696
+## -logP                                                                                                                                                                                                          3.451
+##                                                     ESSRGRGNNNRKGREVTPL-13_UBAP2
+## Num_Peptide_Per_Pep                                                        5.000
+## Num_Cond_Peptide_Per_Pep                                                   5.000
+## Num_Rest_Peptide_Per_Pep                                                   0.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                        0.000
+## -logP                                                                      0.437
+##                                                     WYIPSSQLAAKLLHMLTMRMLSKSATGRWX-14_RASGRP2
+## Num_Peptide_Per_Pep                                                                     15.00
+## Num_Cond_Peptide_Per_Pep                                                                15.00
+## Num_Rest_Peptide_Per_Pep                                                                15.00
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                      1.00
+## -logP                                                                                    0.69
+##                                                     WLRKSPPEKKLRRYPPGQGATIGVDFMIKTVEINGEKV-15_GAB2
+## Num_Peptide_Per_Pep                                                                         14.000
+## Num_Cond_Peptide_Per_Pep                                                                    14.000
+## Num_Rest_Peptide_Per_Pep                                                                     5.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                          0.357
+## -logP                                                                                        0.874
+##                                                     GTMSVIVLPQPDEVLNLVQSYVTLRVPLYVSYVFHSP-16_MTRF1
+## Num_Peptide_Per_Pep                                                                         13.000
+## Num_Cond_Peptide_Per_Pep                                                                    13.000
+## Num_Rest_Peptide_Per_Pep                                                                     6.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                          0.462
+## -logP                                                                                        0.851
+##                                                     IVLWKCLRKPVLNDRNLQLHTDKGSFLKEKNKKLKKKNK-17_EVI2B
+## Num_Peptide_Per_Pep                                                                           15.000
+## Num_Cond_Peptide_Per_Pep                                                                      15.000
+## Num_Rest_Peptide_Per_Pep                                                                      11.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                            0.733
+## -logP                                                                                          0.897
+##                                                     RCRTFLQSTDPGDTGGVFEGSTLCPSDPAFSRTDDPX-18_IKZF3
+## Num_Peptide_Per_Pep                                                                         22.000
+## Num_Cond_Peptide_Per_Pep                                                                    22.000
+## Num_Rest_Peptide_Per_Pep                                                                    10.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                          0.455
+## -logP                                                                                        0.851
+##                                                     SFNVLMVHKRSHTGGVFEGSTLCPSDPAFSRTDDPX-19_IKZF3
+## Num_Peptide_Per_Pep                                                                        21.000
+## Num_Cond_Peptide_Per_Pep                                                                   21.000
+## Num_Rest_Peptide_Per_Pep                                                                   17.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                         0.810
+## -logP                                                                                       0.828
+##                                                     SGEGPANEDEDIGGGVFEGSTLCPSDPAFSRTDDPX-20_IKZF3
+## Num_Peptide_Per_Pep                                                                        21.000
+## Num_Cond_Peptide_Per_Pep                                                                   21.000
+## Num_Rest_Peptide_Per_Pep                                                                   12.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                         0.571
+## -logP                                                                                       0.828
+##                                                     DSGEGPANEDEDIGGGVFEGSTLCPSDPAFSRTDDPX-21_IKZF3
+## Num_Peptide_Per_Pep                                                                         22.000
+## Num_Cond_Peptide_Per_Pep                                                                    22.000
+## Num_Rest_Peptide_Per_Pep                                                                    12.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                          0.545
+## -logP                                                                                        0.851
+##                                                     QRRDALTGHLRTHSGGVFEGSTLCPSDPAFSRTDDPX-22_IKZF3
+## Num_Peptide_Per_Pep                                                                         22.000
+## Num_Cond_Peptide_Per_Pep                                                                    22.000
+## Num_Rest_Peptide_Per_Pep                                                                    13.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                          0.591
+## -logP                                                                                        0.851
+##                                                     ISFNVLMVHKRSHTGGVFEGSTLCPSDPAFSRTDDPX-23_IKZF3
+## Num_Peptide_Per_Pep                                                                         22.000
+## Num_Cond_Peptide_Per_Pep                                                                    22.000
+## Num_Rest_Peptide_Per_Pep                                                                    18.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                          0.818
+## -logP                                                                                        0.851
+</code></pre>
+
+<p>To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassI. 
+The peptides included in the original genes (&ldquo;NM_003998&rdquo;, &ldquo;NM_001165412&rdquo;) are removed from the results. </p>
+
+<pre><code class="r">   Result_HLA1_Seq &lt;- MainSeqFragmentClass1(input_sequence = &quot;atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc&quot;,
                                            file_name_in_hla_table = &quot;sample&quot;,
                                            hla_file = &quot;data/sample_hla_table_c1.txt&quot;,
                                            hmdir = getwd(),
@@ -1896,7 +2058,7 @@ library(devtools);
 ## [1] &quot;Successfully Finished.&quot;
 </code></pre>
 
-<pre><code class="r">  print(head(Result_HLA1_Seq))
+<pre><code class="r">print(head(Result_HLA1_Seq))
 </code></pre>
 
 <pre><code>##      HLA           Pos Gene           Evaluated_Mutant_Peptide_Core
@@ -1957,10 +2119,36 @@ library(devtools);
 ## [6,] &quot;NA&quot;                   &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;
 </code></pre>
 
-<pre><code class="r">#  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
+<pre><code class="r">  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
 </code></pre>
 
-<p>To calculate the binding affinity to HLA ClassII of neoantigen candaites directly from RNA sequences. The peptides included in the riginal genes (&ldquo;NM_003998&rdquo;, &ldquo;NM_001165412&rdquo;) are removed from the results. </p>
+<pre><code>## [[1]]
+##                                                     atggcagaag
+## Num_Peptide_Per_Grp                                     63.000
+## Num_Cond_Peptide_Per_Grp                                63.000
+## Num_Rest_Peptide_Per_Grp                                 5.000
+## Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp      0.079
+## -logP                                                    0.621
+## 
+## [[2]]
+##                                                         
+## Num_Peptide_Per_NM                                63.000
+## Num_Cond_Peptide_Per_NM                           63.000
+## Num_Rest_Peptide_Per_NM                            5.000
+## Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM  0.079
+## -logP                                              0.621
+## 
+## [[3]]
+##                                                     MAEDDPYLGRPEKMFHLDPSLTHTIFN-0_atggcagaag-0_1
+## Num_Peptide_Per_Pep                                                                       63.000
+## Num_Cond_Peptide_Per_Pep                                                                  63.000
+## Num_Rest_Peptide_Per_Pep                                                                   5.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                        0.079
+## -logP                                                                                      0.621
+</code></pre>
+
+<p>To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassII. 
+The peptides included in the riginal genes (&ldquo;NFKB1&rdquo;, &ldquo;BCL3&rdquo;) are removed from the results. </p>
 
 <pre><code class="r">  Result_HLA2_Seq &lt;- MainSeqFragmentClass2(input_sequence = &quot;atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc&quot;,
                                            file_name_in_hla_table = &quot;sample&quot;,
@@ -2020,7 +2208,7 @@ library(devtools);
 ## [1] &quot;Successfully Finished.&quot;
 </code></pre>
 
-<pre><code class="r">  print(head(Result_HLA2_Seq))
+<pre><code class="r">print(head(Result_HLA2_Seq))
 </code></pre>
 
 <pre><code>##      HLA                     Pos Gene           Evaluated_Mutant_Peptide_Core
@@ -2088,7 +2276,32 @@ library(devtools);
 ## [6,] &quot;NA&quot;                   &quot;NA&quot;     &quot;NA&quot;         &quot;NA&quot;
 </code></pre>
 
-<pre><code class="r">#  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+<pre><code class="r">  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))
+</code></pre>
+
+<pre><code>## [[1]]
+##                                                     atggcagaag
+## Num_Peptide_Per_Grp                                      3.000
+## Num_Cond_Peptide_Per_Grp                                 3.000
+## Num_Rest_Peptide_Per_Grp                                 1.000
+## Num_Rest_Peptide_Per_Grp / Num_Cond_Peptide_Per_Grp      0.333
+## -logP                                                    0.460
+## 
+## [[2]]
+##                                                        
+## Num_Peptide_Per_NM                                3.000
+## Num_Cond_Peptide_Per_NM                           3.000
+## Num_Rest_Peptide_Per_NM                           1.000
+## Num_Rest_Peptide_Per_NM / Num_Cond_Peptide_Per_NM 0.333
+## -logP                                             0.460
+## 
+## [[3]]
+##                                                     MAEDDPYLGRPEQMFHLILL-0_atggcagaag-0_1
+## Num_Peptide_Per_Pep                                                                 3.000
+## Num_Cond_Peptide_Per_Pep                                                            3.000
+## Num_Rest_Peptide_Per_Pep                                                            1.000
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep                                 0.333
+## -logP                                                                               0.460
 </code></pre>
 
 </body>

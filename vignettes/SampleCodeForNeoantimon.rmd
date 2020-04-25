@@ -190,7 +190,8 @@ The peptides included in the riginal genes ("NFKB1", "BCL3") are removed from th
                                            refflat_file  = "refFlat.grch37.txt",
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
-                                           reference_gene_symbol = c("NFKB1", "BCL3"))  print(head(Result_HLA2_Seq))
+                                           reference_gene_symbol = c("NFKB1", "BCL3"))
+print(head(Result_HLA2_Seq))
 ```
 
 ```{r Get Fragment Summary 2 in Test Analysis}
