@@ -58,7 +58,6 @@ TestAnalysis<-function(){
                                        refmrna_file = "refMrna.grch37.fa",
                                        rnaexp_file = "data/sample_rna_exp.txt",
                                        netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
-                                       refdna_file = "GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
