@@ -87,7 +87,7 @@ See data(sample_copynum); sample_copynum;}
 
 \item{netMHCpan_dir}{The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").}
 
-\item{refdna_file}{(Required) refdna_file information to be used to create SVs Region (Default=NA).
+\item{refdna_file}{refdna_file information to be used to calculate RNA VAF (Default=NA).
 
 See "https://github.com/hase62/Neoantimon"}
 

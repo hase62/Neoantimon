@@ -72,7 +72,7 @@
 #'
 #'@param rnabam_file RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).
 #'
-#'@param refdna_file (Required) refdna_file information to be used to create SVs Region (Default=NA).
+#'@param refdna_file refdna_file information to be used to calculate RNA VAF (Default=NA).
 #'
 #'See "https://github.com/hase62/Neoantimon"
 #'

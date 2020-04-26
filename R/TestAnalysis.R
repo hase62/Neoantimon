@@ -51,6 +51,18 @@ TestAnalysis<-function(){
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
 
+  Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
+                                       file_name_in_hla_table = "sample",
+                                       hla_file = "data/sample_hla_table_c1.txt",
+                                       refflat_file  = "refFlat.grch37.txt",
+                                       refmrna_file = "refMrna.grch37.fa",
+                                       rnaexp_file = "data/sample_rna_exp.txt",
+                                       netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                       refdna_file = "GRCh37.fa",
+                                       mutation_alt_bnd_column = 5,
+                                       gene_symbol_column = 7,
+                                       mate_id_column = 8)
+
   Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "data/sample_hla_table_c1.txt",

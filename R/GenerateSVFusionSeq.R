@@ -82,7 +82,7 @@ GenerateSVFusionSeq<-function(input_file,
       set<-NULL
 
       #Extract i-th Data
-      f <- strsplit(data[i, ], "\t")[[1]]
+      f <- as.character(data[i, ])
 
       #Chromosome
       chr<-f[chr_column]
