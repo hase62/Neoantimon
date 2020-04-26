@@ -175,7 +175,7 @@ lib/
       └ tmp
 ```
 
-### -Download refMrna Files (Required)
+### -Download human refMrna Files (Required)
 (You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)
 
 **GRCh38/hg38**: Run the following codes. 
@@ -194,7 +194,7 @@ gunzip refMrna.fa.gz
 mv refMrna.fa refMrna.grch37.fa
 ```
 
-### -Download refFlat Files (Required)
+### -Download human refFlat Files (Required)
 (You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)
 
 **GRCh38/hg38**: Run the following codes. 
@@ -213,7 +213,7 @@ gunzip refFlat.txt.gz
 mv refFlat.txt refFlat.grch37.txt
 ```
 
-### -Install Samtools (Required to analyze structural variants or utilize RNA BAM)
+### -Install Samtools (Required to calculate allele specific RNA expression.)
 
 1. (Recommended) Install anaconda from https://www.anaconda.com/distribution/, and then run the following codes. 
 ```
@@ -229,7 +229,7 @@ wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.
 tar jxf samtools-0.1.19.tar.bz2
 ```
 
-### -Download human refSeq (Required to analyze structural variants or utilize RNA BAM)
+### -Download human DNA refSeq (Required to calculate allele specific RNA expression.)
 
 (You have to select your corresponding version from GRCh38, hg38, GRCh37 or hg19.)
 
