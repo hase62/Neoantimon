@@ -19,7 +19,7 @@ MainSeqFragmentClass2(
   peptide_length = c(15),
   reference_nm_id = NA,
   reference_gene_symbol = NA,
-  IgnoreShortPeptides = TRUE
+  ignore_short = TRUE
 )
 }
 \arguments{
@@ -62,20 +62,20 @@ It can be indicated when gene_symbol is not NA.}
 If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 It can be indicated when nm_id is not NA.}
 
-\item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
+\item{ignore_short}{Ignore to output results of short peptide less than min (peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
 
-HLA:  HLA type used to calculate neoantigen.
+HLA: HLA type used to calculate neoantigen.
 
-Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
+Pos: The position of a fraction of peptide used to be evaluated from the full-length peptide.
 
-Gene:  Gene symbol used to be evaluated in NetMHCpan.
+Gene Gene symbol used to be evaluated in NetMHCpan.
 
-Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+Evaluated_Mutant_Peptide: The mutant peptide to be evaluated.
 
-Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+Evaluated_Mutant_Peptide_Core: The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 
 Mut_IC50: IC50 value for evaluated mutant peptide.
 

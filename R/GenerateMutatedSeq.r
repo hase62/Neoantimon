@@ -15,7 +15,7 @@ GenerateMutatedSeq<-function(input_file,
                              ambiguous_between_exon,
                              ambiguous_codon,
                              export_dir,
-                             IgnoreShortPeptides,
+                             ignore_short,
                              SNPs,
                              multiple_variants){
 
@@ -33,6 +33,8 @@ GenerateMutatedSeq<-function(input_file,
   data <- data[grep("\tmissense_variant|\tnonsynonymous", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
 
   if(nrow(data) < 1 | is.null(data)) return(NULL)
+
+
 
   #READ refFlat
   if(is.list(refflat_file) | is.matrix(refflat_file)){
@@ -55,7 +57,7 @@ GenerateMutatedSeq<-function(input_file,
     SNPs_vcf <- read_data(SNPs)
   }
 
-  #Get RNA-Code Data
+  #Get RNA sequence Data
   if(is.list(refmrna_file) | is.matrix(refmrna_file)){
     list_mra <- gsub("__", " ", as.character(unlist(refmrna_file)))
   } else if(!file.exists(refmrna_file)){
@@ -277,8 +279,8 @@ GenerateMutatedSeq<-function(input_file,
           peptide_normal <- peptide_normal[frac]
 
           #Save Peptide
-          if(length(peptide) < 8 & IgnoreShortPeptides) {print("too short null");break;}
-          if(max_peptide_length >= 15 & IgnoreShortPeptides & length(peptide) < 8) {print("too short null");next;}
+          if(length(peptide) < 8 & ignore_short) {print("too short null");break;}
+          if(max_peptide_length >= 15 & ignore_short & length(peptide) < 8) {print("too short null");next;}
           refFasta<-rbind(refFasta,
                          c(paste(id, gsub("\"","", g_name), sep="_"),
                            chr,

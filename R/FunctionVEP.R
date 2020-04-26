@@ -43,6 +43,7 @@ convert_to_annovar_format_from_vep <- function(vep_file) {
 
             c(Chr, Start, End, toupper(Ref), toupper(Alt), Func.refGene, Gene.refGene, ExonicFunc.refGene, AAChange.refGene)
           }))
+  if(!is.matrix(data_an)) data_an <- t(data_an)
   write.table(x = data_an[nchar(data_an[, 1]) > 0, ], file = paste(vep_file, ".annovar_format.txt", sep = ""),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
   return(paste(vep_file, ".annovar_format.txt", sep = ""))

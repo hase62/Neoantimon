@@ -598,15 +598,15 @@ apply_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mu
   return(dna_trans_mut)
 }
 
-check_valid_indel <- function(peptide, IgnoreShortPeptides, max_peptide_length){
+check_valid_indel <- function(peptide, ignore_short, max_peptide_length){
   X <- grep("X", peptide)
-  if(length(X) > 0 & IgnoreShortPeptides){
+  if(length(X) > 0 & ignore_short){
     if(X < 8) {
       print("Indel is Too Short")
       return(TRUE)
     }
   }
-  if(max_peptide_length >= 15 & length(X) > 0 & IgnoreShortPeptides){
+  if(max_peptide_length >= 15 & length(X) > 0 & ignore_short){
     if(X < 15) {
       print("Indel is Too Short")
       return(TRUE)

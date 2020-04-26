@@ -1,11 +1,15 @@
 #'Calculate Neoantigen Candidates on SNVs for MHC Class1
 #'
 #'@param input_annovar_format_file An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
+#'You can directly indicate a matrix, which is the same as annovar format vcf file, as input.
 #'
 #'See by data(sample_vcf.annovar); sample_vcf.annovar.txt;
 #'
 #'@param input_vep_format_file An input file annotated by Ensembl Variant Effect Predictor (VEP).
+#'You can directly indicate a matrix, which is the same as annovar format VEP file, as input.
 #'
+#'See by data(sample_vcf.vep); sample_vcf.vep.txt;
+#
 #'@param input_vcf_format_file_and_vep A list of (1) An input vcf file, (2) path to Ensembl Variant Effect Predictor (VEP), and (3) cache file for VEP.
 #'Before using this option, please install vep according to the official cite ("https://asia.ensembl.org/info/docs/tools/vep/index.html").
 #'
@@ -13,7 +17,6 @@
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
-#'
 #'
 #'@param hla_types Set a list of HLA types
 #'
@@ -84,7 +87,7 @@
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
-#'@param MHCflurry Also output results using MHCflurry. Return a list of both results (Default=FALSE).
+#'@param MHCflurry Output MHCflurry results. Return a list of both results (Default=FALSE).
 #'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
@@ -93,7 +96,7 @@
 #'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
 #'samtools 0_x_x includes bcftools in the directory.
 #'
-#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min (peptide_length)
+#'@param ignore_short Ignore to output results of short peptide less than min (peptide_length)
 #'
 #'@param SNPs Apply indivisual SNPs on peptides by indicate a vcf file.
 #'
@@ -101,13 +104,13 @@
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.)
 #'
-#'@return HLA:  HLA type used to calculate neoantigen.
+#'@return HLA: HLA type used to calculate neoantigen.
 #'
-#'@return Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
+#'@return Pos: The position of a fraction of peptide used to be evaluated from the full-length peptide.
 #'
-#'@return Gene: Gene symbol used to be evaluated in NetMHCpan.
+#'@return Gene Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'@return Evaluated_Mutant_Peptide: The mutant peptide to be evaluated.
 #'
 #'
 #'
@@ -195,7 +198,7 @@ MainSNVClass1<-function(input_annovar_format_file = NA,
                         ambiguous_between_exon = 0,
                         ambiguous_codon = 0,
                         peptide_length = c(8, 9, 10, 11, 12, 13),
-                        IgnoreShortPeptides = TRUE,
+                        ignore_short = TRUE,
                         SNPs = NA,
                         multiple_variants = FALSE){
 
@@ -253,9 +256,21 @@ MainSNVClass1<-function(input_annovar_format_file = NA,
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
-  job_id <- paste(job_id, "SNV", sep = "_")
+
+
+
+
+
+
+
+
+
+
+
 
   #Generate FASTA and mutation Profile
+  job_id <- paste(job_id, "SNV", sep = "_")
+
   GenerateMutatedSeq(input_file = input_annovar_format_file,
                      hmdir = hmdir,
                      job_id = job_id,
@@ -273,10 +288,11 @@ MainSNVClass1<-function(input_annovar_format_file = NA,
                      ambiguous_between_exon = ambiguous_between_exon,
                      ambiguous_codon = ambiguous_codon,
                      export_dir = export_dir,
-                     IgnoreShortPeptides = IgnoreShortPeptides,
+                     ignore_short = ignore_short,
                      SNPs = SNPs,
                      multiple_variants = multiple_variants)
 
+  #Check Generated File exists
   if(is.list(input_annovar_format_file) | is.matrix(input_annovar_format_file)) input_annovar_format_file <- "data"
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_annovar_format_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")

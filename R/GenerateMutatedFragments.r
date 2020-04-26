@@ -11,7 +11,28 @@ GenerateMutatedFragments<-function(input_sequence,
                                    export_dir,
                                    reference_nm_id,
                                    reference_gene_symbol,
-                                   IgnoreShortPeptides){
+                                   ignore_short){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #READ refFlat
   if(!file.exists(refflat_file)){

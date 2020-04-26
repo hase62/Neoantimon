@@ -19,7 +19,7 @@ MainEntireRegionClass2(
   peptide_length = c(15),
   reading_frame = 1,
   CalculateIC50 = FALSE,
-  IgnoreShortPeptides = TRUE
+  ignore_short = TRUE
 )
 }
 \arguments{
@@ -58,7 +58,7 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{CalculateIC50}{Whether Calculate IC50 by NetMHCpan or not.}
 
-\item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
+\item{ignore_short}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):

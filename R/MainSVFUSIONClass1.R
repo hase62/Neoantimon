@@ -6,14 +6,17 @@
 #'
 #'See by data(sample_sv_bnd); sample_sv_bnd;
 #'
-#'@param hla_file (Required) A tab separated file indicating HLA types.
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'@param hla_file A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
-#'
-#'@param refdna_file (Required) refdna_file information to be used to create SVs Region (Default=NA).
-#'
-#'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param hla_types Set a list of HLA types
 #'
@@ -69,9 +72,9 @@
 #'
 #'@param rnabam_file RNA bam file to calculate variant allele frequency of RNA at each mutation (Default=NA).
 #'
+#'@param refdna_file (Required) refdna_file information to be used to create SVs Region (Default=NA).
 #'
-#'
-#'
+#'See "https://github.com/hase62/Neoantimon"
 #'
 #'@param cnv_file A file including copy number variation to calculate cancer cell fraction probability (CCFP) (Default=NA).
 #'The format is according to ASCAT output files.
@@ -84,30 +87,42 @@
 #'
 #'@param netMHCpan_dir The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").
 #'
+#'
+#'
 #'@param samtools_dir The file directory to samtools_0_x_x (Default="samtools").
-#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
+#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'
 #'@param bcftools_dir The file directory to netMHCpan (Default="bcftools").
-#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
+#'It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 #'samtools 0_x_x includes bcftools in the directory.
 #'
-#'@param IgnoreShortPeptides Ignore Short Peptide Less Than min(peptide_length)
+#'@param ignore_short Ignore to output results of short peptide less than min (peptide_length)
+#'
+#'
+#'
+#'
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
-#'@return HLA:  HLA type used to calculate neoantigen.
+#'@return HLA: HLA type used to calculate neoantigen.
 #'
-#'@return Pos:  The position of the fraction of peptide used to be evaluated from the full-length peptide.
+#'@return Pos: The position of a fraction of peptide used to be evaluated from the full-length peptide.
 #'
-#'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
+#'@return Gene Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+#'@return Evaluated_Mutant_Peptide: The mutant peptide to be evaluated.
 #'
-#'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'@return Evaluated_Mutant_Peptide_Core: The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
 #'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
 #'@return Mut_Rank: Rank value for evaluated mutanat peptide.
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #'@return Chr: Chromosome Number of the mutation.
 #'
@@ -182,7 +197,25 @@ MainSVFUSIONClass1<-function(input_file,
                              peptide_length = c(8, 9, 10, 11, 12, 13),
                              gene_symbol_column = NA,
                              mate_id_column = NA,
-                             IgnoreShortPeptides = TRUE){
+                             ignore_short = TRUE){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #Get HLA-Type
   if(file.exists(hla_file) & !is.na(hla_types[1])){
@@ -214,6 +247,7 @@ MainSVFUSIONClass1<-function(input_file,
                               depth_normal_column = depth_normal_column,
                               depth_tumor_column = depth_tumor_column)
 
+  #Check and Set Required Columns
   if(length(flg)<=1) {
     print("There is no available column names.")
     return(NULL)
@@ -235,7 +269,7 @@ MainSVFUSIONClass1<-function(input_file,
   }
 
   #Generate FASTA and mutation Profile
-  job_id = paste(job_id, "SVFusion", sep = "_")
+  job_id <- paste(job_id, "SVFusion", sep = "_")
 
   GenerateSVFusionSeq(input_file = input_file,
                       hmdir = hmdir,
@@ -256,7 +290,9 @@ MainSVFUSIONClass1<-function(input_file,
                       ambiguous_between_exon = ambiguous_between_exon,
                       ambiguous_codon = ambiguous_codon,
                       export_dir = export_dir,
-                      IgnoreShortPeptides = IgnoreShortPeptides)
+                      ignore_short = ignore_short)
+
+  #Check Generated File exists
 
   output_peptide_prefix <- paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, sep="")
   output_peptide_txt_file <- paste(output_peptide_prefix, ".peptide.txt", sep="")
@@ -303,6 +339,32 @@ MainSVFUSIONClass1<-function(input_file,
                                file_prefix = paste(rev(strsplit(input_file, "/")[[1]])[1], job_id, sep = "."),
                                annotation_file = output_peptide_txt_file)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   print("Successfully Finished.")
   return(result)
 }
+
+
+
+
+
+
+
+
+
+
+

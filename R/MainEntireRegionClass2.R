@@ -93,7 +93,7 @@
 #'
 #'
 #'
-#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
+#'@param ignore_short Ignore to output results of Short Peptide Less Than min(peptide_length)
 #'
 #'@param reading_frame The starting frame of the input sequence (Default = 1)
 #'
@@ -180,7 +180,7 @@ MainEntireRegionClass2<-function(input_nm_id,
                                 peptide_length = c(15),
                                 reading_frame = 1,
                                 CalculateIC50 = FALSE,
-                                IgnoreShortPeptides = TRUE){
+                                ignore_short = TRUE){
 
   #Get HLA-Type
   if(file.exists(hla_file) & !is.na(hla_types[1])){
@@ -225,7 +225,7 @@ MainEntireRegionClass2<-function(input_nm_id,
                            export_dir = export_dir,
                            reference_nm_id = NA,
                            reference_gene_symbol = NA,
-                           IgnoreShortPeptides = IgnoreShortPeptides)
+                           ignore_short = ignore_short)
 
   #Check Output
   output_peptide_prefix <- paste(export_dir, "/", job_id, sep="")

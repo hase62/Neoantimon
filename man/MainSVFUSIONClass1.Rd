@@ -35,7 +35,7 @@ MainSVFUSIONClass1(
   peptide_length = c(8, 9, 10, 11, 12, 13),
   gene_symbol_column = NA,
   mate_id_column = NA,
-  IgnoreShortPeptides = TRUE
+  ignore_short = TRUE
 )
 }
 \arguments{
@@ -45,7 +45,7 @@ e.g., ANNOVAR (http://annovar.openbioinformatics.org/en/latest/) or other softwa
 
 See by data(sample_sv_bnd); sample_sv_bnd;}
 
-\item{hla_file}{(Required) A tab separated file indicating HLA types.
+\item{hla_file}{A tab separated file indicating HLA types.
 The 1st column is input_file name, and the following columns indicate HLA types.
 
 See by data(sample_hla_table_c1); sample_hla_table_c1;}
@@ -92,10 +92,10 @@ See data(sample_copynum); sample_copynum;}
 See "https://github.com/hase62/Neoantimon"}
 
 \item{samtools_dir}{The file directory to samtools_0_x_x (Default="samtools").
-It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .}
+It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.}
 
 \item{bcftools_dir}{The file directory to netMHCpan (Default="bcftools").
-It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF .
+It shouled be indicated when you indicate RNA-bam and try to calculate RNA VAF.
 samtools 0_x_x includes bcftools in the directory.}
 
 \item{chr_column}{The column number describing chromosome number in input_file (Default=NA, but will automatically search "Chr" in header).}
@@ -126,20 +126,20 @@ samtools 0_x_x includes bcftools in the directory.}
 
 \item{mate_id_column}{(Required) The column indicating mateIDs or svIDs such as "SVMERGE1_1" (Default=NA).}
 
-\item{IgnoreShortPeptides}{Ignore Short Peptide Less Than min(peptide_length)}
+\item{ignore_short}{Ignore to output results of short peptide less than min (peptide_length)}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
 
-HLA:  HLA type used to calculate neoantigen.
+HLA: HLA type used to calculate neoantigen.
 
-Pos:  The position of the fraction of peptide used to be evaluated from the full-length peptide.
+Pos: The position of a fraction of peptide used to be evaluated from the full-length peptide.
 
-Gene:  Gene symbol used to be evaluated in NetMHCpan.
+Gene Gene symbol used to be evaluated in NetMHCpan.
 
-Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+Evaluated_Mutant_Peptide: The mutant peptide to be evaluated.
 
-Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+Evaluated_Mutant_Peptide_Core: The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 
 Mut_IC50: IC50 value for evaluated mutant peptide.
 

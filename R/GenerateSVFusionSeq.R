@@ -17,22 +17,24 @@ GenerateSVFusionSeq<-function(input_file,
                              ambiguous_between_exon,
                              ambiguous_codon,
                              export_dir,
-                             IgnoreShortPeptides){
-  if(!file.exists(input_file)){
+                             ignore_short){
+
+  #READ Data
+  if(is.list(input_file) | is.matrix(input_file)){
+    print("Input data is directly indicated.")
+    data <- as.matrix(input_file)
+  } else if(!file.exists(input_file)){
     print("Input file does not exist.")
     return(NULL)
-  }
-  index<-strsplit(scan(input_file, "character", sep="\n", nlines=1), "\t")[[1]]
-  if(requireNamespace("data.table", quietly=TRUE)) {
-    data <- data.table::fread(input_file, stringsAsFactors=FALSE, header = TRUE, sep="\n", data.table = FALSE)[, 1]
   } else {
-    data  <- scan(input_file, "character", sep = "\n", skip = 1)
+    data <- read_data(input_file)
   }
-  if(length(data) < 1 | is.null(data)) return(NULL)
 
-  mateIDs<-sapply(sapply(data, function(x) strsplit(x, "\t")[[1]][mate_id_column]),
-                  function(x) strsplit(x, "_")[[1]][1])
-  uIDs<-unique(mateIDs)[sapply(unique(mateIDs), function(x) length(which(!is.na(match(mateIDs, x)))) > 1)]
+
+
+  if(nrow(data) < 1 | is.null(data)) return(NULL)
+  mateIDs <- sapply(data[, mate_id_column], function(x) strsplit(x, "_")[[1]][1])
+  uIDs <- unique(mateIDs)[sapply(unique(mateIDs), function(x) length(which(!is.na(match(mateIDs, x)))) > 1)]
 
   #READ refFlat
   if(is.list(refflat_file) | is.matrix(refflat_file)){
@@ -46,8 +48,16 @@ GenerateSVFusionSeq<-function(input_file,
   list_nm_gene <- list_nm[, 1]
   list_nm_cut <- list_nm[, 2]
 
-  #Get RNA-Code Data
-  #Get RNA-Code Data
+
+
+
+
+
+
+
+
+
+  #Get RNA sequence Data
   if(is.list(refmrna_file) | is.matrix(refmrna_file)){
     list_mra <- gsub("__", " ", as.character(unlist(refmrna_file)))
   } else if(!file.exists(refmrna_file)){
@@ -58,24 +68,21 @@ GenerateSVFusionSeq<-function(input_file,
   }
   start_ <- grep(">", list_mra)
   end_ <- c(start_[-1] - 1, length(list_mra))
-  tmp <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
-  list_fl_NMID <- tmp
-  list_fl_dna <- sapply(1:length(start_),
-                        function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
+  list_fl_NMID <- gsub(">", "", sapply(list_mra[start_], function(x) strsplit(x, " ")[[1]][1]))
+  list_fl_dna <- sapply(1:length(start_), function(x) paste(list_mra[(start_[x] + 1):end_[x]], collapse = ""))
 
-  random<-0
-  fasta<-NULL
-  refFasta<-NULL
+  fasta <- NULL
+
+  refFasta <- NULL
+  id <- 0
   for(uID in uIDs){
-    print(uID)
+    print(paste("Start Analysis: Mutation", uID))
     sets<-NULL
     for(i in which(!is.na(match(mateIDs, uID)))){
       set<-NULL
-      gc();gc();
+
       #Extract i-th Data
-      #f is a row of mutation data
-      #Extract i-th Data
-      f<-strsplit(data[i], "\t")[[1]]
+      f <- strsplit(data[i, ], "\t")[[1]]
 
       #Chromosome
       chr<-f[chr_column]
@@ -483,9 +490,9 @@ GenerateSVFusionSeq<-function(input_file,
               #Save Peptide
               if(length(grep(paste(peptide, sep="", collapse=""), refFasta[,15])) > 0) next
               X<-grep("X", peptide)
-              if(length(X) > 0 & IgnoreShortPeptides){if(X < 8) next}
-              if(max_peptide_length >= 15 & length(X) > 0 & IgnoreShortPeptides){if(X < 15) next}
-              refFasta<-rbind(refFasta, c(paste(random, d1[1], sep="_"),
+              if(length(X) > 0 & ignore_short){if(X < 8) next}
+              if(max_peptide_length >= 15 & length(X) > 0 & ignore_short){if(X < 15) next}
+              refFasta<-rbind(refFasta, c(paste(id, d1[1], sep="_"),
                                           d1[14],
                                           paste(d1[2], d2[2], sep="_"),
                                           paste(frame, d1[1], d1[15], d2[1], d2[15], sep="_"),
@@ -506,9 +513,9 @@ GenerateSVFusionSeq<-function(input_file,
               #Remove X and Save Fasta
               if(!is.na(match("X",peptide)))
                 peptide<-peptide[1:(match("X",peptide) - 1)]
-              fasta<-c(fasta, sub("_","",paste(">", random, d1[1], sep="_")))
+              fasta<-c(fasta, sub("_","",paste(">", id, d1[1], sep="_")))
               fasta<-c(fasta, paste(peptide, collapse=""))
-              random<-random + 1
+              id<-id + 1
               print(paste("OK", uID))
             }
           }
@@ -548,6 +555,7 @@ GenerateSVFusionSeq<-function(input_file,
     }
   }
 
+  if(is.list(input_file) | is.matrix(input_file)) input_file <- "data"
   write.table(fasta,
               paste(export_dir, "/", rev(strsplit(input_file, "/")[[1]])[1], ".", job_id, ".", "peptide", ".", "fasta", sep=""),
               row.names=FALSE, col.names=FALSE, quote=FALSE, sep="\t")

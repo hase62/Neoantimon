@@ -36,17 +36,21 @@ MainINDELClass1(
   ambiguous_between_exon = 0,
   ambiguous_codon = 0,
   peptide_length = c(8, 9, 10, 11, 12, 13),
-  IgnoreShortPeptides = TRUE,
+  ignore_short = TRUE,
   SNPs = NA,
   multiple_variants = FALSE
 )
 }
 \arguments{
 \item{input_annovar_format_file}{An input vcf file annotated by ANNOVAR (http://annovar.openbioinformatics.org/en/latest/).
+You can directly indicate a matrix, which is the same as annovar format vcf file, as input.
 
 See by data(sample_vcf.annovar); sample_vcf.annovar.txt;}
 
-\item{input_vep_format_file}{An input file annotated by Ensembl Variant Effect Predictor (VEP).}
+\item{input_vep_format_file}{An input file annotated by Ensembl Variant Effect Predictor (VEP).
+You can directly indicate a matrix, which is the same as annovar format VEP file, as input.
+
+See by data(sample_vcf.vep); sample_vcf.vep.txt;}
 
 \item{input_vcf_format_file_and_vep}{An input vcf file and path to Ensembl Variant Effect Predictor (VEP).
 Before using this option, please install vep according to the official cite ("https://asia.ensembl.org/info/docs/tools/vep/index.html").}
@@ -93,7 +97,7 @@ See data(sample_copynum); sample_copynum;}
 
 \item{netMHCpan_dir}{The file directory to netMHCpan (Default="lib/netMHCpan-4.0/netMHCpan").}
 
-\item{MHCflurry}{Also output results using MHCflurry. Return a list of both results (Default=FALSE).}
+\item{MHCflurry}{Output MHCflurry results. Return a list of both results (Default=FALSE).}
 
 \item{refdna_file}{refdna_file information to be used to calculate RNA VAF (Default=NA).
 
@@ -130,7 +134,7 @@ samtools 0_x_x includes bcftools in the directory.}
 
 \item{peptide_length}{Peptide Length to be generated (Default = {8,9,10,11,12,13}).}
 
-\item{IgnoreShortPeptides}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
+\item{ignore_short}{Ignore to output results of short peptide less than min (peptide_length)}
 
 \item{SNPs}{Apply indivisual SNPs on peptides by indicate a vcf file.}
 
@@ -139,15 +143,15 @@ samtools 0_x_x includes bcftools in the directory.}
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
 
-HLA:  HLA type used to calculate neoantigen.
+HLA: HLA type used to calculate neoantigen.
 
-Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
+Pos: The position of a fraction of peptide used to be evaluated from the full-length peptide.
 
-Gene:  Gene symbol used to be evaluated in NetMHCpan.
+Gene Gene symbol used to be evaluated in NetMHCpan.
 
-Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+Evaluated_Mutant_Peptide: The mutant peptide to be evaluated.
 
-Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+Evaluated_Mutant_Peptide_Core: The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 
 Mut_IC50: IC50 value for evaluated mutant peptide.
 

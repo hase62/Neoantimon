@@ -6,13 +6,17 @@
 #'
 #'
 #'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'@param hla_file A tab separated file indicating HLA types.
 #'The 1st column is input_file name, and the following columns indicate HLA types.
 #'
 #'See by data(sample_hla_table_c1); sample_hla_table_c1;
-#'
-#'
-#'
 #'
 #'@param hla_types Set a list of HLA types
 #'
@@ -91,10 +95,8 @@
 #'If franctions of peptides generated from the input are included in the indicated protein, such peptides are removed.
 #'It can be indicated when nm_id is not NA.
 #'
-
-#'@param IgnoreShortPeptides Ignore to output results of Short Peptide Less Than min(peptide_length)
 #'
-#'
+#'@param ignore_short Ignore to output results of short peptide less than min (peptide_length)
 #'
 #'
 #'
@@ -102,15 +104,15 @@
 #'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
-#'@return HLA:  HLA type used to calculate neoantigen.
+#'@return HLA: HLA type used to calculate neoantigen.
 #'
-#'@return Pos:  The position of a fraction of peptide used to be evaluated from the full-length peptide.
+#'@return Pos: The position of a fraction of peptide used to be evaluated from the full-length peptide.
 #'
-#'@return Gene:  Gene symbol used to be evaluated in NetMHCpan.
+#'@return Gene Gene symbol used to be evaluated in NetMHCpan.
 #'
-#'@return Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
+#'@return Evaluated_Mutant_Peptide: The mutant peptide to be evaluated.
 #'
-#'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
+#'@return Evaluated_Mutant_Peptide_Core: The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
 #'@return Mut_IC50: IC50 value for evaluated mutant peptide.
 #'
@@ -179,7 +181,41 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                 peptide_length = c(8, 9, 10, 11, 12, 13),
                                 reference_nm_id = NA,
                                 reference_gene_symbol = NA,
-                                IgnoreShortPeptides = TRUE){
+                                ignore_short = TRUE){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #Get HLA-Type
   if(file.exists(hla_file) & !is.na(hla_types[1])){
@@ -205,12 +241,36 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                          reference_gene_symbol,
                          1)) return(NULL)
 
+
+
+
+
+
+
+
+
+
+
+
+
   #Make Directory
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
   names(group_ids) <- input_sequence
 
+
+
+
+
+
+
+
+
+
+
+
   #Generate FASTA and Mutation Profile
   job_id = paste(job_id, "SeqFragment", sep = "_")
+
   GenerateMutatedFragments(input_sequence = input_sequence,
                            input_nm_id = NA,
                            group_ids = group_ids,
@@ -224,15 +284,35 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                            export_dir = export_dir,
                            reference_nm_id = reference_nm_id,
                            reference_gene_symbol = reference_gene_symbol,
-                           IgnoreShortPeptides = IgnoreShortPeptides)
+                           ignore_short = ignore_short)
 
-  #Check Output
+
+
+
+
+
+
+  #Check Generated File exists
+
   output_peptide_prefix <- paste(export_dir, "/", job_id, sep="")
   output_peptide_txt_file <- paste(export_dir, "/", job_id, ".peptide.txt", sep="")
   if(!file.exists(output_peptide_txt_file)){
     print("Could not Generate Mutation File for Calculating Neoantigens. Finish.")
     return(NULL)
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #NetMHCpan
   if(is.na(netMHCpan_dir)){
@@ -243,7 +323,6 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
     print(paste("Did not find", netMHCpan_dir))
     return(NULL)
   }
-  if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
   #Execute NetMHCpan
   ExeNetMHCpanClass1(output_peptide_prefix = output_peptide_prefix,
@@ -260,6 +339,33 @@ MainSeqFragmentClass1<-function(input_sequence = NA,
                                  file_prefix = job_id,
                                  annotation_file = output_peptide_txt_file)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   print("Successfully Finished.")
   return(result)
 }
+
+
+
+
+
+
+
+
+
+
+
+

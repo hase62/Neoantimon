@@ -15,9 +15,9 @@ GenerateIndelSeq<-function(input_file,
                            ambiguous_between_exon,
                            ambiguous_codon,
                            export_dir,
-                           IgnoreShortPeptides,
-                           SNPs = NA,
-                           multiple_variants = FALSE){
+                           ignore_short,
+                           SNPs,
+                           multiple_variants ){
 
   #READ Data
   if(is.list(input_file) | is.matrix(input_file)){
@@ -33,6 +33,8 @@ GenerateIndelSeq<-function(input_file,
   data_snv <- data[grep("\tmissense_variant|\tnonsynonymous", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
   data <- data[grep("insertion|deletion", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
   if(nrow(data) < 1 | is.null(data)) return(NULL)
+
+
 
   #READ refFlat
   if(is.list(refflat_file) | is.matrix(refflat_file)){
@@ -55,7 +57,7 @@ GenerateIndelSeq<-function(input_file,
     SNPs_vcf <- read_data(SNPs)
   }
 
-  #Get RNA-Code Data
+  #Get RNA sequence Data
   if(is.list(refmrna_file) | is.matrix(refmrna_file)){
     list_mra <- gsub("__", " ", as.character(unlist(refmrna_file)))
   } else if(!file.exists(refmrna_file)){
@@ -72,7 +74,7 @@ GenerateIndelSeq<-function(input_file,
   fasta <- NULL
 
   refFasta <- NULL
-  id<-0
+  id <- 0
   for(i in 1:nrow(data)){
     print(paste("Start Analysis: Mutation", i))
 
@@ -277,7 +279,7 @@ GenerateIndelSeq<-function(input_file,
           peptide_normal <- frac[[2]]
 
           #Save Peptide
-          if(check_valid_indel(peptide, IgnoreShortPeptides, max_peptide_length)) next
+          if(check_valid_indel(peptide, ignore_short, max_peptide_length)) next
           frame <- ifelse(abs(nchar(gsub("-", "", m_alt)) - nchar(gsub("-", "", m_ref))) %% 3 == 0, "In", "Out")
           refFasta<-rbind(refFasta,
                          c(paste(id, gsub("\"","", g_name), sep="_"),
