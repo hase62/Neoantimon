@@ -92,8 +92,8 @@ NULL
 #'
 #' @docType data
 #' @keywords datasets
-#' @name sample.snps.vcf
-#' @usage data(sample.snps.vcf)
+#' @name sample_vcf.snps
+#' @usage data(sample_vcf.snps)
 #' @format A data frame with variables including "#CHROM"	"POS"	"ID"	"REF"	"ALT"	"QUAL"	"FILTER"	"INFO"	"FORMAT".
 NULL
 

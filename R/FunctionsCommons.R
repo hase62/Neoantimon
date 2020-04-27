@@ -667,7 +667,7 @@ read_1col_by_fread_or_scan <- function(f_name) {
 
 #library("ensemblVEP")
 #param <- VEPFlags()
-#f_path <- "data/sample.snps.vcf"
+#f_path <- "data/sample_vcf.snps.vcf"
 #file <- system.file(f_path, "ex2.vcf", package="VariantAnnotation")
 #gr <- ensemblVEP(file)
 

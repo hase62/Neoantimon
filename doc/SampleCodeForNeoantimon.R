@@ -14,7 +14,7 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.an
                                    netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "data/sample.snps.vcf",
+                                   SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "~/opt/anaconda3/bin/mhctools")
   print(head(Result_HLA1_SNV[[1]]))
@@ -32,7 +32,7 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.an
                                    netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "data/sample.snps.vcf",
+                                   SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE)
   print(head(Result_HLA2_SNV))
 
@@ -49,7 +49,7 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample.snps.vcf",
+                                       SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
   print(head(Result_HLA1_INDEL[[1]]))
@@ -70,7 +70,7 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample.snps.vcf",
+                                       SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE)
   print(head(Result_HLA2_INDEL))
 

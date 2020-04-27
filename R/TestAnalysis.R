@@ -35,8 +35,8 @@ TestAnalysis<-function(){
   data("sample_vcf.vep")
   print(sample_vcf.vep, row.names = FALSE)
 
-  data("sample.snps.vcf")
-  print(sample.snps.vcf, row.row.names = FALSE)
+  data("sample_vcf.snps")
+  print(sample_vcf.snps, row.row.names = FALSE)
 
   Result_HLA1_INDEL <- MainSNVClass1(input_vep_format_file = "data/sample_vcf.vep.txt",
                                        file_name_in_hla_table = "sample",
@@ -47,7 +47,7 @@ TestAnalysis<-function(){
                                        netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample.snps.vcf",
+                                       SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
 

@@ -485,7 +485,7 @@ lib/
       ├ sample_vcf.annovar.txt
       ├ sample_vcf.vep.txt
       ├ sample_sv_bnd.txt
-      └ sample.snps.vcf
+      └ sample_vcf.snps.vcf
 ```
 
 #### Calculate Neoantigens on SNVs for HLA Class I and II. 
@@ -504,7 +504,7 @@ When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCfl
                                    netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "data/sample.snps.vcf",
+                                   SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "~/opt/anaconda3/bin/mhctools")
 ```
@@ -521,7 +521,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                    netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "data/sample.snps.vcf",
+                                   SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE)
 ```
 
@@ -541,7 +541,7 @@ When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCfl
                                        netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample.snps.vcf",
+                                       SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
 ```
@@ -558,7 +558,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                        netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample.snps.vcf",
+                                       SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE)
 ```
 
