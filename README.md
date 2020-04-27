@@ -638,7 +638,7 @@ In addition, users can consider specific cases of existing SNPs on the mutant pe
 <kbd><img src="https://github.com/hase62/Neoantimon/blob/images/images/ForExplanation_op1.png" width="640px"></kbd>
 
 ## 5. Result
-#### Output Result
+#### Output Result (The details are documented in the manual/Neoantimon_2.1.0.pdf. )
 
 Results generated from SNVs. 
 ```
