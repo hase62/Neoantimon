@@ -31,7 +31,7 @@ GenerateIndelSeq<-function(input_file,
   }
   data <- data[grep("\texonic\t", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
   data_snv <- data[grep("\tmissense_variant|\tnonsynonymous", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
-  data <- data[grep("insertion|deletion", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
+  data <- data[grep("insertion|deletion|frameshift_variant", apply(data, 1, function(x) paste(x, collapse = "\t"))), ]
   if(nrow(data) < 1 | is.null(data)) return(NULL)
 
 
