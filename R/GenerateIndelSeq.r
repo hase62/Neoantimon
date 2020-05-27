@@ -272,6 +272,9 @@ GenerateIndelSeq<-function(input_file,
 
 
 
+
+
+
           #Generate Mutated and Normal Peptide
           frac <- generate_fraction_indel(peptide, peptide_normal, max_peptide_length)
           if(is.null(frac)) next

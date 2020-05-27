@@ -74,6 +74,7 @@ GenerateMutatedSeq<-function(input_file,
   fasta <- NULL
   fasta_wt <- NULL
   refFasta <- NULL
+  master_refFasta <- NULL
   id <- 0
   for(i in 1:nrow(data)){
     print(paste("Start Analysis: Mutation", i))
@@ -192,7 +193,7 @@ GenerateMutatedSeq<-function(input_file,
         dna <- list_fl_dna[match(nm_id, list_fl_NMID)]
 
         #Check DNA
-        if(check_dna_validity(dna, nm_id, exon_end, exon_start, ambiguous_between_exon, final_s_variants, Pass)) {print("dna wrong");aaa;next;}
+        if(check_dna_validity(dna, nm_id, exon_end, exon_start, ambiguous_between_exon, final_s_variants, Pass)) {print("dna wrong");next;}
 
         #Get Relative Mutation Position
         m_point <- get_relative_mutation_position(strand, exon_end, m_start, exon_start)
@@ -261,6 +262,10 @@ GenerateMutatedSeq<-function(input_file,
           target_amino_after <- peptide[ceiling(m_point_2 / 3.0)]
 
           #VCF Description of Normal Amino Acid is not What Generated
+          if(is.na(target_amino_before) | is.na(target_amino_after)){
+            print("The mutation point is not on the exon region")
+            next
+          }
           if(target_amino_before==target_amino_after | target_amino_after == "X"){
             print(paste(target_amino_before, target_amino_after, target_amino_after, "X"))
             next
@@ -314,6 +319,11 @@ GenerateMutatedSeq<-function(input_file,
          fasta_wt<-c(fasta_wt, sub("_", "", paste(">", id, gsub("\"","", g_name), sep="_")))
          fasta_wt<-c(fasta_wt, paste(peptide_normal, collapse=""))
 
+         if(nrow(refFasta) > 500) {
+           master_refFasta <- rbind(master_refFasta, refFasta)
+           refFasta <- NULL
+         }
+
          id <- id + 1
          print("Peptide Successfully Generated!!")
          stop_loop <- TRUE
@@ -332,6 +342,7 @@ GenerateMutatedSeq<-function(input_file,
   }
 
   #Integrate The Same Peptide
+  if(!is.null(master_refFasta)) refFasta <- rbind(master_refFasta, refFasta)
   if(is.null(refFasta)) return(NULL)
 
   if(!is.null(nrow(refFasta))){
