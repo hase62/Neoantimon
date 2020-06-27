@@ -104,10 +104,10 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
           ratio_matrix<-rbind(ratio_matrix, c("0/0.1","0"))
           next
         }
-        total<-length(hit) + length(grep("I|D", ratio[hit,3]))
-        mut<-length(grep("I|D", ratio[hit,3]))
-        r<-paste(mut, total, sep="/")
-        ratio_matrix<-rbind(ratio_matrix, c(r, mut/total * as.numeric(data[i,19])))
+        total <- length(hit) + length(grep("I|D", ratio[hit,3]))
+        mut   <- length(grep("I|D", ratio[hit,3]))
+        r <- paste(mut, total, sep="/")
+        ratio_matrix<-rbind(ratio_matrix, c(r, mut/(total + 1.0e-10) * as.numeric(data[i, 19])))
       }
     }
   } else {
@@ -182,7 +182,7 @@ GetRNAseq<-function(output_peptide_txt_file,
         }
         ratio_matrix<-rbind(ratio_matrix,
                             c(paste(c(sum(count[c(3,4)]),sum(count)), collapse="/"),
-                              ifelse(is.na(data[i,tail_col]), 0, as.numeric(data[i, tail_col])) * sum(count[c(3,4)])/sum(count)))
+                              ifelse(is.na(data[i,tail_col]), 0, as.numeric(data[i, tail_col])) * sum(count[c(3,4)])/(sum(count) +  + 1.0e-10)))
       }
     }
   } else {

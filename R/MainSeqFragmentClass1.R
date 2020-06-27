@@ -166,6 +166,15 @@
 #'
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
+#'@return P_I: Priority score using the IC50.
+#'Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
+#'
+#'@return P_R: Priority score using the percentage of rank affinity.
+#'Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
+
+#'@return P: Priority score implemented in MuPeXI (Bjerregaard et al. 2017).
+#'Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
+
 #'@export
 MainSeqFragmentClass1<-function(input_sequence = NA,
                                 group_ids = seq(1:length(reference_nm_id)),

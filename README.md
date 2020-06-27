@@ -1,4 +1,6 @@
 ## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1).
+### Latest updates
+ver2.1.1: Priority Scores have been implemented. 
 
 ## 0. Preliminary Use
 ### -Install R (Required)
@@ -507,7 +509,23 @@ When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCfl
                                    SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "~/opt/anaconda3/bin/mhctools")
+  Result_HLA1_SNV_1 <- CalculatePriorityScores(result = Result_HLA1_SNV[[1]], useRNAvaf = FALSE)
+  Result_HLA1_SNV_2 <- CalculatePriorityScores(result = Result_HLA1_SNV[[2]], useRNAvaf = FALSE)
 ```
+
+```
+[R]
+  Result_HLA1_SNV_vep <- MainSNVClass1(input_vep_format_file = "data/sample_vcf.vep.txt",
+                                   file_name_in_hla_table = "sample",
+                                   hla_file = "data/sample_hla_table_c1.txt",
+                                   refflat_file  = "refFlat.grch37.txt",
+                                   refmrna_file = "refMrna.grch37.fa",
+                                   rnaexp_file = "data/sample_rna_exp.txt",
+                                   netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                   multiple_variants = FALSE)
+  Result_HLA1_vep_SNV <- CalculatePriorityScores(result = Result_HLA1_SNV_vep, useRNAvaf = FALSE)
+```
+
 
 To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII. 
 ```
@@ -523,6 +541,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                    depth_normal_column = 14,
                                    SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE)
+  Result_HLA2_SNV <- CalculatePriorityScores(result = Result_HLA2_SNV, useRNAvaf = FALSE)
 ```
 
 #### Calculate Neoantigens on INDELs for HLA Class I and II. 
@@ -544,6 +563,8 @@ When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCfl
                                        SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
+  Result_HLA1_INDEL_1 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[1]], useRNAvaf = FALSE)
+  Result_HLA1_INDEL_2 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[2]], useRNAvaf = FALSE)
 ```
 
 To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII. 
@@ -560,6 +581,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                        depth_normal_column = 14,
                                        SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE)
+  Result_HLA2_INDEL <- CalculatePriorityScores(result = Result_HLA2_INDEL, useRNAvaf = FALSE)
 ```
 
 #### Calculate Neoantigens on SV fusions for HLA Class I and II. 
@@ -578,6 +600,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
+  Result_HLA1_SV <- CalculatePriorityScores(result = Result_HLA1_SV, useRNAvaf = FALSE)
 ```
 
 To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassII. 
@@ -593,6 +616,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
+  Result_HLA2_SV <- CalculatePriorityScores(result = Result_HLA2_SV, useRNAvaf = FALSE)
 ```
 
 #### Calculate Neoantigens from a fragment of RNA sequence for HLA Class I and II by comparing to the original protein. 
@@ -611,6 +635,7 @@ The peptides included in the original genes ("NM_003998", "NM_001165412") are re
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
+  Result_HLA1_Seq <- CalculatePriorityScores(result = Result_HLA1_Seq, useRNAvaf = FALSE)
 ```
 
 To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassII. 
@@ -626,6 +651,7 @@ The peptides included in the riginal genes ("NFKB1", "BCL3") are removed from th
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                            reference_gene_symbol = c("NFKB1", "BCL3"))
+  Result_HLA2_Seq <- CalculatePriorityScores(result = Result_HLA2_Seq, useRNAvaf = FALSE)
 ```
 
 #### Attach Opitional Information

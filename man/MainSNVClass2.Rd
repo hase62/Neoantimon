@@ -198,6 +198,15 @@ MutRatio: The mean value of the cancer cell fraction probability.
 MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
 
 MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
+
+P_I: Priority score using the IC50.
+Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
+
+P_R: Priority score using the percentage of rank affinity.
+Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
+
+P: Priority score implemented in MuPeXI (Bjerregaard et al. 2017).
+Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
 }
 \description{
 Calculate Neoantigen Candidates on SNVs for MHC Class2
