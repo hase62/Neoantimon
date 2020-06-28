@@ -1,3 +1,16 @@
+#'Calculate priority scores
+#'
+#'@param result A results file generated from main functions
+#
+#'@param useRNAvaf To indicate whether this function uses DNA VAF or RNA VAF for the calculation.
+#'
+#'@return P_I: Priority score using the IC50.
+#'
+#'@return P_R: Priority score using the percentage of rank affinity.
+#'
+#'@return P: Priority score implemented in MuPeXI (Bjerregaard et al. 2017).
+#'
+#'@export
 CalculatePriorityScores <- function(result, useRNAvaf = FALSE){
   if(useRNAvaf){
     vaf <- result[, match("Tumor_RNA_Ratio", colnames(result))]
