@@ -3,6 +3,10 @@
 library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("biomaRt")
+library(biomaRt)
 
 ## ----Get SNV Sample 1 in Test Analysis----------------------------------------
 Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
@@ -17,10 +21,27 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.an
                                    SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "~/opt/anaconda3/bin/mhctools")
-  print(head(Result_HLA1_SNV[[1]]))
+  Result_HLA1_SNV_1 <- CalculatePriorityScores(result = Result_HLA1_SNV[[1]], useRNAvaf = FALSE)
+  Result_HLA1_SNV_2 <- CalculatePriorityScores(result = Result_HLA1_SNV[[2]], useRNAvaf = FALSE)
+  print(head(Result_HLA1_SNV_1))
 
 ## ----Get SNV Summary 1 in Test Analysis---------------------------------------
-  print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
+  print(Export_Summary_SNV(Input = Result_HLA1_SNV_1, Mut_IC50_th = 500, Wt_IC50_th = 500))
+
+## ----Get SNV Sample 1-2 in Test Analysis--------------------------------------
+ Result_HLA1_SNV_vep <- MainSNVClass1(input_vep_format_file = "data/sample_vcf.vep.txt",
+                                   file_name_in_hla_table = "sample",
+                                   hla_file = "data/sample_hla_table_c1.txt",
+                                   refflat_file  = "refFlat.grch37.txt",
+                                   refmrna_file = "refMrna.grch37.fa",
+                                   rnaexp_file = "data/sample_rna_exp.txt",
+                                   netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                   multiple_variants = FALSE)
+  Result_HLA1_vep_SNV <- CalculatePriorityScores(result = Result_HLA1_SNV_vep, useRNAvaf = FALSE)  
+  print(head(Result_HLA1_vep_SNV))
+
+## ----Get SNV Summary 1-2 in Test Analysis-------------------------------------
+  print(Export_Summary_SNV(Input = Result_HLA1_vep_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 
 ## ----Get SNV Sample 2 in Test Analysis----------------------------------------
  Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
@@ -34,6 +55,7 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.an
                                    depth_normal_column = 14,
                                    SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE)
+  Result_HLA2_SNV <- CalculatePriorityScores(result = Result_HLA2_SNV, useRNAvaf = FALSE) 
   print(head(Result_HLA2_SNV))
 
 ## ----Get SNV Summary 2 in Test Analysis---------------------------------------
@@ -52,13 +74,15 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
-  print(head(Result_HLA1_INDEL[[1]]))
+  Result_HLA1_INDEL_1 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[1]], useRNAvaf = FALSE)
+  Result_HLA1_INDEL_2 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[2]], useRNAvaf = FALSE)
+  print(head(Result_HLA1_INDEL_1))
 
 ## ----Get INDEL Summary 1-1 in Test Analysis-----------------------------------
-  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL_1, Mut_IC50_th = 500))
 
 ## ----Get INDEL Summary 1-2 in Test Analysis-----------------------------------
-  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL_1, Mut_IC50_th = 500))
 
 ## ----Get INDEL Sample 2 in Test Analysis--------------------------------------
   Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
@@ -72,6 +96,8 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        depth_normal_column = 14,
                                        SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE)
+
+  Result_HLA2_INDEL <- CalculatePriorityScores(result = Result_HLA2_INDEL, useRNAvaf = FALSE)  
   print(head(Result_HLA2_INDEL))
 
 ## ----Get INDEL Summary 2-1 in Test Analysis-----------------------------------
@@ -92,6 +118,7 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
+  Result_HLA1_SV <- CalculatePriorityScores(result = Result_HLA1_SV, useRNAvaf = FALSE)
   print(head(Result_HLA1_SV))
 
 ## ----Get SV Summary 1-1 in Test Analysis--------------------------------------
@@ -112,6 +139,7 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
+  Result_HLA2_SV <- CalculatePriorityScores(result = Result_HLA2_SV, useRNAvaf = FALSE)
   print(head(Result_HLA2_SV))
 
 ## ----Get SV Summary 2-1 in Test Analysis--------------------------------------
@@ -130,7 +158,8 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
-print(head(Result_HLA1_Seq))
+  Result_HLA1_Seq <- CalculatePriorityScores(result = Result_HLA1_Seq, useRNAvaf = FALSE)
+  print(head(Result_HLA1_Seq))
 
 ## ----Get Fragment Summary 1 in Test Analysis----------------------------------
   print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_IC50_th = 500))
@@ -145,7 +174,8 @@ print(head(Result_HLA1_Seq))
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                            reference_gene_symbol = c("NFKB1", "BCL3"))
-print(head(Result_HLA2_Seq))
+  Result_HLA2_Seq <- CalculatePriorityScores(result = Result_HLA2_Seq, useRNAvaf = FALSE)
+  print(head(Result_HLA2_Seq))
 
 ## ----Get Fragment Summary 2 in Test Analysis----------------------------------
   print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_IC50_th = 500))

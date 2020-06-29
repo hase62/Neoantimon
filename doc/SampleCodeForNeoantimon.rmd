@@ -1,7 +1,7 @@
 ---
 title: "SampleCodeForNeoantimon"
 author: "T. Hasegawa"
-date: "2020/4/20"
+date: "2020/6/27"
 output:
 pdf_document: default
 html_document: default
@@ -18,6 +18,10 @@ html_document: default
 library(devtools);
 install_github('hase62/Neoantimon');
 library(Neoantimon);
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("biomaRt")
+library(biomaRt)
 ```
 
 To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassI. 
@@ -35,11 +39,30 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.an
                                    SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE,
                                    MHCflurry = "~/opt/anaconda3/bin/mhctools")
-  print(head(Result_HLA1_SNV[[1]]))
+  Result_HLA1_SNV_1 <- CalculatePriorityScores(result = Result_HLA1_SNV[[1]], useRNAvaf = FALSE)
+  Result_HLA1_SNV_2 <- CalculatePriorityScores(result = Result_HLA1_SNV[[2]], useRNAvaf = FALSE)
+  print(head(Result_HLA1_SNV_1))
 ```
 
 ```{r Get SNV Summary 1 in Test Analysis}
-  print(Export_Summary_SNV(Input = Result_HLA1_SNV[[1]], Mut_IC50_th = 500, Wt_IC50_th = 500))
+  print(Export_Summary_SNV(Input = Result_HLA1_SNV_1, Mut_IC50_th = 500, Wt_IC50_th = 500))
+```
+
+```{r Get SNV Sample 1-2 in Test Analysis}
+ Result_HLA1_SNV_vep <- MainSNVClass1(input_vep_format_file = "data/sample_vcf.vep.txt",
+                                   file_name_in_hla_table = "sample",
+                                   hla_file = "data/sample_hla_table_c1.txt",
+                                   refflat_file  = "refFlat.grch37.txt",
+                                   refmrna_file = "refMrna.grch37.fa",
+                                   rnaexp_file = "data/sample_rna_exp.txt",
+                                   netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                   multiple_variants = FALSE)
+  Result_HLA1_vep_SNV <- CalculatePriorityScores(result = Result_HLA1_SNV_vep, useRNAvaf = FALSE)  
+  print(head(Result_HLA1_vep_SNV))
+```
+
+```{r Get SNV Summary 1-2 in Test Analysis}
+  print(Export_Summary_SNV(Input = Result_HLA1_vep_SNV, Mut_IC50_th = 500, Wt_IC50_th = 500))
 ```
 
 To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII. 
@@ -55,6 +78,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                    depth_normal_column = 14,
                                    SNPs = "data/sample_vcf.snps.vcf",
                                    multiple_variants = TRUE)
+  Result_HLA2_SNV <- CalculatePriorityScores(result = Result_HLA2_SNV, useRNAvaf = FALSE) 
   print(head(Result_HLA2_SNV))
 ```
 
@@ -77,15 +101,17 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
                                        SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
-  print(head(Result_HLA1_INDEL[[1]]))
+  Result_HLA1_INDEL_1 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[1]], useRNAvaf = FALSE)
+  Result_HLA1_INDEL_2 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[2]], useRNAvaf = FALSE)
+  print(head(Result_HLA1_INDEL_1))
 ```
 
 ```{r Get INDEL Summary 1-1 in Test Analysis}
-  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL_1, Mut_IC50_th = 500))
 ```
 
 ```{r Get INDEL Summary 1-2 in Test Analysis}
-  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL[[1]], Mut_IC50_th = 500))
+  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL_1, Mut_IC50_th = 500))
 ```
 
 To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII. 
@@ -101,6 +127,8 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                        depth_normal_column = 14,
                                        SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE)
+
+  Result_HLA2_INDEL <- CalculatePriorityScores(result = Result_HLA2_INDEL, useRNAvaf = FALSE)  
   print(head(Result_HLA2_INDEL))
 ```
 
@@ -125,6 +153,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
+  Result_HLA1_SV <- CalculatePriorityScores(result = Result_HLA1_SV, useRNAvaf = FALSE)
   print(head(Result_HLA1_SV))
 ```
 
@@ -149,6 +178,7 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
+  Result_HLA2_SV <- CalculatePriorityScores(result = Result_HLA2_SV, useRNAvaf = FALSE)
   print(head(Result_HLA2_SV))
 ```
 
@@ -172,7 +202,8 @@ The peptides included in the original genes ("NM_003998", "NM_001165412") are re
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
-print(head(Result_HLA1_Seq))
+  Result_HLA1_Seq <- CalculatePriorityScores(result = Result_HLA1_Seq, useRNAvaf = FALSE)
+  print(head(Result_HLA1_Seq))
 ```
 
 ```{r Get Fragment Summary 1 in Test Analysis}
@@ -191,7 +222,8 @@ The peptides included in the riginal genes ("NFKB1", "BCL3") are removed from th
                                            refmrna_file = "refMrna.grch37.fa",
                                            netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
                                            reference_gene_symbol = c("NFKB1", "BCL3"))
-print(head(Result_HLA2_Seq))
+  Result_HLA2_Seq <- CalculatePriorityScores(result = Result_HLA2_Seq, useRNAvaf = FALSE)
+  print(head(Result_HLA2_Seq))
 ```
 
 ```{r Get Fragment Summary 2 in Test Analysis}
