@@ -491,7 +491,7 @@ check_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation
 apply_multiple_snvs <- function(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, mutation_ref_column, mutation_alt_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
   multi_i <- check_multiple_snvs(data, multiple_variants, i, exon_start, mutation_start_column, chr_column, exon_end, chr)
   for(multi_i_element in multi_i){
-    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)
+    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, as.numeric(data[multi_i_element, mutation_start_column]), exon_start)
     dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2_mv, data[multi_i_element, mutation_ref_column], data[multi_i_element, mutation_alt_column], trans_to, trans_from)
   }
   return(dna_trans_mut)
@@ -511,7 +511,7 @@ check_multiple_snps <- function(SNPs_vcf, exon_start, mutation_start_column, exo
 apply_multiple_snps <- function(SNPs_vcf, exon_start, mutation_start_column, exon_end, chr, strand, dna_trans, trans_to, trans_from){
   multi_i <- check_multiple_snps(SNPs_vcf, exon_start, mutation_start_column, exon_end, chr)
   for(multi_i_element in multi_i){
-    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, SNPs_vcf[multi_i_element, 2], exon_start)
+    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, as.numeric(SNPs_vcf[multi_i_element, 2]), exon_start)
     dna_trans <- make_mutated_dna(strand, dna_trans, m_point_2_mv, tolower(SNPs_vcf[multi_i_element, 4]), tolower(SNPs_vcf[multi_i_element, 5]), trans_to, trans_from)
   }
   return(dna_trans)
@@ -592,7 +592,7 @@ check_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mu
 apply_multiple_snvs_to_indel <- function(data, multiple_variants, exon_start, mutation_start_column, chr_column, mutation_ref_column, mutation_alt_column, exon_end, chr, strand, dna_trans_mut, trans_to, trans_from){
   multi_i <- check_multiple_snvs_to_indel(data, multiple_variants, exon_start, mutation_start_column, chr_column, exon_end, chr)
   for(multi_i_element in multi_i){
-    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, data[multi_i_element, mutation_start_column], exon_start)
+    m_point_2_mv <- get_relative_mutation_position(strand, exon_end, as.numeric(data[multi_i_element, mutation_start_column]), exon_start)
     dna_trans_mut <- make_mutated_dna(strand, dna_trans_mut, m_point_2_mv, data[multi_i_element, mutation_ref_column], data[multi_i_element, mutation_alt_column], trans_to, trans_from)
   }
   return(dna_trans_mut)
