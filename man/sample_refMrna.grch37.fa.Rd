@@ -4,9 +4,7 @@
 \name{sample_refMrna.grch37.fa}
 \alias{sample_refMrna.grch37.fa}
 \title{A Sample file for refSeq RNA}
-\format{
-A data frame with 1 column.
-}
+\format{A data frame with 1 column.}
 \usage{
 data(sample_refMrna.grch37.fa)
 }

@@ -4,9 +4,7 @@
 \name{sample_hla_table_c1}
 \alias{sample_hla_table_c1}
 \title{A Format / Sample file for HLA CLASS1 Table}
-\format{
-A data frame with 3 rows and at most 7 variables
-}
+\format{A data frame with 3 rows and at most 7 variables}
 \usage{
 data(sample_hla_table_c1)
 }

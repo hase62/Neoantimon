@@ -4,9 +4,7 @@
 \name{sample_rna_exp}
 \alias{sample_rna_exp}
 \title{A Format / Sample file for RNA Expression Information}
-\format{
-A data frame with 22 rows and 3 variables
-}
+\format{A data frame with 22 rows and 3 variables}
 \usage{
 data(sample_rna_exp)
 }

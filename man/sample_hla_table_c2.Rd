@@ -4,9 +4,7 @@
 \name{sample_hla_table_c2}
 \alias{sample_hla_table_c2}
 \title{A Format / Sample file for HLA CLASS2 Table}
-\format{
-A data frame with at least 3 row and at most 10 variables
-}
+\format{A data frame with at least 3 row and at most 10 variables}
 \usage{
 data(sample_hla_table_c2)
 }

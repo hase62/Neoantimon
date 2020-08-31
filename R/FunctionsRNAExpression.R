@@ -66,6 +66,7 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
   rna<-rna[-1,]
   rna_pos<-t(sapply(rna[,2], function(x) strsplit(x, ":|-")[[1]]))
   hit<-match(sapply(data[,2], function(x) strsplit(x,"_")[[1]][2]), rna[,1])
+  hit <- ifelse(is.na(hit), sapply(data[,2], function(x) grep(strsplit(x,"_")[[1]][2], rna[,1])[1]), hit)
 
   #data[,chr], data[,m_position]
   for(x in which(is.na(hit))){
@@ -93,21 +94,42 @@ GetRNAseq_indel<-function(output_peptide_txt_file,
     if(ncol(ratio)==0){
       ratio_matrix<-matrix(nrow=nrow(data), ncol=2, NA)
     } else {
-      size<-sum(as.numeric(sapply(strsplit(ratio[1,3],"M|D|I")[[1]],
-                                  function(x) rev(strsplit(x,"N|S|H|P")[[1]])[1])))
-      ratio_matrix<-NULL
-      for(i in 1:nrow(data)){
-        hit<-which(!is.na(match(ratio[,1], data[i,3])))
-        hit<-hit[which(as.numeric(ratio[hit,2]) + size > data[i,12]
-                       & as.numeric(ratio[hit,2]) -1 < data[i,12])]
-        if(length(hit)==0){
-          ratio_matrix<-rbind(ratio_matrix, c("0/0.1","0"))
-          next
+      if(length(grep("INDEL", ratio[,8])) > 0){
+        ratio_matrix<-NULL
+        for(i in 1:nrow(data)){
+          hit<-which(!is.na(match(ratio[,1], data[i,3])))
+          hit<-hit[which(as.numeric(data[i, 12]) > as.numeric(ratio[hit, 2]) - 5 &
+                                       as.numeric(data[i, 12]) < as.numeric(ratio[hit, 2]) + 5)]
+          hit <- hit[grep("INDEL", ratio[hit, 8])]
+          if(length(hit) > 0){
+            values <- strsplit(ratio[hit, 8], ";|,")[[1]]
+            total <- as.numeric(gsub("DP=", "", values[grep("DP=", values)]))
+            mut <- as.numeric(gsub("IS=", "", values[grep("IS=", values)]))
+            r <- paste(mut, total, sep="/")
+          } else {
+            total <- 10e-10
+            mut   <- 0
+            r <- paste("0", "0.1", sep="/")
+          }
+          ratio_matrix<-rbind(ratio_matrix, c(r, mut/(total + 1.0e-10) * as.numeric(data[i, 19])))
         }
-        total <- length(hit) + length(grep("I|D", ratio[hit,3]))
-        mut   <- length(grep("I|D", ratio[hit,3]))
-        r <- paste(mut, total, sep="/")
-        ratio_matrix<-rbind(ratio_matrix, c(r, mut/(total + 1.0e-10) * as.numeric(data[i, 19])))
+      } else {
+        size<-sum(as.numeric(sapply(strsplit(ratio[1,3],"M|D|I")[[1]],
+                             function(x) rev(strsplit(x,"N|S|H|P")[[1]])[1])))
+        ratio_matrix<-NULL
+        for(i in 1:nrow(data)){
+          hit<-which(!is.na(match(ratio[,1], data[i,3])))
+          hit<-hit[which(as.numeric(ratio[hit,2]) + size > data[i,12]
+                         & as.numeric(ratio[hit,2]) -1 < data[i,12])]
+          if(length(hit)==0){
+            ratio_matrix<-rbind(ratio_matrix, c("0/0.1","0"))
+            next
+          }
+          total <- length(hit) + length(grep("I|D", ratio[hit,3]))
+          mut   <- length(grep("I|D", ratio[hit,3]))
+          r <- paste(mut, total, sep="/")
+          ratio_matrix<-rbind(ratio_matrix, c(r, mut/(total + 1.0e-10) * as.numeric(data[i, 19])))
+        }
       }
     }
   } else {

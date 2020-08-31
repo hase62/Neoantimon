@@ -4,9 +4,7 @@
 \name{sample_vcf.snps}
 \alias{sample_vcf.snps}
 \title{A Format / Sample file for snp informatin.}
-\format{
-A data frame with variables including "#CHROM"	"POS"	"ID"	"REF"	"ALT"	"QUAL"	"FILTER"	"INFO"	"FORMAT".
-}
+\format{A data frame with variables including "#CHROM"	"POS"	"ID"	"REF"	"ALT"	"QUAL"	"FILTER"	"INFO"	"FORMAT".}
 \usage{
 data(sample_vcf.snps)
 }

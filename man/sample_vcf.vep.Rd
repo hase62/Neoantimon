@@ -4,9 +4,7 @@
 \name{sample_vcf.vep}
 \alias{sample_vcf.vep}
 \title{A Format / Sample file for Annotated vcf file based on VEP.}
-\format{
-A data frame with variables including "#Uploaded_variation"	"Location"	"Allele"	"Gene"	"Feature"	"Feature_type"	"Consequence"	"cDNA_position"	"CDS_position"	"Protein_position"	"Amino_acids	Codons"	"Existing_variation"	"Extra"
-}
+\format{A data frame with variables including "#Uploaded_variation"	"Location"	"Allele"	"Gene"	"Feature"	"Feature_type"	"Consequence"	"cDNA_position"	"CDS_position"	"Protein_position"	"Amino_acids	Codons"	"Existing_variation"	"Extra"}
 \usage{
 data(sample_vcf.vep)
 }
