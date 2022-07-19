@@ -4,7 +4,9 @@
 \name{sample_copynum}
 \alias{sample_copynum}
 \title{A Format / Sample file for Copy Number Information}
-\format{A data frame with 7 rows and 9 variables}
+\format{
+A data frame with 7 rows and 9 variables
+}
 \usage{
 data(sample_copynum)
 }

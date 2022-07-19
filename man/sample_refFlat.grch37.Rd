@@ -4,7 +4,9 @@
 \name{sample_refFlat.grch37}
 \alias{sample_refFlat.grch37}
 \title{A Sample file for refFlat}
-\format{A data frame with 11 column.}
+\format{
+A data frame with 11 column.
+}
 \usage{
 data(sample_refFlat.grch37)
 }

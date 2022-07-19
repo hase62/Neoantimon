@@ -17,7 +17,8 @@ GenerateIndelSeq<-function(input_file,
                            export_dir,
                            ignore_short,
                            SNPs,
-                           multiple_variants ){
+                           multiple_variants, 
+                           base_0){
 
   #READ Data
   if(is.list(input_file) | is.matrix(input_file)){
@@ -196,7 +197,8 @@ GenerateIndelSeq<-function(input_file,
 
         #Get Relative Mutation Position
         m_point <- get_relative_mutation_position(strand, exon_end, m_start, exon_start)
-
+        if(base_0) m_point <- m_point + 1
+        
         #Get Relative Translation-Start Position (0-start to 1-start)
         ts_point <- get_relative_translation_start_position(strand, exon_end, trans_start, exon_start, trans_end)
 

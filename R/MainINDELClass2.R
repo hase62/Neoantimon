@@ -102,6 +102,8 @@
 #'
 #'@param multiple_variants Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.
 #'
+#'@param base_0 Apply 0-base format for mutation positions. 
+#'
 #'@return void (Calculated Neoantigen Files will be generated as .tsv files.):
 #'
 #'@return HLA: HLA type used to calculate neoantigen.
@@ -209,7 +211,8 @@ MainINDELClass2<-function(input_annovar_format_file = NA,
                           peptide_length = c(15),
                           ignore_short = TRUE,
                           SNPs = NA,
-                          multiple_variants = FALSE){
+                          multiple_variants = FALSE, 
+                          base_0 = FALSE){
 
   #Obtain Data
   if(Read_files(input_annovar_format_file, input_vep_format_file, input_vcf_format_file_and_vep)) return(NULL)
@@ -299,7 +302,8 @@ MainINDELClass2<-function(input_annovar_format_file = NA,
                    export_dir = export_dir,
                    ignore_short = ignore_short,
                    SNPs = SNPs,
-                   multiple_variants = multiple_variants)
+                   multiple_variants = multiple_variants, 
+                   base_0 = base_0)
 
   #Check Generated File exists
   if(is.list(input_annovar_format_file) | is.matrix(input_annovar_format_file)) input_annovar_format_file <- "data"

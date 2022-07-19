@@ -38,7 +38,8 @@ MainINDELClass1(
   peptide_length = c(8, 9, 10, 11, 12, 13),
   ignore_short = TRUE,
   SNPs = NA,
-  multiple_variants = FALSE
+  multiple_variants = FALSE,
+  base_0 = FALSE
 )
 }
 \arguments{
@@ -139,6 +140,8 @@ samtools 0_x_x includes bcftools in the directory.}
 \item{SNPs}{Apply indivisual SNPs on peptides by indicate a vcf file.}
 
 \item{multiple_variants}{Reflect multiple variants on a peptide, e.g., SNVs on frameshift region.}
+
+\item{base_0}{Apply 0-base format for mutation positions.}
 }
 \value{
 void (Calculated Neoantigen Files will be generated as .tsv files.):
