@@ -521,9 +521,7 @@ make_indel_dna <- function(strand, dna_trans, m_point_2, m_alt, trans_to, trans_
   if(strand == "+"){
     if(m_ref == "-"){
       #Insertion
-      dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
-                       paste(sapply(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt)),
-                                    function(x) trans_to[match(tolower(x), trans_from)]), collapse=""),
+      dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1), tolower(m_alt),
                        substr(dna_trans, m_point_2, nchar(dna_trans)), sep="")
     } else {
       ref_ <- substr(dna_trans, m_point_2, m_point_2 + nchar(m_ref) - 1)
@@ -539,7 +537,7 @@ make_indel_dna <- function(strand, dna_trans, m_point_2, m_alt, trans_to, trans_
       if(match_){
         dna_trans<-paste(substr(dna_trans, 1, m_point_2 - 1),
                          gsub("NA", "", paste(sapply(substring(m_alt, 1:nchar(m_alt), 1:nchar(m_alt)),
-                                                     function(x) trans_to[match(tolower(x),trans_from)]), collapse="")),
+                                                     function(x) trans_from[match(tolower(x), trans_from)]), collapse="")),
                          substr(dna_trans, m_point_2 + nchar(m_ref), nchar(dna_trans)), sep="")
       } else {
         print("The Ref and vcf are not matched")
