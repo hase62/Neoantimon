@@ -1,4 +1,8 @@
 ## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1).
+
+### New: 第74回日本電気泳動学会学術大会 TCR-抗原特異性の予測に向けた技術的進展と取り組み 資料はこちら
+### https://www.dropbox.com/s/7lq57dpo5yddspt/tcr-epitope.pdf?dl=0
+
 ### Latest updates
 ver2.1.1: Priority Scores have been implemented. 
 
