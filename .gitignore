@@ -5,7 +5,6 @@
 
 lib/net*
 lib/net*/*
-
 lib/Sample.R
 lib/refFlat.txt
 lib/refMrna.fa
@@ -15,3 +14,4 @@ lib/data/*
 lib/result/*
 lib/result*
 
+exe_*
