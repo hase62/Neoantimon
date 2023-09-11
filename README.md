@@ -1,10 +1,7 @@
 ## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1).
 
-### New: 第74回日本電気泳動学会学術大会 TCR-抗原特異性の予測に向けた技術的進展と取り組み 資料はこちら
-### https://www.dropbox.com/s/9vcu387f2i8rcju/tcr-epitope.pdf?dl=0
-
 ### Latest updates
-ver2.1.1: Priority Scores have been implemented. 
+ver3.0.0: Adopted to netMHCpan4.1 and netMHCIIpan4.2. 
 
 ## 0. Preliminary Use
 ### -Install R (Required)
@@ -19,6 +16,15 @@ Mac(Devian)
 [command line]
 brew cask install r
 ```
+
+Anaconda
+```
+[command line]
+conda -n create Neoantimon r-essentials r-base
+conda activate Neoantimon
+conda update --all
+```
+Notice: If you're using M1/M2 MacOS, you need to install M1/M2 available version conda.
 
 ### -Generate output without calculation
 This code is a simple sample code for preliminary use to confirm the output. 
@@ -91,39 +97,49 @@ Mac(Devian)
 brew install wget
 ```
 
-### -Download and Set netMHCpan4.0 (Required)
+Anaconda
+```
+[command line]
+conda install -c anaconda wget
+```
 
-1. Download netMHCpan4.0 from https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0 and move it to any working directory. 
-(We assume that "lib" directory contains netMHCpan-4.0a.{Darwin|Linux}.tar.gz.)
+### -Download and Set netMHCpan4.1 (Required)
+
+1. Download netMHCpan4.1 from https://services.healthtech.dtu.dk/services/NetMHCpan-4.1 and move it to any working directory. 
+(Assume you have netMHCpan-4.1b.{Darwin|Linux}.tar.gz in your "lib" directory.)
 
 2. Run the initial setting script at the directory that contains downloaded  as followings.
 
-We assume
+We have
 ```
 lib/
-  ├ netMHCpan-4.0a.{Darwin|Linux}.tar
-  └ setNetMHCpan4.0.sh
+    └ netMHCpan-4.1b.{Darwin|Linux}.tar
 ```
 
 Run
 ```
 [command line]
-wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.0.sh
-chmod 750 setNetMHCpan4.0.sh
-./setNetMHCpan4.0.sh 
+wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCpan4.1.sh
+chmod 750 setNetMHCpan4.1.sh
+./setNetMHCpan4.1.sh 
 ```
+Notice: If you're using M1/M2 MacOS, you should additionally replace lib/netNetMHCpan-4.1/netMHCpan as follows
+
+set PLATFORM = `echo $UNIX $AR | awk '{print $1"_"$2}'`
+to 
+set PLATFORM = `echo $UNIX x86_64 | awk '{print $1"_"$2}'`
 
 We have
 ```
 lib/
-    ├ netMHCpan-4.0a.{Darwin|Linux}.tar
-    ├ setNetMHCpan4.0.sh
-    └ NetMHCpan4.0/
+    ├ netMHCpan-4.1b.{Darwin|Linux}.tar
+    ├ setNetMHCpan4.1.sh
+    └ NetMHCpan4.1/
       ├ {Darwin|Linux}_x86_64
       ├ data
       ├ data.{Darwin|Linux}.tar.gz
       ├ netMHCpan
-      ├ netMHCpan-4.0.readme
+      ├ netMHCpan-4.1.readme
       ├ netMHCpan-e
       ├ netMHCpan.1
       ├ test
@@ -135,49 +151,64 @@ lib/
 ```
 [command line]
 pip install mhcflurry
+pip install tensorflow
 mhcflurry-downloads fetch
-pip install mhctools
 ```
+
+or
+
+```
+[command line]
+pip install mhcflurry
+conda install -c conda-forge tensorflow
+mhcflurry-downloads fetch
+```
+Notice: If you're using M1/M2 MacOS, you should install M1/M2 available version tensorflow. 
+
 
 2. Otherwise, install python from https://www.python.org/downloads/release, and then run the above codes.
 
-### -Download and Set netMHCIIpan3.2 (Required)
+### -Download and Set netMHCIIpan4.2 (Required)
 
-1. Download netMHCIIpan 3.2 from https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2 and move it to the working directory. 
-(We assume that "lib" directory contains netMHCIIpan-3.2.{Darwin|Linux}.tar.gz.)
+1. Download netMHCIIpan 4.2 from https://services.healthtech.dtu.dk/services/NetMHCIIpan-4.2 and move it to the working directory. 
+(Assume you have netMHCIIpan-4.2.{Darwin|Linux}.tar.gz in your "lib" directory.)
 
 2. Do initial setting at the working directory as followings.
 
-We assume
+We have
 ```
 lib/
-  ├ netMHCIIpan-3.2.{Darwin|Linux}.tar
-  └ setNetMHCIIpan3.2.sh
+    └ netMHCIIpan-4.2.{Darwin|Linux}.tar
 ```
 
 Run
 ```
 [command line]
-wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan3.2.sh
-chmod 750 setNetMHCIIpan3.2.sh
-./setNetMHCIIpan3.2.sh
+wget --no-check-certificate https://github.com/hase62/Neoantimon/raw/master/lib/setNetMHCIIpan4.2.sh
+chmod 750 setNetMHCIIpan4.2.sh
+./setNetMHCIIpan4.2.sh
 ```
+Notice: If you're using M1/M2 MacOS, you should additionally replace lib/netNetMHCpan-4.2/netMHCpan as follows
+
+set PLATFORM = `echo $UNIX $AR | awk '{print $1"_"$2}'`
+to 
+set PLATFORM = `echo $UNIX x86_64 | awk '{print $1"_"$2}'`
 
 We have
 ```
 lib/
-    ├ netMHCIIpan-3.2.{Darwin|Linux}.tar
-    ├ setNetMHCIIpan3.2.sh
-    └ netMHCIIpan-3.2/
+    ├ netMHCIIpan-4.2.{Darwin|Linux}.tar
+    ├ setNetMHCIIpan4.2.sh
+    └ netMHCIIpan-4.2/
       ├ {Darwin|Linux}_x86_64
       ├ data
-      ├ data.{Darwin|Linux}.tar.gz
       ├ netMHCIIpan
-      ├ NetMHCIIpan-3.2.pl
-      ├ netMHCIIpan-3.2.readme
+      ├ NetMHCIIpan-4.2.pl
+      ├ netMHCIIpan-4.2.readme
       ├ netMHCIIpan-e
       ├ etMHCIIpan.1
       ├ test
+      ├ test.fa
       └ tmp
 ```
 
@@ -225,7 +256,6 @@ mv refFlat.txt refFlat.grch37.txt
 ```
 [command line]
 conda install -c bioconda samtools
-conda install -c bioconda/label/cf201911 samtools
 ```
 
 2. Otherwise, you can install local samtools as followings. 
