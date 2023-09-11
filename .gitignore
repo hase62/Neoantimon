@@ -5,6 +5,7 @@
 
 lib/net*
 lib/net*/*
+lib/*.fa
 lib/Sample.R
 lib/refFlat.txt
 lib/refMrna.fa
