@@ -5,13 +5,11 @@
 
 lib/net*
 lib/net*/*
+lib/samtools*
 lib/*.fa
 lib/*.fai
 lib/Sample.R
-lib/refFlat.txt
-lib/refMrna.fa
-lib/refFlat.*.txt
-lib/refMrna.*.fa
+lib/ref*
 lib/data/*
 lib/result/*
 lib/result*
