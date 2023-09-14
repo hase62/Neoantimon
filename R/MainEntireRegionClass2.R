@@ -97,7 +97,7 @@
 #'
 #'@param reading_frame The starting frame of the input sequence (Default = 1)
 #'
-#'@param CalculateIC50 Whether Calculate IC50 by NetMHCpan or not.
+#'@param CalculateEL Whether Calculate EL by NetMHCpan or not.
 #'
 #'
 #'
@@ -113,7 +113,7 @@
 #'
 #'@return Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
-#'@return Mut_IC50: IC50 value for evaluated mutant peptide.
+#'@return Mut_EL: EL value for evaluated mutant peptide.
 #'
 #'@return Mut_Rank: Rank value for evaluated mutanat peptide.
 #'
@@ -179,7 +179,7 @@ MainEntireRegionClass2<-function(input_nm_id,
                                 netMHCIIpan_dir = paste(hmdir, "lib/netMHCIIpan-3.1/netMHCIIpan", sep="/"),
                                 peptide_length = c(15),
                                 reading_frame = 1,
-                                CalculateIC50 = FALSE,
+                                CalculateEL = FALSE,
                                 ignore_short = TRUE){
 
   #Get HLA-Type
@@ -246,7 +246,7 @@ MainEntireRegionClass2<-function(input_nm_id,
   }
   if(!dir.exists(export_dir)) dir.create(export_dir, recursive = TRUE)
 
-  if(CalculateIC50){
+  if(CalculateEL){
     #Execute NetMHCpan
     ExeNetMHCpanClass2(output_peptide_prefix = output_peptide_prefix,
                        "peptide",

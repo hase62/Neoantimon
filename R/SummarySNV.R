@@ -2,11 +2,11 @@
 #'
 #'@param Input Input file generated from MainSNVClass1,2.
 #'
-#'@param Mut_IC50_th The threshold for mutant peptide to be neoantigen.
+#'@param Mut_EL_th The threshold for mutant peptide to be neoantigen.
 #'
 #'@param Mut_Rank_th The threshold for mutant peptide to be neoantigen.
 #'
-#'@param Wt_IC50_th The threshold for wt peptide to be neoantigen.
+#'@param Wt_EL_th The threshold for wt peptide to be neoantigen.
 #'
 #'@param Wt_Rank_th The threshold for wt peptide to be neoantigen.
 #'
@@ -28,23 +28,23 @@
 #'
 #'@export
 Export_Summary_SNV <- function(Input,
-                               Mut_IC50_th = NA,
+                               Mut_EL_th = NA,
                                Mut_Rank_th = NA,
-                               Wt_IC50_th = NA,
+                               Wt_EL_th = NA,
                                Wt_Rank_th = NA,
                                Total_RNA_th = NA,
                                Tumor_RNA_th = NA,
                                MutRatio_th = NA,
                                DupCount = FALSE){
 
-  if((!is.na(Mut_IC50_th) & !is.na(Mut_Rank_th)) |  (is.na(Mut_IC50_th) & is.na(Mut_Rank_th))){
-    print("Please Specify Either One of Mut_IC50_th or Mut_Rank_th")
+  if((!is.na(Mut_EL_th) & !is.na(Mut_Rank_th)) |  (is.na(Mut_EL_th) & is.na(Mut_Rank_th))){
+    print("Please Specify Either One of Mut_EL_th or Mut_Rank_th")
     return(NULL)
   }
 
-  # IC50 or Rank
-  m_th <- Mut_IC50_th
-  m_th_column <- "Mut_IC50"
+  # EL or Rank
+  m_th <- Mut_EL_th
+  m_th_column <- "Mut_EL"
   if(!is.na(Mut_Rank_th)) {
     m_th <- Mut_Rank_th
     m_th_column <- "Mut_Rank"
@@ -65,8 +65,8 @@ Export_Summary_SNV <- function(Input,
   Num_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
   # Conditioning
-  if(!is.na(Wt_IC50_th)){
-    Input <- Input[as.numeric(Input[, match("Wt_IC50", index)]) > Wt_IC50_th, ]
+  if(!is.na(Wt_EL_th)){
+    Input <- Input[as.numeric(Input[, match("Wt_EL", index)]) > Wt_EL_th, ]
   }
   if(!is.na(Wt_Rank_th)){
     Input <- Input[as.numeric(Input[, match("Wt_Rank", index)]) > Wt_Rank_th, ]
@@ -85,7 +85,7 @@ Export_Summary_SNV <- function(Input,
   Num_Cond_Alteration <-length(unique(Input[, match("Mutation_Position", index)]))
   Num_Cond_Peptide <-length(unique(Input[, match("Evaluated_Mutant_Peptide", index)]))
 
-  # Extract by IC50
+  # Extract by EL
   Input <- Input[as.numeric(Input[, match(m_th_column, index)]) < m_th, ]
 
   if(is.null(Input) | is.null(dim(Input)[1])) {

@@ -75,7 +75,7 @@ MergeFragmentsClass2<-function(hmdir = getwd(),
   if(nrow(full_peptide)==0) return(NULL)
 
   #Bind Full Peptide and info
-  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide_Core", "Evaluated_Mutant_Peptide", "Mut_IC50",
+  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide_Core", "Evaluated_Mutant_Peptide", "Mut_EL",
          "Mut_Rank", "Chr", "NM_ID", "ReadingFrame", "SequenceNumber", "Chrs", "NM_IDs", "GeneIDs",
          "Exon_Starts", "Exon_Ends", "GroupID", "NumOfPeptides", "NumOfStops", "Wt_Peptide",
          "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA", "Tumor_RNA_based_on_DNA",

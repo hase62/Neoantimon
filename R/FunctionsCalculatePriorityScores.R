@@ -4,7 +4,7 @@
 #
 #'@param useRNAvaf To indicate whether this function uses DNA VAF or RNA VAF for the calculation.
 #'
-#'@return P_I: Priority score using the IC50.
+#'@return P_I: Priority score using the EL.
 #'
 #'@return P_R: Priority score using the percentage of rank affinity.
 #'
@@ -41,11 +41,11 @@ CalculatePriorityScores <- function(result, useRNAvaf = FALSE){
     M <- 0
   }
 
-  L_I_M <- 1 / (1 + exp(0.015 * (as.numeric(result[, match("Mut_IC50", colnames(result))]) - 500)))
+  L_I_M <- 1 / (1 + exp(0.015 * (as.numeric(result[, match("Mut_EL", colnames(result))]) - 500)))
   L_R_M <- 1 / (1 + exp(5 * (as.numeric(result[, match("Mut_Rank", colnames(result))]) - 2)))
-  j_3 <- match("Wt_IC50", colnames(result))
+  j_3 <- match("Wt_EL", colnames(result))
   if(!is.na(j_3)){
-    L_I_W <- 1 / (1 + exp(0.015 * (as.numeric(result[, match("Wt_IC50", colnames(result))]) - 500)))
+    L_I_W <- 1 / (1 + exp(0.015 * (as.numeric(result[, match("Wt_EL", colnames(result))]) - 500)))
     L_R_W <- 1 / (1 + exp(5 * (as.numeric(result[, match("Wt_Rank", colnames(result))]) - 2)))
   } else {
     L_I_W <- 0

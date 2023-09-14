@@ -116,7 +116,7 @@
 #'
 #'@return Evaluated_Mutant_Peptide_Core: The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 #'
-#'@return Mut_IC50: IC50 value for evaluated mutant peptide.
+#'@return Mut_EL: EL value for evaluated mutant peptide.
 #'
 #'@return Mut_Rank: Rank value for evaluated mutanat peptide.
 #'
@@ -168,7 +168,7 @@
 #'
 #'@return MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 #'
-#'@return P_I: Priority score using the IC50.
+#'@return P_I: Priority score using the EL.
 #'Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
 #'
 #'@return P_R: Priority score using the percentage of rank affinity.

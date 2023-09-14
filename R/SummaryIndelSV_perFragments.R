@@ -2,7 +2,7 @@
 #'
 #'@param Input Input file generated from MainSNVClass1,2.
 #'
-#'@param Mut_IC50_th The threshold for mutant peptide to be neoantigen by IC50.
+#'@param Mut_EL_th The threshold for mutant peptide to be neoantigen by EL.
 #'
 #'@param Mut_Rank_th The threshold for mutant peptide to be neoantigen by Rank.
 #'
@@ -30,7 +30,7 @@
 #'
 #'@export
 Export_Summary_IndelSV_perFragments <- function(Input,
-                                                Mut_IC50_th = NA,
+                                                Mut_EL_th = NA,
                                                 Mut_Rank_th = NA,
                                                 Total_RNA_th = NA,
                                                 Tumor_RNA_th = NA,
@@ -40,14 +40,14 @@ Export_Summary_IndelSV_perFragments <- function(Input,
                                                 IgnoreLongIndel = 0,
                                                 DupCount = FALSE){
 
-  if((!is.na(Mut_IC50_th) & !is.na(Mut_Rank_th)) | (is.na(Mut_IC50_th) & is.na(Mut_Rank_th))){
-    print("Please Specify Either One of Mut_IC50_th or Mut_Rank_th")
+  if((!is.na(Mut_EL_th) & !is.na(Mut_Rank_th)) | (is.na(Mut_EL_th) & is.na(Mut_Rank_th))){
+    print("Please Specify Either One of Mut_EL_th or Mut_Rank_th")
     return(NULL)
   }
 
-  # IC50 or Rank
-  m_th <- Mut_IC50_th
-  m_th_column <- "Mut_IC50"
+  # EL or Rank
+  m_th <- Mut_EL_th
+  m_th_column <- "Mut_EL"
   if(!is.na(Mut_Rank_th)) {
     m_th <- Mut_Rank_th
     m_th_column <- "Mut_Rank"
@@ -129,7 +129,7 @@ Export_Summary_IndelSV_perFragments <- function(Input,
     # Count Conditioned
     Num_Cond_Peptide_Per_tag <- unlist(lapply(Input_unq_tag, function(x) length(unique(x[, eval_col]))))
 
-    # Extract by IC50
+    # Extract by EL
     m_col <- match(m_th_column, index)
     Input_unq_tag <- lapply(Input_unq_tag, function(x) {x <- x[as.numeric(x[, m_col]) < m_th, ]
     if(!is.matrix(x)) {t(x)}else{x}})

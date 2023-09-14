@@ -97,8 +97,8 @@ MergeSNVClass2<-function(hmdir = getwd(),
   if(nrow(full_peptide)==0) return(NULL)
 
   #Bind Full Peptide and info
-  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide", "Mut_IC50", "Mut_Rank",
-         "Evaluated_Wt_Peptide", "Wt_IC50", "Wt_Rank", "Chr", "NM_ID", "Change",
+  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide", "Mut_EL", "Mut_Rank",
+         "Evaluated_Wt_Peptide", "Wt_EL", "Wt_Rank", "Chr", "NM_ID", "Change",
          "Ref", "Alt", "Prob", "Mutation_Prob.", "Exon_Start", "Exon_End",
          "Mutation_Position", "Total_Depth", "Tumor_Depth", "Wt_Peptide",
          "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA",

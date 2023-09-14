@@ -70,7 +70,6 @@ MergeSNVClass1<-function(hmdir = getwd(),
 
       d4<-NULL
       hit<-match(num1[h1], num2)
-      
       column_extracted_1 <- match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"), 
                                 strsplit(test1[ss1[h1] - 2], " +")[[1]])
       d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][column_extracted_1]))
@@ -104,8 +103,8 @@ MergeSNVClass1<-function(hmdir = getwd(),
   if(nrow(full_peptide)==0) return(NULL)
 
   #Bind Full Peptide and info
-  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide", "Mut_IC50", "Mut_Rank",
-         "Evaluated_Wt_Peptide", "Wt_IC50", "Wt_Rank", "Chr", "NM_ID", "Change",
+  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide", "Mut_EL", "Mut_Rank",
+         "Evaluated_Wt_Peptide", "Wt_EL", "Wt_Rank", "Chr", "NM_ID", "Change",
          "Ref", "Alt", "Prob", "Mutation_Prob.", "Exon_Start", "Exon_End",
          "Mutation_Position", "Total_Depth", "Tumor_Depth", "Wt_Peptide",
          "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA",

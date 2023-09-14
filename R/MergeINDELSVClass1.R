@@ -56,11 +56,13 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
     if(length(grep("Could not find allele", test1)) > 0) next
     for(h1 in 1:length(num1)){
       print(paste((h1 / length(num1)) * 100, "perc. fin"))
+      column_extracted <- match(c("MHC", "Pos", "Identity", "Icore", "Peptide", "Score_EL", "%Rank_EL"), 
+                                  strsplit(test1[ss1[h1] - 2], " +")[[1]])
       if(ss1[h1] == ee1[h1]){
-        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(3, 2, 12, 11, 4, 14, 15) - 1])
+        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][column_extracted])
         d1<-t(d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),])
       } else {
-        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(3, 2, 12, 11, 4, 14, 15) - 1]))
+        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][column_extracted]))
         d1<-d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),]
         if(is.null(nrow(d1))) d1<-t(d1)
       }
@@ -79,7 +81,7 @@ MergeINDELSVClass1<-function(hmdir = getwd(),
   if(nrow(full_peptide)==0) return(NULL)
 
   #Bind Full Peptide and info
-  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide_Core", "Evaluated_Mutant_Peptide", "Mut_IC50", "Mut_Rank",
+  tag<-c("HLA", "Pos", "Gene", "Evaluated_Mutant_Peptide_Core", "Evaluated_Mutant_Peptide", "Mut_EL", "Mut_Rank",
          "Chr", "NM_ID", "Change", "Ref", "Alt", "Prob", "Mutation_Prob.", "Exon_Start", "Exon_End",
          "Mutation_Position", "Total_Depth", "Tumor_Depth", "Wt_Peptide",
          "Mutant_Peptide", "Total_RNA", "Tumor_RNA_Ratio", "Tumor_RNA",
