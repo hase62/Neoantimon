@@ -48,7 +48,7 @@ TestAnalysis<-function(){
   Result_HLA1_SNV_2 <- CalculatePriorityScores(result = Result_HLA1_SNV[[2]], useRNAvaf = FALSE)
   Export_Summary_SNV(Input = Result_HLA1_SNV_1[[1]], Mut_Rank_th = 0.05, Wt_Rank_th = 0.05)
   Export_Summary_SNV(Input = Result_HLA1_SNV_1[[2]], Mut_Rank_th = 0.05, Wt_Rank_th = 0.05)
-  
+
   Result_HLA1_SNV_vep <- MainSNVClass1(input_vep_format_file = "data/sample_vcf.vep.txt",
                                    file_name_in_hla_table = "sample",
                                    hla_file = "data/sample_hla_table_c1.txt",
@@ -83,11 +83,11 @@ TestAnalysis<-function(){
                                        netMHCpan_dir = "netMHCpan-4.1/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       multiple_variants = TRUE, 
+                                       multiple_variants = TRUE,
                                        base_0 = FALSE)
   Result_HLA1_INDEL_1 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[1]], useRNAvaf = FALSE)
   Result_HLA1_INDEL_2 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[2]], useRNAvaf = FALSE)
-  Export_Summary_IndelSV(Input = Result_HLA1_INDEL, , Mut_Rank_th = 0.05)
+  Export_Summary_IndelSV(Input = Result_HLA1_INDEL, Mut_Rank_th = 0.05)
 
   Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",

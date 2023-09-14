@@ -6,7 +6,7 @@
 \usage{
 Export_Summary_Fragments(
   Input,
-  Mut_IC50_th = NA,
+  Mut_EL_th = NA,
   Mut_Rank_th = NA,
   Total_RNA_th = NA,
   Tumor_RNA_th = NA,
@@ -18,7 +18,7 @@ Export_Summary_Fragments(
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}
 
-\item{Mut_IC50_th}{The threshold for mutant peptide to be neoantigen by IC50.}
+\item{Mut_EL_th}{The threshold for mutant peptide to be neoantigen by EL.}
 
 \item{Mut_Rank_th}{The threshold for mutant peptide to be neoantigen by Rank.}
 

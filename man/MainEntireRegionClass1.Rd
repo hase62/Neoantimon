@@ -18,7 +18,7 @@ MainEntireRegionClass1(
   netMHCpan_dir = paste(hmdir, "lib/netMHCpan-4.0/netMHCpan", sep = "/"),
   peptide_length = c(8, 9, 10, 11, 12, 13),
   reading_frame = 1,
-  CalculateIC50 = FALSE,
+  CalculateEL = FALSE,
   ignore_short = TRUE
 )
 }
@@ -56,7 +56,7 @@ See "https://github.com/hase62/Neoantimon"}
 
 \item{reading_frame}{The starting frame of the input sequence (Default = 1)}
 
-\item{CalculateIC50}{Whether Calculate IC50 by NetMHCpan or not.}
+\item{CalculateEL}{Whether Calculate EL by NetMHCpan or not.}
 
 \item{ignore_short}{Ignore to output results of Short Peptide Less Than min(peptide_length)}
 }
@@ -73,7 +73,7 @@ Evaluated_Mutant_Peptide:  The mutant peptide to be evaluated.
 
 Evaluated_Mutant_Peptide_Core:  The core peptide of the mutant peptide to be evaluated in NetMHCpan.
 
-Mut_IC50: IC50 value for evaluated mutant peptide.
+Mut_EL: EL value for evaluated mutant peptide.
 
 Mut_Rank: Rank value for evaluated mutanat peptide.
 

@@ -6,9 +6,9 @@
 \usage{
 Export_Summary_SNV(
   Input,
-  Mut_IC50_th = NA,
+  Mut_EL_th = NA,
   Mut_Rank_th = NA,
-  Wt_IC50_th = NA,
+  Wt_EL_th = NA,
   Wt_Rank_th = NA,
   Total_RNA_th = NA,
   Tumor_RNA_th = NA,
@@ -19,11 +19,11 @@ Export_Summary_SNV(
 \arguments{
 \item{Input}{Input file generated from MainSNVClass1,2.}
 
-\item{Mut_IC50_th}{The threshold for mutant peptide to be neoantigen.}
+\item{Mut_EL_th}{The threshold for mutant peptide to be neoantigen.}
 
 \item{Mut_Rank_th}{The threshold for mutant peptide to be neoantigen.}
 
-\item{Wt_IC50_th}{The threshold for wt peptide to be neoantigen.}
+\item{Wt_EL_th}{The threshold for wt peptide to be neoantigen.}
 
 \item{Wt_Rank_th}{The threshold for wt peptide to be neoantigen.}
 

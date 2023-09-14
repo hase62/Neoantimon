@@ -35,7 +35,7 @@ MainSNVClass1(
   depth_tumor_column = NA,
   ambiguous_between_exon = 0,
   ambiguous_codon = 0,
-  peptide_length = c(8, 9, 10, 11, 12, 13),
+  peptide_length = c(8, 9, 10, 11),
   ignore_short = TRUE,
   SNPs = NA,
   multiple_variants = FALSE,
@@ -154,13 +154,13 @@ Gene Gene symbol used to be evaluated in NetMHCpan.
 
 Evaluated_Mutant_Peptide: The mutant peptide to be evaluated.
 
-Mut_IC50: IC50 value for evaluated mutant peptide.
+Mut_EL: EL value for evaluated mutant peptide.
 
 Mut_Rank: Rank value for evaluated mutanat peptide.
 
 Evaluated_Wt_Peptide: The wild-type peptide to be evaluated.
 
-Wt_IC50: IC50 value for evaluated wild-type peptide.
+Wt_EL: EL value for evaluated wild-type peptide.
 
 Wt_Rank: Rank value for evaluated wild-type peptide.
 
@@ -206,7 +206,7 @@ MutRatio_Min: The 1\% percentile of the cancer cell fraction probability.
 
 MutRatio_Max: The 99\% percentile of the cancer cell fraction probability.
 
-P_I: Priority score using the IC50.
+P_I: Priority score using the EL.
 Please use CalculatePriorityScores <- function(result, useRNAvaf = FALSE)
 
 P_R: Priority score using the percentage of rank affinity.

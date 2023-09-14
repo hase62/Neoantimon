@@ -12,7 +12,7 @@ CalculatePriorityScores(result, useRNAvaf = FALSE)
 \item{useRNAvaf}{To indicate whether this function uses DNA VAF or RNA VAF for the calculation.}
 }
 \value{
-P_I: Priority score using the IC50.
+P_I: Priority score using the EL.
 
 P_R: Priority score using the percentage of rank affinity.
 

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>SampleCodeForNeoantimon</title>
+<style type="text/css">
+/**
+ * Prism.s theme ported from highlight.js's xcode style
+ */
+pre code {
+  padding: 1em;
+}
+.token.comment {
+  color: #007400;
+}
+.token.punctuation {
+  color: #999;
+}
+.token.tag,
+.token.selector {
+  color: #aa0d91;
+}
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+  color: #1c00cf;
+}
+.token.property,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin {
+  color: #c41a16;
+}
+.token.inserted {
+  background-color: #ccffd8;
+}
+.token.deleted {
+  background-color: #ffebe9;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #836c28;
+}
+.token.function,
+.token.class-name {
+  color: #DD4A68;
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: #5c2699;
+}
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+</style>
+<style type="text/css">
+body {
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+body, .footnotes, code { font-size: .9em; }
+li li { font-size: .95em; }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+pre, img { max-width: 100%; }
+pre, pre:hover {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+pre code {
+  display: block;
+  overflow-x: auto;
+}
+code { font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace; }
+:not(pre) > code, code[class] { background-color: #F8F8F8; }
+code.language-undefined, pre > code:not([class]) {
+  background-color: inherit;
+  border: 1px solid #eee;
+}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+thead, tfoot, tr:nth-child(even) { background: #eee; }
+blockquote {
+  color: #666;
+  margin: 0;
+  padding-left: 1em;
+  border-left: 0.5em solid #eee;
+}
+hr, .footnotes::before { border: 1px dashed #ddd; }
+.frontmatter { text-align: center; }
+#TOC .numbered li { list-style: none; }
+#TOC .numbered { padding-left: 0; }
+#TOC .numbered ul { padding-left: 1em; }
+table, .body h2 { border-bottom: 1px solid #666; }
+.body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
+.footnote-ref a::before { content: "["; }
+.footnote-ref a::after { content: "]"; }
+.footnotes::before {
+  content: "";
+  display: block;
+  max-width: 20em;
+}
+
+@media print {
+  body {
+    font-size: 12pt;
+    max-width: 100%;
+  }
+  tr, img { page-break-inside: avoid; }
+}
+@media only screen and (min-width: 992px) {
+  pre { white-space: pre; }
+}
+</style>
+</head>
+<body>
+<div class="include-before">
+</div>
+<div class="frontmatter">
+<div class="title"><h1>SampleCodeForNeoantimon</h1></div>
+<div class="author"><h2>T. Hasegawa</h2></div>
+<div class="date"><h3>2020/6/27</h3></div>
+</div>
+<div class="body">
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Sample Code to Use Neoantimon}
+-->
+<h2 id="data-preparation-and-sample-codes-for-analysis">Data Preparation and Sample Codes for Analysis</h2>
+<pre><code class="language-r">#install.packages('devtools');
+library(devtools);
+</code></pre>
+<pre><code>## Loading required package: usethis
+</code></pre>
+<pre><code class="language-r">install_github('hase62/Neoantimon');
+</code></pre>
+<pre><code>## Downloading GitHub repo hase62/Neoantimon@HEAD
+</code></pre>
+<pre><code>## askpass     (1.1   -&gt; 1.2.0) [CRAN]
+## dplyr       (1.1.2 -&gt; 1.1.3) [CRAN]
+## knitr       (1.43  -&gt; 1.44 ) [CRAN]
+## credentials (1.3.2 -&gt; 2.0.1) [CRAN]
+</code></pre>
+<pre><code>## Installing 4 packages: askpass, dplyr, knitr, credentials
+</code></pre>
+<pre><code>## 
+## The downloaded binary packages are in
+## 	/var/folders/ns/yw46qhdj5cl8x7kx3z_mtjt00000gn/T//RtmpJZubD5/downloaded_packages
+## ── R CMD build ──────────────────────────────────────────────────────────
+##   
+   checking for file ‘/private/var/folders/ns/yw46qhdj5cl8x7kx3z_mtjt00000gn/T/RtmpJZubD5/remotes69fb6786eedc/hase62-Neoantimon-5828ff3/DESCRIPTION’ ...
+  
+✔  checking for file ‘/private/var/folders/ns/yw46qhdj5cl8x7kx3z_mtjt00000gn/T/RtmpJZubD5/remotes69fb6786eedc/hase62-Neoantimon-5828ff3/DESCRIPTION’
+## 
+  
+─  preparing ‘Neoantimon’:
+## 
+  
+   checking DESCRIPTION meta-information ...
+  
+✔  checking DESCRIPTION meta-information
+## 
+  
+─  checking for LF line-endings in source and make files and shell scripts
+## 
+  
+─  checking for empty or unneeded directories
+## 
+  
+─  looking to see if a ‘data/datalist’ file should be added
+## 
+  
+─  building ‘Neoantimon_2.1.1.tar.gz’
+## 
+  
+   
+## 
+</code></pre>
+<pre><code class="language-r">library(Neoantimon);
+if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(&quot;biomaRt&quot;)
+</code></pre>
+<pre><code>## Bioconductor version 3.17 (BiocManager 1.30.22), R 4.3.1 (2023-06-16)
+</code></pre>
+<pre><code>## Warning: package(s) not installed when version(s) same as or greater than current; use
+##   `force = TRUE` to re-install: 'biomaRt'
+</code></pre>
+<pre><code>## Old packages: 'KernSmooth', 'Matrix', 'RcppArmadillo', 'credentials',
+##   'foreign', 'knitr', 'mgcv', 'minqa', 'nlme', 'reticulate', 'spatial',
+##   'survival'
+</code></pre>
+<pre><code class="language-r">library(biomaRt)
+</code></pre>
+</div>
+<div class="include-after">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+</body>
+</html>
