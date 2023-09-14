@@ -40,12 +40,10 @@ TestAnalysis<-function(){
                                    refflat_file  = "refFlat.grch37.txt",
                                    refmrna_file = "refMrna.grch37.fa",
                                    rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                   netMHCpan_dir = "netMHCpan-4.1/netMHCpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "data/sample_vcf.snps.vcf",
-                                   multiple_variants = TRUE,
-                                   MHCflurry = "~/opt/anaconda3/bin/mhctools")
+                                   multiple_variants = TRUE)
   Result_HLA1_SNV_1 <- CalculatePriorityScores(result = Result_HLA1_SNV[[1]], useRNAvaf = FALSE)
   Result_HLA1_SNV_2 <- CalculatePriorityScores(result = Result_HLA1_SNV[[2]], useRNAvaf = FALSE)
 
@@ -55,7 +53,7 @@ TestAnalysis<-function(){
                                    refflat_file  = "refFlat.grch37.txt",
                                    refmrna_file = "refMrna.grch37.fa",
                                    rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                   netMHCpan_dir = "netMHCpan-4.1/netMHCpan",
                                    multiple_variants = FALSE)
   Result_HLA1_vep_SNV <- CalculatePriorityScores(result = Result_HLA1_SNV_vep, useRNAvaf = FALSE)
 
@@ -65,11 +63,12 @@ TestAnalysis<-function(){
                                    refflat_file  = "refFlat.grch37.txt",
                                    refmrna_file = "refMrna.grch37.fa",
                                    rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCIIpan_dir = "netMHCIIpan-3.2/netMHCIIpan",
+                                   netMHCIIpan_dir = "netMHCIIpan-4.2/netMHCIIpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
                                    SNPs = "data/sample_vcf.snps.vcf",
-                                   multiple_variants = TRUE)
+                                   multiple_variants = TRUE,
+                                   MHCflurry = "~/opt/anaconda3/bin/mhctools")
   Result_HLA2_SNV <- CalculatePriorityScores(result = Result_HLA2_SNV, useRNAvaf = FALSE)
 
   Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
@@ -78,10 +77,9 @@ TestAnalysis<-function(){
                                        refflat_file  = "refFlat.grch37.txt",
                                        refmrna_file = "refMrna.grch37.fa",
                                        rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCpan_dir = "netMHCpan-4.0/netMHCpan",
+                                       netMHCpan_dir = "netMHCpan-4.1/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample_vcf.snps.vcf",
                                        multiple_variants = TRUE,
                                        MHCflurry = "~/opt/anaconda3/bin/mhctools")
   Result_HLA1_INDEL_1 <- CalculatePriorityScores(result = Result_HLA1_INDEL[[1]], useRNAvaf = FALSE)

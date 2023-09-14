@@ -9,6 +9,7 @@ MergeSNVClass1<-function(hmdir = getwd(),
 
   #Get Peptide Info
   files_part<-files[intersect(grep("HLACLASS1", files), grep(file_prefix, files))]
+  files_part<-grep("ALL.txt", files_part, invert = TRUE, value = TRUE)
   if(length(files_part)==0){
     print("No File Detected!!")
     return(NULL)
@@ -69,8 +70,13 @@ MergeSNVClass1<-function(hmdir = getwd(),
 
       d4<-NULL
       hit<-match(num1[h1], num2)
-      d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,12,14,15)]))
-      d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,12,14,15)]))
+      
+      column_extracted_1 <- match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"), 
+                                strsplit(test1[ss1[h1] - 2], " +")[[1]])
+      d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][column_extracted_1]))
+      column_extracted_2 <- match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"), 
+                                  strsplit(test2[ss1[hit] - 2], " +")[[1]])
+      d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][column_extracted_2]))
       l1<-sapply(d1[,3], nchar)
       l2<-sapply(d2[,3], nchar)
       for(r1 in unique(l1)){

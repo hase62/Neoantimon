@@ -305,6 +305,20 @@ install_github('hase62/Neoantimon');
 library(Neoantimon);
 ```
 
+If you're using Anaconda, 
+
+```
+[command line]
+conda install -c conda-forge r_devtools
+```
+Then, 
+```
+[R]
+library(devtools);
+install_github('hase62/Neoantimon');
+library(Neoantimon);
+```
+
 **Suggested to Install for Reading Data at High Speed**
 ```
 [R]
