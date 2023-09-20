@@ -2,11 +2,11 @@
 #$ -S /bin/bash
 #$ -cwd
 
-if [ -e netMHCpan-4.1.Linux.tar.gz ]; then
- tar zxvf netMHCpan-4.1.Linux.tar.gz
+if [ -e netMHCpan-4.1b.Linux.tar.gz ]; then
+ tar zxvf netMHCpan-4.1b.Linux.tar.gz
 fi
-if [ -e netMHCpan-4.1.Darwin.tar.gz ]; then
- tar zxvf netMHCpan-4.1.Darwin.tar.gz
+if [ -e netMHCpan-4.1b.Darwin.tar.gz ]; then
+ tar zxvf netMHCpan-4.1b.Darwin.tar.gz
 fi
 cd netMHCpan-4.1
 mkdir tmp
