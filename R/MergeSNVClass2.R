@@ -4,11 +4,11 @@ MergeSNVClass2<-function(hmdir = getwd(),
                          file_prefix){
   print("Merging Results...")
 
-  dir<-paste(hmdir, input_dir, sep="/")
-  files<-list.files(paste(dir, sep="/"))
+  dir <- paste(hmdir, input_dir, sep="/")
+  files <- list.files(paste(dir, sep="/"))
 
   #Get Peptide Info
-  files_part<-files[intersect(grep("HLACLASS2", files), grep(file_prefix, files))]
+  files_part <- files[intersect(grep("HLACLASS2", files), grep(file_prefix, files))]
   if(length(files_part)==0){
     print("No File Detected!!")
     return(NULL)
@@ -50,13 +50,14 @@ MergeSNVClass2<-function(hmdir = getwd(),
     test1<-gsub(" <=WB| <=SB", "", test1)
     ss1<-grep(" Pos ", test1) + 2
     ee1<-grep("of strong", test1) - 2
-    num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][5])
+    pep_header <- sapply(gsub("[ ]+","\t",test2[ss1[1] - 2]), function(x) strsplit(x, "\t")[[1]])
+    num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
 
     test2<-scan(paste(dir, sub("peptide\\.txt", "wtpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
     test2<-gsub(" <=WB| <=SB", "", test2)
     ss2<-grep(" Pos ", test2) + 2
     ee2<-grep("of strong", test2) - 2
-    num2<-sapply(gsub("[ ]+","\t",test2[ss2]), function(x) strsplit(x, "\t")[[1]][5])
+    num2<-sapply(gsub("[ ]+","\t",test2[ss2]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
 
     #if(length(grep("No peptides derived", test1[1:45]))>0) next
     if(length(grep("cannot be found in hla_pseudo list", test1))>0) next
@@ -68,8 +69,8 @@ MergeSNVClass2<-function(hmdir = getwd(),
 
       d4<-NULL
       hit<-match(num1[h1], num2)
-      d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,5,10,11)]))
-      d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][c(2,3,4,5,10,11)]))
+      d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"), pep_header)]))
+      d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"), pep_header)]))
       l1<-sapply(d1[,3], nchar)
       l2<-sapply(d2[,3], nchar)
       for(r1 in unique(l1)){

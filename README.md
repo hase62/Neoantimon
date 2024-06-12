@@ -1,10 +1,14 @@
-## A manuscript is at bioarxiv (https://www.biorxiv.org/content/10.1101/869388v1).
+## A manuscript was published at Bioinformatics (https://academic.oup.com/bioinformatics/article/36/18/4813/5906504).
 
 ### Latest updates
-ver3.0.0: Adopted to netMHCpan4.1 and netMHCIIpan4.2. 
+ver3.0.1: Adopted to netMHCpan4.1 and netMHCIIpan4.3. 
 
 ## 0. Preliminary Use
 ### -Install R (Required)
+Install R from the official (https://www.r-project.org/). 
+
+or
+
 CentOS
 ```
 [command line]
@@ -24,15 +28,18 @@ conda -n create Neoantimon r-essentials r-base
 conda activate Neoantimon
 conda update --all
 ```
-Notice: If you're using M1/M2 MacOS, you need to install M1/M2 available version conda.
+Notice: If you're using M1/M2/M3 MacOS, you need to install available version conda.
 
 ### -Generate output without calculation
 This code is a simple sample code for preliminary use to confirm the output. 
 
 ```
 [R]
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")  
 install.packages("devtools");
 library(devtools);
+BiocManager::install("ensemblVEP")
 install_github('hase62/Neoantimon');
 library(Neoantimon);
 

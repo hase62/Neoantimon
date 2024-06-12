@@ -16,7 +16,7 @@ TestAnalysis<-function(){
   data("sample_refMrna.grch37.fa")
   data("sample_result_SNV_CLASS1_ALL")
 
-  for(r_code in list.files("./../R/")) source(paste("./../R/", r_code, sep = ""))
+  for(r_code in dir("./../R/", ".R")) source(paste("./../R/", r_code, sep = ""))
 
   MainSNVClass1(input_annovar_format_file = sample_vcf.annovar,
                 hla_types = sample_hla_table_c1[1,-1],
