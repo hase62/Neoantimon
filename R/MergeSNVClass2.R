@@ -48,15 +48,16 @@ MergeSNVClass2<-function(hmdir = getwd(),
 
     test1<-scan(paste(dir, f, sep="/"), "character", sep="\n", skip=1)
     test1<-gsub(" <=WB| <=SB", "", test1)
-    ss1<-grep(" Pos ", test1) + 2
-    ee1<-grep("of strong", test1) - 2
-    pep_header <- sapply(gsub("[ ]+","\t",test2[ss1[1] - 2]), function(x) strsplit(x, "\t")[[1]])
+    ss1<-intersect(grep("Pos ", test1), grep("Core ", test1)) + 2
+    ee1<-intersect(grep("of strong", test1), grep("binders", test1)) - 2
+    pep_header <- sapply(gsub("[ ]+","\t",test1[ss1[1] - 2]), function(x) strsplit(x, "\t")[[1]])
     num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
 
     test2<-scan(paste(dir, sub("peptide\\.txt", "wtpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
     test2<-gsub(" <=WB| <=SB", "", test2)
-    ss2<-grep(" Pos ", test2) + 2
-    ee2<-grep("of strong", test2) - 2
+    ss2<-intersect(grep(" Pos ", test2), grep("Core ", test2)) + 2
+    ee2<-intersect(grep("of strong", test2), grep("binders", test2)) - 2
+    pep_header <- sapply(gsub("[ ]+","\t",test2[ss2[1] - 2]), function(x) strsplit(x, "\t")[[1]])
     num2<-sapply(gsub("[ ]+","\t",test2[ss2]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
 
     #if(length(grep("No peptides derived", test1[1:45]))>0) next
@@ -69,8 +70,12 @@ MergeSNVClass2<-function(hmdir = getwd(),
 
       d4<-NULL
       hit<-match(num1[h1], num2)
-      d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"), pep_header)]))
-      d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"), pep_header)]))
+      column_extracted_1 <- match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"),
+                                  strsplit(test1[ss1[h1] - 2], " +")[[1]])
+      d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][column_extracted_1]))
+      column_extracted_2 <- match(c("Pos", "MHC", "Peptide", "Identity", "Score_EL", "%Rank_EL"),
+                                  strsplit(test2[ss1[hit] - 2], " +")[[1]])
+      d2<-t(sapply(gsub("[ ]+", "\t", test2[ss2[hit]:ee2[hit]]), function(x) strsplit(x, "\t")[[1]][column_extracted_2]))
       l1<-sapply(d1[,3], nchar)
       l2<-sapply(d2[,3], nchar)
       for(r1 in unique(l1)){

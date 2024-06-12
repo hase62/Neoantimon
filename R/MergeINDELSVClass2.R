@@ -45,22 +45,26 @@ MergeINDELSVClass2<-function(hmdir = getwd(),
   full_peptide<-NULL
   for(f in files_part[grep("\\.peptide\\.txt", files_part)]){
     print(paste(dir, f, sep="/"))
+
     test1 <- read_1col_by_fread_or_scan(paste(dir, f, sep="/"))
     test1<-gsub(" <=WB| <=SB", "", test1)
-    ss1<-grep("Pos ", test1) + 2
-    ee1<-grep("of strong", test1) - 2
-    num1<-sapply(gsub("[ ]+", "\t", test1[ss1]), function(x) strsplit(x, "\t")[[1]][4])
+    ss1<-intersect(grep("Pos ", test1), grep("Core ", test1)) + 2
+    ee1<-intersect(grep("of strong", test1), grep("binders", test1)) - 2
+    pep_header <- sapply(gsub("[ ]+","\t",test1[ss1[1] - 2]), function(x) strsplit(x, "\t")[[1]])
+    num1<-sapply(gsub("[ ]+","\t", test1[ss1]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
 
     #if(length(grep("No peptides derived", test1[1:45])) > 0) next
     if(length(grep("cannot be found in hla_pseudo list", test1)) > 0) next
     if(length(grep("Could not find allele", test1)) > 0) next
     for(h1 in 1:length(num1)){
       print(paste((h1 / length(num1)) * 100, "perc. fin"))
+      column_extracted <- match(c("MHC", "Pos", "Identity", "Core",  "Peptide", "Score_EL", "%Rank_EL"),
+                                  strsplit(test1[ss1[h1] - 2], " +")[[1]])
       if(ss1[h1] == ee1[h1]){
-        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][c(2, 5, 4, 6, 3, 9, 10)])
+        d1<-t(strsplit(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), "\t")[[1]][column_extracted])
         d1<-t(d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),])
       } else {
-        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][c(2, 5, 4, 6, 3, 9, 10)]))
+        d1<-t(sapply(gsub("[ ]+", "\t", test1[ss1[h1]:ee1[h1]]), function(x) strsplit(x, "\t")[[1]][column_extracted]))
         d1<-d1[sapply(d1[, 5], function(x) length(grep(x, info[match(num1[h1], info[, 2]), 15]))==0),]
         if(is.null(nrow(d1))) d1<-t(d1)
       }
