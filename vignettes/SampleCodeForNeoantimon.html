@@ -120,7 +120,7 @@ table, .body h2 { border-bottom: 1px solid #666; }
 .body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
 .footnote-ref a::before { content: "["; }
 .footnote-ref a::after { content: "]"; }
-.footnotes::before {
+section.footnotes::before {
   content: "";
   display: block;
   max-width: 20em;
@@ -139,12 +139,10 @@ table, .body h2 { border-bottom: 1px solid #666; }
 </style>
 </head>
 <body>
-<div class="include-before">
-</div>
 <div class="frontmatter">
 <div class="title"><h1>SampleCodeForNeoantimon</h1></div>
 <div class="author"><h2>T. Hasegawa</h2></div>
-<div class="date"><h3>2020/6/27</h3></div>
+<div class="date"><h3>2024/6/12</h3></div>
 </div>
 <div class="body">
 <!--
@@ -159,66 +157,271 @@ library(devtools);
 </code></pre>
 <pre><code class="language-r">install_github('hase62/Neoantimon');
 </code></pre>
-<pre><code>## Downloading GitHub repo hase62/Neoantimon@HEAD
-</code></pre>
-<pre><code>## askpass     (1.1   -&gt; 1.2.0) [CRAN]
-## dplyr       (1.1.2 -&gt; 1.1.3) [CRAN]
-## knitr       (1.43  -&gt; 1.44 ) [CRAN]
-## credentials (1.3.2 -&gt; 2.0.1) [CRAN]
-</code></pre>
-<pre><code>## Installing 4 packages: askpass, dplyr, knitr, credentials
-</code></pre>
-<pre><code>## 
-## The downloaded binary packages are in
-## 	/var/folders/ns/yw46qhdj5cl8x7kx3z_mtjt00000gn/T//RtmpJZubD5/downloaded_packages
-## ── R CMD build ──────────────────────────────────────────────────────────
-##   
-   checking for file ‘/private/var/folders/ns/yw46qhdj5cl8x7kx3z_mtjt00000gn/T/RtmpJZubD5/remotes69fb6786eedc/hase62-Neoantimon-5828ff3/DESCRIPTION’ ...
-  
-✔  checking for file ‘/private/var/folders/ns/yw46qhdj5cl8x7kx3z_mtjt00000gn/T/RtmpJZubD5/remotes69fb6786eedc/hase62-Neoantimon-5828ff3/DESCRIPTION’
-## 
-  
-─  preparing ‘Neoantimon’:
-## 
-  
-   checking DESCRIPTION meta-information ...
-  
-✔  checking DESCRIPTION meta-information
-## 
-  
-─  checking for LF line-endings in source and make files and shell scripts
-## 
-  
-─  checking for empty or unneeded directories
-## 
-  
-─  looking to see if a ‘data/datalist’ file should be added
-## 
-  
-─  building ‘Neoantimon_2.1.1.tar.gz’
-## 
-  
-   
-## 
+<pre><code>## Skipping install of 'Neoantimon' from a github remote, the SHA1 (68abede1) has not changed since last install.
+##   Use `force = TRUE` to force installation
 </code></pre>
 <pre><code class="language-r">library(Neoantimon);
 if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
     install.packages(&quot;BiocManager&quot;)
 BiocManager::install(&quot;biomaRt&quot;)
 </code></pre>
-<pre><code>## Bioconductor version 3.17 (BiocManager 1.30.22), R 4.3.1 (2023-06-16)
+<pre><code>## Bioconductor version 3.19 (BiocManager 1.30.23), R 4.4.0 (2024-04-24)
 </code></pre>
 <pre><code>## Warning: package(s) not installed when version(s) same as or greater than current; use
 ##   `force = TRUE` to re-install: 'biomaRt'
 </code></pre>
-<pre><code>## Old packages: 'KernSmooth', 'Matrix', 'RcppArmadillo', 'credentials',
-##   'foreign', 'knitr', 'mgcv', 'minqa', 'nlme', 'reticulate', 'spatial',
-##   'survival'
-</code></pre>
 <pre><code class="language-r">library(biomaRt)
 </code></pre>
-</div>
-<div class="include-after">
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassI. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.</p>
+<pre><code class="language-r">Result_HLA1_SNV &lt;- MainSNVClass1(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
+                                   file_name_in_hla_table = &quot;sample&quot;,
+                                   hla_file = &quot;data/sample_hla_table_c1.txt&quot;,
+                                   refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                   refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                   rnaexp_file = &quot;data/sample_rna_exp.txt&quot;,
+                                   netMHCpan_dir = &quot;lib/netMHCpan-4.1/netMHCpan&quot;,
+                                   depth_tumor_column = 12,
+                                   depth_normal_column = 14,
+                                   SNPs = &quot;data/sample_vcf.snps.txt&quot;,
+                                   multiple_variants = TRUE)
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA1_SNV &lt;- CalculatePriorityScores(result = Result_HLA1_SNV, useRNAvaf = FALSE)
+  print(head(Result_HLA1_SNV))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_SNV(Input = Result_HLA1_SNV, Mut_Rank_th = 5, Wt_Rank_th = 5))
+</code></pre>
+<pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               0                               0 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               0                               0 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                               0                               0
+</code></pre>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII.</p>
+<pre><code class="language-r"> Result_HLA2_SNV &lt;- MainSNVClass2(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
+                                   file_name_in_hla_table = &quot;sample&quot;,
+                                   hla_file = &quot;data/sample_hla_table_c2.txt&quot;,
+                                   refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                   refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                   rnaexp_file = &quot;data/sample_rna_exp.txt&quot;,
+                                   netMHCIIpan_dir = &quot;lib/netMHCIIpan-4.3/netMHCIIpan&quot;,
+                                   depth_tumor_column = 12,
+                                   depth_normal_column = 14,
+                                   SNPs = &quot;data/sample_vcf.snps.txt&quot;,
+                                   multiple_variants = TRUE)
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA2_SNV &lt;- CalculatePriorityScores(result = Result_HLA2_SNV, useRNAvaf = FALSE) 
+  print(head(Result_HLA2_SNV))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_Rank_th = 10, Wt_Rank_th = 10))
+</code></pre>
+<pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               0                               0 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               0                               0 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                               0                               0
+</code></pre>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassI. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.</p>
+<pre><code class="language-r">Result_HLA1_INDEL &lt;- MainINDELClass1(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
+                                       file_name_in_hla_table = &quot;sample&quot;,
+                                       hla_file = &quot;data/sample_hla_table_c1.txt&quot;,
+                                       refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                       refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                       rnaexp_file = &quot;data/sample_rna_exp.txt&quot;,
+                                       netMHCpan_dir = &quot;lib/netMHCpan-4.1/netMHCpan&quot;,
+                                       depth_tumor_column = 12,
+                                       depth_normal_column = 14,
+                                       SNPs = &quot;data/sample_vcf.snps.txt&quot;,
+                                       multiple_variants = TRUE)
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA1_INDEL_1 &lt;- CalculatePriorityScores(result = Result_HLA1_INDEL, useRNAvaf = FALSE)
+  print(head(Result_HLA1_INDEL_1))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV(Input = Result_HLA1_INDEL_1, Mut_Rank_th = 5))
+</code></pre>
+<pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               0                               0 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               0                               0 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                               0                               0
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL_1, Mut_Rank_th = 5))
+</code></pre>
+<pre><code>##                                                    
+## Num_Peptide_Per_Pep                                
+## Num_Cond_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep
+## -logP
+</code></pre>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII.</p>
+<pre><code class="language-r">  Result_HLA2_INDEL &lt;- MainINDELClass2(input_annovar_format_file = &quot;data/sample_vcf.annovar.txt&quot;,
+                                       file_name_in_hla_table = &quot;sample&quot;,
+                                       hla_file = &quot;data/sample_hla_table_c2.txt&quot;,
+                                       refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                       refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                       rnaexp_file = &quot;data/sample_rna_exp.txt&quot;,
+                                       netMHCIIpan_dir = &quot;lib/netMHCIIpan-4.3/netMHCIIpan&quot;,
+                                       depth_tumor_column = 12,
+                                       depth_normal_column = 14,
+                                       SNPs = &quot;data/sample_vcf.snps.txt&quot;,
+                                       multiple_variants = TRUE)
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA2_INDEL &lt;- CalculatePriorityScores(result = Result_HLA2_INDEL, useRNAvaf = FALSE)  
+  print(head(Result_HLA2_INDEL))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV(Input = Result_HLA2_INDEL, , Mut_Rank_th = 10))
+</code></pre>
+<pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               0                               0 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               0                               0 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                               0                               0
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, , Mut_Rank_th = 5))
+</code></pre>
+<pre><code>##                                                    
+## Num_Peptide_Per_Pep                                
+## Num_Cond_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep
+## -logP
+</code></pre>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassI.</p>
+<pre><code class="language-r">  Result_HLA1_SV &lt;- MainSVFUSIONClass1(input_file = &quot;data/sample_sv_bnd.txt&quot;,
+                                       file_name_in_hla_table = &quot;sample&quot;,
+                                       hla_file = &quot;data/sample_hla_table_c1.txt&quot;,
+                                       refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                       refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                       rnaexp_file = &quot;data/sample_rna_exp.txt&quot;,
+                                       netMHCpan_dir = &quot;lib/netMHCpan-4.1/netMHCpan&quot;,
+                                       refdna_file = &quot;GRCh37.fa&quot;,
+                                       mutation_alt_bnd_column = 5,
+                                       gene_symbol_column = 7,
+                                       mate_id_column = 8)
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA1_SV &lt;- CalculatePriorityScores(result = Result_HLA1_SV, useRNAvaf = FALSE)
+  print(head(Result_HLA1_SV))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV(Result_HLA1_SV, , Mut_Rank_th = 5))
+</code></pre>
+<pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               0                               0 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               0                               0 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                               0                               0
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, , Mut_Rank_th = 5))
+</code></pre>
+<pre><code>##                                                    
+## Num_Peptide_Per_Pep                                
+## Num_Cond_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep
+## -logP
+</code></pre>
+<p>To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassII.</p>
+<pre><code class="language-r">  Result_HLA2_SV &lt;- MainSVFUSIONClass2(input_file = &quot;data/sample_sv_bnd.txt&quot;,
+                                       file_name_in_hla_table = &quot;sample&quot;,
+                                       hla_file = &quot;data/sample_hla_table_c2.txt&quot;,
+                                       refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                       refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                       rnaexp_file = &quot;data/sample_rna_exp.txt&quot;,
+                                       netMHCIIpan_dir = &quot;lib/netMHCIIpan-4.3/netMHCIIpan&quot;,
+                                       refdna_file = &quot;lib/GRCh37.fa&quot;,
+                                       mutation_alt_bnd_column = 5,
+                                       gene_symbol_column = 7,
+                                       mate_id_column = 8)
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA2_SV &lt;- CalculatePriorityScores(result = Result_HLA2_SV, useRNAvaf = FALSE)
+  print(head(Result_HLA2_SV))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV(Result_HLA2_SV, Mut_Rank_th = 5))
+</code></pre>
+<pre><code>##              Num_All_Alteration        Num_Evaluated_Alteration 
+##                               0                               0 
+## Num_Alteration_Generating_NeoAg                 Num_All_Peptide 
+##                               0                               0 
+##           Num_Evaluated_Peptide    Num_Peptide_Generating_NeoAg 
+##                               0                               0
+</code></pre>
+<pre><code class="language-r">  print(Export_Summary_IndelSV_perFragments(Result_HLA2_SV, Mut_Rank_th = 5))
+</code></pre>
+<pre><code>##                                                    
+## Num_Peptide_Per_Pep                                
+## Num_Cond_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep                           
+## Num_Rest_Peptide_Per_Pep / Num_Cond_Peptide_Per_Pep
+## -logP
+</code></pre>
+<p>To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassI. The peptides included in the original genes (“NM_003998”, “NM_001165412”) are removed from the results.</p>
+<pre><code class="language-r">   Result_HLA1_Seq &lt;- MainSeqFragmentClass1(input_sequence = &quot;atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc&quot;,
+                                           file_name_in_hla_table = &quot;sample&quot;,
+                                           hla_file = &quot;data/sample_hla_table_c1.txt&quot;,
+                                           hmdir = getwd(),
+                                           job_id = &quot;NO_job_id&quot;,
+                                           refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                           refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                           netMHCpan_dir = &quot;lib/netMHCpan-4.1/netMHCpan&quot;,
+                                           reference_nm_id = c(&quot;NM_003998&quot;, &quot;NM_001165412&quot;))
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA1_Seq &lt;- CalculatePriorityScores(result = Result_HLA1_Seq, useRNAvaf = FALSE)
+  print(head(Result_HLA1_Seq))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  #print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_Rank_th = 5))
+</code></pre>
+<p>To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassII. The peptides included in the riginal genes (“NFKB1”, “BCL3”) are removed from the results.</p>
+<pre><code class="language-r">  Result_HLA2_Seq &lt;- MainSeqFragmentClass2(input_sequence = &quot;atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc&quot;,
+                                           file_name_in_hla_table = &quot;sample&quot;,
+                                           hla_file = &quot;data/sample_hla_table_c2.txt&quot;,
+                                           hmdir = getwd(),
+                                           job_id = &quot;NO_job_id&quot;,
+                                           refflat_file  = &quot;lib/refFlat.grch37.txt&quot;,
+                                           refmrna_file = &quot;lib/refMrna.grch37.fa&quot;,
+                                           netMHCIIpan_dir = &quot;lib/netMHCIIpan-4.3/netMHCIIpan&quot;,
+                                           reference_gene_symbol = c(&quot;NFKB1&quot;, &quot;BCL3&quot;))
+</code></pre>
+<pre><code>## [1] &quot;Please indicate hla_file and file_name_in_hla_table, or hla_types appropriately.&quot;
+</code></pre>
+<pre><code class="language-r">  Result_HLA2_Seq &lt;- CalculatePriorityScores(result = Result_HLA2_Seq, useRNAvaf = FALSE)
+  print(head(Result_HLA2_Seq))
+</code></pre>
+<pre><code>##      result P_I P_R P
+</code></pre>
+<pre><code class="language-r">  #print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_Rank_th = 5))
+</code></pre>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>

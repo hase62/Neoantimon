@@ -5,13 +5,18 @@ Version: 2.1.1
 Date: 2024-6-10
 Author: Takanori Hasegawa
 Maintainer: Takanori Hasegawa <t-hasegw@ims.u-tokyo.ac.jp>
-Description: This Package has been developed to calculate candidates neoantigens from Mutation Data (.vcf,.txt,string). 
+Description: This Package has been developed to calculate candidates neoantigens from Mutation Data (.vcf,.txt,[string]). 
 License: MIT + file LICENSE
 VignetteBuilder: knitr
 Encoding: UTF-8
 Depends: R (>= 3.3.0)
 biocViews:
 Imports: ensemblVEP, devtools, graphics, grDevices, stats, utils, biomaRt
-Suggests: data.table, knitr, rmarkdown
+Suggests: 
+    data.table,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 LazyData: FALSE
 RoxygenNote: 7.3.1
+Config/testthat/edition: 3

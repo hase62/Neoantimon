@@ -1,7 +1,7 @@
 ## A manuscript was published at Bioinformatics (https://academic.oup.com/bioinformatics/article/36/18/4813/5906504).
 
 ### Latest updates
-ver3.0.1: Adopted to netMHCpan4.1 and netMHCIIpan4.3. 
+ver3.0.1: Supported to netMHCpan4.1 and netMHCIIpan4.3. 
 
 ## 0. Preliminary Use
 ### -Install R (Required)

@@ -7,12 +7,14 @@ pdf_document: default
 html_document: default
 ---
 
+```{=html}
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Sample Code to Use Neoantimon}
 -->
-
+```
 ## Data Preparation and Sample Codes for Analysis
+
 ```{r Preparation}
 #install.packages('devtools');
 library(devtools);
@@ -24,8 +26,8 @@ BiocManager::install("biomaRt")
 library(biomaRt)
 ```
 
-To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassI. 
-When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.
+To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassI. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.
+
 ```{r Get SNV Sample 1 in Test Analysis}
 Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
@@ -46,24 +48,8 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.an
   print(Export_Summary_SNV(Input = Result_HLA1_SNV, Mut_Rank_th = 5, Wt_Rank_th = 5))
 ```
 
-```{r Get SNV Sample 1-2 in Test Analysis}
- Result_HLA1_SNV_vep <- MainSNVClass1(input_vep_format_file = "data/sample_vcf.vep.txt",
-                                   file_name_in_hla_table = "sample",
-                                   hla_file = "data/sample_hla_table_c1.txt",
-                                   refflat_file  = "lib/refFlat.grch37.txt",
-                                   refmrna_file = "lib/refMrna.grch37.fa",
-                                   rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCpan_dir = "lib/netMHCpan-4.1/netMHCpan",
-                                   multiple_variants = FALSE)
-  Result_HLA1_vep_SNV <- CalculatePriorityScores(result = Result_HLA1_SNV_vep, useRNAvaf = FALSE)  
-  print(head(Result_HLA1_vep_SNV))
-```
+To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII.
 
-```{r Get SNV Summary 1-2 in Test Analysis}
-  print(Export_Summary_SNV(Input = Result_HLA1_vep_SNV, Mut_Rank_th = 5, Wt_Rank_th = 5))
-```
-
-To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII. 
 ```{r Get SNV Sample 2 in Test Analysis}
  Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
@@ -84,8 +70,8 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
   print(Export_Summary_SNV(Input = Result_HLA2_SNV, Mut_Rank_th = 10, Wt_Rank_th = 10))
 ```
 
-To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassI. 
-When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.
+To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassI. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.
+
 ```{r Get INDEL Sample 1 in Test Analysis}
 Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
@@ -110,7 +96,8 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
   print(Export_Summary_IndelSV_perFragments(Input = Result_HLA1_INDEL_1, Mut_Rank_th = 5))
 ```
 
-To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII. 
+To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII.
+
 ```{r Get INDEL Sample 2 in Test Analysis}
   Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
@@ -136,7 +123,8 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
   print(Export_Summary_IndelSV_perFragments(Input = Result_HLA2_INDEL, , Mut_Rank_th = 5))
 ```
 
-To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassI. 
+To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassI.
+
 ```{r Get SV Sample 1 in Test Analysis}
   Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
@@ -161,7 +149,8 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
   print(Export_Summary_IndelSV_perFragments(Result_HLA1_SV, , Mut_Rank_th = 5))
 ```
 
-To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassII. 
+To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassII.
+
 ```{r Get SV Sample 2 in Test Analysis}
   Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
@@ -186,8 +175,8 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
   print(Export_Summary_IndelSV_perFragments(Result_HLA2_SV, Mut_Rank_th = 5))
 ```
 
-To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassI. 
-The peptides included in the original genes ("NM_003998", "NM_001165412") are removed from the results. 
+To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassI. The peptides included in the original genes ("NM_003998", "NM_001165412") are removed from the results.
+
 ```{r Get Fragment Sample 1 in Test Analysis}
    Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
@@ -203,11 +192,11 @@ The peptides included in the original genes ("NM_003998", "NM_001165412") are re
 ```
 
 ```{r Get Fragment Summary 1 in Test Analysis}
-  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_Rank_th = 5))
+  #print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_Rank_th = 5))
 ```
 
-To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassII. 
-The peptides included in the riginal genes ("NFKB1", "BCL3") are removed from the results. 
+To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassII. The peptides included in the riginal genes ("NFKB1", "BCL3") are removed from the results.
+
 ```{r Get Fragment Sample 2 in Test Analysis}
   Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
@@ -223,5 +212,5 @@ The peptides included in the riginal genes ("NFKB1", "BCL3") are removed from th
 ```
 
 ```{r Get Fragment Summary 2 in Test Analysis}
-  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_Rank_th = 5))
+  #print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_Rank_th = 5))
 ```
