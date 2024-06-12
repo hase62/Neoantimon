@@ -48,6 +48,7 @@ MergeFragmentsClass2<-function(hmdir = getwd(),
     ee1<-intersect(grep("of strong", test1), grep("binders", test1)) - 2
     pep_header <- sapply(gsub("[ ]+","\t",test1[ss1[1] - 2]), function(x) strsplit(x, "\t")[[1]])
     num1<-sapply(gsub("[ ]+","\t", test1[ss1]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
+    if(length(num1) == 0) next
 
     #if(length(grep("No peptides derived", test1[1:45])) > 0) next
     if(length(grep("cannot be found in hla_pseudo list", test1)) > 0) next

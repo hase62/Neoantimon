@@ -29,16 +29,16 @@ library(biomaRt)
 To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassI. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.
 
 ```{r Get SNV Sample 1 in Test Analysis}
-Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
+Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "./../data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
-                                   hla_file = "data/sample_hla_table_c1.txt",
-                                   refflat_file  = "lib/refFlat.grch37.txt",
-                                   refmrna_file = "lib/refMrna.grch37.fa",
-                                   rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCpan_dir = "lib/netMHCpan-4.1/netMHCpan",
+                                   hla_file = "./../data/sample_hla_table_c1.txt",
+                                   refflat_file  = "./../lib/refFlat.grch37.txt",
+                                   refmrna_file = "./../lib/refMrna.grch37.fa",
+                                   rnaexp_file = "./../data/sample_rna_exp.txt",
+                                   netMHCpan_dir = "./../lib/netMHCpan-4.1/netMHCpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "data/sample_vcf.snps.txt",
+                                   SNPs = "./../data/sample_vcf.snps.txt",
                                    multiple_variants = TRUE)
   Result_HLA1_SNV <- CalculatePriorityScores(result = Result_HLA1_SNV, useRNAvaf = FALSE)
   print(head(Result_HLA1_SNV))
@@ -48,19 +48,36 @@ Result_HLA1_SNV <- MainSNVClass1(input_annovar_format_file = "data/sample_vcf.an
   print(Export_Summary_SNV(Input = Result_HLA1_SNV, Mut_Rank_th = 5, Wt_Rank_th = 5))
 ```
 
+```{r Get SNV Sample 1-2 in Test Analysis}
+ Result_HLA1_SNV_vep <- MainSNVClass1(input_vep_format_file = "./../data/sample_vcf.vep.txt",
+                                   file_name_in_hla_table = "sample",
+                                   hla_file = "./../data/sample_hla_table_c1.txt",
+                                   refflat_file  = "./../lib/refFlat.grch37.txt",
+                                   refmrna_file = "./../lib/refMrna.grch37.fa",
+                                   rnaexp_file = "./../data/sample_rna_exp.txt",
+                                   netMHCpan_dir = "./../lib/netMHCpan-4.0/netMHCpan",
+                                   multiple_variants = FALSE)
+  Result_HLA1_vep_SNV <- CalculatePriorityScores(result = Result_HLA1_SNV_vep, useRNAvaf = FALSE)  
+  print(head(Result_HLA1_vep_SNV))
+```
+
+```{r Get SNV Summary 1-2 in Test Analysis}
+  print(Export_Summary_SNV(Input = Result_HLA1_vep_SNV, Mut_Rank_th = 5, Wt_Rank_th = 5))
+```
+
 To calculate the binding affinity of neoantigen candaites, which are generated from from SNVs, to HLA ClassII.
 
 ```{r Get SNV Sample 2 in Test Analysis}
- Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
+ Result_HLA2_SNV <- MainSNVClass2(input_annovar_format_file = "./../data/sample_vcf.annovar.txt",
                                    file_name_in_hla_table = "sample",
-                                   hla_file = "data/sample_hla_table_c2.txt",
-                                   refflat_file  = "lib/refFlat.grch37.txt",
-                                   refmrna_file = "lib/refMrna.grch37.fa",
-                                   rnaexp_file = "data/sample_rna_exp.txt",
-                                   netMHCIIpan_dir = "lib/netMHCIIpan-4.3/netMHCIIpan",
+                                   hla_file = "./../data/sample_hla_table_c2.txt",
+                                   refflat_file  = "./../lib/refFlat.grch37.txt",
+                                   refmrna_file = "./../lib/refMrna.grch37.fa",
+                                   rnaexp_file = "./../data/sample_rna_exp.txt",
+                                   netMHCIIpan_dir = "./../lib/netMHCIIpan-4.3/netMHCIIpan",
                                    depth_tumor_column = 12,
                                    depth_normal_column = 14,
-                                   SNPs = "data/sample_vcf.snps.txt",
+                                   SNPs = "./../data/sample_vcf.snps.txt",
                                    multiple_variants = TRUE)
   Result_HLA2_SNV <- CalculatePriorityScores(result = Result_HLA2_SNV, useRNAvaf = FALSE) 
   print(head(Result_HLA2_SNV))
@@ -73,16 +90,16 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
 To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassI. When using MHCflurry, [[1]] and [[2]] include the results of NetMHCpan and MHCflurry, respectively.
 
 ```{r Get INDEL Sample 1 in Test Analysis}
-Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vcf.annovar.txt",
+Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "./../data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "data/sample_hla_table_c1.txt",
-                                       refflat_file  = "lib/refFlat.grch37.txt",
-                                       refmrna_file = "lib/refMrna.grch37.fa",
-                                       rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCpan_dir = "lib/netMHCpan-4.1/netMHCpan",
+                                       hla_file = "./../data/sample_hla_table_c1.txt",
+                                       refflat_file  = "./../lib/refFlat.grch37.txt",
+                                       refmrna_file = "./../lib/refMrna.grch37.fa",
+                                       rnaexp_file = "./../data/sample_rna_exp.txt",
+                                       netMHCpan_dir = "./../lib/netMHCpan-4.1/netMHCpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample_vcf.snps.txt",
+                                       SNPs = "./../data/sample_vcf.snps.txt",
                                        multiple_variants = TRUE)
   Result_HLA1_INDEL_1 <- CalculatePriorityScores(result = Result_HLA1_INDEL, useRNAvaf = FALSE)
   print(head(Result_HLA1_INDEL_1))
@@ -99,16 +116,16 @@ Result_HLA1_INDEL <- MainINDELClass1(input_annovar_format_file = "data/sample_vc
 To calculate the binding affinity of neoantigen candaites, which are generated from from indels, to HLA ClassII.
 
 ```{r Get INDEL Sample 2 in Test Analysis}
-  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "data/sample_vcf.annovar.txt",
+  Result_HLA2_INDEL <- MainINDELClass2(input_annovar_format_file = "./../data/sample_vcf.annovar.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "data/sample_hla_table_c2.txt",
-                                       refflat_file  = "lib/refFlat.grch37.txt",
-                                       refmrna_file = "lib/refMrna.grch37.fa",
-                                       rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCIIpan_dir = "lib/netMHCIIpan-4.3/netMHCIIpan",
+                                       hla_file = "./../data/sample_hla_table_c2.txt",
+                                       refflat_file  = "./../lib/refFlat.grch37.txt",
+                                       refmrna_file = "./../lib/refMrna.grch37.fa",
+                                       rnaexp_file = "./../data/sample_rna_exp.txt",
+                                       netMHCIIpan_dir = "./../lib/netMHCIIpan-4.3/netMHCIIpan",
                                        depth_tumor_column = 12,
                                        depth_normal_column = 14,
-                                       SNPs = "data/sample_vcf.snps.txt",
+                                       SNPs = "./../data/sample_vcf.snps.txt",
                                        multiple_variants = TRUE)
 
   Result_HLA2_INDEL <- CalculatePriorityScores(result = Result_HLA2_INDEL, useRNAvaf = FALSE)  
@@ -126,14 +143,14 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
 To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassI.
 
 ```{r Get SV Sample 1 in Test Analysis}
-  Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "data/sample_sv_bnd.txt",
+  Result_HLA1_SV <- MainSVFUSIONClass1(input_file = "./../data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "data/sample_hla_table_c1.txt",
-                                       refflat_file  = "lib/refFlat.grch37.txt",
-                                       refmrna_file = "lib/refMrna.grch37.fa",
-                                       rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCpan_dir = "lib/netMHCpan-4.1/netMHCpan",
-                                       refdna_file = "GRCh37.fa",
+                                       hla_file = "./../data/sample_hla_table_c1.txt",
+                                       refflat_file  = "./../lib/refFlat.grch37.txt",
+                                       refmrna_file = "./../lib/refMrna.grch37.fa",
+                                       rnaexp_file = "./../data/sample_rna_exp.txt",
+                                       netMHCpan_dir = "./../lib/netMHCpan-4.1/netMHCpan",
+                                       refdna_file = "./../lib/GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
@@ -152,14 +169,14 @@ To calculate the binding affinity of neoantigen candaites, which are generated f
 To calculate the binding affinity of neoantigen candaites, which are generated from from SVs, to HLA ClassII.
 
 ```{r Get SV Sample 2 in Test Analysis}
-  Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "data/sample_sv_bnd.txt",
+  Result_HLA2_SV <- MainSVFUSIONClass2(input_file = "./../data/sample_sv_bnd.txt",
                                        file_name_in_hla_table = "sample",
-                                       hla_file = "data/sample_hla_table_c2.txt",
-                                       refflat_file  = "lib/refFlat.grch37.txt",
-                                       refmrna_file = "lib/refMrna.grch37.fa",
-                                       rnaexp_file = "data/sample_rna_exp.txt",
-                                       netMHCIIpan_dir = "lib/netMHCIIpan-4.3/netMHCIIpan",
-                                       refdna_file = "lib/GRCh37.fa",
+                                       hla_file = "./../data/sample_hla_table_c2.txt",
+                                       refflat_file  = "./../lib/refFlat.grch37.txt",
+                                       refmrna_file = "./../lib/refMrna.grch37.fa",
+                                       rnaexp_file = "./../data/sample_rna_exp.txt",
+                                       netMHCIIpan_dir = "./../lib/netMHCIIpan-4.3/netMHCIIpan",
+                                       refdna_file = "./../lib/GRCh37.fa",
                                        mutation_alt_bnd_column = 5,
                                        gene_symbol_column = 7,
                                        mate_id_column = 8)
@@ -180,37 +197,37 @@ To calculate the binding affinity of neoantigen candaites, which are directly ge
 ```{r Get Fragment Sample 1 in Test Analysis}
    Result_HLA1_Seq <- MainSeqFragmentClass1(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
-                                           hla_file = "data/sample_hla_table_c1.txt",
+                                           hla_file = "./../data/sample_hla_table_c1.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
-                                           refflat_file  = "lib/refFlat.grch37.txt",
-                                           refmrna_file = "lib/refMrna.grch37.fa",
-                                           netMHCpan_dir = "lib/netMHCpan-4.1/netMHCpan",
+                                           refflat_file  = "./../lib/refFlat.grch37.txt",
+                                           refmrna_file = "./../lib/refMrna.grch37.fa",
+                                           netMHCpan_dir = "./../lib/netMHCpan-4.1/netMHCpan",
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
   Result_HLA1_Seq <- CalculatePriorityScores(result = Result_HLA1_Seq, useRNAvaf = FALSE)
   print(head(Result_HLA1_Seq))
 ```
 
 ```{r Get Fragment Summary 1 in Test Analysis}
-  #print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_Rank_th = 5))
+  print(Export_Summary_Fragments(Result_HLA1_Seq, Mut_Rank_th = 5))
 ```
 
 To calculate the binding affinity of neoantigen candaites, which are directly generated from RNA sequences, to HLA ClassII. The peptides included in the riginal genes ("NFKB1", "BCL3") are removed from the results.
 
 ```{r Get Fragment Sample 2 in Test Analysis}
-  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
+  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaaaaaatgtttcatttggatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
-                                           hla_file = "data/sample_hla_table_c2.txt",
+                                           hla_file = "./../data/sample_hla_table_c2.txt",
                                            hmdir = getwd(),
                                            job_id = "NO_job_id",
-                                           refflat_file  = "lib/refFlat.grch37.txt",
-                                           refmrna_file = "lib/refMrna.grch37.fa",
-                                           netMHCIIpan_dir = "lib/netMHCIIpan-4.3/netMHCIIpan",
+                                           refflat_file  = "./../lib/refFlat.grch37.txt",
+                                           refmrna_file = "./../lib/refMrna.grch37.fa",
+                                           netMHCIIpan_dir = "./../lib/netMHCIIpan-4.3/netMHCIIpan",
                                            reference_gene_symbol = c("NFKB1", "BCL3"))
   Result_HLA2_Seq <- CalculatePriorityScores(result = Result_HLA2_Seq, useRNAvaf = FALSE)
   print(head(Result_HLA2_Seq))
 ```
 
 ```{r Get Fragment Summary 2 in Test Analysis}
-  #print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_Rank_th = 5))
+  print(Export_Summary_Fragments(Result_HLA2_Seq, Mut_Rank_th = 5))
 ```

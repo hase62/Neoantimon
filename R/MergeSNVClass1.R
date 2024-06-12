@@ -54,6 +54,7 @@ MergeSNVClass1<-function(hmdir = getwd(),
     ee1<-intersect(grep("Protein", test1), grep("binders", test1)) - 2
     pep_header <- sapply(gsub("[ ]+","\t",test1[ss1[1] - 2]), function(x) strsplit(x, "\t")[[1]])
     num1<-sapply(gsub("[ ]+","\t",test1[ss1]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
+    if(length(num1) == 0) next
 
     test2<-scan(paste(dir, sub("peptide\\.txt", "wtpeptide\\.txt", f), sep="/"),"character", sep="\n",skip=1)
     test2<-gsub(" <=WB| <=SB", "", test2)
@@ -61,6 +62,7 @@ MergeSNVClass1<-function(hmdir = getwd(),
     ee2<-grep("Protein", test2) - 2
     pep_header <- sapply(gsub("[ ]+","\t",test2[ss2[1] - 2]), function(x) strsplit(x, "\t")[[1]])
     num2<-sapply(gsub("[ ]+","\t",test2[ss2]), function(x) strsplit(x, "\t")[[1]][match("Identity", pep_header)])
+    if(length(num2) == 0) next
 
     #if(length(grep("No peptides derived", test1[1:45]))>0) next
     if(length(grep("cannot be found in hla_pseudo list", test1))>0) next

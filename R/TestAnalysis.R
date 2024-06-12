@@ -139,7 +139,7 @@ TestAnalysis<-function(){
                                            reference_nm_id = c("NM_003998", "NM_001165412"))
   Result_HLA1_Seq <- CalculatePriorityScores(result = Result_HLA1_Seq, useRNAvaf = FALSE)
 
-  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
+  Result_HLA2_Seq <- MainSeqFragmentClass2(input_sequence = "atggcgagcagcgagcagccagcagcaatgcaggcagcagaagatgatccatatttgggaaggcctgaacaaatgtttcatttgatccttctttgactcatacaatatttaatc",
                                            file_name_in_hla_table = "sample",
                                            hla_file = "data/sample_hla_table_c2.txt",
                                            hmdir = getwd(),
